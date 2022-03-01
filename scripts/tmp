@@ -6,7 +6,7 @@ add() { eval "projects_$1='$2'"; }
 get() { eval echo '$'projects_"$1"; }
 
 add 'erp' 'erp_connector'
-dir="~/dev/$(get "$session")"
+dir="$HOME/dev/$(get "$session")"
 
 leave() {
     tmux attach -t "$session"':code' 2>/dev/null || tmux attach -t "$session"

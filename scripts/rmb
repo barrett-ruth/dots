@@ -10,9 +10,9 @@ else
 fi
 
 args="$*"
-for e in $(ls -A "$dir"); do
+for e in .[!.]* *; do
     case "$args" in
     *"$e"*) continue ;;
     esac
-    rm -rf "$dir/$e"
+    rm -rf "${dir:?}/$e"
 done

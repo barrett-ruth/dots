@@ -2,11 +2,9 @@
 
 sink="$(sink)"
 
-if [ "$sink" = '4' ]; then # headphones
-    target='2_'
-fi
+[ "$sink" = '4' ] && target='2_'
 
-state="$(pacmd list-sinks | grep 'state: ')" 
+state="$(pacmd list-sinks | grep 'state: ')"
 
 [ "${state##*RUNNING*}" ] && sus='0' || sus='1'
 
