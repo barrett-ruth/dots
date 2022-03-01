@@ -3,10 +3,8 @@
 [ "$1" ] || exit 1
 
 if [ -d "$1" ]; then
-    dir="$1"
+    cd "$1" || exit 1
     shift
-else
-    dir='.'
 fi
 
 args="$*"
@@ -14,5 +12,5 @@ for e in .[!.]* *; do
     case "$args" in
     *"$e"*) continue ;;
     esac
-    rm -rf "${dir:?}/$e"
+    rm -rf "$e"
 done

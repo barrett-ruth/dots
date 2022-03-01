@@ -16,7 +16,7 @@ rmb "$cfg/zsh" .zshrc .zprofile .zaliases
 cp /etc/zsh/zshenv "$cfg/zsh"
 
 cd "$cfg" || exit 1
-[ "$1" ] || exit 1
+[ "$1" ] || exit
 
 git add .
 git commit -m "$*"
