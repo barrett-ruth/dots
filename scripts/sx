@@ -1,0 +1,9 @@
+#!/bin/sh
+
+[ "$1" ] || exit 1
+
+cmd='sxiv -b'
+[ -d "$1" ] && cmd="$cmd -r"
+cmd="$cmd $*"
+
+eval "$cmd" &

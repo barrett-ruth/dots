@@ -1,0 +1,35 @@
+[user]
+    name = Barrett Ruth
+    email = br@barrett-ruth.com
+    username = barrett-ruth
+[init]
+    defaultBranch = main
+[clone]
+    defaultRemote = home
+[core]
+    editor = nvim
+    whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+[color]
+    ui = auto
+[alias]
+    a = add
+    b = branch
+    c = commit -m
+    cf = config
+    ch = checkout
+    cl = clone
+    d = diff
+    f = fetch
+    i = init
+    lg = log --oneline --graph --decorate
+    mg = merge
+    p = pull
+    pu = push
+    r = remote
+    rb = rebase
+    rt = reset
+    rr = restore
+    s = status
+    st = stash
+    t = tag
+    w = worktree

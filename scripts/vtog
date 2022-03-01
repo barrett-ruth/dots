@@ -1,0 +1,4 @@
+#!/bin/sh
+
+pactl set-sink-mute "$(sink)" toggle
+pkill -RTMIN+7 dwmblocks

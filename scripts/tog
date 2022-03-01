@@ -1,0 +1,13 @@
+#!/bin/sh
+
+sink="$(sink)"
+
+if [ "$sink" = '4' ]; then # headphones
+    target='2_'
+fi
+
+state="$(pacmd list-sinks | grep 'state: ')" 
+
+[ "${state##*RUNNING*}" ] && sus='0' || sus='1'
+
+pacmd suspend-sink alsa_output.pci-0000_00_1f.3-platform-sof_sdw.HiFi__hw_sofsoundwire_"$target"_sink "$sus"

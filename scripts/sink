@@ -1,0 +1,3 @@
+#!/bin/sh
+
+pacmd list-sinks | grep '\* index: ' | tail -c 2

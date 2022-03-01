@@ -1,0 +1,6 @@
+#!/bin/sh
+
+[ "$1" ] || exit 1
+
+iwctl station wlan0 disconnect "$1"
+pkill -RTMIN+8 dwmblocks

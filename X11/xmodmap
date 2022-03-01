@@ -1,0 +1,14 @@
+! Control_L to escape
+remove Control  = Control_L
+keysym Control_L = Escape
+add Control = Control_L
+
+! Caps_Lock to control
+remove Lock = Caps_Lock
+keysym Caps_Lock = Control_L
+add Control = Control_L
+
+remove Control = Control_R
+add mod3 = Control_R
+remove mod1 = Alt_R
+add mod2 = Alt_R

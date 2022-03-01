@@ -1,0 +1,34 @@
+#!/bin/sh
+
+sep='[]'
+prefix="$PASSWORD_STORE_DIR"
+
+get_gpgs() {
+    for i in $(ls "$1"); do
+        [ -d "$1/$i" ] && get_gpgs "$1/$i" || pws="$pws\n$1/$i"
+    done
+}
+
+get_gpgs "$prefix"
+pws="$(echo "$pws" | sed "s|\.gpg||g;s|$prefix/||g")"
+
+entry="$(echo "$(printf '%s\n' "$pws")" | dmenu -p 'Password:')"
+
+[ "$entry" ] || exit
+
+old="$(xclip -sel c -o)"
+new="$(gpg --passphrase-file "$prefix/.pass" --yes --pinentry-mode loopback -d "$prefix/$entry.gpg" 2>/dev/null)"
+
+(
+    username="${new%%$sep*}"
+    echo "$username" | xclip -sel c
+    sleep 2
+
+    password="${new##*$sep}"
+    [ "$password" = "$username" ] && exit
+
+    echo "$password" | xclip -sel c
+    sleep 2
+
+    echo "$old" | xclip -sel c
+) &

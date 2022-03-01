@@ -1,0 +1,32 @@
+#!/bin/sh
+
+[ "$1" ] || exit 1
+
+file="$1"
+shift
+
+ext="${file##*.}"
+
+proj() {
+    echo " > $*"
+    eval "$*"
+}
+
+case "$ext" in
+c)
+    cc "$* $file" && ./a.out && rm a.out
+    ;;
+cc | cpp)
+    g++ "$* $file" && ./a.out && rm a.out
+    ;;
+py)
+    [ "$VIRTUAL_ENV" ] && py="$VIRTUAL_ENV/bin/python" || py='python'
+    eval "$py $* $file"
+    ;;
+rs)
+    rustc "$* $file"
+    ;;
+erp | erp_connector)
+    # proj '<ERP COMMAND HERE>'
+    ;;
+esac

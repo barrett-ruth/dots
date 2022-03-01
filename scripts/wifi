@@ -1,0 +1,10 @@
+#!/bin/sh
+
+[ "$1" ] || exit 1
+
+cmd="iwctl station wlan0 connect $1"
+
+[ "$2" ] && cmd="$cmd --passphrase $2"
+
+eval "$cmd"
+pkill -RTMIN+8 dwmblocks

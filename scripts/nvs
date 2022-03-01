@@ -1,0 +1,12 @@
+#!/bin/sh
+
+file="$SCRIPTS/$(basename "$1")"
+
+[ -d "$file" ] && exit 1
+[ -f "$file" ] || echo '#!/bin/sh' >"$file"
+
+nvim "$file"
+
+[ "$(cat "$file")" = '#!/bin/sh' ] && rm "$file" && exit
+
+[ -x "$file" ] || chmod +x "$SCRIPTS/$(basename "$file")"

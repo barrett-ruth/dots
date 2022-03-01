@@ -1,0 +1,7 @@
+undo/
+__pycache__/
+build/
+node_modules/
+venv/
+cache/
+*.exe

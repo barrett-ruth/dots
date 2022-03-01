@@ -1,0 +1,18 @@
+#!/bin/sh
+
+[ "$1" ] || exit 1
+
+if [ -d "$1" ]; then
+    dir="$1"
+    shift
+else
+    dir='.'
+fi
+
+args="$*"
+for e in $(ls -A "$dir"); do
+    case "$e" in
+    *"$args"*) continue ;;
+    esac
+    rm -rf "$dir/$e"
+done
