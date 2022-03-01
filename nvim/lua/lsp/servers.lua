@@ -10,9 +10,11 @@ local scriptroots = util.root_pattern(
 )
 
 local efmshell = {
-    lintCommand = 'shellcheck -f gcc -x -',
-    lintStdin = true,
-    lintFormats = { '%f:%l:%c: %trror: %m', '%f:%l:%c: %tarning: %m', '%f:%l:%c: %tote: %m' },
+    {
+        lintCommand = 'shellcheck -f gcc -x -',
+        lintStdin = true,
+        lintFormats = { '%f:%l:%c: %trror: %m', '%f:%l:%c: %tarning: %m', '%f:%l:%c: %tote: %m' },
+    },
 }
 
 local servers = {
