@@ -2,7 +2,7 @@
 
 cfg="$HOME/dev/config"
 
-rmb "$cfg" .git install.zsh
+rmb .git install.zsh "$cfg"
 
 cp -r "$SCRIPTS" "$cfg"
 
@@ -12,12 +12,12 @@ done
 
 rm -rf "$cfg/nvim/undo"
 
-rmb "$cfg/zsh" .zshrc .zprofile .zaliases
+rmb .zshrc .zprofile .zaliases "$cfg/zsh"
 cp /etc/zsh/zshenv "$cfg/zsh"
 
-cd "$cfg" || exit 1
 [ "$1" ] || exit
 
+cd "$cfg" || exit 1
 git add .
 git commit -m "$*"
 git push
