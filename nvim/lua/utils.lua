@@ -2,7 +2,7 @@ local M = {}
 
 function M.toggle_fold()
     vim.o.foldmethod = vim.o.foldmethod == 'syntax' and 'manual' or 'syntax'
-    vim.cmd 'se foldmethod'
+    vim.cmd 'se fdm'
 end
 
 function M.toggle_list(prefix)
@@ -70,8 +70,8 @@ function M.mapstr(req, meth)
 end
 
 function M.clean_whitespace()
-    local save = cim.fn.winsaveview()
-    vim.cmd 'keeppatterns %s/\\s\\+$//e'
+    local save = vim.fn.winsaveview()
+    vim.cmd 'keepp %s/\\s\\+$//e'
     vim.fn.winrestview(save)
 end
 

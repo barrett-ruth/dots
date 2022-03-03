@@ -3,6 +3,7 @@ local M = {}
 local on_attach = function(client)
     if client.name == 'tsserver' then
         local ts_utils = require 'nvim-lsp-ts-utils'
+
         ts_utils.setup {
             enable_import_on_completion = true,
             update_imports_on_move = true,
@@ -16,7 +17,6 @@ local on_attach = function(client)
     local utils = require 'utils'
     local map = utils.map
     local mapstr = utils.mapstr
-    map { 'n', lspleader .. 't', 'itest' }
 
     map { 'n', lspleader .. 'd', mapstr 'lua vim.lsp.buf.definition()' }
     map { 'n', lspleader .. 'D', mapstr 'lua vim.lsp.buf.declaration()' }
@@ -32,7 +32,7 @@ local on_attach = function(client)
 end
 
 local lspconfig = require 'lspconfig'
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 local lsp_settings = {
     on_attach = on_attach,

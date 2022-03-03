@@ -44,6 +44,7 @@ export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export PASSWORD_STORE_DIR="$XDG_CONFIG_HOME/password-store"
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/pythonrc"
 export VIRTUAL_ENV_DISABLE_PROMPT=1
+export PRETTIERD_DEFAULT_CONFIG="$XDG_CONFIG_HOME/prettierrc"
 
 # FZF
 export FZF_CTRL_T_COMMAND='fd -t f -H --strip-cwd-prefix'

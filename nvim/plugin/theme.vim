@@ -22,10 +22,9 @@ fun! s:Nohl_prefix(groups, prefix)
     endfo
 endfun
 
-cal s:Nohl([ 'CursorLineNr' ])
+cal s:Nohl([ 'CursorLineNr', 'SignColumn' ])
 cal s:Nohl_prefix([ 'Add', 'Delete', 'ChangeDelete', 'Change' ], 'GitGutter')
 cal s:Nohl_prefix([ 'Change', 'Add', 'Delete', 'Text' ], 'Diff')
-cal s:Nohl_suffix([ 'Sign', 'Fold' ], 'Column')
 
 hi! DiffChange guifg=#fabd2f
 hi! diffChanged guifg=#fabd2f
@@ -38,3 +37,5 @@ hi! DiagnosticUnderlineError cterm=NONE guisp=#fb4943 gui=undercurl
 hi! DiagnosticSignHint guifg=#a7c080
 hi! DiagnosticUnderlineHint guisp=#a7c080 cterm=NONE gui=undercurl
 hi! DiagnosticUnderlineWarn cterm=NONE gui=undercurl
+hi! CmpItemAbbrMatchFuzzyDefault guifg=#fe8019
+hi! CmpItemAbbrMatchDefault guifg=#fe8019

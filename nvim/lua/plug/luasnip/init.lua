@@ -27,7 +27,7 @@ for _, v in ipairs { { '{', '}' }, { '(', ')' }, { '[', ']' } } do
     table.insert(acc, s(snipopts(v[1] .. ' '), { t(v[1] .. ' '), i(1), t(' ' .. v[2]) }))
     table.insert(acc, s(snipopts(v[1]), { t(v[1]), i(1), t(v[2]) }))
 end
-for _, v in ipairs { { '"', '"' }, { "'", "'" } } do
+for _, v in ipairs { { '"', '"' }, { "'", "'" }, { '<', '>' } } do
     table.insert(acc, s(snipopts(v[1]), { t(v[1]), i(1), t(v[2]) }))
 end
 

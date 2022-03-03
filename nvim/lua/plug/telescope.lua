@@ -75,19 +75,17 @@ map {
 }
 map { 'n', '<c-f>', mapstr('utils', 'files()') }
 map { 'n', '<c-g>', mapstr('telescope.builtin', 'live_grep()') }
-map { 'n', '<c-h>', mapstr('telescope.builtin', 'help_tags()') }
-
-map {
-    'n',
-    '<leader>b',
-    mapstr('telescope', "extensions.file_browser.file_browser({ cwd = vim.fn.expand '%:p:h' })"),
-}
-map { 'n', '<leader>f', mapstr('utils', "files({ cwd = vim.fn.expand '%:p:h' })") }
-map { 'n', '<leader>g', mapstr('telescope.builtin', "live_grep({ cwd = vim.fn.expand '%:p:h' })") }
 map { 'n', '<c-_>', mapstr('telescope.builtin', 'current_buffer_fuzzy_find({ previewer = false })') }
 
 local scopeleader = '<leader>t'
-map { 'n', scopeleader .. 'b', ":lua require 'telescope.builtin'.()<left><left>" }
-map { 'n', scopeleader .. 'f', mapstr('telescope.builtin', "find_files({ cwd = '~' })") }
-map { 'n', scopeleader .. 'g', mapstr('telescope.builtin', "live_grep({ cwd = '~' })") }
+
+map {
+    'n',
+    scopeleader .. 'b',
+    mapstr('telescope', "extensions.file_browser.file_browser({ cwd = vim.fn.expand '%:p:h' })"),
+}
+map { 'n', scopeleader .. 'f', mapstr('utils', "files({ cwd = vim.fn.expand '%:p:h' })") }
+map { 'n', scopeleader .. 'g', mapstr('telescope.builtin', "live_grep({ cwd = vim.fn.expand '%:p:h' })") }
+map { 'n', scopeleader .. 'h', mapstr('telescope.builtin', 'help_tags()') }
 map { 'n', scopeleader .. 'r', mapstr('telescope.builtin', 'resume()') }
+map { 'n', scopeleader .. 't', ":lua require 'telescope.builtin'.()<left><left>" }

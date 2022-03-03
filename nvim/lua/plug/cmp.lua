@@ -1,7 +1,8 @@
 vim.g.completion_matching_strategy_list = 'exact,substring,fuzzy'
 
-local luasnip = require 'luasnip'
 local cmp = require 'cmp'
+local mapping = require 'cmp.config.mapping'
+local luasnip = require 'luasnip'
 
 local kinds = {
     Buffer = 'buf',
@@ -27,41 +28,43 @@ cmp.setup {
     },
     formatting = {
         format = function(_, item)
-            if kinds[item.kind] ~= nil then
-                item.kind = kinds[item.kind]
-            else
-                item.kind = string.lower(item.kind)
-            end
+            item.kind = kinds[item.kind] ~= nil and kinds[item.kind] or string.lower(item.kind)
 
             item.kind = '[' .. item.kind .. ']'
-
             return item
         end,
     },
     sources = cmp.config.sources {
-        { name = 'luasnip' },
         { name = 'nvim_lsp' },
         { name = 'buffer' },
         { name = 'path' },
     },
     mapping = {
-        ['<c-h>'] = cmp.mapping(cmp.mapping.scroll_docs(-3), { 'i', 'c' }),
-        ['<c-l>'] = cmp.mapping(cmp.mapping.scroll_docs(3), { 'i', 'c' }),
-        ['<cr>'] = cmp.config.disable,
-        ['<c-s>'] = cmp.mapping(function(fallback)
+        ['<c-h>'] = cmp.mapping(cmp.mapping.scroll_docs(-3), { 'i' }),
+        ['<c-l>'] = cmp.mapping(cmp.mapping.scroll_docs(3), { 'i' }),
+        ['<c-y>'] = mapping {
+            i = function()
+                if cmp.visible() then
+                    cmp.confirm()
+                    cmp.close()
+                end
+            end,
+        },
+        ['<c-p>'] = function()
+            if luasnip.jumpable(-1) then
+                luasnip.jump(-1)
+            end
+        end,
+        ['<c-n>'] = function()
+            if luasnip.jumpable(1) then
+                luasnip.jump(1)
+            end
+        end,
+        ['<c-s>'] = function()
             if luasnip.expandable() then
                 luasnip.expand()
-            else
-                fallback()
             end
-        end, { 'i' }),
-        ['<c-j>'] = cmp.mapping(function(fallback)
-            if luasnip.jumpable() then
-                luasnip.jump(1)
-            else
-                fallback()
-            end
-        end, { 'i' }),
+        end,
     },
 }
 
@@ -70,4 +73,3 @@ local map = utils.map
 local mapstr = utils.mapstr
 
 map { 'i', '<c-space>', mapstr('utils', 'toggle_cmp()') }
-map { 'n', '<c-space>', mapstr('utils', 'toggle_cmp()') }

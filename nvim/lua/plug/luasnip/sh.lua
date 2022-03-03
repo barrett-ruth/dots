@@ -5,7 +5,7 @@ local s = ls.s
 
 ls.snippets.sh = {
     s(
-        '&',
+        '&&',
         fmt(
             [[
                 [ {} ] && {}
@@ -14,7 +14,7 @@ ls.snippets.sh = {
         )
     ),
     s(
-        '|',
+        '||',
         fmt(
             [[
                 [ {} ] || {}
@@ -82,7 +82,7 @@ ls.snippets.sh = {
         )
     ),
     s(
-        'sub',
+        's',
         fmt(
             [[
                 "$({})"

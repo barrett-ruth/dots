@@ -1,4 +1,4 @@
-set font "monospace normal 25"
+set font "monospace normal 15"
 set guioptions none
 set default-bg "#1d2021"
 set statusbar-bg "#1d2021"
