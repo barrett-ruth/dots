@@ -10,7 +10,6 @@ alias ls='exa'
 alias l='ls -a --color=auto --group-directories-first'
 alias ll='l -lF'
 alias la='ll -R'
-alias gr='grep --color=auto'
 alias lss='less --use-color --color=d+b --color=P+c --color=u+g'
 
 # Basic programs

@@ -23,10 +23,16 @@ py)
     [ "$VIRTUAL_ENV" ] && py="$VIRTUAL_ENV/bin/python" || py='python'
     eval "$py $* $file"
     ;;
+js)
+    node "$file"
+    ;;
+ts)
+    ts-node "$file"
+    ;;
 rs)
     rustc "$* $file"
     ;;
-erp | erp_connector)
-    # proj '<ERP COMMAND HERE>'
-    ;;
+    # erp | erp_connector)
+    #     proj '<ERP COMMAND HERE>'
+    #     ;;
 esac

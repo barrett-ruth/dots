@@ -5,7 +5,7 @@ local s = ls.s
 
 ls.snippets.sh = {
     s(
-        '&&',
+        '&',
         fmt(
             [[
                 [ {} ] && {}
@@ -14,7 +14,7 @@ ls.snippets.sh = {
         )
     ),
     s(
-        '||',
+        '|',
         fmt(
             [[
                 [ {} ] || {}
@@ -44,19 +44,6 @@ ls.snippets.sh = {
                 fi
             ]],
             { i(1), i(2) }
-        )
-    ),
-    s(
-        'ife',
-        fmt(
-            [[
-                if [ {} ]; then
-                    {}
-                else
-                    {}
-                fi
-            ]],
-            { i(1), i(2), i(3) }
         )
     ),
     s(

@@ -4,9 +4,9 @@ vim.cmd [[
     let g:mapleader = ' '
 ]]
 
-require 'lsp'
 require 'map'
 require 'plug'
+require 'lsp'
 
 -- Available leader mappings:
 -- aimnoux AEIMNORTUVX

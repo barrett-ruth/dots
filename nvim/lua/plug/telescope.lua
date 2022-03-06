@@ -50,6 +50,7 @@ require('telescope').setup {
                     M = fb_actions.move,
                     R = fb_actions.rename,
                     T = fb_actions.toggle_browser,
+                    Y = fb_actions.copy,
                 },
             },
         },
@@ -84,6 +85,7 @@ map {
     scopeleader .. 'b',
     mapstr('telescope', "extensions.file_browser.file_browser({ cwd = vim.fn.expand '%:p:h' })"),
 }
+map { 'n', scopeleader .. 'B', mapstr('telescope.builtin', 'buffers()') }
 map { 'n', scopeleader .. 'f', mapstr('utils', "files({ cwd = vim.fn.expand '%:p:h' })") }
 map { 'n', scopeleader .. 'g', mapstr('telescope.builtin', "live_grep({ cwd = vim.fn.expand '%:p:h' })") }
 map { 'n', scopeleader .. 'h', mapstr('telescope.builtin', 'help_tags()') }

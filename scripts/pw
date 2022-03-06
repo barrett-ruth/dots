@@ -2,15 +2,19 @@
 
 sep='[]'
 prefix="$PASSWORD_STORE_DIR"
+pws=''
 
 get_gpgs() {
     for i in "$1"/*; do
-        [ -d "$1/$i" ] && get_gpgs "$1/$i" || pws="$pws\n$1/$i"
+        if [ -d "$i" ]; then
+            get_gpgs "$i"
+        else
+            pws="$pws\n$(echo "$i" | sed "s|\.gpg||g;s|$prefix/||g")"
+        fi
     done
 }
 
 get_gpgs "$prefix"
-pws="$(echo "$pws" | sed "s|\.gpg||g;s|$prefix/||g")"
 
 entry="$(echo "$(printf '%s\n' "$pws")" | dmenu -p 'Password:')"
 
@@ -19,16 +23,18 @@ entry="$(echo "$(printf '%s\n' "$pws")" | dmenu -p 'Password:')"
 old="$(xclip -sel c -o)"
 new="$(gpg --passphrase-file "$prefix/.pass" --yes --pinentry-mode loopback -d "$prefix/$entry.gpg" 2>/dev/null)"
 
+reset() { echo "$old" | xclip -sel c; }
+
+username="${new%%"$sep"*}"
+password="${new##*"$sep"}"
+
+echo "$username" | xclip -sel c
+
 (
-    username="${new%%"$sep"*}"
-    echo "$username" | xclip -sel c
-    sleep 2
-
-    password="${new##*"$sep"}"
-    [ "$password" = "$username" ] && exit
-
-    echo "$password" | xclip -sel c
-    sleep 2
-
-    echo "$old" | xclip -sel c
+    sleep 1.5
+    if [ ! "$password" = "$username" ]; then
+        echo "$password" | xclip -sel c
+        sleep 1.5
+    fi
+    reset
 ) &

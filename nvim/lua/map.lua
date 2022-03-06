@@ -21,13 +21,19 @@ map { 'n', ql .. 't', mapstr('utils', "toggle_list('c')") }
 -- Builtins --
 map { 'n', '<bs>', '<c-^>' }
 map { 'n', 'Q', '@q' }
-map { 'n', '<left>', mapstr 'vert resize -10' }
-map { 'n', '<down>', mapstr 'resize +10' }
-map { 'n', '<up>', mapstr 'resize -10' }
-map { 'n', '<right>', mapstr 'vert resize +10' }
 map { 'n', 'J', 'mzJ`z' }
 map { 'v', 'K', ":m '<-2<cr>gv" }
 map { 'v', 'J', ":m '>+1<cr>gv" }
+
+-- Windows --
+map { 'n', '<c-h>', '<c-w>h' }
+map { 'n', '<left>', mapstr 'vert resize -10' }
+map { 'n', '<c-j>', '<c-w>j' }
+map { 'n', '<down>', mapstr 'resize +10' }
+map { 'n', '<c-k>', '<c-w>k' }
+map { 'n', '<up>', mapstr 'resize -10' }
+map { 'n', '<c-l>', '<c-w>l' }
+map { 'n', '<right>', mapstr 'vert resize +10' }
 
 -- Centering --
 map { 'n', 'G', 'Gzz' }

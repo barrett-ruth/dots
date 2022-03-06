@@ -42,7 +42,7 @@ export LESSHISTFILE="$XDG_CONFIG_HOME/less/lesshst"
 export npm_config_prefix='/usr/local'
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export PASSWORD_STORE_DIR="$XDG_CONFIG_HOME/password-store"
-export PYTHONSTARTUP="$XDG_CONFIG_HOME/pythonrc"
+export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export PRETTIERD_DEFAULT_CONFIG="$XDG_CONFIG_HOME/prettierrc"
 
@@ -51,7 +51,6 @@ export FZF_CTRL_T_COMMAND='fd -t f -H --strip-cwd-prefix'
 export FZF_ALT_C_COMMAND='fd -H --strip-cwd-prefix -t d'
 export FZF_CTRL_R_OPTS='--reverse'
 export FZF_DEFAULT_OPTS='--no-info --no-bold --color=bg:#1d2021,hl:#fe8019 --color=fg+:#ebdbb2,hl+:#fe8019,bg+:#1d2021 --color=pointer:#ebdbb2'
-export FZF_COMPLETION_TRIGGER=';;'
 export FZF_TMUX=1
 
 # Options

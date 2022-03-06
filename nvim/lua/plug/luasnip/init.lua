@@ -10,25 +10,42 @@ local function snipopts(trig)
     return { trig = trig, wordTrig = false }
 end
 
-local newline = function(v, prefix, comma)
-    return s(snipopts(v[1] .. prefix), {
-        t(v[1]),
+local simple = function(lr)
+    return s(snipopts(lr[1]), {
+        t(lr[1]),
+        i(1),
+        t(lr[2]),
+    })
+end
+
+local inline = function(trig, lr, comma)
+    return s(snipopts(trig), {
+        t(lr[1] .. ' '),
+        i(1),
+        t(' ' .. lr[2] .. comma),
+    })
+end
+
+local newline = function(trig, lr, comma)
+    return s(snipopts(trig), {
+        t(lr[1]),
         t { '', '    ' },
         i(1),
         t { '', '' },
-        t(v[2] .. comma),
+        t(lr[2] .. comma),
     })
 end
 
 local acc = {}
 for _, v in ipairs { { '{', '}' }, { '(', ')' }, { '[', ']' } } do
-    table.insert(acc, newline(v, 'n', ''))
-    table.insert(acc, newline(v, ',', ','))
-    table.insert(acc, s(snipopts(v[1] .. ' '), { t(v[1] .. ' '), i(1), t(' ' .. v[2]) }))
-    table.insert(acc, s(snipopts(v[1]), { t(v[1]), i(1), t(v[2]) }))
+    table.insert(acc, newline(v[1] .. 'n', v, ''))
+    table.insert(acc, newline(v[1] .. ',', v, ','))
+    table.insert(acc, inline(v[1] .. ' ', v, ''))
+    table.insert(acc, inline(v[1] .. ' ,', v, ','))
+    table.insert(acc, simple(v))
 end
 for _, v in ipairs { { '"', '"' }, { "'", "'" }, { '<', '>' } } do
-    table.insert(acc, s(snipopts(v[1]), { t(v[1]), i(1), t(v[2]) }))
+    table.insert(acc, simple(v))
 end
 
 ls.snippets = { all = acc }
@@ -36,3 +53,11 @@ ls.snippets = { all = acc }
 ls.filetype_extend('bash', { 'sh' })
 ls.filetype_extend('zsh', { 'sh' })
 ls.filetype_extend('cpp', { 'c' })
+
+local utils = require 'utils'
+local map = utils.map
+local mapstr = utils.mapstr
+
+map { 'i', '<c-s>', mapstr "lua ls = require 'luasnip'; if ls.expandable() then ls.expand() end" }
+map { 'i', '<c-f>', mapstr "lua ls = require 'luasnip'; if ls.jumpable(1) then ls.jump(1) end" }
+map { 'i', '<c-b>', mapstr "lua ls = require 'luasnip'; if ls.jumpable(-1) then ls.jump(-1) end" }

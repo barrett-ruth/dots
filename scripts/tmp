@@ -1,6 +1,6 @@
 #!/bin/sh
 
-session="$1"
+session="${1:-misc}"
 
 add() { eval "projects_$1='$2'"; }
 get() { eval echo '$'projects_"$1"; }
@@ -25,7 +25,7 @@ tmux renamew -t "$session"':1' 'code'
 
 case "$session" in
 misc)
-    tmux splitw -h -t "$session"':1'
+    tmux neww -t "$session" -n 'aux'
     ;;
 erp)
     for e in code run dock aux; do

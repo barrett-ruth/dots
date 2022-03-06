@@ -1,15 +1,4 @@
-local util = require('lspconfig').util
-local scriptroots = util.root_pattern(
-    '.git',
-    'package-lock.json',
-    'package.json',
-    'tsconfig.json',
-    'jsconfig.json',
-    'tslint.json',
-    'eslint.json'
-)
-
-local efmshell = {
+local shell = {
     lintCommand = 'shellcheck -f gcc -x -',
     lintStdin = true,
     lintFormats = { '%f:%l:%c: %trror: %m', '%f:%l:%c: %tarning: %m', '%f:%l:%c: %tote: %m' },
@@ -27,20 +16,25 @@ local servers = {
         },
         settings = {
             languages = {
-                sh = { efmshell },
-                bash = { efmshell },
+                sh = { shell },
+                bash = { shell },
             },
         },
     },
-    eslint = { root_dir = scriptroots },
+    eslint = {},
     html = { filetypes = { 'html' } },
     jsonls = { filetypes = { 'json' } },
     pyright = { filetypes = { 'python' } },
     sumneko_lua = {
         filetypes = { 'lua' },
-        settings = { Lua = { diagnostics = { globals = { 'vim' } } } },
+        settings = {
+            Lua = {
+                completion = { keywordSnippet = 'Disable' },
+                diagnostics = { globals = { 'vim' } },
+            },
+        },
     },
-    tsserver = { root_dir = scriptroots },
+    tsserver = {},
     vimls = { filetypes = { 'vim' } },
 }
 

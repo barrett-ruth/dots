@@ -36,6 +36,7 @@ cmp.setup {
     },
     sources = cmp.config.sources {
         { name = 'nvim_lsp' },
+        { name = 'nvim_lua' },
         { name = 'buffer' },
         { name = 'path' },
     },
@@ -50,21 +51,6 @@ cmp.setup {
                 end
             end,
         },
-        ['<c-p>'] = function()
-            if luasnip.jumpable(-1) then
-                luasnip.jump(-1)
-            end
-        end,
-        ['<c-n>'] = function()
-            if luasnip.jumpable(1) then
-                luasnip.jump(1)
-            end
-        end,
-        ['<c-s>'] = function()
-            if luasnip.expandable() then
-                luasnip.expand()
-            end
-        end,
     },
 }
 

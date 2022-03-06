@@ -1,6 +1,11 @@
 local M = {}
 
 local on_attach = function(client)
+    local lspleader = vim.g.mapleader .. vim.g.mapleader
+    local utils = require 'utils'
+    local map = utils.map
+    local mapstr = utils.mapstr
+
     if client.name == 'tsserver' then
         local ts_utils = require 'nvim-lsp-ts-utils'
 
@@ -10,14 +15,13 @@ local on_attach = function(client)
         }
 
         ts_utils.setup_client(client)
+
+        map { 'n', lspleader .. 'ti', mapstr 'TSLspOrganize' }
+        map { 'n', lspleader .. 'tr', mapstr 'TSLspRenameFile' }
+        map { 'n', lspleader .. 'to', mapstr 'TSLspOrganize' }
     end
 
-    local lspleader = vim.g.mapleader .. vim.g.mapleader
-
-    local utils = require 'utils'
-    local map = utils.map
-    local mapstr = utils.mapstr
-
+    map { 'n', lspleader .. 'c', mapstr 'lua vim.lsp.buf.code_action()' }
     map { 'n', lspleader .. 'd', mapstr 'lua vim.lsp.buf.definition()' }
     map { 'n', lspleader .. 'D', mapstr 'lua vim.lsp.buf.declaration()' }
     map { 'n', lspleader .. 'f', mapstr 'lua vim.diagnostic.open_float()' }
@@ -28,11 +32,12 @@ local on_attach = function(client)
     map { 'n', lspleader .. 'r', mapstr 'lua vim.lsp.buf.rename()' }
     map { 'n', lspleader .. 'R', mapstr 'lua vim.lsp.buf.references()' }
     map { 'n', lspleader .. 's', mapstr 'lua vim.lsp.buf.signature_help()' }
-    map { 'n', lspleader .. 't', mapstr 'lua vim.lsp.buf.type_definition()' }
+    map { 'n', lspleader .. 'T', mapstr 'lua vim.lsp.buf.type_definition()' }
 end
 
 local lspconfig = require 'lspconfig'
-local capabilities = vim.lsp.protocol.make_client_capabilities()
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+capabilities.textDocument.completion.completionItem.snippetSupport = false
 
 local lsp_settings = {
     on_attach = on_attach,

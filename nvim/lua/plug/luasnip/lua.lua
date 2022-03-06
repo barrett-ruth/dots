@@ -6,6 +6,48 @@ local t = ls.t
 
 ls.snippets.lua = {
     s(
+        'pr',
+        fmt(
+            [[
+                print({})
+            ]],
+            { i(1) }
+        )
+    ),
+    s(
+        'fun',
+        fmt(
+            [[
+                function {}({})
+                    {}
+                end
+            ]],
+            { i(1), i(2), i(3) }
+        )
+    ),
+    s(
+        'lfun',
+        fmt(
+            [[
+                local {} = function({})
+                    {}
+                end
+            ]],
+            { i(1), i(2), i(3) }
+        )
+    ),
+    s(
+        'if',
+        fmt(
+            [[
+                if {} then
+                    {}
+                end
+            ]],
+            { i(1), i(2) }
+        )
+    ),
+    s(
         'lr',
         fmt(
             [[
