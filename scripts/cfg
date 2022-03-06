@@ -13,6 +13,7 @@ done
 rm -rf "$cfg/nvim/undo"
 
 rmb .zshrc .zprofile .zaliases "$cfg/zsh"
+rmb tmux.conf "$cfg/tmux"
 cp /etc/zsh/zshenv "$cfg/zsh"
 
 [ "$1" ] || exit
