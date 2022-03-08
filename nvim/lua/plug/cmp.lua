@@ -48,6 +48,8 @@ cmp.setup {
                 if cmp.visible() then
                     cmp.confirm()
                     cmp.close()
+                else
+                    cmp.complete()
                 end
             end,
         },

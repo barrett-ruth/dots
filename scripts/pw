@@ -32,9 +32,6 @@ echo "$username" | xclip -sel c
 
 (
     sleep 1.5
-    if [ ! "$password" = "$username" ]; then
-        echo "$password" | xclip -sel c
-        sleep 1.5
-    fi
+    [ ! "$password" = "$username" ] && echo "$password" | xclip -sel c && sleep 1.5
     reset
 ) &

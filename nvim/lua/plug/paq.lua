@@ -5,6 +5,7 @@ require 'paq' {
     'jose-elias-alvarez/nvim-lsp-ts-utils',
 
     'hrsh7th/nvim-cmp',
+    'hrsh7th/cmp-nvim-lua',
     'hrsh7th/cmp-nvim-lsp',
     'saadparwaiz1/cmp_luasnip',
     'hrsh7th/cmp-path',

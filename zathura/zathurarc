@@ -15,5 +15,5 @@ map d scroll half-down
 map g goto top
 map h zoom out
 map l zoom in
-map n scroll full-down
-map p scroll full-up
+map n navigate next
+map p navigate previous

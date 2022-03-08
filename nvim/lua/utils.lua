@@ -1,5 +1,20 @@
 local M = {}
 
+function M.empty(s)
+    return s == '' or s == nil
+end
+
+function M.Q()
+    local reg = vim.fn.reg_recording()
+
+    if M.empty(reg) and not M.empty(REG) then
+        vim.cmd('norm! @' .. REG)
+    elseif reg ~= '' then
+        vim.api.nvim_command 'norm! q'
+        REG = reg
+    end
+end
+
 function M.toggle_fold()
     vim.o.foldmethod = vim.o.foldmethod == 'syntax' and 'manual' or 'syntax'
     vim.cmd 'se fdm'
@@ -29,8 +44,15 @@ function M.toggle_cmp()
         CMP = not CMP
     end
 
-    require('cmp').setup.buffer { enabled = CMP }
-    print('cmp ' .. (CMP and 'en' or 'dis') .. 'abled')
+    local cmp = require 'cmp'
+
+    cmp.setup.buffer { enabled = CMP }
+
+    if CMP then
+        cmp.complete()
+    else
+        cmp.close()
+    end
 end
 
 function M.set_wig()
@@ -43,10 +65,6 @@ function M.set_wig()
 
     vim.g.netrw_listhide = wig
     vim.api.nvim_set_var('wildignore', wig)
-end
-
-function M.empty(s)
-    return s == '' or s == nil
 end
 
 function M.map(mapping, eopts)

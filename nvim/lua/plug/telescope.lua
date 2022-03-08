@@ -82,12 +82,13 @@ local scopeleader = '<leader>t'
 
 map {
     'n',
-    scopeleader .. 'b',
+    '<leader>b',
     mapstr('telescope', "extensions.file_browser.file_browser({ cwd = vim.fn.expand '%:p:h' })"),
 }
+
 map { 'n', scopeleader .. 'B', mapstr('telescope.builtin', 'buffers()') }
-map { 'n', scopeleader .. 'f', mapstr('utils', "files({ cwd = vim.fn.expand '%:p:h' })") }
-map { 'n', scopeleader .. 'g', mapstr('telescope.builtin', "live_grep({ cwd = vim.fn.expand '%:p:h' })") }
+map { 'n', '<leader>f', mapstr('utils', "files({ cwd = vim.fn.expand '%:p:h' })") }
+map { 'n', '<leader>g', mapstr('telescope.builtin', "live_grep({ cwd = vim.fn.expand '%:p:h' })") }
 map { 'n', scopeleader .. 'h', mapstr('telescope.builtin', 'help_tags()') }
 map { 'n', scopeleader .. 'r', mapstr('telescope.builtin', 'resume()') }
 map { 'n', scopeleader .. 't', ":lua require 'telescope.builtin'.()<left><left>" }
