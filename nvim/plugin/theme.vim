@@ -1,4 +1,4 @@
-colo gruvbox8_hard
+colo gruvbox-material
 
 fun! s:Hlstr(group)
     exe 'hi!' a:group 'ctermbg=NONE guibg=NONE gui=NONE'
@@ -23,19 +23,8 @@ fun! s:Nohl_prefix(groups, prefix)
 endfun
 
 cal s:Nohl([ 'CursorLineNr', 'SignColumn' ])
-cal s:Nohl_prefix([ 'Add', 'Delete', 'ChangeDelete', 'Change' ], 'GitGutter')
 cal s:Nohl_prefix([ 'Change', 'Add', 'Delete', 'Text' ], 'Diff')
+cal s:Nohl_suffix([ 'Error', 'Warning', 'Hint', 'Info' ], 'Float')
+cal s:Nohl_suffix([ 'Green', 'Red', 'Yellow', 'Blue', 'Aqua' ], 'Sign')
 
-hi! DiffChange guifg=#fabd2f
-hi! diffChanged guifg=#fabd2f
-hi! QuickFixLine guifg=#fabd2f
-hi! DiagnosticInfo guifg=LightBlue
-hi! DiagnosticUnderlineInfo cterm=NONE guisp=LightBlue gui=undercurl
-hi! DiagnosticError guifg=#fb4934
-hi! DiagnosticHint guifg=#a7c080
-hi! DiagnosticUnderlineError cterm=NONE guisp=#fb4943 gui=undercurl
-hi! DiagnosticSignHint guifg=#a7c080
-hi! DiagnosticUnderlineHint guisp=#a7c080 cterm=NONE gui=undercurl
-hi! DiagnosticUnderlineWarn cterm=NONE gui=undercurl
-hi! CmpItemAbbrMatchFuzzyDefault guifg=#fe8019
-hi! CmpItemAbbrMatchDefault guifg=#fe8019
+hi! TelescopeSelection guibg=#45403d

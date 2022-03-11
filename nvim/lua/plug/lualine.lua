@@ -1,4 +1,4 @@
-local theme = require 'lualine.themes.gruvbox_dark'
+local theme = require 'lualine.themes.gruvbox'
 theme.inactive.a.gui = 'NONE'
 
 require('lualine').setup {
@@ -24,6 +24,6 @@ require('lualine').setup {
         lualine_c = {},
         lualine_x = {},
         lualine_y = {},
-        lualine_z = { 'filsize', '%l/%L', 'encoding', 'bo:ff' },
+        lualine_z = { '%l/%L', 'encoding', 'bo:ff' },
     },
 }

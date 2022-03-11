@@ -40,8 +40,8 @@ require('telescope').setup {
     },
     extensions = {
         file_browser = {
-            disable_devicons = true,
             hidden = true,
+            disable_devicons = true,
             mappings = {
                 n = {
                     C = fb_actions.create,
@@ -86,6 +86,7 @@ map {
     mapstr('telescope', "extensions.file_browser.file_browser({ cwd = vim.fn.expand '%:p:h' })"),
 }
 
+map { 'n', scopeleader .. 'b', mapstr('telescope.builtin', 'builtin()') }
 map { 'n', scopeleader .. 'B', mapstr('telescope.builtin', 'buffers()') }
 map { 'n', '<leader>f', mapstr('utils', "files({ cwd = vim.fn.expand '%:p:h' })") }
 map { 'n', '<leader>g', mapstr('telescope.builtin', "live_grep({ cwd = vim.fn.expand '%:p:h' })") }

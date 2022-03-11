@@ -1,22 +1,31 @@
 Xft.dpi: 192
-Sxiv.background: #1d2021
-Sxiv.font: Consolas-12
-! gruvbox: ACTIVE
-*background: #1d2021
-*foreground: #ebdbb2
-*color0:  #282828
-*color8:  #928374
-*color1:  #cc241d
-*color9:  #fb4934
-*color2:  #98971a
-*color10: #b8bb26
-*color3:  #d79921
-*color11: #fabd2f
-*color4:  #458588
-*color12: #83a598
-*color5:  #b16286
+Sxiv.background: #282828
+Sxiv.font: FiraCode-12
+
+*background: #282828
+*foreground: #d4be98
+
+! Black + DarkGrey
+*color0:  #32302f
+*color8:  #32302f
+! DarkRed + Red
+*color1:  #ea6962
+*color9:  #ea6962
+! DarkGreen + Green
+*color2:  #a9b665
+*color10: #a9b665
+! DarkYellow + Yellow
+*color3:  #d8a657
+*color11: #d8a657
+! DarkBlue + Blue
+*color4:  #7daea3
+*color12: #7daea3
+! DarkMagenta + Magenta
+*color5:  #d3869b
 *color13: #d3869b
-*color6:  #689d6a
-*color14: #8ec07c
-*color7:  #a89984
-*color15: #ebdbb2
+! DarkCyan + Cyan
+*color6:  #89b482
+*color14: #89b482
+! LightGrey + White
+*color7:  #d4be98
+*color15: #d4be98

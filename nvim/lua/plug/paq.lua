@@ -3,13 +3,15 @@ require 'paq' {
 
     'neovim/nvim-lspconfig',
     'jose-elias-alvarez/nvim-lsp-ts-utils',
+    'onsails/lspkind-nvim',
 
     'hrsh7th/nvim-cmp',
     'hrsh7th/cmp-nvim-lua',
     'hrsh7th/cmp-nvim-lsp',
-    'saadparwaiz1/cmp_luasnip',
     'hrsh7th/cmp-path',
-    'hrsh7th/cmp-buffer',
+
+    'L3MON4D3/LuaSnip',
+    'saadparwaiz1/cmp_luasnip',
 
     'nvim-lua/plenary.nvim',
     'nvim-telescope/telescope.nvim',
@@ -22,13 +24,12 @@ require 'paq' {
         end,
     },
 
-    'L3MON4D3/LuaSnip',
+    'gpanders/editorconfig.nvim',
 
-    'lifepillar/vim-gruvbox8',
+    'sainnhe/gruvbox-material',
+    'nvim-lualine/lualine.nvim',
 
     'lewis6991/gitsigns.nvim',
-
-    'nvim-lualine/lualine.nvim',
 
     'rmagatti/auto-session',
 
@@ -48,7 +49,6 @@ require 'paq' {
 local utils = require 'utils'
 local mapstr = utils.mapstr
 local map = utils.map
-
 local paqleader = '<leader>P'
 
 map { 'n', paqleader .. 'c', mapstr 'PaqClean' }

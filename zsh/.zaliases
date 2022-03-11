@@ -34,7 +34,7 @@ alias mku='mk uninstall'
 # Pacman
 alias pm='pacman'
 alias pmq='pm -Q'
-alias pmqg='pmq | grep'
+alias pmqg='pmq | rg'
 
 # Misc
 alias cp='cp -v'

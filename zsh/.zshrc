@@ -6,9 +6,9 @@ __set_code() {
     PS1=' '
     [ "$1" = '0' ] || PS1+="%F{red}$1 "
 }
-__set_ssh() { [ "$SSH_CONNECTION" ] && PS1+="%F{138}%h%F{244}@%F{95}%m " }
+__set_ssh() { [ "$SSH_CONNECTION" ] && PS1+="%F{138}%h%F{white}@%F{95}%m " }
 
-__set_dir() { PS1+="%F{108}%c "; }
+__set_dir() { PS1+="%F{cyan}%c "; }
 
 setopt +o nomatch
 __set_git() {
@@ -21,27 +21,27 @@ __set_git() {
     local usi="${sb##*.}"
     local usr="${usi%%/*}"
     local usb="${${usi##*/}%% *}"
-    [ "$usr" ] && us="%F{244}->%F{67}$usr"
-    [ "$usb" ] && us+="%F{244}/%F{65}$usb"
+    [ "$usr" ] && us="%F{white}->%F{green}$usr"
+    [ "$usb" ] && us+="%F{white}/%F{blue}$usb"
     [ "${sb##*ahead*}" ] || up_down+='^'
     [ "${sb##*behind*}" ] || up_down+='v'
-    [ "${#up_down}" = "2" ] && up_down='^v'
+    [ "${#up_down}" = '2' ] && up_down='^v'
   elif [ -z "${sb##*HEAD*}" ]; then
-      br="HEAD"
+      br='HEAD'
   else
       br="${sb##* }"
   fi
-  PS1+="%F{244}$dirty%F{66}$br$us%F{244}$up_down "
+  PS1+="%F{white}$dirty%F{blue}$br$us%F{white}$up_down "
 }
 
 __set_venv() {
     venv="${VIRTUAL_ENV:-$PWD/venv}"
     [ -d "$venv" ] || return
     . "$venv/bin/activate"
-    PS1+="%F{209}$(basename "$venv") "
+    PS1+="%F{magenta}$(basename "$venv") "
 }
 
-__set_symbol() { PS1+="%F{244}>%F{white} "; }
+__set_symbol() { PS1+="%F{white}>%F{white} "; }
 __set_beam_cursor() { echo -ne '\e[5 q'; }
 __set_block_cursor() { echo -ne '\e[1 q'; }
 

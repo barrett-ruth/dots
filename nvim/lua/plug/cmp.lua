@@ -4,20 +4,11 @@ local cmp = require 'cmp'
 local mapping = require 'cmp.config.mapping'
 local luasnip = require 'luasnip'
 
-local kinds = {
-    Buffer = 'buf',
-    Class = 'class',
-    Constant = 'const',
-    Function = 'func',
-    Keyword = 'key',
-    Module = 'mod',
-    Property = 'prop',
-    Reference = 'ref',
-    Snippet = 'snip',
-    Text = 'txt',
-    TypeParameter = 'type',
-    Variable = 'var',
-    Value = 'val',
+local sources = {
+    buffer = '[BUF]',
+    nvim_lsp = '[LSP]',
+    nvim_lua = '[LUA]',
+    path = '[PATH]',
 }
 
 cmp.setup {
@@ -27,17 +18,18 @@ cmp.setup {
         end,
     },
     formatting = {
-        format = function(_, item)
-            item.kind = kinds[item.kind] ~= nil and kinds[item.kind] or string.lower(item.kind)
-
-            item.kind = '[' .. item.kind .. ']'
-            return item
-        end,
+        format = require('lspkind').cmp_format {
+            mode = 'symbol',
+            before = function(entry, vim_item)
+                print(entry.source.name)
+                vim_item.menu = sources[entry.source.name]
+                return vim_item
+            end,
+        },
     },
     sources = cmp.config.sources {
-        { name = 'nvim_lsp' },
         { name = 'nvim_lua' },
-        { name = 'buffer' },
+        { name = 'nvim_lsp' },
         { name = 'path' },
     },
     mapping = {

@@ -1,7 +1,7 @@
 local utils = require 'utils'
 local map = utils.map
-
 local mapstr = utils.mapstr
+
 -- Location List --
 local ll = '<leader>l'
 map { 'n', ']l', mapstr 'lne' }
@@ -22,16 +22,18 @@ map { 'n', 'Q', mapstr('utils', 'Q()') }
 map { 'n', 'J', 'mzJ`z' }
 map { 'v', 'K', ":m '<-2<cr>gv" }
 map { 'v', 'J', ":m '>+1<cr>gv" }
+map { 'n', 'x', '"_x' }
 
 -- Windows --
 map { 'n', '<c-h>', '<c-w>h' }
-map { 'n', '<left>', mapstr 'vert resize -10' }
 map { 'n', '<c-j>', '<c-w>j' }
-map { 'n', '<down>', mapstr 'resize +10' }
 map { 'n', '<c-k>', '<c-w>k' }
-map { 'n', '<up>', mapstr 'resize -10' }
 map { 'n', '<c-l>', '<c-w>l' }
-map { 'n', '<right>', mapstr 'vert resize +10' }
+
+map { 'n', '<c-left>', mapstr 'vert resize -10' }
+map { 'n', '<c-down>', mapstr 'resize +10' }
+map { 'n', '<c-up>', mapstr 'resize -10' }
+map { 'n', '<c-right>', mapstr 'vert resize +10' }
 
 -- Centering --
 map { 'n', 'G', 'Gzz' }

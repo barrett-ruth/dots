@@ -15,6 +15,7 @@ export LC_ALL='en_US.UTF-8'
 
 # XDG
 export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
+export XRESOURCES="$XDG_CONFIG_HOME/X11/xresources"
 touch "$XAUTHORITY"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$XDG_CONFIG_HOME/cache"
@@ -50,7 +51,7 @@ export PRETTIERD_DEFAULT_CONFIG="$XDG_CONFIG_HOME/prettierrc"
 export FZF_CTRL_T_COMMAND='fd -t f -H --strip-cwd-prefix'
 export FZF_ALT_C_COMMAND='fd -H --strip-cwd-prefix -t d'
 export FZF_CTRL_R_OPTS='--reverse'
-export FZF_DEFAULT_OPTS='--no-info --no-bold --color=bg:#1d2021,hl:#fe8019 --color=fg+:#ebdbb2,hl+:#fe8019,bg+:#1d2021 --color=pointer:#ebdbb2'
+export FZF_DEFAULT_OPTS='--no-info --no-bold --color=bg:#282828,hl:bold:#a9b665 --color=fg+:#ebdbb2,hl+:bold:#a9b665,bg+:#282828 --color=pointer:#ebdbb2'
 export FZF_TMUX=1
 
 # Options

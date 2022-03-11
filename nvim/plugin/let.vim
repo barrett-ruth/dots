@@ -1,6 +1,3 @@
-let g:gruvbox_bold = 0
-let g:gruvbox_filetype_hi_groups = 1
-let g:gruvbox_plugin_hi_groups = 1
 let g:netrw_bufsettings = [ 'noma', 'nomod', 'nu', 'nobl', 'nowrap', 'rnu', 'ro' ]
 let g:netrw_menu = 0
 let g:netrw_preview = 1
