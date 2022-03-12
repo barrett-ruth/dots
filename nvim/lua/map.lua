@@ -6,6 +6,7 @@ local mapstr = utils.mapstr
 local ll = '<leader>l'
 map { 'n', ']l', mapstr 'lne' }
 map { 'n', '[l', mapstr 'lp' }
+map { 'n', ll .. 'c', mapstr 'cal setloclist(0, [])' }
 map { 'n', ll .. 'd', ':ldo ' }
 map { 'n', ll .. 't', mapstr('utils', "toggle_list('l')") }
 
@@ -13,6 +14,7 @@ map { 'n', ll .. 't', mapstr('utils', "toggle_list('l')") }
 local ql = '<leader>c'
 map { 'n', ']c', mapstr 'cn' }
 map { 'n', '[c', mapstr 'cp' }
+map { 'n', ql .. 'c', mapstr 'cal setqflist([])' }
 map { 'n', ql .. 'd', ':cdo ' }
 map { 'n', ql .. 't', mapstr('utils', "toggle_list('c')") }
 
@@ -20,6 +22,8 @@ map { 'n', ql .. 't', mapstr('utils', "toggle_list('c')") }
 map { 'n', '<bs>', '<c-^>' }
 map { 'n', 'Q', mapstr('utils', 'Q()') }
 map { 'n', 'J', 'mzJ`z' }
+map { 'v', '<', '<gv' }
+map { 'v', '>', '>gv' }
 map { 'v', 'K', ":m '<-2<cr>gv" }
 map { 'v', 'J', ":m '>+1<cr>gv" }
 map { 'n', 'x', '"_x' }
@@ -72,6 +76,7 @@ map { '', '<leader>r', '"_dP' }
 -- Last yanked item
 map { '', '<leader>p', '"0p' }
 
+map { 'n', '<leader>f', mapstr('utils', 'format()') }
 map { 'n', '<leader>F', mapstr('utils', 'toggle_fold()') }
 
 map { 'n', '<leader>D', mapstr 'bd' }

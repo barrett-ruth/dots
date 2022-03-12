@@ -4,13 +4,20 @@ theme.inactive.a.gui = 'NONE'
 require('lualine').setup {
     options = {
         theme = theme,
-        icons_enabled = false,
+        icons_enabled = true,
     },
     sections = {
         lualine_a = { 'mode' },
         lualine_b = {
-            'branch',
-            'diff',
+            { 'branch', icon = '' },
+            {
+                'diff',
+                diff_color = {
+                    added = { fg = 'a9b665' },
+                    modified = { fg = '7daea3' },
+                    removed = { fg = 'ea6962' },
+                },
+            },
             {
                 'diagnostics',
                 symbols = { error = '>', warn = '-', info = ':', hint = '*' },

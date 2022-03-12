@@ -4,10 +4,21 @@ function M.empty(s)
     return s == '' or s == nil
 end
 
+function M.format()
+    vim.cmd [[
+        try
+            undoj
+            sil Neoformat
+        catch /E790/
+            sil Neoformat
+        endt
+    ]]
+end
+
 function M.sitter_reparse()
     package.loaded['plug/treesitter'] = nil
     require 'plug/treesitter'
-    vim.cmd 'e'
+    vim.cmd 'e!'
 end
 
 function M.Q()

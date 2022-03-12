@@ -8,7 +8,7 @@ fi
 
 skb &
 smon &
-sbg 'nature/sierra.jpg' &
+sbg 'nature/pines.jpg' &
 xmodmap "$XDG_CONFIG_HOME/X11/xmodmap" &
 xrdb -merge "$XDG_CONFIG_HOME/X11/xresources" &
 xset r rate 300 50 &
