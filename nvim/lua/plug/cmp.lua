@@ -21,7 +21,6 @@ cmp.setup {
         format = require('lspkind').cmp_format {
             mode = 'symbol',
             before = function(entry, vim_item)
-                print(entry.source.name)
                 vim_item.menu = sources[entry.source.name]
                 return vim_item
             end,

@@ -20,7 +20,7 @@ require('telescope').setup {
             hidden = true,
             disable_devicons = true,
             mappings = {
-                n = {
+                i = {
                     ['<c-a>'] = fb_actions.create,
                     ['<c-d>'] = fb_actions.remove,
                     ['<c-m>'] = fb_actions.move,

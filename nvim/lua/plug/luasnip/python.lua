@@ -4,5 +4,5 @@ local i = ls.i
 local s = ls.s
 
 ls.snippets.python = {
-    s('pr', fmt([[ print({}) ]], { i(1) })),
+    s('pr', fmt([[print({})]], { i(1) })),
 }

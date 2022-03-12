@@ -4,7 +4,11 @@ function M.empty(s)
     return s == '' or s == nil
 end
 
-function M.format()
+function M.format(ft)
+    if ft and vim.fn.count(vim.g.format_fts, ft) < 1 then
+        return
+    end
+
     vim.cmd [[
         try
             undoj
@@ -18,6 +22,7 @@ end
 function M.sitter_reparse()
     package.loaded['plug/treesitter'] = nil
     require 'plug/treesitter'
+
     vim.cmd 'e!'
 end
 
@@ -33,7 +38,7 @@ function M.Q()
 end
 
 function M.toggle_fold()
-    vim.bo.foldmethod = vim.bo.foldmethod == 'syntax' and 'manual' or 'syntax'
+    vim.o.foldmethod = vim.o.foldmethod == 'syntax' and 'manual' or 'syntax'
     vim.cmd 'se fdm'
 end
 

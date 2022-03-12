@@ -4,8 +4,8 @@ local i = ls.i
 local s = ls.s
 local t = ls.t
 
-local M = {
-    s('pr', fmt([[ console.log({}) ]], { i(1) })),
+ls.snippets.javascript = {
+    s('pr', fmt([[console.log({})]], { i(1) })),
     s('afu', {
         i(1),
         t ' => ',
@@ -20,7 +20,3 @@ local M = {
         t { '', '}' },
     }),
 }
-
-ls.snippets.javascript = M
-
-return M

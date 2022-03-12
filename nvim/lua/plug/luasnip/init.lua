@@ -53,6 +53,9 @@ ls.snippets = { all = acc }
 ls.filetype_extend('bash', { 'sh' })
 ls.filetype_extend('zsh', { 'sh' })
 ls.filetype_extend('cpp', { 'c' })
+ls.filetype_extend('javascriptreact', { 'javascript' })
+ls.filetype_extend('typescript', { 'javascript' })
+ls.filetype_extend('typescriptreact', { 'javascript' })
 
 local utils = require 'utils'
 local map = utils.map
