@@ -64,6 +64,7 @@ setopt auto_cd incappendhistory extendedhistory histignorealldups
 . "$ZDOTDIR/plugin/zsh-fzf/fzf/fzf.zsh"
 . "$ZDOTDIR/plugin/zsh-autosuggestions/zsh-autosuggestions.zsh"
 . "$ZDOTDIR/plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+. "$XDG_CONFIG_HOME/nvm/nvm.sh" --no-use
 
 # Bindings
 __fsel_config() {

@@ -27,11 +27,13 @@ se nohlsearch noswapfile noshowmode
 
 se number relativenumber
 
+se lazyredraw
+
 se path+=**
 
 se pumheight=15
 
-set sessionoptions+=winpos,terminal,folds
+se sessionoptions+=winpos,terminal,folds
 
 se shiftwidth=4
 

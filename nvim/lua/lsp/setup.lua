@@ -1,7 +1,7 @@
 local M = {}
 
 local on_attach = function(client)
-    local lspleader = '1'
+    local lspleader = vim.g.mapleader .. vim.g.mapleader
     local utils = require 'utils'
     local map = utils.map
     local mapstr = utils.mapstr
@@ -39,21 +39,16 @@ local on_attach = function(client)
 end
 
 local lspconfig = require 'lspconfig'
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-capabilities.textDocument.completion.completionItem.snippetSupport = false
-
-local lsp_settings = {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = { debounce_text_changes = 0 },
-}
 
 M.setup = function(server, ...)
     local settings = ...
 
-    for k, v in pairs(lsp_settings) do
-        settings[k] = v
-    end
+    local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    capabilities.textDocument.completion.completionItem.snippetSupport = false
+
+    settings.capabilities = capabilities
+    settings.on_attach = on_attach
+    settings.flags = { debounce_text_changes = 0 }
 
     lspconfig[server].setup(settings)
 end

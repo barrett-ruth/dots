@@ -1,4 +1,4 @@
-local theme = require 'lualine.themes.gruvbox'
+local theme = require 'lualine.themes.gruvbox-material'
 theme.inactive.a.gui = 'NONE'
 
 require('lualine').setup {
@@ -11,15 +11,24 @@ require('lualine').setup {
         lualine_b = {
             'branch',
             'diff',
-            { 'diagnostics', symbols = { error = '>', warn = '-', info = ':', hint = '*' } },
+            {
+                'diagnostics',
+                symbols = { error = '>', warn = '-', info = ':', hint = '*' },
+                diagnostics_color = {
+                    error = { fg = 'ea6962' },
+                    warn = { fg = 'd8a657' },
+                    info = { fg = '7daea3' },
+                    hint = { fg = 'a9b665' },
+                },
+            },
         },
-        lualine_c = { { '%F', file_status = true, path = 1 } },
+        lualine_c = { '%F%m%r%h' },
         lualine_x = { 'filetype' },
         lualine_y = { 'filesize', '%l/%L' },
         lualine_z = { 'encoding', 'bo:ff' },
     },
     inactive_sections = {
-        lualine_a = { { '%F', path = 1 } },
+        lualine_a = { '%F' },
         lualine_b = {},
         lualine_c = {},
         lualine_x = {},

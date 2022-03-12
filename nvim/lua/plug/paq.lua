@@ -24,15 +24,14 @@ require 'paq' {
         end,
     },
 
-    'gpanders/editorconfig.nvim',
-
     'sainnhe/gruvbox-material',
-    'nvim-lualine/lualine.nvim',
 
+    'gpanders/editorconfig.nvim',
+    'lewis6991/impatient.nvim',
     'lewis6991/gitsigns.nvim',
-
+    'nathom/filetype.nvim',
+    'nvim-lualine/lualine.nvim',
     'rmagatti/auto-session',
-
     'sbdchd/neoformat',
 
     'ThePrimeagen/git-worktree.nvim',

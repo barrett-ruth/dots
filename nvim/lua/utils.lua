@@ -4,6 +4,12 @@ function M.empty(s)
     return s == '' or s == nil
 end
 
+function M.sitter_reparse()
+    package.loaded['plug/treesitter'] = nil
+    require 'plug/treesitter'
+    vim.cmd 'e'
+end
+
 function M.Q()
     local reg = vim.fn.reg_recording()
 
@@ -21,10 +27,27 @@ function M.toggle_fold()
 end
 
 function M.toggle_list(prefix)
-    QFL = QFL == nil and false or not QFL
-    LL = LL == nil and false or not LL
+    if prefix == 'c' then
+        if next(vim.fn.getqflist()) == nil then
+            QFL = false
+        else
+            QFL = not QFL
+        end
+    else
+        if next(vim.fn.getloclist(0)) == nil then
+            LL = false
+        else
+            LL = not LL
+        end
+    end
 
-    local cmd = (prefix == 'c' and QFL or LL) and 'ope' or 'cl'
+    local cmd = prefix
+
+    if prefix == 'c' then
+        cmd = QFL and 'ope' or 'cl'
+    else
+        cmd = LL and 'ope' or 'cl'
+    end
 
     vim.cmd(prefix .. cmd)
 end

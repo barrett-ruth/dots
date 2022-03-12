@@ -31,3 +31,9 @@ treesitter_configs.setup {
         additional_vim_regex_highlighting = true,
     },
 }
+
+local utils = require 'utils'
+local map = utils.map
+local mapstr = utils.mapstr
+
+map { 'n', '<leader>T', mapstr('utils', 'sitter_reparse()') }

@@ -1,7 +1,7 @@
-vim.fn.sign_define('DiagnosticSignError', { texthl = 'DiagnosticSignError', text = '>' })
-vim.fn.sign_define('DiagnosticSignWarn', { texthl = 'DiagnosticSignWarn', text = '-' })
-vim.fn.sign_define('DiagnosticSignHint', { texthl = 'DiagnosticSignHint', text = '*' })
-vim.fn.sign_define('DiagnosticSignInfo', { texthl = 'DiagnosticSignInfo', text = ':' })
+vim.fn.sign_define('DiagnosticSignError', { text = '>', texthl = 'RedSign' })
+vim.fn.sign_define('DiagnosticSignWarn', { text = '-', texthl = 'YellowSign' })
+vim.fn.sign_define('DiagnosticSignHint', { text = '*', texthl = 'AquaSign' })
+vim.fn.sign_define('DiagnosticSignInfo', { text = ':', texthl = 'BlueSign' })
 
 local sources = {
     Pyright = 'pyright',
