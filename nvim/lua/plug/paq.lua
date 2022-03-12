@@ -33,6 +33,7 @@ require 'paq' {
     'nvim-lualine/lualine.nvim',
     'rmagatti/auto-session',
     'sbdchd/neoformat',
+    'stevearc/aerial.nvim',
 
     'ThePrimeagen/git-worktree.nvim',
     'ThePrimeagen/harpoon',

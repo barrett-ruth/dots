@@ -7,7 +7,6 @@ local vcsleader = '<leader>v'
 -- Fugitive
 map { 'n', vcsleader .. 'd', mapstr 'G d' }
 map { 'n', vcsleader .. 'f', mapstr 'G fetch' }
-map { 'n', vcsleader .. 'g', mapstr 'G' }
 map { 'n', vcsleader .. 'p', mapstr 'G pull' }
 map { 'n', vcsleader .. 'P', mapstr 'G push' }
 map { 'n', vcsleader .. 's', mapstr 'G status' }

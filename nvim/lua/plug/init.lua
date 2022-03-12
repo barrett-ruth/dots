@@ -2,6 +2,7 @@ require 'impatient'
 
 local files = {
     'paq',
+    'aerial',
     'luasnip',
     'cmp',
     'fugitive',

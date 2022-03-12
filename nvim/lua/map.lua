@@ -52,6 +52,7 @@ map { 'n', '<leader><cr>', mapstr 'so %' }
 
 map { 'n', '<leader>i', ':se inv' }
 
+map { 'n', '<leader>D', mapstr 'bd' }
 map { 'n', '<leader>S', mapstr 'vert sbp' }
 
 map { '', '<leader>y', '"+y' }

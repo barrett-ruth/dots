@@ -1,6 +1,8 @@
 local M = {}
 
-local on_attach = function(client)
+local on_attach = function(client, bufnr)
+    require('aerial').on_attach(client, bufnr)
+
     local lspleader = vim.g.mapleader .. vim.g.mapleader
     local utils = require 'utils'
     local map = utils.map
