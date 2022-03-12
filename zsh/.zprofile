@@ -51,7 +51,7 @@ export PRETTIERD_DEFAULT_CONFIG="$XDG_CONFIG_HOME/prettierrc"
 export FZF_CTRL_T_COMMAND='fd -t f -H --strip-cwd-prefix'
 export FZF_ALT_C_COMMAND='fd -H --strip-cwd-prefix -t d'
 export FZF_CTRL_R_OPTS='--reverse'
-export FZF_DEFAULT_OPTS='--no-info --no-bold --color=bg:#282828,hl:bold:#a9b665 --color=fg+:#ebdbb2,hl+:bold:#a9b665,bg+:#282828 --color=pointer:#ebdbb2'
+export FZF_DEFAULT_OPTS='--no-info --no-bold --color=fg:#d4be98,bg:#282828,hl:bold:#a9b665 --color=fg+:#d4be98,hl+:bold:#a9b665,bg+:#282828 --color=pointer:#d4be98'
 export FZF_TMUX=1
 
 # Options

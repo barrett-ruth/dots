@@ -2,6 +2,7 @@ vim.cmd [[
     syntax on
     filetype plugin indent on
     let g:mapleader = ' '
+    ru! ftdetect/*.vim
 ]]
 
 require 'map'

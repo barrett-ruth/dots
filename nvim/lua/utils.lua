@@ -22,7 +22,7 @@ function M.Q()
 end
 
 function M.toggle_fold()
-    vim.o.foldmethod = vim.o.foldmethod == 'syntax' and 'manual' or 'syntax'
+    vim.bo.foldmethod = vim.bo.foldmethod == 'syntax' and 'manual' or 'syntax'
     vim.cmd 'se fdm'
 end
 
