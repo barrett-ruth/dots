@@ -3,20 +3,16 @@ local map = utils.map
 local mapstr = utils.mapstr
 
 -- Location List --
-local ll = '<leader>l'
 map { 'n', ']l', mapstr 'lne' }
 map { 'n', '[l', mapstr 'lp' }
-map { 'n', ll .. 'c', mapstr 'cal setloclist(0, [])' }
-map { 'n', ll .. 'd', ':ldo ' }
-map { 'n', ll .. 't', mapstr('utils', "toggle_list('l')") }
+map { 'n', '<leader>l', mapstr('utils', "toggle_list('l')") }
+map { 'n', '<leader>L', mapstr 'cal setloclist(0, []) | sil lcl' }
 
 -- Quickfix List --
-local ql = '<leader>c'
 map { 'n', ']c', mapstr 'cn' }
 map { 'n', '[c', mapstr 'cp' }
-map { 'n', ql .. 'c', mapstr 'cal setqflist([])' }
-map { 'n', ql .. 'd', ':cdo ' }
-map { 'n', ql .. 't', mapstr('utils', "toggle_list('c')") }
+map { 'n', '<leader>c', mapstr('utils', "toggle_list('c')") }
+map { 'n', '<leader>C', mapstr 'cal setqflist([]) | sil ccl' }
 
 -- Builtins --
 map { 'n', '<bs>', '<c-^>' }
@@ -56,8 +52,6 @@ map { 'n', '<leader><cr>', mapstr 'so %' }
 
 map { 'n', '<leader>i', ':se inv' }
 
-map { 'n', '<leader>C', mapstr('utils', 'clean_whitespace()') }
-
 map { 'n', '<leader>S', mapstr 'vert sbp' }
 
 map { '', '<leader>y', '"+y' }
@@ -78,9 +72,6 @@ map { '', '<leader>p', '"0p' }
 
 map { 'n', '<leader>f', mapstr('utils', 'format()') }
 map { 'n', '<leader>F', mapstr('utils', 'toggle_fold()') }
-
-map { 'n', '<leader>D', mapstr 'bd' }
-map { 'n', '<leader>L', mapstr 'ls' }
 
 map { 'n', ']o', 'mzo<esc>`z' }
 map { 'n', '[o', 'mzO<esc>`z' }

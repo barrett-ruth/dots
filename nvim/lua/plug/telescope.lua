@@ -1,18 +1,30 @@
 local utils = require 'utils'
 local fb_actions = require('telescope').extensions.file_browser.actions
+local actions = require 'telescope.actions'
 local action_layout = require 'telescope.actions.layout'
 
 require('telescope').setup {
     defaults = {
         file_sorter = require('telescope.sorters').get_fzy_sorter,
         mappings = {
-            i = { ['<c-h>'] = action_layout.toggle_preview },
+            i = {
+                ['<c-h>'] = action_layout.toggle_preview,
+                ['<c-l>'] = actions.smart_send_to_loclist,
+                ['<c-q>'] = actions.smart_send_to_qflist,
+            },
         },
     },
     pickers = {
         find_files = {
             hidden = true,
             find_command = { 'fd', '-a', '--type', 'f', '--strip-cwd-prefix' },
+        },
+        buffers = {
+            mappings = {
+                i = {
+                    ['<c-d>'] = actions.delete_buffer,
+                },
+            },
         },
     },
     extensions = {

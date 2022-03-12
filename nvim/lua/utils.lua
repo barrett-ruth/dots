@@ -57,12 +57,12 @@ function M.toggle_list(prefix)
         end
     end
 
-    local cmd = prefix
+    local cmd = ''
 
     if prefix == 'c' then
-        cmd = QFL and 'ope' or 'cl'
+        cmd = QFL and 'ope | winc w' or 'cl'
     else
-        cmd = LL and 'ope' or 'cl'
+        cmd = LL and 'ope | winc w' or 'cl'
     end
 
     vim.cmd(prefix .. cmd)
@@ -124,12 +124,6 @@ end
 
 function M.mapstr(req, meth)
     return M.empty(meth) and '<cmd>' .. req .. '<cr>' or "<cmd>lua require'" .. req .. "'." .. meth .. '<cr>'
-end
-
-function M.clean_whitespace()
-    local save = vim.fn.winsaveview()
-    vim.cmd 'keepp %s/\\s\\+$//e'
-    vim.fn.winrestview(save)
 end
 
 return M
