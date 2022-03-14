@@ -1,0 +1,12 @@
+#!/bin/sh
+
+[ -f "$XDG_CONFIG_HOME/bmk" ] || exit 1
+
+file="$(cat "$XDG_CONFIG_HOME/bmk" | dmenu)"
+
+old="$(xclip -sel c -o)"
+(
+    echo "https://$file" | xclip -sel c
+    sleep 1.5
+    echo "$old" | xclip -sel c
+) &

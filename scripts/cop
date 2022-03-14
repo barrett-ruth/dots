@@ -1,0 +1,5 @@
+#!/bin/sh
+
+[ "$1" ] || exit 1
+
+[ -f "$1" ] && xclip -sel c <"$1" || eval "$*" | xclip -sel c

@@ -11,4 +11,5 @@ require 'plug'
 require 'lsp'
 
 -- Available leader mappings:
--- aimnoux AEIMNORTUVX
+-- egjkmnoux
+-- ABDEGHIJKMNORIVX

@@ -4,6 +4,12 @@ function M.empty(s)
     return s == '' or s == nil
 end
 
+function M.f_map()
+    local opts = { noremap = true, silent = true }
+
+    vim.api.nvim_buf_set_keymap(0, 'n', '<c-v>', '<cr>' .. M.mapstr 'bp' .. M.mapstr 'vert sbn', opts)
+end
+
 function M.format(ft)
     if ft and vim.fn.count(vim.g.format_fts, ft) < 1 then
         return
@@ -102,7 +108,6 @@ function M.set_wig()
         table.insert(wig, line)
     end
 
-    vim.g.netrw_listhide = wig
     vim.api.nvim_set_var('wildignore', wig)
 end
 

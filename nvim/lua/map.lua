@@ -3,14 +3,14 @@ local map = utils.map
 local mapstr = utils.mapstr
 
 -- Location List --
-map { 'n', ']l', mapstr 'lne' }
-map { 'n', '[l', mapstr 'lp' }
+map { 'n', ']l', mapstr 'lne' .. 'zz' }
+map { 'n', '[l', mapstr 'lp' .. 'zz' }
 map { 'n', '<leader>l', mapstr('utils', "toggle_list('l')") }
 map { 'n', '<leader>L', mapstr 'cal setloclist(0, []) | sil lcl' }
 
 -- Quickfix List --
-map { 'n', ']c', mapstr 'cn' }
-map { 'n', '[c', mapstr 'cp' }
+map { 'n', ']c', mapstr 'cn' .. 'zz' }
+map { 'n', '[c', mapstr 'cp' .. 'zz' }
 map { 'n', '<leader>c', mapstr('utils', "toggle_list('c')") }
 map { 'n', '<leader>C', mapstr 'cal setqflist([]) | sil ccl' }
 
@@ -52,8 +52,11 @@ map { 'n', '<leader><cr>', mapstr 'so %' }
 
 map { 'n', '<leader>i', ':se inv' }
 
-map { 'n', '<leader>D', mapstr 'bd' }
-map { 'n', '<leader>S', mapstr 'vert sbp' }
+map { 'n', '<leader>bd', mapstr 'bd' }
+map { 'n', '<leader>bn', mapstr 'bn' }
+map { 'n', '<leader>bp', mapstr 'bp' }
+
+map { 'n', '<leader>S', mapstr 'vert sbn' }
 
 map { '', '<leader>y', '"+y' }
 map { '', '<leader>Y', 'mzgg"+yG`zzz' }
@@ -61,6 +64,7 @@ map { '', '<leader>Y', 'mzgg"+yG`zzz' }
 map { 'n', '<leader>q', mapstr 'q' }
 map { 'n', '<leader>Q', mapstr 'q!' }
 map { 'n', '<leader>w', mapstr 'w' }
+map { 'n', '<leader>W', mapstr 'wa' }
 map { 'n', '<leader>z', 'ZZ' }
 map { 'n', '<leader>Z', mapstr 'xa' }
 

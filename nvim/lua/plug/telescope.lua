@@ -35,7 +35,7 @@ require('telescope').setup {
                 i = {
                     ['<c-a>'] = fb_actions.create,
                     ['<c-d>'] = fb_actions.remove,
-                    ['<c-m>'] = fb_actions.move,
+                    -- ['<c-m>'] = fb_actions.move,
                     ['<c-r>'] = fb_actions.rename,
                     ['<c-y>'] = fb_actions.copy,
                 },
@@ -48,6 +48,7 @@ require('telescope').setup {
     },
 }
 
+require('telescope').load_extension 'aerial'
 require('telescope').load_extension 'file_browser'
 require('telescope').load_extension 'fzy_native'
 require('telescope').load_extension 'git_worktree'
@@ -55,6 +56,7 @@ require('telescope').load_extension 'git_worktree'
 local map = utils.map
 local mapstr = utils.mapstr
 
+map { 'n', '<c-a>', mapstr('telescope', 'extensions.aerial.aerial()') }
 map { 'n', '<c-b>', mapstr('telescope', 'extensions.file_browser.file_browser()') }
 map {
     'n',
@@ -72,9 +74,10 @@ map {
     scopeleader .. 'b',
     mapstr('telescope', "extensions.file_browser.file_browser({ cwd = vim.fn.expand '%:p:h' })"),
 }
-map { 'n', scopeleader .. 'B', mapstr('telescope.builtin', 'buffers()') }
 map { 'n', scopeleader .. 'f', mapstr('utils', "files({ cwd = vim.fn.expand '%:p:h' })") }
 map { 'n', scopeleader .. 'g', mapstr('telescope.builtin', "live_grep({ cwd = vim.fn.expand '%:p:h' })") }
 map { 'n', scopeleader .. 'h', mapstr('telescope.builtin', 'help_tags()') }
 map { 'n', scopeleader .. 'r', mapstr('telescope.builtin', 'resume()') }
 map { 'n', scopeleader .. 't', mapstr('telescope.builtin', 'builtin()') }
+
+map { 'n', '<leader>bl', mapstr('telescope.builtin', 'buffers()') }

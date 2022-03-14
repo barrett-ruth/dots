@@ -24,8 +24,8 @@ local on_attach = function(client, bufnr)
         map { 'n', lspleader .. 'to', mapstr 'TSLspOrganize' }
     end
 
-    map { 'n', ']<space>', mapstr 'lua vim.diagnostic.goto_next()' }
-    map { 'n', '[<space>', mapstr 'lua vim.diagnostic.goto_prev()' }
+    map { 'n', ']<space>', mapstr 'lua vim.diagnostic.goto_next()' .. 'zz' }
+    map { 'n', '[<space>', mapstr 'lua vim.diagnostic.goto_prev()' .. 'zz' }
 
     map { 'n', lspleader .. 'c', mapstr('telescope.builtin', 'lsp_code_actions()') }
     map { 'n', lspleader .. 'd', mapstr('telescope.builtin', 'lsp_definitions()') }
