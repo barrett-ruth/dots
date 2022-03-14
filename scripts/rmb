@@ -4,8 +4,11 @@
 
 last="$(eval "echo \$$(echo $#)")"
 
-[ -d "$last" -a ! "$#" = '1' ] && (cd "$last" || exit 1)
-[ -d "$last" -o -f "$last" ] || exit 1
+if [ -d "$last" ] && [ ! "$#" = '1' ]; then
+    cd "$last" || exit 1
+elif [ ! -d "$last" ] && [ ! -f "$last" ]; then
+    exit 1
+fi
 
 args="$*"
 for e in .[!.]* *; do
