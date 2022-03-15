@@ -62,44 +62,29 @@ setopt auto_cd incappendhistory extendedhistory histignorealldups
 
 # Plugins
 . "$ZDOTDIR/.zaliases"
+. "$ZDOTDIR/plugin/zsh-autojump/etc/profile.d/autojump.sh"
 . "$ZDOTDIR/plugin/zsh-fzf/fzf/fzf.zsh"
 . "$ZDOTDIR/plugin/zsh-autosuggestions/zsh-autosuggestions.zsh"
 . "$ZDOTDIR/plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 . "$XDG_CONFIG_HOME/nvm/nvm.sh" --no-use
 
 # Bindings
-__fsel_dir() {
-  dir="$1"
-  if [ "$dir" = "$HOME" ]; then
-    dir_display='~'
-    opts='-t d'
-  else
-    dir_display='~/.config'
-    opts='-t f'
-  fi
-  shift
-  cd "$dir"
+__fsel_config() {
+  cd ~/.config
   local item
-  { eval "$FZF_CTRL_T_COMMAND $opts" | FZF_DEFAULT_OPTS="--height 40% --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS" $(__fzfcmd) -m "$@" | while read item; do
-    echo -n "$dir_display/${(q)item} "
+  { eval "$FZF_CTRL_T_COMMAND" | FZF_DEFAULT_OPTS="--height 40% --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@" | while read item; do
+    echo -n "~/.config/${(q)item} "
   done
     }
   echo
 }
 
 fzf-config-widget() {
-  LBUFFER="$LBUFFER$(__fsel_dir ~/.config)"
-  zle reset-prompt
+    LBUFFER="$LBUFFER$(__fsel_config)"
+    zle reset-prompt
 }
 
-fzf-home-widget() {
-  LBUFFER="$LBUFFER$(__fsel_dir ~)"
-  zle reset-prompt
-}
-
-bindkey -r '^H'
-zle -N fzf-home-widget
-bindkey '^H' fzf-home-widget
+bindkey -v
 bindkey -r '^E'
 zle -N fzf-config-widget
 bindkey '^E' fzf-config-widget
