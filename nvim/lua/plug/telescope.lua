@@ -55,7 +55,6 @@ require('telescope').load_extension 'git_worktree'
 local map = utils.map
 local mapstr = utils.mapstr
 
-map { 'n', '<c-a>', mapstr('telescope', 'extensions.aerial.aerial()') }
 map { 'n', '<c-b>', mapstr('telescope', 'extensions.file_browser.file_browser()') }
 map {
     'n',

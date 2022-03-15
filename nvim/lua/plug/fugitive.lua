@@ -2,23 +2,22 @@ local utils = require 'utils'
 local mapstr = utils.mapstr
 local map = utils.map
 
-local vcsleader = '<leader>v'
+local gitleader = '<leader>g'
 
 -- Fugitive
-map { 'n', vcsleader .. 'd', mapstr 'G d' }
-map { 'n', vcsleader .. 'f', mapstr 'G fetch' }
-map { 'n', vcsleader .. 'p', mapstr 'G pull' }
-map { 'n', vcsleader .. 'P', mapstr 'G push' }
-map { 'n', vcsleader .. 's', mapstr 'G status' }
-map { 'n', vcsleader .. 'S', mapstr 'G stash' }
-map { 'n', vcsleader .. '2', mapstr 'diffget //2' }
-map { 'n', vcsleader .. '3', mapstr 'diffget //3' }
-map { 'n', vcsleader .. 'l', mapstr 'G log' }
-map { 'n', vcsleader .. 'L', mapstr 'G lg' }
+map { 'n', gitleader .. 'd', mapstr 'G d' }
+map { 'n', gitleader .. 'f', mapstr 'G fetch' }
+map { 'n', gitleader .. 'p', mapstr 'G pull' }
+map { 'n', gitleader .. 'P', mapstr 'G push' }
+map { 'n', gitleader .. 's', mapstr 'G status' }
+map { 'n', gitleader .. 'S', mapstr 'G stash' }
+map { 'n', gitleader .. '2', mapstr 'diffget //2' }
+map { 'n', gitleader .. '3', mapstr 'diffget //3' }
+map { 'n', gitleader .. 'l', mapstr 'G log' }
+map { 'n', gitleader .. 'L', mapstr 'G lg' }
 
 -- Telescope
-map { 'n', vcsleader .. 'b', mapstr('telescope.builtin', 'git_branches()') }
-map { 'n', vcsleader .. 'c', mapstr('telescope.builtin', 'git_commits()') }
-map { 'n', vcsleader .. 'B', mapstr 'Gitsigns blame_line' }
-map { 'n', vcsleader .. 'w', mapstr('telescope', 'extensions.git_worktree.git_worktrees()') }
-map { 'n', vcsleader .. 'W', mapstr('telescope', 'extensions.git_worktree.create_git_worktree()') }
+map { 'n', gitleader .. 'b', mapstr('telescope.builtin', 'git_branches()') }
+map { 'n', gitleader .. 'c', mapstr('telescope.builtin', 'git_commits()') }
+map { 'n', gitleader .. 'w', mapstr('telescope', 'extensions.git_worktree.git_worktrees()') }
+map { 'n', gitleader .. 'W', mapstr('telescope', 'extensions.git_worktree.create_git_worktree()') }

@@ -1,3 +1,3 @@
 aug html
-    au! BufEnter * so ~/.config/nvim/lua/plug/luasnip/html.lua
+    au! FileType html so ~/.config/nvim/lua/plug/luasnip/html.lua
 aug end

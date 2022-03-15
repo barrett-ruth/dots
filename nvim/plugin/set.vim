@@ -31,7 +31,7 @@ se lazyredraw
 
 se path+=**
 
-se pumheight=15 pumwidth=99
+se pumheight=15
 
 se sessionoptions+=winpos,terminal,folds
 

@@ -1,3 +1,4 @@
 aug vim
-    au! BufEnter * so ~/.config/nvim/lua/plug/luasnip/vim.lua
+    au!
+    au FileType vim so ~/.config/nvim/lua/plug/luasnip/vim.lua
 aug end

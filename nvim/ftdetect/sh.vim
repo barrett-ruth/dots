@@ -1,3 +1,4 @@
 aug sh
-    au! BufEnter * so ~/.config/nvim/lua/plug/luasnip/sh.lua
+    au!
+    au FileType bash,sh,zsh so ~/.config/nvim/lua/plug/luasnip/sh.lua
 aug end

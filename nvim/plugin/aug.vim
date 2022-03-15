@@ -1,4 +1,5 @@
 aug augs
-    au! BufEnter * setl fo-=cro
-    au! BufWritePre * lua require 'utils'.format(vim.bo.ft)
+    au!
+    au BufEnter * setl fo-=cro
+    au BufWritePre * lua require 'utils'.format()
 aug end

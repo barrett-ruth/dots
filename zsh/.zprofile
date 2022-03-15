@@ -49,6 +49,7 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 export PRETTIERD_DEFAULT_CONFIG="$XDG_CONFIG_HOME/prettierrc"
 
 # FZF
+export FZF_CTRL_H_COMMAND='fd -t d -H --strip-cwd-prefix'
 export FZF_CTRL_T_COMMAND='fd -t f -H --strip-cwd-prefix'
 export FZF_ALT_C_COMMAND='fd -H --strip-cwd-prefix -t d'
 export FZF_CTRL_R_OPTS='--reverse'
@@ -71,7 +72,7 @@ setopt auto_cd incappendhistory extendedhistory histignorealldups
 __fsel_config() {
   cd ~/.config
   local item
-  { eval "$FZF_CTRL_T_COMMAND" | FZF_DEFAULT_OPTS="--height 40% --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@" | while read item; do
+  { eval "$FZF_CTRL_T_COMMAND" | FZF_DEFAULT_OPTS="--height 40% --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS" $(__fzfcmd) -m "$@" | while read item; do
     echo -n "~/.config/${(q)item} "
   done
     }
@@ -83,7 +84,23 @@ fzf-config-widget() {
     zle reset-prompt
 }
 
-bindkey -v
+__fsel_dir() {
+    cd ~
+    local item
+    { eval "$FZF_CTRL_H_COMMAND" | FZF_DEFAULT_OPTS="--height 40% --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS" $(__fzfcmd) -m "$@" | while read item; do
+      echo -n "~/${(q)item} "
+    done
+  }
+}
+
+fzf-dir-widget() {
+    LBUFFER="$LBUFFER$(__fsel_dir)"
+    zle reset-prompt
+}
+
+bindkey -r '^H'
+zle -N fzf-dir-widget
+bindkey '^H' fzf-dir-widget
 bindkey -r '^E'
 zle -N fzf-config-widget
 bindkey '^E' fzf-config-widget

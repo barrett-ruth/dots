@@ -4,8 +4,10 @@ function M.empty(s)
     return s == '' or s == nil
 end
 
-function M.format(ft)
-    if ft and vim.fn.count(vim.g.format_fts, ft) < 1 then
+function M.format()
+    local ft = vim.bo.ft
+
+    if ft and vim.fn.count(vim.g.fmt_fts, ft) < 1 then
         return
     end
 
