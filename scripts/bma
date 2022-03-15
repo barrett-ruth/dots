@@ -1,0 +1,4 @@
+#!/bin/sh
+
+[ "$1" ] || exit 1
+echo "$*" >>"$XDG_CONFIG_HOME/bmk"

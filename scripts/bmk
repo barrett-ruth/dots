@@ -1,4 +1,5 @@
 #!/bin/sh
+# vim: ft=sh
 
 [ -f "$XDG_CONFIG_HOME/bmk" ] || exit 1
 

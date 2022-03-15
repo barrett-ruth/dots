@@ -30,13 +30,12 @@ require('telescope').setup {
     extensions = {
         file_browser = {
             hidden = true,
-            disable_devicons = true,
             mappings = {
                 i = {
                     ['<c-a>'] = fb_actions.create,
                     ['<c-d>'] = fb_actions.remove,
-                    -- ['<c-m>'] = fb_actions.move,
                     ['<c-r>'] = fb_actions.rename,
+                    ['<c-v>'] = fb_actions.move,
                     ['<c-y>'] = fb_actions.copy,
                 },
             },

@@ -4,12 +4,16 @@ theme.inactive.a.gui = 'NONE'
 require('lualine').setup {
     options = {
         theme = theme,
-        icons_enabled = true,
+        icons_enabled = false,
     },
     sections = {
         lualine_a = { 'mode' },
         lualine_b = {
-            { 'branch', icon = '' },
+            {
+                'branch',
+                icons_enabled = true,
+                icon = '',
+            },
             {
                 'diff',
                 diff_color = {

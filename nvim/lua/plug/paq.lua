@@ -24,6 +24,7 @@ require 'paq' {
         end,
     },
 
+    'lukas-reineke/indent-blankline.nvim',
     'sainnhe/gruvbox-material',
 
     'gpanders/editorconfig.nvim',

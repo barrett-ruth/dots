@@ -1,0 +1,4 @@
+#!/bin/sh
+
+xbacklight -inc 10
+pkill -RTMIN+8 dwmblocks

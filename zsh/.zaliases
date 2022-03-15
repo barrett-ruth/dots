@@ -38,6 +38,7 @@ alias pmqg='pmq | rg'
 
 # Misc
 alias cp='cp -v'
+alias cpd='cp -r'
 alias rm='rm'
 rmd() { [ "$1" = "$HOME" ] || rm -rf "$*"; }
 alias mkd='mkdir -pv'

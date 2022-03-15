@@ -1,7 +1,7 @@
 require('aerial').setup {
     width = 0.4,
     manage_folds = true,
-    link_folds_to_tree = true,
+    link_tree_to_folds = true,
     highlight_on_jump = false,
     post_jump_cmd = 'norm! zz',
 }

@@ -4,12 +4,6 @@ function M.empty(s)
     return s == '' or s == nil
 end
 
-function M.f_map()
-    local opts = { noremap = true, silent = true }
-
-    vim.api.nvim_buf_set_keymap(0, 'n', '<c-v>', '<cr>' .. M.mapstr 'bp' .. M.mapstr 'vert sbn', opts)
-end
-
 function M.format(ft)
     if ft and vim.fn.count(vim.g.format_fts, ft) < 1 then
         return
@@ -41,11 +35,6 @@ function M.Q()
         vim.api.nvim_command 'norm! q'
         REG = reg
     end
-end
-
-function M.toggle_fold()
-    vim.o.foldmethod = vim.o.foldmethod == 'syntax' and 'manual' or 'syntax'
-    vim.cmd 'se fdm'
 end
 
 function M.toggle_list(prefix)
@@ -111,20 +100,24 @@ function M.set_wig()
     vim.api.nvim_set_var('wildignore', wig)
 end
 
-function M.map(mapping, eopts)
+function M.map(mapping)
     local opts = { noremap = true, silent = true }
-
-    if eopts then
-        for k, v in pairs(eopts) do
-            opts[k] = v
-        end
-    end
 
     local mode = mapping[1]
     local lhs = mapping[2]
     local rhs = mapping[3]
 
     vim.api.nvim_set_keymap(mode, lhs, rhs, opts)
+end
+
+function M.bmap(mapping)
+    local opts = { noremap = true, silent = true }
+
+    local mode = mapping[1]
+    local lhs = mapping[2]
+    local rhs = mapping[3]
+
+    vim.api.nvim_buf_set_keymap(0, mode, lhs, rhs, opts)
 end
 
 function M.mapstr(req, meth)

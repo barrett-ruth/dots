@@ -2,4 +2,15 @@
 
 [ "$1" ] || exit 1
 
-[ "$2" ] && git clone git@github.com:"$1/$2" || git clone "$1"
+cmd='git clone'
+
+if [ "$2" ]; then
+    cmd="$cmd git@github.com:$1/$2"
+    shift
+    shift
+    [ "$*" ] && cmd="$cmd $*"
+else
+    cmd="$cmd $1"
+fi
+
+eval "$cmd"

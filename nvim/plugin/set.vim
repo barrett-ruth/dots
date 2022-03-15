@@ -19,7 +19,7 @@ se ignorecase
 
 se isfname-==,
 
-se list listchars=tab:··,nbsp:·,space:·
+se list listchars=nbsp:·,trail:·,tab:\ \ 
 
 se matchpairs+=<:>
 
@@ -31,7 +31,7 @@ se lazyredraw
 
 se path+=**
 
-se pumheight=15
+se pumheight=15 pumwidth=99
 
 se sessionoptions+=winpos,terminal,folds
 

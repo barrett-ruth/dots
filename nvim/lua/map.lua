@@ -18,8 +18,6 @@ map { 'n', '<leader>C', mapstr 'cal setqflist([]) | sil ccl' }
 map { 'n', '<bs>', '<c-^>' }
 map { 'n', 'Q', mapstr('utils', 'Q()') }
 map { 'n', 'J', 'mzJ`z' }
-map { 'v', '<', '<gv' }
-map { 'v', '>', '>gv' }
 map { 'v', 'K', ":m '<-2<cr>gv" }
 map { 'v', 'J', ":m '>+1<cr>gv" }
 map { 'n', 'x', '"_x' }
@@ -50,6 +48,8 @@ map { 'n', 'zL', '15zL' }
 
 map { 'n', '<leader><cr>', mapstr 'so %' }
 
+map { 'n', '<leader>H', '`[v`]' }
+
 map { 'n', '<leader>i', ':se inv' }
 
 map { 'n', '<leader>bd', mapstr 'bd' }
@@ -76,7 +76,7 @@ map { '', '<leader>r', '"_dP' }
 map { '', '<leader>p', '"0p' }
 
 map { 'n', '<leader>f', mapstr('utils', 'format()') }
-map { 'n', '<leader>F', mapstr('utils', 'toggle_fold()') }
+map { 'n', '<leader>F', ':se fdm=' }
 
 map { 'n', ']o', 'mzo<esc>`z' }
 map { 'n', '[o', 'mzO<esc>`z' }
