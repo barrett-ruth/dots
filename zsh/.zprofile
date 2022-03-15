@@ -49,8 +49,7 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 export PRETTIERD_DEFAULT_CONFIG="$XDG_CONFIG_HOME/prettierrc"
 
 # FZF
-export FZF_CTRL_H_COMMAND='fd -t d -H --strip-cwd-prefix'
-export FZF_CTRL_T_COMMAND='fd -t f -H --strip-cwd-prefix'
+export FZF_CTRL_T_COMMAND='fd -H --strip-cwd-prefix'
 export FZF_ALT_C_COMMAND='fd -H --strip-cwd-prefix -t d'
 export FZF_CTRL_R_OPTS='--reverse'
 export FZF_DEFAULT_OPTS='--no-info --no-bold --color=fg:#d4be98,bg:#282828,hl:bold:#a9b665 --color=fg+:#d4be98,hl+:bold:#a9b665,bg+:#282828 --color=pointer:#d4be98'
@@ -69,38 +68,38 @@ setopt auto_cd incappendhistory extendedhistory histignorealldups
 . "$XDG_CONFIG_HOME/nvm/nvm.sh" --no-use
 
 # Bindings
-__fsel_config() {
-  cd ~/.config
+__fsel_dir() {
+  dir="$1"
+  if [ "$dir" = "$HOME" ]; then
+    dir_display='~'
+    opts='-t d'
+  else
+    dir_display='~/.config'
+    opts='-t f'
+  fi
+  shift
+  cd "$dir"
   local item
-  { eval "$FZF_CTRL_T_COMMAND" | FZF_DEFAULT_OPTS="--height 40% --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS" $(__fzfcmd) -m "$@" | while read item; do
-    echo -n "~/.config/${(q)item} "
+  { eval "$FZF_CTRL_T_COMMAND $opts" | FZF_DEFAULT_OPTS="--height 40% --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS" $(__fzfcmd) -m "$@" | while read item; do
+    echo -n "$dir_display/${(q)item} "
   done
     }
   echo
 }
 
 fzf-config-widget() {
-    LBUFFER="$LBUFFER$(__fsel_config)"
-    zle reset-prompt
+  LBUFFER="$LBUFFER$(__fsel_dir ~/.config)"
+  zle reset-prompt
 }
 
-__fsel_dir() {
-    cd ~
-    local item
-    { eval "$FZF_CTRL_H_COMMAND" | FZF_DEFAULT_OPTS="--height 40% --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS" $(__fzfcmd) -m "$@" | while read item; do
-      echo -n "~/${(q)item} "
-    done
-  }
-}
-
-fzf-dir-widget() {
-    LBUFFER="$LBUFFER$(__fsel_dir)"
-    zle reset-prompt
+fzf-home-widget() {
+  LBUFFER="$LBUFFER$(__fsel_dir ~)"
+  zle reset-prompt
 }
 
 bindkey -r '^H'
-zle -N fzf-dir-widget
-bindkey '^H' fzf-dir-widget
+zle -N fzf-home-widget
+bindkey '^H' fzf-home-widget
 bindkey -r '^E'
 zle -N fzf-config-widget
 bindkey '^E' fzf-config-widget

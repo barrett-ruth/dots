@@ -7,9 +7,8 @@ require('aerial').setup {
     on_attach = function(_)
         local utils = require 'utils'
         local mapstr = utils.mapstr
-        local bmap = utils.bmap
 
-        bmap { 'n', '<leader>a', mapstr 'AerialToggle' }
-        bmap { 'n', '<c-a>', mapstr('telescope', 'extensions.aerial.aerial()') }
+        utils.map { 'n', '<leader>a', mapstr 'AerialToggle' }
+        utils.bmap { 'n', '<c-a>', mapstr('telescope', 'extensions.aerial.aerial()') }
     end,
 }
