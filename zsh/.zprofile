@@ -49,8 +49,8 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 export PRETTIERD_DEFAULT_CONFIG="$XDG_CONFIG_HOME/prettierrc"
 
 # FZF
-export FZF_CTRL_T_COMMAND='fd -H --strip-cwd-prefix'
-export FZF_ALT_C_COMMAND='fd -H --strip-cwd-prefix -t d'
+export FZF_CTRL_T_COMMAND='fd -t f -H --strip-cwd-prefix'
+export FZF_ALT_C_COMMAND='fd -t d -H --strip-cwd-prefix'
 export FZF_CTRL_R_OPTS='--reverse'
 export FZF_DEFAULT_OPTS='--no-info --no-bold --color=fg:#d4be98,bg:#282828,hl:bold:#a9b665 --color=fg+:#d4be98,hl+:bold:#a9b665,bg+:#282828 --color=pointer:#d4be98'
 export FZF_TMUX=1

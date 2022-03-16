@@ -3,7 +3,6 @@ local M = {}
 local on_attach = function(client, bufnr)
     require('aerial').on_attach(client, bufnr)
 
-    local lspleader = string.rep('<leader>', 2)
     local utils = require 'utils'
     local bmap = utils.bmap
     local mapstr = utils.mapstr
@@ -18,28 +17,28 @@ local on_attach = function(client, bufnr)
 
         ts_utils.setup_client(client)
 
-        bmap { 'n', lspleader .. 'ti', mapstr 'TSLspOrganize' }
-        bmap { 'n', lspleader .. 'td', mapstr('telescope.builtin', 'lsp_type_definitions') }
-        bmap { 'n', lspleader .. 'tr', mapstr 'TSLspRenameFile' }
-        bmap { 'n', lspleader .. 'to', mapstr 'TSLspOrganize' }
+        bmap { 'n', '<leader><leader>ti', mapstr 'TSLspOrganize' }
+        bmap { 'n', '<leader><leader>td', mapstr('telescope.builtin', 'lsp_type_definitions') }
+        bmap { 'n', '<leader><leader>tr', mapstr 'TSLspRenameFile' }
+        bmap { 'n', '<leader><leader>to', mapstr 'TSLspOrganize' }
     elseif client.name == 'clangd' then
-        bmap { 'n', lspleader .. 'H', mapstr 'ClangdSwitchSourceHeader' }
+        bmap { 'n', '<leader><leader>H', mapstr 'ClangdSwitchSourceHeader' }
     end
 
     bmap { 'n', ']<space>', mapstr 'lua vim.diagnostic.goto_next()' .. 'zz' }
     bmap { 'n', '[<space>', mapstr 'lua vim.diagnostic.goto_prev()' .. 'zz' }
 
-    bmap { 'n', lspleader .. 'c', mapstr('telescope.builtin', 'lsp_code_actions()') }
-    bmap { 'n', lspleader .. 'd', mapstr('telescope.builtin', 'lsp_definitions()') }
-    bmap { 'n', lspleader .. 'i', mapstr('telescope.builtin', 'lsp_implementations()') }
-    bmap { 'n', lspleader .. 'R', mapstr('telescope.builtin', 'lsp_references()') }
+    bmap { 'n', '<leader><leader>c', mapstr('telescope.builtin', 'lsp_code_actions()') }
+    bmap { 'n', '<leader><leader>d', mapstr('telescope.builtin', 'lsp_definitions()') }
+    bmap { 'n', '<leader><leader>i', mapstr('telescope.builtin', 'lsp_implementations()') }
+    bmap { 'n', '<leader><leader>R', mapstr('telescope.builtin', 'lsp_references()') }
 
-    bmap { 'n', lspleader .. 'D', mapstr 'lua vim.lsp.buf.declaration()' }
-    bmap { 'n', lspleader .. 'f', mapstr 'lua vim.diagnostic.open_float()' }
-    bmap { 'n', lspleader .. 'h', mapstr 'lua vim.lsp.buf.hover()' }
-    bmap { 'n', lspleader .. 'r', mapstr 'lua vim.lsp.buf.rename()' }
-    bmap { 'n', lspleader .. 's', mapstr 'lua vim.lsp.buf.signature_help()' }
-    bmap { 'n', lspleader .. 'T', mapstr 'lua vim.lsp.buf.type_definition()' }
+    bmap { 'n', '<leader><leader>D', mapstr 'lua vim.lsp.buf.declaration()' }
+    bmap { 'n', '<leader><leader>f', mapstr 'lua vim.diagnostic.open_float()' }
+    bmap { 'n', '<leader><leader>h', mapstr 'lua vim.lsp.buf.hover()' }
+    bmap { 'n', '<leader><leader>r', mapstr 'lua vim.lsp.buf.rename()' }
+    bmap { 'n', '<leader><leader>s', mapstr 'lua vim.lsp.buf.signature_help()' }
+    bmap { 'n', '<leader><leader>T', mapstr 'lua vim.lsp.buf.type_definition()' }
 end
 
 local lspconfig = require 'lspconfig'

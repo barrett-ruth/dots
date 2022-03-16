@@ -18,9 +18,12 @@ map { 'n', '<leader>C', mapstr 'cal setqflist([]) | sil ccl' }
 map { 'n', '<bs>', '<c-^>' }
 map { 'n', 'Q', mapstr('utils', 'Q()') }
 map { 'n', 'J', 'mzJ`z' }
+map { 'n', 'K', 'mzkJ`z' }
 map { 'v', 'K', ":m '<-2<cr>gv" }
 map { 'v', 'J', ":m '>+1<cr>gv" }
 map { 'n', 'x', '"_x' }
+
+map { 'n', '<leader>k', 'K' }
 
 -- Windows --
 map { 'n', '<c-h>', '<c-w>h' }
@@ -41,25 +44,27 @@ map { 'n', '<c-d>', '<c-d>zz' }
 map { 'n', '<c-u>', '<c-u>zz' }
 
 -- Movements --
-map { 'n', 'H', '0' }
-map { 'n', 'L', '$' }
 map { 'n', 'zH', '15zH' }
 map { 'n', 'zL', '15zL' }
 
 map { 'n', '<leader><cr>', mapstr 'so %' }
 
+map { 'n', '<leader>-', 'S<esc>' }
+
 map { 'n', '<leader>H', '`[v`]' }
 
 map { 'n', '<leader>i', ':se inv' }
+map { 'n', '<leader>ow', mapstr 'se invwrap' }
+map { 'n', '<leader>os', mapstr 'se invspell' }
 
-map { 'n', '<leader>bd', mapstr 'bd' }
-map { 'n', '<leader>bn', mapstr 'bn' }
-map { 'n', '<leader>bp', mapstr 'bp' }
+map { 'n', ']b', mapstr 'bn' }
+map { 'n', '[b', mapstr 'bp' }
+map { 'n', '<leader>B', mapstr 'bd' }
 
-map { 'n', '<leader>S', mapstr 'vert sbn' }
+map { 'n', '<leader>S', mapstr 'vert sbp' }
 
 map { '', '<leader>y', '"+y' }
-map { '', '<leader>Y', 'mzgg"+yG`zzz' }
+map { '', '<leader>Y', mapstr '%y"' }
 
 map { 'n', '<leader>q', mapstr 'q' }
 map { 'n', '<leader>Q', mapstr 'q!' }
@@ -78,13 +83,14 @@ map { '', '<leader>p', '"0p' }
 map { 'n', '<leader>f', mapstr('utils', 'format()') }
 map { 'n', '<leader>F', ':se fdm=' }
 
-map { 'n', ']o', 'mzo<esc>`z' }
-map { 'n', '[o', 'mzO<esc>`z' }
+map { 'n', ']o', '@="m`o\\eg``"<cr>' }
+map { 'n', '[o', '@="m`O\\eg``"<cr>' }
 
--- Swap : and ;
+map { 'n', ']e', '@="m`:m+\\eg``"<cr>' }
+map { 'n', '[e', '@="m`:m-2\\eg``"<cr>' }
+
 map { 'n', ':', ';' }
 map { 'n', ';', ':' }
 map { 'n', 'q;', 'q:' }
-
 map { 'v', ':', ';' }
 map { 'v', ';', ':' }

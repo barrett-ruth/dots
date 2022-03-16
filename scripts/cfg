@@ -18,7 +18,5 @@ cp /etc/zsh/zshenv "$cfg/zsh"
 
 [ "$1" ] || exit
 
-cd "$cfg" || exit 1
-git add .
-git commit -m "$*"
-git push
+cd "$cfg" || exit
+git cap "$*"

@@ -6,7 +6,6 @@ local utils = require 'utils'
 local map = utils.map
 local mapstr = utils.mapstr
 
-local sessionleader = '<leader>s'
-map { 'n', sessionleader .. 'd', mapstr 'DeleteSession' }
-map { 'n', sessionleader .. 'r', mapstr 'RestoreSession' }
-map { 'n', sessionleader .. 's', mapstr 'SaveSession' }
+map { 'n', '<leader>sd', mapstr 'DeleteSession' }
+map { 'n', '<leader>sr', mapstr 'RestoreSession' }
+map { 'n', '<leader>ss', mapstr 'SaveSession' }

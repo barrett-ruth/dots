@@ -50,10 +50,9 @@ require 'paq' {
 local utils = require 'utils'
 local mapstr = utils.mapstr
 local map = utils.map
-local paqleader = '<leader>P'
 
-map { 'n', paqleader .. 'c', mapstr 'PaqClean' }
-map { 'n', paqleader .. 'i', mapstr 'PaqInstall' }
-map { 'n', paqleader .. 'l', mapstr 'PaqList' }
-map { 'n', paqleader .. 'L', mapstr 'PaqLogOpen' }
-map { 'n', paqleader .. 'u', mapstr 'PaqUpdate' }
+map { 'n', '<leader>Pc', mapstr 'PaqClean' }
+map { 'n', '<leader>Pi', mapstr 'PaqInstall' }
+map { 'n', '<leader>Pl', mapstr 'PaqList' }
+map { 'n', '<leader>PL', mapstr 'PaqLogOpen' }
+map { 'n', '<leader>Pu', mapstr 'PaqUpdate' }
