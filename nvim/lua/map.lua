@@ -43,6 +43,7 @@ map { 'n', '<leader><cr>', mapstr 'so %' }
 map { 'n', '<leader>-', 'S<esc>' }
 map { 'n', '<leader>f', mapstr('utils', 'format()') }
 map { 'n', '<leader>F', ':se fdm=' }
+map { 'n', '<leader>g', mapstr 'cd %:h' }
 map { 'n', '<leader>H', '`[v`]' }
 map { 'n', '<leader>k', 'K' }
 map { 'n', '<leader>S', mapstr 'vert sbp' }
