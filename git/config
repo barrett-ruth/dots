@@ -16,7 +16,7 @@
     b = branch
     c = commit -m
     ca = commit -am
-    cap = "! [ \"$1\" ] && git commit -a -m \"$*\" && git push"
+    cap = "! [ \"$1\" ] && git add . && git commit -m \"$*\" && git push"
     cf = config
     ch = checkout
     cl = clone
