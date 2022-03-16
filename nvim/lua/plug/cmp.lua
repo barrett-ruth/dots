@@ -12,6 +12,17 @@ local sources = {
 }
 
 cmp.setup {
+    window = {
+        completion = {
+            scrollbar = false,
+            border = 'rounded',
+        },
+        documentation = {
+            scrollbar = false,
+            border = 'rounded',
+            max_width = 999,
+        },
+    },
     snippet = {
         expand = function(args)
             luasnip.lsp_expand(args.body)

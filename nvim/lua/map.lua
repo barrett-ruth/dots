@@ -47,6 +47,10 @@ map { 'n', '<leader>g', mapstr 'cd %:h' }
 map { 'n', '<leader>H', '`[v`]' }
 map { 'n', '<leader>k', 'K' }
 map { 'n', '<leader>S', mapstr 'vert sbp' }
+for _, v in ipairs { { '{', '}' }, { '(', ')' }, { '[', ']' } } do
+    map { 'i', v[1] .. '<cr>', v[1] .. '<cr>' .. v[2] .. '<esc>O' }
+    map { 'i', v[1] .. ',<cr>', v[1] .. '<cr>' .. v[2] .. ',<esc>O' }
+end
 
 -- Location List --
 map { 'n', ']l', mapstr 'lne' .. 'zz' }

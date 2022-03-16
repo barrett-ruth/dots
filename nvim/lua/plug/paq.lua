@@ -5,7 +5,7 @@ require 'paq' {
     'jose-elias-alvarez/nvim-lsp-ts-utils',
     'onsails/lspkind-nvim',
 
-    'hrsh7th/nvim-cmp',
+    { 'hrsh7th/nvim-cmp', branch = 'dev' },
     'hrsh7th/cmp-nvim-lua',
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
