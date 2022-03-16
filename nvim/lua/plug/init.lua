@@ -10,6 +10,7 @@ local files = {
     'harpoon',
     'lualine',
     'lspkind',
+    'rooter',
     'telescope',
     'session',
     'treesitter',

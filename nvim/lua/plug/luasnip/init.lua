@@ -40,10 +40,10 @@ local acc = {}
 
 for _, v in ipairs { { '{', '}' }, { '(', ')' }, { '[', ']' } } do
     table.insert(acc, newline(v[1] .. 'n', v, ''))
-    table.insert(acc, newline(v[1] .. 'nc', v, ','))
+    table.insert(acc, newline(v[1] .. 'n,', v, ','))
     table.insert(acc, inline(v[1] .. ' ', v, ' ', ''))
-    table.insert(acc, inline(v[1] .. 'c', v, '', ','))
-    table.insert(acc, inline(v[1] .. ' c', v, ' ', ','))
+    table.insert(acc, inline(v[1] .. ',', v, '', ','))
+    table.insert(acc, inline(v[1] .. ' ,', v, ' ', ','))
     table.insert(acc, simple(v))
 end
 for _, v in ipairs { { '"', '"' }, { "'", "'" }, { '<', '>' } } do
