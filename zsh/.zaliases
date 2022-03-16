@@ -22,6 +22,8 @@ alias rn='rename'
 alias sctl='systemctl'
 alias sxi='sxiv -b'
 alias tm='tmux'
+alias zc='z -c'
+alias zz='cd --'
 
 # Make
 alias mk='make'

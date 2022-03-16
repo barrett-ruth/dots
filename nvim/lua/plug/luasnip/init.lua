@@ -61,6 +61,6 @@ local utils = require 'utils'
 local map = utils.map
 local mapstr = utils.mapstr
 
-map { 'i', '<c-s>', mapstr "lua ls = require 'luasnip'; if ls.expandable() then ls.expand() end" }
-map { 'i', '<c-f>', mapstr "lua ls = require 'luasnip'; if ls.jumpable(1) then ls.jump(1) end" }
 map { 'i', '<c-b>', mapstr "lua ls = require 'luasnip'; if ls.jumpable(-1) then ls.jump(-1) end" }
+map { 'i', '<c-f>', mapstr "lua ls = require 'luasnip'; if ls.jumpable(1) then ls.jump(1) end" }
+map { 'i', '<c-s>', mapstr "lua ls = require 'luasnip'; if ls.expandable() then ls.expand() end" }

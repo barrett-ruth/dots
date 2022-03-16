@@ -16,8 +16,8 @@ local on_attach = function(client, bufnr)
         }
 
         ts_utils.setup_client(client)
-
         bmap { 'n', '<leader><leader>ti', mapstr 'TSLspOrganize' }
+
         bmap { 'n', '<leader><leader>td', mapstr('telescope.builtin', 'lsp_type_definitions') }
         bmap { 'n', '<leader><leader>tr', mapstr 'TSLspRenameFile' }
         bmap { 'n', '<leader><leader>to', mapstr 'TSLspOrganize' }

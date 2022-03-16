@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-autoload -U compinit && compinit
+autoload -U compinit && compinit -u
 autoload -U colors && colors
 autoload zmv
 zmodload zsh/complist
@@ -44,14 +44,16 @@ export LESSHISTFILE="$XDG_CONFIG_HOME/less/lesshst"
 export npm_config_prefix='/usr/local'
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export PASSWORD_STORE_DIR="$XDG_CONFIG_HOME/password-store"
+export PRETTIERD_DEFAULT_CONFIG="$XDG_CONFIG_HOME/prettierrc"
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
 export VIRTUAL_ENV_DISABLE_PROMPT=1
-export PRETTIERD_DEFAULT_CONFIG="$XDG_CONFIG_HOME/prettierrc"
+export _Z_DATA="$XDG_DATA_HOME/z"
+export _Z_EXCLUDE_DIRS=(__pycache__ .git .pki build cache dist docs node_modules undo venv)
 
 # FZF
-export FZF_CTRL_T_COMMAND='fd -t f -H --strip-cwd-prefix'
 export FZF_ALT_C_COMMAND='fd -t d -H --strip-cwd-prefix'
 export FZF_CTRL_R_OPTS='--reverse'
+export FZF_CTRL_T_COMMAND='fd -t f -H --strip-cwd-prefix'
 export FZF_DEFAULT_OPTS='--no-info --no-bold --color=fg:#d4be98,bg:#282828,hl:bold:#a9b665 --color=fg+:#d4be98,hl+:bold:#a9b665,bg+:#282828 --color=pointer:#d4be98'
 export FZF_TMUX=1
 
@@ -62,7 +64,7 @@ setopt auto_cd incappendhistory extendedhistory histignorealldups
 
 # Plugins
 . "$ZDOTDIR/.zaliases"
-. "$ZDOTDIR/plugin/zsh-autojump/etc/profile.d/autojump.sh"
+. "$ZDOTDIR/plugin/zsh-z/z.sh"
 . "$ZDOTDIR/plugin/zsh-fzf/fzf/fzf.zsh"
 . "$ZDOTDIR/plugin/zsh-autosuggestions/zsh-autosuggestions.zsh"
 . "$ZDOTDIR/plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"

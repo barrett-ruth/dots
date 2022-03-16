@@ -30,6 +30,7 @@ require('telescope').setup {
     extensions = {
         file_browser = {
             hidden = true,
+            disable_devicons = true,
             mappings = {
                 i = {
                     ['<c-a>'] = fb_actions.create,
