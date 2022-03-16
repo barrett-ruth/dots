@@ -13,7 +13,6 @@ map { 'n', ';', ':' }
 map { 'n', 'q;', 'q:' }
 map { 'v', ':', ';' }
 map { 'v', ';', ':' }
-map { 'n', '<bs>', '<c-^>' }
 map { 'n', 'J', 'mzJ`z' }
 map { 'n', 'K', 'mzkJ`z' }
 map { 'v', 'J', ":m '>+1<cr>gv" }
@@ -22,6 +21,9 @@ map { 'n', 'Q', mapstr('utils', 'Q()') }
 map { 'n', 'x', '"_x' }
 map { 'n', 'zH', '15zH' }
 map { 'n', 'zL', '15zL' }
+map { 'n', '<bs>', '<c-^>' }
+map { 'n', '<c-i>', '<c-i>zz' }
+map { 'n', '<c-o>', '<c-o>zz' }
 
 -- Centering --
 map { 'n', 'G', 'Gzz' }

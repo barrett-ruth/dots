@@ -1,3 +1,7 @@
 local ls = require 'luasnip'
 
-ls.snippets.typescriptreact = {}
+local javascript = require 'plug.luasnip.javascript'
+
+local typescriptreact = javascript
+
+ls.snippets.typescriptreact = typescriptreact

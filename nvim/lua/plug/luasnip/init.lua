@@ -18,18 +18,18 @@ local simple = function(lr)
     })
 end
 
-local inline = function(trig, lr, comma)
+local inline = function(trig, lr, space, comma)
     return s(snipopts(trig), {
-        t(lr[1] .. ' '),
+        t(lr[1] .. space),
         i(1),
-        t(' ' .. lr[2] .. comma),
+        t(space .. lr[2] .. comma),
     })
 end
 
 local newline = function(trig, lr, comma)
     return s(snipopts(trig), {
         t(lr[1]),
-        t { '', '    ' },
+        t { '', '\t' },
         i(1),
         t { '', '' },
         t(lr[2] .. comma),
@@ -37,11 +37,13 @@ local newline = function(trig, lr, comma)
 end
 
 local acc = {}
+
 for _, v in ipairs { { '{', '}' }, { '(', ')' }, { '[', ']' } } do
     table.insert(acc, newline(v[1] .. 'n', v, ''))
-    table.insert(acc, newline(v[1] .. ',', v, ','))
-    table.insert(acc, inline(v[1] .. ' ', v, ''))
-    table.insert(acc, inline(v[1] .. ' ,', v, ','))
+    table.insert(acc, newline(v[1] .. 'nc', v, ','))
+    table.insert(acc, inline(v[1] .. ' ', v, ' ', ''))
+    table.insert(acc, inline(v[1] .. 'c', v, '', ','))
+    table.insert(acc, inline(v[1] .. ' c', v, ' ', ','))
     table.insert(acc, simple(v))
 end
 for _, v in ipairs { { '"', '"' }, { "'", "'" }, { '<', '>' } } do
@@ -53,9 +55,6 @@ ls.snippets = { all = acc }
 ls.filetype_extend('bash', { 'sh' })
 ls.filetype_extend('zsh', { 'sh' })
 ls.filetype_extend('cpp', { 'c' })
-ls.filetype_extend('javascriptreact', { 'javascript' })
-ls.filetype_extend('typescript', { 'javascript' })
-ls.filetype_extend('typescriptreact', { 'javascript' })
 
 local utils = require 'utils'
 local map = utils.map

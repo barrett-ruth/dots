@@ -2,21 +2,24 @@ local ls = require 'luasnip'
 local fmt = require('luasnip.extras.fmt').fmt
 local i = ls.i
 local s = ls.s
-local t = ls.t
 
-ls.snippets.javascript = {
+local javascript = {
+    s('afu', fmt([[{} => {}]], { i(1), i(2) })),
+    s(
+        'afun',
+        fmt(
+            [[
+                ({}) => {{
+                    {}
+                }}
+            ]],
+            { i(1), i(2) }
+        )
+    ),
+    s('imp', fmt([[import {} from '{}']], { i(1), i(2) })),
     s('pr', fmt([[console.log({})]], { i(1) })),
-    s('afu', {
-        i(1),
-        t ' => ',
-        i(2),
-    }),
-    s('afun', {
-        t '(',
-        i(1),
-        t ') => {',
-        t { '', '    ' },
-        i(2),
-        t { '', '}' },
-    }),
 }
+
+ls.snippets.javascript = javascript
+
+return javascript
