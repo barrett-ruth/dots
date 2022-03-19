@@ -27,6 +27,8 @@ se nohlsearch noswapfile noshowmode
 
 se number relativenumber
 
+se laststatus=3
+
 se lazyredraw
 
 se path+=**

@@ -28,7 +28,6 @@ require 'paq' {
     'sainnhe/gruvbox-material',
 
     'gpanders/editorconfig.nvim',
-    'jedi2610/nvim-rooter.lua',
     'lewis6991/impatient.nvim',
     'lewis6991/gitsigns.nvim',
     'nathom/filetype.nvim',

@@ -5,6 +5,7 @@ require('lualine').setup {
     options = {
         theme = theme,
         icons_enabled = false,
+        globalstatus = true,
     },
     sections = {
         lualine_a = { 'mode' },
