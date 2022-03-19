@@ -13,6 +13,7 @@ map { 'n', ';', ':' }
 map { 'n', 'q;', 'q:' }
 map { 'v', ':', ';' }
 map { 'v', ';', ':' }
+vim.cmd "nn <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'"
 map { 'n', 'J', 'mzJ`z' }
 map { 'n', 'K', 'mzkJ`z' }
 map { 'v', 'J', ":m '>+1<cr>gv" }
@@ -44,7 +45,6 @@ map { 'n', '<leader>-', 'S<esc>' }
 map { 'n', '<leader>f', mapstr('utils', 'format()') }
 map { 'n', '<leader>F', ':se fdm=' }
 map { 'n', '<leader>g', mapstr 'cd %:h' }
-map { 'n', '<leader>H', '`[v`]' }
 map { 'n', '<leader>k', 'K' }
 map { 'n', '<leader>S', mapstr 'vert sbp' }
 for _, v in ipairs { { '{', '}' }, { '(', ')' }, { '[', ']' } } do

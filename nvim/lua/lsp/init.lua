@@ -1,2 +1,2 @@
-require 'lsp/servers'
 require 'lsp/signs'
+require 'lsp/servers'

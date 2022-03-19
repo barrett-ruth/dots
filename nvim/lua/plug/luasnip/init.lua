@@ -28,6 +28,7 @@ for _, v in ipairs { { '{', '}' }, { '(', ')' }, { '[', ']' } } do
 end
 for _, v in ipairs { { '"', '"' }, { "'", "'" }, { '<', '>' } } do
     table.insert(acc, inline(v[1], v, '', ''))
+    table.insert(acc, inline(v[1] .. ',', v, '', ','))
 end
 
 ls.snippets = { all = acc }

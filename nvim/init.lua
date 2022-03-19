@@ -7,6 +7,7 @@ vim.cmd [[
 ]]
 
 require 'map'
+require 'map'
 require 'plug'
 require 'lsp'
 
