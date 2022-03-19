@@ -7,26 +7,30 @@ end
 function M.save()
     local ft = vim.bo.ft
     local fts = {
-        bash = 'shfmt -w -ln=bash -mn',
-        sh = 'shfmt -w -ln=posix -mn',
-        zsh = 'shfmt -w -ln=bash -mn',
-        javascript = 'prettierd',
-        javascriptreact = 'prettierd',
-        lua = 'stylua -f ~/.config/stylua/stylua.toml',
-        python = 'black -S',
-        typescript = 'prettierd',
-        typescriptreact = 'prettierd',
+        bash = 'shfmt -w -ln=bash',
+        sh = 'shfmt -w -ln=posix',
+        zsh = 'shfmt -w -ln=bash',
+        javascript = 'echo $(cat % | prettierd %) >',
+        lua = 'stylua --config-path ~/.config/stylua/stylua.toml',
+        python = 'black --skip-string-normalization',
     }
-    print(fts[ft])
+    fts.javascriptreact = fts.javascript
+    fts.typescript = fts.javascript
+    fts.typescriptreact = fts.javascript
 
-    vim.cmd [[
-        try
-            undoj
-            sil !' .. fts[ft] .. ' %'
-        cat
-            echo 'Failed to format buffer: ' .. v:exception
-        endt
-    ]]
+    if fts[ft] == nil then
+        return
+    end
+
+    local cmd = 'sil :!' .. fts[ft] .. ' %'
+
+    vim.cmd(
+        'try | undoj |'
+            .. cmd
+            .. '\n catch /E790/ |'
+            .. cmd
+            .. '\n catch | echo "Could not format buffer: "  .. v:exception | endt'
+    )
 end
 
 function M.bd()

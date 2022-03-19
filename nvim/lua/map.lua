@@ -82,7 +82,7 @@ map { 'n', '<c-right>', mapstr 'vert resize +10' }
 -- Saving/exiting --
 map { 'n', '<leader>q', mapstr 'q' }
 map { 'n', '<leader>Q', mapstr 'q!' }
-map { 'n', '<leader>w', mapstr('utils', 'save()') }
+map { 'n', '<leader>w', mapstr 'w' .. mapstr('utils', 'save()')}
 map { 'n', '<leader>W', mapstr 'wa' }
 map { 'n', '<leader>z', 'ZZ' }
 map { 'n', '<leader>Z', mapstr 'xa' }

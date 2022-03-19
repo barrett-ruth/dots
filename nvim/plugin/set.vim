@@ -8,6 +8,8 @@ se completeopt=menuone,noinsert,noselect
 
 se expandtab
 
+se fillchars=fold:\ ,eob:\ ,vert:│
+
 se nofoldenable
 se foldlevel=2
 se foldmethod=syntax
@@ -19,13 +21,17 @@ se ignorecase
 
 se isfname-==,
 
-se list listchars=nbsp:·,trail:·,tab:\ \ 
+se list
+se listchars=nbsp:·,trail:·,tab:\ \ 
 
 se matchpairs+=<:>
 
-se nohlsearch noswapfile noshowmode
+se nohlsearch
+se noswapfile
+se noshowmode
 
-se number relativenumber
+se number
+se relativenumber
 
 se laststatus=3
 
@@ -59,9 +65,4 @@ se wildcharm=<c-n>
 
 se nowrap
 
-lua << EOF
-
-require 'utils'.set_wig()
-vim.cmd 'se fcs=fold:\\ ,eob:\\ ,vert:│ '
-
-EOF
+lua require 'utils'.set_wig()

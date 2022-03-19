@@ -4,7 +4,7 @@ vim.cmd [[
     let g:mapleader = ' '
 ]]
 
-require 'map'
+require 'aug'
 require 'map'
 require 'plug'
 require 'lsp'

@@ -8,11 +8,8 @@ fi
 
 skb &
 smon &
+sxs &
 sbg 'nature/pines.jpg' &
-xmodmap "$XDG_CONFIG_HOME/X11/xmodmap" &
-xrdb -merge "$XDG_CONFIG_HOME/X11/xresources" &
-xset r rate 300 50 &
-xset m 0 0 &
 dwmblocks &
 while true; do
     dwm
