@@ -4,11 +4,11 @@ vim.fn.sign_define('DiagnosticSignHint', { text = '*', texthl = 'AquaSign' })
 vim.fn.sign_define('DiagnosticSignInfo', { text = ':', texthl = 'BlueSign' })
 
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
-    border = 'rounded',
+    border = 'single',
 })
 
 vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-    border = 'rounded',
+    border = 'single',
 })
 
 local sources = {
@@ -27,7 +27,7 @@ vim.diagnostic.config {
     float = {
         header = '',
         prefix = '',
-        border = 'rounded',
+        border = 'single',
         format = function(diagnostic)
             local code = diagnostic.user_data.lsp.code
             local message = diagnostic.message

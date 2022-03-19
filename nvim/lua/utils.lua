@@ -4,21 +4,44 @@ function M.empty(s)
     return s == '' or s == nil
 end
 
-function M.format()
+function M.save()
     local ft = vim.bo.ft
-
-    if ft and vim.fn.count(vim.g.fmt_fts, ft) < 1 then
-        return
-    end
+    local fts = {
+        bash = 'shfmt -w -ln=bash -mn',
+        sh = 'shfmt -w -ln=posix -mn',
+        zsh = 'shfmt -w -ln=bash -mn',
+        javascript = 'prettierd',
+        javascriptreact = 'prettierd',
+        lua = 'stylua -f ~/.config/stylua/stylua.toml',
+        python = 'black -S',
+        typescript = 'prettierd',
+        typescriptreact = 'prettierd',
+    }
+    print(fts[ft])
 
     vim.cmd [[
         try
             undoj
-            sil Neoformat
-        catch /E790/
-            sil Neoformat
+            sil !' .. fts[ft] .. ' %'
+        cat
+            echo 'Failed to format buffer: ' .. v:exception
         endt
     ]]
+end
+
+function M.bd()
+    vim.cmd 'bd'
+
+    local bufnrs = vim.api.nvim_eval "len(getbufinfo({'buflisted':1}))"
+    if bufnrs == 1 then
+        print 'Last buffer'
+    end
+end
+
+function M.invert_opt(opt, tl)
+    local se = tl and 'setl ' or 'se '
+    vim.cmd(se .. 'inv' .. opt)
+    vim.cmd(se .. opt .. '?')
 end
 
 function M.sitter_reparse()
@@ -26,6 +49,7 @@ function M.sitter_reparse()
     require 'plug/treesitter'
 
     vim.cmd 'e!'
+    vim.cmd "echo 'File reparsed.'"
 end
 
 function M.Q()
@@ -81,13 +105,14 @@ function M.toggle_cmp()
     end
 
     local cmp = require 'cmp'
-
     cmp.setup.buffer { enabled = CMP }
 
     if CMP then
         cmp.complete()
+        vim.cmd "echo 'nvim-cmp enabled'"
     else
         cmp.close()
+        vim.cmd "echo 'nvim-cmp disabled'"
     end
 end
 

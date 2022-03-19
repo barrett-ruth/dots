@@ -33,7 +33,6 @@ require 'paq' {
     'nathom/filetype.nvim',
     'nvim-lualine/lualine.nvim',
     'rmagatti/auto-session',
-    'sbdchd/neoformat',
     'stevearc/aerial.nvim',
 
     'ThePrimeagen/git-worktree.nvim',

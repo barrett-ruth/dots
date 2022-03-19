@@ -1,4 +1,9 @@
 local ls = require 'luasnip'
+
+if ls.snippets.html then
+    return
+end
+
 local extras = require 'luasnip.extras'
 local fmt = require('luasnip.extras.fmt').fmt
 local i = ls.i

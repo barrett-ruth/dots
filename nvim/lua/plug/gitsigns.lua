@@ -8,7 +8,7 @@ require('gitsigns').setup {
         insert_mode = false,
     },
     preview_config = {
-        border = 'rounded',
+        border = 'single',
     },
     on_attach = function(_)
         local utils = require 'utils'

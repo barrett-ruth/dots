@@ -28,14 +28,10 @@ for _, v in ipairs { { '{', '}' }, { '(', ')' }, { '[', ']' } } do
 end
 for _, v in ipairs { { '"', '"' }, { "'", "'" }, { '<', '>' } } do
     table.insert(acc, inline(v[1], v, '', ''))
-    table.insert(acc, inline(v[1] .. ',', v, '', ','))
+    table.insert(acc, inline(v[1] .. ',', v, '', ', '))
 end
 
 ls.snippets = { all = acc }
-
-ls.filetype_extend('bash', { 'sh' })
-ls.filetype_extend('zsh', { 'sh' })
-ls.filetype_extend('cpp', { 'c' })
 
 local utils = require 'utils'
 local map = utils.map

@@ -15,11 +15,11 @@ cmp.setup {
     window = {
         completion = {
             scrollbar = false,
-            border = 'rounded',
+            border = 'single',
         },
         documentation = {
             scrollbar = false,
-            border = 'rounded',
+            border = 'single',
             max_width = 999,
         },
     },

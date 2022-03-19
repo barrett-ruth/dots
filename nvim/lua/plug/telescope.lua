@@ -6,6 +6,7 @@ local action_layout = require 'telescope.actions.layout'
 require('telescope').setup {
     defaults = {
         file_sorter = require('telescope.sorters').get_fzy_sorter,
+        borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
         mappings = {
             i = {
                 ['<c-h>'] = action_layout.toggle_preview,
@@ -60,7 +61,7 @@ map { 'n', '<c-b>', mapstr('telescope', 'extensions.file_browser.file_browser()'
 map {
     'n',
     '<c-e>',
-    mapstr('telescope.builtin', "find_files({ cwd = os.getenv('XDG_CONFIG_HOME') })"),
+    mapstr('telescope.builtin', "find_files({ cwd = '~/.config'})"),
 }
 map { 'n', '<c-f>', mapstr('utils', 'files()') }
 map { 'n', '<c-g>', mapstr('telescope.builtin', 'live_grep()') }

@@ -5,7 +5,7 @@ local mapstr = utils.mapstr
 -- Buffers
 map { 'n', ']b', mapstr 'bn' }
 map { 'n', '[b', mapstr 'bp' }
-map { 'n', '<leader>B', mapstr 'bd' }
+map { 'n', '<leader>B', mapstr('utils', 'bd()') }
 
 -- Builtins --
 map { 'n', ':', ';' }
@@ -53,13 +53,15 @@ for _, v in ipairs { { '{', '}' }, { '(', ')' }, { '[', ']' } } do
 end
 
 -- Location List --
-map { 'n', ']l', mapstr 'lne' .. 'zz' }
+map { 'n', ']l', mapstr 'bd' .. mapstr 'lne' .. 'zz' }
+map { 'n', ']L', mapstr 'lne' .. 'zz' }
 map { 'n', '[l', mapstr 'lp' .. 'zz' }
 map { 'n', '<leader>l', mapstr('utils', "toggle_list('l')") }
 map { 'n', '<leader>L', mapstr 'cal setloclist(0, []) | sil lcl' }
 
 -- Quickfix List --
-map { 'n', ']c', mapstr 'cn' .. 'zz' }
+map { 'n', ']c', mapstr 'bd' .. mapstr 'cne' .. 'zz' }
+map { 'n', ']C', mapstr 'cn' .. 'zz' }
 map { 'n', '[c', mapstr 'cp' .. 'zz' }
 map { 'n', '<leader>c', mapstr('utils', "toggle_list('c')") }
 map { 'n', '<leader>C', mapstr 'cal setqflist([]) | sil ccl' }
@@ -80,7 +82,7 @@ map { 'n', '<c-right>', mapstr 'vert resize +10' }
 -- Saving/exiting --
 map { 'n', '<leader>q', mapstr 'q' }
 map { 'n', '<leader>Q', mapstr 'q!' }
-map { 'n', '<leader>w', mapstr 'w' }
+map { 'n', '<leader>w', mapstr('utils', 'save()') }
 map { 'n', '<leader>W', mapstr 'wa' }
 map { 'n', '<leader>z', 'ZZ' }
 map { 'n', '<leader>Z', mapstr 'xa' }
@@ -90,9 +92,8 @@ map { 'n', '[e', '@="m`:m-2\\eg``"<cr>' }
 map { 'n', ']e', '@="m`:m+\\eg``"<cr>' }
 
 -- Toggling --
-map { 'n', '<leader>i', ':se inv' }
-map { 'n', '<leader>ow', mapstr 'se invwrap' }
-map { 'n', '<leader>os', mapstr 'se invspell' }
+map { 'n', '<leader>iw', mapstr('utils', "invert_opt 'wrap'") }
+map { 'n', '<leader>is', mapstr('utils', "invert_opt('spell', true)") }
 
 -- Yanking --
 map { '', '<leader>y', '"+y' }

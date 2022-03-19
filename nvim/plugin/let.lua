@@ -1,14 +1,11 @@
-let g:indent_blankline_show_first_indent_level = v:false
+vim.g.indent_blankline_show_first_indent_level = false
 
-let g:gruvbox_material_better_performance = 1
-let g:gruvbox_material_disable_italic_comment = 1
+vim.g.gruvbox_material_better_performance = 1
+vim.g.gruvbox_material_disable_italic_comment = 1
 
-let g:neoformat_python_black = { 'exe': 'black', 'args': [ '-s 4', '-q', '--skip-string-normalization' ] }
-
-lua << EOF
 local disabled_built_ins = {
     'netrw',
-    "netrwPlugin",
+    'netrwPlugin',
     'netrwSettings',
     'netrwFileHandlers',
     'gzip',
@@ -29,5 +26,3 @@ local disabled_built_ins = {
 for _, plugin in pairs(disabled_built_ins) do
     vim.g['loaded_' .. plugin] = 1
 end
-
-EOF
