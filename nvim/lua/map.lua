@@ -42,7 +42,6 @@ map { 'n', '<c-l>', '<c-w>l' }
 -- Miscellaneous
 map { 'n', '<leader><cr>', mapstr 'so %' }
 map { 'n', '<leader>-', 'S<esc>' }
-map { 'n', '<leader>f', mapstr('utils', 'format()') }
 map { 'n', '<leader>F', ':se fdm=' }
 map { 'n', '<leader>g', mapstr 'cd %:h' }
 map { 'n', '<leader>k', 'K' }
@@ -82,7 +81,7 @@ map { 'n', '<c-right>', mapstr 'vert resize +10' }
 -- Saving/exiting --
 map { 'n', '<leader>q', mapstr 'q' }
 map { 'n', '<leader>Q', mapstr 'q!' }
-map { 'n', '<leader>w', mapstr 'w' .. mapstr('utils', 'save()')}
+map { 'n', '<leader>w', mapstr 'w' .. mapstr('utils', 'save()') }
 map { 'n', '<leader>W', mapstr 'wa' }
 map { 'n', '<leader>z', 'ZZ' }
 map { 'n', '<leader>Z', mapstr 'xa' }

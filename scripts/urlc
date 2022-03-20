@@ -8,7 +8,7 @@ urls="$(sed 's/.*│//g' | tr -d '\n' |                            # First remov
     sed "s/\(\.\|,\|;\|\!\\|\?\)$//;
 	s/^www./http:\/\/www\./")" # xdg-open will not detect url without http
 
-[ "$urls" ] || exit 1
+[ "$urls" ] || exit
 
 prev="$(xclip -o -sel c)"
 

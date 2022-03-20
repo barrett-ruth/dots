@@ -1,6 +1,6 @@
 #!/bin/sh
 
-[ "$1" ] || exit 1
+[ "$1" ] || exit
 
 file="$1"
 shift
@@ -28,9 +28,6 @@ js)
     ;;
 ts)
     ts-node "$file"
-    ;;
-rs)
-    rustc "$* $file"
     ;;
     # erp | erp_connector)
     #     proj '<ERP COMMAND HERE>'

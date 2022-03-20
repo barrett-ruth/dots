@@ -43,17 +43,6 @@ ls.snippets.lua = {
         )
     ),
     s(
-        'mfun',
-        fmt(
-            [[
-                function M.{}({})
-                    {}
-                end
-            ]],
-            { i(1), i(2), i(3) }
-        )
-    ),
-    s(
         'if',
         fmt(
             [[
@@ -62,6 +51,28 @@ ls.snippets.lua = {
                 end
             ]],
             { i(1), i(2) }
+        )
+    ),
+    s(
+        'pairs',
+        fmt(
+            [[
+                for {}, {} in pairs({}) do
+                    {}
+                end
+            ]],
+            { i(1, 'k'), i(2, 'v'), i(3), i(4) }
+        )
+    ),
+    s(
+        'ipairs',
+        fmt(
+            [[
+                for {}, {} in ipairs({}) do
+                    {}
+                end
+            ]],
+            { i(1, '_'), i(2, 'v'), i(3), i(4) }
         )
     ),
     s(

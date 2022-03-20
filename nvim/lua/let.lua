@@ -1,7 +1,7 @@
+vim.g.indent_blankline_filetype_exclude = { '', 'checkhealth', 'help', 'lspinfo', 'man' }
 vim.g.indent_blankline_show_first_indent_level = false
 
 vim.g.gruvbox_material_better_performance = 1
-vim.g.gruvbox_material_disable_italic_comment = 1
 
 local disabled_built_ins = {
     'netrw',
@@ -20,7 +20,7 @@ local disabled_built_ins = {
     '2html_plugin',
     'logipat',
     'rrhelper',
-    'matchit'
+    'matchit',
 }
 
 for _, plugin in pairs(disabled_built_ins) do

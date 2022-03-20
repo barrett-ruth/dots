@@ -1,11 +1,9 @@
 require('gitsigns').setup {
     sign_priority = 0,
     update_debounce = 0,
-    current_line_blame = true,
     current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d>',
     current_line_blame_opts = {
         delay = 0,
-        insert_mode = false,
     },
     preview_config = {
         border = 'single',

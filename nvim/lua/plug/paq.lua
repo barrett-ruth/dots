@@ -24,8 +24,10 @@ require 'paq' {
         end,
     },
 
+    'kyazdani42/nvim-web-devicons',
     'lukas-reineke/indent-blankline.nvim',
     'sainnhe/gruvbox-material',
+    'yamatsum/nvim-nonicons',
 
     'gpanders/editorconfig.nvim',
     'lewis6991/impatient.nvim',

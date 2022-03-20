@@ -1,7 +1,7 @@
 #!/bin/sh
 # vim: ft=sh
 
-[ -f "$XDG_CONFIG_HOME/bmk" ] || exit 1
+[ -f "$XDG_CONFIG_HOME/bmk" ] || exit
 
 file="$(cat "$XDG_CONFIG_HOME/bmk" | dmenu)"
 

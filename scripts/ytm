@@ -1,8 +1,0 @@
-#!/bin/sh
-
-[ "$2" ] || exit 1
-
-url="$1"
-file="$2"
-
-youtube-dl "$url" --output "$HOME/mus/$file.mp3"

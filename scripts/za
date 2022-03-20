@@ -1,10 +1,10 @@
 #!/bin/sh
 
-[ "$1" ] || exit 1
+[ "$1" ] || exit
 
 file="$*"
 
 [ -f "$file" ] || file="$HOME/doc/$file"
-[ -f "$file" ] || exit 1
+[ -f "$file" ] || exit
 
 zathura --fork "$file"

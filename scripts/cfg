@@ -16,6 +16,11 @@ rmb .zshrc .zprofile .zaliases "$cfg/zsh"
 rmb tmux.conf "$cfg/tmux"
 cp /etc/zsh/zshenv "$cfg/zsh"
 
+npm_path='/usr/local/lib/node_modules/'
+fd . "$npm_path" -d 1 | awk -F "$npm_path" '{ print $2 }' >"$cfg/paclist.npm"
+
+pacman -Q >"$cfg/paclist.pacman"
+
 [ "$1" ] || exit
 
 cd "$cfg" || exit

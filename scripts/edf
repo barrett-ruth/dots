@@ -21,6 +21,6 @@ file="$(echo "$(printf '%s\n' "$cfgs")" | dmenu -p 'Edit:')"
 [ "$file" ] || exit
 
 config="$(get "$file")"
-[ "$config" ] && cmd="$cmd $config" || cmd="st -e nvs $file"
+[ "$config" ] && cmd="$cmd $config" || exit
 
 eval "$cmd"

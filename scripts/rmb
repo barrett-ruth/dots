@@ -1,13 +1,13 @@
 #!/bin/sh
 
-[ "$1" ] || exit 1
+[ "$1" ] || exit
 
 last="$(eval "echo \$$(echo $#)")"
 
 if [ -d "$last" ] && [ ! "$#" = '1' ]; then
-    cd "$last" || exit 1
+    cd "$last" || exit
 elif [ ! -d "$last" ] && [ ! -f "$last" ]; then
-    exit 1
+    exit
 fi
 
 args="$*"
