@@ -2,9 +2,9 @@ local utils = require 'utils'
 local map = utils.map
 local mapstr = utils.mapstr
 
--- Buffers
-map { 'n', ']b', mapstr 'bn' }
+-- Buffers --
 map { 'n', '[b', mapstr 'bp' }
+map { 'n', ']b', mapstr 'bn' }
 map { 'n', '<leader>B', mapstr('utils', 'bd()') }
 
 -- Builtins --

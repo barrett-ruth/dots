@@ -28,7 +28,7 @@ function M.bd()
 
     local bufnrs = vim.api.nvim_eval "len(getbufinfo({'buflisted':1}))"
     if bufnrs == 1 then
-        print 'Last buffer'
+        print 'Last buffer.'
     end
 end
 

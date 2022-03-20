@@ -9,9 +9,9 @@ table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
 local servers = {
-    clangd = { filetypes = { 'c', 'cpp' } },
-    cssls = { filetypes = { 'css', 'scss', 'less' } },
-    dockerls = { filetypes = { 'dockerfile' } },
+    clangd = {},
+    cssls = {},
+    dockerls = {},
     efm = {
         filetypes = { 'bash', 'sh' },
         init_options = {
@@ -26,11 +26,10 @@ local servers = {
         },
     },
     eslint = {},
-    html = { filetypes = { 'html' } },
-    jsonls = { filetypes = { 'json' } },
-    pyright = { filetypes = { 'python' } },
+    html = {},
+    jsonls = {},
+    jedi_language_server = {},
     sumneko_lua = {
-        filetypes = { 'lua' },
         settings = {
             Lua = {
                 runtime = {
@@ -46,7 +45,7 @@ local servers = {
         },
     },
     tsserver = {},
-    vimls = { filetypes = { 'vim' } },
+    vimls = {},
 }
 
 local setup = require('lsp/setup').setup
