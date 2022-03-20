@@ -20,6 +20,7 @@ npm_path='/usr/local/lib/node_modules/'
 fd . "$npm_path" -d 1 | awk -F "$npm_path" '{ print $2 }' >"$cfg/paclist.npm"
 
 pacman -Q >"$cfg/paclist.pacman"
+pip3 list | tail -n +3 >"$cfg/paclist.pip3"
 
 [ "$1" ] || exit
 
