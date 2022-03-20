@@ -18,7 +18,6 @@ map { 'n', 'J', 'mzJ`z' }
 map { 'n', 'K', 'mzkJ`z' }
 map { 'v', 'J', ":m '>+1<cr>gv" }
 map { 'v', 'K', ":m '<-2<cr>gv" }
-map { 'n', 'Q', mapstr('utils', 'Q()') }
 map { 'n', 'x', '"_x' }
 map { 'n', 'zH', '15zH' }
 map { 'n', 'zL', '15zL' }

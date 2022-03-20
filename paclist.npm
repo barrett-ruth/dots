@@ -5,6 +5,7 @@ eslint
 neovim
 npm
 prettier
+pyright
 ts-node
 typescript
 typescript-language-server

@@ -46,17 +46,6 @@ function M.sitter_reparse()
     vim.cmd "echo 'File reparsed.'"
 end
 
-function M.Q()
-    local reg = vim.fn.reg_recording()
-
-    if M.empty(reg) and not M.empty(REG) then
-        vim.cmd('norm! @' .. REG)
-    elseif reg ~= '' then
-        vim.api.nvim_command 'norm! q'
-        REG = reg
-    end
-end
-
 function M.toggle_list(prefix)
     if prefix == 'c' then
         if next(vim.fn.getqflist()) == nil then

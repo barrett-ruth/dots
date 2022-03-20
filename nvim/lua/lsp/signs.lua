@@ -12,6 +12,7 @@ vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.s
 })
 
 local sources = {
+    Pyright = 'pyright',
     vimlsp = 'vim',
 }
 sources['dockerfile-utils'] = 'dockerfile'
@@ -42,6 +43,7 @@ vim.diagnostic.config {
     },
 }
 
+-- Only show highest severity
 local ns = vim.api.nvim_create_namespace 'lsp_signs'
 local dshow = vim.diagnostic.show
 
