@@ -1,3 +1,0 @@
-#!/bin/sh
-
-xcape -e 'Super_L=Control_L|t'

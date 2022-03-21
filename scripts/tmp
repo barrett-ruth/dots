@@ -24,9 +24,6 @@ tmux new -ds "$session"
 tmux renamew -t "$session"':1' 'code'
 
 case "$session" in
-misc)
-    tmux neww -t "$session" -n 'aux'
-    ;;
 erp)
     for e in code run dock aux; do
         [ "$e" = 'code' ] || tmux neww -t "$session:" -n "$e"
@@ -35,6 +32,9 @@ erp)
     tmux splitw -h -t "$session"':dock' \; last-pane -t "$session"':dock'
 
     tmux send -t "$session"':run' "run $(basename "$dir")"
+    ;;
+*)
+    tmux neww -t "$session" -n 'aux'
     ;;
 esac
 
