@@ -4,6 +4,14 @@ function M.empty(s)
     return s == '' or s == nil
 end
 
+function M.toggle_lsp()
+    if next(vim.lsp.buf_get_clients(0)) ~= nil then
+        vim.cmd 'LspStop'
+    else
+        vim.cmd 'LspStart'
+    end
+end
+
 function M.save()
     local ft = vim.bo.ft
     local fts = require 'fts'
@@ -24,7 +32,7 @@ function M.save()
 end
 
 function M.bd()
-    vim.cmd 'bd'
+    require('bufdelete').bufdelete(0)
 
     local bufnrs = vim.api.nvim_eval "len(getbufinfo({'buflisted':1}))"
     if bufnrs == 1 then

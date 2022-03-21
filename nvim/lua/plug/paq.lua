@@ -27,6 +27,7 @@ require 'paq' {
     'lukas-reineke/indent-blankline.nvim',
     'sainnhe/gruvbox-material',
 
+    'famiu/bufdelete.nvim',
     'gpanders/editorconfig.nvim',
     'lewis6991/impatient.nvim',
     'lewis6991/gitsigns.nvim',
