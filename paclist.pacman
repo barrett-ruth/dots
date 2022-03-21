@@ -223,6 +223,7 @@ libmfx 22.1.0-1
 libmnl 1.0.4-3
 libmodplug 0.8.9.0-3
 libmpc 1.2.1-2
+libmpdclient 2.20-2
 libnetfilter_conntrack 1.0.8-1
 libnfnetlink 1.0.1-4
 libnftnl 1.2.1-1
@@ -442,6 +443,11 @@ x265 3.5-3
 xcape 1.2-4
 xcb-proto 1.14.1-5
 xcb-util 0.4.0-3
+xcb-util-cursor 0.1.3-3
+xcb-util-image 0.4.0-3
+xcb-util-renderutil 0.3.9-3
+xcb-util-wm 0.4.1-3
+xcb-util-xrm 1.3-2
 xclip 0.13-3
 xdg-dbus-proxy 0.1.3-1
 xdg-utils 1.1.3+19+g9816ebb-1

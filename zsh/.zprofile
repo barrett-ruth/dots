@@ -38,7 +38,6 @@ export SAVEHIST=2000
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
 
 # Programs
-export CARGO_HOME="$XDG_CONFIG_HOME/cargo"
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 export LESSHISTFILE="$XDG_CONFIG_HOME/less/lesshst"
 export npm_config_prefix='/usr/local'
@@ -54,6 +53,7 @@ export _Z_EXCLUDE_DIRS=(__pycache__ .git .pki build cache dist docs node_modules
 export FZF_ALT_C_COMMAND='fd -t d -H --strip-cwd-prefix'
 export FZF_CTRL_R_OPTS='--reverse'
 export FZF_CTRL_T_COMMAND='fd -t f -H --strip-cwd-prefix'
+export FZF_CTRL_H_COMMAND='fd -t d -H . ~'
 export FZF_DEFAULT_OPTS='--no-info --no-bold --color=fg:#d4be98,bg:#282828,hl:bold:#a9b665 --color=fg+:#d4be98,hl+:bold:#a9b665,bg+:#282828 --color=pointer:#d4be98'
 export FZF_TMUX=1
 
@@ -71,39 +71,29 @@ setopt auto_cd incappendhistory extendedhistory histignorealldups
 . "$XDG_CONFIG_HOME/nvm/nvm.sh" --no-use
 
 # Bindings
-__fsel_config() {
-  cd ~/.config
-  local item
-  { eval "$FZF_CTRL_T_COMMAND" | FZF_DEFAULT_OPTS="--height 40% --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@" | while read item; do
-    echo -n "~/.config/${(q)item} "
-  done
-    }
-  echo
-}
-
 fzf-config-widget() {
-    LBUFFER="$LBUFFER$(__fsel_config)"
-    zle reset-prompt
+    cd ~/.config
+    fzf-file-widget
 }
+zle -N fzf-config-widget
+
+fzf-home-widget() {
+  FZF_CTRL_T_COMMAND="$FZF_CTRL_H_COMMAND" fzf-file-widget
+}
+zle -N fzf-home-widget
 
 bindkey -v
-bindkey -r '^E'
-zle -N fzf-config-widget
+for e in H E T G N P J K; do
+  eval "bindkey -r '^$e'"
+done
+bindkey '^H' fzf-home-widget
 bindkey '^E' fzf-config-widget
-bindkey -r '^R'
-bindkey '^R' fzf-history-widget
-bindkey -r '^T'
 bindkey '^F' fzf-file-widget
-bindkey -r '^G'
 bindkey '^G' fzf-cd-widget
 bindkey '^[[P' delete-char
-bindkey -r '^P'
 bindkey '^P' up-line-or-history
-bindkey -r '^N'
 bindkey '^N' down-line-or-history
-bindkey -r '^J'
 bindkey '^J' backward-char
-bindkey -r '^K'
 bindkey '^K' forward-char
 
 # X server
