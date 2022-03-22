@@ -4,9 +4,9 @@
 
 __set_code() {
     PS1=' '
-    [ "$1" = '0' ] || PS1+="%F{red}$1 "
+    [[ "$1" = 0 ]] || PS1+="%F{red}$1 "
 }
-__set_ssh() { [ "$SSH_CONNECTION" ] && PS1+="%F{138}%h%F{white}@%F{95}%m " }
+__set_ssh() { [[ -n "$SSH_CONNECTION" ]] && PS1+="%F{138}%h%F{white}@%F{95}%m " }
 
 __shrink () {
     dir=${PWD/#$HOME/\~} base="$(basename $dir)"
@@ -21,7 +21,7 @@ __shrink () {
     for dir in $tree; do
         [[ $dir == $base ]] && res+=/$dir && break
         res+=/$dir[1]
-        [[ $dir[1] == '.' ]] && res+=$dir[2]
+        [[ $dir[1] == . ]] && res+=$dir[2]
     done
     echo $res
 }
@@ -56,7 +56,7 @@ __set_git() {
 
 __set_venv() {
     venv="${VIRTUAL_ENV:-$PWD/venv}"
-    [ -d "$venv" ] || return
+    [[ -d "$venv" ]] || return
     . "$venv/bin/activate"
     PS1+="%F{magenta}$(basename "$venv") "
 }
