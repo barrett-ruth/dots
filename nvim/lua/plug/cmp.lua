@@ -20,7 +20,7 @@ cmp.setup {
         documentation = {
             scrollbar = false,
             border = 'single',
-            max_width = 999,
+            max_width = 9999,
         },
     },
     snippet = {

@@ -13,7 +13,7 @@ __shrink () {
     typeset -a tree=(${(s:/:)dir})
 
     if [[ $tree[1] == '~' ]]; then
-        res=$tree[1]
+        res='~'
         shift tree
     else
         echo "%c" && exit
@@ -21,7 +21,7 @@ __shrink () {
     for dir in $tree; do
         [[ $dir == $base ]] && res+=/$dir && break
         res+=/$dir[1]
-        [[ $dir[1] == . ]] && res+=$dir[2]
+        [[ $dir[1] == '.' ]] && res+=$dir[2]
     done
     echo $res
 }
@@ -80,3 +80,4 @@ precmd() {
     __set_symbol
     __set_beam_cursor
 }
+

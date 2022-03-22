@@ -1,6 +1,35 @@
 local theme = require 'lualine.themes.gruvbox-material'
 theme.inactive.a.gui = 'NONE'
 
+local shrink = function()
+    local dir = vim.fn.expand '%:~'
+    local file = vim.fn.expand '%:t'
+    local tree = vim.split(dir, '/')
+    local out = ''
+
+    if tree[1] == '~' then
+        out = '~'
+        table.remove(tree, 1)
+    else
+        return vim.fn.expand '%:p'
+    end
+
+    for _, e in ipairs(tree) do
+        if e == file then
+            out = out .. '/' .. file
+            break
+        end
+
+        local letter = e:sub(1, 1)
+        out = out .. '/' .. letter
+        if letter == '.' then
+            out = out .. e:sub(2, 2)
+        end
+    end
+
+    return out
+end
+
 require('lualine').setup {
     options = {
         theme = theme,
@@ -34,7 +63,7 @@ require('lualine').setup {
                 },
             },
         },
-        lualine_c = { '%F%m%r%h' },
+        lualine_c = { shrink },
         lualine_x = { 'filetype' },
         lualine_y = { 'filesize', '%l/%L' },
         lualine_z = { 'encoding', 'bo:ff' },
