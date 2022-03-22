@@ -6,9 +6,11 @@ end
 
 function M.toggle_lsp()
     if next(vim.lsp.buf_get_clients(0)) ~= nil then
-        vim.cmd 'LspStop'
+        vim.diagnostic.disable()
+        print 'Stopped LSP.'
     else
-        vim.cmd 'LspStart'
+        vim.diagnostic.enable()
+        print 'Started LSP.'
     end
 end
 
@@ -100,10 +102,10 @@ function M.toggle_cmp()
 
     if CMP then
         cmp.complete()
-        vim.cmd "echo 'nvim-cmp enabled'"
+        print 'nvim-cmp enabled.'
     else
         cmp.close()
-        vim.cmd "echo 'nvim-cmp disabled'"
+        print 'nvim-cmp disabled.'
     end
 end
 

@@ -1,6 +1,8 @@
 #!/bin/sh
 
 cfh="$XDG_CONFIG_HOME"
+mkcic='make clean install && make clean'
+sl="$HOME/dev/sl"
 cmd='st -e nvim'
 
 add() {
@@ -17,10 +19,14 @@ add xinit "$cfh/X11/xinitrc"
 add zathura "$cfh/zathura/zathurarc"
 add zsh "$ZDOTDIR/.zprofile"
 
+for i in dmenu dwm dwmblocks st; do
+    add "$i" "$sl/$i/config.h; cd $sl/$i; $mkcic &"
+done
+
 file="$(echo "$(printf '%s\n' "$cfgs")" | dmenu -p 'Edit:')"
 [ "$file" ] || exit
 
 config="$(get "$file")"
-[ "$config" ] && cmd="$cmd $config" || exit
+[ "$config" ] && cmd="$cmd $config" || cmd="st -e nvs $file"
 
 eval "$cmd"

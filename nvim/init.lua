@@ -12,4 +12,4 @@ require 'lsp'
 
 -- Available leader mappings:
 -- ejmnux
--- ADEGHIJKMNORIVX
+-- ADEGHIJKMNORIVWX

@@ -14,10 +14,10 @@ prev="$(xclip -o -sel c)"
 
 echo "$urls"
 
-[ "$(echo "$urls" | wc -l)" -eq '1' ] && url="$urls" || url="$(echo "$urls" | dmenu -i -p 'Copy which url?' -l 10)"
+[ "$(echo "$urls" | wc -l)" = '1' ] && url="$urls" || url="$(echo "$urls" | dmenu -i -p 'Copy which url?' -l 10)"
 
 (
     echo "$url" | xclip -sel c
-    sleep 5
+    sleep 2
     echo "$prev" | xclip -sel c
 ) &

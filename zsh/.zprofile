@@ -86,11 +86,11 @@ bindkey -v
 for e in H E T G N P J K; do
   eval "bindkey -r '^$e'"
 done
-bindkey '^H' fzf-home-widget
+bindkey '^D' fzf-home-widget
 bindkey '^E' fzf-config-widget
 bindkey '^F' fzf-file-widget
 bindkey '^G' fzf-cd-widget
-bindkey '^[[P' delete-char
+bindkey '^[[3~' delete-char
 bindkey '^P' up-line-or-history
 bindkey '^N' down-line-or-history
 bindkey '^J' backward-char

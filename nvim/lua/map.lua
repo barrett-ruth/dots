@@ -68,8 +68,13 @@ map { 'n', '<leader>C', mapstr 'cal setqflist([]) | sil ccl' }
 map { 'n', ']o', '@="m`o\\eg``"<cr>' }
 map { 'n', '[o', '@="m`O\\eg``"<cr>' }
 
--- Pasting --
+-- Deleting/yanking/pasting --
+map { '', '<leader>d', '"_d' }
 map { '', '<leader>p', '"0p' }
+map { '', '<leader>r', '"_dP' }
+map { '', '<leader>R', '"_d"+P' }
+map { '', '<leader>y', '"+y' }
+map { '', '<leader>Y', mapstr '%y"' }
 
 -- Resizing --
 map { 'n', '<c-left>', mapstr 'vert resize -10' }
@@ -81,7 +86,6 @@ map { 'n', '<c-right>', mapstr 'vert resize +10' }
 map { 'n', '<leader>q', mapstr 'q' }
 map { 'n', '<leader>Q', mapstr 'q!' }
 map { 'n', '<leader>w', mapstr 'w' .. mapstr('utils', 'save()') }
-map { 'n', '<leader>W', mapstr 'wa' }
 map { 'n', '<leader>z', 'ZZ' }
 map { 'n', '<leader>Z', mapstr 'xa' }
 
@@ -92,11 +96,3 @@ map { 'n', ']e', '@="m`:m+\\eg``"<cr>' }
 -- Toggling --
 map { 'n', '<leader>iw', mapstr('utils', "invert_opt 'wrap'") }
 map { 'n', '<leader>is', mapstr('utils', "invert_opt('spell', true)") }
-
--- Yanking --
-map { '', '<leader>y', '"+y' }
-map { '', '<leader>Y', mapstr '%y"' }
-
--- Disabling yanking --
-map { '', '<leader>d', '"_d' }
-map { '', '<leader>r', '"_dP' }
