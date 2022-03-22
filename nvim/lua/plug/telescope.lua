@@ -5,8 +5,8 @@ local action_layout = require 'telescope.actions.layout'
 
 require('telescope').setup {
     defaults = {
-        file_sorter = require('telescope.sorters').get_fzy_sorter,
         borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
+        path_display = { 'shorten' },
         mappings = {
             i = {
                 ['<c-h>'] = action_layout.toggle_preview,
@@ -18,7 +18,7 @@ require('telescope').setup {
     pickers = {
         find_files = {
             hidden = true,
-            find_command = { 'fd', '-a', '--type', 'f', '--strip-cwd-prefix' },
+            find_command = { 'fd', '-a', '-t', 'f', '--strip-cwd-prefix' },
         },
         buffers = {
             mappings = {

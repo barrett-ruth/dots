@@ -86,7 +86,7 @@ bindkey -v
 for e in H E T G N P J K; do
   eval "bindkey -r '^$e'"
 done
-bindkey '^D' fzf-home-widget
+bindkey '^W' fzf-home-widget
 bindkey '^E' fzf-config-widget
 bindkey '^F' fzf-file-widget
 bindkey '^G' fzf-cd-widget
