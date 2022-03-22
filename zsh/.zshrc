@@ -8,26 +8,46 @@ __set_code() {
 }
 __set_ssh() { [ "$SSH_CONNECTION" ] && PS1+="%F{138}%h%F{white}@%F{95}%m " }
 
-__set_dir() { PS1+="%F{cyan}%c "; }
+__shrink () {
+    dir=${PWD/#$HOME/\~} base="$(basename $dir)"
+    typeset -a tree=(${(s:/:)dir})
 
-setopt +o nomatch
+    if [[ $tree[1] == '~' ]]; then
+        res=$tree[1]
+        shift tree
+    else
+        echo "%c" && exit
+    fi
+    for dir in $tree; do
+        [[ $dir == $base ]] && res+=/$dir && break
+        res+=/$dir[1]
+        [[ $dir[1] == '.' ]] && res+=$dir[2]
+    done
+    echo $res
+}
+
+__set_dir() {
+    PS1+="%F{cyan}$(__shrink) ";
+}
+
 __set_git() {
-  [ -d .git ] || return
+  setopt +o nomatch
+  [[ -d .git ]] || return
   local sb=(${(@f)"$(git status -sb)"}) up_down us
-  (( ${#sb[@]} > 1 )) && local dirty="*"
+  (( ${#sb[@]} > 1 )) && local dirty=*
   sb="${sb[1]}"
   local br="${${sb%%.*}##* }"
-  if [ -z "${sb##*...*}" ]; then
+  if [[ -z "${sb##*...*}" ]]; then
     local usi="${sb##*.}"
     local usr="${usi%%/*}"
     local usb="${${usi##*/}%% *}"
-    [ "$usr" ] && us="%F{white}->%F{green}$usr"
-    [ "$usb" ] && us+="%F{white}/%F{blue}$usb"
-    [ "${sb##*ahead*}" ] || up_down+='^'
-    [ "${sb##*behind*}" ] || up_down+='v'
-    [ "${#up_down}" = '2' ] && up_down='^v'
-  elif [ -z "${sb##*HEAD*}" ]; then
-      br='HEAD'
+    [[ -n "$usr" ]] && us="%F{white}->%F{green}$usr"
+    [[ -n "$usb" ]] && us+="%F{white}/%F{blue}$usb"
+    [[ -n "${sb##*ahead*}" ]] || up_down+=^
+    [[ -n "${sb##*behind*}" ]] || up_down+=v
+    [ "${#up_down}" = 2 ] && up_down=^v
+  elif [[ -z "${sb##*HEAD*}" ]]; then
+      br=HEAD
   else
       br="${sb##* }"
   fi
@@ -41,18 +61,18 @@ __set_venv() {
     PS1+="%F{magenta}$(basename "$venv") "
 }
 
-__set_symbol() { PS1+="%F{white}>%F{white} "; }
+__set_symbol() { PS1+="%F{white}> "; }
 __set_beam_cursor() { echo -ne '\e[5 q'; }
 __set_block_cursor() { echo -ne '\e[1 q'; }
 
 zle-keymap-select() {
-    [ "$KEYMAP" = 'main' -o "$KEYMAP" = 'viins' -o "$KEYMAP" = '' ] && __set_beam_cursor || __set_block_cursor
+    [[ "$KEYMAP" = main || "$KEYMAP" = viins || -z "$KEYMAP" ]] && __set_beam_cursor || __set_block_cursor
 }
 
 zle -N zle-keymap-select
 
 precmd() {
-    __set_code "$?"
+    __set_code $?
     __set_ssh
     __set_dir
     __set_git
