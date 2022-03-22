@@ -16,11 +16,9 @@ alias lss='less --use-color --color=d+b --color=P+c --color=u+g'
 alias g='git'
 alias ka='killall'
 alias nv='nvim'
-alias pd='prettierd'
 alias py='python'
 alias rn='rename'
 alias sctl='systemctl'
-alias sxi='sxiv -b'
 alias tm='tmux'
 alias zc='z -c'
 alias zz='cd --'
@@ -48,7 +46,7 @@ mkcd() {
     mkdir -vp "$1"
     cd "$1"
 }
-alias mkv='python -m venv venv; srcv; pip install --upgrade pip >/dev/null'
+alias mkv='python -m venv venv; srcv; pip3 install --upgrade pip'
 alias rmv='deactivate 2>/dev/null; rm -rf venv'
 alias srcv='[ -f venv/bin/activate ] && . venv/bin/activate'
 alias nvh='nvim config.h'
