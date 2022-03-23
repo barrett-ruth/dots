@@ -38,10 +38,12 @@ export SAVEHIST=2000
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
 
 # Programs
+export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 export LESSHISTFILE="$XDG_CONFIG_HOME/less/lesshst"
-export npm_config_prefix='/usr/local'
+export NPM_CONFIG_PREFIX='/usr/local'
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+export NODE_REPL_HISTORY="$XDG_DATA_HOME/node_repl_history"
 export PASSWORD_STORE_DIR="$XDG_CONFIG_HOME/password-store"
 export PRETTIERD_DEFAULT_CONFIG="$XDG_CONFIG_HOME/prettierd"
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
@@ -53,7 +55,7 @@ export _Z_EXCLUDE_DIRS=(__pycache__ .git .pki build cache dist docs node_modules
 export FZF_ALT_C_COMMAND='fd -t d -H --strip-cwd-prefix'
 export FZF_CTRL_R_OPTS='--reverse'
 export FZF_CTRL_T_COMMAND='fd -t f -H --strip-cwd-prefix'
-export FZF_CTRL_H_COMMAND='fd -t d -H . ~'
+export FZF_CTRL_W_COMMAND='fd -t d -H . ~'
 export FZF_DEFAULT_OPTS='--no-info --no-bold --color=fg:#d4be98,bg:#282828,hl:bold:#a9b665 --color=fg+:#d4be98,hl+:bold:#a9b665,bg+:#282828 --color=pointer:#d4be98'
 export FZF_TMUX=1
 
@@ -78,7 +80,7 @@ fzf-config-widget() {
 zle -N fzf-config-widget
 
 fzf-home-widget() {
-  FZF_CTRL_T_COMMAND="$FZF_CTRL_H_COMMAND" fzf-file-widget
+  FZF_CTRL_T_COMMAND="$FZF_CTRL_W_COMMAND" fzf-file-widget
 }
 zle -N fzf-home-widget
 
