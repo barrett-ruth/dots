@@ -13,7 +13,7 @@ u)
     shift
     pip3 uninstall "$*"
     ;;
-ls)
+l)
     pip3 list
     ;;
 h)
@@ -21,9 +21,6 @@ h)
     ;;
 f)
     pip3 freeze
-    ;;
-r)
-    [ -f requirements.txt ] && pip3 install -r requirements.txt || echo 'No requirements.txt found'
     ;;
 *)
     echo 'Unknown option specified'

@@ -9,7 +9,7 @@ fi
 sdpi &
 smon &
 sxs &
-sbg 'nature/pines.jpg' &
+sbg 'nature/desert.jpg' &
 while true; do
     dwm
     continue || exit
