@@ -4,6 +4,57 @@ function M.empty(s)
     return s == '' or s == nil
 end
 
+function M.rfind(str, char)
+    local revpos = str:reverse():find(char)
+
+    if revpos == nil then
+        return nil
+    end
+    return #str - revpos
+end
+
+function M.refactor_print(before)
+    local ft = require('fts').refactor.print[vim.bo.ft]
+
+    vim.cmd(string.format(
+        [[
+            cal feedkeys("mrgv\"ry%s%s\<c-r>\"%s\<esc>`r")
+        ]],
+        before and 'O' or 'o',
+        ft.l,
+        ft.r
+    ))
+end
+
+function M.refactor_inline()
+    local ft = require('fts').refactor.inline[vim.bo.ft]
+
+    vim.cmd(string.format(
+        [[
+            cal feedkeys("gv\"ry%s\"lydd^/\<c-r>r\<cr>cgn\<c-r>l\<esc>")
+        ]],
+        ft
+    ))
+end
+
+function M.refactor_extract()
+    vim.ui.input({ prompt = 'Variable name: ' }, function(input)
+        local ft = require('fts').refactor.extract[vim.bo.ft]
+        local pos = M.rfind(input, ',')
+        local num = pos and string.sub(input, pos + 2, #input) or '-'
+        local name = string.sub(input, 1, pos or #input)
+
+        vim.cmd(string.format(
+            [[
+                cal feedkeys("mrgvc%s\<esc>O%s\<c-a> = \<c-r>\"\<esc>\<cmd>m%s\<cr>`r")
+            ]],
+            name,
+            ft and ft.prefix or '',
+            num
+        ))
+    end)
+end
+
 function M.toggle_lsp()
     if next(vim.lsp.buf_get_clients(0)) ~= nil then
         vim.diagnostic.disable()
@@ -16,7 +67,7 @@ end
 
 function M.save()
     local ft = vim.bo.ft
-    local fts = require 'fts'
+    local fts = require('fts').save
 
     if M.empty(ft) or fts[ft] == nil then
         return
@@ -25,11 +76,11 @@ function M.save()
     local cmd = 'sil! :!' .. fts[ft] .. ' %'
 
     vim.cmd(
-        'try | undoj |'
-            .. cmd
-            .. '\n cat /E790/ |'
-            .. cmd
-            .. '\n cat | echo "Could not format buffer: "  .. v:exception | endt'
+        string.format(
+            'try | undoj | %s \n cat /E790/ | %s \n cat | echo "Could not format buffer: "  .. v:exception | endt',
+            cmd,
+            cmd
+        )
     )
 end
 
@@ -135,7 +186,8 @@ function M.bmap(mapping)
 end
 
 function M.mapstr(req, meth)
-    return M.empty(meth) and '<cmd>' .. req .. '<cr>' or "<cmd>lua require'" .. req .. "'." .. meth .. '<cr>'
+    return M.empty(meth) and string.format('<cmd>%s<cr>', req)
+        or string.format("<cmd>lua require '%s'.%s<cr>", req, meth)
 end
 
 return M

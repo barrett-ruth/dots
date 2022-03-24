@@ -37,6 +37,7 @@ require 'paq' {
     'stevearc/aerial.nvim',
 
     'ThePrimeagen/git-worktree.nvim',
+    'ThePrimeagen/refactoring.nvim',
     'ThePrimeagen/harpoon',
 
     'tpope/vim-abolish',

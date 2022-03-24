@@ -1,5 +1,5 @@
 #!/bin/sh
 
-resp="$(printf '%s\n' 'Yes' 'No' | dmenu -p 'Reboot?')"
+resp="$(printf '%s\n' Yes No | dmenu -p 'Reboot?')"
 
 [ "$resp" = 'Yes' ] && doas reboot

@@ -11,13 +11,13 @@ add() {
 }
 get() { eval echo '$'_"$1"; }
 
-add git "$cfh/git/config"
-add nvim "$cfh/nvim/init.lua"
+add git "$cfh/git/"
+add nvim "$cfh/nvim/"
 add tmux "$cfh/tmux/tmux.conf"
 add todo "$HOME/dl/todo.txt"
 add xinit "$cfh/X11/xinitrc"
 add zathura "$cfh/zathura/zathurarc"
-add zsh "$ZDOTDIR/.zprofile"
+add zsh "$ZDOTDIR/"
 
 for i in dmenu dwm dwmblocks st; do
     add "$i" "$sl/$i/config.h; cd $sl/$i; $mkcic &"

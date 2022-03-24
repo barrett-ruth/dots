@@ -13,6 +13,7 @@ map { 'n', ';', ':' }
 map { 'n', 'q;', 'q:' }
 map { 'v', ':', ';' }
 map { 'v', ';', ':' }
+map { 'v', '$', 'g_' }
 vim.cmd "nn <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'"
 map { 'n', 'J', 'mzJ`z' }
 map { 'n', 'K', 'mzkJ`z' }
@@ -45,10 +46,6 @@ map { 'n', '<leader>F', ':se fdm=' }
 map { 'n', '<leader>g', mapstr 'cd %:h' }
 map { 'n', '<leader>k', 'K' }
 map { 'n', '<leader>S', mapstr 'vert sbp' }
-for _, v in ipairs { { '{', '}' }, { '(', ')' }, { '[', ']' } } do
-    map { 'i', v[1] .. '<cr>', v[1] .. '<cr>' .. v[2] .. '<esc>O' }
-    map { 'i', v[1] .. ',<cr>', v[1] .. '<cr>' .. v[2] .. ',<esc>O' }
-end
 
 -- Location List --
 map { 'n', ']l', mapstr 'bd' .. mapstr 'lne' .. 'zz' }
@@ -70,7 +67,9 @@ map { 'n', '[o', '@="m`O\\eg``"<cr>' }
 
 -- Deleting/yanking/pasting --
 map { '', '<leader>d', '"_d' }
-map { '', '<leader>p', '"0p' }
+map { '', '<leader>r', '"_dP' }
+map { '', '<leader>R', '"_d"0P' }
+map { '', '<leader>p', '"0P' }
 map { '', '<leader>y', '"+y' }
 map { '', '<leader>Y', mapstr '%y"' }
 

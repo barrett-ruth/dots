@@ -18,6 +18,16 @@ local inline = function(trig, lr, space, comma)
     })
 end
 
+local newline = function(trig, lr, comma)
+    return s(snipopts(trig), {
+        t(lr[1]),
+        t { '', '\t' },
+        i(1),
+        t { '', '' },
+        t(lr[2] .. (comma or '')),
+    })
+end
+
 local acc = {}
 
 for _, v in ipairs { { '{', '}' }, { '(', ')' }, { '[', ']' } } do
@@ -25,10 +35,13 @@ for _, v in ipairs { { '{', '}' }, { '(', ')' }, { '[', ']' } } do
     table.insert(acc, inline(v[1] .. ',', v, '', ','))
     table.insert(acc, inline(v[1] .. ' ,', v, ' ', ','))
     table.insert(acc, inline(v[1], v, '', ''))
+    table.insert(acc, newline(v[1] .. 'n,', v, ','))
+    table.insert(acc, newline(v[1] .. 'n', v))
 end
 for _, v in ipairs { { '"', '"' }, { "'", "'" }, { '<', '>' } } do
     table.insert(acc, inline(v[1], v, '', ''))
-    table.insert(acc, inline(v[1] .. ',', v, '', ', '))
+    table.insert(acc, inline(v[1] .. ',', v, '', ','))
+    table.insert(acc, inline(v[1] .. ', ', v, '', ', '))
 end
 
 ls.snippets = { all = acc }
