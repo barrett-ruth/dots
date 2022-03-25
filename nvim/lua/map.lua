@@ -71,7 +71,7 @@ map { '', '<leader>r', '"_dP' }
 map { '', '<leader>R', '"_d"0P' }
 map { '', '<leader>p', '"0P' }
 map { '', '<leader>y', '"+y' }
-map { '', '<leader>Y', mapstr '%y"' }
+map { '', '<leader>Y', mapstr '%y+"' }
 
 -- Resizing --
 map { 'n', '<c-left>', mapstr 'vert resize -10' }

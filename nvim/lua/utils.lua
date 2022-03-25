@@ -27,29 +27,22 @@ function M.refactor_print(before)
 end
 
 function M.refactor_inline()
-    local ft = require('fts').refactor.inline[vim.bo.ft]
-
-    vim.cmd(string.format(
-        [[
-            cal feedkeys("gv\"ry%s\"lydd^/\<c-r>r\<cr>cgn\<c-r>l\<esc>")
-        ]],
-        ft
-    ))
+    vim.cmd [[
+        cal feedkeys("gv\"ry2WviW\"lydd^/\<c-r>r\<cr>cgn\<c-r>l\<esc>")
+    ]]
 end
 
 function M.refactor_extract()
     vim.ui.input({ prompt = 'Variable name: ' }, function(input)
-        local ft = require('fts').refactor.extract[vim.bo.ft]
         local pos = M.rfind(input, ',')
         local num = pos and string.sub(input, pos + 2, #input) or '-'
         local name = string.sub(input, 1, pos or #input)
 
         vim.cmd(string.format(
             [[
-                cal feedkeys("mrgvc%s\<esc>O%s\<c-a> = \<c-r>\"\<esc>\<cmd>m%s\<cr>`r")
+                cal feedkeys("mrgvc%s\<esc>O\<c-a> = \<c-r>\"\<esc>\<cmd>m%s\<cr>`r")
             ]],
             name,
-            ft and ft.prefix or '',
             num
         ))
     end)

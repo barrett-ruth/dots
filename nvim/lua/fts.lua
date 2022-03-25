@@ -1,20 +1,5 @@
 local fts = {
     refactor = {
-        extract = {
-            javascript = { prefix = 'const ' },
-            javascriptreact = { prefix = 'const ' },
-            lua = { prefix = 'local ' },
-            typescript = { prefix = 'const ' },
-            typescriptreact = { prefix = 'const ' },
-        },
-        inline = {
-            javascript = '2WviW',
-            javascriptreact = '2WviW',
-            lua = '2WviW',
-            python = '2WviW',
-            typescript = '2WviW',
-            typescriptreact = '2WviW',
-        },
         print = {
             javascript = { l = 'console.log(', r = ')' },
             javascriptreact = { l = 'console.log(', r = ')' },
