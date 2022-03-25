@@ -12,30 +12,10 @@ local t = ls.t
 
 ls.snippets.lua = {
     s(
-        'pr',
-        fmt(
-            [[
-                print({})
-            ]],
-            { i(1) }
-        )
-    ),
-    s(
         'fun',
         fmt(
             [[
                 function {}({})
-                    {}
-                end
-            ]],
-            { i(1), i(2), i(3) }
-        )
-    ),
-    s(
-        'lfun',
-        fmt(
-            [[
-                local {} = function({})
                     {}
                 end
             ]],
@@ -54,17 +34,6 @@ ls.snippets.lua = {
         )
     ),
     s(
-        'pairs',
-        fmt(
-            [[
-                for {}, {} in pairs({}) do
-                    {}
-                end
-            ]],
-            { i(1, 'k'), i(2, 'v'), i(3), i(4) }
-        )
-    ),
-    s(
         'ipairs',
         fmt(
             [[
@@ -73,6 +42,15 @@ ls.snippets.lua = {
                 end
             ]],
             { i(1, '_'), i(2, 'v'), i(3), i(4) }
+        )
+    ),
+    s(
+        'lo',
+        fmt(
+            [[
+                local {} = {}
+            ]],
+            { i(1), i(2) }
         )
     ),
     s(
@@ -88,6 +66,26 @@ ls.snippets.lua = {
                 end, { 1 }),
                 i(1),
             }
+        )
+    ),
+    s(
+        'pairs',
+        fmt(
+            [[
+                for {}, {} in pairs({}) do
+                    {}
+                end
+            ]],
+            { i(1, 'k'), i(2, 'v'), i(3), i(4) }
+        )
+    ),
+    s(
+        'pr',
+        fmt(
+            [[
+                print({})
+            ]],
+            { i(1) }
         )
     ),
     s('[[', {
