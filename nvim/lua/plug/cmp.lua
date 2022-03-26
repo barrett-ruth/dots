@@ -43,8 +43,8 @@ cmp.setup {
         { name = 'path' },
     },
     mapping = {
-        ['<c-h>'] = cmp.mapping(cmp.mapping.scroll_docs(-3), { 'i' }),
-        ['<c-l>'] = cmp.mapping(cmp.mapping.scroll_docs(3), { 'i' }),
+        ['<c-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-3), { 'i' }),
+        ['<c-f>'] = cmp.mapping(cmp.mapping.scroll_docs(3), { 'i' }),
         ['<c-y>'] = mapping {
             i = function()
                 if cmp.visible() then

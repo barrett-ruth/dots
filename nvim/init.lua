@@ -5,7 +5,7 @@ vim.cmd [[
 ]]
 
 require 'aug'
-rquire 'let'
+require 'let'
 require 'map'
 require 'plug'
 require 'lsp'

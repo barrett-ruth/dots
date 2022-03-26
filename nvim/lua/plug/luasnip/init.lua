@@ -1,6 +1,17 @@
 local ls = require 'luasnip'
+local types = require 'luasnip.util.types'
 
-ls.config.set_config { updateevents = 'TextChanged,TextChangedI' }
+ls.config.set_config {
+    updateevents = 'TextChanged,TextChangedI',
+    history = true,
+    ext_opts = {
+        [types.choiceNode] = {
+            active = {
+                virt_text = {{ ' <- ', 'CursorLine' }},
+            },
+        },
+    },
+}
 
 local s = ls.s
 local t = ls.t
@@ -50,11 +61,12 @@ local utils = require 'utils'
 local map = utils.map
 local mapstr = utils.mapstr
 
-map { 'i', '<c-b>', mapstr "lua ls = require 'luasnip'; if ls.jumpable(-1) then ls.jump(-1) end" }
-map { 's', '<c-b>', mapstr "lua ls = require 'luasnip'; if ls.jumpable(-1) then ls.jump(-1) end" }
+map { 'i', '<c-h>', mapstr "lua ls = require 'luasnip'; if ls.jumpable(-1) then ls.jump(-1) end" }
+map { 's', '<c-h>', mapstr "lua ls = require 'luasnip'; if ls.jumpable(-1) then ls.jump(-1) end" }
 
-map { 'i', '<c-f>', mapstr "lua ls = require 'luasnip'; if ls.jumpable(1) then ls.jump(1) end" }
-map { 's', '<c-f>', mapstr "lua ls = require 'luasnip'; if ls.jumpable(1) then ls.jump(1) end" }
+map { 'i', '<c-l>', mapstr "lua ls = require 'luasnip'; if ls.jumpable(1) then ls.jump(1) end" }
+map { 's', '<c-l>', mapstr "lua ls = require 'luasnip'; if ls.jumpable(1) then ls.jump(1) end" }
 
 map { 'i', '<c-s>', mapstr "lua ls = require 'luasnip'; if ls.expandable() then ls.expand() end" }
-map { 'i', '<c-d>', mapstr "lua ls = require 'luasnip'; if ls.choice_active() then ls.change_choice(1) end" }
+map { 'i', '<c-j>', mapstr "lua ls = require 'luasnip'; if ls.choice_active() then ls.change_choice(-1) end" }
+map { 'i', '<c-k>', mapstr "lua ls = require 'luasnip'; if ls.choice_active() then ls.change_choice(1) end" }
