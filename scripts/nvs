@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -eu
+
 file="$SCRIPTS/$(basename "$1")"
 
 [ -d "$file" ] && exit
@@ -7,6 +9,9 @@ file="$SCRIPTS/$(basename "$1")"
 
 nvim "$file"
 
-[ "$(cat "$file")" = '#!/bin/sh' ] && rm "$file" && exit
+if [ "$(cat "$file")" = '#!/bin/sh' ]; then
+    rm "$file"
+    exit
+fi
 
 [ -x "$file" ] || chmod +x "$SCRIPTS/$(basename "$file")"

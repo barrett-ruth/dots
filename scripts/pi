@@ -2,6 +2,8 @@
 
 [ "$1" ] || exit
 
+set -eu
+
 opt="$1"
 
 case "$opt" in
@@ -24,4 +26,5 @@ f)
     ;;
 *)
     echo 'Unknown option specified'
+    ;;
 esac

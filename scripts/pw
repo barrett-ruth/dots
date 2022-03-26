@@ -1,6 +1,8 @@
 #!/bin/sh
 
-sep='[]'
+set -eu
+
+sep=[]
 prefix="$PASSWORD_STORE_DIR"
 pws=''
 
@@ -23,8 +25,6 @@ entry="$(echo "$(printf '%s\n' "$pws")" | dmenu -p 'Password:')"
 old="$(xclip -sel c -o)"
 new="$(gpg --passphrase-file "$prefix/.pass" --yes --pinentry-mode loopback -d "$prefix/$entry.gpg" 2>/dev/null)"
 
-reset() { echo "$old" | xclip -sel c; }
-
 username="${new%%"$sep"*}"
 password="${new##*"$sep"}"
 
@@ -33,5 +33,5 @@ echo "$username" | xclip -sel c
 (
     sleep 1.5
     [ ! "$password" = "$username" ] && echo "$password" | xclip -sel c && sleep 1.5
-    reset
+    echo "$old" | xclip -sel c
 ) &

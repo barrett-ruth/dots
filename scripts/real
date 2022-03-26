@@ -1,4 +1,7 @@
 #!/bin/sh
 
+set -eu
+
 [ "$1" ] || exit
+
 exa -a -lF --color=auto "$(which "$1")"

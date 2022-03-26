@@ -49,15 +49,17 @@ map { 'n', '<leader>S', mapstr 'vert sbp' }
 
 -- Location List --
 map { 'n', ']l', mapstr 'bd' .. mapstr 'lne' .. 'zz' }
+map { 'n', '[l', mapstr 'bd' .. mapstr 'lp' .. 'zz' }
 map { 'n', ']L', mapstr 'lne' .. 'zz' }
-map { 'n', '[l', mapstr 'lp' .. 'zz' }
+map { 'n', '[L', mapstr 'lp' .. 'zz' }
 map { 'n', '<leader>l', mapstr('utils', "toggle_list('l')") }
 map { 'n', '<leader>L', mapstr 'cal setloclist(0, []) | sil lcl' }
 
 -- Quickfix List --
-map { 'n', ']c', mapstr 'bd' .. mapstr 'cne' .. 'zz' }
+map { 'n', ']c', mapstr 'bd' .. mapstr 'cn' .. 'zz' }
+map { 'n', '[c', mapstr 'bd' .. mapstr 'cp' .. 'zz' }
 map { 'n', ']C', mapstr 'cn' .. 'zz' }
-map { 'n', '[c', mapstr 'cp' .. 'zz' }
+map { 'n', '[C', mapstr 'cp' .. 'zz' }
 map { 'n', '<leader>c', mapstr('utils', "toggle_list('c')") }
 map { 'n', '<leader>C', mapstr 'cal setqflist([]) | sil ccl' }
 

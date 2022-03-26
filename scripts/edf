@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -eu
+
 cfh="$XDG_CONFIG_HOME"
 mkcic='make clean install && make clean'
 sl="$HOME/dev/sl"

@@ -2,6 +2,8 @@
 
 [ "$1" ] || exit
 
+set -eu
+
 file="$*"
 
 [ -f "$file" ] || file="$HOME/doc/$file"

@@ -2,6 +2,8 @@
 
 [ "$1" ] || exit
 
+set -eu
+
 file="$1"
 shift
 
@@ -20,7 +22,7 @@ cc | cpp)
     g++ "$* $file" && ./a.out && rm a.out
     ;;
 py)
-    [ "$VIRTUAL_ENV" ] && py="$VIRTUAL_ENV/bin/python" || py='python'
+    [ "$VIRTUAL_ENV" ] && py="$VIRTUAL_ENV/bin/python" || py=python
     eval "$py $* $file"
     ;;
 js)

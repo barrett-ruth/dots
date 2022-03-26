@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -eu
+
 urlregex="(((http|https|git)://|www\\.)[a-zA-Z0-9.]*[:]?[a-zA-Z0-9./@$&%?$\#=_~-]*)|((magnet:\\?xt=urn:btih:)[a-zA-Z0-9]*)"
 
 urls="$(sed 's/.*│//g' | tr -d '\n' |                            # First remove linebreaks and mutt sidebars:
@@ -14,7 +16,7 @@ prev="$(xclip -o -sel c)"
 
 echo "$urls"
 
-[ "$(echo "$urls" | wc -l)" = '1' ] && url="$urls" || url="$(echo "$urls" | dmenu -i -p 'Copy which url?' -l 10)"
+[ "$(echo "$urls" | wc -l)" = 1 ] && url="$urls" || url="$(echo "$urls" | dmenu -i -p 'Copy which url?' -l 10)"
 
 (
     echo "$url" | xclip -sel c

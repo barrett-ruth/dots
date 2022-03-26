@@ -67,10 +67,9 @@ function M.save()
     end
 
     local cmd = 'sil! :!' .. fts[ft] .. ' %'
-
     vim.cmd(
         string.format(
-            'try | undoj | %s \n cat /E790/ | %s \n cat | echo "Could not format buffer: "  .. v:exception | endt',
+            'try | undoj | %s \n cat /E790/ | %s \n cat | echo "Could not format buffer: "  .. v:exception | endt | norm zz',
             cmd,
             cmd
         )
@@ -117,11 +116,7 @@ function M.toggle_list(prefix)
 
     local cmd = ''
 
-    if prefix == 'c' then
-        cmd = QFL and 'ope | winc w' or 'cl'
-    else
-        cmd = LL and 'ope | winc w' or 'cl'
-    end
+    cmd = (prefix == 'c' and QFL or LL) and 'ope' or 'cl'
 
     vim.cmd(prefix .. cmd)
 end

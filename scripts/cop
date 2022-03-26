@@ -2,4 +2,10 @@
 
 [ "$1" ] || exit
 
-[ -f "$1" ] && xclip -sel c <"$1" || eval "$*" | xclip -sel c
+set -eu
+
+if [ -f "$1" ]; then
+    xclip -sel c <"$1"
+else
+    eval "$*" | xclip -sel c
+fi

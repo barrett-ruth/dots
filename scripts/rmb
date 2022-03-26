@@ -2,9 +2,11 @@
 
 [ "$1" ] || exit
 
+set -eu
+
 last="$(eval "echo \$$(echo $#)")"
 
-if [ -d "$last" ] && [ ! "$#" = '1' ]; then
+if [ -d "$last" ] && [ ! "$#" = 1 ]; then
     cd "$last" || exit
 elif [ ! -d "$last" ] && [ ! -f "$last" ]; then
     exit

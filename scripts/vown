@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -eu
+
 vol="${1:-5}"
 
 pactl set-sink-volume "$(sink)" -"$vol"%

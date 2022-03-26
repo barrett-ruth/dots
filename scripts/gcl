@@ -2,6 +2,8 @@
 
 [ "$1" ] || exit
 
+set -eu
+
 cmd='git clone'
 
 if [ "$2" ]; then

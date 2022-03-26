@@ -9,9 +9,15 @@ au('TextYankPost', {
     group = aug,
 })
 au('Filetype', {
-    pattern = 'sh',
-    command = 'so ~/.config/nvim/lua/plug/luasnip/sh.lua',
-    group = aug,
+    pattern = { 'qf' },
+    callback = function()
+        local utils = require 'utils'
+        local bmap = utils.bmap
+        local mapstr = utils.mapstr
+
+        bmap { 'n', '<c-v>', '<cr>' .. mapstr 'bp' ..  mapstr 'vert sbn' }
+    end,
+    group = aug
 })
 au('Filetype', {
     pattern = {
@@ -20,7 +26,7 @@ au('Filetype', {
         'javascriptreact',
         'lua',
         'python',
-        'qf',
+        'sh',
         'typescript',
         'typescriptreact',
         'vim',

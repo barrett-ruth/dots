@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -eu
+
 session="${1:-misc}"
 
 add() { eval "projects_$1='$2'"; }

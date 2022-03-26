@@ -7,7 +7,7 @@ ls.config.set_config {
     ext_opts = {
         [types.choiceNode] = {
             active = {
-                virt_text = {{ ' <- ', 'CursorLine' }},
+                virt_text = { { ' <- ', 'CursorLine' } },
             },
         },
     },
