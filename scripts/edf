@@ -3,6 +3,7 @@
 set -eu
 
 cfh="$XDG_CONFIG_HOME"
+cfgs=''
 mkcic='make clean install && make clean'
 sl="$HOME/dev/sl"
 cmd='st -e nvim'

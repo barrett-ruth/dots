@@ -40,7 +40,7 @@ map { 'n', '<c-k>', '<c-w>k' }
 map { 'n', '<c-l>', '<c-w>l' }
 
 -- Miscellaneous
-map { 'n', '<leader><cr>', mapstr 'so %' }
+map { 'n', '<leader><cr>', mapstr('utils', 'source()') }
 map { 'n', '<leader>-', 'S<esc>' }
 map { 'n', '<leader>F', ':se fdm=' }
 map { 'n', '<leader>g', mapstr 'cd %:h' }

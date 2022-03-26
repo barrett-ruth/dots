@@ -4,6 +4,16 @@ function M.empty(s)
     return s == '' or s == nil
 end
 
+function M.source()
+    local file = string.match(vim.fn.expand '%', 'lua/(.*).lua')
+
+    if vim.bo.ft == 'lua' then
+        package.loaded[file] = nil
+    end
+
+    vim.cmd 'so %'
+end
+
 function M.rfind(str, char)
     local revpos = str:reverse():find(char)
 

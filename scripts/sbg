@@ -1,7 +1,5 @@
 #!/bin/sh
 
-set -eu
-
 wps="$HOME/img/wp"
 
 if [ "$1" ]; then
