@@ -41,7 +41,6 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
 export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 export LESSHISTFILE="$XDG_CONFIG_HOME/less/lesshst"
-export MYPY_CACHE_DIR="$XDG_CACHE_HOME/mypy"
 export NPM_CONFIG_PREFIX='/usr/local'
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export NODE_REPL_HISTORY="$XDG_DATA_HOME/node_repl_history"

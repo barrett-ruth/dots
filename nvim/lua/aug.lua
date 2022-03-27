@@ -9,15 +9,15 @@ au('TextYankPost', {
     group = aug,
 })
 au('Filetype', {
-    pattern = { 'qf' },
+    pattern = 'qf',
     callback = function()
         local utils = require 'utils'
         local bmap = utils.bmap
         local mapstr = utils.mapstr
 
-        bmap { 'n', '<c-v>', '<cr>' .. mapstr 'bp' ..  mapstr 'vert sbn' }
+        bmap { 'n', '<c-v>', '<cr>' .. mapstr 'bp' .. mapstr 'vert sbn' }
     end,
-    group = aug
+    group = aug,
 })
 au('Filetype', {
     pattern = {

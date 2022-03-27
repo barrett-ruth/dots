@@ -1,5 +1,24 @@
 local treesitter_configs = require 'nvim-treesitter.configs'
 
+require('nvim-treesitter.configs').setup {
+    textobjects = {
+        select = {
+            enable = true,
+            lookahead = true,
+            keymaps = {
+                af = '@function.outer',
+                ['if'] = '@function.inner',
+                ac = '@conditional.outer',
+                ['ic'] = '@conditional.inner',
+                al = '@loop.outer',
+                ['il'] = '@loop.inner',
+                aa = '@parameter.outer',
+                ['ia'] = '@parameter.inner',
+            },
+        },
+    },
+}
+
 treesitter_configs.setup {
     ensure_installed = {
         'bash',

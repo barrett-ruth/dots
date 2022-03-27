@@ -316,6 +316,7 @@ mpfr 4.1.0.p13-2
 mtdev 1.1.6-1
 mtools 1:4.0.38-1
 mujs 1.2.0-2
+mypy 0.941-1
 ncdu 2.1.1-1
 ncurses 6.3-2
 neovim-nightly-bin 0.7.0+dev+1275+g00effff56-1
@@ -366,6 +367,11 @@ procps-ng 3.3.17-1
 psmisc 23.4-1
 pulseaudio 15.0-4
 python 3.10.3-1
+python-mypy_extensions 0.4.3-5
+python-psutil 5.9.0-1
+python-toml 0.10.2-7
+python-typed-ast 1.5.2-1
+python-typing_extensions 4.1.0-1
 rav1e 0.4.1-2
 re2 1:20220201-1
 readline 8.1.002-1

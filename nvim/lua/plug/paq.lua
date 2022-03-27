@@ -23,6 +23,7 @@ require 'paq' {
             vim.cmd 'TSUpdate'
         end,
     },
+    'nvim-treesitter/nvim-treesitter-textobjects',
 
     'lukas-reineke/indent-blankline.nvim',
     'sainnhe/gruvbox-material',
