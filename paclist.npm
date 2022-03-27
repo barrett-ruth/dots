@@ -1,7 +1,7 @@
 @fsouza
 @types
 dockerfile-language-server-nodejs
-eslint
+eslint_d
 neovim
 npm
 prettier
@@ -11,3 +11,4 @@ typescript
 typescript-language-server
 vim-language-server
 vscode-langservers-extracted
+yaml-language-server

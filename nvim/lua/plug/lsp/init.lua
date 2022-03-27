@@ -1,21 +1,9 @@
 require 'plug.lsp.signs'
 
-local null_ls = require 'null-ls'
-local builtins = null_ls.builtins
-
-null_ls.setup {
-    sources = {
-        builtins.diagnostics.shellcheck,
-    },
-    update_in_insert = true,
-    diagnostics_format = '#{m} [#{c}]',
-}
-
 local servers = {
     clangd = {},
     cssls = {},
     dockerls = {},
-    eslint = {},
     html = {},
     jsonls = {},
     pyright = {},
@@ -29,10 +17,27 @@ local servers = {
     },
     tsserver = {},
     vimls = {},
+    yamlls = {},
 }
 
-local setup = require('plug.lsp.setup').setup
+local setup = require 'plug.lsp.setup'
+local lsp_setup = setup.setup
+local on_attach = setup.on_attach
 
 for name, info in pairs(servers) do
-    setup(name, info)
+    lsp_setup(name, info)
 end
+
+local null_ls = require 'null-ls'
+local builtins = null_ls.builtins
+
+null_ls.setup {
+    update_in_insert = true,
+    sources = {
+        builtins.diagnostics.eslint_d,
+        builtins.diagnostics.mypy,
+        builtins.diagnostics.shellcheck.with { diagnostics_format = '#{m} [#{c}]' },
+    },
+    on_attach = on_attach,
+    debounce = 0,
+}

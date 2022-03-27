@@ -37,10 +37,9 @@ vim.diagnostic.config {
         prefix = '',
         border = 'single',
         format = function(diagnostic)
-            local code = diagnostic.user_data.lsp.code
+            local code = diagnostic.user_data and diagnostic.user_data.lsp.code
             local message = diagnostic.message
             local source = sources[diagnostic.source] or diagnostic.source
-            source = source or 'efm'
 
             if require('utils').empty(code) then
                 return string.format('%s [%s]', message, source)

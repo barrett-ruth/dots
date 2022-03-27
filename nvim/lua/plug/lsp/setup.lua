@@ -1,6 +1,6 @@
 local M = {}
 
-local on_attach = function(client, bufnr)
+M.on_attach = function(client, bufnr)
     require('aerial').on_attach(client, bufnr)
 
     local utils = require 'utils'
@@ -50,7 +50,7 @@ M.setup = function(server, ...)
     capabilities.textDocument.completion.completionItem.snippetSupport = false
 
     settings.capabilities = capabilities
-    settings.on_attach = on_attach
+    settings.on_attach = M.on_attach
     settings.flags = { debounce_text_changes = 0 }
 
     lspconfig[server].setup(settings)
