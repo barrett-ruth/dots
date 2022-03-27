@@ -8,7 +8,6 @@ require 'aug'
 require 'let'
 require 'map'
 require 'plug'
-require 'lsp'
 
 -- Available leader mappings:
 -- ejmnux

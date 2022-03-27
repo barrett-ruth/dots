@@ -13,6 +13,7 @@ local files = {
     'telescope',
     'session',
     'treesitter',
+    'lsp',
 }
 
 for _, v in ipairs(files) do

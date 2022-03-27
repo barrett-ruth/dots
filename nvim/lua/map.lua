@@ -69,8 +69,6 @@ map { 'n', '[o', '@="m`O\\eg``"<cr>' }
 
 -- Deleting/yanking/pasting --
 map { '', '<leader>d', '"_d' }
-map { '', '<leader>r', '"_dP' }
-map { '', '<leader>R', '"_d"0P' }
 map { '', '<leader>p', '"0P' }
 map { '', '<leader>y', '"+y' }
 map { '', '<leader>Y', mapstr '%y+"' }
@@ -93,5 +91,5 @@ map { 'n', '[e', '@="m`:m-2\\eg``"<cr>' }
 map { 'n', ']e', '@="m`:m+\\eg``"<cr>' }
 
 -- Toggling --
-map { 'n', '<leader>iw', mapstr('utils', "invert_opt 'wrap'") }
+map { 'n', '<leader>iw', mapstr('utils', "invert_opt('wrap', true)") }
 map { 'n', '<leader>is', mapstr('utils', "invert_opt('spell', true)") }

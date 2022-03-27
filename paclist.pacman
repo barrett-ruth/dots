@@ -52,7 +52,6 @@ dosfstools 4.2-2
 e2fsprogs 1.46.5-3
 efibootmgr 17-2
 efivar 38-2
-efm-langserver 0.0.40-1
 egl-wayland 2:1.1.9+r3+g582b2d3-1
 eglexternalplatform 1.1-2
 ell 0.49-1

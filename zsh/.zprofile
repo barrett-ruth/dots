@@ -70,12 +70,11 @@ setopt auto_cd incappendhistory extendedhistory histignorealldups
 . "$ZDOTDIR/plugin/zsh-fzf/fzf/fzf.zsh"
 . "$ZDOTDIR/plugin/zsh-autosuggestions/zsh-autosuggestions.zsh"
 . "$ZDOTDIR/plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-. "$XDG_CONFIG_HOME/nvm/nvm.sh" --no-use
 
 # Bindings
 fzf-config-widget() {
-    cd ~/.config
-    fzf-file-widget
+  cd ~/.config
+  fzf-file-widget
 }
 zle -N fzf-config-widget
 
@@ -85,7 +84,7 @@ fzf-home-widget() {
 zle -N fzf-home-widget
 
 bindkey -v
-for e in H E T G N P J K; do
+for e in H E T G N P J K W; do
   eval "bindkey -r '^$e'"
 done
 bindkey '^W' fzf-home-widget

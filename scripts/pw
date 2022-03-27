@@ -1,7 +1,5 @@
 #!/bin/sh
 
-set -eu
-
 sep=[]
 prefix="$PASSWORD_STORE_DIR"
 pws=''
