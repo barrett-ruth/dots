@@ -8,6 +8,7 @@ cffi                  1.15.0
 chardet               4.0.0
 charset-normalizer    2.0.12
 click                 8.0.4
+curlylint             0.13.0
 decorator             5.1.1
 defusedxml            0.7.1
 distlib               0.3.4
@@ -22,6 +23,7 @@ mypy-extensions       0.4.3
 neovim                0.3.1
 packaging             21.3
 parso                 0.8.3
+parsy                 1.1.0
 pathspec              0.9.0
 pip                   22.0.4
 platformdirs          2.5.1
@@ -40,8 +42,10 @@ requests              2.27.1
 requests-toolbelt     0.9.1
 setuptools            58.1.0
 six                   1.16.0
+toml                  0.10.2
 tomli                 2.0.1
 typeguard             2.13.3
 urllib3               1.26.9
 virtualenv            20.13.3
 wheel                 0.37.1
+yamllint              1.26.3

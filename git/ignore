@@ -4,4 +4,5 @@ build/
 node_modules/
 venv/
 cache/
+.mypy_cache/
 *.exe
