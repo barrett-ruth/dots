@@ -1,5 +1,6 @@
 local fts = {
     refactor = {
+        extract = { lua = 'local ' },
         print = {
             javascript = { l = 'console.log(', r = ')' },
             javascriptreact = { l = 'console.log(', r = ')' },

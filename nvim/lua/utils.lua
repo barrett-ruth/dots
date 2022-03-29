@@ -20,11 +20,16 @@ function M.rfind(str, char)
     if revpos == nil then
         return nil
     end
+
     return #str - revpos
 end
 
 function M.refactor_print(before)
     local ft = require('fts').refactor.print[vim.bo.ft]
+
+    if ft == nil then
+        return
+    end
 
     vim.cmd(string.format(
         [[
@@ -46,26 +51,18 @@ function M.refactor_extract()
     vim.ui.input({ prompt = 'Variable name: ' }, function(input)
         local pos = M.rfind(input, ',')
         local num = pos and string.sub(input, pos + 2, #input) or '-'
+        local prefix = require('fts').refactor.extract[vim.bo.ft]
         local name = string.sub(input, 1, pos or #input)
 
         vim.cmd(string.format(
             [[
-                cal feedkeys("mrgvc%s\<esc>O\<c-a> = \<c-r>\"\<esc>\<cmd>m%s\<cr>`r")
+                cal feedkeys("mrgvc%s\<esc>O%s\<c-a> = \<c-r>\"\<esc>\<cmd>m%s\<cr>`r")
             ]],
             name,
+            prefix and prefix or '',
             num
         ))
     end)
-end
-
-function M.toggle_lsp()
-    if next(vim.lsp.buf_get_clients(0)) ~= nil then
-        vim.diagnostic.disable()
-        print 'Stopped LSP.'
-    else
-        vim.diagnostic.enable()
-        print 'Started LSP.'
-    end
 end
 
 function M.save()
@@ -105,7 +102,7 @@ function M.sitter_reparse()
     package.loaded['plug/treesitter'] = nil
     require 'plug/treesitter'
 
-    vim.cmd 'e!'
+    vim.cmd 'e'
     vim.cmd "echo 'File reparsed.'"
 end
 

@@ -34,6 +34,7 @@ null_ls.setup {
     sources = {
         builtins.diagnostics.curlylint.with { extra_filetypes = { 'html' } },
         builtins.diagnostics.eslint_d.with { diagnostics_format = '#{m}' },
+        builtins.diagnostics.flake8,
         builtins.diagnostics.hadolint,
         builtins.diagnostics.mypy,
         builtins.diagnostics.shellcheck,

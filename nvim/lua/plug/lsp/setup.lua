@@ -28,7 +28,6 @@ M.on_attach = function(client, bufnr)
     bmap { 'n', ']<space>', mapstr 'lua vim.diagnostic.goto_next()' .. 'zz' }
     bmap { 'n', '[<space>', mapstr 'lua vim.diagnostic.goto_prev()' .. 'zz' }
 
-    bmap { 'n', '<leader><leader><leader>', mapstr('utils', 'toggle_lsp()') }
     bmap { 'n', '<leader><leader>c', mapstr('telescope.builtin', 'lsp_code_actions()') }
     bmap { 'n', '<leader><leader>d', mapstr('telescope.builtin', 'lsp_definitions()') }
     bmap { 'n', '<leader><leader>i', mapstr('telescope.builtin', 'lsp_implementations()') }
