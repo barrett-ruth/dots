@@ -2,6 +2,7 @@ require 'paq' {
     'savq/paq-nvim',
 
     'neovim/nvim-lspconfig',
+    'jose-elias-alvarez/null-ls.nvim',
     'jose-elias-alvarez/nvim-lsp-ts-utils',
     'onsails/lspkind-nvim',
 

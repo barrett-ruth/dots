@@ -9,6 +9,6 @@ require('aerial').setup {
         local mapstr = utils.mapstr
 
         utils.map { 'n', '<leader>a', mapstr 'AerialToggle' }
-        utils.bmap { 'n', '<c-s>', mapstr('telescope', 'extensions.aerial.aerial()') }
+        utils.bmap { 'n', '<c-a>', mapstr('telescope', 'extensions.aerial.aerial()') }
     end,
 }

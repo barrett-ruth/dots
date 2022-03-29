@@ -1,14 +1,10 @@
 local ls = require 'luasnip'
 
-if ls.snippets.sh then
-    return
-end
-
 local fmt = require('luasnip.extras.fmt').fmt
 local i = ls.i
 local s = ls.s
 
-ls.snippets.sh = {
+ls.add_snippets('sh', {
     s(
         '&',
         fmt(
@@ -91,4 +87,4 @@ ls.snippets.sh = {
             { i(1) }
         )
     ),
-}
+})

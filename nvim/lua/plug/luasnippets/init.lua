@@ -55,7 +55,8 @@ for _, v in ipairs { { '"', '"' }, { "'", "'" }, { '<', '>' } } do
     table.insert(acc, inline(v[1] .. ', ', v, '', ', '))
 end
 
-ls.snippets = { all = acc }
+ls.add_snippets(nil, { all = acc })
+require('luasnip.loaders.from_lua').lazy_load({ paths = '~/.config/nvim/lua/plug/luasnippets' })
 
 local utils = require 'utils'
 local map = utils.map

@@ -3,7 +3,7 @@ require 'impatient'
 local files = {
     'paq',
     'aerial',
-    'luasnip',
+    'luasnippets',
     'cmp',
     'fugitive',
     'gitsigns',

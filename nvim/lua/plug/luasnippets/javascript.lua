@@ -1,9 +1,5 @@
 local ls = require 'luasnip'
 
-if ls.snippets.javascript then
-    return
-end
-
 local fmt = require('luasnip.extras.fmt').fmt
 local c = ls.choice_node
 local d = ls.dynamic_node
@@ -67,6 +63,6 @@ local javascript = {
     ),
 }
 
-ls.snippets.javascript = javascript
+ls.add_snippets('javascript', javascript)
 
 return javascript

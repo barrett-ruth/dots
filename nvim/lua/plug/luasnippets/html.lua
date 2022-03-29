@@ -1,16 +1,12 @@
 local ls = require 'luasnip'
 
-if ls.snippets.html then
-    return
-end
-
 local extras = require 'luasnip.extras'
 local fmt = require('luasnip.extras.fmt').fmt
 local i = ls.i
 local rep = extras.rep
 local s = ls.s
 
-ls.snippets.html = {
+ls.add_snippets('html', {
     s(
         '<>',
         fmt(
@@ -50,4 +46,4 @@ ls.snippets.html = {
             { i(1), i(2) }
         )
     ),
-}
+})
