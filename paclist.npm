@@ -1,3 +1,4 @@
+├── @fsouza/prettierd@0.19.1
 ├── @types/node@17.0.21
 ├── dockerfile-language-server-nodejs@0.8.0
 ├── eslint_d@11.1.1
