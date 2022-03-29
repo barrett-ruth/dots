@@ -46,7 +46,7 @@ mkcd() {
     mkdir -vp "$1"
     cd "$1"
 }
-alias mkv='python -m venv venv; srcv; pip3 install --upgrade pip 2>/dev/null'
+alias mkv='python -m venv venv; srcv; pip3 install --upgrade pip >/dev/null'
 alias rmv='deactivate 2>/dev/null; rm -rf venv'
 alias srcv='[ -f venv/bin/activate ] && . venv/bin/activate'
 alias nvh='nvim config.h'

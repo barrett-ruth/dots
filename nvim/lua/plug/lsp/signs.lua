@@ -23,9 +23,9 @@ local sources = {
     Pyright = 'pyright',
     vimlsp = 'vim',
 }
-sources['dockerfile-utils'] = 'dockerfile'
 sources['Lua Diagnostics.'] = 'lua'
 sources['Lua Syntax Check.'] = 'lua'
+sources['dockerfile-utils'] = 'dockerls'
 
 vim.diagnostic.config {
     update_in_insert = true,
@@ -44,7 +44,11 @@ vim.diagnostic.config {
             if require('utils').empty(code) then
                 return string.format('%s [%s]', message, source)
             else
-                return string.format('%s [%s: %s]', message, source, code)
+                if source == 'pyright' then
+                    code = code:gsub('report', ''):gsub('^%u', string.lower)
+                end
+
+                return string.format('%s [%s] [%s]', message, code, source)
             end
         end,
     },
