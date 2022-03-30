@@ -1,5 +1,21 @@
 local M = {}
 
+local fts = {
+    extract = {
+        lua = 'local ',
+        vim = 'let ',
+    },
+    print = {
+        javascript = { l = 'console.log(', r = ')' },
+        javascriptreact = { l = 'console.log(', r = ')' },
+        lua = { l = 'print(', r = ')' },
+        python = { l = 'print(', r = ')' },
+        typescript = { l = 'console.log(', r = ')' },
+        typescriptreact = { l = 'console.log(', r = ')' },
+        vim = { l = 'echo ' },
+    },
+}
+
 function M.empty(s)
     return s == '' or s == nil
 end
@@ -25,7 +41,7 @@ function M.rfind(str, char)
 end
 
 function M.refactor_print(before)
-    local ft = require('fts').refactor.print[vim.bo.ft]
+    local ft = fts.print[vim.bo.ft]
 
     if ft == nil then
         return
@@ -37,7 +53,7 @@ function M.refactor_print(before)
         ]],
         before and 'O' or 'o',
         ft.l,
-        ft.r
+        ft.r and ft.r or ''
     ))
 end
 
@@ -51,7 +67,7 @@ function M.refactor_extract()
     vim.ui.input({ prompt = 'Variable name: ' }, function(input)
         local pos = M.rfind(input, ',')
         local num = pos and string.sub(input, pos + 2, #input) or '-'
-        local prefix = require('fts').refactor.extract[vim.bo.ft]
+        local prefix = fts.extract[vim.bo.ft]
         local name = string.sub(input, 1, pos or #input)
 
         vim.cmd(string.format(
