@@ -65,24 +65,6 @@ function M.refactor_extract()
     end)
 end
 
-function M.save()
-    local ft = vim.bo.ft
-    local fts = require('fts').save
-
-    if M.empty(ft) or fts[ft] == nil then
-        return
-    end
-
-    local cmd = 'sil! :!' .. fts[ft] .. ' %'
-    vim.cmd(
-        string.format(
-            'try | undoj | %s \n cat /E790/ | %s \n cat | echo "Could not format buffer: "  .. v:exception | endt | norm zz',
-            cmd,
-            cmd
-        )
-    )
-end
-
 function M.bd()
     require('bufdelete').bufdelete(0)
 
@@ -90,12 +72,6 @@ function M.bd()
     if bufnrs == 1 then
         print 'Last buffer.'
     end
-end
-
-function M.invert_opt(opt, tl)
-    local se = tl and 'setl ' or 'se '
-    vim.cmd(se .. 'inv' .. opt)
-    vim.cmd(se .. opt .. '?')
 end
 
 function M.sitter_reparse()

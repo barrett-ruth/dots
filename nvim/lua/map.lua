@@ -74,15 +74,15 @@ map { '', '<leader>y', '"+y' }
 map { '', '<leader>Y', mapstr '%y+"' }
 
 -- Resizing --
-map { 'n', '<c-left>', mapstr 'vert resize -10' }
-map { 'n', '<c-down>', mapstr 'resize +10' }
-map { 'n', '<c-up>', mapstr 'resize -10' }
-map { 'n', '<c-right>', mapstr 'vert resize +10' }
+map { 'n', '<c-left>', mapstr 'vert res -10' }
+map { 'n', '<c-down>', mapstr 'res +10' }
+map { 'n', '<c-up>', mapstr 'res -10' }
+map { 'n', '<c-right>', mapstr 'vert res +10' }
 
 -- Saving/exiting --
 map { 'n', '<leader>q', mapstr 'q' }
 map { 'n', '<leader>Q', mapstr 'q!' }
-map { 'n', '<leader>w', mapstr('utils', 'save()') }
+map { 'n', '<leader>w', mapstr 'lua vim.lsp.buf.formatting()' .. mapstr 'w' }
 map { 'n', '<leader>z', 'ZZ' }
 map { 'n', '<leader>Z', mapstr 'xa' }
 
@@ -91,5 +91,5 @@ map { 'n', '[e', '@="m`:m-2\\eg``"<cr>' }
 map { 'n', ']e', '@="m`:m+\\eg``"<cr>' }
 
 -- Toggling --
-map { 'n', '<leader>iw', mapstr('utils', "invert_opt('wrap', true)") }
-map { 'n', '<leader>is', mapstr('utils', "invert_opt('spell', true)") }
+map { 'n', '<leader>iw', mapstr 'setl invwrap' }
+map { 'n', '<leader>is', mapstr 'setl invspell' }

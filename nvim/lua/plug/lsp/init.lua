@@ -38,6 +38,12 @@ null_ls.setup {
         builtins.diagnostics.hadolint,
         builtins.diagnostics.mypy,
         builtins.diagnostics.shellcheck,
+        builtins.formatting.black.with { extra_args = { '-S', '--fast' } },
+        builtins.formatting.prettierd,
+        builtins.formatting.shfmt.with { extra_args = { '-i', '4', '-ln=posix' } },
+        builtins.formatting.stylua.with {
+            extra_args = { '--config-path', vim.fn.expand '~/.config/stylua/stylua.toml' },
+        },
         builtins.diagnostics.yamllint,
     },
     update_in_insert = true,
