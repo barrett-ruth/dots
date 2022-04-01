@@ -7,6 +7,9 @@ require('telescope').setup {
     defaults = {
         borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
         path_display = { 'shorten' },
+        layout_config = {
+            preview_width = 0.6,
+        },
         mappings = {
             i = {
                 ['<c-h>'] = action_layout.toggle_preview,

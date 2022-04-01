@@ -2,8 +2,6 @@ se autowrite
 
 se cursorline
 
-se cinkeys-=:
-
 se completeopt=menuone,noinsert,noselect
 
 se expandtab

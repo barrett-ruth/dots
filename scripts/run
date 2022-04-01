@@ -2,28 +2,23 @@
 
 [ "$1" ] || exit
 
-set -eu
-
 file="$1"
 shift
 
 ext="${file##*.}"
 
-proj() {
-    echo " > $*"
-    eval "$*"
-}
+[ "$*" ] && args="$* "
 
 case "$ext" in
-c)
-    cc "$* $file" && ./a.out && rm a.out
-    ;;
-cc | cpp)
-    g++ "$* $file" && ./a.out && rm a.out
+c | cc | cpp)
+    [ "$ext" = c ] && comp=gcc || comp=g++
+    [ "$args" ] || args="-Wall -Werror -Wextra -Wshadow -Wconversion -Wdouble-promotion -Wformat=2 -Wformat-truncation -Wundef "
+
+    cmd="$comp $args$file && ./a.out && rm a.out"
     ;;
 py)
     [ "$VIRTUAL_ENV" ] && py="$VIRTUAL_ENV/bin/python" || py=python
-    eval "$py $* $file"
+    cmd="$(which $py) $args$file"
     ;;
 js)
     node "$file"
@@ -31,7 +26,10 @@ js)
 ts)
     ts-node "$file"
     ;;
-    # erp | erp_connector)
-    #     proj '<ERP COMMAND HERE>'
-    #     ;;
+*)
+    cmd="$file $*"
+    ;;
 esac
+
+echo " > $cmd"
+eval "$cmd"

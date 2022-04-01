@@ -36,7 +36,7 @@ local javascript = {
                     {}
                 }}
             ]],
-            { either(1, 'let', 'const'), i(2), i(3), i(4) }
+            { either(1, 'const', 'let'), i(2), i(3), i(4) }
         )
     ),
     s(
@@ -47,7 +47,7 @@ local javascript = {
                     {}
                 }}
             ]],
-            { either(1, 'let', 'const'), i(2), either(3, 'of', 'in'), i(4), i(5) }
+            { either(1, 'const', 'let'), i(2), either(3, 'of', 'in'), i(4), i(5) }
         )
     ),
     s(

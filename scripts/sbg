@@ -1,6 +1,6 @@
 #!/bin/sh
 
-wps="$HOME/img/wp"
+wps="$HOME/wp"
 
 if [ "$1" ]; then
     wp1="$1"

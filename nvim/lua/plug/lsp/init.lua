@@ -33,18 +33,21 @@ local builtins = null_ls.builtins
 null_ls.setup {
     sources = {
         builtins.diagnostics.curlylint.with { extra_filetypes = { 'html' } },
-        builtins.diagnostics.eslint_d.with { diagnostics_format = '#{m}' },
+        builtins.diagnostics.eslint_d.with {
+            diagnostics_format = '#{m}',
+        },
         builtins.diagnostics.flake8,
         builtins.diagnostics.hadolint,
         builtins.diagnostics.mypy,
         builtins.diagnostics.shellcheck,
+        builtins.diagnostics.yamllint,
+
         builtins.formatting.black.with { extra_args = { '-S', '--fast' } },
         builtins.formatting.prettierd,
         builtins.formatting.shfmt.with { extra_args = { '-i', '4', '-ln=posix' } },
         builtins.formatting.stylua.with {
             extra_args = { '--config-path', vim.fn.expand '~/.config/stylua/stylua.toml' },
         },
-        builtins.diagnostics.yamllint,
     },
     update_in_insert = true,
     diagnostics_format = '#{m} [#{c}]',

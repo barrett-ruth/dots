@@ -57,6 +57,7 @@ __set_git() {
 __set_venv() {
     venv="${VIRTUAL_ENV:-$PWD/venv}"
     [[ -x "$venv/bin/python" ]] || return
+    [[ "$venv/bin/python" == *"$(which python)"* ]] || suffix=!
     PS1+="%F{magenta}$(basename "$venv")$suffix "
 }
 

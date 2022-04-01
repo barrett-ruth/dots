@@ -46,7 +46,6 @@ require 'paq' {
     'tpope/vim-commentary',
     'tpope/vim-fugitive',
     'tpope/vim-repeat',
-    'tpope/vim-sleuth',
     'tpope/vim-surround',
 }
 

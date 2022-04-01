@@ -1,6 +1,0 @@
-#!/bin/sh
-
-set -eu
-
-xrandr --dpi 192
-dwmblocks &

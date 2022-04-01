@@ -12,6 +12,8 @@ require('nvim-treesitter.configs').setup {
                 ['if'] = '@function.inner',
                 ac = '@call.outer',
                 ic = '@call.inner',
+                aC = '@class.outer',
+                iC = '@class.inner',
                 ai = '@conditional.outer',
                 ii = '@conditional.inner',
                 al = '@loop.outer',
