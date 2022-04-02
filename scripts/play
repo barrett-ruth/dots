@@ -1,0 +1,5 @@
+#!/bin/sh
+
+[ "$(pgrep mpv)" ] && pacmd suspend 0 && exit
+
+mpv "$(fd -e mp3 -1 -t f -a "$1")" &

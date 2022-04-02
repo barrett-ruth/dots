@@ -1,0 +1,3 @@
+#!/bin/sh
+
+[ "$(pgrep mpv)" ] && pacmd suspend 1

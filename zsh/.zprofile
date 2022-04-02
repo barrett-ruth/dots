@@ -1,4 +1,4 @@
-#g/usr/bin/env zsh
+#/usr/bin/env zsh
 
 autoload -U compinit && compinit -u
 autoload -U colors && colors
@@ -55,7 +55,8 @@ export _Z_EXCLUDE_DIRS=(__pycache__ .git .pki build cache dist docs node_modules
 export FZF_ALT_C_COMMAND='fd -t d -H --strip-cwd-prefix'
 export FZF_CTRL_R_OPTS='--reverse'
 export FZF_CTRL_T_COMMAND='fd -t f -H --strip-cwd-prefix'
-export FZF_CTRL_W_COMMAND='fd -t d -H . ~'
+export FZF_CTRL_E_COMMAND='fd . ~/.config -t f -H'
+export FZF_CTRL_W_COMMAND='fd . ~ -H'
 export FZF_DEFAULT_OPTS='--no-info --no-bold --color=fg:#d4be98,bg:#282828,hl:bold:#a9b665 --color=fg+:#d4be98,hl+:bold:#a9b665,bg+:#282828 --color=pointer:#d4be98'
 export FZF_TMUX=1
 
@@ -71,10 +72,8 @@ setopt auto_cd incappendhistory extendedhistory histignorealldups
 . "$ZDOTDIR/plugin/zsh-autosuggestions/zsh-autosuggestions.zsh"
 . "$ZDOTDIR/plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
-# Bindings
 fzf-config-widget() {
-  cd ~/.config
-  fzf-file-widget
+  FZF_CTRL_T_COMMAND="$FZF_CTRL_E_COMMAND" fzf-file-widget
 }
 zle -N fzf-config-widget
 

@@ -32,13 +32,6 @@ local builtins = null_ls.builtins
 
 null_ls.setup {
     sources = {
-        builtins.code_actions.eslint_d.with {
-            condition = function(utils)
-                return utils.root_has_file { '.eslintrc' }
-            end,
-        },
-        builtins.code_actions.shellcheck,
-
         builtins.diagnostics.curlylint.with { extra_filetypes = { 'html' } },
         builtins.diagnostics.eslint_d.with {
             diagnostics_format = '#{m}',
