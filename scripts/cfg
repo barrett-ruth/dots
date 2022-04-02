@@ -6,7 +6,7 @@ rmb .git install.zsh diff "$cfg"
 
 cp -r "$SCRIPTS" "$cfg"
 
-for e in git nvim tmux stylua X11 zathura zsh; do
+for e in git nvim tmux X11 zathura zsh; do
     cp -r "$XDG_CONFIG_HOME/$e" "$cfg"
 done
 
@@ -15,9 +15,10 @@ rm -rf "$cfg/nvim/undo"
 rmb .zshrc .zprofile .zaliases "$cfg/zsh"
 rmb tmux.conf "$cfg/tmux"
 cp /etc/zsh/zshenv "$cfg/zsh"
+cp "$XDG_CONFIG_HOME/stylua.toml" "$cfg/stylua.toml"
+cp "$XDG_CONFIG_HOME/prettierd" "$cfg/prettierd"
 
 npm -g list | tail -n +2 >"$cfg/paclist.npm"
-
 pacman -Q >"$cfg/paclist.pacman"
 pip3 list | tail -n +3 >"$cfg/paclist.pip3"
 
