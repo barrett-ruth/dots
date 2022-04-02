@@ -41,10 +41,10 @@ ls.add_snippets('lua', {
         )
     ),
     s(
-        'lo',
+        'lor',
         fmt(
             [[
-                local {} = {}
+                local {} = require '{}'
             ]],
             { i(1), i(2) }
         )

@@ -40,15 +40,15 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
 # Programs
 export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
-export LESSHISTFILE="$XDG_CONFIG_HOME/less/lesshst"
+export LESSHISTFILE="$XDG_DATA_HOME/.lesshst"
 export NPM_CONFIG_PREFIX='/usr/local'
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
-export NODE_REPL_HISTORY="$XDG_DATA_HOME/node_repl_history"
+export NODE_REPL_HISTORY="$XDG_DATA_HOME/.node_repl_history"
 export PASSWORD_STORE_DIR="$XDG_CONFIG_HOME/password-store"
 export PRETTIERD_DEFAULT_CONFIG="$XDG_CONFIG_HOME/prettierd"
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
 export VIRTUAL_ENV_DISABLE_PROMPT=1
-export _Z_DATA="$XDG_DATA_HOME/z"
+export _Z_DATA="$XDG_DATA_HOME/.z"
 export _Z_EXCLUDE_DIRS=(__pycache__ .git .pki build cache dist docs node_modules undo venv)
 
 # FZF

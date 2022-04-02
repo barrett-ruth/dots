@@ -26,6 +26,17 @@ local javascript = {
             { i(1), i(2) }
         )
     ),
+    s(
+        'fun',
+        fmt(
+            [[
+                function {}({}) {{
+                    {}
+                }}
+            ]],
+            { i(1), i(2), i(3) }
+        )
+    ),
     s('imp', fmt([[import {} from '{}']], { i(1), i(2) })),
     s('pr', fmt([[console.log({})]], { i(1) })),
     s(
@@ -54,11 +65,11 @@ local javascript = {
         'foi',
         fmt(
             [[
-                for ({}; {}; {}) {{
+                for ({}) {{
                     {}
                 }}
             ]],
-            { i(1), i(2), i(3), i(4) }
+            { i(1), i(2) }
         )
     ),
 }

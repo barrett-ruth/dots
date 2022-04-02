@@ -21,10 +21,10 @@ py)
     cmd="$(which $py) $args$file"
     ;;
 js)
-    node "$file"
+    cmd="node $file"
     ;;
 ts)
-    ts-node "$file"
+    cmd="ts-node $file"
     ;;
 *)
     cmd="$file $*"

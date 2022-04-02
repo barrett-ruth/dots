@@ -1,7 +1,9 @@
 local ls = require 'luasnip'
 
 local javascript = require 'plug.luasnippets.javascript'
+local typescript = {}
 
-local typescript = javascript
-
+ls.add_snippets('typescript', javascript)
 ls.add_snippets('typescript', typescript)
+
+return typescript

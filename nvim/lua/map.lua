@@ -42,9 +42,9 @@ map { 'n', '<c-l>', '<c-w>l' }
 -- Miscellaneous
 map { 'n', '<leader><cr>', mapstr('utils', 'source()') }
 map { 'n', '<leader>-', 'S<esc>' }
-map { 'n', '<leader>F', ':se fdm=' }
-map { 'n', '<leader>g', mapstr 'cd %:h' }
 map { 'n', '<leader>k', 'K' }
+map { 'n', '<leader>r', mapstr 'sil! !tmux send -t run clear enter "run %" enter\\; selectw -t run' }
+map { 'n', '<leader>F', ':se fdm=' }
 map { 'n', '<leader>S', mapstr 'vert sbp' }
 
 -- Location List --

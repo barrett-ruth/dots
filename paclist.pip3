@@ -56,3 +56,4 @@ urllib3               1.26.9
 virtualenv            20.13.3
 wheel                 0.37.1
 yamllint              1.26.3
+youtube-dl            2021.12.17
