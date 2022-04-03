@@ -33,7 +33,6 @@ end
 local newline = function(trig, lr, comma)
     return s(snipopts(trig), {
         t(lr[1]),
-        t { '', '\t' },
         i(1),
         t { '', '' },
         t(lr[2] .. (comma or '')),
@@ -47,10 +46,10 @@ for _, v in ipairs { { '{', '}' }, { '(', ')' }, { '[', ']' } } do
     table.insert(acc, inline(v[1] .. ',', v, '', ','))
     table.insert(acc, inline(v[1] .. ' ,', v, ' ', ','))
     table.insert(acc, inline(v[1], v, '', ''))
-    table.insert(acc, newline(v[1] .. 'n,', v, ','))
-    table.insert(acc, newline(v[1] .. 'n', v))
+    table.insert(acc, newline(v[2], v))
+    table.insert(acc, newline(v[2] .. ',', v, ','))
 end
-for _, v in ipairs { { '"', '"' }, { "'", "'" }, { '<', '>' } } do
+for _, v in ipairs { { '"', '"' }, { "'", "'" }, { '<', '>' }, { '`', '`' } } do
     table.insert(acc, inline(v[1], v, '', ''))
     table.insert(acc, inline(v[1] .. ',', v, '', ','))
     table.insert(acc, inline(v[1] .. ', ', v, '', ', '))

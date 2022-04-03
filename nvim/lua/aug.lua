@@ -9,6 +9,11 @@ au('TextYankPost', {
     group = aug,
 })
 
+au('TermOpen', {
+    command = 'setl nonu nornu scl=no | start',
+    group = aug,
+})
+
 au('Filetype', {
     pattern = 'qf',
     callback = function()

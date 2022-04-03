@@ -1,6 +1,11 @@
 #!/bin/sh
 
-set -eu
+sink="$(sink)"
 
-pactl set-sink-mute "$(sink)" toggle
-pkill -RTMIN+7 dwmblocks
+[ "$sink" = 4 ] && target=2_
+
+state="$(pacmd list-sinks | grep 'state: ')"
+
+[ "${state##*RUNNING*}" ] && sus=0 || sus=1
+
+pacmd suspend-sink alsa_output.pci-0000_00_1f.3-platform-sof_sdw.HiFi__hw_sofsoundwire_"$target"_sink "$sus"

@@ -25,6 +25,7 @@ map { 'n', 'zL', '15zL' }
 map { 'n', '<bs>', '<c-^>' }
 map { 'n', '<c-i>', '<c-i>zz' }
 map { 'n', '<c-o>', '<c-o>zz' }
+map { 't', '<esc>', '<c-\\><c-n>' }
 
 -- Centering --
 map { 'n', 'G', 'Gzz' }
@@ -43,7 +44,7 @@ map { 'n', '<c-l>', '<c-w>l' }
 map { 'n', '<leader><cr>', mapstr('utils', 'source()') }
 map { 'n', '<leader>-', 'S<esc>' }
 map { 'n', '<leader>k', 'K' }
-map { 'n', '<leader>r', mapstr 'sil! !tmux send -t run clear enter "run %:~" enter\\; selectw -t run' }
+map { 'n', '<leader>r', mapstr 'vs<cr><cmd>te run %' }
 map { 'n', '<leader>F', ':se fdm=' }
 map { 'n', '<leader>S', mapstr 'vert sbp' }
 

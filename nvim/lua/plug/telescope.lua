@@ -68,8 +68,6 @@ map {
 }
 map { 'n', '<c-f>', mapstr('utils', 'files()') }
 map { 'n', '<c-g>', mapstr('telescope.builtin', 'live_grep()') }
-map { 'n', '<c-_>', mapstr('telescope.builtin', 'current_buffer_fuzzy_find({ previewer = false })') }
-
 map {
     'n',
     '<leader>tb',
