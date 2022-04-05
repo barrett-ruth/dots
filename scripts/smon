@@ -9,7 +9,7 @@ two="$(echo "$mons" | tail -n1)"
 
 xrandr --output "$one" --set TearFree on 2>/dev/null
 
-[ "$two" = "$one" ] && xrandr --auto && exit
+[ "$two" = "$one" ] && exit
 
 xrandr --output "$two" --set TearFree on 2>/dev/null
 

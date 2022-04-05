@@ -44,6 +44,7 @@ export LESSHISTFILE="$XDG_DATA_HOME/.lesshst"
 export NPM_CONFIG_PREFIX='/usr/local'
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export NODE_REPL_HISTORY="$XDG_DATA_HOME/.node_repl_history"
+export TS_NODE_REPL_HISTORY="$XDG_DATA_HOME/.ts_node_repl_history"
 export PASSWORD_STORE_DIR="$XDG_CONFIG_HOME/password-store"
 export PRETTIERD_DEFAULT_CONFIG="$XDG_CONFIG_HOME/prettierd"
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"

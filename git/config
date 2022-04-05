@@ -20,6 +20,7 @@
     cf = config
     ch = checkout
     cl = clone
+    cp = cherry-pick
     d = diff
     f = fetch
     i = init

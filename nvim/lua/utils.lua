@@ -158,18 +158,12 @@ function M.set_wig()
     vim.api.nvim_set_var('wildignore', wig)
 end
 
-local make_keymap = function(mapping)
-    local opts = { noremap = true, silent = true }
-
-    return { mapping[1], mapping[2], mapping[3], opts }
-end
-
 function M.map(mapping)
-    vim.api.nvim_set_keymap(unpack(make_keymap(mapping)))
+    vim.keymap.set(mapping[1], mapping[2], mapping[3], { noremap = true, silent = true })
 end
 
 function M.bmap(mapping)
-    vim.api.nvim_buf_set_keymap(0, unpack(make_keymap(mapping)))
+    vim.keymap.set(mapping[1], mapping[2], mapping[3], { noremap = true, silent = true, buffer = vim.fn.bufnr '%' })
 end
 
 function M.mapstr(req, meth)

@@ -34,18 +34,21 @@ map { 'n', 'N', 'Nzzzv' }
 map { 'n', '<c-d>', '<c-d>zz' }
 map { 'n', '<c-u>', '<c-u>zz' }
 
--- Focusing --
+-- Windows --
 map { 'n', '<c-h>', '<c-w>h' }
 map { 'n', '<c-j>', '<c-w>j' }
 map { 'n', '<c-k>', '<c-w>k' }
 map { 'n', '<c-l>', '<c-w>l' }
+map { 'n', '<c-w>h', '<c-w>H' }
+map { 'n', '<c-w>j', '<c-w>J' }
+map { 'n', '<c-w>k', '<c-w>K' }
+map { 'n', '<c-w>l', '<c-w>L' }
 
 -- Miscellaneous
 map { 'n', '<leader><cr>', mapstr('utils', 'source()') }
 map { 'n', '<leader>-', 'S<esc>' }
 map { 'n', '<leader>k', 'K' }
-map { 'n', '<leader>r', mapstr 'vs<cr><cmd>te run %' }
-map { 'n', '<leader>F', ':se fdm=' }
+map { 'n', '<leader>r', mapstr 'w|vs|te run %' }
 map { 'n', '<leader>S', mapstr 'vert sbp' }
 
 -- Location List --
@@ -54,7 +57,7 @@ map { 'n', '[l', mapstr 'bd' .. mapstr 'lp' .. 'zz' }
 map { 'n', ']L', mapstr 'lne' .. 'zz' }
 map { 'n', '[L', mapstr 'lp' .. 'zz' }
 map { 'n', '<leader>l', mapstr('utils', "toggle_list('l')") }
-map { 'n', '<leader>L', mapstr 'cal setloclist(0, []) | sil lcl' }
+map { 'n', '<leader>L', mapstr 'cal setloclist(0, []) | lcl' }
 
 -- Quickfix List --
 map { 'n', ']c', mapstr 'bd' .. mapstr 'cn' .. 'zz' }
@@ -62,7 +65,7 @@ map { 'n', '[c', mapstr 'bd' .. mapstr 'cp' .. 'zz' }
 map { 'n', ']C', mapstr 'cn' .. 'zz' }
 map { 'n', '[C', mapstr 'cp' .. 'zz' }
 map { 'n', '<leader>c', mapstr('utils', "toggle_list('c')") }
-map { 'n', '<leader>C', mapstr 'cal setqflist([]) | sil ccl' }
+map { 'n', '<leader>C', mapstr 'cal setqflist([]) | ccl' }
 
 -- Newlines --
 map { 'n', ']o', '@="m`o\\eg``"<cr>' }
@@ -75,10 +78,10 @@ map { '', '<leader>y', '"+y' }
 map { '', '<leader>Y', mapstr '%y+"' }
 
 -- Resizing --
-map { 'n', '<c-left>', mapstr 'vert res -10' }
-map { 'n', '<c-down>', mapstr 'res +10' }
-map { 'n', '<c-up>', mapstr 'res -10' }
-map { 'n', '<c-right>', mapstr 'vert res +10' }
+map { 'n', '<left>', mapstr 'vert res -10' }
+map { 'n', '<down>', mapstr 'res +10' }
+map { 'n', '<up>', mapstr 'res -10' }
+map { 'n', '<right>', mapstr 'vert res +10' }
 
 -- Saving/exiting --
 map { 'n', '<leader>q', mapstr 'q' }

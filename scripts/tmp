@@ -5,7 +5,6 @@ session="${1:-misc}"
 add() { eval "projects_$1='$2'"; }
 get() { eval echo '$'projects_"$1"; }
 
-add 'erp' 'erp_connector'
 dir="$HOME/dev/$(get "$session")"
 
 leave() {
