@@ -34,6 +34,7 @@ require 'paq' {
     'lewis6991/impatient.nvim',
     'lewis6991/gitsigns.nvim',
     'nathom/filetype.nvim',
+    'numToStr/Comment.nvim',
     'nvim-lualine/lualine.nvim',
     'rmagatti/auto-session',
     'stevearc/aerial.nvim',
@@ -43,7 +44,6 @@ require 'paq' {
     'ThePrimeagen/harpoon',
 
     'tpope/vim-abolish',
-    'tpope/vim-commentary',
     'tpope/vim-fugitive',
     'tpope/vim-repeat',
     'tpope/vim-surround',
