@@ -1,0 +1,7 @@
+#!/bin/sh
+
+set -eu
+
+resp="$(printf '%s\n' 'Yes' 'No' | dmenu -p 'Shutdown?')"
+
+[ "$resp" = Yes ] && doas shutdown now
