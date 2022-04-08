@@ -1,9 +1,0 @@
-#!/bin/sh
-
-set -eu
-
-[ "$1" ] || exit
-
-file="$(fd -e mp3 -1 -t f -a "$1" -- . ~/mus)"
-echo "$file"
-mpv "$file" &

@@ -1,6 +1,0 @@
-#!/bin/sh
-
-[ "$1" = up ] && cmd=inc || cmd=dec
-
-eval "xbacklight -$cmd 5"
-pkill -RTMIN+7 dwmb
