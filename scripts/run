@@ -26,10 +26,15 @@ js)
 ts)
     cmd="ts-node $file"
     ;;
+*dwmb*)
+    cmd='killall dwmb; make clean install; make clean; dwmb &'
+    ;;
 *)
     cmd="$file $*"
     ;;
 esac
+
+clear
 
 echo " > $cmd"
 eval "$cmd"

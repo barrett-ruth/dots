@@ -2,11 +2,9 @@
 
 [ "$1" ] || exit
 
-set -eu
-
 cmd="iwctl station wlan0 connect $1"
 
 [ "$2" ] && cmd="$cmd --passphrase $2"
 
 eval "$cmd"
-pkill -RTMIN+8 dwmblocks
+pkill -RTMIN+10 dwmb

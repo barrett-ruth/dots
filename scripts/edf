@@ -22,7 +22,7 @@ add xinit "$cfh/X11/xinitrc"
 add zathura "$cfh/zathura/zathurarc"
 add zsh "$ZDOTDIR/"
 
-for i in dmenu dwm dwmblocks st; do
+for i in dmenu dwm dwmb st; do
     add "$i" "$sl/$i/config.h; cd $sl/$i; $mkcic &"
 done
 

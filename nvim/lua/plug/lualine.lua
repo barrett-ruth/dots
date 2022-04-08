@@ -38,7 +38,7 @@ require('lualine').setup {
                 },
             },
         },
-        lualine_c = { shrink },
+        lualine_c = { shrink, { 'aerial' } },
         lualine_x = { 'filetype' },
         lualine_y = { 'filesize', '%l/%L' },
         lualine_z = { 'encoding', 'bo:ff' },

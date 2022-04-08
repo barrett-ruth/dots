@@ -3,4 +3,4 @@
 set -eu
 
 pactl set-sink-mute "$(sink)" toggle
-pkill -RTMIN+7 dwmblocks
+pkill -RTMIN+5 dwmb

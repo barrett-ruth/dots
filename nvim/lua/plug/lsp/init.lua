@@ -36,7 +36,9 @@ null_ls.setup {
         builtins.diagnostics.eslint_d.with {
             diagnostics_format = '#{m}',
             condition = function(utils)
-                return utils.root_has_file { '.eslintrc' }
+                return utils.root_has_file {
+                    { '.eslintrc', '.eslintrc.cjs', '.eslintrc.yaml', '.eslintrc.yml', '.eslintrc.json' },
+                }
             end,
         },
         builtins.diagnostics.flake8,

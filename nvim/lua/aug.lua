@@ -35,6 +35,7 @@ au('Filetype', {
         'typescript',
         'typescriptreact',
         'vim',
+        'sh',
     },
     callback = function()
         local utils = require 'utils'

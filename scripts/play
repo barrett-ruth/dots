@@ -4,4 +4,6 @@ set -eu
 
 [ "$1" ] || exit
 
-mpv "$(fd -e mp3 -1 -t f -a "$1" -- . ~)" &
+file="$(fd -e mp3 -1 -t f -a "$1" -- . ~/mus)"
+echo "$file"
+mpv "$file" &

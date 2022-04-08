@@ -6,7 +6,6 @@ set -eu
 
 file="$*"
 
-[ -f "$file" ] || file="$HOME/doc/$file"
-[ -f "$file" ] || exit
+[ -f "$file" ] || file="$(fd -1 -t f -a "$file")"
 
 zathura --fork "$file"

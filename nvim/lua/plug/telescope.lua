@@ -73,7 +73,7 @@ map {
     '<leader>tb',
     mapstr('telescope', "extensions.file_browser.file_browser({ cwd = vim.fn.expand '%:p:h' })"),
 }
-map { 'n', '<leader>tf', mapstr('utils', "files({ cwd = vim.fn.expand '%:p:h' })") }
+map { 'n', '<leader>tf', mapstr('telescope.builtin', "find_files({ cwd = vim.fn.expand '%:p:h' })") }
 map { 'n', '<leader>tg', mapstr('telescope.builtin', "live_grep({ cwd = vim.fn.expand '%:p:h' })") }
 map { 'n', '<leader>th', mapstr('telescope.builtin', 'help_tags()') }
 map { 'n', '<leader>tr', mapstr('telescope.builtin', 'resume()') }

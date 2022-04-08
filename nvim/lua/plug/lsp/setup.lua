@@ -49,6 +49,7 @@ M.setup = function(server, ...)
 
     local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
     capabilities.textDocument.completion.completionItem.snippetSupport = false
+    capabilities.offsetEncoding = { "utf-16" }
 
     settings.capabilities = capabilities
     settings.on_attach = M.on_attach

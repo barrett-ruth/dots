@@ -10,7 +10,7 @@ sxs &
 smon &
 sbg &
 while true; do
-    dwmblocks &
+    dwmb &
     dwm
     continue || exit
 done

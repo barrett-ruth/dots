@@ -13,6 +13,7 @@ local fts = {
         typescript = { l = 'console.log(', r = ')' },
         typescriptreact = { l = 'console.log(', r = ')' },
         vim = { l = 'echo ' },
+        sh = { l = 'echo "', r = '"' },
     },
 }
 
