@@ -1,6 +1,0 @@
-#!/bin/sh
-
-set -eu
-
-pactl set-sink-mute "$(sink)" toggle
-pkill -RTMIN+5 dwmb

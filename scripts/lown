@@ -1,6 +1,0 @@
-#!/bin/sh
-
-set -eu
-
-xbacklight -dec 5
-pkill -RTMIN+7 dwmb

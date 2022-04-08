@@ -5,7 +5,7 @@
 set -eu
 
 cmd='sxiv -b'
-[ -d "$1" ] && cmd="$cmd -r"
+test -d "$1" && cmd="$cmd -r"
 cmd="$cmd $*"
 
 eval "$cmd" &

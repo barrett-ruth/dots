@@ -14,4 +14,4 @@ if [ "$(cat "$file")" = '#!/bin/sh' ]; then
     exit
 fi
 
-[ -x "$file" ] || chmod +x "$SCRIPTS/$(basename "$file")"
+test -x "$file" || chmod +x "$SCRIPTS/$(basename "$file")"
