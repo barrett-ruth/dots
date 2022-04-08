@@ -16,6 +16,8 @@ get_gpgs() {
 
 get_gpgs "$prefix"
 
+pws="${pws#??}"
+
 entry="$(echo "$(printf '%s\n' "$pws")" | dmenu -p 'Password:')"
 
 [ "$entry" ] || exit

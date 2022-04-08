@@ -1,7 +1,5 @@
 #!/bin/sh
 
-set -eu
-
 cfh="$XDG_CONFIG_HOME"
 cfgs=''
 mkcic='make clean install && make clean'
@@ -14,17 +12,19 @@ add() {
 }
 get() { eval echo '$'_"$1"; }
 
-add git "$cfh/git/"
-add nvim "$cfh/nvim/"
+add git "$cfh/git/config"
+add nvim "$cfh/nvim/init.lua"
 add tmux "$cfh/tmux/tmux.conf"
 add todo "$HOME/dl/todo.txt"
 add xinit "$cfh/X11/xinitrc"
 add zathura "$cfh/zathura/zathurarc"
-add zsh "$ZDOTDIR/"
+add zsh "$ZDOTDIR/.zprofile"
 
 for i in dmenu dwm dwmb st; do
     add "$i" "$sl/$i/config.h; cd $sl/$i; $mkcic &"
 done
+
+cfgs="${cfgs#??}"
 
 file="$(echo "$(printf '%s\n' "$cfgs")" | dmenu -p 'Edit:')"
 [ "$file" ] || exit
