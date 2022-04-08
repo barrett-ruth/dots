@@ -1,0 +1,13 @@
+#!/bin/sh
+
+[ "$1" ] || exit 1
+
+test -f "$1" && file="$1" || file="$HOME/img/wp/$1"
+test -f "$file" || exit 1
+
+ext="${file##*.}"
+[ "$ext" = jpg ] && field=2 || field=3
+
+dim="$(file "$file" | rev | cut -d ',' -f "$field" | rev | sed 's| ||g')"
+
+echo "${dim#?}"

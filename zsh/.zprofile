@@ -54,6 +54,7 @@ export _Z_EXCLUDE_DIRS=(__pycache__ .git .pki build cache dist docs node_modules
 
 # FZF
 export FZF_ALT_C_COMMAND='fd -t d -H --strip-cwd-prefix'
+export FZF_COMPLETION_TRIGGER='_'
 export FZF_CTRL_R_OPTS='--reverse'
 export FZF_CTRL_T_COMMAND='fd -t f -H --strip-cwd-prefix'
 export FZF_CTRL_E_COMMAND='fd . ~/.config -t f -H'

@@ -2,14 +2,9 @@
 
 session="${1:-misc}"
 
-add() { eval "projects_$1='$2'"; }
-get() { eval echo '$'projects_"$1"; }
-
-dir="$HOME/dev/$(get "$session")"
-
 leave() {
     tmux attach -t "$session"':code' 2>/dev/null || tmux attach -t "$session"
-    exit
+    exit 0
 }
 
 sessions="$(tmux ls -F '#{session_name}' 2>/dev/null)"
@@ -23,17 +18,11 @@ tmux new -ds "$session"
 tmux renamew -t "$session"':1' 'code'
 
 case "$session" in
-erp)
-    for e in code run dock aux; do
-        [ "$e" = 'code' ] || tmux neww -t "$session:" -n "$e"
-        tmux send -t "$session"":$e" "cd $dir; srcv" 'enter' 'C-l'
+*)
+    for e in run dock aux; do
+        tmux neww -t "$session:" -n "$e"
     done
     tmux splitw -h -t "$session"':dock' \; last-pane -t "$session"':dock'
-
-    tmux send -t "$session"':run' "run $(basename "$dir")"
-    ;;
-*)
-    tmux neww -t "$session" -n 'aux'
     ;;
 esac
 

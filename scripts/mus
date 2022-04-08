@@ -1,9 +1,26 @@
 #!/bin/sh
 
-set -eu
+leave() {
+    mpv "$1" &
+    exit 0
+}
 
-[ "$1" ] || exit
+[ "$1" ] && leave "$(fd -e mp3 -1 -t f -a "$1" -- . ~/mus)"
 
-file="$(fd -e mp3 -1 -t f -a "$1" -- . ~/mus)"
-echo "$file"
-mpv "$file" &
+prefix="$HOME/mus"
+
+get_muss() {
+    for i in "$1"/*; do
+        test -d "$i" && get_muss "$i" || muss="$muss\n$(echo "$i" | sed "s|\.mp3||g;s|$prefix/||g")"
+    done
+}
+
+get_muss "$prefix"
+
+muss="${muss#??}"
+
+entry="$(echo "$(printf '%s\n' "$muss")" | dmenu -p 'Music:')"
+
+[ "$entry" ] || exit
+
+leave "$prefix/$entry.mp3"

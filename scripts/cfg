@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cfg="$HOME/dev/config"
+cfg="$HOME/dev/dots"
 
 rmb .git install.zsh diff "$cfg"
 

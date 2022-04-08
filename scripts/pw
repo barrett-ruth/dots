@@ -6,11 +6,7 @@ pws=''
 
 get_gpgs() {
     for i in "$1"/*; do
-        if [ -d "$i" ]; then
-            get_gpgs "$i"
-        else
-            pws="$pws\n$(echo "$i" | sed "s|\.gpg||g;s|$prefix/||g")"
-        fi
+        test -d "$i" && get_gpgs "$i" || pws="$pws\n$(echo "$i" | sed "s|\.gpg||g;s|$prefix/||g")"
     done
 }
 
