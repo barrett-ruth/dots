@@ -4,11 +4,11 @@ wps="$HOME/wp"
 
 if [ "$1" ]; then
     wp1="$1"
-    [ -f "$wp1" ] || wp1="$wps/one/$wp1"
+    test -f "$wp1" || wp1="$wps/one/$wp1"
 fi
-[ -f "$wp1" ] || wp1="$(find "$wps/one" -type f | shuf -n 1)"
+test -f "$wp1" || wp1="$(find "$wps/one" -type f | shuf -n 1)"
 
 wp2="$(echo "$wp1" | sed 's/one/two/')"
-[ -f "$wp2" ] || wp2="$(find "$wps/two" -type f | shuf -n 1)"
+test -f "$wp2" || wp2="$(find "$wps/two" -type f | shuf -n 1)"
 
 feh --no-fehb --bg-scale "$wp1" "$wp2" 2>/dev/null

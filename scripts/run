@@ -29,12 +29,14 @@ ts)
 *dwmb*)
     cmd='killall dwmb; make clean install; make clean; dwmb &'
     ;;
+sh)
+    test -x "$file" && cmd="./" || cmd="sh "
+    cmd="$cmd$file"
+    ;;
 *)
     cmd="$file $*"
     ;;
 esac
-
-clear
 
 echo " > $cmd"
 eval "$cmd"

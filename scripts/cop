@@ -4,8 +4,4 @@
 
 set -eu
 
-if [ -f "$1" ]; then
-    xclip -sel c <"$1"
-else
-    eval "$*" | xclip -sel c
-fi
+test -f "$1" && xclip -sel c <"$1" || eval "$*" | xclip -sel c

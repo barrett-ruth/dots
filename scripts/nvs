@@ -5,7 +5,7 @@ set -eu
 file="$SCRIPTS/$(basename "$1")"
 
 [ -d "$file" ] && exit
-[ -f "$file" ] || echo '#!/bin/sh' >"$file"
+test -f "$file" || echo '#!/bin/sh' >"$file"
 
 nvim "$file"
 

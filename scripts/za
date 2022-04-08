@@ -6,6 +6,6 @@ set -eu
 
 file="$*"
 
-[ -f "$file" ] || file="$(fd -1 -t f -a "$file")"
+test -f "$file" || file="$(fd -1 -t f -a "$file")"
 
 zathura --fork "$file"
