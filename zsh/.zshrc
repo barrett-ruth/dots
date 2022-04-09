@@ -3,8 +3,9 @@
 . "$ZDOTDIR"/.zprofile
 
 hi='#a89984'
-focbg='#504945'
+line='#3c3836'
 aqua='#89b482'
+foc='#504945'
 
 __shrink () {
     dir=${PWD/#$HOME/\~} base="$(basename $dir)"
@@ -37,9 +38,7 @@ __set_git() {
   if [[ -z "${sb##*...*}" ]]; then
     local usi="${sb##*.}"
     local usr="${usi%%/*}"
-    local usb="${${usi##*/}%% *}"
-    [[ -n "$usr" ]] && us="%F{white}->%F{blue}$usr"
-    [[ -n "$usb" ]] && us+="%F{white}/%F{red}$usb"
+    [[ -n "$usr" ]] && us="%F{white}->%b%F{#928374}$usr"
     [[ -n "${sb##*ahead*}" ]] || up_down+=^
     [[ -n "${sb##*behind*}" ]] || up_down+=v
     [ "${#up_down}" = 2 ] && up_down=^v
@@ -48,15 +47,15 @@ __set_git() {
   else
       br="${sb##* }"
   fi
-  PS1+=" %F{white}$dirty%F{#e78a4e}$br$us%F{white}$up_down "
+  PS1+=" %F{white}$dirty%F{#928374}$br$us%F{white}$up_down%F{$line} "
 }
 
 __set_venv() {
     venv="${VIRTUAL_ENV:-$PWD/venv}"
     [[ -x "$venv/bin/python" ]] || return
     [[ "$venv/bin/python" == *"$(which python)"* ]] || suffix=!
-    [[ $1 ]] && PS1+="%F{#d4be98}"
-    PS1+=" %K{$focbg}%F{#d8a657}$(basename "$venv")$suffix "
+    [[ $1 ]] && PS1+="%F{$line}%K{$foc}" || PS1+="%F{$line}%K{$foc}"
+    PS1+="%K{$foc} %F{#d4be98}$(basename "$venv")$suffix %F{$foc}"
 }
 
 __set_beam_cursor() { echo -ne '\e[5 q'; }
@@ -69,13 +68,13 @@ zle-keymap-select() {
 zle -N zle-keymap-select
 
 precmd() {
-    unset PS1
+    unset PS1 is_git
     PS1+="%K{$hi}%B%F{$bg}"
     __set_dir
-    PS1+="%b%F{$hi}%K{$focbg}%F{#3c3836}"
-    [[ -d .git ]] && is_git=true && __set_git
+    PS1+="%b%F{$hi}%K{$line}%F{$foc}"
+    [[ -d .git ]] && is_git=true && __set_git || PS1+="%F{$line}"
     __set_venv "$is_git"
-    PS1+="%F{$focbg}%k "
+    PS1+="%k "
     __set_beam_cursor
     PS1+="%b%k%f"
 }
