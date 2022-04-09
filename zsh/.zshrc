@@ -38,16 +38,16 @@ __set_git() {
   if [[ -z "${sb##*...*}" ]]; then
     local usi="${sb##*.}"
     local usr="${usi%%/*}"
-    [[ -n "$usr" ]] && us="%F{white}->%b%F{#928374}$usr"
-    [[ -n "${sb##*ahead*}" ]] || up_down+=^
-    [[ -n "${sb##*behind*}" ]] || up_down+=v
+    [[ -n "$usr" ]] && us="%F{white}->%b%F{blue}$usr"
+    [[ -n "${sb##*ahead*}" ]] || up_down+=↑
+    [[ -n "${sb##*behind*}" ]] || up_down+=↓
     [ "${#up_down}" = 2 ] && up_down=^v
   elif [[ -z "${sb##*HEAD*}" ]]; then
       br=HEAD
   else
       br="${sb##* }"
   fi
-  PS1+=" %F{white}$dirty%F{#928374}$br$us%F{white}$up_down%F{$line} "
+  PS1+=" %F{white}$dirty%F{#e78a4e}$br$us%F{white}$up_down%F{$line} "
 }
 
 __set_venv() {
@@ -55,7 +55,7 @@ __set_venv() {
     [[ -x "$venv/bin/python" ]] || return
     [[ "$venv/bin/python" == *"$(which python)"* ]] || suffix=!
     [[ $1 ]] && PS1+="%F{$line}%K{$foc}" || PS1+="%F{$line}%K{$foc}"
-    PS1+="%K{$foc} %F{#d4be98}$(basename "$venv")$suffix %F{$foc}"
+    PS1+="%K{$foc} %F{#d8a657}$(basename "$venv")$suffix %F{$foc}"
 }
 
 __set_beam_cursor() { echo -ne '\e[5 q'; }
