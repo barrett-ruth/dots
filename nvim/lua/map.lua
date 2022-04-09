@@ -48,7 +48,7 @@ map { 'n', '<c-w>l', '<c-w>L' }
 map { 'n', '<leader><cr>', mapstr('utils', 'source()') }
 map { 'n', '<leader>-', 'S<esc>' }
 map { 'n', '<leader>k', 'K' }
-map { 'n', '<leader>r', mapstr 'w|vs|te run %' }
+map { 'n', '<leader>r', mapstr('utils', 'save()') .. mapstr 'vs|te run %' }
 map { 'n', '<leader>S', mapstr 'vert sbp' }
 
 -- Location List --
@@ -86,7 +86,7 @@ map { 'n', '<right>', mapstr 'vert res +10' }
 -- Saving/exiting --
 map { 'n', '<leader>q', mapstr 'q' }
 map { 'n', '<leader>Q', mapstr 'q!' }
-map { 'n', '<leader>w', mapstr 'lua vim.lsp.buf.formatting()' .. mapstr 'w' }
+map { 'n', '<leader>w', mapstr('utils', 'save()') }
 map { 'n', '<leader>z', 'ZZ' }
 map { 'n', '<leader>Z', mapstr 'xa' }
 

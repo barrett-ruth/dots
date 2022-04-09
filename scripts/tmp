@@ -14,14 +14,17 @@ case "$sessions" in
     ;;
 esac
 
-tmux new -ds "$session"
-tmux renamew -t "$session"':1' 'code'
-
 case "$session" in
-*)
+dwm | dwmb | st | dmenu)
+    tmux new -ds "$session"
+    tmux renamew -t "$session"':1' 'code'
+
+    cd "$HOME/dev/sl/$session" || exit
+
     for e in run dock aux; do
         tmux neww -t "$session:" -n "$e"
     done
+
     tmux splitw -h -t "$session"':dock' \; last-pane -t "$session"':dock'
     ;;
 esac

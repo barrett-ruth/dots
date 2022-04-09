@@ -21,6 +21,11 @@ function M.empty(s)
     return s == '' or s == nil
 end
 
+function M.save()
+    vim.cmd 'w'
+    vim.lsp.buf.formatting()
+end
+
 function M.source()
     local file = string.match(vim.fn.expand '%', 'lua/(.*).lua')
 

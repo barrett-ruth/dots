@@ -9,6 +9,8 @@ ext="${file##*.}"
 
 [ "$*" ] && args="$* "
 
+mkcic='make clean install; make clean'
+
 case "$ext" in
 c | cc | cpp)
     [ "$ext" = c ] && comp=gcc || comp=g++
@@ -27,7 +29,10 @@ ts)
     cmd="ts-node $file"
     ;;
 *dwmb*)
-    cmd='killall dwmb; make clean install; make clean; dwmb &'
+    cmd="killall dwmb; $mkcic; dwmb &"
+    ;;
+*dwm*)
+    cmd="$mkcic"
     ;;
 sh)
     test -x "$file" && cmd="./" || cmd="sh "
