@@ -1,7 +1,15 @@
 local aug = vim.api.nvim_create_augroup('augs', { clear = true })
 local au = vim.api.nvim_create_autocmd
 
-au('BufEnter', { command = 'setl fo-=cro', group = aug })
+au('BufEnter', {
+    callback = function()
+        vim.cmd 'setl fo-=cro'
+        if vim.api.nvim_eval 'fugitive#head()' ~= '' then
+            vim.cmd 'setl scl=yes:2'
+        end
+    end,
+    group = aug,
+})
 au('TextYankPost', {
     callback = function()
         vim.highlight.on_yank { higroup = 'RedrawDebugNormal', timeout = '700' }
