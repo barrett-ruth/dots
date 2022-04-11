@@ -40,6 +40,10 @@ M.on_attach = function(client, bufnr)
     bmap { 'n', '<leader><leader>r', mapstr 'lua vim.lsp.buf.rename()' }
     bmap { 'n', '<leader><leader>R', mapstr 'lua vim.lsp.buf.references()' }
     bmap { 'n', '<leader><leader>s', mapstr 'lua vim.lsp.buf.signature_help()' }
+
+    bmap { 'n', '<leader><leader>li', mapstr 'LspInfo' }
+    bmap { 'n', '<leader><leader>lr', mapstr 'LspRestart' }
+    bmap { 'n', '<leader><leader>li', mapstr 'NullLsInfo' }
 end
 
 local lspconfig = require 'lspconfig'
@@ -49,7 +53,7 @@ M.setup = function(server, ...)
 
     local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
     capabilities.textDocument.completion.completionItem.snippetSupport = false
-    capabilities.offsetEncoding = { "utf-16" }
+    capabilities.offsetEncoding = { 'utf-16' }
 
     settings.capabilities = capabilities
     settings.on_attach = M.on_attach

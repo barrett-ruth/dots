@@ -8,6 +8,7 @@ local servers = {
     jsonls = {},
     pyright = {},
     sumneko_lua = {
+        sourceName = 'hi',
         settings = {
             Lua = {
                 completion = { keywordSnippet = 'Disable' },
