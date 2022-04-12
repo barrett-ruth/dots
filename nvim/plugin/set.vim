@@ -4,7 +4,7 @@ se cursorline
 
 se completeopt=menuone,noinsert,noselect
 
-se expandtab
+se expandtab tabstop=4
 
 se fillchars=fold:\ ,eob:\ ,vert:│
 
@@ -20,7 +20,7 @@ se ignorecase
 se isfname-==,
 
 se list
-se listchars=nbsp:·,trail:·,tab:\ \ 
+se listchars=nbsp:·,space:·,trail:·,tab:\ \ 
 
 se matchpairs+=<:>
 

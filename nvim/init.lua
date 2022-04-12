@@ -4,6 +4,7 @@ vim.cmd [[
     let g:mapleader = ' '
 ]]
 
+require 'impatient'
 require 'aug'
 require 'let'
 require 'map'

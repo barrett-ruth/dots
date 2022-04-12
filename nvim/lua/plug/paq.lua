@@ -26,11 +26,9 @@ require 'paq' {
     },
     'nvim-treesitter/nvim-treesitter-textobjects',
 
-    'lukas-reineke/indent-blankline.nvim',
     'sainnhe/gruvbox-material',
 
     'famiu/bufdelete.nvim',
-    'gpanders/editorconfig.nvim',
     'lewis6991/impatient.nvim',
     'lewis6991/gitsigns.nvim',
     'nathom/filetype.nvim',
@@ -40,7 +38,6 @@ require 'paq' {
     'stevearc/aerial.nvim',
 
     'ThePrimeagen/git-worktree.nvim',
-    'ThePrimeagen/refactoring.nvim',
     'ThePrimeagen/harpoon',
 
     'tpope/vim-abolish',

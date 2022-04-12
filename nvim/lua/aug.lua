@@ -51,15 +51,9 @@ au('Filetype', {
         local mapstr = utils.mapstr
 
         bmap { 'v', '<leader>rf', '<esc>' .. mapstr('refactoring', "refactor 'Extract Function'") }
-
         bmap { 'v', '<leader>re', '<esc>' .. mapstr('utils', 'refactor_extract()') }
-        bmap { 'v', '<leader>rE', '<esc>' .. mapstr('refactoring', "refactor 'Extract Variable'") }
-
         bmap { 'v', '<leader>ri', '<esc>' .. mapstr('utils', 'refactor_inline()') }
-        bmap { 'v', '<leader>rI', '<esc>' .. mapstr('refactoring', "refactor 'Inline Variable'") }
-
         bmap { 'v', '<leader>rp', '<esc>' .. mapstr('utils', 'refactor_print()') }
-        bmap { 'v', '<leader>rP', '<esc>' .. mapstr('utils', 'refactor_print(true)') }
     end,
     group = aug,
 })
