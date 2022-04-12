@@ -4,7 +4,6 @@ require 'paq' {
     'neovim/nvim-lspconfig',
     'jose-elias-alvarez/null-ls.nvim',
     'jose-elias-alvarez/nvim-lsp-ts-utils',
-    'onsails/lspkind-nvim',
 
     { 'hrsh7th/nvim-cmp', branch = 'dev' },
     'hrsh7th/cmp-nvim-lua',

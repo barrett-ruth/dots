@@ -2,7 +2,34 @@ vim.g.completion_matching_strategy_list = 'exact,substring,fuzzy'
 
 local cmp = require 'cmp'
 local mapping = require 'cmp.config.mapping'
-local luasnip = require 'luasnip'
+
+local kinds = {
+    ext = '',
+    Method = '',
+    Function = '',
+    Constructor = '',
+    Field = 'ﰠ',
+    Variable = '',
+    Class = 'ﴯ',
+    Interface = '',
+    Module = '',
+    Property = 'ﰠ',
+    Unit = '塞',
+    Value = '',
+    Enum = '',
+    Keyword = '',
+    Snippet = '',
+    Color = '',
+    File = '',
+    Reference = '',
+    Folder = '',
+    EnumMember = '',
+    Constant = '',
+    Struct = 'פּ',
+    Event = '',
+    Operator = '',
+    TypeParameter = '',
+}
 
 local sources = {
     buffer = '[BUF]',
@@ -14,28 +41,19 @@ local sources = {
 cmp.setup {
     window = {
         completion = {
-            scrollbar = false,
             border = 'single',
         },
         documentation = {
-            scrollbar = false,
             border = 'single',
             max_width = 9999,
         },
     },
-    snippet = {
-        expand = function(args)
-            luasnip.lsp_expand(args.body)
-        end,
-    },
     formatting = {
-        format = require('lspkind').cmp_format {
-            mode = 'symbol',
-            before = function(entry, vim_item)
-                vim_item.menu = sources[entry.source.name]
-                return vim_item
-            end,
-        },
+        format = function(entry, vim_item)
+            vim_item.menu = sources[entry.source.name]
+            vim_item.kind = kinds[vim_item.kind]
+            return vim_item
+        end,
     },
     sources = cmp.config.sources {
         { name = 'nvim_lua' },

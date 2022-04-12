@@ -8,7 +8,6 @@ local files = {
     'gitsigns',
     'harpoon',
     'lualine',
-    'lspkind',
     'telescope',
     'session',
     'treesitter',
