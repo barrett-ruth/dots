@@ -28,37 +28,70 @@ function M.rfind(str, char)
     return #str - revpos
 end
 
-function M.rename_help(win)
-    local name = vim.fn.getline '.'
+local function teardown_win(win)
     vim.api.nvim_win_close(win, true)
-    vim.lsp.buf.rename(name)
-    vim.cmd 'stopinsert'
 end
 
-function M.rename()
+function M.setup_win(method)
     local cword = vim.fn.expand '<cword>'
-    local opts = {
+    local buf = vim.api.nvim_create_buf(false, true)
+    local win = vim.api.nvim_open_win(buf, true, {
         relative = 'cursor',
         row = 1,
         col = 0,
-        width = string.len(cword) * 3,
+        width = 15,
         height = 1,
         style = 'minimal',
         border = 'single',
-    }
-    local buf = vim.api.nvim_create_buf(false, true)
-    local win = vim.api.nvim_open_win(buf, true, opts)
+    })
+
+    if method == 'extract' then
+        cword = ''
+        vim.cmd 'startinsert'
+    end
 
     vim.api.nvim_buf_set_lines(buf, 0, -1, false, { cword })
+    vim.api.nvim_buf_set_keymap(buf, 'i', '<c-c>', '<cmd>q<cr>', { silent = true })
+    vim.api.nvim_buf_set_keymap(buf, 'n', 'q', '<cmd>q<cr>', { silent = true })
+    print '<cmd>lua require "plug.refactor".%s(%d)<cr>'
     vim.api.nvim_buf_set_keymap(
         buf,
         'i',
         '<cr>',
-        '<cmd>lua require "plug.refactor(' .. win .. ')<cr>',
+        string.format('<cmd>lua require "plug.refactor".%s(%d)<cr>', method, win),
         { silent = true }
     )
-    vim.api.nvim_buf_set_keymap(buf, 'i', 'q', '<c-c>', { silent = true })
-    vim.api.nvim_buf_set_keymap(buf, 'n', 'q', '<cmd>q<cr>', { silent = true })
+end
+
+function M.rename(win)
+    local name = vim.trim(vim.fn.getline '.')
+    teardown_win(win)
+
+    vim.lsp.buf.rename(name)
+    vim.cmd 'stopinsert'
+end
+
+function M.extract(win)
+    local name = vim.trim(vim.fn.getline '.')
+    teardown_win(win)
+
+    local pos = M.rfind(name, ',')
+    local num = pos and string.sub(name, pos + 2, #name) or '-'
+    local prefix = fts.extract[vim.bo.ft].prefix
+    local eq = fts.extract[vim.bo.ft].eq
+    local extracted = string.sub(name, 1, pos or #name)
+
+    vim.cmd(string.format(
+        [[
+            cal feedkeys("mrgvc%s\<esc>O%s\<c-a>%s=%s\<c-r>\"\<esc>\<cmd>m%s\<cr>`r")
+        ]],
+        extracted,
+        prefix or '',
+        eq or ' ',
+        eq or ' ',
+        num
+    ))
+    vim.cmd 'stopinsert'
 end
 
 function M.print(before)
@@ -79,34 +112,10 @@ function M.print(before)
 end
 
 function M.inline()
+    -- TODO: change 2W for sh ft
     vim.cmd [[
         cal feedkeys("gv\"ry2WviW\"lydd^/\<c-r>r\<cr>cgn\<c-r>l\<esc>")
     ]]
-end
-
-function M.extract()
-    vim.ui.input({ prompt = 'Variable name: ' }, function(input)
-        if require('utils').empty(input) then
-            return
-        end
-
-        local pos = M.rfind(input, ',')
-        local num = pos and string.sub(input, pos + 2, #input) or '-'
-        local prefix = fts.extract[vim.bo.ft].prefix
-        local eq = fts.extract[vim.bo.ft].eq
-        local name = string.sub(input, 1, pos or #input)
-
-        vim.cmd(string.format(
-            [[
-                cal feedkeys("mrgvc%s\<esc>O%s\<c-a>%s=%s\<c-r>\"\<esc>\<cmd>m%s\<cr>`r")
-            ]],
-            name,
-            prefix or '',
-            eq or ' ',
-            eq or ' ',
-            num
-        ))
-    end)
 end
 
 return M

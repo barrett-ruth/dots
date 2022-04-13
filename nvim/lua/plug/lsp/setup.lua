@@ -32,12 +32,11 @@ M.on_attach = function(client, bufnr)
 
     bmap { 'n', '<leader><leader>c', mapstr('telescope.builtin', 'lsp_code_actions()') }
     bmap { 'n', '<leader><leader>d', mapstr('telescope.builtin', 'lsp_definitions()') }
-    bmap { 'n', '<leader><leader>i', mapstr('telescope.builtin', 'lsp_implementations()') }
+    bmap { 'n', '<leader><leader>I', mapstr('telescope.builtin', 'lsp_implementations()') }
 
     bmap { 'n', '<leader><leader>D', mapstr 'lua vim.lsp.buf.declaration()' }
     bmap { 'n', '<leader><leader>f', mapstr 'lua vim.diagnostic.open_float()' }
     bmap { 'n', '<leader><leader>h', mapstr 'lua vim.lsp.buf.hover()' }
-    bmap { 'n', '<leader><leader>r', mapstr 'lua vim.lsp.buf.rename()' }
     bmap { 'n', '<leader><leader>R', mapstr 'lua vim.lsp.buf.references()' }
     bmap { 'n', '<leader><leader>s', mapstr 'lua vim.lsp.buf.signature_help()' }
 
@@ -45,10 +44,11 @@ M.on_attach = function(client, bufnr)
     bmap { 'n', '<leader><leader>lr', mapstr 'LspRestart' }
     bmap { 'n', '<leader><leader>li', mapstr 'NullLsInfo' }
 
-    bmap { 'v', '<leader>re', '<esc>' .. mapstr('plug/refactor', 'extract()') }
-    bmap { 'v', '<leader>ri', '<esc>' .. mapstr('plug/refactor', 'inline()') }
-    bmap { 'v', '<leader>rp', '<esc>' .. mapstr('plug/refactor', 'print()') }
-    bmap { 'v', '<leader>rP', '<esc>' .. mapstr('plug/refactor', 'print(true)') }
+    bmap { 'n', '<leader><leader>r', '<esc>' .. mapstr "lua require 'plug.refactor'.setup_win('rename')" }
+    bmap { 'v', '<leader>e', '<esc>' .. mapstr "lua require 'plug.refactor'.setup_win('extract')" }
+    bmap { 'v', '<leader>i', '<esc>' .. mapstr('plug.refactor', 'inline()') }
+    bmap { 'v', '<leader>p', '<esc>' .. mapstr('plug.refactor', 'print()') }
+    bmap { 'v', '<leader>P', '<esc>' .. mapstr('plug.refactor', 'print(true)') }
 end
 
 local lspconfig = require 'lspconfig'
