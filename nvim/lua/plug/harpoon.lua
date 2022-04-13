@@ -1,5 +1,3 @@
-require('harpoon').setup {}
-
 local utils = require 'utils'
 local map = utils.map
 local mapstr = utils.mapstr

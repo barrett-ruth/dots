@@ -1,22 +1,5 @@
 local M = {}
 
-local fts = {
-    extract = {
-        lua = 'local ',
-        vim = 'let ',
-    },
-    print = {
-        javascript = { l = 'console.log(', r = ')' },
-        javascriptreact = { l = 'console.log(', r = ')' },
-        lua = { l = 'print(', r = ')' },
-        python = { l = 'print(', r = ')' },
-        typescript = { l = 'console.log(', r = ')' },
-        typescriptreact = { l = 'console.log(', r = ')' },
-        vim = { l = 'echo ' },
-        sh = { l = 'echo "', r = '"' },
-    },
-}
-
 function M.empty(s)
     return s == '' or s == nil
 end
@@ -34,61 +17,6 @@ function M.source()
     end
 
     vim.cmd 'so %'
-end
-
-function M.rfind(str, char)
-    local revpos = str:reverse():find(char)
-
-    if revpos == nil then
-        return nil
-    end
-
-    return #str - revpos
-end
-
-function M.refactor_print(before)
-    local ft = fts.print[vim.bo.ft]
-
-    if ft == nil then
-        return
-    end
-
-    vim.cmd(string.format(
-        [[
-            cal feedkeys("mrgv\"ry%s%s\<c-r>\"%s\<esc>`r")
-        ]],
-        before and 'O' or 'o',
-        ft.l,
-        ft.r and ft.r or ''
-    ))
-end
-
-function M.refactor_inline()
-    vim.cmd [[
-        cal feedkeys("gv\"ry2WviW\"lydd^/\<c-r>r\<cr>cgn\<c-r>l\<esc>")
-    ]]
-end
-
-function M.refactor_extract()
-    vim.ui.input({ prompt = 'Variable name: ' }, function(input)
-        if M.empty(input) then
-            return
-        end
-
-        local pos = M.rfind(input, ',')
-        local num = pos and string.sub(input, pos + 2, #input) or '-'
-        local prefix = fts.extract[vim.bo.ft]
-        local name = string.sub(input, 1, pos or #input)
-
-        vim.cmd(string.format(
-            [[
-                cal feedkeys("mrgvc%s\<esc>O%s\<c-a> = \<c-r>\"\<esc>\<cmd>m%s\<cr>`r")
-            ]],
-            name,
-            prefix and prefix or '',
-            num
-        ))
-    end)
 end
 
 function M.bd()

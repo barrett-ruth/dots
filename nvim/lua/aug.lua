@@ -39,27 +39,3 @@ au('Filetype', {
     end,
     group = aug,
 })
-
-au('Filetype', {
-    pattern = {
-        'javascript',
-        'javascriptreact',
-        'lua',
-        'python',
-        'typescript',
-        'typescriptreact',
-        'vim',
-        'sh',
-    },
-    callback = function()
-        local utils = require 'utils'
-        local bmap = utils.bmap
-        local mapstr = utils.mapstr
-
-        bmap { 'v', '<leader>rf', '<esc>' .. mapstr('refactoring', "refactor 'Extract Function'") }
-        bmap { 'v', '<leader>re', '<esc>' .. mapstr('utils', 'refactor_extract()') }
-        bmap { 'v', '<leader>ri', '<esc>' .. mapstr('utils', 'refactor_inline()') }
-        bmap { 'v', '<leader>rp', '<esc>' .. mapstr('utils', 'refactor_print()') }
-    end,
-    group = aug,
-})

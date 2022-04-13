@@ -44,6 +44,11 @@ M.on_attach = function(client, bufnr)
     bmap { 'n', '<leader><leader>li', mapstr 'LspInfo' }
     bmap { 'n', '<leader><leader>lr', mapstr 'LspRestart' }
     bmap { 'n', '<leader><leader>li', mapstr 'NullLsInfo' }
+
+    bmap { 'v', '<leader>re', '<esc>' .. mapstr('plug/refactor', 'extract()') }
+    bmap { 'v', '<leader>ri', '<esc>' .. mapstr('plug/refactor', 'inline()') }
+    bmap { 'v', '<leader>rp', '<esc>' .. mapstr('plug/refactor', 'print()') }
+    bmap { 'v', '<leader>rP', '<esc>' .. mapstr('plug/refactor', 'print(true)') }
 end
 
 local lspconfig = require 'lspconfig'
