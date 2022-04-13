@@ -71,6 +71,10 @@ end
 
 function M.refactor_extract()
     vim.ui.input({ prompt = 'Variable name: ' }, function(input)
+        if M.empty(input) then
+            return
+        end
+
         local pos = M.rfind(input, ',')
         local num = pos and string.sub(input, pos + 2, #input) or '-'
         local prefix = fts.extract[vim.bo.ft]

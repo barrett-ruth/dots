@@ -1,5 +1,10 @@
 colo gruvbox-material
 
+sign define DiagnosticSignError text=> texthl=RedSign
+sign define DiagnosticSignWarn text=- texthl=YellowSign
+sign define DiagnosticSignHint text=* texthl=AquaSign
+sign define DiagnosticSignInfo text=: texthl=BlueSign
+
 hi! TelescopeSelection guibg=#45403d
 for e in [ 'CursorLineNr', 'SignColumn', 'FoldColumn' ]
     exe 'hi!' e 'ctermbg=NONE' 'guibg=NONE' 'gui=NONE'
