@@ -42,7 +42,7 @@ null_ls.setup {
                 }
             end,
         },
-        builtins.diagnostics.flake8,
+        builtins.diagnostics.flake8.with { diagnostics_format = '#{m}' },
         builtins.diagnostics.hadolint,
         builtins.diagnostics.mypy,
         builtins.diagnostics.shellcheck,

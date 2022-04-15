@@ -7,5 +7,5 @@ local typescript = require 'plug.luasnippets.typescript'
 
 ls.add_snippets('typescriptreact', javascript)
 ls.add_snippets('typescriptreact', javascriptreact)
-ls.add_snippets('typescriptreact', tags)
 ls.add_snippets('typescriptreact', typescript)
+ls.add_snippets('typescriptreact', tags)

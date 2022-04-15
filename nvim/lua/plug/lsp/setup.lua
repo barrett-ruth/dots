@@ -25,6 +25,8 @@ M.on_attach = function(client, bufnr)
         bmap { 'n', '<leader><leader>H', mapstr 'ClangdSwitchSourceHeader' }
 
         client.resolved_capabilities.document_formatting = false
+    elseif client.name == 'sumneko_lua' then
+        client.resolved_capabilities.document_formatting = false
     end
 
     bmap { 'n', ']<space>', mapstr 'lua vim.diagnostic.goto_next()' .. 'zz' }

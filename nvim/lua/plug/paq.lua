@@ -30,7 +30,6 @@ require 'paq' {
     'famiu/bufdelete.nvim',
     'lewis6991/impatient.nvim',
     'lewis6991/gitsigns.nvim',
-    'nathom/filetype.nvim',
     'numToStr/Comment.nvim',
     'nvim-lualine/lualine.nvim',
     'rmagatti/auto-session',

@@ -12,6 +12,7 @@ end
 
 local javascript = {
     s('afu', fmt('{} => {}', { i(1), i(2) })),
+    s('afun', fmt('({}) => {{\n\t{}\n}}', { i(1), i(2) })),
     s('dea', fmt('{} [{}] = {}', { either(1, 'const', 'let'), i(2), i(3) })),
     s('deo', fmt('{} {{ {} }} = {}', { either(1, 'const', 'let'), i(2), i(3) })),
     s('fun', fmt('function {}({}) {{\n\t{}\n}}', { i(1), i(2), i(3) })),
