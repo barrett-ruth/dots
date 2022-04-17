@@ -1,7 +1,0 @@
-#!/bin/sh
-
-[ "$1" ] || exit
-
-set -eu
-
-(eval "$*") && kill "$(ps -p "$PPID" -o ppid=)"

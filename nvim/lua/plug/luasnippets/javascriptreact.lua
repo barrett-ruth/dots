@@ -9,7 +9,7 @@ local javascript = require 'plug.luasnippets.javascript'
 local tags = require 'plug.luasnippets.html'
 
 local javascriptreact = {
-    s('fc', fmt('({}) => ({{\n\t{}\n}})', { i(1), i(2) })),
+    s('fc', fmt('({}) => (\n\t{}\n)', { i(1), i(2) })),
     s('ue', fmt('useEffect(() => {{\n\t{}\n}}{})', { i(1), i(2) })),
     s('um', fmt('useMemo(() => {})', { i(1) })),
     s('um', fmt('useRef({})', { i(1) })),

@@ -1,7 +1,5 @@
 #!/bin/sh
 
-set -eu
-
 mons="$(xrandr | grep ' connected ' | awk '{ print $1 }')"
 
 one="$(echo "$mons" | head -n1)"
@@ -13,5 +11,4 @@ xrandr --output "$one" --set TearFree on 2>/dev/null
 
 xrandr --output "$two" --set TearFree on 2>/dev/null
 
-xrandr --output "$one" --scale 1x1 --pos 1280x2880 \
-    --output "$two" --scale 2x2 --pos 0x0
+xrandr --output "$one" --scale 1x1 --pos 1280x2880 --output "$two" --scale 2x2 --pos 0x0

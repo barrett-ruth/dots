@@ -23,7 +23,7 @@ ls.add_snippets('html', {
         'bp',
         fmt(
             [[
-                <!DOCTYPE html>
+                <!doctype html>
                 <html lang="en">
                 <head>
                   <meta charset="UTF-8">

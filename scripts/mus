@@ -5,9 +5,9 @@ leave() {
     exit 0
 }
 
-[ "$1" ] && leave "$(fd -e mp3 -1 -t f -a "$1" -- . ~/mus)"
+prefix="$XDG_MUSIC_DIR"
 
-prefix="$HOME/mus"
+[ "$1" ] && leave "$(fd -e mp3 -1 -t f -a "$1" -- . "$prefix")"
 
 get_muss() {
     for i in "$1"/*; do

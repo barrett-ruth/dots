@@ -64,11 +64,11 @@ function M.setup_win(method)
 end
 
 function M.rename(win)
-    local name = vim.trim(vim.fn.getline '.')
+    local name = vim.fn.getline '.'
     teardown_win(win)
 
     vim.lsp.buf.rename(name)
-    vim.cmd 'stopinsert'
+    vim.cmd 'stopinsert | norm! l'
 end
 
 function M.extract(win)
@@ -112,7 +112,6 @@ function M.print(before)
 end
 
 function M.inline()
-    -- TODO: change 2W for sh ft
     vim.cmd [[
         cal feedkeys("gv\"ry2WviW\"lydd^/\<c-r>r\<cr>cgn\<c-r>l\<esc>")
     ]]

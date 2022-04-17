@@ -2,14 +2,14 @@
 
 [ "$1" ] || exit
 
-if [ "$1" = '-d' -o "$1" = '--disconnect' ]; then
-    iwctl station wlan0 disconnect
-else
-    cmd="iwctl station wlan0 connect $1"
+leave() { pkill -RTMIN+10 dwmb; }
 
-    [ "$2" ] && cmd="$cmd --passphrase $2"
+[ "$1" = '-d' -o "$1" = '--disconnect' ] && iwctl station wlan0 disconnect && leave
 
-    eval "$cmd"
-fi
+cmd="iwctl station wlan0 connect $1"
 
-pkill -RTMIN+10 dwmb
+[ "$2" ] && cmd="$cmd --passphrase $2"
+
+eval "$cmd"
+
+leave

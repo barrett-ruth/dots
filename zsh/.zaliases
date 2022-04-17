@@ -15,11 +15,12 @@ alias lss='less --use-color --color=d+b --color=P+c --color=u+g'
 # Basic programs
 alias g='git'
 alias ka='killall'
-alias v='nvim'
+alias nv='nvim'
 alias py='python'
 alias rn='rename'
 alias sctl='systemctl'
 alias tm='tmux'
+alias za='zathura --fork'
 alias zc='z -c'
 alias zz='cd --'
 

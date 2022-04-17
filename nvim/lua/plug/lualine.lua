@@ -1,5 +1,4 @@
 local theme = require 'lualine.themes.gruvbox-material'
-theme.inactive.a.gui = 'NONE'
 
 local shrink = function()
     return require('plenary.path'):new(vim.fn.expand '%:~'):shorten()

@@ -1,0 +1,26 @@
+#!/bin/sh
+
+leave() {
+    zathura --fork "$1"
+    exit 0
+}
+
+prefix="$XDG_DOCUMENTS_DIR"
+
+[ "$1" ] && leave "$(fd -e pdf -1 -t f -a "$1" -- . "$prefix")"
+
+get_docs() {
+    for i in "$1"/*; do
+        test -d "$i" && get_docs "$i" || docs="$docs\n$(echo "$i" | sed "s|\.pdf||g;s|$prefix/||g")"
+    done
+}
+
+get_docs "$prefix"
+
+docs="${docs#??}"
+
+entry="$(echo "$(printf '%s\n' "$docs")" | dmenu -p 'Documents:')"
+
+[ "$entry" ] || exit
+
+leave "$prefix/$entry.pdf"

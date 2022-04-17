@@ -8,7 +8,7 @@ fi
 
 sxs &
 smon &
-sbg &
+sbg 'nature/forest.jpg' &
 while true; do
     dwmb &
     dwm

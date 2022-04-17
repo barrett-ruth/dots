@@ -21,6 +21,9 @@ touch "$XAUTHORITY"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$XDG_CONFIG_HOME/cache"
 export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_DOCUMENTS_DIR="$HOME/doc"
+export XDG_DOWNLOAD_DIR="$HOME/dl"
+export XDG_MUSIC_DIR="$HOME/mus"
 
 # Utils
 export EDITOR='nvim'

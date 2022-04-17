@@ -40,7 +40,7 @@ require('telescope').setup {
                     ['<c-a>'] = fb_actions.create,
                     ['<c-d>'] = fb_actions.remove,
                     ['<c-r>'] = fb_actions.rename,
-                    ['<c-m>'] = fb_actions.move,
+                    ['<cr>'] = fb_actions.move,
                     ['<c-y>'] = fb_actions.copy,
                 },
             },
