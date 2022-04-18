@@ -1,11 +1,6 @@
 local aug = vim.api.nvim_create_augroup('augs', { clear = true })
 local au = vim.api.nvim_create_autocmd
 
-au('CursorHold,CursorHoldI', {
-    command = 'lua vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })',
-    group = aug,
-})
-
 au('BufEnter', {
     callback = function()
         vim.cmd 'setl fo-=cro'

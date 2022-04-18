@@ -28,7 +28,7 @@ dwm | dwmb | st | dmenu)
     tmux splitw -h -t "$session"':dock' \; last-pane -t "$session"':dock'
     ;;
 *)
-    tmux
+    tmux attach || tmux
 esac
 
 leave

@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "alwaysStrict": true,
+        "allowUnreachableCode": false,
+        "noImplicitAny": true,
+        "removeComments": true,
+        "strictNullChecks": true,
+
+        "esModuleInterop": true,
+        "moduleResolution": "node",
+        "target": "es6",
+
+        "allowJS": false,
+        "allowSyntheticDefaultImports": true,
+        "jsx": "react"
+    }
+}

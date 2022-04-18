@@ -25,7 +25,7 @@ M.on_attach = function(client, bufnr)
         bmap { 'n', '<leader><leader>H', mapstr 'ClangdSwitchSourceHeader' }
 
         client.resolved_capabilities.document_formatting = false
-    elseif client.name == 'sumneko_lua' then
+    elseif client.name == 'sumneko_lua' or client.name == 'jsonls' then
         client.resolved_capabilities.document_formatting = false
     end
 
@@ -43,8 +43,8 @@ M.on_attach = function(client, bufnr)
     bmap { 'n', '<leader><leader>s', mapstr 'lua vim.lsp.buf.signature_help()' }
 
     bmap { 'n', '<leader><leader>li', mapstr 'LspInfo' }
+    bmap { 'n', '<leader><leader>lI', mapstr 'NullLsInfo' }
     bmap { 'n', '<leader><leader>lr', mapstr 'LspRestart' }
-    bmap { 'n', '<leader><leader>li', mapstr 'NullLsInfo' }
 
     bmap { 'n', '<leader><leader>r', '<esc>' .. mapstr "lua require 'plug.refactor'.setup_win('rename')" }
     bmap { 'v', '<leader>e', '<esc>' .. mapstr "lua require 'plug.refactor'.setup_win('extract')" }
