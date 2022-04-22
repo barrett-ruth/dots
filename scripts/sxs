@@ -5,4 +5,4 @@ xset m 0 0
 xset r rate 300 50
 xrdb -merge "$XDG_CONFIG_HOME/X11/xresources"
 xmodmap "$XDG_CONFIG_HOME/X11/xmodmap"
-xcape -e 'Super_L=Control_L|t' &
+xcape -e 'Super_L=Control_L|t;Alt_R=Control_L|s' &

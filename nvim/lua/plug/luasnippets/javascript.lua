@@ -12,9 +12,9 @@ end
 
 local javascript = {
     s('afu', fmt('{} => {}', { i(1), i(2) })),
-    s('afun', fmt('({}) => {{\n\t{}\n}}', { i(1), i(2) })),
-    s('dea', fmt('{} [{}] = {}', { either(1, 'const', 'let'), i(2), i(3) })),
-    s('deo', fmt('{} {{ {} }} = {}', { either(1, 'const', 'let'), i(2), i(3) })),
+    s('afun', fmt('({}) => {}', { i(1), i(2) })),
+    s('dea', fmt('[{}] = {}', { i(1), i(2) })),
+    s('deo', fmt('{{ {} }} = {}', { i(1), i(2) })),
     s('fun', fmt('function {}({}) {{\n\t{}\n}}', { i(1), i(2), i(3) })),
     s('imp', fmt("import {} from '{}'", { i(1), i(2) })),
     s('pr', fmt('console.log({})', { i(1) })),

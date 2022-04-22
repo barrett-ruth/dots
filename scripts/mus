@@ -15,7 +15,7 @@ get_muss() {
     done
 }
 
-get_muss "$prefix"
+get_muss "$prefix" 0
 
 muss="${muss#??}"
 

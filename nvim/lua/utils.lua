@@ -51,9 +51,7 @@ function M.toggle_list(prefix)
         end
     end
 
-    local cmd = ''
-
-    cmd = (prefix == 'c' and QFL or LL) and 'ope' or 'cl'
+    local cmd = (prefix == 'c' and QFL or LL) and 'ope' or 'cl'
 
     vim.cmd(prefix .. cmd)
 end

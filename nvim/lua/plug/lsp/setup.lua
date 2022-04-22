@@ -17,13 +17,11 @@ M.on_attach = function(client, bufnr)
 
         ts_utils.setup_client(client)
         bmap { 'n', '<leader><leader>ti', mapstr 'TSLspImportAll' }
-        bmap { 'n', '<leader><leader>td', mapstr('telescope.builtin', 'lsp_type_definitions()') }
         bmap { 'n', '<leader><leader>to', mapstr 'TSLspOrganize' }
 
         client.resolved_capabilities.document_formatting = false
     elseif client.name == 'clangd' then
         bmap { 'n', '<leader><leader>H', mapstr 'ClangdSwitchSourceHeader' }
-
         client.resolved_capabilities.document_formatting = false
     elseif client.name == 'sumneko_lua' or client.name == 'jsonls' then
         client.resolved_capabilities.document_formatting = false

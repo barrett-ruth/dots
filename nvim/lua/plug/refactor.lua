@@ -39,7 +39,7 @@ function M.setup_win(method)
         relative = 'cursor',
         row = 1,
         col = 0,
-        width = 15,
+        width = 18,
         height = 1,
         style = 'minimal',
         border = 'single',
@@ -113,7 +113,7 @@ end
 
 function M.inline()
     vim.cmd [[
-        cal feedkeys("gv\"ry2WviW\"lydd^/\<c-r>r\<cr>cgn\<c-r>l\<esc>")
+        cal feedkeys("gv\"ry2Wvg_\"lydd^/\<c-r>r\<cr>cgn\<c-r>l\<esc>")
     ]]
 end
 

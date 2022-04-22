@@ -10,7 +10,7 @@
         "moduleResolution": "node",
         "target": "es6",
 
-        "allowJS": false,
+        "allowJs": false,
         "allowSyntheticDefaultImports": true,
         "jsx": "react"
     }

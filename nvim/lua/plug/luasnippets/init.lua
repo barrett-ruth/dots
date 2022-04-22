@@ -6,13 +6,7 @@ ls.config.set_config {
     delete_check_events = 'TextChanged,TextChangedI,InsertLeave',
     update_events = 'TextChanged,TextChangedI,InsertLeave',
     history = true,
-    ext_opts = {
-        [types.choiceNode] = {
-            active = {
-                virt_text = { { ' <- ', 'CursorLine' } },
-            },
-        },
-    },
+    ext_opts = { [types.choiceNode] = { active = { virt_text = { { ' <- ', 'Normal' } } } } },
 }
 
 local s = ls.s
@@ -23,36 +17,31 @@ local function snipopts(trig)
     return { trig = trig, wordTrig = false }
 end
 
-local inline = function(trig, lr, space, comma)
-    return s(snipopts(trig), {
-        t(lr[1] .. space),
-        i(1),
-        t(space .. lr[2] .. comma),
-    })
+local inline = function(lr)
+    return s(snipopts(lr[1]), { t(lr[1]), i(1), t(lr[2]) })
 end
 
-local newline = function(trig, lr, comma)
-    return s(snipopts(trig), {
-        t(lr[1]),
-        i(1),
-        t { '', '' },
-        t(lr[2] .. (comma or '')),
-    })
+local newline = function(lr)
+    return s(snipopts(lr[2]), { t(lr[1]), i(1), t { '', '' }, t(lr[2]) })
 end
 
 local acc = {}
 
-for _, v in ipairs { { '({', '})' }, { '{', '}' }, { '(', ')' }, { '[', ']' }, { '({', '})' } } do
-    table.insert(acc, inline(v[1] .. ' ', v, ' ', ''))
-    table.insert(acc, inline(v[1] .. ',', v, '', ','))
-    table.insert(acc, inline(v[1], v, '', ''))
-    table.insert(acc, newline(v[2], v))
-    table.insert(acc, newline(v[2] .. ',', v, ','))
+for _, v in ipairs { { '({', '})' }, { '[[', ']]' } } do
+    table.insert(acc, inline(v))
+    table.insert(acc, newline(v))
 end
+
+for _, v in ipairs { { '{', '}' }, { '(', ')' }, { '[', ']' } } do
+    table.insert(acc, inline(v))
+    table.insert(acc, inline({ v[1] .. ' ', ' ' .. v[2] }))
+    table.insert(acc, inline({ v[1] .. "'", "'" .. v[2] }))
+    table.insert(acc, newline(v))
+    table.insert(acc, newline({ v[1], v[2] .. ',' }))
+end
+
 for _, v in ipairs { { '"', '"' }, { "'", "'" }, { '<', '>' }, { '`', '`' } } do
-    table.insert(acc, inline(v[1], v, '', ''))
-    table.insert(acc, inline(v[1] .. ',', v, '', ','))
-    table.insert(acc, inline(v[1] .. ', ', v, '', ', '))
+    table.insert(acc, inline(v))
 end
 
 ls.add_snippets(nil, { all = acc })

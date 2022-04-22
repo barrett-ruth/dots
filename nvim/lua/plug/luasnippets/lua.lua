@@ -5,21 +5,29 @@ local i = ls.i
 local f = ls.f
 local s = ls.s
 
+local lastword = function(variable)
+    local parts = vim.split(variable[1][1], '.', true)
+    return parts[#parts] or ''
+end
+
 ls.add_snippets('lua', {
     s('pr', fmt('print({})', { i(1) })),
     s('[[', fmt('[[{}]]', { i(1) })),
-    s(']]', fmt('[[\n\t{}\n]]', { i(1) })),
     s('fun', fmt('function {}({})\n\t{}\nend', { i(1), i(2), i(3) })),
     s('if', fmt('if {} then\n\t{}\nend', { i(1), i(2) })),
     s('for', fmt('for {} in {}({}) do\n\t{}\nend', { i(1), i(2), i(3), i(4) })),
     s('lor', fmt("local {} = require '{}'", { i(1), i(2) })),
     s(
+        'le',
+        fmt('local {} = {}', {
+            f(lastword, { 1 }),
+            i(1),
+        })
+    ),
+    s(
         'lr',
         fmt("local {} = require '{}'", {
-            f(function(import)
-                local parts = vim.split(import[1][1], '.', true)
-                return parts[#parts] or ''
-            end, { 1 }),
+            f(lastword, { 1 }),
             i(1),
         })
     ),
