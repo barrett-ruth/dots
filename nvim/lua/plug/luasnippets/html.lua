@@ -12,7 +12,7 @@ local word = function(index)
 end
 
 local tags = {
-    s('</', fmt('<{} /> ', { i(1) })),
+    s('</', fmt('<{} />', { i(1) })),
     s('<>/', fmt('<{}>{}</{}>', { i(1), i(2), word(1) })),
     s('<>', fmt('<{}>\n\t{}\n</{}>', { i(1), i(2), word(1) })),
 }

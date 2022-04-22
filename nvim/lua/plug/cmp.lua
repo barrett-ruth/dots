@@ -47,9 +47,11 @@ cmp.setup {
     window = {
         completion = {
             border = 'single',
+            scrollbar = false,
         },
         documentation = {
             border = 'single',
+            scrollbar = false,
             max_width = 9999,
         },
     },

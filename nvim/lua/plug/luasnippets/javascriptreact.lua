@@ -26,8 +26,8 @@ local javascriptreact = {
     ),
 }
 
-ls.add_snippets('javascriptreact', javascript)
 ls.add_snippets('javascriptreact', javascriptreact)
+ls.add_snippets('javascriptreact', javascript)
 ls.add_snippets('javascriptreact', tags)
 
 return javascriptreact

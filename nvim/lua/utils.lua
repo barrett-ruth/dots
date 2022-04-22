@@ -19,15 +19,6 @@ function M.source()
     vim.cmd 'so %'
 end
 
-function M.bd()
-    require('bufdelete').bufdelete(0)
-
-    local bufnrs = vim.api.nvim_eval "len(getbufinfo({'buflisted':1}))"
-    if bufnrs == 1 then
-        print 'Last buffer.'
-    end
-end
-
 function M.sitter_reparse()
     package.loaded['plug/treesitter'] = nil
     require 'plug/treesitter'

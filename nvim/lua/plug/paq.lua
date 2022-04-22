@@ -5,7 +5,7 @@ require 'paq' {
     'jose-elias-alvarez/null-ls.nvim',
     'jose-elias-alvarez/nvim-lsp-ts-utils',
 
-    { 'hrsh7th/nvim-cmp', branch = 'dev' },
+    'hrsh7th/nvim-cmp',
     'hrsh7th/cmp-nvim-lua',
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
@@ -27,7 +27,6 @@ require 'paq' {
 
     'sainnhe/gruvbox-material',
 
-    'famiu/bufdelete.nvim',
     'lewis6991/impatient.nvim',
     'lewis6991/gitsigns.nvim',
     'numToStr/Comment.nvim',

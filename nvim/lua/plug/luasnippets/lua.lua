@@ -7,6 +7,7 @@ local s = ls.s
 
 local lastword = function(variable)
     local parts = vim.split(variable[1][1], '.', true)
+    print(vim.inspect(variable[1]))
     return parts[#parts] or ''
 end
 

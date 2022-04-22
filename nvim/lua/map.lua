@@ -5,7 +5,7 @@ local mapstr = utils.mapstr
 -- Buffers --
 map { 'n', '[b', mapstr 'bp' }
 map { 'n', ']b', mapstr 'bn' }
-map { 'n', '<leader>B', mapstr('utils', 'bd()') }
+map { 'n', '<leader>B', mapstr 'bd' }
 
 -- Builtins --
 map { 'n', ':', ';' }

@@ -4,7 +4,11 @@ local fts = {
     extract = {
         lua = { prefix = 'local ' },
         vim = { prefix = 'let ' },
+        javascript = { prefix = 'const ' },
+        javascriptreact = { prefix = 'const ' },
         sh = { eq = '' },
+        typescript = { prefix = 'const ' },
+        typescriptreact = { prefix = 'const ' },
     },
     print = {
         javascript = { l = 'console.log(', r = ')' },
