@@ -22,7 +22,7 @@ alias sctl='systemctl'
 alias tm='tmux'
 alias za='zathura --fork'
 alias zc='z -c'
-alias zz='cd --'
+alias zz='cd -'
 
 # Make
 alias mk='make'

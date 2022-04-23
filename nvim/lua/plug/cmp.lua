@@ -47,11 +47,10 @@ cmp.setup {
     window = {
         completion = {
             border = 'single',
-            scrollbar = false,
+            winhighlight = 'Normal:None,FloatBorder:None,CursorLine:Visual',
         },
         documentation = {
             border = 'single',
-            scrollbar = false,
             max_width = 9999,
         },
     },
@@ -68,8 +67,11 @@ cmp.setup {
         { name = 'path' },
     },
     mapping = {
-        ['<c-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-3), { 'i' }),
-        ['<c-f>'] = cmp.mapping(cmp.mapping.scroll_docs(3), { 'i' }),
+        ['<c-n>'] = mapping(mapping.select_next_item(), { 'i', 'c' }),
+        ['<c-p>'] = mapping(mapping.select_prev_item(), { 'i', 'c' }),
+        ['<c-e>'] = mapping.abort(),
+        ['<c-b>'] = mapping(mapping.scroll_docs(-3), { 'i', 'c' }),
+        ['<c-f>'] = mapping(mapping.scroll_docs(3), { 'i', 'c' }),
         ['<c-y>'] = mapping {
             i = function()
                 if cmp.visible() then
