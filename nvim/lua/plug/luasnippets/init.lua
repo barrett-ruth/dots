@@ -34,10 +34,11 @@ end
 
 for _, v in ipairs { { '{', '}' }, { '(', ')' }, { '[', ']' } } do
     table.insert(acc, inline(v))
-    table.insert(acc, inline({ v[1] .. ' ', ' ' .. v[2] }))
-    table.insert(acc, inline({ v[1] .. "'", "'" .. v[2] }))
+    table.insert(acc, inline { v[1] .. ' ', ' ' .. v[2] })
+    table.insert(acc, inline { v[1] .. "'", "'" .. v[2] })
+    table.insert(acc, inline { v[1] .. '"', '"' .. v[2] })
     table.insert(acc, newline(v))
-    table.insert(acc, newline({ v[1], v[2] .. ',' }))
+    table.insert(acc, newline { v[1], v[2] .. ',' })
 end
 
 for _, v in ipairs { { '"', '"' }, { "'", "'" }, { '<', '>' }, { '`', '`' } } do

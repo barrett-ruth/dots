@@ -15,7 +15,6 @@ map { 'v', ';', ':' }
 map { 'v', '$', 'g_' }
 vim.cmd "nn <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'"
 map { 'n', 'J', 'mzJ`z' }
-map { 'n', 'K', 'mzkJ`z' }
 map { 'v', 'J', ":m '>+1<cr>gv" }
 map { 'v', 'K', ":m '<-2<cr>gv" }
 map { 'n', 'x', '"_x' }
@@ -47,7 +46,7 @@ map { 'n', '<c-w>l', '<c-w>L' }
 -- Miscellaneous
 map { 'n', '<leader><cr>', mapstr('utils', 'source()') }
 map { 'n', '<leader>-', 'S<esc>' }
-map { 'n', '<leader>k', 'K' }
+map { 'n', '<leader>o', 'mm' .. mapstr '%bd|e#|bd#' .. '`mzz' }
 map { 'n', '<leader>r', mapstr('utils', 'save()') .. mapstr 'vs|te run %' }
 map { 'n', '<leader>S', mapstr 'vert sbp' }
 
@@ -83,7 +82,7 @@ map { 'n', '<down>', mapstr 'res +10' }
 map { 'n', '<up>', mapstr 'res -10' }
 map { 'n', '<right>', mapstr 'vert res +10' }
 
--- Saving/exiting --
+-- Saving/Exiting --
 map { 'n', '<leader>q', mapstr 'q' }
 map { 'n', '<leader>Q', mapstr 'q!' }
 map { 'n', '<leader>w', mapstr('utils', 'save()') }

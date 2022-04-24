@@ -67,10 +67,10 @@ function M.toggle_cmp()
 
     if CMP then
         cmp.complete()
-        print 'nvim-cmp enabled.'
+        print 'nvim-cmp enabled'
     else
         cmp.close()
-        print 'nvim-cmp disabled.'
+        print 'nvim-cmp disabled'
     end
 end
 
