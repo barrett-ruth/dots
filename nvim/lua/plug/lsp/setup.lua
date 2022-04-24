@@ -44,8 +44,8 @@ M.on_attach = function(client, bufnr)
     bmap { 'n', '<leader><leader>lI', mapstr 'NullLsInfo' }
     bmap { 'n', '<leader><leader>lr', mapstr 'LspRestart' }
 
-    bmap { 'n', '<leader><leader>r', '<esc>' .. mapstr "lua require 'plug.refactor'.setup_win('rename')" }
-    bmap { 'v', '<leader>e', '<esc>' .. mapstr "lua require 'plug.refactor'.setup_win('extract')" }
+    bmap { 'n', '<leader><leader>r', '<esc>' .. mapstr('plug.refactor', "setup_win('rename')") }
+    bmap { 'v', '<leader>e', '<esc>' .. mapstr('plug.refactor', "setup_win('extract')") }
     bmap { 'v', '<leader>i', '<esc>' .. mapstr('plug.refactor', 'inline()') }
     bmap { 'v', '<leader>p', '<esc>' .. mapstr('plug.refactor', 'print()') }
     bmap { 'v', '<leader>P', '<esc>' .. mapstr('plug.refactor', 'print(true)') }

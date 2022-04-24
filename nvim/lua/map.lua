@@ -44,10 +44,28 @@ map { 'n', '<c-w>k', '<c-w>K' }
 map { 'n', '<c-w>l', '<c-w>L' }
 
 -- Miscellaneous
-map { 'n', '<leader><cr>', mapstr('utils', 'source()') }
+map {
+    'n',
+    '<leader><cr>',
+    function()
+        local file = string.match(vim.fn.expand '%', 'lua/(.*).lua')
+
+        if vim.bo.ft == 'lua' then
+            package.loaded[file] = nil
+        end
+
+        vim.cmd 'so %'
+    end,
+}
 map { 'n', '<leader>-', 'S<esc>' }
 map { 'n', '<leader>o', 'mm' .. mapstr '%bd|e#|bd#' .. '`mzz' }
-map { 'n', '<leader>r', mapstr('utils', 'save()') .. mapstr 'vs|te run %' }
+map {
+    'n',
+    '<leader>r',
+    function()
+        vim.cmd 'vs|te run%'
+    end,
+}
 map { 'n', '<leader>S', mapstr 'vert sbp' }
 
 -- Location List --
@@ -85,7 +103,14 @@ map { 'n', '<right>', mapstr 'vert res +10' }
 -- Saving/Exiting --
 map { 'n', '<leader>q', mapstr 'q' }
 map { 'n', '<leader>Q', mapstr 'q!' }
-map { 'n', '<leader>w', mapstr('utils', 'save()') }
+map {
+    'n',
+    '<leader>w',
+    function()
+        vim.cmd 'w'
+        vim.lsp.buf.formatting()
+    end,
+}
 map { 'n', '<leader>z', 'ZZ' }
 map { 'n', '<leader>Z', mapstr 'xa' }
 

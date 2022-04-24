@@ -8,7 +8,7 @@ require('telescope').setup {
         borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
         path_display = { 'shorten' },
         layout_config = {
-            preview_width = 0.5,
+            preview_width = 0.45,
         },
         mappings = {
             i = {
@@ -66,7 +66,17 @@ map {
     '<c-e>',
     mapstr('telescope.builtin', "find_files({ cwd = '~/.config'})"),
 }
-map { 'n', '<c-f>', mapstr('utils', 'files()') }
+map {
+    'n',
+    '<c-f>',
+    function()
+        local ok = pcall(require('telescope.builtin').git_files)
+
+        if not ok then
+            require('telescope.builtin').find_files()
+        end
+    end,
+}
 map { 'n', '<c-g>', mapstr('telescope.builtin', 'live_grep()') }
 map {
     'n',

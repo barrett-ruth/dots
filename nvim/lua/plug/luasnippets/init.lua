@@ -50,11 +50,55 @@ require('luasnip.loaders.from_lua').lazy_load { paths = '~/.config/nvim/lua/plug
 
 local utils = require 'utils'
 local map = utils.map
-local mapstr = utils.mapstr
 
-map { { 'i', 's' }, '<c-h>', mapstr "lua ls = require 'luasnip'; if ls.jumpable(-1) then ls.jump(-1) end" }
-map { { 'i', 's' }, '<c-l>', mapstr "lua ls = require 'luasnip'; if ls.jumpable(1) then ls.jump(1) end" }
+map {
+    { 'i', 's' },
+    '<c-h>',
+    function()
+        ls = require 'luasnip'
+        if ls.jumpable(-1) then
+            ls.jump(-1)
+        end
+    end,
+}
+map {
+    { 'i', 's' },
+    '<c-l>',
+    function()
+        ls = require 'luasnip'
+        if ls.jumpable(1) then
+            ls.jump(1)
+        end
+    end,
+}
 
-map { 'i', '<c-s>', mapstr "lua ls = require 'luasnip'; if ls.expandable() then ls.expand() end" }
-map { 'i', '<c-j>', mapstr "lua ls = require 'luasnip'; if ls.choice_active() then ls.change_choice(-1) end" }
-map { 'i', '<c-k>', mapstr "lua ls = require 'luasnip'; if ls.choice_active() then ls.change_choice(1) end" }
+map {
+    'i',
+    '<c-s>',
+    function()
+        ls = require 'luasnip'
+        if ls.expandable() then
+            ls.expand()
+        end
+    end,
+}
+map {
+    'i',
+    '<c-j>',
+    function()
+        ls = require 'luasnip'
+        if ls.choice_active() then
+            ls.change_choice(-1)
+        end
+    end,
+}
+map {
+    'i',
+    '<c-k>',
+    function()
+        ls = require 'luasnip'
+        if ls.choice_active() then
+            ls.change_choice(1)
+        end
+    end,
+}

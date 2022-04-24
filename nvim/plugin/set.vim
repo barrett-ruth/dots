@@ -53,4 +53,13 @@ se wildcharm=<c-n>
 
 se nowrap
 
-lua require 'utils'.set_wig()
+lua << EOF
+    local ignore = os.getenv 'XDG_CONFIG_HOME' .. '/git/ignore'
+    local wig = {}
+
+    for line in io.lines(ignore) do
+        table.insert(wig, line)
+    end
+
+    vim.api.nvim_set_var('wildignore', wig)
+EOF
