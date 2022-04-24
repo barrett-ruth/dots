@@ -1,17 +1,25 @@
 {
     "compilerOptions": {
-        "alwaysStrict": true,
         "allowUnreachableCode": false,
+        "exactOptionalPropertyTypes": true,
+        "forceConsistentCasingInFileNames": true,
         "noImplicitAny": true,
         "removeComments": true,
-        "strictNullChecks": true,
+        "skipLibCheck": true,
+        "strict": true,
 
         "esModuleInterop": true,
-        "moduleResolution": "node",
+        "moduleResolution": "node12",
+        "module": "es6",
         "target": "es6",
+        "lib": ["es6", "dom"],
 
-        "allowJs": false,
         "allowSyntheticDefaultImports": true,
-        "jsx": "react"
+        "jsx": "react",
+
+        "rootDir": "src",
+        "outDir": "dist",
+        "include": ["src/**/*.{ts,tsx,d.ts}"],
+        "exclude": ["node_modules"]
     }
 }
