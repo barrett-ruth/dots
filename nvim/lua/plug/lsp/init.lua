@@ -8,9 +8,11 @@ local servers = {
     jsonls = {},
     pyright = {},
     sumneko_lua = {
-        sourceName = 'hi',
         settings = {
             Lua = {
+                runtime = {
+                    version = 'LuaJIT'
+                },
                 completion = { keywordSnippet = 'Disable' },
                 diagnostics = { globals = { 'vim' } },
             },

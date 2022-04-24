@@ -22,7 +22,7 @@ local inline = function(lr)
 end
 
 local newline = function(lr)
-    return s(snipopts(lr[2]), { t(lr[1]), i(1), t { '', '' }, t(lr[2]) })
+    return s(snipopts(lr[2]), { t(lr[1]), t { '', '\t' }, i(1), t { '', '' }, t(lr[2]) })
 end
 
 local acc = {}
@@ -36,12 +36,12 @@ for _, v in ipairs { { '{', '}' }, { '(', ')' }, { '[', ']' } } do
     table.insert(acc, inline(v))
     table.insert(acc, inline { v[1] .. ' ', ' ' .. v[2] })
     table.insert(acc, inline { v[1] .. "'", "'" .. v[2] })
-    table.insert(acc, inline { v[1] .. '"', '"' .. v[2] })
     table.insert(acc, newline(v))
     table.insert(acc, newline { v[1], v[2] .. ',' })
 end
 
 for _, v in ipairs { { '"', '"' }, { "'", "'" }, { '<', '>' }, { '`', '`' } } do
+    table.insert(acc, inline { "'" .. v[1], v[2] .. "'" })
     table.insert(acc, inline(v))
 end
 

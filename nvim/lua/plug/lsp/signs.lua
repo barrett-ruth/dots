@@ -24,7 +24,7 @@ vim.diagnostic.config {
         prefix = '',
         border = 'single',
         format = function(diagnostic)
-            local code = diagnostic.code or ''
+            local code = diagnostic.code or (diagnostic.user_data.code or '')
             local message = diagnostic.message
             local source = sources[diagnostic.source] or diagnostic.source
 

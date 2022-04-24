@@ -14,21 +14,25 @@ case "$sessions" in
     ;;
 esac
 
+# Add tmux setups for individual projects
 case "$session" in
-dwm | dwmb | st | dmenu)
+nv)
+    cd "$XDG_CONFIG_HOME/nvim" || exit
+
     tmux new -ds "$session"
     tmux renamew -t "$session"':1' 'code'
+    ;;
+*)
+    cd "$HOME/dev" || exit
 
-    cd "$HOME/dev/sl/$session" || exit
+    tmux new -ds "$session"
+    tmux renamew -t "$session"':1' 'code'
 
     for e in run dock aux; do
         tmux neww -t "$session:" -n "$e"
     done
 
     tmux splitw -h -t "$session"':dock' \; last-pane -t "$session"':dock'
-    ;;
-*)
-    [ "$session" ] && tmux new -s "$session" || tmux attach
     ;;
 esac
 

@@ -15,7 +15,6 @@ require 'paq' {
 
     'nvim-lua/plenary.nvim',
     'nvim-telescope/telescope.nvim',
-    'nvim-telescope/telescope-file-browser.nvim',
     'nvim-telescope/telescope-fzy-native.nvim',
     {
         'nvim-treesitter/nvim-treesitter',
@@ -27,6 +26,7 @@ require 'paq' {
 
     'sainnhe/gruvbox-material',
 
+    'kyazdani42/nvim-tree.lua',
     'lewis6991/impatient.nvim',
     'lewis6991/gitsigns.nvim',
     'numToStr/Comment.nvim',

@@ -28,8 +28,8 @@ map { 't', '<esc>', '<c-\\><c-n>' }
 
 -- Centering --
 map { 'n', 'G', 'Gzz' }
-map { 'n', 'n', 'nzzzv' }
-map { 'n', 'N', 'Nzzzv' }
+map { 'n', 'n', 'nzz' }
+map { 'n', 'N', 'Nzz' }
 map { 'n', '<c-d>', '<c-d>zz' }
 map { 'n', '<c-u>', '<c-u>zz' }
 
@@ -66,7 +66,7 @@ map {
         vim.cmd 'vs|te run%'
     end,
 }
-map { 'n', '<leader>S', mapstr 'vert sbp' }
+map { 'n', '<leader>S', mapstr 'vert sbl' }
 
 -- Location List --
 map { 'n', ']l', mapstr 'bd' .. mapstr 'lne' .. 'zz' }

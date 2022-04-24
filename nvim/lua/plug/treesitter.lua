@@ -48,7 +48,6 @@ treesitter_configs.setup {
         'yaml',
     },
     sync_install = false,
-    ignore_install = {},
     indent = {
         enable = false,
     },

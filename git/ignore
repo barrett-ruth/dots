@@ -1,8 +1,8 @@
-undo/
-__pycache__/
-build/
-node_modules/
-venv/
-cache/
-.mypy_cache/
+undo
+__pycache__
+build
+node_modules
+venv
+cache
+.mypy_cache
 *.exe

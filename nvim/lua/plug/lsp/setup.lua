@@ -22,7 +22,6 @@ M.on_attach = function(client, bufnr)
         client.resolved_capabilities.document_formatting = false
     elseif client.name == 'clangd' then
         bmap { 'n', '<leader><leader>H', mapstr 'ClangdSwitchSourceHeader' }
-        client.resolved_capabilities.document_formatting = false
     elseif client.name == 'sumneko_lua' or client.name == 'jsonls' then
         client.resolved_capabilities.document_formatting = false
     end

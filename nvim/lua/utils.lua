@@ -6,17 +6,9 @@ end
 
 function M.toggle_list(prefix)
     if prefix == 'c' then
-        if next(vim.fn.getqflist()) == nil then
-            QFL = false
-        else
-            QFL = not QFL
-        end
+        QFL = (next(vim.fn.getqflist()) == nil) and false or not QFL
     else
-        if next(vim.fn.getloclist(0)) == nil then
-            LL = false
-        else
-            LL = not LL
-        end
+        LL = (next(vim.fn.getloclist(0)) == nil) and false or not LL
     end
 
     local cmd = (prefix == 'c' and QFL or LL) and 'ope' or 'cl'
