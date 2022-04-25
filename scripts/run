@@ -22,11 +22,14 @@ py)
     [ "$VIRTUAL_ENV" ] && py="$VIRTUAL_ENV/bin/python" || py=python
     cmd="$(which $py) $args$file"
     ;;
-js)
+js | jsx)
     cmd="node $file"
     ;;
-ts)
+ts | tsx)
     cmd="ts-node $file"
+    ;;
+lua)
+    cmd="luajit $file"
     ;;
 *dwmb*)
     cmd="killall dwmb; $mkcic; dwmb &"
@@ -35,7 +38,7 @@ ts)
     cmd="$mkcic"
     ;;
 sh)
-    test -x "$file" && cmd="./" || cmd="sh "
+    test -x "$file" && cmd='./' || cmd='sh '
     cmd="$cmd$file"
     ;;
 *)

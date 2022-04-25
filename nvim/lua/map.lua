@@ -6,9 +6,9 @@ local mapstr = utils.mapstr
 map { 'n', '[b', mapstr 'bp' }
 map { 'n', ']b', mapstr 'bn' }
 map { 'n', '<leader>o', 'mm' .. mapstr '%bd|e#|bd#' .. '`mzz' }
-map { 'n', '<leader>B', mapstr 'bd' }
+map { 'n', '<leader>B', mapstr('bufdelete', 'bufdelete(0)') }
 map { 'n', '<leader>S', mapstr 'vert sbl' }
-map { 'n', '<leader>W', mapstr 'bw' }
+map { 'n', '<leader>W', mapstr('bufdelete', 'bufwipeout(0)') }
 
 -- Builtins --
 map { 'n', ':', ';' }
@@ -64,7 +64,7 @@ map {
     'n',
     '<leader>r',
     function()
-        vim.cmd 'vs|te run%'
+        vim.cmd 'vs|te run %'
     end,
 }
 

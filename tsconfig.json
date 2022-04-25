@@ -13,10 +13,10 @@
         "lib": ["es6", "dom"],
         "module": "es6",
         "target": "es6",
-        "moduleResolution": "node12",
+        "moduleResolution": "node",
 
         "rootDir": "src",
-        "outDir": "dist",
-        "include": ["src/**/*.{ts,tsx,d.ts}"]
-    }
+        "outDir": "dist"
+    },
+    "include": ["src/**/*.ts","src/**/*.tsx","src/**/*.d.ts"]
 }
