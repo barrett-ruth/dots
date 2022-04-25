@@ -4,6 +4,21 @@ local shrink = function()
     return require('plenary.path'):new(vim.fn.expand '%:~'):shorten()
 end
 
+local lspinfo = function()
+    local statusline = require('nvim-treesitter').statusline()
+
+    local text_len = #statusline
+    local text_limit = 45
+    if text_len > text_limit then
+        statusline = statusline:sub(0, text_limit) .. ' ...'
+    end
+
+    return statusline
+end
+local lspname = function()
+    return vim.lsp.buf_get_clients(0)[1].name or ''
+end
+
 require('lualine').setup {
     options = {
         theme = theme,
@@ -37,8 +52,8 @@ require('lualine').setup {
                 },
             },
         },
-        lualine_c = { shrink, { 'aerial' } },
-        lualine_x = { 'filetype' },
+        lualine_c = { shrink, lspinfo },
+        lualine_x = { lspname, 'filetype' },
         lualine_y = { 'filesize', '%l/%L' },
         lualine_z = { 'encoding', 'bo:ff' },
     },

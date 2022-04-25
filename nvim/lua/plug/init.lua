@@ -1,6 +1,5 @@
 local files = {
     'paq',
-    'aerial',
     'comment',
     'luasnippets',
     'cmp',

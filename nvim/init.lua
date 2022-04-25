@@ -9,7 +9,3 @@ require 'aug'
 require 'let'
 require 'map'
 require 'plug'
-
--- Available leader mappings:
--- ejmnux
--- ADEGHIJKMNORIVWX

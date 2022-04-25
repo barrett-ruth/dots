@@ -5,8 +5,10 @@ local mapstr = utils.mapstr
 -- Buffers --
 map { 'n', '[b', mapstr 'bp' }
 map { 'n', ']b', mapstr 'bn' }
-map { 'n', '\\', mapstr "lua require('bufdelete').bufdelete(0)" }
-map { 'n', '|', "lua require('bufdelete').bufwipeout(0)" }
+map { 'n', '<leader>o', 'mm' .. mapstr '%bd|e#|bd#' .. '`mzz' }
+map { 'n', '<leader>B', mapstr 'bd' }
+map { 'n', '<leader>S', mapstr 'vert sbl' }
+map { 'n', '<leader>W', mapstr 'bw' }
 
 -- Builtins --
 map { 'n', ':', ';' }
@@ -58,7 +60,6 @@ map {
     end,
 }
 map { 'n', '<leader>-', 'S<esc>' }
-map { 'n', '<leader>o', 'mm' .. mapstr '%bd|e#|bd#' .. '`mzz' }
 map {
     'n',
     '<leader>r',
@@ -66,7 +67,6 @@ map {
         vim.cmd 'vs|te run%'
     end,
 }
-map { 'n', '<leader>S', mapstr 'vert sbl' }
 
 -- Location List --
 map { 'n', ']l', mapstr 'bd' .. mapstr 'lne' .. 'zz' }

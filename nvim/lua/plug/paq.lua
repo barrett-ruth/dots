@@ -26,14 +26,12 @@ require 'paq' {
 
     'sainnhe/gruvbox-material',
 
-    'famiu/bufdelete.nvim',
     'kyazdani42/nvim-tree.lua',
     'lewis6991/impatient.nvim',
     'lewis6991/gitsigns.nvim',
     'numToStr/Comment.nvim',
     'nvim-lualine/lualine.nvim',
     'rmagatti/auto-session',
-    'stevearc/aerial.nvim',
 
     'ThePrimeagen/git-worktree.nvim',
     'ThePrimeagen/harpoon',

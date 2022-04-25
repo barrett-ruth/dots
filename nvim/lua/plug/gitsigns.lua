@@ -1,4 +1,11 @@
 require('gitsigns').setup {
+    signs = {
+        add = { text = '│' },
+        change = { text = '│' },
+        delete = { text = '_' },
+        topdelete = { text = '‾' },
+        changedelete = { text = '~' },
+    },
     update_debounce = 0,
     current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d>',
     current_line_blame_opts = {
