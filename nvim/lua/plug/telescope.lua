@@ -64,10 +64,9 @@ map {
 }
 map { 'n', '<c-g>', mapstr('telescope.builtin', 'live_grep()') }
 map { 'n', '<c-_>', mapstr('telescope.builtin', 'current_buffer_fuzzy_find()') }
+map { 'n', '<leader>b', mapstr('telescope.builtin', 'buffers()') }
 map { 'n', '<leader>tf', mapstr('telescope.builtin', "find_files({ cwd = vim.fn.expand '%:p:h' })") }
 map { 'n', '<leader>tg', mapstr('telescope.builtin', "live_grep({ cwd = vim.fn.expand '%:p:h' })") }
 map { 'n', '<leader>th', mapstr('telescope.builtin', 'help_tags()') }
 map { 'n', '<leader>tr', mapstr('telescope.builtin', 'resume()') }
 map { 'n', '<leader>tt', mapstr('telescope.builtin', 'builtin()') }
-
-map { 'n', '<leader>b', mapstr('telescope.builtin', 'buffers()') }

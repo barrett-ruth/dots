@@ -5,7 +5,8 @@ local mapstr = utils.mapstr
 -- Buffers --
 map { 'n', '[b', mapstr 'bp' }
 map { 'n', ']b', mapstr 'bn' }
-map { 'n', '<leader>B', mapstr 'bd' }
+map { 'n', '\\', mapstr "lua require('bufdelete').bufdelete(0)" }
+map { 'n', '|', "lua require('bufdelete').bufwipeout(0)" }
 
 -- Builtins --
 map { 'n', ':', ';' }
@@ -21,7 +22,6 @@ map { 'n', 'x', '"_x' }
 map { 'n', 'Q', 'q:' }
 map { 'n', 'zH', '15zH' }
 map { 'n', 'zL', '15zL' }
-map { 'n', '<bs>', '<c-^>' }
 map { 'n', '<c-i>', '<c-i>zz' }
 map { 'n', '<c-o>', '<c-o>zz' }
 map { 't', '<esc>', '<c-\\><c-n>' }
@@ -120,4 +120,3 @@ map { 'n', ']e', '@="m`:m+\\eg``"<cr>' }
 
 -- Toggling --
 map { 'n', '<leader>iw', mapstr 'setl invwrap' }
-map { 'n', '<leader>is', mapstr 'setl invspell' }

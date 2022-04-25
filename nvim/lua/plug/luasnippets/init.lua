@@ -89,6 +89,8 @@ map {
         ls = require 'luasnip'
         if ls.choice_active() then
             ls.change_choice(-1)
+        else
+            vim.cmd 'norm! j'
         end
     end,
 }
@@ -99,6 +101,8 @@ map {
         ls = require 'luasnip'
         if ls.choice_active() then
             ls.change_choice(1)
+        else
+            vim.cmd 'norm! k'
         end
     end,
 }

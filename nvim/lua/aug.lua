@@ -1,6 +1,11 @@
 local aug = vim.api.nvim_create_augroup('augs', { clear = true })
 local au = vim.api.nvim_create_autocmd
 
+au('VimLeave', {
+    command = 'NvimTreeClose',
+    group = aug,
+})
+
 au('BufEnter', {
     callback = function()
         vim.cmd 'setl fo-=cro'
