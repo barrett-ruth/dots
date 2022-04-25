@@ -22,6 +22,7 @@ require('nvim-tree').setup {
         },
     },
     view = {
+        hide_root_folder = true,
         mappings = {
             custom_only = true,
             list = {
@@ -44,15 +45,6 @@ require('nvim-tree').setup {
         number = true,
         relativenumber = true,
     },
-    diagnostics = {
-        enable = true,
-        icons = {
-            hint = '*',
-            info = ':',
-            warning = '-',
-            error = '>',
-        },
-    },
     renderer = {
         indent_markers = {
             enable = true,
@@ -70,4 +62,4 @@ local map = utils.map
 local mapstr = utils.mapstr
 
 map { 'n', '<c-b>', mapstr 'NvimTreeCollapse' .. mapstr 'NvimTreeToggle' }
-map { 'n', '<leader>tb', mapstr 'NvimTreeCollapse' .. mapstr 'NvimTreeFindFileToggle' }
+map { 'n', '<leader>tb', mapstr 'NvimTreeFindFileToggle' }
