@@ -11,14 +11,16 @@ local servers = {
         settings = {
             Lua = {
                 runtime = {
-                    version = 'LuaJIT'
+                    version = 'LuaJIT',
                 },
                 completion = { keywordSnippet = 'Disable' },
                 diagnostics = { globals = { 'vim' } },
             },
         },
     },
-    tsserver = {},
+    tsserver = {
+        init_options = require('nvim-lsp-ts-utils').init_options,
+    },
     vimls = {},
 }
 

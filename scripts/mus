@@ -1,13 +1,13 @@
 #!/bin/sh
 
 leave() {
+    [ "$(ps aux | rg mpv | wc -l)" -gt 1 ] && killall mpv
     mpv "$1" &
     exit 0
 }
 
 prefix="$XDG_MUSIC_DIR"
 
-[ "$(ps aux | rg mpv | wc -l)" -gt 1 ] && killall mpv
 [ "$1" ] && leave "$(fd -e mp3 -1 -t f -a "$1" -- . "$prefix")"
 
 get_muss() {
