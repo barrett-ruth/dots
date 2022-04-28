@@ -12,10 +12,9 @@ end
 
 ls.add_snippets('lua', {
     s('pr', fmt('print({})', { i(1) })),
-    s('fu', fmt('function {}({})\n\t{}\nend', { i(1), i(2), i(3) })),
+    s('fun', fmt('function {}({})\n\t{}\nend', { i(1), i(2), i(3) })),
     s('if', fmt('if {} then\n\t{}\nend', { i(1), i(2) })),
     s('for', fmt('for {} in {}({}) do\n\t{}\nend', { i(1), i(2), i(3), i(4) })),
-    s('lor', fmt("local {} = require '{}'", { i(1), i(2) })),
     s(
         'le',
         fmt('local {} = {}', {

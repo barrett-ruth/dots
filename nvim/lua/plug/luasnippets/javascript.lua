@@ -14,7 +14,7 @@ local javascript = {
     s('af', fmt('({}) => {}', { i(1), i(2) })),
     s('da', fmt('[{}] = {}', { i(1), i(2) })),
     s('do', fmt('{{ {} }} = {}', { i(1), i(2) })),
-    s('fu', fmt('function {}({}) {{\n\t{}\n}}', { i(1), i(2), i(3) })),
+    s('fun', fmt('function {}({}) {{\n\t{}\n}}', { i(1), i(2), i(3) })),
     s('im', fmt("import {} from '{}'", { i(1), i(2) })),
     s('pr', fmt('console.log({})', { i(1) })),
     s('foi', fmt('for ({} {} in {}) {{\n\t{}\n}}', { either(1, 'const', 'let'), i(2), i(3), i(4) })),

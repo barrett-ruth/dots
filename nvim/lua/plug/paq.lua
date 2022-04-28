@@ -32,7 +32,6 @@ require 'paq' {
     'lewis6991/gitsigns.nvim',
     'numToStr/Comment.nvim',
     'nvim-lualine/lualine.nvim',
-    'rmagatti/auto-session',
 
     'ThePrimeagen/git-worktree.nvim',
     'ThePrimeagen/harpoon',

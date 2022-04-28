@@ -10,6 +10,10 @@ local fts = {
         typescript = { prefix = 'const ' },
         typescriptreact = { prefix = 'const ' },
     },
+    inline = {
+        c = 'h',
+        cpp = 'h',
+    },
     print = {
         javascript = { l = 'console.log(', r = ')' },
         javascriptreact = { l = 'console.log(', r = ')' },
@@ -85,16 +89,16 @@ function M.extract(win)
     local eq = fts.extract[vim.bo.ft].eq
     local extracted = string.sub(name, 1, pos or #name)
 
-    vim.cmd(string.format(
-        [[
-            cal feedkeys("mrgvc%s\<esc>O%s\<c-a>%s=%s\<c-r>\"\<esc>\<cmd>m%s\<cr>`r")
-        ]],
-        extracted,
-        prefix or '',
-        eq or ' ',
-        eq or ' ',
-        num
-    ))
+    vim.cmd(
+        string.format(
+            [[cal feedkeys("mrgvc%s\<esc>O%s\<c-a>%s=%s\<c-r>\"\<esc>\<cmd>m%s\<cr>`r")]],
+            extracted,
+            prefix or '',
+            eq or ' ',
+            eq or ' ',
+            num
+        )
+    )
     vim.cmd 'stopinsert'
 end
 
@@ -105,20 +109,16 @@ function M.print(before)
         return
     end
 
-    vim.cmd(string.format(
-        [[
-            cal feedkeys("mrgv\"ry%s%s\<c-r>\"%s\<esc>`r")
-        ]],
-        before and 'O' or 'o',
-        ft.l,
-        ft.r
-    ))
+    vim.cmd(string.format([[cal feedkeys("mrgv\"ry%s%s\<c-r>\"%s\<esc>`r")]], before and 'O' or 'o', ft.l, ft.r))
 end
 
 function M.inline()
-    vim.cmd [[
-        cal feedkeys("gv\"ry2Wvg_\"lydd^/\<c-r>r\<cr>cgn\<c-r>l\<esc>")
-    ]]
+    vim.cmd(
+        string.format(
+            [[cal feedkeys("gv\"ry2Wvg_%s\"lydd^/\<c-r>r\<cr>cgn\<c-r>l\<esc>")]],
+            fts.inline[vim.bo.ft] or ''
+        )
+    )
 end
 
 return M

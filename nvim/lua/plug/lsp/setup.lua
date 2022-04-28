@@ -44,10 +44,10 @@ M.on_attach = function(client, _)
     bmap { 'n', '<c-s>lr', mapstr 'LspRestart' }
 
     bmap { 'n', '<c-s>r', '<esc>' .. mapstr('plug.refactor', "setup_win('rename')") }
-    bmap { 'v', 'e', '<esc>' .. mapstr('plug.refactor', "setup_win('extract')") }
-    bmap { 'v', 'i', '<esc>' .. mapstr('plug.refactor', 'inline()') }
-    bmap { 'v', 'p', '<esc>' .. mapstr('plug.refactor', 'print()') }
-    bmap { 'v', 'P', '<esc>' .. mapstr('plug.refactor', 'print(true)') }
+    bmap { 'x', '<c-s>e', '<esc>' .. mapstr('plug.refactor', "setup_win('extract')") }
+    bmap { 'x', '<c-s>i', '<esc>' .. mapstr('plug.refactor', 'inline()') }
+    bmap { 'x', '<c-s>p', '<esc>' .. mapstr('plug.refactor', 'print()') }
+    bmap { 'x', '<c-s>P', '<esc>' .. mapstr('plug.refactor', 'print(true)') }
 end
 
 local lspconfig = require 'lspconfig'

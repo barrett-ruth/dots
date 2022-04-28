@@ -8,7 +8,6 @@ local files = {
     'harpoon',
     'lualine',
     'telescope',
-    'session',
     'treesitter',
     'lsp',
 }

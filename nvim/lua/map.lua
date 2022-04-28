@@ -6,20 +6,20 @@ local mapstr = utils.mapstr
 map { 'n', '[b', mapstr 'bp' }
 map { 'n', ']b', mapstr 'bn' }
 map { 'n', '<leader>o', 'mm' .. mapstr '%bd|e#|bd#' .. '`mzz' }
-map { 'n', '<leader>B', mapstr('bufdelete', 'bufdelete(0)') }
+map { 'n', '<leader>B', mapstr('bufdelete', 'bufdelete(0)') .. mapstr 'bp' }
 map { 'n', '<leader>S', mapstr 'vert sbl' }
-map { 'n', '<leader>W', mapstr('bufdelete', 'bufwipeout(0)') }
+map { 'n', '<leader>W', mapstr('bufdelete', 'bufwipeout(0)') .. mapstr 'bp' }
 
 -- Builtins --
 map { 'n', ':', ';' }
 map { 'n', ';', ':' }
-map { 'v', ':', ';' }
-map { 'v', ';', ':' }
-map { 'v', '$', 'g_' }
+map { 'x', ':', ';' }
+map { 'x', ';', ':' }
+map { 'x', '$', 'g_' }
 vim.cmd "nn <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'"
 map { 'n', 'J', 'mzJ`z' }
-map { 'v', 'J', ":m '>+1<cr>gv" }
-map { 'v', 'K', ":m '<-2<cr>gv" }
+map { 'x', 'J', ":m '>+1<cr>gv" }
+map { 'x', 'K', ":m '<-2<cr>gv" }
 map { 'n', 'x', '"_x' }
 map { 'n', 'Q', 'q:' }
 map { 'n', 'zH', '15zH' }

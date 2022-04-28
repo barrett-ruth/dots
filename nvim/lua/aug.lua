@@ -35,6 +35,9 @@ au('Filetype', {
         local mapstr = utils.mapstr
 
         utils.bmap { 'n', '<c-v>', '<cr>' .. mapstr 'bp' .. mapstr 'vert sbn' }
+        utils.bmap { 'n', 'q', mapstr 'q' }
+
+        vim.cmd 'setl stl='
     end,
     group = aug,
 })

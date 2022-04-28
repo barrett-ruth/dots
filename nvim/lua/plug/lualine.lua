@@ -8,7 +8,7 @@ local lspinfo = function()
     local statusline = require('nvim-treesitter').statusline()
 
     local text_len = #statusline
-    local text_limit = 45
+    local text_limit = 40
     if text_len > text_limit then
         statusline = statusline:sub(0, text_limit) .. ' ...'
     end
