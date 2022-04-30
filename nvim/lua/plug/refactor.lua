@@ -59,15 +59,13 @@ function M.setup_win(method)
     end
 
     vim.api.nvim_buf_set_lines(buf, 0, -1, false, { cword })
-    vim.api.nvim_buf_set_keymap(buf, 'i', '<c-c>', '<cmd>q<cr>', { silent = true })
-    vim.api.nvim_buf_set_keymap(buf, 'n', 'q', '<cmd>q<cr>', { silent = true })
-    print '<cmd>lua require "plug.refactor".%s(%d)<cr>'
-    vim.api.nvim_buf_set_keymap(
-        buf,
-        'i',
+    vim.keymap.set('i', '<c-c>', '<cmd>q<cr>', { silent = true, buffer = buf })
+    vim.keymap.set('n', 'q', '<cmd>q<cr>', { silent = true, buffer = buf })
+    vim.keymap.set(
+        { 'n', 'i' },
         '<cr>',
         string.format('<cmd>lua require "plug.refactor".%s(%d)<cr>', method, win),
-        { silent = true }
+        { silent = true, buffer = buf }
     )
 end
 
@@ -76,7 +74,7 @@ function M.rename(win)
     teardown_win(win)
 
     vim.lsp.buf.rename(name)
-    vim.cmd 'stopinsert | norm! l'
+    vim.cmd 'stopi | norm! l'
 end
 
 function M.extract(win)

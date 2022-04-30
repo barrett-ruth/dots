@@ -1,9 +1,10 @@
 local gitignore = {}
 for _, v in ipairs(vim.g.wildignore) do
-    table.insert(gitignore, '^' .. v .. '$')
+    table.insert(gitignore, '^' .. v:sub(1, #v - 1) .. '$')
 end
 
 vim.g.nvim_tree_add_trailing = 1
+vim.g.nvim_tree_respect_buf_cwd = 1
 vim.g.nvim_tree_show_icons = {
     git = 0,
     folders = 0,
@@ -32,10 +33,10 @@ require('nvim-tree').setup {
                 { key = 'c', action = 'close_node' },
                 { key = 'd', action = 'remove' },
                 { key = 'g', action = 'cd' },
+                { key = 'm', action = 'rename' },
                 { key = 'n', action = 'next_sibling' },
                 { key = 'p', action = 'prev_sibling' },
                 { key = 'q', action = 'close' },
-                { key = 'r', action = 'rename' },
                 { key = 'u', action = 'parent_node' },
                 { key = '<cr>', action = 'edit' },
                 { key = '<c-r>', action = 'full_rename' },
@@ -49,11 +50,6 @@ require('nvim-tree').setup {
     renderer = {
         indent_markers = {
             enable = true,
-            icons = {
-                corner = '└ ',
-                edge = '│ ',
-                none = '  ',
-            },
         },
     },
 }
@@ -62,5 +58,18 @@ local utils = require 'utils'
 local map = utils.map
 local mapstr = utils.mapstr
 
-map { 'n', '<c-b>', mapstr 'NvimTreeCollapse' .. mapstr 'NvimTreeToggle' }
-map { 'n', '<leader>tb', mapstr 'NvimTreeFindFileToggle' }
+map { 'n', '<c-n>', mapstr 'NvimTreeCollapse' .. mapstr 'NvimTreeToggle' }
+map { 'n', '<leader>n', mapstr 'NvimTreeFindFileToggle' }
+map {
+    'n',
+    '<leader>tn',
+    function()
+        local prev = vim.fn.getcwd()
+        vim.cmd('cd ' .. vim.fn.expand '%:p:h')
+        vim.cmd [[
+            NvimTreeCollapse
+            NvimTreeFindFileToggle
+        ]]
+        vim.cmd('cd ' .. prev)
+    end,
+}

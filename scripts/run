@@ -14,9 +14,10 @@ mkcic='make clean install; make clean'
 case "$ext" in
 c | cc | cpp)
     [ "$ext" = c ] && comp=gcc || comp=g++
-    [ "$args" ] || args="-Wall -Werror -Wextra -Wshadow -Wconversion -Wdouble-promotion -Wformat=2 -Wformat-truncation -Wundef "
+    [ "$args" ] || args="-Wall -Wextra -Wshadow -Wconversion -Wdouble-promotion -Wformat=2 -Wformat-truncation -Wundef "
 
-    cmd="$comp $args$file && ./a.out && rm a.out"
+    cmd="$comp $args$file"
+    ext="trap 'rm a.out' 1 2; $cmd && ./a.out && rm a.out"
     ;;
 py)
     [ "$VIRTUAL_ENV" ] && py="$VIRTUAL_ENV/bin/python" || py=python
@@ -47,4 +48,5 @@ sh)
 esac
 
 echo " > $cmd"
+[ "$ext" ] && cmd="$ext"
 eval "$cmd"

@@ -65,7 +65,7 @@ map {
     '<leader>T',
     function()
         package.loaded['plug/treesitter'] = nil
-        require 'plug/treesitter'
+        require 'plug.treesitter'
 
         vim.cmd 'e'
         vim.cmd "echo 'File reparsed.'"

@@ -9,13 +9,14 @@ M.on_attach = function(client, _)
         local ts_utils = require 'nvim-lsp-ts-utils'
 
         ts_utils.setup {
+            auto_inlay_hints = false,
             enable_import_on_completion = true,
             update_imports_on_move = true,
         }
 
         ts_utils.setup_client(client)
-        bmap { 'n', '<c-s>ti', mapstr 'TSLspImportAll' }
-        bmap { 'n', '<c-s>tI', mapstr 'TSLspToggleInlayHints' }
+        bmap { 'n', '<c-s>ti', mapstr 'TSLspToggleInlayHints' }
+        bmap { 'n', '<c-s>tI', mapstr 'TSLspImportAll' }
         bmap { 'n', '<c-s>to', mapstr 'TSLspOrganize' }
 
         client.resolved_capabilities.document_formatting = false
@@ -43,7 +44,9 @@ M.on_attach = function(client, _)
     bmap { 'n', '<c-s>lI', mapstr 'NullLsInfo' }
     bmap { 'n', '<c-s>lr', mapstr 'LspRestart' }
 
-    bmap { 'n', '<c-s>r', '<esc>' .. mapstr('plug.refactor', "setup_win('rename')") }
+    if client.resolved_capabilities.rename then
+        bmap { 'n', '<c-s>r', '<esc>' .. mapstr('plug.refactor', "setup_win('rename')") }
+    end
     bmap { 'x', '<c-s>e', '<esc>' .. mapstr('plug.refactor', "setup_win('extract')") }
     bmap { 'x', '<c-s>i', '<esc>' .. mapstr('plug.refactor', 'inline()') }
     bmap { 'x', '<c-s>p', '<esc>' .. mapstr('plug.refactor', 'print()') }

@@ -1,5 +1,7 @@
 se autowrite
 
+se cinkeys-=:
+
 se completeopt=menuone,noinsert,noselect
 
 se expandtab tabstop=4 shiftwidth=4
@@ -63,5 +65,5 @@ lua << EOF
 
     vim.api.nvim_set_var('wildignore', wig)
 
-    require 'plug/tree'
+    require 'plug.tree'
 EOF
