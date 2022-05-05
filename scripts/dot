@@ -10,16 +10,17 @@ for e in git nvim tmux X11 zathura zsh; do
     cp -r "$XDG_CONFIG_HOME/$e" "$cfg"
 done
 
+for e in stylua.toml prettierd tsconfig.json .clang-format; do
+    cp "$XDG_CONFIG_HOME/$e" "$cfg"
+done
+
 rm -rf "$cfg/nvim/undo"
 
 rmb .zshrc .zprofile .zaliases "$cfg/zsh"
 rmb tmux.conf "$cfg/tmux"
 cp /etc/zsh/zshenv "$cfg/zsh"
-cp "$XDG_CONFIG_HOME/stylua.toml" "$cfg"
-cp "$XDG_CONFIG_HOME/prettierd" "$cfg"
-cp "$XDG_CONFIG_HOME/tsconfig.json" "$cfg"
-
 npm -g list | tail -n +2 >"$cfg/paclist.npm"
+
 pacman -Q >"$cfg/paclist.pacman"
 pip3 list | tail -n +3 >"$cfg/paclist.pip3"
 

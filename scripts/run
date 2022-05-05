@@ -17,7 +17,7 @@ c | cc | cpp)
     [ "$args" ] || args="-Wall -Wextra -Wshadow -Wconversion -Wdouble-promotion -Wformat=2 -Wformat-truncation -Wundef "
 
     cmd="$comp $args$file"
-    ext="trap 'rm a.out' 1 2; $cmd && ./a.out && rm a.out"
+    extra="trap 'rm a.out' 1 2; $cmd && ./a.out && rm a.out"
     ;;
 py)
     [ "$VIRTUAL_ENV" ] && py="$VIRTUAL_ENV/bin/python" || py=python
@@ -33,7 +33,8 @@ lua)
     cmd="luajit $file"
     ;;
 *dwmb*)
-    cmd="killall dwmb; $mkcic; dwmb &"
+    cmd="$mkcic"
+    extra="killall dwmb; $cmd && dwmb &"
     ;;
 *dwm*)
     cmd="$mkcic"
@@ -48,5 +49,5 @@ sh)
 esac
 
 echo " > $cmd"
-[ "$ext" ] && cmd="$ext"
+[ "$extra" ] && cmd="$extra"
 eval "$cmd"

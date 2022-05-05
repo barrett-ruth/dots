@@ -8,19 +8,13 @@ leave() {
 
 prefix="$XDG_MUSIC_DIR"
 
-[ "$1" ] && leave "$(fd -e mp3 -1 -t f -a "$1" -- . "$prefix")"
+cd "$prefix" || exit
 
-get_muss() {
-    for i in "$1"/*; do
-        test -d "$i" && get_muss "$i" || muss="$muss\n$(echo "$i" | sed "s|\.mp3||g;s|$prefix/||g")"
-    done
-}
+[ "$1" ] && leave "$(fd -1 -t f -a "$1")"
 
-get_muss "$prefix"
+muss="$(fd -d 2 -t f | sed 's|./||;s|\.mp3||')"
 
-muss="${muss#??}"
-
-entry="$(echo "$(printf '%s\n' "$muss")" | dmenu -p 'Music:')"
+entry="$(echo "$muss" | dmenu -p 'Music:')"
 
 [ "$entry" ] || exit
 

@@ -62,7 +62,7 @@ export FZF_CTRL_R_OPTS='--reverse'
 export FZF_CTRL_T_COMMAND='fd -t f -H --strip-cwd-prefix'
 export FZF_CTRL_E_COMMAND='fd . ~/.config -t f -H'
 export FZF_CTRL_W_COMMAND='fd . ~ -H'
-export FZF_DEFAULT_OPTS='--no-info --no-bold --color=fg:#d4be98,bg:#282828,hl:bold:#a9b665 --color=fg+:#d4be98,hl+:bold:#a9b665,bg+:#282828 --color=pointer:#d4be98'
+export FZF_DEFAULT_OPTS='--no-info --no-bold --color=fg:#d4be98,bg:#1d2021,hl:bold:#a9b665 --color=fg+:#d4be98,hl+:bold:#a9b665,bg+:#1d2021 --color=pointer:#d4be98'
 export FZF_TMUX=1
 
 # Options

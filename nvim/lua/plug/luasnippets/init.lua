@@ -6,7 +6,7 @@ ls.config.set_config {
     delete_check_events = 'TextChanged,TextChangedI,InsertLeave',
     update_events = 'TextChanged,TextChangedI,InsertLeave',
     history = true,
-    ext_opts = { [types.choiceNode] = { active = { virt_text = { { ' <- ', 'Normal' } } } } },
+    ext_opts = { [types.choiceNode] = { active = { virt_text = { { ' <- ', vim.wo.cursorline and 'CursorLine' or 'Normal' } } } } },
 }
 
 local s = ls.s

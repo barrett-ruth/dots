@@ -23,6 +23,7 @@ require('nvim-tree').setup {
         },
     },
     view = {
+        side = 'right',
         signcolumn = 'no',
         hide_root_folder = true,
         mappings = {

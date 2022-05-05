@@ -17,8 +17,6 @@ se guicursor+=c:ver25
 
 se isfname-==,
 
-se list listchars=nbsp:·,space:·,trail:·,tab:\ \ 
-
 se matchpairs+=<:>
 
 se nohlsearch
@@ -31,15 +29,15 @@ se laststatus=3
 
 se lazyredraw
 
+se list listchars=trail:·
+
 se path+=**
 
 se pumheight=15
 
-se sessionoptions+=winpos,terminal,folds
-
 se shortmess+=Ic
 
-se signcolumn=auto:1-2
+se signcolumn=yes
 
 se spellfile=~/.config/nvim/spell/en.utf-8.add
 

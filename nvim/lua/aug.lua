@@ -9,8 +9,9 @@ au('VimLeave', {
 au('BufEnter', {
     callback = function()
         vim.cmd 'setl fo-=cro'
+
         if vim.api.nvim_eval 'fugitive#head()' ~= '' then
-            vim.cmd 'setl scl=yes:2'
+            vim.wo.signcolumn = 'yes:2'
         end
     end,
     group = aug,
