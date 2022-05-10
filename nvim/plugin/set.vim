@@ -43,6 +43,8 @@ se spellfile=~/.config/nvim/spell/en.utf-8.add
 
 se splitbelow splitright
 
+se stal=0
+
 se termguicolors
 
 se undodir=~/.config/nvim/undo undofile

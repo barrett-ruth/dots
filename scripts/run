@@ -7,16 +7,16 @@ shift
 
 ext="${file##*.}"
 
-[ "$*" ] && args="$* "
+[ "$*" ] && args=" $*"
 
 mkcic='make clean install; make clean'
 
 case "$ext" in
 c | cc | cpp)
     [ "$ext" = c ] && comp=gcc || comp=g++
-    [ "$args" ] || args="-Wall -Wextra -Wshadow -Wconversion -Wdouble-promotion -Wformat=2 -Wformat-truncation -Wundef "
+    [ "$flags" ] || flags="-Wall -Wextra -Wshadow -Wconversion -Wdouble-promotion -Wundef "
 
-    cmd="$comp $args$file"
+    cmd="$comp $flags$file$args"
     extra="trap 'rm a.out' 1 2; $cmd && ./a.out && rm a.out"
     ;;
 py)

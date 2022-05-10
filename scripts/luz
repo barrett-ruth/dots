@@ -3,4 +3,31 @@
 [ "$1" = up ] && cmd=inc || cmd=dec
 
 eval "xbacklight -$cmd 5"
+
+filler_icon='/usr/share/icons/Adwaita/16x16/status/airplane-mode-symbolic.symbolic.png'
+
+format_chars() {
+    in="$1"
+
+    [ "$in" -gt 100 ] && in=100
+    [ "$in" -eq 0 ] || fill="$(printf "%$((in / 3))"s | sed 's| |-|g')"
+
+    rest="$(printf "%$((33 - in / 3))"s)"
+
+    echo "$fill$rest"
+}
+
+final_bar() {
+    light="$(xbacklight -get)"
+    light="${light%%.*}"
+    spacing='   '
+    bar="$(format_chars "$light")$spacing"
+
+    [ "${#light}" -eq 2 ] && bar="$bar "
+
+    echo " $bar$light   "
+}
+
+dunstify -r 2 -u low -i "$filler_icon" "$(final_bar)"
+
 pkill -RTMIN+7 dwmb

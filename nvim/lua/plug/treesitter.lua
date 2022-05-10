@@ -41,7 +41,6 @@ treesitter_configs.setup {
         'lua',
         'make',
         'python',
-        'rust',
         'tsx',
         'typescript',
         'vim',

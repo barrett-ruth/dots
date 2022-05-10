@@ -5,6 +5,7 @@ local i = ls.i
 local s = ls.s
 
 local c = {
+    s('inh', fmt('#include "{}"', { i(1) })),
     s('in', fmt('#include <{}>', { i(1) })),
 }
 

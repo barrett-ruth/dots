@@ -12,6 +12,8 @@ local files = {
     'lsp',
 }
 require('nvim-gps').setup {
+    depth = 2,
+    depth_limit_indicator = '...',
     separator = ' -> ',
     icons = { ['container-name'] = ' ', ['class-name'] = 'ﴯ ' },
 }
