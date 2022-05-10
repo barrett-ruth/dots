@@ -9,49 +9,46 @@ filler_icon='/usr/share/icons/Adwaita/16x16/status/airplane-mode-symbolic.symbol
 
 format_chars() {
     in="$1"
-    in="${in%?}"
 
     [ "$in" -gt 100 ] && in=100
-    [ "$in" -eq 0 ] || fill="$(printf "%$((in / 3))"s | sed 's| |-|g')"
+    [ "$in" -eq 0 ] || fill="$(printf "%$((in / 5))"s | sed 's| |-|g')"
 
-    rest="$(printf "%$((33 - in / 3))"s)"
+    rest="$(printf "%$((20 - in / 5))"s)"
 
     echo "$fill$rest"
 }
 
 final_bar() {
     vol="$(pactl get-sink-volume "$sink" | awk '{ print $5 }')"
-    spacing='     '
+    vol="${vol%?}"
+    spacing='  '
     bar="$(format_chars "$vol")$spacing"
 
+    [ "${#vol}" -eq 1 ] && bar="$bar "
     [ "${#vol}" -eq 2 ] && bar="$bar "
-    [ "${#vol}" -eq 3 ] && bar="$bar "
 
-    [ "$(pactl get-sink-mute "$sink" | awk '{ print $2 }')" = 'yes' ] && vol=''
+    [ "${#vol}" -eq 3 ] && mutepad=' '
+    [ "$(pactl get-sink-mute "$sink" | awk '{ print $2 }')" = 'yes' ] && unset vol
 
-    echo " $bar${vol:-n/a} "
+    [ "$vol" ] && vol="$vol"V || vol=$mutepad'n/a'
+
+    echo " $bar$vol"
 }
 
 case "$cmd" in
 up | down)
     [ "$cmd" = up ] && change=+ || change=-
     pactl set-sink-volume "$sink" "$change${1:-5}%"
-
-    dunstify -r 1 -i "$filler_icon" "$(final_bar)"
     ;;
 mute)
     pactl set-sink-mute "$sink" toggle
-
-    dunstify -r 1 -i "$filler_icon" "$(final_bar)"
     ;;
 toggle)
     [ "$sink" = 4 ] && target=2_
     state="$(pacmd list-sinks | grep 'state: ')"
     [ "${state##*RUNNING*}" ] && sus=0 || sus=1
     pacmd suspend-sink alsa_output.pci-0000_00_1f.3-platform-sof_sdw.HiFi__hw_sofsoundwire_"$target"_sink "$sus"
-
-    dunstify -r 1 -i "$filler_icon" "$(final_bar)"
     ;;
 esac
 
-pkill -RTMIN+5 dwmb
+dunstify -r 1 -i "$filler_icon" "$(final_bar)"

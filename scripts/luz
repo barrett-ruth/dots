@@ -10,9 +10,9 @@ format_chars() {
     in="$1"
 
     [ "$in" -gt 100 ] && in=100
-    [ "$in" -eq 0 ] || fill="$(printf "%$((in / 3))"s | sed 's| |-|g')"
+    [ "$in" -eq 0 ] || fill="$(printf "%$((in / 5))"s | sed 's| |-|g')"
 
-    rest="$(printf "%$((33 - in / 3))"s)"
+    rest="$(printf "%$((20 - in / 5))"s)"
 
     echo "$fill$rest"
 }
@@ -20,14 +20,14 @@ format_chars() {
 final_bar() {
     light="$(xbacklight -get)"
     light="${light%%.*}"
-    spacing='   '
+    spacing='  '
+
+    [ "${#light}" -eq 1 ] && spacing="$spacing "
+    [ "${#light}" -eq 2 ] && spacing="$spacing "
+
     bar="$(format_chars "$light")$spacing"
 
-    [ "${#light}" -eq 2 ] && bar="$bar "
-
-    echo " $bar$light   "
+    echo " $bar$light"L
 }
 
 dunstify -r 2 -u low -i "$filler_icon" "$(final_bar)"
-
-pkill -RTMIN+7 dwmb

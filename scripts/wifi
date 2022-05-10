@@ -2,9 +2,9 @@
 
 [ "$1" ] || exit
 
-leave() { pkill -RTMIN+10 dwmb; }
+leave() { pkill -RTMIN+7 dwmb; exit 0; }
 
-[ "$1" = '-d' -o "$1" = '--disconnect' ] && iwctl station wlan0 disconnect && leave
+[ "$1" = '-d' ] && iwctl station wlan0 disconnect && leave
 
 cmd="iwctl station wlan0 connect $1"
 

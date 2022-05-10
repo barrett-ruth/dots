@@ -17,6 +17,6 @@ for e in [ 'Normal', 'Error', 'Warning', 'Hint', 'Info' ]
      exe 'hi!' e .. 'Float' nostr
 
 endfo
-for e in [ 'Green', 'Red', 'Yellow', 'Blue', 'Aqua' ]
+for e in [ 'Green', 'Red', 'Yellow', 'Blue', 'Aqua', 'Orange' ]
     exe 'hi!' e .. 'Sign' nostr
 endfo
