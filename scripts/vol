@@ -4,7 +4,7 @@
 
 cmd="$1"
 shift
-sink="$(pacmd list-sinks | grep '\* index: ' | tail -c 2)"
+sink="$(pacmd list-sinks | rg '\* index: ' | tail -c 2)"
 filler_icon='/usr/share/icons/Adwaita/16x16/status/airplane-mode-symbolic.symbolic.png'
 
 format_chars() {
@@ -45,7 +45,7 @@ mute)
     ;;
 toggle)
     [ "$sink" = 4 ] && target=2_
-    state="$(pacmd list-sinks | grep 'state: ')"
+    state="$(pacmd list-sinks | rg 'state: ')"
     [ "${state##*RUNNING*}" ] && sus=0 || sus=1
     pacmd suspend-sink alsa_output.pci-0000_00_1f.3-platform-sof_sdw.HiFi__hw_sofsoundwire_"$target"_sink "$sus"
     ;;

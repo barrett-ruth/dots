@@ -30,7 +30,6 @@
     # Horizontal padding.
     horizontal_padding = 8
 
-    frame_color = "#aaaaaa"
     # Auto/foreground/frame/color
     separator_color = "#282828"
 
@@ -38,7 +37,7 @@
 
     alignment = left
     vertical_alignment = center
-    
+
     show_age_threshold = -1
 
     # Where to make ellipse (start, middle, end)
@@ -57,19 +56,19 @@
 
 [urgency_low]
     background = "#1d2021"
-    foreground = "#888888"
+    frame_color="#888888"
+    foreground="#888888"
     timeout = 5
 
 [urgency_normal]
     background = "#1d2021"
     foreground = "#d4be98"
-    frame_color = "#3c3836"
+    frame_color = "#d4be98"
     timeout = 5
 
 [urgency_critical]
-    background = "#900000"
-    foreground = "#ea6962"
-    frame_color = "#ea6962"
+    foreground = "#e78a4e"
+    frame_color = "#e78a4e"
     timeout = 6
 
-# vim: ft=cfg
+# vim:ft=cfg
