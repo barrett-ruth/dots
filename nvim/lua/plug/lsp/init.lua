@@ -49,7 +49,7 @@ null_ls.setup {
         builtins.diagnostics.flake8.with { diagnostics_format = '#{m}' },
         builtins.diagnostics.hadolint,
         builtins.diagnostics.mypy,
-        builtins.diagnostics.shellcheck,
+        builtins.diagnostics.shellcheck.with { diagnostics_format = '#{m}' },
         builtins.diagnostics.yamllint,
 
         builtins.formatting.black.with { extra_args = { '-S', '--fast' } },

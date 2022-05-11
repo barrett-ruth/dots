@@ -11,7 +11,7 @@ nvim "$file"
 
 if [ "$(cat "$file")" = '#!/bin/sh' ]; then
     rm "$file"
-    exit
+    exit 0
 fi
 
 test -x "$file" || chmod +x "$SCRIPTS/$(basename "$file")"

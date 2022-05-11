@@ -6,6 +6,8 @@ rmb .git install.zsh diff "$cfg"
 
 cp -r "$SCRIPTS" "$cfg"
 
+cp -r ~/.local/share/fonts/fira-code "$cfg"
+
 for e in dunst git nvim tmux X11 zathura zsh; do
     cp -r "$XDG_CONFIG_HOME/$e" "$cfg"
 done
