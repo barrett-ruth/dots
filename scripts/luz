@@ -25,7 +25,7 @@ final_bar() {
     [ "${#light}" -eq 1 ] && spacing="$spacing "
     [ "${#light}" -eq 2 ] && spacing="$spacing "
 
-    bar="$(format_chars "$light")$spacing"
+    bar=" $(format_chars "$light")$spacing"
 
     echo " $bar$light"L
 }

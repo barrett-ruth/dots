@@ -22,7 +22,7 @@ final_bar() {
     vol="$(pactl get-sink-volume "$sink" | awk '{ print $5 }')"
     vol="${vol%?}"
     spacing='  '
-    bar="$(format_chars "$vol")$spacing"
+    bar=" $(format_chars "$vol")$spacing"
 
     [ "${#vol}" -eq 1 ] && bar="$bar "
     [ "${#vol}" -eq 2 ] && bar="$bar "
