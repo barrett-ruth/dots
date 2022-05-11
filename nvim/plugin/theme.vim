@@ -9,7 +9,7 @@ let nostr = 'ctermbg=NONE guibg=NONE gui=NONE'
 
 hi! FloatBorder guibg=NONE
 hi! TelescopeSelection guibg=#45403d
-for e in [ 'CursorLineNr', 'SignColumn', 'FoldColumn' ]
+for e in [ 'SignColumn', 'FoldColumn' ]
     exe 'hi!' e nostr
 endfo
 
