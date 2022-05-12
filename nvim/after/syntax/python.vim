@@ -1,26 +1,8 @@
-syntax clear pythonOperator
+syn match pythonBuiltin 'in' conceal cchar=∈
 
-syntax match pythonOperator "\<is\>"
+syn match pythonOperator "\%[\(math\.\)]sqrt" conceal cchar=√
+syn match pythonKeyword "\%[\(math\.\)]pi" conceal cchar=π
 
-syntax match pyNiceOperator "\<in\>" conceal cchar=∈
-syntax match pyNiceOperator "\<or\>" conceal cchar=∨
-syntax match pyNiceOperator "\<and\>" conceal cchar=∧
-
-syntax match pyNiceOperator "<=" conceal cchar=≤
-syntax match pyNiceOperator ">=" conceal cchar=≥
-
-syntax match pyNiceOperator "=\@<!===\@!" conceal cchar=≡
-syntax match pyNiceOperator "!=" conceal cchar=≠
-
-syntax keyword pyNiceOperator sum conceal cchar=∑
-syntax match pyNiceOperator "\<\%(math\.\)\?sqrt\>" conceal cchar=√
-syntax match pyNiceKeyword "\<\%(math\.\)\?pi\>" conceal cchar=π
-
-syntax keyword pyNiceStatement lambda conceal cchar=λ
-
-hi link pyNiceOperator Operator
-hi link pyNiceStatement Statement
-hi link pyNiceKeyword Keyword
-hi! link Conceal Operator
-
-setlocal conceallevel=1
+syn keyword pythonFunction def conceal cchar=λ
+syn keyword pythonStatement lambda conceal cchar=λ
+syn keyword pythonBuiltin sum conceal cchar=∑

@@ -7,6 +7,7 @@ sign define DiagnosticSignInfo text=: texthl=BlueSign
 
 let nostr = 'ctermbg=NONE guibg=NONE gui=NONE'
 
+hi! link Conceal Operator
 hi! FloatBorder guibg=NONE
 hi! TelescopeSelection guibg=#45403d
 for e in [ 'SignColumn', 'FoldColumn' ]
@@ -14,9 +15,9 @@ for e in [ 'SignColumn', 'FoldColumn' ]
 endfo
 
 for e in [ 'Normal', 'Error', 'Warning', 'Hint', 'Info' ]
-     exe 'hi!' e .. 'Float' nostr
-
+    exe 'hi' e .. 'Float' nostr
 endfo
+
 for e in [ 'Green', 'Red', 'Yellow', 'Blue', 'Aqua', 'Orange' ]
     exe 'hi!' e .. 'Sign' nostr
 endfo

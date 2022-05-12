@@ -6,6 +6,11 @@ au('VimLeave', {
     group = aug,
 })
 
+au('Syntax', {
+    command = 'so ~/.config/nvim/after/syntax.vim',
+    group = aug,
+})
+
 au('BufWrite', {
     callback = function()
         if vim.fn.expand '%' == os.getenv 'XDG_CONFIG_HOME' .. '/dunst/dunstrc' then

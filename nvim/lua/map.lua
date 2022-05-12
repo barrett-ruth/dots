@@ -67,6 +67,11 @@ map {
         vim.cmd 'vs|te run %'
     end,
 }
+map {
+    'n',
+    '<leader>s',
+    ':%s/<c-r>=expand("<cword>")<cr>//g<left><left>',
+}
 
 -- Location List --
 map { 'n', ']l', mapstr 'bd' .. mapstr 'lne' .. 'zz' }
