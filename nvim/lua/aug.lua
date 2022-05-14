@@ -35,7 +35,7 @@ au('BufEnter', {
         vim.cmd 'setl fo-=cro'
 
         if vim.api.nvim_eval 'FugitiveHead()' ~= '' then
-            vim.wo.signcolumn = 'yes:2'
+            vim.cmd 'setl scl=yes:2'
         end
     end,
     group = aug,

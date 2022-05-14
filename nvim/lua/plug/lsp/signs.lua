@@ -41,7 +41,6 @@ vim.diagnostic.config {
     },
 }
 
--- Only show highest severity
 local ns = vim.api.nvim_create_namespace 'lsp_signs'
 local dshow = vim.diagnostic.show
 
