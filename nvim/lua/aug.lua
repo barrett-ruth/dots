@@ -23,7 +23,7 @@ au('BufEnter', {
     callback = function()
         vim.cmd 'setl fo-=cro'
 
-        if vim.api.nvim_eval 'fugitive#head()' ~= '' then
+        if vim.api.nvim_eval 'FugitiveHead()' ~= '' then
             vim.wo.signcolumn = 'yes:2'
         end
     end,

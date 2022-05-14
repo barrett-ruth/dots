@@ -28,7 +28,6 @@ require 'paq' {
     'SmiteshP/nvim-gps',
     'nvim-lualine/lualine.nvim',
 
-    'famiu/bufdelete.nvim',
     'kyazdani42/nvim-tree.lua',
     'lewis6991/impatient.nvim',
     'lewis6991/gitsigns.nvim',

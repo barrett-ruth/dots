@@ -32,11 +32,14 @@ ts | tsx)
 lua)
     cmd="luajit $file"
     ;;
-*dwmb*)
+dwmb)
     cmd="$mkcic"
     extra="killall dwmb; $cmd && dwmb &"
     ;;
-*dwm*)
+*dmenu*)
+    cmd="$mkcic"
+    ;;
+dwm)
     cmd="$mkcic"
     ;;
 sh)
@@ -44,7 +47,19 @@ sh)
     cmd="$cmd$file"
     ;;
 *)
-    cmd="$file $*"
+    case "$file" in
+    *dwmb*)
+        cmd="$mkcic"
+        extra="killall dwmb; $cmd && dwmb &"
+        ;;
+    *dmenu* | *dwm*)
+        cmd="$mkcic"
+        ;;
+    *)
+        echo " > Filetype '$ext' unknown."
+        exit 1
+        ;;
+    esac
     ;;
 esac
 
