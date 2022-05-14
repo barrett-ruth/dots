@@ -6,6 +6,17 @@ au('VimLeave', {
     group = aug,
 })
 
+au('ColorScheme', {
+    command = 'so ~/.config/nvim/plugin/theme.vim',
+    group = aug,
+})
+
+au('FileType', {
+    pattern = 'man',
+    command = 'se scl=no nu rnu',
+    group = aug,
+})
+
 au('Syntax', {
     command = 'so ~/.config/nvim/after/syntax.vim',
     group = aug,
@@ -42,7 +53,7 @@ au('TermOpen', {
     group = aug,
 })
 
-au('Filetype', {
+au('FileType', {
     pattern = 'qf',
     callback = function()
         local utils = require 'utils'

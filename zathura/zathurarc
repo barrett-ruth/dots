@@ -1,5 +1,7 @@
 set font "monospace normal 13"
+set smooth-scroll "true"
 set guioptions none
+
 set default-bg "#1d2021"
 set statusbar-bg "#1d2021"
 set inputbar-bg "#1d2021"
@@ -9,6 +11,7 @@ set statusbar-home-tilde true
 set selection-clipboard clipboard
 set statusbar-h-padding 0
 set statusbar-v-padding 0
+
 map b toggle_statusbar
 map u scroll half-up
 map d scroll half-down

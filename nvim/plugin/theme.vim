@@ -1,7 +1,7 @@
 colo gruvbox-material
 
 sign define DiagnosticSignError text=> texthl=RedSign
-sign define DiagnosticSignWarn text=- texthl=YellowSign
+sign define DiagnosticSignWarn text= texthl=YellowSign
 sign define DiagnosticSignHint text=* texthl=AquaSign
 sign define DiagnosticSignInfo text=: texthl=BlueSign
 
@@ -10,6 +10,7 @@ let nostr = 'ctermbg=NONE guibg=NONE gui=NONE'
 hi! link Conceal Operator
 hi! FloatBorder guibg=NONE
 hi! TelescopeSelection guibg=#45403d
+
 for e in [ 'SignColumn', 'FoldColumn' ]
     exe 'hi!' e nostr
 endfo

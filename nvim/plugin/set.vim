@@ -10,9 +10,7 @@ se expandtab tabstop=4 shiftwidth=4
 
 se fillchars=fold:\ ,eob:\ ,vert:│
 
-se nofoldenable
 se foldlevel=2
-se foldmethod=syntax
 se foldnestmax=2
 
 se guicursor+=c:ver25

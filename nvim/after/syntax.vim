@@ -1,22 +1,22 @@
 if index(g:filetypes, &ft) >= 0
-    syn match op "\<&&\>\|\<and\>" conceal cchar=∧
-    syn match op "\<||\>\|\<or\>" conceal cchar=∨
+    syn match op "\zs&&\ze \|\<and\>" conceal cchar=∧
+    syn match op "\zs||\ze \|\<or\>" conceal cchar=∨
     syn match op "<=" conceal cchar=≤
     syn match op ">=" conceal cchar=≥
     syn match op "!=\|\~=" conceal cchar=≠
 
-    syn match dots /\%(\.\)\@<!\.\{2}\%(\.\)\@!/ conceal cchar=‥
-    syn match ellipse /\%(\.\)\@<!\.\{3}\%(\.\)\@!/ conceal cchar=…
+    syn match ellipse /\.\@<!\.\{3}\.\@!/ conceal cchar=…
 
-    syn match fd /-\@<=-/ conceal cchar=
-    syn match sd /-\(-\)\@=/ conceal cchar=
+    if &ft != 'lua'
+        syn match fd /-\@<=-/ conceal cchar=
+        syn match sd /--\@=/ conceal cchar=
+    end
 
-    syn match fear /=\@<=>/ conceal cchar=⇒
-    syn match sear /=\(>\)\@=/ conceal cchar=
+    if &ft == 'javascript' || &ft == 'javascriptreact' || &ft == 'typescript' || &ft == 'typescriptreact'
+        syn match fear /=\@<=>/ conceal cchar=⇒
+        syn match sear /=>\@=/ conceal cchar=
+    end
 
-    syn match fsar /-\@<=>/ conceal cchar=→
-    syn match sear /-\(>\)\@=/ conceal cchar=
-
-    syn match feq / \zs=\ze=/ conceal cchar=
-    syn match seq / \@<!=/ conceal cchar=
+    syn match feq /=\@<==/ conceal cchar=
+    syn match seq /==\@=/ conceal cchar=
 end

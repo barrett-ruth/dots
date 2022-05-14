@@ -5,6 +5,7 @@ local action_layout = require 'telescope.actions.layout'
 require('telescope').setup {
     defaults = {
         borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
+        results_title = '',
         path_display = { 'shorten' },
         layout_config = {
             preview_width = 0.45,
@@ -19,10 +20,18 @@ require('telescope').setup {
     },
     pickers = {
         find_files = {
+            prompt_title = false,
             hidden = true,
             find_command = { 'fd', '-a', '-t', 'f', '--strip-cwd-prefix' },
         },
+        live_grep = {
+            prompt_title = false,
+        },
+        help_tags = {
+            prompt_title = false,
+        },
         buffers = {
+            prompt_title = false,
             sort_mru = true,
             mappings = {
                 i = {

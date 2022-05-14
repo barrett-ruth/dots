@@ -34,7 +34,7 @@ require('lualine').setup {
             },
             {
                 'diagnostics',
-                symbols = { error = '>', warn = '-', info = ':', hint = '*' },
+                symbols = { error = '>', warn = '', info = ':', hint = '*' },
                 diagnostics_color = {
                     error = { fg = 'ea6962' },
                     warn = { fg = 'd8a657' },
