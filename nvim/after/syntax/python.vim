@@ -1,4 +1,6 @@
-syn match pythonBuiltin 'in' conceal cchar=∈
+syn keyword pythonOperator in conceal cchar=∈
+syn keyword pythonOperator and conceal cchar=∧
+syn keyword pythonOperator or conceal cchar=∨
 
 syn match pythonOperator "\%[\(math\.\)]sqrt" conceal cchar=√
 syn match pythonKeyword "\%[\(math\.\)]pi" conceal cchar=π

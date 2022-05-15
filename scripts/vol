@@ -28,7 +28,7 @@ final_bar() {
     [ "${#vol}" -eq 2 ] && bar="$bar "
 
     [ "${#vol}" -eq 3 ] && mutepad=' '
-    [ "$(pactl get-sink-mute "$sink" | awk '{ print $2 }')" = 'yes' ] && unset vol
+    [ "$(pactl get-sink-mute "$sink" | awk '{ print $2 }')" = 'yes' -o "$sus" -eq 1 ] && unset vol
 
     [ "$vol" ] && vol="$vol"V || vol=$mutepad'n/a'
 

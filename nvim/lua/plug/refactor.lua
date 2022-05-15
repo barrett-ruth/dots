@@ -55,7 +55,7 @@ function M.setup_win(method)
 
     if method == 'extract' then
         cword = ''
-        vim.cmd 'startinsert'
+        vim.cmd 'start'
     end
 
     vim.api.nvim_buf_set_lines(buf, 0, -1, false, { cword })

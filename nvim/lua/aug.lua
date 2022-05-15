@@ -22,14 +22,6 @@ au('Syntax', {
     group = aug,
 })
 
-au('BufWrite', {
-    callback = function()
-        if vim.fn.expand '%' == os.getenv 'XDG_CONFIG_HOME' .. '/dunst/dunstrc' then
-            vim.fn.system 'killall dunst; dunst &; disown'
-        end
-    end,
-})
-
 au('BufEnter', {
     callback = function()
         vim.cmd 'setl fo-=cro'

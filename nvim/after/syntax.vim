@@ -1,6 +1,6 @@
 if index(g:filetypes, &ft) >= 0
-    syn match op "\zs&&\ze \|\<and\>" conceal cchar=∧
-    syn match op "\zs||\ze \|\<or\>" conceal cchar=∨
+    syn match op "\zs&&\ze " conceal cchar=∧
+    syn match op "\zs||\ze " conceal cchar=∨
     syn match op "<=" conceal cchar=≤
     syn match op ">=" conceal cchar=≥
     syn match op "!=\|\~=" conceal cchar=≠

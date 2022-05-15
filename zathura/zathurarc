@@ -1,5 +1,4 @@
 set font "monospace normal 13"
-set smooth-scroll "true"
 set guioptions none
 
 set default-bg "#1d2021"
