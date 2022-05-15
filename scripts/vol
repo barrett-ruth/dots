@@ -28,7 +28,7 @@ final_bar() {
     [ "${#vol}" -eq 2 ] && bar="$bar "
 
     [ "${#vol}" -eq 3 ] && mutepad=' '
-    [ "$(pactl get-sink-mute "$sink" | awk '{ print $2 }')" = 'yes' -o "$sus" -eq 1 ] && unset vol
+    [ "$(pactl get-sink-mute "$sink" | awk '{ print $2 }')" = 'yes' -o "$muted" = 'yes' ] && unset vol
 
     [ "$vol" ] && vol="$vol"V || vol=$mutepad'n/a'
 
@@ -42,6 +42,8 @@ up | down)
     ;;
 mute)
     pactl set-sink-mute "$sink" toggle
+    muted="$(pacmd list-sink | rg 'muted' | sed -n "$sink"p)"
+    muted="${muted##* }"
     ;;
 toggle)
     [ "$sink" = 4 ] && target=2_
