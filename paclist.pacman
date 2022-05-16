@@ -152,7 +152,6 @@ hwdata 0.359-1
 hwloc 2.7.1-1
 hyphen 2.8.8-3
 iana-etc 20220427-1
-icon-naming-utils 0.8.90-5
 icu 71.1-1
 imlib2 1.9.0-3
 intel-ucode 20220419-1
@@ -398,12 +397,7 @@ perl-timedate 2.33-3
 perl-try-tiny 0.31-1
 perl-uri 5.10-1
 perl-www-robotrules 6.02-9
-perl-xml-namespacesupport 1.12-4
 perl-xml-parser 2.46-3
-perl-xml-sax 1.02-1
-perl-xml-sax-base 1.09-4
-perl-xml-sax-expat 0.51-7
-perl-xml-simple 2.25-6
 pinentry 1.2.0-1
 pixman 0.40.0-1
 pkgconf 1.8.0-1

@@ -27,7 +27,7 @@ password="${new##*"$sep"}"
 echo "$username" | xclip -sel c
 
 (
-    sleep 1.5
+    sleep 1.25
     [ "$password" = "$username" ] || echo "$password" | xclip -sel c && sleep 1.5
     echo "$old" | xclip -sel c
 ) &
