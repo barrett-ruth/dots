@@ -6,7 +6,11 @@ ls.config.set_config {
     delete_check_events = 'TextChanged,TextChangedI,InsertLeave',
     update_events = 'TextChanged,TextChangedI,InsertLeave',
     history = true,
-    ext_opts = { [types.choiceNode] = { active = { virt_text = { { ' <- ', vim.wo.cursorline and 'CursorLine' or 'Normal' } } } } },
+    ext_opts = {
+        [types.choiceNode] = {
+            active = { virt_text = { { ' <- ', vim.wo.cursorline and 'CursorLine' or 'Normal' } } },
+        },
+    },
 }
 
 local s = ls.s
@@ -59,6 +63,8 @@ map {
         ls = require 'luasnip'
         if ls.jumpable(-1) then
             ls.jump(-1)
+        else
+            vim.cmd 'norm! h'
         end
     end,
 }
@@ -69,6 +75,8 @@ map {
         ls = require 'luasnip'
         if ls.jumpable(1) then
             ls.jump(1)
+        else
+            vim.cmd 'norm! l'
         end
     end,
 }

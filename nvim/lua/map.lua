@@ -99,10 +99,10 @@ map { '', '<leader>y', '"+y' }
 map { '', '<leader>Y', mapstr '%y+"' }
 
 -- Resizing --
-map { 'n', '<left>', mapstr 'vert res -10' }
-map { 'n', '<down>', mapstr 'res +10' }
-map { 'n', '<up>', mapstr 'res -10' }
-map { 'n', '<right>', mapstr 'vert res +10' }
+map { 'n', '<c-left>', mapstr 'vert res -10' }
+map { 'n', '<c-down>', mapstr 'res +10' }
+map { 'n', '<c-up>', mapstr 'res -10' }
+map { 'n', '<c-right>', mapstr 'vert res +10' }
 
 -- Saving/Exiting --
 map { 'n', '<leader>q', mapstr 'q' }
