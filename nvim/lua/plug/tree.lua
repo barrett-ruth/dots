@@ -5,7 +5,7 @@ end
 
 vim.g.nvim_tree_add_trailing = 1
 vim.g.nvim_tree_respect_buf_cwd = 1
-vim.g.nvim_tree_symlink_arrow = ' -> '
+vim.g.nvim_tree_symlink_arrow = ' → '
 vim.g.nvim_tree_show_icons = {
     git = 0,
     folders = 0,

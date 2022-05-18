@@ -53,7 +53,7 @@ export PRETTIERD_DEFAULT_CONFIG="$XDG_CONFIG_HOME/prettierd"
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export _Z_DATA="$XDG_DATA_HOME/z"
-export _Z_EXCLUDE_DIRS=(__pycache__ .git .pki build cache dist docs node_modules undo venv)
+export _Z_EXCLUDE_DIRS=(__pycache__ .mypy_cache .git .pki build cache dist doc node_modules undo venv)
 
 # FZF
 export FZF_ALT_C_COMMAND='fd -t d -H --strip-cwd-prefix'

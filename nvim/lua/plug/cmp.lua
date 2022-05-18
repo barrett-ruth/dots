@@ -1,4 +1,4 @@
-vim.g.completion_matching_strategy_list = 'exact,substring,fuzzy'
+vim.api.nvim_set_var('completion_matching_strategy_list', 'exact,substring,fuzzy')
 
 local cmp = require 'cmp'
 local mapping = require 'cmp.config.mapping'
@@ -18,7 +18,6 @@ local kinds = {
     Value = '',
     Enum = '',
     Keyword = '',
-    Snippet = '',
     Color = '',
     File = '',
     Reference = '',
@@ -28,7 +27,6 @@ local kinds = {
     Struct = 'פּ',
     Event = '',
     Operator = '',
-    TypeParameter = '',
 }
 
 local sources = {
@@ -86,27 +84,11 @@ cmp.setup {
 }
 
 local utils = require 'utils'
-local map = utils.map
+local bmap = utils.bmap
+local mapstr = utils.mapstr
 
-map {
+bmap {
     'i',
     '<c-space>',
-    function()
-        if CMP == nil then
-            CMP = false
-        else
-            CMP = not CMP
-        end
-
-        local cmp = require 'cmp'
-        cmp.setup.buffer { enabled = CMP }
-
-        if CMP then
-            cmp.complete()
-            print 'nvim-cmp enabled'
-        else
-            cmp.close()
-            print 'nvim-cmp disabled'
-        end
-    end,
+    mapstr('utils', 'toggle_cmp()'),
 }

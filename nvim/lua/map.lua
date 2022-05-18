@@ -68,7 +68,7 @@ map {
 }
 map {
     'n',
-    '<leader>s',
+    '<leader>R',
     ':%s/<c-r>=expand("<cword>")<cr>//g<left><left>',
 }
 
@@ -94,7 +94,7 @@ map { 'n', '[o', '@="m`O\\eg``"<cr>' }
 
 -- Deleting/yanking/pasting --
 map { '', '<leader>d', '"_d' }
-map { '', '<leader>p', '"0P' }
+map { '', '<leader>p', '"0p' }
 map { '', '<leader>y', '"+y' }
 map { '', '<leader>Y', mapstr '%y+"' }
 

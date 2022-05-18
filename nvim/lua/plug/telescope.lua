@@ -56,11 +56,6 @@ local mapstr = utils.mapstr
 
 map {
     'n',
-    '<c-e>',
-    mapstr('telescope.builtin', "find_files({ cwd = '~/.config'})"),
-}
-map {
-    'n',
     '<c-f>',
     function()
         local ok = pcall(require('telescope.builtin').git_files)
@@ -74,8 +69,14 @@ map { 'n', '<c-g>', mapstr('telescope.builtin', 'live_grep()') }
 map { 'n', '<c-_>', mapstr('telescope.builtin', 'current_buffer_fuzzy_find()') }
 map { 'n', '<leader>b', mapstr('telescope.builtin', 'buffers()') }
 map { 'n', '<leader>tb', mapstr('telescope.builtin', 'builtin()') }
+map {
+    'n',
+    '<leader>te',
+    mapstr('telescope.builtin', "find_files({ cwd = os.getenv 'XDG_CONFIG_HOME' })"),
+}
 map { 'n', '<leader>tf', mapstr('telescope.builtin', "find_files({ cwd = vim.fn.expand '%:p:h' })") }
 map { 'n', '<leader>tg', mapstr('telescope.builtin', "live_grep({ cwd = vim.fn.expand '%:p:h' })") }
 map { 'n', '<leader>th', mapstr('telescope.builtin', 'help_tags()') }
 map { 'n', '<leader>tr', mapstr('telescope.builtin', 'resume()') }
 map { 'n', '<leader>ts', mapstr('telescope.builtin', "find_files({ cwd = os.getenv 'SCRIPTS' })") }
+map { 'n', '<leader>tw', mapstr('telescope.builtin', "find_files({ cwd = os.getenv 'HOME' })") }

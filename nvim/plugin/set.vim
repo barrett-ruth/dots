@@ -4,8 +4,6 @@ se cinkeys-=:
 
 se completeopt=menuone,noinsert,noselect
 
-se conceallevel=1
-
 se expandtab tabstop=4 shiftwidth=4
 
 se fillchars=fold:\ ,eob:\ ,vert:│

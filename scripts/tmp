@@ -7,6 +7,11 @@ leave() {
     exit 0
 }
 
+setup() {
+    tmux new -ds "$1"
+    tmux renamew -t "$1"':1' code
+}
+
 sessions="$(tmux ls -F '#{session_name}' 2>/dev/null)"
 case "$sessions" in
 *"$session"*)
@@ -18,15 +23,17 @@ esac
 case "$session" in
 nv)
     cd "$XDG_CONFIG_HOME/nvim" || exit
+    setup "$session"
+    ;;
+sl)
+    cd "$HOME/dev/sl" || exit
+    setup "$session"
 
-    tmux new -ds "$session"
-    tmux renamew -t "$session"':1' 'code'
+    tmux neww -t "$session:" -n aux
     ;;
 *)
     cd "$HOME/dev" || exit
-
-    tmux new -ds "$session"
-    tmux renamew -t "$session"':1' 'code'
+    setup "$session"
 
     for e in run dock aux; do
         tmux neww -t "$session:" -n "$e"

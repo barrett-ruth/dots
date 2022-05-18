@@ -34,15 +34,32 @@ M.on_attach = function(client, _)
     bmap { 'n', '<c-s>d', mapstr('telescope.builtin', 'lsp_definitions()') }
     bmap { 'n', '<c-s>i', mapstr('telescope.builtin', 'lsp_implementations()') }
 
-    bmap { 'n', '<c-s>D', mapstr 'lua vim.lsp.buf.declaration()' }
+    bmap {
+        'n',
+        '<c-s>sf',
+        mapstr(
+            'telescope.builtin',
+            'lsp_document_symbols({ ignore_symbols = { "property", "variable", "enummember", "field" } })'
+        ),
+    }
+    bmap { 'n', '<c-s>sa', mapstr('telescope.builtin', 'lsp_document_symbols()') }
+
     bmap { 'n', '<c-s>f', mapstr 'lua vim.diagnostic.open_float()' }
     bmap { 'n', '<c-s>h', mapstr 'lua vim.lsp.buf.hover()' }
+
+    bmap { 'n', '<c-s>D', mapstr 'lua vim.lsp.buf.declaration()' }
     bmap { 'n', '<c-s>R', mapstr 'lua vim.lsp.buf.references()' }
-    bmap { 'n', '<c-s>s', mapstr 'lua vim.lsp.buf.signature_help()' }
+    bmap { 'n', '<c-s>S', mapstr 'lua vim.lsp.buf.signature_help()' }
 
     bmap { 'n', '<c-s>li', mapstr 'LspInfo' }
     bmap { 'n', '<c-s>lI', mapstr 'NullLsInfo' }
     bmap { 'n', '<c-s>lr', mapstr 'LspRestart' }
+
+    bmap {
+        'n',
+        '<c-s><c-s>',
+        mapstr('utils', 'toggle_diagnostics()'),
+    }
 
     if client.resolved_capabilities.rename then
         bmap { 'n', '<c-s>r', '<esc>' .. mapstr('plug.refactor', "setup_win('rename')") }

@@ -14,7 +14,7 @@ local files = {
 require('nvim-gps').setup {
     depth = 3,
     depth_limit_indicator = '...',
-    separator = ' -> ',
+    separator = ' → ',
     icons = { ['container-name'] = '  ', ['class-name'] = 'ﴯ ' },
 }
 

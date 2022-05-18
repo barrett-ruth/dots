@@ -16,6 +16,30 @@ function M.toggle_list(prefix)
     vim.cmd(prefix .. cmd)
 end
 
+local cmp_active = false
+function M.toggle_cmp()
+    cmp_active = not cmp_active
+
+    local cmp = require 'cmp'
+    cmp.setup.buffer { enabled = cmp_active }
+
+    if cmp_active then
+        cmp.close()
+    else
+        cmp.complete()
+    end
+end
+
+local diagnostics_active = false
+function M.toggle_diagnostics()
+    diagnostics_active = not diagnostics_active
+    if diagnostics_active then
+        vim.diagnostic.hide()
+    else
+        vim.diagnostic.show(nil, 0)
+    end
+end
+
 function M.map(mapping)
     vim.keymap.set(mapping[1], mapping[2], mapping[3], { noremap = true, silent = true })
 end
