@@ -3,32 +3,6 @@ vim.api.nvim_set_var('completion_matching_strategy_list', 'exact,substring,fuzzy
 local cmp = require 'cmp'
 local mapping = require 'cmp.config.mapping'
 
-local kinds = {
-    ext = '',
-    Method = '',
-    Function = '',
-    Constructor = '',
-    Field = 'ﰠ',
-    Variable = '',
-    Class = 'ﴯ',
-    Interface = '',
-    Module = '',
-    Property = 'ﰠ',
-    Unit = '塞',
-    Value = '',
-    Enum = '',
-    Keyword = '',
-    Color = '',
-    File = '',
-    Reference = '',
-    Folder = '',
-    EnumMember = '',
-    Constant = '',
-    Struct = 'פּ',
-    Event = '',
-    Operator = '',
-}
-
 local sources = {
     buffer = '[BUF]',
     nvim_lsp = '[LSP]',
@@ -55,7 +29,7 @@ cmp.setup {
     formatting = {
         format = function(entry, vim_item)
             vim_item.menu = sources[entry.source.name]
-            vim_item.kind = kinds[vim_item.kind]
+            vim_item.kind = ''
             return vim_item
         end,
     },

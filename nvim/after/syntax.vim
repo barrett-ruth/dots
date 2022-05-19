@@ -1,4 +1,4 @@
-let s:syntax_filetypes = [ 'c', 'cpp', 'java', 'javascript', 'javascriptreact', 'lua', 'python', 'typescript', 'typescriptreact', 'vim' ]
+let s:syntax_filetypes = [ 'c', 'cpp', 'java', 'javascript', 'javascriptreact', 'lua', 'python', 'sh', 'typescript', 'typescriptreact', 'vim', 'zsh' ]
 
 if index(s:syntax_filetypes, &ft) < 0
     setl cole=0
@@ -27,6 +27,11 @@ if s:jsx || s:jsx || &ft == 'typescript' || &ft == 'typescriptreact'
 
     syn match fear /=\@<=>/ conceal cchar=⇒
     syn match sear /=>\@=/ conceal cchar=
+end
+
+if &ft == 'sh' || &ft == 'zsh'
+    syn match shExpr '&&' conceal cchar=∧
+    syn match shExpr '||' conceal cchar=∨
 end
 
 syn match feq /=\@<==/ conceal cchar=
