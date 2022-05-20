@@ -25,7 +25,6 @@ require 'paq' {
     'nvim-treesitter/nvim-treesitter-textobjects',
 
     'sainnhe/gruvbox-material',
-    'SmiteshP/nvim-gps',
     'nvim-lualine/lualine.nvim',
 
     'kyazdani42/nvim-tree.lua',

@@ -4,8 +4,6 @@ local shrink = function()
     return require('plenary.path'):new(vim.fn.expand '%:~'):shorten()
 end
 
-local gps = require 'nvim-gps'
-
 local lspname = function()
     return vim.lsp.buf_get_clients(0)[1].name or ''
 end
@@ -43,7 +41,7 @@ require('lualine').setup {
                 },
             },
         },
-        lualine_c = { shrink, { gps.get_location, cond = gps.is_available } },
+        lualine_c = { shrink },
         lualine_x = { lspname, 'filetype' },
         lualine_y = { 'filesize', '%l/%L' },
         lualine_z = { 'encoding', 'bo:ff' },
