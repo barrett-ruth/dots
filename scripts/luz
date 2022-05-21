@@ -4,8 +4,6 @@
 
 eval "xbacklight -$cmd 5"
 
-filler_icon='/usr/share/icons/Adwaita/16x16/status/airplane-mode-symbolic.symbolic.png'
-
 format_chars() {
     in="$1"
 
@@ -30,4 +28,4 @@ final_bar() {
     echo " $bar$light"L
 }
 
-dunstify -r 2 -u low -i "$filler_icon" "$(final_bar)"
+dunstify -r 2 -u low "$(final_bar)"

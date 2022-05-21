@@ -5,7 +5,6 @@
 cmd="$1"
 shift
 sink="$(pacmd list-sinks | rg '\* index: ' | tail -c 2)"
-filler_icon='/usr/share/icons/Adwaita/16x16/status/airplane-mode-symbolic.symbolic.png'
 
 format_chars() {
     in="$1"
@@ -54,4 +53,4 @@ toggle)
     ;;
 esac
 
-dunstify -r 1 -i "$filler_icon" "$(final_bar)"
+dunstify -r 1 "$(final_bar)"

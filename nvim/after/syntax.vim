@@ -9,7 +9,7 @@ setl cole=1
 
 syn match ellipse /\.\@<!\.\{3}\.\@!/ conceal cchar=…
 
-if &ft != 'lua'
+if &ft != 'lua' || &ft != 'sh' || &ft != 'zsh'
     syn match fd /-\@<=-/ conceal cchar=
     syn match sd /--\@=/ conceal cchar=
 end
