@@ -58,6 +58,7 @@ treesitter_configs.setup {
 
 local utils = require 'utils'
 local map = utils.map
+local mapstr = utils.mapstr
 
 map {
     'n',
@@ -70,3 +71,8 @@ map {
         vim.cmd "echo 'File reparsed.'"
     end,
 }
+
+map { 'n', 'H', mapstr('tree-climber', 'goto_parent()') }
+map { 'n', 'L', mapstr('tree-climber', 'goto_child()') }
+map { 'n', 'J', mapstr('tree-climber', 'goto_next()') }
+map { 'n', 'K', mapstr('tree-climber', 'goto_prev()') }

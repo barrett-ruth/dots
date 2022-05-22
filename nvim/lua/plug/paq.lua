@@ -23,6 +23,7 @@ require 'paq' {
         end,
     },
     'nvim-treesitter/nvim-treesitter-textobjects',
+    'drybalka/tree-climber.nvim',
 
     'sainnhe/gruvbox-material',
     'nvim-lualine/lualine.nvim',

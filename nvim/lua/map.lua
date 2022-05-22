@@ -11,8 +11,26 @@ map {
     '<leader>B',
     function()
         vim.cmd 'BufDel'
-        if vim.fn.len(vim.fn.win_findbuf(vim.fn.bufnr '%')) > 1 then
-            vim.cmd 'q'
+        if vim.fn.len(vim.fn.win_findbuf(vim.fn.bufnr())) > 1 then
+            vim.cmd 'bp'
+            if vim.fn.len(vim.fn.win_findbuf(vim.fn.bufnr())) > 1 then
+                vim.cmd 'q'
+            end
+        end
+    end,
+}
+map {
+    'n',
+    '<leader>W',
+    function()
+        local bufnr = vim.fn.bufnr()
+        vim.cmd 'BufDel'
+        vim.cmd('bw ' .. bufnr .. '|bp')
+        if vim.fn.len(vim.fn.win_findbuf(vim.fn.bufnr())) > 1 then
+            vim.cmd 'bp'
+            if vim.fn.len(vim.fn.win_findbuf(vim.fn.bufnr())) > 1 then
+                vim.cmd 'q'
+            end
         end
     end,
 }
@@ -35,6 +53,9 @@ map { 'n', 'zL', '15zL' }
 map { 'n', '<c-i>', '<c-i>zz' }
 map { 'n', '<c-o>', '<c-o>zz' }
 map { 't', '<esc>', '<c-\\><c-n>' }
+map { '!', '<c-p>', '<up>' }
+map { '!', '<c-n>', '<down>' }
+map { 'n', '<leader>k', 'K' }
 
 -- Centering --
 map { 'n', 'G', 'Gzz' }
@@ -127,7 +148,7 @@ map {
 map { 'n', '<leader>z', 'ZZ' }
 map { 'n', '<leader>Z', mapstr 'xa' }
 
--- Swaplines --
+-- Swapping lines --
 map { 'n', '[e', '@="m`:m-2\\eg``"<cr>' }
 map { 'n', ']e', '@="m`:m+\\eg``"<cr>' }
 

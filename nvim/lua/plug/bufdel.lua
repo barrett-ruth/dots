@@ -1,1 +1,1 @@
-require('bufdel').setup {}
+require('bufdel').setup()
