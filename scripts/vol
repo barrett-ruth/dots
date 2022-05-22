@@ -53,4 +53,4 @@ toggle)
     ;;
 esac
 
-dunstify -r 1 "$(final_bar)"
+sdun -r 1 "'$(final_bar)'"

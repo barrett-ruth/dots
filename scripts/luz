@@ -28,4 +28,4 @@ final_bar() {
     echo " $bar$light"L
 }
 
-dunstify -r 2 -u low "$(final_bar)"
+sdun -r 2 -u low "'$(final_bar)'"

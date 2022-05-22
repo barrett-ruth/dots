@@ -6,7 +6,16 @@ local mapstr = utils.mapstr
 map { 'n', '[b', mapstr 'bp' }
 map { 'n', ']b', mapstr 'bn' }
 map { 'n', '<leader>o', 'mm' .. mapstr '%bd|e#|bd#' .. '`mzz' }
-map { 'n', '<leader>B', mapstr 'bw' }
+map {
+    'n',
+    '<leader>B',
+    function()
+        vim.cmd 'BufDel'
+        if vim.fn.len(vim.fn.win_findbuf(vim.fn.bufnr '%')) > 1 then
+            vim.cmd 'q'
+        end
+    end,
+}
 map { 'n', '<leader>S', mapstr 'vert sbp' }
 
 -- Builtins --
@@ -73,16 +82,16 @@ map {
 }
 
 -- Location List --
-map { 'n', ']l', mapstr 'bd' .. mapstr 'lne' .. 'zz' }
-map { 'n', '[l', mapstr 'bd' .. mapstr 'lp' .. 'zz' }
+map { 'n', ']l', mapstr 'lne' .. 'zz' }
+map { 'n', '[l', mapstr 'lp' .. 'zz' }
 map { 'n', ']L', mapstr 'lne' .. 'zz' }
 map { 'n', '[L', mapstr 'lp' .. 'zz' }
 map { 'n', '<leader>l', mapstr('utils', "toggle_list('l')") }
 map { 'n', '<leader>L', mapstr 'cal setloclist(0, []) | lcl' }
 
 -- Quickfix List --
-map { 'n', ']c', mapstr 'bd' .. mapstr 'cn' .. 'zz' }
-map { 'n', '[c', mapstr 'bd' .. mapstr 'cp' .. 'zz' }
+map { 'n', ']c', mapstr 'cn' .. 'zz' }
+map { 'n', '[c', mapstr 'cp' .. 'zz' }
 map { 'n', ']C', mapstr 'cn' .. 'zz' }
 map { 'n', '[C', mapstr 'cp' .. 'zz' }
 map { 'n', '<leader>c', mapstr('utils', "toggle_list('c')") }

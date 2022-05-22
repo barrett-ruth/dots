@@ -33,7 +33,7 @@
     # Auto/foreground/frame/color
     separator_color = "#282828"
 
-    font = Monospace 12
+    font = FiraCode Nerd Font Mono 12
 
     alignment = left
     vertical_alignment = center
