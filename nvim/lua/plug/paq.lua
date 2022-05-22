@@ -27,6 +27,19 @@ require 'paq' {
     'sainnhe/gruvbox-material',
     'nvim-lualine/lualine.nvim',
 
+    'andymass/vim-matchup',
+    'wellle/targets.vim',
+
+    'Julian/vim-textobj-variable-segment',
+    'kana/vim-textobj-user',
+    'vimtaku/vim-textobj-keyvalue',
+    'whatyouhide/vim-textobj-xmlattr',
+
+    'tpope/vim-abolish',
+    'tpope/vim-fugitive',
+    'tpope/vim-repeat',
+    'tpope/vim-surround',
+
     'kyazdani42/nvim-tree.lua',
     'lewis6991/impatient.nvim',
     'lewis6991/gitsigns.nvim',
@@ -35,11 +48,6 @@ require 'paq' {
 
     'ThePrimeagen/git-worktree.nvim',
     'ThePrimeagen/harpoon',
-
-    'tpope/vim-abolish',
-    'tpope/vim-fugitive',
-    'tpope/vim-repeat',
-    'tpope/vim-surround',
 }
 
 local utils = require 'utils'

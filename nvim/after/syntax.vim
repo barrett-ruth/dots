@@ -11,10 +11,10 @@ syn match ellipse /\.\@<!\.\{3}\.\@!/ conceal cchar=…
 
 if &ft != 'lua' && &ft != 'sh' && &ft != 'zsh'
     syn match fd /-\@<=-/ conceal cchar=
-    syn match shExpr '&&' conceal cchar=∧
+    syn match sd /--\@=/ conceal cchar=
 elseif &ft == 'sh' || &ft == 'zsh'
     syn match shExpr '||' conceal cchar=∨
-    syn match sd /--\@=/ conceal cchar=
+    syn match shExpr '&&' conceal cchar=∧
 end
 
 let s:js = &ft == 'javascript'
