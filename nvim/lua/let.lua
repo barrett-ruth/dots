@@ -1,5 +1,4 @@
 vim.g.gruvbox_material_better_performance = 1
-vim.g.matchup_matchparen_enabled = 0
 vim.g.gruvbox_material_background = 'hard'
 vim.g.loaded_textobj_variable_segment = 1
 

@@ -64,15 +64,10 @@ map {
     'n',
     '<leader>T',
     function()
-        package.loaded['plug/treesitter'] = nil
+        package.loaded['plug.treesitter'] = nil
         require 'plug.treesitter'
 
         vim.cmd 'e'
         vim.cmd "echo 'File reparsed.'"
     end,
 }
-
-map { 'n', 'H', mapstr('tree-climber', 'goto_parent()') }
-map { 'n', 'L', mapstr('tree-climber', 'goto_child()') }
-map { 'n', 'J', mapstr('tree-climber', 'goto_next()') }
-map { 'n', 'K', mapstr('tree-climber', 'goto_prev()') }

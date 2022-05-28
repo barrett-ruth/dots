@@ -23,7 +23,6 @@ require 'paq' {
         end,
     },
     'nvim-treesitter/nvim-treesitter-textobjects',
-    'drybalka/tree-climber.nvim',
 
     'sainnhe/gruvbox-material',
     'nvim-lualine/lualine.nvim',
@@ -45,7 +44,6 @@ require 'paq' {
     'lewis6991/impatient.nvim',
     'lewis6991/gitsigns.nvim',
     'numToStr/Comment.nvim',
-    'ojroques/nvim-bufdel',
 
     'ThePrimeagen/git-worktree.nvim',
     'ThePrimeagen/harpoon',

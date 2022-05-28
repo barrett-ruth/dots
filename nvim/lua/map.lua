@@ -6,35 +6,8 @@ local mapstr = utils.mapstr
 map { 'n', '[b', mapstr 'bp' }
 map { 'n', ']b', mapstr 'bn' }
 map { 'n', '<leader>o', 'mm' .. mapstr '%bd|e#|bd#' .. '`mzz' }
-map {
-    'n',
-    '<leader>B',
-    function()
-        vim.cmd 'BufDel'
-        if vim.fn.len(vim.fn.win_findbuf(vim.fn.bufnr())) > 1 then
-            vim.cmd 'bp'
-            if vim.fn.len(vim.fn.win_findbuf(vim.fn.bufnr())) > 1 then
-                vim.cmd 'q'
-            end
-        end
-    end,
-}
-map {
-    'n',
-    '<leader>W',
-    function()
-        local bufnr = vim.fn.bufnr()
-        vim.cmd 'BufDel'
-        vim.cmd('bw ' .. bufnr .. '|bp')
-        if vim.fn.len(vim.fn.win_findbuf(vim.fn.bufnr())) > 1 then
-            vim.cmd 'bp'
-            if vim.fn.len(vim.fn.win_findbuf(vim.fn.bufnr())) > 1 then
-                vim.cmd 'q'
-            end
-        end
-    end,
-}
-map { 'n', '<leader>S', mapstr 'vert sbp' }
+map { 'n', '<leader>B', mapstr('utils', 'delete_buffer()') }
+map { 'n', '<leader>W', mapstr('utils', 'delete_buffer(true)') }
 
 -- Builtins --
 map { 'n', ':', ';' }
@@ -44,12 +17,11 @@ map { 'x', ';', ':' }
 map { 'x', '$', 'g_' }
 vim.cmd "nn <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'"
 map { 'n', 'J', 'mzJ`z' }
+map { 'n', 'K', 'mzkJ`z' }
 map { 'x', 'J', ":m '>+1<cr>gv" }
 map { 'x', 'K', ":m '<-2<cr>gv" }
 map { 'n', 'x', '"_x' }
 map { 'n', 'Q', 'q:' }
-map { 'n', 'zH', '15zH' }
-map { 'n', 'zL', '15zL' }
 map { 'n', '<c-i>', '<c-i>zz' }
 map { 'n', '<c-o>', '<c-o>zz' }
 map { 't', '<esc>', '<c-\\><c-n>' }

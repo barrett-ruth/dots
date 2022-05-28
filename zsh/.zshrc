@@ -52,7 +52,7 @@ __set_git() {
   else
       br="${sb##* }"
   fi
-  PS1+="$dirty%F{green}$br%f$us$up_down%f "
+  PS1+="$dirty%F{green}$br%f$us%f$up_down "
 }
 
 __set_venv() {

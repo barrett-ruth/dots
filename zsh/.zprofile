@@ -27,7 +27,7 @@ export XDG_MUSIC_DIR="$HOME/mus"
 
 # Utils
 export EDITOR='nvim'
-export BROWSER='chromium'
+export BROWSER='qutebrowser'
 export MANPAGER='nvim +Man!'
 
 # ZSH

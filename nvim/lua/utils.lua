@@ -4,6 +4,30 @@ function M.empty(s)
     return s == '' or s == nil
 end
 
+function M.delete_buffer(wipe)
+    local bufs = vim.fn.getbufinfo { buflisted = 1 }
+    local winnr, bufnr = vim.fn.winnr(), vim.fn.bufnr()
+
+    if #bufs < 2 then
+        vim.cmd 'conf qall'
+        return
+    end
+
+    local cur_bufs = vim.fn.win_findbuf(bufnr)
+
+    for _, winid in ipairs(cur_bufs) do
+        vim.cmd(string.format('%d winc w', vim.fn.win_id2win(winid)))
+        vim.cmd(bufnr == bufs[#bufs].bufnr and 'bp' or 'bn')
+    end
+
+    vim.cmd(string.format('%d winc w', winnr))
+    vim.cmd('sil! conf b' .. (wipe and 'w' or 'd') .. ' #')
+
+    if vim.fn.len(vim.fn.win_findbuf(vim.fn.bufnr())) > 1 then
+        vim.cmd 'q'
+    end
+end
+
 function M.toggle_list(prefix)
     if prefix == 'c' then
         QFL = (next(vim.fn.getqflist()) == nil) and false or not QFL
@@ -33,6 +57,7 @@ end
 local diagnostics_active = false
 function M.toggle_diagnostics()
     diagnostics_active = not diagnostics_active
+
     if diagnostics_active then
         vim.diagnostic.hide()
     else

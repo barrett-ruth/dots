@@ -16,7 +16,7 @@ format_chars() {
 }
 
 final_bar() {
-    light="$(xbacklight -get)"
+    light="$(awk '{ print $1 / 5.12 }' /sys/class/backlight/intel_backlight/brightness)"
     light="${light%%.*}"
     spacing='  '
 

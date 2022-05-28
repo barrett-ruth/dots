@@ -8,7 +8,7 @@ cp -r "$SCRIPTS" "$cfg"
 
 cp -r ~/.local/share/fonts "$cfg"
 
-for e in dunst git nvim tmux X11 zathura zsh; do
+for e in dunst git nvim qutebrowser tmux X11 zathura zsh; do
     cp -r "$XDG_CONFIG_HOME/$e" "$cfg"
 done
 
@@ -18,6 +18,7 @@ done
 
 rm -rf "$cfg/nvim/undo"
 
+rm -rf "$cfg/qutebrowser/.mypy_cache"
 rmb .zshrc .zprofile .zaliases "$cfg/zsh"
 rmb tmux.conf "$cfg/tmux"
 cp /etc/zsh/zshenv "$cfg/zsh"
