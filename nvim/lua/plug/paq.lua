@@ -40,12 +40,10 @@ require 'paq' {
     'tpope/vim-repeat',
     'tpope/vim-surround',
 
-    'kyazdani42/nvim-tree.lua',
     'lewis6991/impatient.nvim',
     'lewis6991/gitsigns.nvim',
     'numToStr/Comment.nvim',
 
-    'ThePrimeagen/git-worktree.nvim',
     'ThePrimeagen/harpoon',
 }
 

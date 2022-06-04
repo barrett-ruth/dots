@@ -50,14 +50,13 @@ null_ls.setup {
         builtins.diagnostics.hadolint,
         builtins.diagnostics.mypy,
         builtins.diagnostics.shellcheck.with { diagnostics_format = '#{m}' },
-        builtins.diagnostics.yamllint,
 
         builtins.formatting.black.with { extra_args = { '-S', '--fast' } },
         builtins.formatting.clang_format,
         builtins.formatting.prettierd,
         builtins.formatting.shfmt.with { extra_args = { '-i', '4', '-ln=posix' } },
         builtins.formatting.stylua.with {
-            extra_args = { '--config-path', vim.fn.expand '~/.config/stylua.toml' },
+            extra_args = { '--config-path', vim.fn.expand '~/.config/templates/stylua.toml' },
         },
     },
     update_in_insert = true,

@@ -13,15 +13,11 @@ se fillchars=fold:\ ,eob:\ ,vert:│
 se foldlevel=2
 se foldnestmax=2
 
-se guicursor+=c:ver25
-
 se isfname-==,
 
 se matchpairs+=<:>
 
-se nohlsearch
-se noswapfile
-se noshowmode
+se nohlsearch noswapfile noshowmode
 
 se number relativenumber
 
@@ -38,8 +34,6 @@ se pumheight=15
 se shortmess+=Ic
 
 se signcolumn=yes
-
-se spellfile=~/.config/nvim/spell/en.utf-8.add
 
 se splitbelow splitright
 
@@ -64,6 +58,4 @@ lua << EOF
     end
 
     vim.api.nvim_set_var('wildignore', wig)
-
-    require 'plug.tree'
 EOF

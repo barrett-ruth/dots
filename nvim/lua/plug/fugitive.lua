@@ -17,5 +17,3 @@ map { 'n', '<leader>vL', mapstr 'G lg' }
 -- Telescope
 map { 'n', '<leader>vb', mapstr('telescope.builtin', 'git_branches()') }
 map { 'n', '<leader>vc', mapstr('telescope.builtin', 'git_commits()') }
-map { 'n', '<leader>vw', mapstr('telescope', 'extensions.git_worktree.git_worktrees()') }
-map { 'n', '<leader>vW', mapstr('telescope', 'extensions.git_worktree.create_git_worktree()') }

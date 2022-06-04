@@ -5,36 +5,37 @@ local mapstr = utils.mapstr
 -- Buffers --
 map { 'n', '[b', mapstr 'bp' }
 map { 'n', ']b', mapstr 'bn' }
-map { 'n', '<leader>o', 'mm' .. mapstr '%bd|e#|bd#' .. '`mzz' }
 map { 'n', '<leader>B', mapstr('utils', 'delete_buffer()') }
 map { 'n', '<leader>W', mapstr('utils', 'delete_buffer(true)') }
 
 -- Builtins --
-map { 'n', ':', ';' }
-map { 'n', ';', ':' }
-map { 'x', ':', ';' }
-map { 'x', ';', ':' }
-map { 'x', '$', 'g_' }
-vim.cmd "nn <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'"
+map({'n', ':', ';'}, { silent = false })
+map({'n', ';', ':'}, { silent = false })
+map({'x', ':', ';'}, { silent = false })
+map({'x', ';', ':'}, { silent = false })
+map({'n', '<leader>R', ':%s/<c-r>=expand("<cword>")<cr>//g<left><left>'}, {silent = false})
+map({'n', 'gp', function()
+    return '`[' .. vim.fn.strpart(vim.fn.getregtype(), 0, 1) .. '`]'
+end}, { expr = true })
 map { 'n', 'J', 'mzJ`z' }
 map { 'n', 'K', 'mzkJ`z' }
 map { 'x', 'J', ":m '>+1<cr>gv" }
 map { 'x', 'K', ":m '<-2<cr>gv" }
 map { 'n', 'x', '"_x' }
 map { 'n', 'Q', 'q:' }
-map { 'n', '<c-i>', '<c-i>zz' }
-map { 'n', '<c-o>', '<c-o>zz' }
+map { 'n', '<c-i>', '<c-i>' }
+map { 'n', '<c-o>', '<c-o>' }
 map { 't', '<esc>', '<c-\\><c-n>' }
 map { '!', '<c-p>', '<up>' }
 map { '!', '<c-n>', '<down>' }
 map { 'n', '<leader>k', 'K' }
 
 -- Centering --
-map { 'n', 'G', 'Gzz' }
-map { 'n', 'n', 'nzz' }
-map { 'n', 'N', 'Nzz' }
-map { 'n', '<c-d>', '<c-d>zz' }
-map { 'n', '<c-u>', '<c-u>zz' }
+map { 'n', 'G', 'G' }
+map { 'n', 'n', 'n' }
+map { 'n', 'N', 'N' }
+map { 'n', '<c-d>', '<c-d>' }
+map { 'n', '<c-u>', '<c-u>' }
 
 -- Windows --
 map { 'n', '<c-h>', '<c-w>h' }
@@ -68,25 +69,20 @@ map {
         vim.cmd 'vs|te run %'
     end,
 }
-map {
-    'n',
-    '<leader>R',
-    ':%s/<c-r>=expand("<cword>")<cr>//g<left><left>',
-}
 
 -- Location List --
-map { 'n', ']l', mapstr 'lne' .. 'zz' }
-map { 'n', '[l', mapstr 'lp' .. 'zz' }
-map { 'n', ']L', mapstr 'lne' .. 'zz' }
-map { 'n', '[L', mapstr 'lp' .. 'zz' }
+map { 'n', ']l', mapstr 'lne' }
+map { 'n', '[l', mapstr 'lp' }
+map { 'n', ']L', mapstr 'lne' }
+map { 'n', '[L', mapstr 'lp' }
 map { 'n', '<leader>l', mapstr('utils', "toggle_list('l')") }
 map { 'n', '<leader>L', mapstr 'cal setloclist(0, []) | lcl' }
 
 -- Quickfix List --
-map { 'n', ']c', mapstr 'cn' .. 'zz' }
-map { 'n', '[c', mapstr 'cp' .. 'zz' }
-map { 'n', ']C', mapstr 'cn' .. 'zz' }
-map { 'n', '[C', mapstr 'cp' .. 'zz' }
+map { 'n', ']c', mapstr 'cn' }
+map { 'n', '[c', mapstr 'cp' }
+map { 'n', ']C', mapstr 'cn' }
+map { 'n', '[C', mapstr 'cp' }
 map { 'n', '<leader>c', mapstr('utils', "toggle_list('c')") }
 map { 'n', '<leader>C', mapstr 'cal setqflist([]) | ccl' }
 
@@ -98,7 +94,6 @@ map { 'n', '[o', '@="m`O\\eg``"<cr>' }
 map { '', '<leader>d', '"_d' }
 map { '', '<leader>p', '"0p' }
 map { '', '<leader>y', '"+y' }
-map { '', '<leader>Y', mapstr '%y+"' }
 
 -- Resizing --
 map { 'n', '<c-left>', mapstr 'vert res -10' }

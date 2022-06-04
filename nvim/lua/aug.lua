@@ -1,24 +1,9 @@
 local aug = vim.api.nvim_create_augroup('augs', { clear = true })
 local au = vim.api.nvim_create_autocmd
 
-au('VimLeave', {
-    command = 'NvimTreeClose',
-    group = aug,
-})
-
-au('ColorScheme', {
-    command = 'so ~/.config/nvim/plugin/theme.vim',
-    group = aug,
-})
-
 au('FileType', {
     pattern = 'man',
     command = 'se scl=no nu rnu',
-    group = aug,
-})
-
-au('Syntax', {
-    command = 'so ~/.config/nvim/after/syntax.vim',
     group = aug,
 })
 

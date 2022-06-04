@@ -2,6 +2,7 @@
 
 # Make commands respect aliases
 alias ds='doas '
+alias mn='man '
 
 # Color aliases
 alias ls='exa'
@@ -15,21 +16,14 @@ alias g='git'
 alias ka='killall'
 alias nv='nvim'
 alias py='python'
-alias qb='qutebrowser'
-alias rn='rename'
 alias sctl='systemctl'
 alias tm='tmux'
 alias za='zathura --fork'
-alias zc='z -c'
-alias zz='cd -'
 
 # Make
 alias mk='make'
-alias mkc='mk clean'
-alias mki='mk install'
-alias mkci='mkc install'
-alias mkcic='mkci && mkc'
-alias mku='mk uninstall'
+alias mkcic='make clean install && make clean'
+alias mku='make uninstall'
 
 # Pacman
 alias pm='pacman'
@@ -38,16 +32,9 @@ alias pmqg='pmq | rg'
 
 # Misc
 alias cp='cp -v'
-alias cpd='cp -r'
-alias rm='rm'
 rmd() { [ "$1" = "$HOME" ] || rm -rf "$*"; }
 alias mkd='mkdir -pv'
 mkcd() {
-    mkdir -vp "$1"
+    mkdir -pv "$1"
     cd "$1"
 }
-alias mkv='python -m venv venv; srcv; pip3 install --upgrade pip >/dev/null'
-alias rmv='deactivate 2>/dev/null; rm -rf venv'
-alias srcv='test -f venv/bin/activate && . venv/bin/activate'
-alias nvh='nvim config.h'
-alias rst='exec zsh -l'

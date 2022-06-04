@@ -1,9 +1,15 @@
 local M = {}
 
+local deny_rename = { tsserver = true, clangd = true, sumneko_lua = true, jsonls = true }
+
 M.on_attach = function(client, _)
     local utils = require 'utils'
     local bmap = utils.bmap
     local mapstr = utils.mapstr
+
+    if deny_rename[client.name] then
+        client.resolved_capabilities.document_formatting = false
+    end
 
     if client.name == 'tsserver' then
         local ts_utils = require 'nvim-lsp-ts-utils'
@@ -18,17 +24,12 @@ M.on_attach = function(client, _)
         bmap { 'n', '<c-s>ti', mapstr 'TSLspToggleInlayHints' }
         bmap { 'n', '<c-s>tI', mapstr 'TSLspImportAll' }
         bmap { 'n', '<c-s>to', mapstr 'TSLspOrganize' }
-
-        client.resolved_capabilities.document_formatting = false
     elseif client.name == 'clangd' then
         bmap { 'n', '<c-s>H', mapstr 'ClangdSwitchSourceHeader' }
-        client.resolved_capabilities.document_formatting = false
-    elseif client.name == 'sumneko_lua' or client.name == 'jsonls' then
-        client.resolved_capabilities.document_formatting = false
     end
 
-    bmap { 'n', ']<c-s>', mapstr 'lua vim.diagnostic.goto_next()' .. 'zz' }
-    bmap { 'n', '[<c-s>', mapstr 'lua vim.diagnostic.goto_prev()' .. 'zz' }
+    bmap { 'n', ']<c-s>', mapstr 'lua vim.diagnostic.goto_next()' }
+    bmap { 'n', '[<c-s>', mapstr 'lua vim.diagnostic.goto_prev()' }
 
     bmap { 'n', '<c-s>c', mapstr('telescope.builtin', 'lsp_code_actions()') }
     bmap { 'n', '<c-s>d', mapstr('telescope.builtin', 'lsp_definitions()') }
@@ -54,12 +55,6 @@ M.on_attach = function(client, _)
     bmap { 'n', '<c-s>li', mapstr 'LspInfo' }
     bmap { 'n', '<c-s>lI', mapstr 'NullLsInfo' }
     bmap { 'n', '<c-s>lr', mapstr 'LspRestart' }
-
-    bmap {
-        'n',
-        '<c-s><c-s>',
-        mapstr('utils', 'toggle_diagnostics()'),
-    }
 
     if client.resolved_capabilities.rename then
         bmap { 'n', '<c-s>r', '<esc>' .. mapstr('plug.refactor', "setup_win('rename')") }

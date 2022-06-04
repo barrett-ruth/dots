@@ -54,19 +54,15 @@ function M.toggle_cmp()
     end
 end
 
-local diagnostics_active = false
-function M.toggle_diagnostics()
-    diagnostics_active = not diagnostics_active
-
-    if diagnostics_active then
-        vim.diagnostic.hide()
-    else
-        vim.diagnostic.show(nil, 0)
+function M.map(mapping, opts)
+    local kopts = { noremap = true, silent = true }
+    if opts then
+        for k, v in pairs(opts) do
+            kopts[k] = v
+        end
     end
-end
 
-function M.map(mapping)
-    vim.keymap.set(mapping[1], mapping[2], mapping[3], { noremap = true, silent = true })
+    vim.keymap.set(mapping[1], mapping[2], mapping[3], kopts)
 end
 
 function M.bmap(mapping)

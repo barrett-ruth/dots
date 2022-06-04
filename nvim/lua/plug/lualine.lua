@@ -1,27 +1,17 @@
-local theme = require 'lualine.themes.gruvbox-material'
-
-local shrink = function()
-    return require('plenary.path'):new(vim.fn.expand '%:~'):shorten()
-end
-
 local lspname = function()
     return vim.lsp.buf_get_clients(0)[1].name or ''
 end
 
 require('lualine').setup {
     options = {
-        theme = theme,
+        theme = 'gruvbox-material',
         icons_enabled = false,
         globalstatus = true,
     },
     sections = {
         lualine_a = { 'mode' },
         lualine_b = {
-            {
-                'branch',
-                icons_enabled = true,
-                icon = '',
-            },
+            'branch',
             {
                 'diff',
                 diff_color = {
@@ -32,7 +22,7 @@ require('lualine').setup {
             },
             {
                 'diagnostics',
-                symbols = { error = '>', warn = '', info = ':', hint = '*' },
+                symbols = { error = '>', warn = '-', info = ':', hint = '*' },
                 diagnostics_color = {
                     error = { fg = 'ea6962' },
                     warn = { fg = 'd8a657' },
@@ -41,7 +31,7 @@ require('lualine').setup {
                 },
             },
         },
-        lualine_c = { shrink },
+        lualine_c = { '%F' },
         lualine_x = { lspname, 'filetype' },
         lualine_y = { 'filesize', '%l/%L' },
         lualine_z = { 'encoding', 'bo:ff' },
