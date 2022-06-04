@@ -35,4 +35,5 @@ nvim:
 ssh:
     change all to ~/.config/ssh in /etc/ssh/ssh(d)_config
     generate, add github ssh key (remove old)
+    make ~/.config/ssh/known_hosts.d
     change all cloned url repos to ssh remote string (should probably do this first)
