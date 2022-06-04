@@ -9,8 +9,6 @@ ext="${file##*.}"
 
 [ "$*" ] && args=" $*"
 
-mkcic='make clean install; make clean'
-
 case "$ext" in
 c | cc | cpp)
     [ "$ext" = c ] && comp=gcc || comp=g++
@@ -23,43 +21,18 @@ py)
     [ "$VIRTUAL_ENV" ] && py="$VIRTUAL_ENV/bin/python" || py=python
     cmd="$(which $py) $args$file"
     ;;
-js | jsx)
+js)
     cmd="node $file"
     ;;
-ts | tsx)
+ts)
     cmd="ts-node $file"
-    ;;
-lua)
-    cmd="luajit $file"
-    ;;
-dwmb)
-    cmd="$mkcic"
-    extra="killall dwmb; $cmd && dwmb &"
-    ;;
-*dmenu*)
-    cmd="$mkcic"
-    ;;
-dwm)
-    cmd="$mkcic"
     ;;
 sh)
     test -x "$file" && cmd='./' || cmd='sh '
     cmd="$cmd$file"
     ;;
 *)
-    case "$file" in
-    *dwmb*)
-        cmd="$mkcic"
-        extra="killall dwmb; $cmd && dwmb &"
-        ;;
-    *dmenu* | *dwm*)
-        cmd="$mkcic"
-        ;;
-    *)
-        echo " > Filetype '$ext' unknown."
-        exit 1
-        ;;
-    esac
+    echo " > Filetype '$ext' unknown."
     ;;
 esac
 

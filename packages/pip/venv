@@ -29,12 +29,10 @@ msgpack               1.0.3
 multidict             6.0.2
 mypy                  0.942
 mypy-extensions       0.4.3
-neovim                0.3.1
 packaging             21.3
 parso                 0.8.3
 parsy                 1.1.0
 pathspec              0.9.0
-pip                   22.1.1
 platformdirs          2.5.1
 pluggy                1.0.0
 psutil                5.9.0

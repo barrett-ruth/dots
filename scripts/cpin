@@ -1,7 +1,0 @@
-#!/bin/sh
-
-[ "$2" ] || exit
-
-set -eu
-
-cp -v -- "$1" "$(dirname "$1")/$2"

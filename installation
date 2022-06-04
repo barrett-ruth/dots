@@ -1,0 +1,38 @@
+grub
+    edit /etc/default/grub:
+        include itb=off flag to GRUB_CMDLINE_LINUX_DEFAULT before performing grub-install
+dash
+    create post-install hook
+doas
+    permit users and commands in /etc/doas.conf
+zsh
+    set zsh as shell
+    setup /etc/zsh/zshenv:
+        deny initial prompt message
+        export zdotdir
+    install plugins
+dots:
+    install fira-code
+    config dirs:
+        git X11 zsh templates zsh
+z
+    copy z.1 to ~/.local/share/man/man1/_z.1
+tmux
+    LC_ALL
+nvidia
+    add nvidia, nvidia_modeset, nvidia_uvm, nvidia_drm to initramfs
+    regenerate mkinitcpio -P
+fd
+nvim
+symlink fd to git in ~/.config
+python:
+    download/update pip
+    install global packages
+nvim:
+    formatters, linters (only non-venv specific ones)
+    shellcheck, shfmt
+    lua-language-server, stylua
+ssh:
+    change all to ~/.config/ssh in /etc/ssh/ssh(d)_config
+    generate, add github ssh key (remove old)
+    change all cloned url repos to ssh remote string (should probably do this first)

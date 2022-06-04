@@ -1,5 +1,0 @@
-#!/bin/sh
-
-[ "$2" ] || exit
-
-youtube-dl -x --audio-format mp3 --output "$1" "$2"

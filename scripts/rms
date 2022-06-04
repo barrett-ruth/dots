@@ -1,9 +1,0 @@
-#!/bin/sh
-
-[ "$1" ] || exit
-
-set -eu
-
-script="$(basename "$1")"
-
-rm -f "$SCRIPTS/$script"

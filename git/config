@@ -14,25 +14,16 @@
 [alias]
     a = add
     b = branch
-    c = commit -m
-    ca = commit -am
+    c = commit
     cap = "!cap() { git add . && git commit -m \"$*\" && git push; }; cap"
-    cf = config
     ch = checkout
     cl = clone
-    cp = cherry-pick
     d = diff
     f = fetch
-    i = init
     lg = log --oneline --graph --decorate
     mg = merge
     p = pull
     pu = push
     r = remote
-    rb = rebase
     rt = reset
-    rr = restore
     s = status
-    st = stash
-    t = tag
-    w = worktree

@@ -3,29 +3,3 @@
 [ "$1" = up ] && cmd=inc || cmd=dec
 
 eval "xbacklight -$cmd 5"
-
-format_chars() {
-    in="$1"
-
-    [ "$in" -gt 100 ] && in=100
-    [ "$in" -eq 0 ] || fill="$(printf "%$((in / 5))"s | sed 's| |-|g')"
-
-    rest="$(printf "%$((20 - in / 5))"s)"
-
-    echo "$fill$rest"
-}
-
-final_bar() {
-    light="$(awk '{ print $1 / 5.12 }' /sys/class/backlight/intel_backlight/brightness)"
-    light="${light%%.*}"
-    spacing='  '
-
-    [ "${#light}" -eq 1 ] && spacing="$spacing "
-    [ "${#light}" -eq 2 ] && spacing="$spacing "
-
-    bar=" $(format_chars "$light")$spacing"
-
-    echo " $bar$light"L
-}
-
-sdun -r 2 -u low "'$(final_bar)'"
