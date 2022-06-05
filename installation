@@ -22,6 +22,9 @@ tmux
 nvidia
     add nvidia, nvidia_modeset, nvidia_uvm, nvidia_drm to initramfs
     regenerate mkinitcpio -P
+    add nvidia hook
+    add nvidia.shutdown to /usr/lib/systemd/system-shutdown to avoid umount /oldroot: device busy
+        chmod +x
 fd
 nvim
 symlink fd to git in ~/.config
@@ -30,8 +33,6 @@ python:
     install global packages
 nvim:
     formatters, linters (only non-venv specific ones)
-    shellcheck, shfmt
-    lua-language-server, stylua
 ssh:
     change all to ~/.config/ssh in /etc/ssh/ssh(d)_config
     generate, add github ssh key (remove old)

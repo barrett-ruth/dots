@@ -13,9 +13,7 @@ ls.config.set_config {
     },
 }
 
-local s = ls.s
-local t = ls.t
-local i = ls.i
+local i, s, t = ls.i, ls.s, ls.t
 
 local function snipopts(trig)
     return { trig = trig, wordTrig = false }
@@ -67,11 +65,10 @@ map {
     { 'i', 's' },
     '<c-h>',
     function()
-        ls = require 'luasnip'
         if ls.jumpable(-1) then
             ls.jump(-1)
         else
-            vim.cmd 'norm! h'
+            vim.cmd 'norm h'
         end
     end,
 }
@@ -79,11 +76,10 @@ map {
     { 'i', 's' },
     '<c-l>',
     function()
-        ls = require 'luasnip'
         if ls.jumpable(1) then
             ls.jump(1)
         else
-            vim.cmd 'norm! l'
+            vim.cmd 'norm l'
         end
     end,
 }
@@ -92,7 +88,6 @@ map {
     'i',
     '<c-s>',
     function()
-        ls = require 'luasnip'
         if ls.expandable() then
             ls.expand()
         end
@@ -102,11 +97,10 @@ map {
     'i',
     '<c-j>',
     function()
-        ls = require 'luasnip'
         if ls.choice_active() then
             ls.change_choice(-1)
         else
-            vim.cmd 'norm! j'
+            vim.cmd 'norm j'
         end
     end,
 }
@@ -114,11 +108,10 @@ map {
     'i',
     '<c-k>',
     function()
-        ls = require 'luasnip'
         if ls.choice_active() then
             ls.change_choice(1)
         else
-            vim.cmd 'norm! k'
+            vim.cmd 'norm k'
         end
     end,
 }

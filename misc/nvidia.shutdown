@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Remove nvidia modules on shutdown
+
+for MODULE in nvidia_drm nvidia_modeset nvidia_uvm nvidia
+do
+rmmod $MODULE
+done

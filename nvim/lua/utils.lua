@@ -56,6 +56,7 @@ end
 
 function M.map(mapping, opts)
     local kopts = { noremap = true, silent = true }
+
     if opts then
         for k, v in pairs(opts) do
             kopts[k] = v
@@ -66,7 +67,11 @@ function M.map(mapping, opts)
 end
 
 function M.bmap(mapping)
-    vim.keymap.set(mapping[1], mapping[2], mapping[3], { noremap = true, silent = true, buffer = vim.fn.bufnr '%' })
+    vim.keymap.set(mapping[1], mapping[2], mapping[3], {
+        noremap = true,
+        silent = true,
+        buffer = vim.fn.bufnr '%',
+    })
 end
 
 function M.mapstr(req, meth)

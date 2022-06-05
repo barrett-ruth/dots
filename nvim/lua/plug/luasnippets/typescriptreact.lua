@@ -1,8 +1,7 @@
 local ls = require 'luasnip'
 
-local i = ls.i
+local i, s = ls.i, ls.s
 local fmt = require('luasnip.extras.fmt').fmt
-local s = ls.s
 
 local javascript = require 'plug.luasnippets.javascript'
 local javascriptreact = require 'plug.luasnippets.javascriptreact'

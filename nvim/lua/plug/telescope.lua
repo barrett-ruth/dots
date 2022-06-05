@@ -39,9 +39,9 @@ require('telescope').setup {
 }
 
 require('telescope').load_extension 'fzy_native'
+require('telescope').load_extension 'git_worktree'
 
-local map = utils.map
-local mapstr = utils.mapstr
+local map, mapstr = utils.map, utils.mapstr
 
 map {
     'n',

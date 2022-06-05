@@ -1,14 +1,4 @@
 #!/bin/sh
 
-mons="$(xrandr | rg ' connected ' | awk '{ print $1 }')"
-
-one="$(echo "$mons" | head -n1)"
-two="$(echo "$mons" | tail -n1)"
-
-xrandr --output "$one" --set TearFree on 2>/dev/null
-
-[ "$two" = "$one" ] && exit
-
-xrandr --output "$two" --set TearFree on 2>/dev/null
-
-xrandr --output "$one" --scale 1x1 --pos 1280x2880 --output "$two" --scale 2x2 --pos 0x0
+xrandr --dpi 200
+xrandr --output eDP1 --set TearFree on

@@ -1,9 +1,7 @@
 local ls = require 'luasnip'
 
 local fmt = require('luasnip.extras.fmt').fmt
-local i = ls.i
-local f = ls.f
-local s = ls.s
+local i, f, s = ls.i, ls.f, ls.s
 
 local word = function(index)
     return f(function(name)

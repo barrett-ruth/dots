@@ -1,6 +1,5 @@
 local utils = require 'utils'
-local mapstr = utils.mapstr
-local map = utils.map
+local map, mapstr = utils.map, utils.mapstr
 
 -- Fugitive
 map { 'n', '<leader>vd', mapstr 'G d' }

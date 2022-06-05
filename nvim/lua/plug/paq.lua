@@ -45,11 +45,11 @@ require 'paq' {
     'numToStr/Comment.nvim',
 
     'ThePrimeagen/harpoon',
+    'ThePrimeagen/git-worktree.nvim',
 }
 
 local utils = require 'utils'
-local mapstr = utils.mapstr
-local map = utils.map
+local map, mapstr = utils.map, utils.mapstr
 
 map { 'n', '<leader>Pc', mapstr 'PaqClean' }
 map { 'n', '<leader>Pi', mapstr 'PaqInstall' }

@@ -30,6 +30,7 @@ cmp.setup {
         format = function(entry, vim_item)
             vim_item.menu = sources[entry.source.name]
             vim_item.kind = ''
+
             return vim_item
         end,
     },
@@ -58,8 +59,7 @@ cmp.setup {
 }
 
 local utils = require 'utils'
-local bmap = utils.bmap
-local mapstr = utils.mapstr
+local bmap, mapstr = utils.bmap, utils.mapstr
 
 bmap {
     'i',

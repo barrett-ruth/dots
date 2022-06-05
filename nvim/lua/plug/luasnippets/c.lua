@@ -1,8 +1,7 @@
 local ls = require 'luasnip'
 
 local fmt = require('luasnip.extras.fmt').fmt
-local i = ls.i
-local s = ls.s
+local i, s = ls.i, ls.s
 
 local c = {
     s('inh', fmt('#include "{}"', { i(1) })),

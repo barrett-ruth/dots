@@ -1,9 +1,15 @@
-local aug = vim.api.nvim_create_augroup('augs', { clear = true })
 local au = vim.api.nvim_create_autocmd
+local aug = vim.api.nvim_create_augroup('augs', { clear = true })
 
 au('FileType', {
     pattern = 'man',
     command = 'se scl=no nu rnu',
+    group = aug,
+})
+
+au({ 'BufRead', 'BufNewFile' }, {
+    pattern = 'PKGBUILD',
+    command = 'se ft=PKGBUILD',
     group = aug,
 })
 

@@ -1,8 +1,7 @@
 local ls = require 'luasnip'
 
 local fmt = require('luasnip.extras.fmt').fmt
-local i = ls.i
-local s = ls.s
+local i, s = ls.i, ls.s
 
 ls.add_snippets('sh', {
     s('&', fmt('[ {} ] && {}', { i(1), i(2) })),

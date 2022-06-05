@@ -58,7 +58,6 @@ treesitter_configs.setup {
 
 local utils = require 'utils'
 local map = utils.map
-local mapstr = utils.mapstr
 
 map {
     'n',
@@ -66,7 +65,6 @@ map {
     function()
         package.loaded['plug.treesitter'] = nil
         require 'plug.treesitter'
-
         vim.cmd 'e'
         vim.cmd "echo 'File reparsed.'"
     end,

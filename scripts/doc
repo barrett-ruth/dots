@@ -5,17 +5,13 @@ leave() {
     exit 0
 }
 
-prefix="$XDG_DOCUMENTS_DIR"
+prefix="$HOME/doc"
 
 [ "$1" ] && leave "$(fd -e pdf -1 -t f -a "$1" -- . "$prefix")"
 
-get_docs() {
-    for i in "$1"/*; do
-        test -d "$i" && get_docs "$i" || docs="$docs\n$(echo "$i" | sed "s|\.pdf||g;s|$prefix/||g")"
-    done
-}
-
-get_docs "$prefix"
+for i in "$prefix"/*; do
+    test -d "$i" && get_docs "$i" || docs="$docs\n$(echo "$i" | sed "s|\.pdf||g;s|$prefix/||g")"
+done
 
 docs="${docs#??}"
 

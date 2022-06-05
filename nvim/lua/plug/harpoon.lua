@@ -1,6 +1,5 @@
 local utils = require 'utils'
-local map = utils.map
-local mapstr = utils.mapstr
+local map, mapstr = utils.map, utils.mapstr
 
 map { 'n', '<leader>ha', mapstr('harpoon.mark', 'add_file()') }
 map { 'n', '<leader>hd', mapstr('harpoon.mark', 'rm_file()') }

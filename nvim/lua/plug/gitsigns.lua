@@ -16,8 +16,7 @@ require('gitsigns').setup {
     },
     on_attach = function(_)
         local utils = require 'utils'
-        local mapstr = utils.mapstr
-        local bmap = utils.bmap
+        local bmap, mapstr = utils.bmap, utils.mapstr
 
         bmap { 'n', '<leader>gb', mapstr 'Gitsigns blame_line' }
         bmap { 'n', '<leader>gB', mapstr 'Gitsigns toggle_current_line_blame' }

@@ -1,6 +1,5 @@
 local utils = require 'utils'
-local map = utils.map
-local mapstr = utils.mapstr
+local map, mapstr = utils.map, utils.mapstr
 
 -- Buffers --
 map { 'n', '[b', mapstr 'bp' }
@@ -9,14 +8,18 @@ map { 'n', '<leader>B', mapstr('utils', 'delete_buffer()') }
 map { 'n', '<leader>W', mapstr('utils', 'delete_buffer(true)') }
 
 -- Builtins --
-map({'n', ':', ';'}, { silent = false })
-map({'n', ';', ':'}, { silent = false })
-map({'x', ':', ';'}, { silent = false })
-map({'x', ';', ':'}, { silent = false })
-map({'n', '<leader>R', ':%s/<c-r>=expand("<cword>")<cr>//g<left><left>'}, {silent = false})
-map({'n', 'gp', function()
-    return '`[' .. vim.fn.strpart(vim.fn.getregtype(), 0, 1) .. '`]'
-end}, { expr = true })
+map({ 'n', ':', ';' }, { silent = false })
+map({ 'n', ';', ':' }, { silent = false })
+map({ 'x', ':', ';' }, { silent = false })
+map({ 'x', ';', ':' }, { silent = false })
+map({ 'n', '<leader>R', ':%s/<c-r>=expand("<cword>")<cr>//g<left><left>' }, { silent = false })
+map({
+    'n',
+    'gp',
+    function()
+        return '`[' .. vim.fn.strpart(vim.fn.getregtype(), 0, 1) .. '`]'
+    end,
+}, { expr = true })
 map { 'n', 'J', 'mzJ`z' }
 map { 'n', 'K', 'mzkJ`z' }
 map { 'x', 'J', ":m '>+1<cr>gv" }

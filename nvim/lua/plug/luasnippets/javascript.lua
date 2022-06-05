@@ -1,10 +1,7 @@
 local ls = require 'luasnip'
 
 local fmt = require('luasnip.extras.fmt').fmt
-local c = ls.choice_node
-local i = ls.i
-local s = ls.s
-local t = ls.t
+local c, i, s, t = ls.choice_node, ls.i, ls.s, ls.t
 
 local either = function(pos, a, b)
     return c(pos, { t(a), t(b) })

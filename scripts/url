@@ -10,7 +10,7 @@ urls="$(sed 's/.*│//g' | tr -d '\n' | rg -ao "$regex" | uniq | sed "s/\(\.\|,\
 
 [ "$(echo "$urls" | wc -l)" -eq 1 ] && url="$urls" || url="$(echo "$urls" | dmenu -i -p "$1 url:" -l 10)"
 
-[ "$1" = open ] && eval "$BROWSER --new-window $url" || (
+[ "$1" = open ] && eval "$BROWSER $url" || (
     prev="$(xclip -o -sel c)"
     echo "$url" | xclip -sel c
     sleep 2

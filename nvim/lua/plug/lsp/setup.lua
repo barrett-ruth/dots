@@ -1,13 +1,12 @@
 local M = {}
 
-local deny_rename = { tsserver = true, clangd = true, sumneko_lua = true, jsonls = true }
+local deny_format = { tsserver = true, clangd = true, sumneko_lua = true, jsonls = true }
 
 M.on_attach = function(client, _)
     local utils = require 'utils'
-    local bmap = utils.bmap
-    local mapstr = utils.mapstr
+    local bmap, mapstr = utils.bmap, utils.mapstr
 
-    if deny_rename[client.name] then
+    if deny_format[client.name] then
         client.resolved_capabilities.document_formatting = false
     end
 
@@ -40,7 +39,7 @@ M.on_attach = function(client, _)
         '<c-s>sf',
         mapstr(
             'telescope.builtin',
-            'lsp_document_symbols({ ignore_symbols = { "property", "variable", "enummember", "field" } })'
+            "lsp_document_symbols({ ignore_symbols = { 'property', 'variable', 'enummember', 'field' } })"
         ),
     }
     bmap { 'n', '<c-s>sa', mapstr('telescope.builtin', 'lsp_document_symbols()') }
@@ -51,10 +50,6 @@ M.on_attach = function(client, _)
     bmap { 'n', '<c-s>D', mapstr 'lua vim.lsp.buf.declaration()' }
     bmap { 'n', '<c-s>R', mapstr 'lua vim.lsp.buf.references()' }
     bmap { 'n', '<c-s>S', mapstr 'lua vim.lsp.buf.signature_help()' }
-
-    bmap { 'n', '<c-s>li', mapstr 'LspInfo' }
-    bmap { 'n', '<c-s>lI', mapstr 'NullLsInfo' }
-    bmap { 'n', '<c-s>lr', mapstr 'LspRestart' }
 
     if client.resolved_capabilities.rename then
         bmap { 'n', '<c-s>r', '<esc>' .. mapstr('plug.refactor', "setup_win('rename')") }
