@@ -36,13 +36,17 @@ local builtins = null_ls.builtins
 
 null_ls.setup {
     sources = {
-        builtins.diagnostics.eslint_d.with {
+        builtins.diagnostics.curlylint.with {
             diagnostics_format = '#{m}',
+            extra_filetypes = { 'html' },
+        },
+        builtins.diagnostics.eslint_d.with {
             condition = function(utils)
                 return utils.root_has_file {
                     { '.eslintrc', '.eslintrc.cjs', '.eslintrc.yaml', '.eslintrc.yml', '.eslintrc.json' },
                 }
             end,
+            diagnostics_format = '#{m}',
         },
         builtins.diagnostics.flake8.with {
             condition = function()

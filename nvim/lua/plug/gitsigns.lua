@@ -19,7 +19,6 @@ require('gitsigns').setup {
         local bmap, mapstr = utils.bmap, utils.mapstr
 
         bmap { 'n', '<leader>gb', mapstr 'Gitsigns blame_line' }
-        bmap { 'n', '<leader>gB', mapstr 'Gitsigns toggle_current_line_blame' }
         bmap { 'n', '<leader>gp', mapstr 'Gitsigns preview_hunk' }
         bmap { 'n', '[g', mapstr 'Gitsigns prev_hunk' }
         bmap { 'n', ']g', mapstr 'Gitsigns next_hunk' }

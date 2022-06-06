@@ -27,8 +27,7 @@ alias mku='make uninstall'
 
 # Pacman
 alias pm='pacman'
-alias pmq='pm -Q'
-alias pmqg='pmq | rg'
+alias pmqg='pacman -Q | rg'
 
 # Misc
 alias cp='cp -v'

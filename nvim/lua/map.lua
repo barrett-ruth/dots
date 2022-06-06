@@ -26,19 +26,9 @@ map { 'x', 'J', ":m '>+1<cr>gv" }
 map { 'x', 'K', ":m '<-2<cr>gv" }
 map { 'n', 'x', '"_x' }
 map { 'n', 'Q', 'q:' }
-map { 'n', '<c-i>', '<c-i>' }
-map { 'n', '<c-o>', '<c-o>' }
-map { 't', '<esc>', '<c-\\><c-n>' }
 map { '!', '<c-p>', '<up>' }
 map { '!', '<c-n>', '<down>' }
 map { 'n', '<leader>k', 'K' }
-
--- Centering --
-map { 'n', 'G', 'G' }
-map { 'n', 'n', 'n' }
-map { 'n', 'N', 'N' }
-map { 'n', '<c-d>', '<c-d>' }
-map { 'n', '<c-u>', '<c-u>' }
 
 -- Windows --
 map { 'n', '<c-h>', '<c-w>h' }

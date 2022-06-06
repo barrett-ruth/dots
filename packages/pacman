@@ -3,6 +3,7 @@ base-devel
 imlib2
 intel-ucode
 iwd
+clang
 dash
 dhcpcd
 doas

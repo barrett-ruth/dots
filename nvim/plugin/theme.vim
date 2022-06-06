@@ -7,7 +7,6 @@ sign define DiagnosticSignInfo text=: texthl=BlueSign
 
 let nostr = 'ctermbg=NONE guibg=NONE gui=NONE'
 
-hi! link Conceal Operator
 hi! FloatBorder guibg=NONE
 hi! TelescopeSelection guibg=#45403d
 hi! MatchWord cterm=NONE gui=NONE

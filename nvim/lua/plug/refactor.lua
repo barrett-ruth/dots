@@ -74,7 +74,7 @@ function M.rename(win)
     teardown_win(win)
 
     vim.lsp.buf.rename(name)
-    vim.cmd 'stopi | norm! l'
+    vim.cmd 'stopi | norm l'
 end
 
 function M.extract(win)
@@ -97,23 +97,23 @@ function M.extract(win)
             num
         )
     )
-    vim.cmd 'stopinsert'
+    vim.cmd 'stopi'
 end
 
-function M.print(before)
+function M.print()
     local ft = fts.print[vim.bo.ft]
 
     if ft == nil then
         return
     end
 
-    vim.cmd(string.format([[cal feedkeys("mrgv\"ry%s%s\<c-r>\"%s\<esc>`r")]], before and 'O' or 'o', ft.l, ft.r))
+    vim.cmd(string.format([[cal feedkeys("mrgv\"ryo%s\<c-r>\"%s\<esc>`r")]], ft.l, ft.r))
 end
 
 function M.inline()
     vim.cmd(
         string.format(
-            [[cal feedkeys("gv\"ry2Wvg_%s\"lydd^/\<c-r>r\<cr>cgn\<c-r>l\<esc>")]],
+            [[cal feedkeys("mrgv\"ry2Wvg_%s\"lydd^/\<c-r>r\<cr>cgn\<c-r>l\<esc>`r")]],
             fts.inline[vim.bo.ft] or ''
         )
     )

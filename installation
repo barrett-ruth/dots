@@ -17,14 +17,13 @@ dots:
         git X11 zsh templates zsh
 z
     copy z.1 to ~/.local/share/man/man1/_z.1
-tmux
-    LC_ALL
 nvidia
     add nvidia, nvidia_modeset, nvidia_uvm, nvidia_drm to initramfs
     regenerate mkinitcpio -P
     add nvidia hook
     add nvidia.shutdown to /usr/lib/systemd/system-shutdown to avoid umount /oldroot: device busy
         chmod +x
+tmux
 fd
 nvim
 symlink fd to git in ~/.config

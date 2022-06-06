@@ -67,11 +67,7 @@ function M.map(mapping, opts)
 end
 
 function M.bmap(mapping)
-    vim.keymap.set(mapping[1], mapping[2], mapping[3], {
-        noremap = true,
-        silent = true,
-        buffer = vim.fn.bufnr '%',
-    })
+    M.map(mapping, { buffer = vim.fn.bufnr '%' })
 end
 
 function M.mapstr(req, meth)

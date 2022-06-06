@@ -20,44 +20,39 @@ M.on_attach = function(client, _)
         }
 
         ts_utils.setup_client(client)
-        bmap { 'n', '<c-s>ti', mapstr 'TSLspToggleInlayHints' }
-        bmap { 'n', '<c-s>tI', mapstr 'TSLspImportAll' }
-        bmap { 'n', '<c-s>to', mapstr 'TSLspOrganize' }
+
+        bmap { 'n', '\\ti', mapstr 'TSLspImportAll' }
+        bmap { 'n', '\\to', mapstr 'TSLspOrganize' }
     elseif client.name == 'clangd' then
-        bmap { 'n', '<c-s>H', mapstr 'ClangdSwitchSourceHeader' }
+        bmap { 'n', '\\H', mapstr 'ClangdSwitchSourceHeader' }
     end
 
-    bmap { 'n', ']<c-s>', mapstr 'lua vim.diagnostic.goto_next()' }
-    bmap { 'n', '[<c-s>', mapstr 'lua vim.diagnostic.goto_prev()' }
+    bmap { 'n', ']\\', mapstr 'lua vim.diagnostic.goto_next()' }
+    bmap { 'n', '[\\', mapstr 'lua vim.diagnostic.goto_prev()' }
 
-    bmap { 'n', '<c-s>c', mapstr('telescope.builtin', 'lsp_code_actions()') }
-    bmap { 'n', '<c-s>d', mapstr('telescope.builtin', 'lsp_definitions()') }
-    bmap { 'n', '<c-s>i', mapstr('telescope.builtin', 'lsp_implementations()') }
+    bmap { 'n', '\\c', mapstr 'vim.lsp.buf.code_action()' }
+    bmap { 'n', '\\d', mapstr 'lua vim.lsp.buf.definition()' }
+    bmap { 'n', '\\D', mapstr 'lua vim.lsp.buf.declaration()' }
+    bmap { 'n', '\\f', mapstr 'lua vim.diagnostic.open_float()' }
+    bmap { 'n', '\\h', mapstr 'lua vim.lsp.buf.hover()' }
+    bmap { 'n', '\\R', mapstr 'lua vim.lsp.buf.references()' }
+    bmap { 'n', '\\s', mapstr('telescope.builtin', 'lsp_document_symbols()') }
 
-    bmap {
-        'n',
-        '<c-s>sf',
-        mapstr(
-            'telescope.builtin',
-            "lsp_document_symbols({ ignore_symbols = { 'property', 'variable', 'enummember', 'field' } })"
-        ),
-    }
-    bmap { 'n', '<c-s>sa', mapstr('telescope.builtin', 'lsp_document_symbols()') }
+    if client.resolved_capabilities.implementation then
+        bmap { 'n', '\\i', mapstr 'lua vim.lsp.buf.implementation()' }
+    end
 
-    bmap { 'n', '<c-s>f', mapstr 'lua vim.diagnostic.open_float()' }
-    bmap { 'n', '<c-s>h', mapstr 'lua vim.lsp.buf.hover()' }
-
-    bmap { 'n', '<c-s>D', mapstr 'lua vim.lsp.buf.declaration()' }
-    bmap { 'n', '<c-s>R', mapstr 'lua vim.lsp.buf.references()' }
-    bmap { 'n', '<c-s>S', mapstr 'lua vim.lsp.buf.signature_help()' }
+    if client.resolved_capabilities.signature_help then
+        bmap { 'n', '\\S', mapstr 'lua vim.lsp.buf.signature_help()' }
+    end
 
     if client.resolved_capabilities.rename then
-        bmap { 'n', '<c-s>r', '<esc>' .. mapstr('plug.refactor', "setup_win('rename')") }
+        bmap { 'n', '\\r', '<esc>' .. mapstr('plug.refactor', "setup_win('rename')") }
     end
-    bmap { 'x', '<c-s>e', '<esc>' .. mapstr('plug.refactor', "setup_win('extract')") }
-    bmap { 'x', '<c-s>i', '<esc>' .. mapstr('plug.refactor', 'inline()') }
-    bmap { 'x', '<c-s>p', '<esc>' .. mapstr('plug.refactor', 'print()') }
-    bmap { 'x', '<c-s>P', '<esc>' .. mapstr('plug.refactor', 'print(true)') }
+
+    bmap { 'x', '\\e', '<esc>' .. mapstr('plug.refactor', "setup_win('extract')") }
+    bmap { 'x', '\\i', '<esc>' .. mapstr('plug.refactor', 'inline()') }
+    bmap { 'x', '\\p', '<esc>' .. mapstr('plug.refactor', 'print()') }
 end
 
 local lspconfig = require 'lspconfig'
