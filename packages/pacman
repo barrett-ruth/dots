@@ -1,5 +1,6 @@
 base
 base-devel
+imlib2
 intel-ucode
 iwd
 dash
@@ -20,6 +21,7 @@ nvidia
 nvidia-utils
 openssh
 ripgrep
+setroot
 shellcheck
 shfmt
 stylua

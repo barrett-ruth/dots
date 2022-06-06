@@ -1,14 +1,7 @@
 #!/bin/sh
 
-wps="$HOME/wp"
+wps="$XDG_CONFIG_HOME/wp"
 
-if [ "$1" ]; then
-    wp1="$1"
-    test -f "$wp1" || wp1="$wps/one/$wp1"
-fi
-test -f "$wp1" || wp1="$(find "$wps/one" -type f | shuf -n 1)"
+[ "$1" ] && wp1="$1" || wp1="$(find "$wps" -type f | shuf -n 1)"
 
-wp2="$(echo "$wp1" | sed 's/one/two/')"
-test -f "$wp2" || wp2="$(find "$wps/two" -type f | shuf -n 1)"
-
-feh --no-fehb --bg-scale "$wp1" "$wp2" 2>/dev/null
+test -f "$XDG_CONFIG_HOME/setroot/.setroot-restore" && setroot --restore -z "$wp1" || setroot --store -z "$wp1"

@@ -38,3 +38,7 @@ ssh:
     generate, add github ssh key (remove old)
     make ~/.config/ssh/known_hosts.d
     change all cloned url repos to ssh remote string (should probably do this first)
+setroot
+    install imlib2
+    clone aur repo
+    change `imlib2-configure --libs' to Imlib2 in PKGBUILD Makefile
