@@ -17,6 +17,7 @@ alias ka='killall'
 alias nv='nvim'
 alias py='python'
 alias sctl='systemctl'
+alias jctl='journalctl'
 alias tm='tmux'
 alias za='zathura --fork'
 

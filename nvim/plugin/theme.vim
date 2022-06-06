@@ -1,3 +1,7 @@
+let g:gruvbox_material_better_performance = 1
+let g:gruvbox_material_background = 'hard'
+let g:loaded_textobj_variable_segment = 1
+se bg=dark tgc
 colo gruvbox-material
 
 sign define DiagnosticSignError text=> texthl=RedSign
@@ -11,6 +15,7 @@ hi! FloatBorder guibg=NONE
 hi! TelescopeSelection guibg=#45403d
 hi! MatchWord cterm=NONE gui=NONE
 hi! MatchWordCur cterm=NONE gui=NONE
+hi! MatchParenCur cterm=NONE gui=NONE
 
 for e in [ 'SignColumn', 'FoldColumn' ]
     exe 'hi!' e nostr

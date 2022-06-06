@@ -39,8 +39,6 @@ se splitbelow splitright
 
 se stal=0
 
-se termguicolors
-
 se undodir=~/.config/nvim/undo undofile
 
 se updatetime=50

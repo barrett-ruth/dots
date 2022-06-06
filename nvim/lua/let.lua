@@ -1,7 +1,3 @@
-vim.g.gruvbox_material_better_performance = 1
-vim.g.gruvbox_material_background = 'hard'
-vim.g.loaded_textobj_variable_segment = 1
-
 vim.g.did_load_filetypes = 1
 
 local disabled_builtins = {
