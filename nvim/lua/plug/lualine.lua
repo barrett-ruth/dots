@@ -32,7 +32,7 @@ require('lualine').setup {
                 },
                 symbols = {
                     error = '>',
-                    warn = '-',
+                    warn = '—',
                     info = ':',
                     hint = '*',
                 },

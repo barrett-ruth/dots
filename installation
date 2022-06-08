@@ -12,9 +12,6 @@ zsh
         export zdotdir
     install plugins
 dots:
-    install fira-code
-    config dirs:
-        git X11 zsh templates zsh
 z
     copy z.1 to ~/.local/share/man/man1/_z.1
 nvidia
@@ -23,15 +20,7 @@ nvidia
     add nvidia hook
     add nvidia.shutdown to /usr/lib/systemd/system-shutdown to avoid umount /oldroot: device busy
         chmod +x
-tmux
-fd
-nvim
 symlink fd to git in ~/.config
-python:
-    download/update pip
-    install global packages
-nvim:
-    formatters, linters (only non-venv specific ones)
 ssh:
     change all to ~/.config/ssh in /etc/ssh/ssh(d)_config
     generate, add github ssh key (remove old)
@@ -41,3 +30,7 @@ setroot
     install imlib2
     clone aur repo
     change `imlib2-configure --libs' to Imlib2 in PKGBUILD Makefile
+fzf:
+    clone
+    ./install --xdg --no-update-rc --no-bash --no-fish --key-bindings --no-completion --key-bindings
+    move fzf.zsh to plugin/zsh-fzf

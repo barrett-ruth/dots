@@ -1,4 +1,4 @@
-require 'plug.lsp.signs'
+require 'lsp.signs'
 
 local servers = {
     clangd = {},
@@ -24,7 +24,7 @@ local servers = {
     vimls = {},
 }
 
-local setup = require 'plug.lsp.setup'
+local setup = require 'lsp.setup'
 local lsp_setup, on_attach = setup.setup, setup.on_attach
 
 for name, info in pairs(servers) do

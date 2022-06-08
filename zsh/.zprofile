@@ -27,13 +27,14 @@ export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 [[ -f "$XAUTHORITY" ]] || touch "$XAUTHORITY"
 
 # Utils
+export BROWSER='qutebrowser'
 export EDITOR='nvim'
 export MANPAGER='nvim +Man!'
 
 # ZSH
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export HYPHEN_INSENSITIVE='true'
-export HIST_STAMPS='mm/dd/yyyy'
+export HIST_STAMPS='dd/mm/yyyy'
 export HISTFILE="$ZDOTDIR/.zsh_history"
 export HISTSIZE=2000
 export HISTFILESIZE=2000
@@ -42,22 +43,34 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
 
 # Programs
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
-export LESSHISTFILE="$XDG_DATA_HOME/.lesshst"
+export LESSHISTFILE="$XDG_DATA_HOME/lesshst"
 export NPM_CONFIG_PREFIX='/usr/local'
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export NODE_REPL_HISTORY="$XDG_DATA_HOME/.node_repl_history"
 export PRETTIERD_DEFAULT_CONFIG="$XDG_CONFIG_HOME/prettierd"
+export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export _Z_DATA="$XDG_DATA_HOME/z"
 export _Z_EXCLUDE_DIRS=(__pycache__ .mypy_cache .git .pki build cache dist doc node_modules undo venv)
 
+export FZF_COMPLETION_TRIGGER=\;
+export FZF_CTRL_R_OPTS='--reverse'
+export FZF_CTRL_T_COMMAND='fd --type file --hidden --strip-cwd-prefix'
+export FZF_DEFAULT_OPTS='--no-info --no-bold --prompt="> " --color=fg:#d4be98,bg:#1d2021,hl:bold:#a9b665 --color=fg+:#d4be98,hl+:bold:#a9b665,bg+:#1d2021 --color=pointer:#d4be98'
+export FZF_TMUX=1
+
 # Plugins
 . "$ZDOTDIR/.zaliases"
 . "$ZDOTDIR/plugin/zsh-z/z.sh"
+. "$ZDOTDIR/plugin/zsh-fzf/fzf.zsh"
 . "$ZDOTDIR/plugin/zsh-autosuggestions/zsh-autosuggestions.zsh"
 . "$ZDOTDIR/plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 bindkey -v
+bindkey -r '^T' '^[c' '^R'
+bindkey '^F' fzf-file-widget
+bindkey '^G' fzf-cd-widget
+bindkey '^H' fzf-history-widget
 bindkey '^[[3~' delete-char
 bindkey '^P' up-line-or-history
 bindkey '^N' down-line-or-history

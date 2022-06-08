@@ -23,7 +23,7 @@ local inline = function(lr)
     if lr[1]:len() == 2 then
         local first = lr[1]:sub(1, 1)
 
-        if first == "'" or first == '{' or first == '(' or first == '"' then
+        if first == "'" or first == '{' or first == '(' or first == '"' or first == '[' then
             return s(snipopts(lr[1]), { t(lr[1]), i(1), t(lr[2]:sub(1, 1)), i(2), t(lr[2]:sub(2, 2)) })
         end
     end

@@ -9,7 +9,7 @@ function M.delete_buffer(wipe)
     local winnr, bufnr = vim.fn.winnr(), vim.fn.bufnr()
 
     if #bufs < 2 then
-        vim.cmd 'conf qall'
+        vim.cmd 'conf qa'
         return
     end
 
@@ -29,15 +29,13 @@ function M.delete_buffer(wipe)
 end
 
 function M.toggle_list(prefix)
-    if prefix == 'c' then
-        QFL = (next(vim.fn.getqflist()) == nil) and false or not QFL
-    else
-        LL = (next(vim.fn.getloclist(0)) == nil) and false or not LL
+    for _, buf in ipairs(vim.fn.getbufinfo { buflisted = 1 }) do
+        if vim.api.nvim_buf_get_option(buf.bufnr, 'ft') == 'qf' then
+            vim.cmd(prefix == 'c' and 'ccl' or 'lcl')
+            return
+        end
     end
-
-    local cmd = (prefix == 'c' and QFL or LL) and 'ope' or 'cl'
-
-    vim.cmd(prefix .. cmd)
+    vim.cmd(prefix == 'c' and 'cope' or 'lop')
 end
 
 local cmp_active = false
@@ -66,8 +64,10 @@ function M.map(mapping, opts)
     vim.keymap.set(mapping[1], mapping[2], mapping[3], kopts)
 end
 
-function M.bmap(mapping)
-    M.map(mapping, { buffer = vim.fn.bufnr '%' })
+function M.bmap(mapping, opts)
+    opts = opts or {}
+    opts.buffer = vim.fn.bufnr '%'
+    M.map(mapping, opts)
 end
 
 function M.mapstr(req, meth)

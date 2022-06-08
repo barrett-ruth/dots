@@ -4,12 +4,12 @@ local files = {
     'luasnippets',
     'cmp',
     'fugitive',
+    'fzf',
     'gitsigns',
     'harpoon',
     'lualine',
-    'telescope',
     'treesitter',
-    'lsp',
+    'worktree',
 }
 
 for _, v in ipairs(files) do

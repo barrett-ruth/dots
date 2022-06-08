@@ -30,24 +30,17 @@ M.on_attach = function(client, _)
     bmap { 'n', ']\\', mapstr 'lua vim.diagnostic.goto_next()' }
     bmap { 'n', '[\\', mapstr 'lua vim.diagnostic.goto_prev()' }
 
-    bmap { 'n', '\\c', mapstr 'vim.lsp.buf.code_action()' }
+    CA = client.resolved_capabilities
+
     bmap { 'n', '\\d', mapstr 'lua vim.lsp.buf.definition()' }
     bmap { 'n', '\\D', mapstr 'lua vim.lsp.buf.declaration()' }
     bmap { 'n', '\\f', mapstr 'lua vim.diagnostic.open_float()' }
     bmap { 'n', '\\h', mapstr 'lua vim.lsp.buf.hover()' }
     bmap { 'n', '\\R', mapstr 'lua vim.lsp.buf.references()' }
-    bmap { 'n', '\\s', mapstr('telescope.builtin', 'lsp_document_symbols()') }
+    bmap { 'n', '\\s', mapstr 'lua vim.lsp.buf.document_symbol()' }
 
-    if client.resolved_capabilities.implementation then
-        bmap { 'n', '\\i', mapstr 'lua vim.lsp.buf.implementation()' }
-    end
-
-    if client.resolved_capabilities.signature_help then
-        bmap { 'n', '\\S', mapstr 'lua vim.lsp.buf.signature_help()' }
-    end
-
-    if client.resolved_capabilities.rename then
-        bmap { 'n', '\\r', '<esc>' .. mapstr('plug.refactor', "setup_win('rename')") }
+    for k, v in pairs { c = 'code_action', i = 'implementation', r = 'rename', S = 'signature_help' } do
+        bmap { 'n', '\\' .. k, mapstr('vim.lsp.buf.' .. v .. '()') }
     end
 
     bmap { 'x', '\\e', '<esc>' .. mapstr('plug.refactor', "setup_win('extract')") }

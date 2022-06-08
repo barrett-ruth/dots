@@ -14,8 +14,6 @@ require 'paq' {
     'saadparwaiz1/cmp_luasnip',
 
     'nvim-lua/plenary.nvim',
-    'nvim-telescope/telescope.nvim',
-    'nvim-telescope/telescope-fzy-native.nvim',
     {
         'nvim-treesitter/nvim-treesitter',
         run = function()
@@ -27,9 +25,6 @@ require 'paq' {
     'sainnhe/gruvbox-material',
     'nvim-lualine/lualine.nvim',
 
-    'andymass/vim-matchup',
-    'wellle/targets.vim',
-
     'Julian/vim-textobj-variable-segment',
     'kana/vim-textobj-user',
     'vimtaku/vim-textobj-keyvalue',
@@ -40,9 +35,12 @@ require 'paq' {
     'tpope/vim-repeat',
     'tpope/vim-surround',
 
+    'andymass/vim-matchup',
+    'ibhagwan/fzf-lua',
     'lewis6991/impatient.nvim',
     'lewis6991/gitsigns.nvim',
     'numToStr/Comment.nvim',
+    'wellle/targets.vim',
 
     'ThePrimeagen/harpoon',
     'ThePrimeagen/git-worktree.nvim',

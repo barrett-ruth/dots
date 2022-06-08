@@ -4,8 +4,8 @@ local map, mapstr = utils.map, utils.mapstr
 -- Buffers --
 map { 'n', '[b', mapstr 'bp' }
 map { 'n', ']b', mapstr 'bn' }
-map { 'n', '<leader>B', mapstr('utils', 'delete_buffer()') }
-map { 'n', '<leader>W', mapstr('utils', 'delete_buffer(true)') }
+map { 'n', '<leader>bd', mapstr('utils', 'delete_buffer()') }
+map { 'n', '<leader>bw', mapstr('utils', 'delete_buffer(true)') }
 
 -- Builtins --
 map({ 'n', ':', ';' }, { silent = false })
@@ -25,7 +25,7 @@ map { 'n', 'K', 'mzkJ`z' }
 map { 'x', 'J', ":m '>+1<cr>gv" }
 map { 'x', 'K', ":m '<-2<cr>gv" }
 map { 'n', 'x', '"_x' }
-map { 'n', 'Q', 'q:' }
+map { 'n', 'Q', 'q:k' }
 map { '!', '<c-p>', '<up>' }
 map { '!', '<c-n>', '<down>' }
 map { 'n', '<leader>k', 'K' }

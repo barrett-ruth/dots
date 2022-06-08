@@ -11,6 +11,7 @@ exa
 fd
 git
 grub
+jack2
 libxft
 linux
 linux-firmware
@@ -21,12 +22,16 @@ neovim
 nvidia
 nvidia-utils
 openssh
+python-adblock
+qutebrowser
 ripgrep
 setroot
 shellcheck
 shfmt
 stylua
 sudo
+ttf-hanazono
+ttf-liberation
 xclip
 xf86-video-intel
 xorg-xbacklight

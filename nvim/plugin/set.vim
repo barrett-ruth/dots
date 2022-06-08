@@ -13,6 +13,8 @@ se fillchars=fold:\ ,eob:\ ,vert:│
 se foldlevel=2
 se foldnestmax=2
 
+se guicursor=
+
 se isfname-==,
 
 se matchpairs+=<:>

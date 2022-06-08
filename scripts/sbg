@@ -4,4 +4,4 @@ wps="$XDG_CONFIG_HOME/wp"
 
 [ "$1" ] && wp1="$1" || wp1="$(find "$wps" -type f | shuf -n 1)"
 
-test -f "$XDG_CONFIG_HOME/setroot/.setroot-restore" && setroot --restore -z "$wp1" || setroot --store -z "$wp1"
+setroot -z "$wp1"
