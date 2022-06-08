@@ -12,6 +12,7 @@ alias la='ll -R'
 alias lss='less --use-color --color=d+b --color=P+c --color=u+g'
 
 # Basic programs
+alias bk='bindkey'
 alias g='git'
 alias ka='killall'
 alias nv='nvim'

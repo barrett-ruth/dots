@@ -54,6 +54,7 @@ export _Z_DATA="$XDG_DATA_HOME/z"
 export _Z_EXCLUDE_DIRS=(__pycache__ .mypy_cache .git .pki build cache dist doc node_modules undo venv)
 
 export FZF_COMPLETION_TRIGGER=\;
+export FZF_ALT_C_COMMAND='fd --type directory --hidden --strip-cwd-prefix'
 export FZF_CTRL_R_OPTS='--reverse'
 export FZF_CTRL_T_COMMAND='fd --type file --hidden --strip-cwd-prefix'
 export FZF_DEFAULT_OPTS='--no-info --no-bold --prompt="> " --color=fg:#d4be98,bg:#1d2021,hl:bold:#a9b665 --color=fg+:#d4be98,hl+:bold:#a9b665,bg+:#1d2021 --color=pointer:#d4be98'
@@ -66,8 +67,16 @@ export FZF_TMUX=1
 . "$ZDOTDIR/plugin/zsh-autosuggestions/zsh-autosuggestions.zsh"
 . "$ZDOTDIR/plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
+fzf-config-widget() {
+    file="$(FZF_CTRL_T_COMMAND="fd --type file --hidden . ~/.config | sed 's|$HOME|~|g'" __fsel | cut -c2-)"
+    LBUFFER+="$file"
+    zle reset-prompt
+}
+zle -N fzf-config-widget
+
 bindkey -v
-bindkey -r '^T' '^[c' '^R'
+bindkey -r '^[c' '^E' '^R' '^T'
+bindkey '^E' fzf-config-widget
 bindkey '^F' fzf-file-widget
 bindkey '^G' fzf-cd-widget
 bindkey '^H' fzf-history-widget

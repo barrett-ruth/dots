@@ -35,6 +35,7 @@ function M.toggle_list(prefix)
             return
         end
     end
+
     vim.cmd(prefix == 'c' and 'cope' or 'lop')
 end
 
