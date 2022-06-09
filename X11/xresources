@@ -1,4 +1,6 @@
-Xft.dpi: 200
+Xft.dpi: 192
+Xcursor.theme: Adwaita
+Xcursor.size: 32
 
 *background: #1d2021
 *foreground: #d4be98

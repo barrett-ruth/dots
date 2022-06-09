@@ -13,6 +13,7 @@ map({ 'n', ';', ':' }, { silent = false })
 map({ 'x', ':', ';' }, { silent = false })
 map({ 'x', ';', ':' }, { silent = false })
 map({ 'n', '<leader>R', ':%s/<c-r>=expand("<cword>")<cr>//g<left><left>' }, { silent = false })
+map({ 'x', '<leader>R', '<esc>gv"ry:%s/<c-r>r//g<left><left>' }, { silent = false })
 map({
     'n',
     'gp',

@@ -57,13 +57,13 @@ export FZF_COMPLETION_TRIGGER=\;
 export FZF_ALT_C_COMMAND='fd --type directory --hidden --strip-cwd-prefix'
 export FZF_CTRL_R_OPTS='--reverse'
 export FZF_CTRL_T_COMMAND='fd --type file --hidden --strip-cwd-prefix'
-export FZF_DEFAULT_OPTS='--no-info --no-bold --prompt="> " --color=fg:#d4be98,bg:#1d2021,hl:bold:#a9b665 --color=fg+:#d4be98,hl+:bold:#a9b665,bg+:#1d2021 --color=pointer:#d4be98'
+export FZF_DEFAULT_OPTS='--bind=ctrl-a:select-all --no-info --no-bold --prompt="> " --color=fg:#d4be98,bg:#1d2021,hl:bold:#a9b665 --color=fg+:#d4be98,hl+:bold:#a9b665,bg+:#1d2021 --color=pointer:#d4be98'
 export FZF_TMUX=1
 
 # Plugins
 . "$ZDOTDIR/.zaliases"
-. "$ZDOTDIR/plugin/zsh-z/z.sh"
-. "$ZDOTDIR/plugin/zsh-fzf/fzf.zsh"
+. "$XDG_CONFIG_HOME/z/z.sh"
+. "$XDG_CONFIG_HOME/fzf/fzf.zsh"
 . "$ZDOTDIR/plugin/zsh-autosuggestions/zsh-autosuggestions.zsh"
 . "$ZDOTDIR/plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 

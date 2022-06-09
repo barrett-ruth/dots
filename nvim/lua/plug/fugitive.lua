@@ -2,6 +2,7 @@ local utils = require 'utils'
 local map, mapstr = utils.map, utils.mapstr
 
 -- Fugitive
+map { 'n', '<leader>vv', mapstr 'G' }
 map { 'n', '<leader>vd', mapstr 'G d' }
 map { 'n', '<leader>vf', mapstr 'G fetch' }
 map { 'n', '<leader>vp', mapstr 'G pull' }

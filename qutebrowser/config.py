@@ -7,15 +7,14 @@ from qutebrowser.api import interceptor
 c = c  # noqa: F821
 config = config  # noqa: F821
 
-config.load_autoconfig()
+config.load_autoconfig(False)
+config.source('theme.py')
 
 c.completion.open_categories = ['searchengines', 'quickmarks']
 c.completion.height = '0%'
 
 c.downloads.remove_finished = 5000
 c.downloads.location.directory = os.getenv('HOME')
-
-c.statusbar.show = 'in-mode'
 
 c.tabs.title.format = '{perc}{index}:{current_title}'
 c.tabs.show = 'multiple'
@@ -52,14 +51,16 @@ def filter_yt(info: interceptor.Request):
 
 interceptor.register(filter_yt)
 
-config.bind('tb', f'config-cycle statusbar.show {c.statusbar.show} always')
-config.bind('tt', f'config-cycle tabs.show {c.tabs.show} always')
 config.bind('J', 'tab-prev')
-config.bind('K', 'tab-prev')
+config.bind('K', 'tab-next')
 config.bind(';', 'set-cmd-text :')
 config.bind('<Ctrl-W>', 'tab-close', mode='insert')
 config.bind('<Ctrl-P>', 'fake-key <Up>', mode='insert')
 config.bind('<Ctrl-N>', 'fake-key <Down>', mode='insert')
+
+config.bind('su', 'set-cmd-text :spawn --userscript')
+config.bind('sg', 'set-cmd-text -s :spawn --userscript gh')
+config.bind('so', 'config-source')
 
 c.content.blocking.adblock.lists = [
     "https://easylist.to/easylist/easylist.txt",

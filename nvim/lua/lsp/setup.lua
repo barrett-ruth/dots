@@ -39,10 +39,11 @@ M.on_attach = function(client, _)
     bmap { 'n', '\\R', mapstr 'lua vim.lsp.buf.references()' }
     bmap { 'n', '\\s', mapstr 'lua vim.lsp.buf.document_symbol()' }
 
-    for k, v in pairs { c = 'code_action', i = 'implementation', r = 'rename', S = 'signature_help' } do
-        bmap { 'n', '\\' .. k, mapstr('vim.lsp.buf.' .. v .. '()') }
+    for k, v in pairs { c = 'code_action', i = 'implementation' } do
+        bmap { 'n', '\\' .. k, mapstr('lua vim.lsp.buf.' .. v .. '()') }
     end
 
+    bmap { 'n', '\\r', '<esc>' .. mapstr('plug.refactor', "setup_win('rename')") }
     bmap { 'x', '\\e', '<esc>' .. mapstr('plug.refactor', "setup_win('extract')") }
     bmap { 'x', '\\i', '<esc>' .. mapstr('plug.refactor', 'inline()') }
     bmap { 'x', '\\p', '<esc>' .. mapstr('plug.refactor', 'print()') }

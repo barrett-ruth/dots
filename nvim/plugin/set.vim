@@ -13,8 +13,6 @@ se fillchars=fold:\ ,eob:\ ,vert:│
 se foldlevel=2
 se foldnestmax=2
 
-se guicursor=
-
 se isfname-==,
 
 se matchpairs+=<:>
@@ -50,7 +48,7 @@ se wildcharm=<c-n>
 se nowrap
 
 lua << EOF
-    local ignore = os.getenv 'XDG_CONFIG_HOME' .. '/git/ignore'
+    local ignore = vim.env.XDG_CONFIG_HOME .. '/git/ignore'
     local wig = {}
 
     for line in io.lines(ignore) do

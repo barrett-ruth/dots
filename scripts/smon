@@ -1,4 +1,5 @@
 #!/bin/sh
 
-xrandr --dpi 200
+xrandr --dpi 192
 xrandr --output eDP1 --set TearFree on
+xrdb -merge "$XDG_CONFIG_HOME/X11/xresources"

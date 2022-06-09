@@ -32,5 +32,5 @@ setroot
     change `imlib2-configure --libs' to Imlib2 in PKGBUILD Makefile
 fzf:
     clone
-    ./install --xdg --no-update-rc --no-bash --no-fish --key-bindings --no-completion --key-bindings
-    move fzf.zsh to plugin/zsh-fzf
+    ./install --xdg --no-update-rc --no-bash --no-fish --key-bindings --completion
+    replace all ~/.ssh with ~/.config/ssh
