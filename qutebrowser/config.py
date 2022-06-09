@@ -53,6 +53,8 @@ interceptor.register(filter_yt)
 
 config.bind('J', 'tab-prev')
 config.bind('K', 'tab-next')
+config.bind('wq', 'wq')
+config.bind('Q', 'qa')
 config.bind(';', 'set-cmd-text :')
 config.bind('<Ctrl-W>', 'tab-close', mode='insert')
 config.bind('<Ctrl-P>', 'fake-key <Up>', mode='insert')

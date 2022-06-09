@@ -62,7 +62,6 @@ export FZF_TMUX=1
 
 # Plugins
 . "$ZDOTDIR/.zaliases"
-. "$XDG_CONFIG_HOME/z/z.sh"
 . "$XDG_CONFIG_HOME/fzf/fzf.zsh"
 . "$ZDOTDIR/plugin/zsh-autosuggestions/zsh-autosuggestions.zsh"
 . "$ZDOTDIR/plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
