@@ -22,8 +22,9 @@ require 'paq' {
     },
     'nvim-treesitter/nvim-treesitter-textobjects',
 
-    'sainnhe/gruvbox-material',
+    'kyazdani42/nvim-tree.lua',
     'nvim-lualine/lualine.nvim',
+    'sainnhe/gruvbox-material',
 
     'Julian/vim-textobj-variable-segment',
     'kana/vim-textobj-user',
