@@ -39,20 +39,6 @@ function M.toggle_list(prefix)
     vim.cmd(prefix == 'c' and 'cope' or 'lop')
 end
 
-local cmp_active = false
-function M.toggle_cmp()
-    cmp_active = not cmp_active
-
-    local cmp = require 'cmp'
-    cmp.setup.buffer { enabled = cmp_active }
-
-    if cmp_active then
-        cmp.close()
-    else
-        cmp.complete()
-    end
-end
-
 function M.map(mapping, opts)
     local kopts = { noremap = true, silent = true }
 

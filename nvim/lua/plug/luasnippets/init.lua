@@ -61,7 +61,7 @@ for _, v in ipairs { { '{', '}' }, { '(', ')' }, { '[', ']' } } do
 end
 
 ls.add_snippets(nil, { all = acc })
-require('luasnip.loaders.from_lua').lazy_load { paths = '~/.config/nvim/lua/plug/luasnippets' }
+require('luasnip.loaders.from_lua').lazy_load { paths = vim.fn.expand '%:p:h' }
 
 local utils = require 'utils'
 local map = utils.map
@@ -72,8 +72,6 @@ map {
     function()
         if ls.jumpable(-1) then
             ls.jump(-1)
-        else
-            vim.cmd 'norm h'
         end
     end,
 }
@@ -83,8 +81,6 @@ map {
     function()
         if ls.jumpable(1) then
             ls.jump(1)
-        else
-            vim.cmd 'norm l'
         end
     end,
 }
@@ -104,8 +100,6 @@ map {
     function()
         if ls.choice_active() then
             ls.change_choice(-1)
-        else
-            vim.cmd 'norm j'
         end
     end,
 }
@@ -115,8 +109,6 @@ map {
     function()
         if ls.choice_active() then
             ls.change_choice(1)
-        else
-            vim.cmd 'norm k'
         end
     end,
 }

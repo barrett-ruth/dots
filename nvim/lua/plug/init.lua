@@ -2,7 +2,6 @@ local files = {
     'paq',
     'comment',
     'luasnippets',
-    'cmp',
     'fugitive',
     'fzf',
     'gitsigns',
