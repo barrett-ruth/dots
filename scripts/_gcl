@@ -15,4 +15,5 @@ else
 fi
 
 eval "$cmd"
+
 cd "$dir" || exit

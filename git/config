@@ -13,6 +13,7 @@
     a = add
     b = branch
     c = commit
+    cap = "!cap() { git add . && git commit -m \"$*\" && git push; }; cap"
     ch = checkout
     cl = clone
     d = diff
