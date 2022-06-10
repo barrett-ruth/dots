@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+
+case "$1" in
+    -l)
+        for k v in "${(@kv)dirs}"; do
+            echo -n "[$k]=$v" | sed "s|$HOME|~|g"
+        done;;
+    *)
+        [[ "$1" == '-' ]] && dir="$1" || dir=$dirs[$1];;
+esac
+
+cd "$dir" 1>/dev/null || exit

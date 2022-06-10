@@ -2,7 +2,7 @@
 
 leave() {
     zathura --fork "$1"
-    exit 0
+    exit
 }
 
 prefix="$HOME/doc"

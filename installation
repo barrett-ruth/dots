@@ -27,7 +27,7 @@ ssh:
 setroot
     install imlib2
     clone aur repo
-    change `imlib2-configure --libs' to Imlib2 in PKGBUILD Makefile
+    sed -i 's|`imlib2-config --libs`|-lImlib2|g' Makefile
 fzf:
     clone
     ./install --xdg --no-update-rc --no-bash --no-fish --key-bindings --completion

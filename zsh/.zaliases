@@ -26,6 +26,7 @@ alias tm='tmux'
 
 # Make
 alias mk='make'
+alias mkc='make clean'
 alias mkcic='make clean install && make clean'
 alias mku='make uninstall'
 
@@ -35,23 +36,13 @@ alias pmqg='pacman -Q | rg'
 
 # Misc
 alias cp='cp -v'
+gcl() { . _gcl "$@" }
 alias int='ping -c 3 archlinux.org'
 rmd() { [ "$1" = "$HOME" ] || rm -rf "$*"; }
 alias mkd='mkdir -pv'
 mkcd() { mkdir -pv "$1" && cd "$1"; }
-
+z() { . _z "$@"; }
 declare -A dirs=(['']="$HOME" [cfg]="$XDG_CONFIG_HOME" [nv]="$XDG_CONFIG_HOME/nvim" [qt]="$XDG_CONFIG_HOME/qutebrowser" [tm]="$XDG_CONFIG_HOME/tmux" [x11]="$XDG_CONFIG_HOME/X11" [zsh]="$XDG_CONFIG_HOME/zsh" [dev]="$HOME/dev/sl")
 for e in ~/dev/* ~/dev/sl/*; do
     [[ -d "$e" ]] && dirs[$(basename "$e")]="$e"
 done
-z() {
-    case "$1" in 
-        -l)
-            for k v in "${(@kv)dirs}"; do
-                echo "[$k]=$v" | sed "s|$HOME|~|g"
-            done;;
-        *)
-            [[ "$1" == '-' ]] && dir="$1" || dir=$dirs[$1];;
-    esac
-    cd "$dir"
-}

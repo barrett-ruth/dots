@@ -1,7 +1,14 @@
 #!/bin/sh
 
-wps="$XDG_CONFIG_HOME/wp"
+wps="$HOME/wp"
 
-[ "$1" ] && wp1="$1" || wp1="$(find "$wps" -type f | shuf -n 1)"
+[ "$(xrandr | rg ' connected ' | wc -l)" -gt 1 ] && dir_one="$wps/one" && dir_two="$wps/two" || dir_one="$wps"
 
-setroot -z "$wp1"
+[ "$1" ] && one="$1" || one="$(fd --type file . "$dir_one" | shuf -n 1)"
+if [ "$2" ]; then
+    two="$2"
+else
+    [ -f "$dir_one/$(basename "$1")" ] && two="$dir_one/$(basename "$1")" || two="$(fd --type file . "$dir_two" | shuf -n 1)"
+fi
+
+setroot -z "$one" -z "$two"

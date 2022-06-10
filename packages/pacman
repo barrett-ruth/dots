@@ -14,6 +14,7 @@ git
 grub
 jack2
 libxft
+libxinerama
 linux
 linux-firmware
 linux-headers
