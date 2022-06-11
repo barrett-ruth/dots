@@ -3,7 +3,7 @@
 case "$1" in
     -l)
         for k v in "${(@kv)dirs}"; do
-            echo -n "[$k]=$v" | sed "s|$HOME|~|g"
+            echo -n "[$k]=$v | " | sed "s|$HOME|~|g"
         done;;
     *)
         [[ "$1" == '-' ]] && dir="$1" || dir=$dirs[$1];;

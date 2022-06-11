@@ -28,11 +28,11 @@ M.on_attach = function(client, _)
     end
 
     bmap { 'n', '\\sa', mapstr('fzf-lua', 'lsp_document_symbols()') }
-    for k, v in pairs { f = '', c = 'ﴯ', m = '' } do
+    for k, v in pairs { f = 'Function', c = 'Class', m = 'Module' } do
         bmap {
             'n',
             '\\s' .. k,
-            mapstr('fzf-lua', string.format([[lsp_document_symbols({ fzf_args = "-s --query='[%s] '" })]], v)),
+            mapstr('fzf-lua', string.format([[lsp_document_symbols({ regex_filter = '%s.*' })]], v)),
         }
     end
 

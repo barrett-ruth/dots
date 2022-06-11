@@ -1,3 +1,4 @@
+let g:loaded_textobj_variable_segment = 1
 cal textobj#user#plugin('variable', {
     \ '-': {
     \     'sfile': expand('<sfile>:p'),

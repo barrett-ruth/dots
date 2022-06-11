@@ -1,8 +1,8 @@
 local actions = require 'fzf-lua.actions'
-local send_to_ll = function(selected, _)
+local send_to_ll = function(selected, opts)
     local ll = {}
     for i = 1, #selected do
-        local file = require('fzf-lua.path').entry_to_file(selected[i])
+        local file = require('fzf-lua.path').entry_to_file(selected[i], opts)
         local text = selected[i]:match ':%d+:%d?%d?%d?%d?:?(.*)$'
         table.insert(ll, {
             filename = file.path,
@@ -11,6 +11,7 @@ local send_to_ll = function(selected, _)
             text = text,
         })
     end
+
     vim.fn.setloclist(0, ll)
 end
 
@@ -55,6 +56,10 @@ require('fzf-lua').setup {
         },
     },
     lsp = {
+        fzf_opts = {
+            ['--with-nth'] = '2..',
+            ['--delimiter'] = ':',
+        },
         prompt = '> ',
         symbol_fmt = function(s)
             local first, last = s:find 'm', rfind(s, '')
@@ -62,6 +67,7 @@ require('fzf-lua').setup {
             return string.format('[%s%s%s]', s:sub(1, first), symbols[color] or s, s:sub(last + 1, #s))
         end,
         symbol_style = 3,
+        no_header = true,
     },
     files = {
         git_icons = false,
@@ -70,9 +76,8 @@ require('fzf-lua').setup {
     fzf_args = vim.env.FZF_DEFAULT_OPTS,
     grep = {
         git_icons = false,
-        no_header = true,
-        no_header_i = true,
         rg_opts = '--hidden --color=always --colors=match:fg:green --colors=path:fg:blue --line-number --smart-case',
+        no_header_i = true,
     },
     winopts = {
         preview = {

@@ -4,11 +4,17 @@
     username = barrett-ruth
 [init]
     defaultBranch = main
+[clone]
+    defaultRemoteName = home
 [core]
     editor = nvim
     whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 [color]
     ui = auto
+[diff]
+    tool = nvimdiff
+[difftool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 [alias]
     a = add
     b = branch

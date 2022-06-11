@@ -1,6 +1,5 @@
 let g:gruvbox_material_better_performance = 1
 let g:gruvbox_material_background = 'hard'
-let g:loaded_textobj_variable_segment = 1
 se bg=dark tgc
 colo gruvbox-material
 

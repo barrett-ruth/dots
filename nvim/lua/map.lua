@@ -65,17 +65,13 @@ map {
 -- Location List --
 map { 'n', ']l', mapstr 'lne' }
 map { 'n', '[l', mapstr 'lp' }
-map { 'n', ']L', mapstr 'lne' }
-map { 'n', '[L', mapstr 'lp' }
-map { 'n', '<leader>l', mapstr('utils', [[toggle_list('l')]]) }
+map { 'n', '<leader>l', mapstr('fzf-lua', 'loclist({})') }
 map { 'n', '<leader>L', mapstr 'cal setloclist(0, []) | lcl' }
 
 -- Quickfix List --
 map { 'n', ']c', mapstr 'cn' }
 map { 'n', '[c', mapstr 'cp' }
-map { 'n', ']C', mapstr 'cn' }
-map { 'n', '[C', mapstr 'cp' }
-map { 'n', '<leader>c', mapstr('utils', [[toggle_list('c')]]) }
+map { 'n', '<leader>c', mapstr('fzf-lua', 'quickfix({})') }
 map { 'n', '<leader>C', mapstr 'cal setqflist([]) | ccl' }
 
 -- Newlines --
