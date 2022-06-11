@@ -41,6 +41,7 @@ vim.diagnostic.config {
     },
 }
 
+-- Only show most severe sign
 local ns = vim.api.nvim_create_namespace 'lsp_signs'
 local dshow = vim.diagnostic.show
 

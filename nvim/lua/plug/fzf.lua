@@ -14,6 +14,28 @@ local send_to_ll = function(selected, _)
     vim.fn.setloclist(0, ll)
 end
 
+local symbols = {
+    Class = 'ﴯ',
+    Constant = '',
+    Constructor = '',
+    Enum = '',
+    EnumMember = '',
+    Field = 'ﰠ',
+    Function = '',
+    Interface = '',
+    Method = '',
+    Module = '',
+    Operator = '',
+    Property = 'ﰠ',
+    Reference = '',
+    Struct = 'פּ',
+    Unit = '塞',
+    Variable = 'π',
+}
+
+local utils = require 'utils'
+local map, mapstr, rfind = utils.map, utils.mapstr, utils.rfind
+
 require('fzf-lua').setup {
     actions = {
         files = {
@@ -31,6 +53,15 @@ require('fzf-lua').setup {
         actions = {
             ['ctrl-d'] = { actions.buf_del, actions.resume },
         },
+    },
+    lsp = {
+        prompt = '> ',
+        symbol_fmt = function(s)
+            local first, last = s:find 'm', rfind(s, '')
+            local color = s:sub(first + 1, last)
+            return string.format('[%s%s%s]', s:sub(1, first), symbols[color] or s, s:sub(last + 1, #s))
+        end,
+        symbol_style = 3,
     },
     files = {
         git_icons = false,
@@ -51,9 +82,6 @@ require('fzf-lua').setup {
     },
 }
 
-local utils = require 'utils'
-local map, mapstr = utils.map, utils.mapstr
-
 map { 'n', '<leader>fb', mapstr('fzf-lua', 'buffers()') }
 map {
     'n',
@@ -62,7 +90,7 @@ map {
 }
 map { 'n', '<c-f>', mapstr('fzf-lua', 'files()') }
 map { 'n', '<c-g>', mapstr('fzf-lua', 'live_grep()') }
-map { 'n', '<leader>ff', mapstr('fzf-lua', "files({ cwd = vim.fn.expand '%:p:h' })") }
-map { 'n', '<leader>fg', mapstr('fzf-lua', "live_grep({ cwd = vim.fn.expand '%:p:h' })") }
+map { 'n', '<leader>ff', mapstr('fzf-lua', [[files({ cwd = vim.fn.expand '%:p:h' })]]) }
+map { 'n', '<leader>fg', mapstr('fzf-lua', [[live_grep({ cwd = vim.fn.expand '%:p:h' })]]) }
 map { 'n', '<leader>fs', mapstr('fzf-lua', 'files({ cwd = vim.env.SCRIPTS })') }
 map { 'n', '<leader>fr', mapstr('fzf-lua', 'resume()') }

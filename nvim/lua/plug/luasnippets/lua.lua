@@ -13,18 +13,10 @@ ls.add_snippets('lua', {
     s('afun', fmt('function({})\n\t{}\nend', { i(1), i(2) })),
     s('fun', fmt('function {}({})\n\t{}\nend', { i(1), i(2), i(3) })),
     s('if', fmt('if {} then\n\t{}\nend', { i(1), i(2) })),
-    s('for', fmt('for {} in {}({}) do\n\t{}\nend', { i(1), i(2), i(3), i(4) })),
-    s('le', fmt("local {} = require '{}'", { i(1), i(2) })),
-    s(
-        'lo',
-        fmt("local {} = {}", {
-            f(lastword, { 1 }),
-            i(1),
-        })
-    ),
+    s('for', fmt('for {} in {} do\n\t{}\nend', { i(1), i(2), i(3) })),
     s(
         'lr',
-        fmt("local {} = require '{}'", {
+        fmt([[local {} = require '{}']], {
             f(lastword, { 1 }),
             i(1),
         })

@@ -4,6 +4,16 @@ function M.empty(s)
     return s == '' or s == nil
 end
 
+function M.rfind(str, char)
+    local revpos = str:reverse():find(char)
+
+    if revpos == nil then
+        return nil
+    end
+
+    return #str - revpos
+end
+
 function M.delete_buffer(wipe)
     local bufs = vim.fn.getbufinfo { buflisted = 1 }
     local winnr, bufnr = vim.fn.winnr(), vim.fn.bufnr()
@@ -25,18 +35,6 @@ function M.delete_buffer(wipe)
 
     if vim.fn.len(vim.fn.win_findbuf(vim.fn.bufnr())) > 1 then
         vim.cmd 'q'
-    end
-end
-
-function M.leave_snippet()
-    local ls = require 'luasnip'
-
-    if
-        ((vim.v.event.old_mode == 's' and vim.v.event.new_mode == 'n') or vim.v.event.old_mode == 'i')
-        and ls.session.current_nodes[vim.api.nvim_get_current_buf()]
-        and not ls.session.jump_active
-    then
-        ls.unlink_current()
     end
 end
 
@@ -71,7 +69,7 @@ end
 
 function M.mapstr(req, meth)
     return M.empty(meth) and string.format('<cmd>%s<cr>', req)
-        or string.format("<cmd>lua require '%s'.%s<cr>", req, meth)
+        or string.format([[<cmd>lua require '%s'.%s<cr>]], req, meth)
 end
 
 return M

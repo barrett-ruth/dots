@@ -12,7 +12,7 @@ map({ 'n', ':', ';' }, { silent = false })
 map({ 'n', ';', ':' }, { silent = false })
 map({ 'x', ':', ';' }, { silent = false })
 map({ 'x', ';', ':' }, { silent = false })
-map({ 'n', '<leader>R', ':%s/<c-r>=expand("<cword>")<cr>//g<left><left>' }, { silent = false })
+map({ 'n', '<leader>R', [[:%s/<c-r>=expand('<cword>')<cr>//g<left><left>]] }, { silent = false })
 map({ 'x', '<leader>R', '<esc>gv"ry:%s/<c-r>r//g<left><left>' }, { silent = false })
 map({
     'n',
@@ -27,8 +27,6 @@ map { 'x', 'J', ":m '>+1<cr>gv" }
 map { 'x', 'K', ":m '<-2<cr>gv" }
 map { 'n', 'x', '"_x' }
 map { 'n', 'Q', 'q:k' }
-map { '!', '<c-p>', '<up>' }
-map { '!', '<c-n>', '<down>' }
 map { 'n', '<leader>k', 'K' }
 
 -- Windows --
@@ -69,7 +67,7 @@ map { 'n', ']l', mapstr 'lne' }
 map { 'n', '[l', mapstr 'lp' }
 map { 'n', ']L', mapstr 'lne' }
 map { 'n', '[L', mapstr 'lp' }
-map { 'n', '<leader>l', mapstr('utils', "toggle_list('l')") }
+map { 'n', '<leader>l', mapstr('utils', [[toggle_list('l')]]) }
 map { 'n', '<leader>L', mapstr 'cal setloclist(0, []) | lcl' }
 
 -- Quickfix List --
@@ -77,7 +75,7 @@ map { 'n', ']c', mapstr 'cn' }
 map { 'n', '[c', mapstr 'cp' }
 map { 'n', ']C', mapstr 'cn' }
 map { 'n', '[C', mapstr 'cp' }
-map { 'n', '<leader>c', mapstr('utils', "toggle_list('c')") }
+map { 'n', '<leader>c', mapstr('utils', [[toggle_list('c')]]) }
 map { 'n', '<leader>C', mapstr 'cal setqflist([]) | ccl' }
 
 -- Newlines --

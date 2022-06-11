@@ -26,16 +26,6 @@ local fts = {
     },
 }
 
-function M.rfind(str, char)
-    local revpos = str:reverse():find(char)
-
-    if revpos == nil then
-        return nil
-    end
-
-    return #str - revpos
-end
-
 local function teardown_win(win)
     vim.api.nvim_win_close(win, true)
 end
@@ -64,7 +54,7 @@ function M.setup_win(method)
     vim.keymap.set(
         { 'n', 'i' },
         '<cr>',
-        string.format('<cmd>lua require "plug.refactor".%s(%d)<cr>', method, win),
+        string.format([[<cmd>lua require 'plug.refactor'.%s(%d)<cr>]], method, win),
         { silent = true, buffer = buf }
     )
 end
@@ -77,11 +67,13 @@ function M.rename(win)
     vim.cmd 'stopi | norm l'
 end
 
+local rfind = require('utils').rfind
+
 function M.extract(win)
     local name = vim.trim(vim.fn.getline '.')
     teardown_win(win)
 
-    local pos = M.rfind(name, ',')
+    local pos = rfind(name, ',')
     local num = pos and string.sub(name, pos + 2, #name) or '-'
     local prefix = fts.extract[vim.bo.ft].prefix
     local eq = fts.extract[vim.bo.ft].eq

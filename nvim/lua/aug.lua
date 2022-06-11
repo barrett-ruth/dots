@@ -9,7 +9,7 @@ au('FileType', {
 
 au('ModeChanged', {
     callback = function()
-        require('utils').leave_snippet()
+        require('plug.luasnippets.utils').leave_snippet()
     end,
     group = aug,
 })

@@ -1,5 +1,4 @@
 local ls = require 'luasnip'
-
 local types = require 'luasnip.util.types'
 
 ls.config.set_config {
@@ -13,35 +12,8 @@ ls.config.set_config {
     },
 }
 
-local i, s, t = ls.i, ls.s, ls.t
-
-local function snipopts(trig)
-    return { trig = trig, wordTrig = false }
-end
-
-local inline = function(lr)
-    local trig = lr[1]
-
-    if trig:len() == 3 then
-        lr[2] = lr[2] .. trig:sub(3, 3)
-        lr[1] = trig:sub(1, 2)
-    elseif lr[1]:sub(2, 2) == "'" or lr[1]:sub(2, 2) == '"' then
-        return s(snipopts(trig), { t(lr[1]), i(1), t(lr[2]:sub(1, 1)), i(2), t(lr[2]:sub(2, 2)) })
-    end
-
-    return s(snipopts(trig), { t(lr[1]), i(1), t(lr[2]) })
-end
-
-local newline = function(lr)
-    if lr[2]:sub(1, 1) == '}' then
-        return s(
-            snipopts(lr[2]),
-            { t(lr[1]), t { '', '\t' }, i(1), t { '', '' }, t(lr[2]:sub(1, 1)), i(2), t(lr[2]:sub(2, 2)) }
-        )
-    end
-
-    return s(snipopts(lr[2]), { t(lr[1]), t { '', '\t' }, i(1), t { '', '' }, t(lr[2]) })
-end
+local utils = require 'plug.luasnippets.utils'
+local inline, newline = utils.inline, utils.newline
 
 local acc = {}
 
@@ -63,52 +35,4 @@ end
 ls.add_snippets(nil, { all = acc })
 require('luasnip.loaders.from_lua').lazy_load { paths = '~/.config/nvim/lua/plug/luasnippets' }
 
-local utils = require 'utils'
-local map = utils.map
-
-map {
-    { 'i', 's' },
-    '<c-h>',
-    function()
-        if ls.jumpable(-1) then
-            ls.jump(-1)
-        end
-    end,
-}
-map {
-    { 'i', 's' },
-    '<c-l>',
-    function()
-        if ls.jumpable(1) then
-            ls.jump(1)
-        end
-    end,
-}
-
-map {
-    'i',
-    '<c-s>',
-    function()
-        if ls.expandable() then
-            ls.expand()
-        end
-    end,
-}
-map {
-    'i',
-    '<c-j>',
-    function()
-        if ls.choice_active() then
-            ls.change_choice(-1)
-        end
-    end,
-}
-map {
-    'i',
-    '<c-k>',
-    function()
-        if ls.choice_active() then
-            ls.change_choice(1)
-        end
-    end,
-}
+require 'plug.luasnippets.map'

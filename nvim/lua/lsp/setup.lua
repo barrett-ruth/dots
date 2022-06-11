@@ -27,24 +27,28 @@ M.on_attach = function(client, _)
         bmap { 'n', '\\H', mapstr 'ClangdSwitchSourceHeader' }
     end
 
+    bmap { 'n', '\\sa', mapstr('fzf-lua', 'lsp_document_symbols()') }
+    for k, v in pairs { f = '', c = 'ﴯ', m = '' } do
+        bmap {
+            'n',
+            '\\s' .. k,
+            mapstr('fzf-lua', string.format([[lsp_document_symbols({ fzf_args = "-s --query='[%s] '" })]], v)),
+        }
+    end
+
     bmap { 'n', ']\\', mapstr 'lua vim.diagnostic.goto_next()' }
     bmap { 'n', '[\\', mapstr 'lua vim.diagnostic.goto_prev()' }
 
-    CA = client.resolved_capabilities
-
+    bmap { 'n', '\\c', mapstr 'lua vim.lsp.buf.code_action()' }
     bmap { 'n', '\\d', mapstr 'lua vim.lsp.buf.definition()' }
     bmap { 'n', '\\D', mapstr 'lua vim.lsp.buf.declaration()' }
     bmap { 'n', '\\f', mapstr 'lua vim.diagnostic.open_float()' }
     bmap { 'n', '\\h', mapstr 'lua vim.lsp.buf.hover()' }
+    bmap { 'n', '\\i', mapstr 'lua vim.lsp.buf.implementation()' }
     bmap { 'n', '\\R', mapstr 'lua vim.lsp.buf.references()' }
-    bmap { 'n', '\\s', mapstr 'lua vim.lsp.buf.document_symbol()' }
 
-    for k, v in pairs { c = 'code_action', i = 'implementation' } do
-        bmap { 'n', '\\' .. k, mapstr('lua vim.lsp.buf.' .. v .. '()') }
-    end
-
-    bmap { 'n', '\\r', '<esc>' .. mapstr('plug.refactor', "setup_win('rename')") }
-    bmap { 'x', '\\e', '<esc>' .. mapstr('plug.refactor', "setup_win('extract')") }
+    bmap { 'n', '\\r', '<esc>' .. mapstr('plug.refactor', [[setup_win('rename')]]) }
+    bmap { 'x', '\\e', '<esc>' .. mapstr('plug.refactor', [[setup_win('extract')]]) }
     bmap { 'x', '\\i', '<esc>' .. mapstr('plug.refactor', 'inline()') }
     bmap { 'x', '\\p', '<esc>' .. mapstr('plug.refactor', 'print()') }
 end
