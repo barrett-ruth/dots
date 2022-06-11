@@ -14,7 +14,14 @@ ls.add_snippets('lua', {
     s('fun', fmt('function {}({})\n\t{}\nend', { i(1), i(2), i(3) })),
     s('if', fmt('if {} then\n\t{}\nend', { i(1), i(2) })),
     s('for', fmt('for {} in {}({}) do\n\t{}\nend', { i(1), i(2), i(3), i(4) })),
-    s('lo', fmt("local {} = {}", { i(1), i(2) })),
+    s('le', fmt("local {} = require '{}'", { i(1), i(2) })),
+    s(
+        'lo',
+        fmt("local {} = {}", {
+            f(lastword, { 1 }),
+            i(1),
+        })
+    ),
     s(
         'lr',
         fmt("local {} = require '{}'", {

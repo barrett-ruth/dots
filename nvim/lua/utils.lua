@@ -28,6 +28,18 @@ function M.delete_buffer(wipe)
     end
 end
 
+function M.leave_snippet()
+    local ls = require 'luasnip'
+
+    if
+        ((vim.v.event.old_mode == 's' and vim.v.event.new_mode == 'n') or vim.v.event.old_mode == 'i')
+        and ls.session.current_nodes[vim.api.nvim_get_current_buf()]
+        and not ls.session.jump_active
+    then
+        ls.unlink_current()
+    end
+end
+
 function M.toggle_list(prefix)
     for _, buf in ipairs(vim.fn.getbufinfo { buflisted = 1 }) do
         if vim.api.nvim_buf_get_option(buf.bufnr, 'ft') == 'qf' then

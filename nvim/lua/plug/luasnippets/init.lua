@@ -61,7 +61,7 @@ for _, v in ipairs { { '{', '}' }, { '(', ')' }, { '[', ']' } } do
 end
 
 ls.add_snippets(nil, { all = acc })
-require('luasnip.loaders.from_lua').lazy_load { paths = vim.fn.expand '%:p:h' }
+require('luasnip.loaders.from_lua').lazy_load { paths = '~/.config/nvim/lua/plug/luasnippets' }
 
 local utils = require 'utils'
 local map = utils.map

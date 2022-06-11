@@ -7,6 +7,13 @@ au('FileType', {
     group = aug,
 })
 
+au('ModeChanged', {
+    callback = function()
+        require('utils').leave_snippet()
+    end,
+    group = aug,
+})
+
 au({ 'BufRead', 'BufNewFile' }, {
     pattern = 'PKGBUILD',
     command = 'se ft=PKGBUILD',
