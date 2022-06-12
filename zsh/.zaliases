@@ -34,11 +34,17 @@ alias mku='make uninstall'
 alias pm='pacman'
 alias pmqg='pacman -Q | rg'
 
+# Yarn
+y() {
+    yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config" "$@"
+    [ -f "$HOME/.yarnrc" ] && rm "$HOME/.yarnrc"
+}
+
 # Misc
 alias cp='cp -v'
 gcl() { . _gcl "$@" }
 alias int='ping -c 3 archlinux.org'
-rmd() { [ "$1" = "$HOME" ] || rm -rf "$*"; }
+rmd() { [ "$1" = "$HOME" ] || rm -rf "$@"; }
 alias mkd='mkdir -pv'
 mkcd() { mkdir -pv "$1" && cd "$1"; }
 z() { . _z "$@"; }

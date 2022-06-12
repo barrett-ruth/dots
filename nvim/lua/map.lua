@@ -28,6 +28,7 @@ map { 'x', 'K', ":m '<-2<cr>gv" }
 map { 'n', 'x', '"_x' }
 map { 'n', 'Q', 'q:k' }
 map { 'n', '<leader>k', 'K' }
+vim.cmd 'cmap <c-n> <down>'
 
 -- Windows --
 map { 'n', '<c-h>', '<c-w>h' }

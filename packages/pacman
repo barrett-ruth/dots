@@ -40,4 +40,5 @@ xorg-xbacklight
 xorg-xinit
 xorg-xrdb
 xorg-xset
+yarn
 zsh
