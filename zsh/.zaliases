@@ -39,6 +39,7 @@ y() {
     yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config" "$@"
     [ -f "$HOME/.yarnrc" ] && rm "$HOME/.yarnrc"
 }
+yg() { y global "$@"; }
 
 # Misc
 alias cp='cp -v'

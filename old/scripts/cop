@@ -1,7 +1,0 @@
-#!/bin/sh
-
-[ "$1" ] || exit
-
-set -eu
-
-test -f "$1" && xclip -sel c <"$1" || eval "$*" | xclip -sel c

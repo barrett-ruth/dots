@@ -16,6 +16,7 @@ done
 
 cd "$cfg" || exit
 
+yarn global list > packages/yarn
 rm -rf nvim/undo
 rmb .zshrc .zprofile .zaliases zsh
 rmb tmux.conf tmux
