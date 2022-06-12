@@ -60,7 +60,6 @@ require('fzf-lua').setup {
             ['--with-nth'] = '2..',
             ['--delimiter'] = ':',
         },
-        prompt = '> ',
         symbol_fmt = function(s)
             local first, last = s:find 'm', rfind(s, '')
             local color = s:sub(first + 1, last)
