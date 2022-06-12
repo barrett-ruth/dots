@@ -12,5 +12,5 @@ local files = {
 }
 
 for _, v in ipairs(files) do
-    require('plug.' .. v)
+    require('paqs.' .. v)
 end

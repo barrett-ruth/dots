@@ -63,8 +63,10 @@ map {
     'n',
     '<leader>T',
     function()
-        package.loaded['plug.treesitter'] = nil
-        require 'plug.treesitter'
+        package.loaded['paqs.treesitter'] = nil
+        package.loaded['nvim-treesitter'] = nil
+        require 'paqs.treesitter'
+        require 'nvim-treesitter'
         vim.cmd 'e'
         vim.cmd [[echo 'File reparsed.']]
     end,

@@ -3,10 +3,10 @@ local ls = require 'luasnip'
 local i, s = ls.i, ls.s
 local fmt = require('luasnip.extras.fmt').fmt
 
-local javascript = require 'plug.luasnippets.javascript'
-local javascriptreact = require 'plug.luasnippets.javascriptreact'
-local tags = require 'plug.luasnippets.html'
-local typescript = require 'plug.luasnippets.typescript'
+local javascript = require 'paqs.luasnippets.javascript'
+local javascriptreact = require 'paqs.luasnippets.javascriptreact'
+local tags = require 'paqs.luasnippets.html'
+local typescript = require 'paqs.luasnippets.typescript'
 
 local typescriptreact = {
     s('fc', fmt('({}){} => (\n\t{}\n)', { i(1), i(2), i(3) })),

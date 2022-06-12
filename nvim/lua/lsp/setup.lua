@@ -47,10 +47,10 @@ M.on_attach = function(client, _)
     bmap { 'n', '\\i', mapstr 'lua vim.lsp.buf.implementation()' }
     bmap { 'n', '\\R', mapstr 'lua vim.lsp.buf.references()' }
 
-    bmap { 'n', '\\r', '<esc>' .. mapstr('plug.refactor', [[setup_win('rename')]]) }
-    bmap { 'x', '\\e', '<esc>' .. mapstr('plug.refactor', [[setup_win('extract')]]) }
-    bmap { 'x', '\\i', '<esc>' .. mapstr('plug.refactor', 'inline()') }
-    bmap { 'x', '\\p', '<esc>' .. mapstr('plug.refactor', 'print()') }
+    bmap { 'n', '\\r', '<esc>' .. mapstr('paqs.refactor', [[setup_win('rename')]]) }
+    bmap { 'x', '\\e', '<esc>' .. mapstr('paqs.refactor', [[setup_win('extract')]]) }
+    bmap { 'x', '\\i', '<esc>' .. mapstr('paqs.refactor', 'inline()') }
+    bmap { 'x', '\\p', '<esc>' .. mapstr('paqs.refactor', 'print()') }
 
     bmap { 'n', '\\li', mapstr 'LspInfo' }
     bmap { 'n', '\\lI', mapstr 'NullLsInfo' }

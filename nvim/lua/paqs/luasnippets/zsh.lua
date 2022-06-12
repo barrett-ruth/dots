@@ -1,6 +1,6 @@
 local ls = require 'luasnip'
 
-local sh = require 'plug.luasnippets.sh'
+local sh = require 'paqs.luasnippets.sh'
 local zsh = {}
 
 ls.add_snippets('zsh', sh)

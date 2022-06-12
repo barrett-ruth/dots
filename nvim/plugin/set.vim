@@ -57,5 +57,5 @@ lua << EOF
 
     vim.api.nvim_set_var('wildignore', wig)
 
-    require 'plug.tree'
+    require 'paqs.tree'
 EOF

@@ -12,7 +12,7 @@ ls.config.set_config {
     },
 }
 
-local utils = require 'plug.luasnippets.utils'
+local utils = require 'paqs.luasnippets.utils'
 local inline, newline = utils.inline, utils.newline
 
 local acc = {}
@@ -32,7 +32,11 @@ for _, v in ipairs { { '{', '}' }, { '(', ')' }, { '[', ']' } } do
     table.insert(acc, newline { v[1], v[2] .. ',' })
 end
 
-ls.add_snippets(nil, { all = acc })
-require('luasnip.loaders.from_lua').lazy_load { paths = '~/.config/nvim/lua/plug/luasnippets' }
+for _, v in ipairs { { "'", "'" }, { '"', '"' }, { '<', '>' } } do
+    table.insert(acc, inline(v))
+end
 
-require 'plug.luasnippets.map'
+ls.add_snippets(nil, { all = acc })
+require('luasnip.loaders.from_lua').lazy_load { paths = '~/.config/nvim/lua/paqs/luasnippets' }
+
+require 'paqs.luasnippets.map'

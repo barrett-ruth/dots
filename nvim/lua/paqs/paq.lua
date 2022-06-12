@@ -47,3 +47,4 @@ local map, mapstr = utils.map, utils.mapstr
 map { 'n', '<leader>Pc', mapstr 'PaqClean' }
 map { 'n', '<leader>Pi', mapstr 'PaqInstall' }
 map { 'n', '<leader>Pu', mapstr 'PaqUpdate' }
+map { 'n', '<leader>Pl', mapstr 'PaqLogOpen' }

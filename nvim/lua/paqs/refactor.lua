@@ -54,7 +54,7 @@ function M.setup_win(method)
     vim.keymap.set(
         { 'n', 'i' },
         '<cr>',
-        string.format([[<cmd>lua require 'plug.refactor'.%s(%d)<cr>]], method, win),
+        string.format([[<cmd>lua require 'paqs.refactor'.%s(%d)<cr>]], method, win),
         { silent = true, buffer = buf }
     )
 end
