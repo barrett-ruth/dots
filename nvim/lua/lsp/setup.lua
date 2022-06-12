@@ -51,6 +51,9 @@ M.on_attach = function(client, _)
     bmap { 'x', '\\e', '<esc>' .. mapstr('plug.refactor', [[setup_win('extract')]]) }
     bmap { 'x', '\\i', '<esc>' .. mapstr('plug.refactor', 'inline()') }
     bmap { 'x', '\\p', '<esc>' .. mapstr('plug.refactor', 'print()') }
+
+    bmap { 'n', '\\li', mapstr 'LspInfo' }
+    bmap { 'n', '\\lI', mapstr 'NullLsInfo' }
 end
 
 local lspconfig = require 'lspconfig'

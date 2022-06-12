@@ -69,8 +69,8 @@ require('fzf-lua').setup {
         no_header = true,
     },
     files = {
-        git_icons = false,
         fd_opts = vim.env.FZF_CTRL_T_COMMAND:match ' (.*)',
+        git_icons = false,
     },
     fzf_args = vim.env.FZF_DEFAULT_OPTS,
     grep = {
