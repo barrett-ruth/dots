@@ -37,7 +37,7 @@ alias pmqg='pacman -Q | rg'
 # Yarn
 y() {
     yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config" "$@"
-    [ -f "$HOME/.yarnrc" ] && rm "$HOME/.yarnrc"
+    test -f "$HOME/.yarnrc" && rm "$HOME/.yarnrc"
 }
 yg() { y global "$@"; }
 

@@ -1,4 +1,23 @@
-yarn global v1.22.19
+info "@fsouza/prettierd@0.21.1" has binaries:
+   - prettierd
+info "eslint_d@12.2.0" has binaries:
+   - eslint_d
+info "neovim@4.10.1" has binaries:
+   - neovim-node-host
+info "prettier@2.6.2" has binaries:
+   - prettier
+info "pyright@1.1.253" has binaries:
+   - pyright
+   - pyright-langserver
+info "typescript@4.7.3" has binaries:
+   - tsc
+   - tsserver
+info "typescript-language-server@0.11.0" has binaries:
+   - typescript-language-server
 info "vim-language-server@2.2.10" has binaries:
    - vim-language-server
-Done in 0.04s.
+info "vscode-langservers-extracted@4.2.1" has binaries:
+   - vscode-css-language-server
+   - vscode-eslint-language-server
+   - vscode-html-language-server
+   - vscode-json-language-server

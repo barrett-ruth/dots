@@ -3,7 +3,6 @@ require 'lsp.signs'
 local servers = {
     clangd = {},
     cssls = {},
-    dockerls = {},
     html = {},
     jsonls = {},
     pyright = {},
@@ -52,6 +51,9 @@ null_ls.setup {
             condition = function()
                 return vim.fn.executable 'flake8'
             end,
+            diagnostics_format = '#{m}',
+        },
+        builtins.diagnostics.hadolint.with {
             diagnostics_format = '#{m}',
         },
         builtins.diagnostics.mypy.with {

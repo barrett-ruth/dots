@@ -23,6 +23,7 @@
     ch = checkout
     cl = clone
     d = diff
+    dt = difftool
     f = fetch
     lg = log --oneline --graph --decorate
     mg = merge

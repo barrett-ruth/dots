@@ -12,6 +12,7 @@ exa
 fd
 git
 grub
+hadolint-bin
 jack2
 libxft
 libxinerama

@@ -12,7 +12,6 @@ local sources = {
 }
 sources['Lua Diagnostics.'] = 'lua'
 sources['Lua Syntax Check.'] = 'lua'
-sources['dockerfile-utils'] = 'dockerls'
 
 vim.diagnostic.config {
     update_in_insert = true,
