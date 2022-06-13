@@ -4,6 +4,8 @@ build/
 node_modules/
 venv/
 cache/
+.git/
+.github/
 .mypy_cache/
 *.exe
 *.o

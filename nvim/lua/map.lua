@@ -6,6 +6,7 @@ map { 'n', '[b', mapstr 'bp' }
 map { 'n', ']b', mapstr 'bn' }
 map { 'n', '<leader>bd', mapstr('utils', 'delete_buffer()') }
 map { 'n', '<leader>bw', mapstr('utils', 'delete_buffer(true)') }
+map { 'n', '<leader>bl', mapstr('fzf-lua', 'buffers()') }
 
 -- Builtins --
 map({ 'n', ':', ';' }, { silent = false })

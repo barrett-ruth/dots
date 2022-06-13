@@ -1,5 +1,3 @@
-require('git-worktree').setup {}
-
 local utils = require 'utils'
 local map = utils.map
 

@@ -1,4 +1,5 @@
 local actions = require 'fzf-lua.actions'
+
 local send_to_ll = function(selected, opts)
     local ll = {}
     for i = 1, #selected do
@@ -54,29 +55,38 @@ require('fzf-lua').setup {
         actions = {
             ['ctrl-d'] = { actions.buf_del, actions.resume },
         },
+        prompt = 'buf> ',
     },
+    loclist = { prompt = 'll>' },
     lsp = {
         fzf_opts = {
             ['--with-nth'] = '2..',
             ['--delimiter'] = ':',
         },
+        jump_to_single_result = true,
+        jump_to_single_result_action = actions.file_vsplit,
+        no_header = true,
+        prompt = 'lsp> ',
         symbol_fmt = function(s)
             local first, last = s:find 'm', rfind(s, '')
             local color = s:sub(first + 1, last)
             return string.format('[%s%s%s]', s:sub(1, first), symbols[color] or s, s:sub(last + 1, #s))
         end,
         symbol_style = 3,
-        no_header = true,
     },
     files = {
         fd_opts = vim.env.FZF_CTRL_T_COMMAND:match ' (.*)',
         git_icons = false,
+        file_icons = false,
     },
     fzf_args = vim.env.FZF_DEFAULT_OPTS,
     grep = {
-        git_icons = false,
+        exec_empty_query = true,
+        file_icons = true,
+        git_icons = true,
         rg_opts = '--hidden --color=always --colors=match:fg:green --colors=path:fg:blue --line-number --smart-case',
         no_header_i = true,
+        prompt = 'rg> ',
     },
     winopts = {
         preview = {
@@ -84,17 +94,17 @@ require('fzf-lua').setup {
             scrollbar = false,
         },
     },
+    quickfix = { prompt = 'qfl>' },
 }
 
-map { 'n', '<leader>fb', mapstr('fzf-lua', 'buffers()') }
 map {
     'n',
     '<leader>fe',
     mapstr('fzf-lua', 'files({ cwd = vim.env.XDG_CONFIG_HOME })'),
 }
 map { 'n', '<c-f>', mapstr('fzf-lua', 'files()') }
-map { 'n', '<c-g>', mapstr('fzf-lua', 'live_grep()') }
+map { 'n', '<c-g>', mapstr('fzf-lua', 'live_grep_native()') }
 map { 'n', '<leader>ff', mapstr('fzf-lua', [[files({ cwd = vim.fn.expand '%:p:h' })]]) }
-map { 'n', '<leader>fg', mapstr('fzf-lua', [[live_grep({ cwd = vim.fn.expand '%:p:h' })]]) }
+map { 'n', '<leader>fg', mapstr('fzf-lua', [[live_grep_native({ cwd = vim.fn.expand '%:p:h' })]]) }
 map { 'n', '<leader>fs', mapstr('fzf-lua', 'files({ cwd = vim.env.SCRIPTS })') }
 map { 'n', '<leader>fr', mapstr('fzf-lua', 'resume()') }

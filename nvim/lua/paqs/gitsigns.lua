@@ -22,5 +22,8 @@ require('gitsigns').setup {
         bmap { 'n', '<leader>gp', mapstr 'Gitsigns preview_hunk' }
         bmap { 'n', '[g', mapstr 'Gitsigns prev_hunk' }
         bmap { 'n', ']g', mapstr 'Gitsigns next_hunk' }
+
+        require 'paqs.fugitive'
+        require 'paqs.worktree'
     end,
 }

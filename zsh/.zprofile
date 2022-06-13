@@ -55,7 +55,7 @@ export FZF_COMPLETION_TRIGGER=\;
 export FZF_ALT_C_COMMAND='fd --type directory --hidden --strip-cwd-prefix'
 export FZF_CTRL_R_OPTS='--reverse'
 export FZF_CTRL_T_COMMAND='fd --type file --hidden --strip-cwd-prefix'
-export FZF_DEFAULT_OPTS='--bind=ctrl-a:select-all --info=inline --no-bold --prompt="> " --color=fg:#d4be98,bg:#1d2021,hl:bold:#a9b665 --color=fg+:#d4be98,hl+:bold:#a9b665,bg+:#1d2021 --color=pointer:#d4be98'
+export FZF_DEFAULT_OPTS='--bind=ctrl-a:select-all --info=inline --no-bold --color=fg:#d4be98,bg:#1d2021,hl:bold:#a9b665 --color=fg+:#d4be98,hl+:bold:#a9b665,bg+:#1d2021 --color=pointer:#d4be98'
 export FZF_TMUX=1
 
 # Plugins

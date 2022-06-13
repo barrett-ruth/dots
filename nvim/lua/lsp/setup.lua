@@ -27,33 +27,45 @@ M.on_attach = function(client, _)
         bmap { 'n', '\\H', mapstr 'ClangdSwitchSourceHeader' }
     end
 
-    bmap { 'n', '\\sa', mapstr('fzf-lua', 'lsp_document_symbols()') }
-    for k, v in pairs { f = 'Function', c = 'Class', m = 'Module' } do
-        bmap {
-            'n',
-            '\\s' .. k,
-            mapstr('fzf-lua', string.format([[lsp_document_symbols({ regex_filter = '%s.*' })]], v)),
-        }
+    if client.server_capabilities.documentSymbolProvider then
+        for k, v in pairs { a = '', f = 'Function', c = 'Class', m = 'Module' } do
+            bmap {
+                'n',
+                '\\s' .. k,
+                mapstr('fzf-lua', string.format([[lsp_document_symbols({ regex_filter = '%s.*' })]], v)),
+            }
+        end
     end
 
     bmap { 'n', ']\\', mapstr 'lua vim.diagnostic.goto_next()' }
     bmap { 'n', '[\\', mapstr 'lua vim.diagnostic.goto_prev()' }
-
-    bmap { 'n', '\\c', mapstr 'lua vim.lsp.buf.code_action()' }
-    bmap { 'n', '\\d', mapstr 'lua vim.lsp.buf.definition()' }
-    bmap { 'n', '\\D', mapstr 'lua vim.lsp.buf.declaration()' }
     bmap { 'n', '\\f', mapstr 'lua vim.diagnostic.open_float()' }
     bmap { 'n', '\\h', mapstr 'lua vim.lsp.buf.hover()' }
-    bmap { 'n', '\\i', mapstr 'lua vim.lsp.buf.implementation()' }
-    bmap { 'n', '\\R', mapstr 'lua vim.lsp.buf.references()' }
 
-    bmap { 'n', '\\r', '<esc>' .. mapstr('paqs.refactor', [[setup_win('rename')]]) }
+    AAA = client.server_capabilities
+
+    for k, v in pairs {
+        c = { 'code_action', 'codeActions' },
+        d = { 'definition', 'definitions' },
+        D = { 'declaration', 'declarations' },
+        i = { 'implementation', 'implementations' },
+        R = { 'references', 'references' }
+    } do
+        if client.server_capabilities[v[1] .. 'Provider'] then
+            bmap { 'n', '\\' .. k, mapstr('fzf-lua', 'lsp_' .. v[2] .. '()') }
+        end
+    end
+
+    if client.server_capabilities.renameProvider then
+        bmap { 'n', '\\r', '<esc>' .. mapstr('paqs.refactor', [[setup_win('rename')]]) }
+    end
+
     bmap { 'x', '\\e', '<esc>' .. mapstr('paqs.refactor', [[setup_win('extract')]]) }
     bmap { 'x', '\\i', '<esc>' .. mapstr('paqs.refactor', 'inline()') }
     bmap { 'x', '\\p', '<esc>' .. mapstr('paqs.refactor', 'print()') }
 
-    bmap { 'n', '\\li', mapstr 'LspInfo' }
-    bmap { 'n', '\\lI', mapstr 'NullLsInfo' }
+    bmap { 'n', '\\li', mapstr 'NullLsInfo' }
+    bmap { 'n', '\\lI', mapstr 'LspInfo' }
 end
 
 local lspconfig = require 'lspconfig'
