@@ -16,14 +16,18 @@ require('gitsigns').setup {
     },
     on_attach = function(_)
         local utils = require 'utils'
-        local bmap, mapstr = utils.bmap, utils.mapstr
+        local bmap, map, mapstr = utils.bmap, utils.map, utils.mapstr
 
         bmap { 'n', '<leader>gb', mapstr 'Gitsigns blame_line' }
         bmap { 'n', '<leader>gp', mapstr 'Gitsigns preview_hunk' }
         bmap { 'n', '[g', mapstr 'Gitsigns prev_hunk' }
         bmap { 'n', ']g', mapstr 'Gitsigns next_hunk' }
 
+        bmap { 'n', '<leader>vb', mapstr('fzf-lua', 'git_branches()') }
+        bmap { 'n', '<leader>vc', mapstr('fzf-lua', 'git_commits()') }
+
+        map { 'n', '<leader>vw', mapstr('paqs.worktree', 'git_worktrees()') }
+
         require 'paqs.fugitive'
-        require 'paqs.worktree'
     end,
 }

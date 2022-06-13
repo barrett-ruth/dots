@@ -10,8 +10,8 @@ local sources = {
     Pyright = 'pyright',
     vimlsp = 'vim',
 }
-sources['Lua Diagnostics.'] = 'lua'
-sources['Lua Syntax Check.'] = 'lua'
+sources['Lua Diagnostics.'] = 'luals'
+sources['Lua Syntax Check.'] = 'luals'
 
 vim.diagnostic.config {
     update_in_insert = true,

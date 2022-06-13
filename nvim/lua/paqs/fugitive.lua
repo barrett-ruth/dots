@@ -1,17 +1,14 @@
 local utils = require 'utils'
-local map, mapstr = utils.map, utils.mapstr
+local bmap, mapstr = utils.map, utils.mapstr
 
 -- Fugitive
-map { 'n', '<leader>vv', mapstr 'G' }
-map { 'n', '<leader>vd', mapstr 'G d' }
-map { 'n', '<leader>vf', mapstr 'G fetch' }
-map { 'n', '<leader>vp', mapstr 'G pull' }
-map { 'n', '<leader>vP', mapstr 'G push' }
-map { 'n', '<leader>vs', mapstr 'G status' }
-map { 'n', '<leader>vS', mapstr 'G stash' }
-map { 'n', '<leader>v2', mapstr 'diffget //2' }
-map { 'n', '<leader>v3', mapstr 'diffget //3' }
-map { 'n', '<leader>vl', mapstr 'G log' }
-
-map { 'n', '<leader>vb', mapstr('fzf-lua', 'git_branches()') }
-map { 'n', '<leader>vc', mapstr('fzf-lua', 'git_commits()') }
+bmap { 'n', '<leader>vv', mapstr 'G' }
+bmap { 'n', '<leader>vd', mapstr 'G d' }
+bmap { 'n', '<leader>vf', mapstr 'G fetch' }
+bmap { 'n', '<leader>vp', mapstr 'G pull' }
+bmap { 'n', '<leader>vP', mapstr 'G push' }
+bmap { 'n', '<leader>vs', mapstr 'G status' }
+bmap { 'n', '<leader>vS', mapstr 'G stash' }
+bmap { 'n', '<leader>v2', mapstr 'diffget //2' }
+bmap { 'n', '<leader>v3', mapstr 'diffget //3' }
+bmap { 'n', '<leader>vl', mapstr 'G log' }

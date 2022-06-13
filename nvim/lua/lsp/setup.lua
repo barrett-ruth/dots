@@ -8,6 +8,7 @@ M.on_attach = function(client, _)
 
     if deny_format[client.name] then
         client.resolved_capabilities.document_formatting = false
+        client.server_capabilities.documentFormattingProvider = false
     end
 
     if client.name == 'tsserver' then
@@ -21,8 +22,8 @@ M.on_attach = function(client, _)
 
         ts_utils.setup_client(client)
 
-        bmap { 'n', '\\ti', mapstr 'TSLspImportAll' }
-        bmap { 'n', '\\to', mapstr 'TSLspOrganize' }
+        bmap { 'n', '\\Ti', mapstr 'TSLspImportAll' }
+        bmap { 'n', '\\To', mapstr 'TSLspOrganize' }
     elseif client.name == 'clangd' then
         bmap { 'n', '\\H', mapstr 'ClangdSwitchSourceHeader' }
     end
@@ -37,28 +38,30 @@ M.on_attach = function(client, _)
         end
     end
 
-    bmap { 'n', ']\\', mapstr 'lua vim.diagnostic.goto_next()' }
-    bmap { 'n', '[\\', mapstr 'lua vim.diagnostic.goto_prev()' }
-    bmap { 'n', '\\f', mapstr 'lua vim.diagnostic.open_float()' }
-    bmap { 'n', '\\h', mapstr 'lua vim.lsp.buf.hover()' }
+    if client.server_capabilities.hoverProvider then
+        bmap { 'n', '\\h', mapstr 'lua vim.lsp.buf.hover()' }
+    end
 
-    AAA = client.server_capabilities
+    if client.server_capabilities.renameProvider then
+        bmap { 'n', '\\r', '<esc>' .. mapstr('paqs.refactor', [[setup_win('rename')]]) }
+    end
 
     for k, v in pairs {
-        c = { 'code_action', 'codeActions' },
+        c = { 'codeAction', 'code_actions' },
         d = { 'definition', 'definitions' },
         D = { 'declaration', 'declarations' },
         i = { 'implementation', 'implementations' },
-        R = { 'references', 'references' }
+        R = { 'references', 'references' },
+        t = { 'typeDefinition', 'typedefs' },
     } do
         if client.server_capabilities[v[1] .. 'Provider'] then
             bmap { 'n', '\\' .. k, mapstr('fzf-lua', 'lsp_' .. v[2] .. '()') }
         end
     end
 
-    if client.server_capabilities.renameProvider then
-        bmap { 'n', '\\r', '<esc>' .. mapstr('paqs.refactor', [[setup_win('rename')]]) }
-    end
+    bmap { 'n', ']\\', mapstr 'lua vim.diagnostic.goto_next()' }
+    bmap { 'n', '[\\', mapstr 'lua vim.diagnostic.goto_prev()' }
+    bmap { 'n', '\\f', mapstr 'lua vim.diagnostic.open_float()' }
 
     bmap { 'x', '\\e', '<esc>' .. mapstr('paqs.refactor', [[setup_win('extract')]]) }
     bmap { 'x', '\\i', '<esc>' .. mapstr('paqs.refactor', 'inline()') }
