@@ -18,6 +18,7 @@ cd "$cfg" || exit
 
 yarn global list | sed '1d;$d' >packages/yarn
 rm -rf nvim/undo
+rmb config.py theme.py index.html userscripts greasemonkey bookmarks qutebrowser
 rmb .zshrc .zprofile .zaliases zsh
 rmb tmux.conf tmux
 
