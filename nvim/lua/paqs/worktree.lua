@@ -1,5 +1,6 @@
 local parse_entry = function(entry)
     local parsed = vim.split(entry, '%s+')
+
     return { path = parsed[1], hash = parsed[2], branch = parsed[3]:sub(2, #parsed[3] - 1) }
 end
 
@@ -11,6 +12,7 @@ end
 
 local delete_worktree = function(selected, _)
     local parsed = parse_entry(selected[1])
+
     vim.ui.input({
         prompt = string.format('Delete worktree %s? [y/N] ', parsed.branch),
     }, function(input)
@@ -39,7 +41,25 @@ return {
     git_worktrees = function()
         local opts = fzf.config.normalize_opts({}, fzf.config.globals.git)
 
-        opts.cmd = fzf.path.git_cwd('git worktree list | sed "s|$HOME|~|g"', opts)
+        opts.cmd = fzf.libuv.spawn_nvim_fzf_cmd({
+            cmd = fzf.path.git_cwd('git worktree list | sed "s|$HOME|~|g"', opts),
+        }, function(x)
+            local parsed = parse_entry(x)
+
+            local first_whitespace = { x:find '%s+' }
+            local _, second_whitespace_begin = x:find '.*%S%s'
+            local _, second_whitespace_end = x:find '.*%s+'
+
+            local colored = table.concat {
+                fzf.utils.ansi_codes.blue(parsed.path),
+                x:sub(unpack(first_whitespace)),
+                fzf.utils.ansi_codes.yellow(parsed.hash),
+                x:sub(second_whitespace_begin, second_whitespace_end),
+                fzf.utils.ansi_codes.green('[' .. parsed.branch .. ']'),
+            }
+
+            return colored
+        end)
 
         opts.actions = {
             ['default'] = switch_worktree,
