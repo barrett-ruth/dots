@@ -8,7 +8,7 @@ wps="$HOME/wp"
 if [ "$2" ]; then
     two="$2"
 else
-    [ -f "$dir_one/$(basename "$1")" ] && two="$dir_one/$(basename "$1")" || two="$(fd --type file . "$dir_two" | shuf -n 1)"
+    [ -f "$dir_two/$(basename "$one")" ] && two="$dir_two/$(basename "$one")" || two="$(fd --type file . "$dir_two" | shuf -n 1)"
 fi
 
 setroot -z "$one" -z "$two"

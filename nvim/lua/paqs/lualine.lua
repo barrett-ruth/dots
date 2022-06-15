@@ -57,11 +57,11 @@ require('lualine').setup {
             },
         },
         lualine_c = {
-            { navic.get_location, cond = navic.is_available },
             { path },
+            { navic.get_location, cond = navic.is_available },
         },
-        lualine_x = { search_count, lspname, 'filetype' },
-        lualine_y = { 'filesize', '%l/%L' },
+        lualine_x = { search_count, lspname },
+        lualine_y = { 'filetype', 'filesize' },
         lualine_z = { 'encoding', 'bo:ff' },
     },
 }

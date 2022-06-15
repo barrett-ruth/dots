@@ -1,3 +1,4 @@
+vim.g.matchup_matchparen_offscreen = {}
 vim.g.did_load_filetypes = 1
 
 local disabled_builtins = {

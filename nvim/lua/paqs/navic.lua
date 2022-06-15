@@ -7,5 +7,4 @@ end
 require('nvim-navic').setup {
     depth_limit = 2,
     icons = icons,
-    highlight = true,
 }
