@@ -10,6 +10,8 @@ config = config  # noqa: F821
 config.load_autoconfig(False)
 config.source('theme.py')
 
+c.content.autoplay = False
+
 c.completion.open_categories = ['searchengines', 'quickmarks']
 c.completion.height = '0%'
 
@@ -29,10 +31,10 @@ c.url.default_page = c.url.start_pages = (
     os.getenv('XDG_CONFIG_HOME') + '/qutebrowser/index.html'
 )
 c.url.searchengines = {
-        'DEFAULT': 'https://duckduckgo.org/?q={}',
-        'aw': 'https://wiki.archlinux.org/?search={}',
-        'g': 'https://google.com/search?q={}',
-        'gh': 'https://github.com/search?q={}',
+    'DEFAULT': 'https://duckduckgo.org/?q={}',
+    'aw': 'https://wiki.archlinux.org/?search={}',
+    'g': 'https://google.com/search?q={}',
+    'gh': 'https://github.com/search?q={}',
 }
 
 for i in range(9):

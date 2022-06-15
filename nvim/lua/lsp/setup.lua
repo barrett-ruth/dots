@@ -1,15 +1,18 @@
 local M = {}
 
-local deny_format = { tsserver = true, clangd = true, sumneko_lua = true, jsonls = true }
+local deny_format = { tsserver = true, clangd = true, sumneko_lua = true, jsonls = true, vimls = true }
 
-M.on_attach = function(client, _)
-    local utils = require 'utils'
-    local bmap, mapstr = utils.bmap, utils.mapstr
+M.on_attach = function(client, bufnr)
+    if client.server_capabilities.documentSymbolProvider then
+        require('nvim-navic').attach(client, bufnr)
+    end
 
     if deny_format[client.name] then
-        client.resolved_capabilities.document_formatting = false
         client.server_capabilities.documentFormattingProvider = false
     end
+
+    local utils = require 'utils'
+    local bmap, mapstr = utils.bmap, utils.mapstr
 
     if client.name == 'tsserver' then
         local ts_utils = require 'nvim-lsp-ts-utils'
@@ -33,7 +36,13 @@ M.on_attach = function(client, _)
             bmap {
                 'n',
                 '\\s' .. k,
-                mapstr('fzf-lua', string.format([[lsp_document_symbols({ regex_filter = '%s.*' })]], v)),
+                mapstr(
+                    'fzf-lua',
+                    string.format(
+                        [[lsp_document_symbols { fzf_opts = { ['--with-nth'] = '2..', ['--delimiter'] = ':' }, prompt = 'sym> ', regex_filter = '%s.*' } ]],
+                        v
+                    )
+                ),
             }
         end
     end

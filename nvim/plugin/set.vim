@@ -2,6 +2,8 @@ se autowrite
 
 se cinkeys-=:
 
+se cmdheight=0
+
 se cursorline
 
 se completeopt=menuone,noinsert,noselect
@@ -27,6 +29,8 @@ se lazyredraw
 
 se list listchars=trail:·
 
+se nowrap
+
 se path+=**
 
 se pumheight=15
@@ -39,15 +43,15 @@ se splitbelow splitright
 
 se stal=0
 
-se undodir=~/.config/nvim/undo undofile
+se undofile
 
 se updatetime=50
 
 se wildcharm=<c-n>
 
-se nowrap
-
 lua << EOF
+    vim.cmd('se undodir=' .. vim.env.XDG_DATA_HOME .. '/nvim/undo')
+
     local ignore = vim.env.XDG_CONFIG_HOME .. '/git/ignore'
     local wig = {}
 

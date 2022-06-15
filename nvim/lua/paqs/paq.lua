@@ -19,6 +19,7 @@ require 'paq' {
     'kyazdani42/nvim-tree.lua',
     'nvim-lualine/lualine.nvim',
     'sainnhe/gruvbox-material',
+    'SmiteshP/nvim-navic',
 
     'Julian/vim-textobj-variable-segment',
     'kana/vim-textobj-user',

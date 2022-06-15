@@ -8,7 +8,7 @@ vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.s
 
 local sources = {
     Pyright = 'pyright',
-    vimlsp = 'vim',
+    vimlsp = 'vimls',
 }
 sources['Lua Diagnostics.'] = 'luals'
 sources['Lua Syntax Check.'] = 'luals'

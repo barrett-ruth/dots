@@ -1,4 +1,4 @@
-grub
+rub
     edit /etc/default/grub:
         include itb=off flag to GRUB_CMDLINE_LINUX_DEFAULT before performing grub-install
 dash
@@ -19,6 +19,7 @@ nvidia
     add nvidia.shutdown to /usr/lib/systemd/system-shutdown to avoid umount /oldroot: device busy
         chmod +x
 symlink fd to git in ~/.config
+symlink /usr/bin/doas to /usr/bin/sudo (make makepkg use it)
 ssh:
     change all to ~/.config/ssh in /etc/ssh/ssh(d)_config
     generate, add github ssh key (remove old)

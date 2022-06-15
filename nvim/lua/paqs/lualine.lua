@@ -2,6 +2,23 @@ local lspname = function()
     return vim.lsp.buf_get_clients(0)[1].name or ''
 end
 
+local path = function()
+    local path = require 'plenary.path'
+    return path:new(vim.fn.expand '%:~'):shorten()
+end
+
+local search_count = function()
+    local count = vim.fn.searchcount()
+
+    if count.total > 0 then
+        return string.format('%s [%s/%d]', vim.fn.getreg '/', count.current, count.total)
+    else
+        return ''
+    end
+end
+
+local navic = require 'nvim-navic'
+
 require('lualine').setup {
     options = {
         component_separators = { left = '│', right = '│' },
@@ -39,8 +56,11 @@ require('lualine').setup {
                 update_in_insert = true,
             },
         },
-        lualine_c = { '%F' },
-        lualine_x = { lspname, 'filetype' },
+        lualine_c = {
+            { navic.get_location, cond = navic.is_available },
+            { path },
+        },
+        lualine_x = { search_count, lspname, 'filetype' },
         lualine_y = { 'filesize', '%l/%L' },
         lualine_z = { 'encoding', 'bo:ff' },
     },

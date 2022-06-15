@@ -6,6 +6,7 @@ local files = {
     'gitsigns',
     'harpoon',
     'lualine',
+    'navic',
     'treesitter',
 }
 

@@ -63,7 +63,7 @@ end
 
 function M.bmap(mapping, opts)
     opts = opts or {}
-    opts.buffer = vim.fn.bufnr '%'
+    opts.buffer = 0
     M.map(mapping, opts)
 end
 

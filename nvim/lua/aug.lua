@@ -7,6 +7,13 @@ au('FileType', {
     group = aug,
 })
 
+au('VimLeave', {
+    callback = function()
+        vim.fn.system 'rm -rf /tmp/lua-language-server*'
+    end,
+    group = aug,
+})
+
 au('ModeChanged', {
     callback = function()
         require('paqs.luasnippets.utils').leave_snippet()
@@ -49,7 +56,6 @@ au('FileType', {
         local utils = require 'utils'
         local mapstr = utils.mapstr
 
-        utils.bmap { 'n', '<c-v>', '<cr>' .. mapstr 'bp' .. mapstr 'vert sbn' }
         utils.bmap { 'n', 'q', mapstr 'q' }
 
         vim.cmd 'setl stl='

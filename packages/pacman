@@ -21,7 +21,7 @@ linux-firmware
 linux-headers
 lua-language-server
 man-db
-neovim-nightly-bin
+neovim-nightly-bin 0.8.0+dev+422+g619eb32c7-1
 nvidia
 nvidia-utils
 openssh
@@ -32,7 +32,6 @@ setroot
 shellcheck
 shfmt
 stylua
-sudo
 ttf-hanazono
 ttf-liberation
 xclip

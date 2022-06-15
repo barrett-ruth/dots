@@ -41,6 +41,7 @@ require('nvim-tree').setup {
     renderer = {
         add_trailing = true,
         icons = {
+            symlink_arrow = ' -> ',
             show = {
                 git = false,
                 folder = false,

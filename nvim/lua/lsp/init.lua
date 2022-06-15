@@ -1,5 +1,29 @@
 require 'lsp.signs'
 
+LSP_SYMBOLS = {
+    Array = '',
+    Boolean = '◩',
+    Class = 'ﴯ',
+    Constant = '',
+    Constructor = '',
+    Enum = '',
+    EnumMember = '',
+    Field = 'ﰠ',
+    Folder = '',
+    Function = '',
+    Interface = '',
+    Keyword = '',
+    Method = '',
+    Module = '',
+    Operator = '',
+    Property = 'ﰠ',
+    Reference = '',
+    Struct = 'פּ',
+    Text = '',
+    Unit = '塞',
+    Variable = 'π',
+}
+
 local servers = {
     clangd = {},
     cssls = {},
@@ -9,11 +33,9 @@ local servers = {
     sumneko_lua = {
         settings = {
             Lua = {
-                runtime = {
-                    version = 'LuaJIT',
-                },
-                completion = { keywordSnippet = 'Disable' },
                 diagnostics = { globals = { 'vim' } },
+                runtime = { version = 'LuaJIT' },
+                telemetry = { enable = false },
             },
         },
     },

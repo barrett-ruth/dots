@@ -98,9 +98,9 @@ map {
     'n',
     '<leader>w',
     function()
-        vim.cmd 'w'
-        vim.lsp.buf.formatting()
+        vim.cmd 'w|sil lua vim.lsp.buf.format()'
     end,
+    { silent = false }
 }
 map { 'n', '<leader>z', 'ZZ' }
 map { 'n', '<leader>Z', mapstr 'xa' }
