@@ -87,5 +87,6 @@ map { 'n', '<c-f>', mapstr('fzf-lua', 'files()') }
 map { 'n', '<c-g>', mapstr('fzf-lua', 'live_grep_native()') }
 map { 'n', '<leader>ff', mapstr('fzf-lua', [[files { cwd = vim.fn.expand '%:p:h' }]]) }
 map { 'n', '<leader>fg', mapstr('fzf-lua', [[live_grep_native { cwd = vim.fn.expand '%:p:h' }]]) }
+map { 'n', '<leader>fh', mapstr('fzf-lua', 'help_tags()') }
 map { 'n', '<leader>fs', mapstr('fzf-lua', 'files { cwd = vim.env.SCRIPTS }') }
 map { 'n', '<leader>fr', mapstr('fzf-lua', 'resume()') }

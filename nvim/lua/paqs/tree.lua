@@ -57,5 +57,5 @@ require('nvim-tree').setup {
 local utils = require 'utils'
 local map, mapstr = utils.map, utils.mapstr
 
-map { 'n', '<c-n>', mapstr 'NvimTreeCollapse' .. mapstr 'NvimTreeToggle' }
-map { 'n', '<leader>n', mapstr 'NvimTreeFindFileToggle' }
+map { 'n', '<c-t>', mapstr 'NvimTreeCollapse' .. mapstr 'NvimTreeToggle' }
+map { 'n', '<leader>t', mapstr 'NvimTreeFindFileToggle' }

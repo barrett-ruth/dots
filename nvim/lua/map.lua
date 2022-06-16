@@ -15,13 +15,6 @@ map({ 'x', ':', ';' }, { silent = false })
 map({ 'x', ';', ':' }, { silent = false })
 map({ 'n', '<leader>R', [[:%s/<c-r>=expand('<cword>')<cr>//g<left><left>]] }, { silent = false })
 map({ 'x', '<leader>R', '<esc>gv"ry:%s/<c-r>r//g<left><left>' }, { silent = false })
-map({
-    'n',
-    'gp',
-    function()
-        return '`[' .. vim.fn.strpart(vim.fn.getregtype(), 0, 1) .. '`]'
-    end,
-}, { expr = true })
 map { 'n', 'J', 'mzJ`z' }
 map { 'n', 'K', 'mzkJ`z' }
 map { 'x', 'J', ":m '>+1<cr>gv" }
@@ -29,7 +22,6 @@ map { 'x', 'K', ":m '<-2<cr>gv" }
 map { 'n', 'x', '"_x' }
 map { 'n', 'Q', 'q:k' }
 map { 'n', '<leader>k', 'K' }
-vim.cmd 'cmap <c-n> <down>'
 
 -- Windows --
 map { 'n', '<c-h>', '<c-w>h' }
@@ -100,7 +92,7 @@ map {
     function()
         vim.cmd 'w|sil lua vim.lsp.buf.format()'
     end,
-    { silent = false }
+    { silent = false },
 }
 map { 'n', '<leader>z', 'ZZ' }
 map { 'n', '<leader>Z', mapstr 'xa' }

@@ -1,20 +1,31 @@
-local lspname = function()
-    return vim.lsp.buf_get_clients(0)[1].name or ''
+local current_lsp = function()
+    return vim.lsp.buf_get_clients(0)[1]
 end
 
 local path = function()
-    local path = require 'plenary.path'
-    return path:new(vim.fn.expand '%:~'):shorten()
+    local expanded = vim.fn.expand '%:p'
+    local shrunk = expanded
+
+    if vim.startswith(expanded, vim.env.HOME) then
+        local path = require 'plenary.path'
+        shrunk = path:new(vim.fn.expand '%:~'):shorten()
+    end
+
+    return shrunk
 end
 
 local search_count = function()
-    local count = vim.fn.searchcount()
+    local count = vim.fn.searchcount { maxcount = 999 }
 
     if count.total > 0 then
         return string.format('%s [%s/%d]', vim.fn.getreg '/', count.current, count.total)
     else
         return ''
     end
+end
+
+local macro = function()
+    return vim.fn.reg_recording()
 end
 
 local navic = require 'nvim-navic'
@@ -25,7 +36,6 @@ require('lualine').setup {
         section_separators = { left = '', right = '' },
         icons_enabled = false,
         globalstatus = true,
-        theme = 'gruvbox-material',
     },
     sections = {
         lualine_a = { 'mode' },
@@ -39,6 +49,32 @@ require('lualine').setup {
                     removed = { fg = 'ea6962' },
                 },
             },
+        },
+        lualine_c = { path },
+        lualine_x = {
+            {
+                macro,
+                cond = function()
+                    return not require('utils').empty(macro())
+                end,
+            },
+            search_count,
+        },
+        lualine_y = { '%l/%L', 'filesize' },
+        lualine_z = { 'filetype' },
+    },
+    winbar = {
+        lualine_a = {
+            {
+                function()
+                    return current_lsp().name
+                end,
+                cond = function()
+                    return current_lsp() ~= nil
+                end,
+            },
+        },
+        lualine_b = {
             {
                 'diagnostics',
                 diagnostics_color = {
@@ -57,11 +93,10 @@ require('lualine').setup {
             },
         },
         lualine_c = {
-            { path },
             { navic.get_location, cond = navic.is_available },
         },
-        lualine_x = { search_count, lspname },
-        lualine_y = { 'filetype', 'filesize' },
-        lualine_z = { 'encoding', 'bo:ff' },
+    },
+    inactive_winbar = {
+        lualine_a = { path },
     },
 }

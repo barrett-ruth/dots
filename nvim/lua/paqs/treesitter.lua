@@ -68,6 +68,5 @@ map {
         require 'paqs.treesitter'
         require 'nvim-treesitter'
         vim.cmd 'e'
-        vim.cmd [[echo 'File reparsed.']]
     end,
 }

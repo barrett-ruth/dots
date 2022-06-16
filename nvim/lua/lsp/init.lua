@@ -1,5 +1,4 @@
 require 'lsp.signs'
-vim.lsp.codelens.display()
 
 LSP_SYMBOLS = {
     Class = 'ﴯ',
@@ -46,6 +45,7 @@ local servers = {
                 diagnostics = { globals = { 'vim' } },
                 runtime = { version = 'LuaJIT' },
                 telemetry = { enable = false },
+                workspace = { library = vim.api.nvim_get_runtime_file('', true) },
             },
         },
     },
