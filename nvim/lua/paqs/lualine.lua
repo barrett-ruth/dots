@@ -5,7 +5,7 @@ local current_lsps = function()
         table.insert(lsps, lsp.name)
     end
 
-    lsps = vim.fn.sort(lsps)
+    lsps = vim.fn.reverse(vim.fn.sort(lsps))
 
     return table.concat(lsps, ' │ ')
 end

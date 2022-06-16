@@ -105,7 +105,7 @@ end
 function M.inline()
     vim.cmd(
         string.format(
-            [[cal feedkeys("mrgv\"ry2Wvg_%s\"lydd^/\<c-r>r\<cr>cgn\<c-r>l\<esc>`r")]],
+            [[cal feedkeys("gv\"ry2Wvg_%s\"lydd^/\<c-r>r\<cr>cgn\<c-r>l\<esc>")]],
             fts.inline[vim.bo.ft] or ''
         )
     )

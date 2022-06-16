@@ -33,6 +33,7 @@ sh)
     ;;
 *)
     echo " > Filetype '$ext' unknown."
+    exit
     ;;
 esac
 
