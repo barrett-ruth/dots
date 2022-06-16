@@ -7,12 +7,6 @@ au('FileType', {
     group = aug,
 })
 
-au('BufEnter', {
-    pattern = 'NvimTree_*',
-    command = 'setl wbr=',
-    group = aug,
-})
-
 au('VimLeave', {
     callback = function()
         vim.fn.system 'rm -rf /tmp/lua-language-server*'
