@@ -44,6 +44,13 @@ au('BufEnter', {
     group = aug,
 })
 
+au('WinLeave', {
+    callback = function()
+        vim.opt_local.winbar = [[%{%v:lua.require'lualine'.winbar()%}]]
+    end,
+    group = aug,
+})
+
 au('TextYankPost', {
     callback = function()
         vim.highlight.on_yank { higroup = 'RedrawDebugNormal', timeout = '700' }

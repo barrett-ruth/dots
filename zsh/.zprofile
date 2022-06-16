@@ -1,4 +1,4 @@
-#/usr/bin/env zsh
+#!/usr/bin/env zsh
 
 autoload -U compinit && compinit -u
 autoload -U colors && colors

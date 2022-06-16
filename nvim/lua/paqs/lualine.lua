@@ -1,5 +1,13 @@
-local current_lsp = function()
-    return vim.lsp.get_active_clients({ bufnr = 0 })[1]
+local current_lsps = function()
+    local lsps = {}
+
+    for _, lsp in ipairs(vim.lsp.get_active_clients { bufnr = 0 }) do
+        table.insert(lsps, lsp.name)
+    end
+
+    lsps = vim.fn.sort(lsps)
+
+    return table.concat(lsps, ' │ ')
 end
 
 local path = function()
@@ -64,16 +72,7 @@ require('lualine').setup {
         lualine_z = { 'filetype' },
     },
     winbar = {
-        lualine_a = {
-            {
-                function()
-                    return current_lsp().name
-                end,
-                cond = function()
-                    return current_lsp() ~= nil
-                end,
-            },
-        },
+        lualine_a = { current_lsps },
         lualine_b = {
             {
                 'diagnostics',
