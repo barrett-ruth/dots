@@ -1,6 +1,9 @@
 local au = vim.api.nvim_create_autocmd
 local aug = vim.api.nvim_create_augroup('augs', { clear = true })
 
+local utils = require 'utils'
+local bmap, mapstr = utils.bmap, utils.mapstr
+
 au('FileType', {
     pattern = 'man',
     command = 'se scl=no nu rnu',
@@ -66,10 +69,7 @@ au('TermOpen', {
 au('FileType', {
     pattern = 'qf',
     callback = function()
-        local utils = require 'utils'
-        local mapstr = utils.mapstr
-
-        utils.bmap { 'n', 'q', mapstr 'q' }
+        bmap { 'n', 'q', mapstr 'q' }
 
         vim.cmd 'setl stl='
     end,

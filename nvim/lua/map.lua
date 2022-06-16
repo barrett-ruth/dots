@@ -5,7 +5,7 @@ local map, mapstr = utils.map, utils.mapstr
 map { 'n', '[b', mapstr 'bp' }
 map { 'n', ']b', mapstr 'bn' }
 map { 'n', '<leader>bd', mapstr 'BufDel' }
-map { 'n', '<leader>bw', mapstr 'BufDel' }
+map { 'n', '<leader>bw', mapstr 'BufDel!' }
 map { 'n', '<c-b>', mapstr 'FzfLua buffers' }
 
 -- Builtins --

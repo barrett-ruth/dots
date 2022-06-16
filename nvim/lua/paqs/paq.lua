@@ -31,12 +31,12 @@ require 'paq' {
     'tpope/vim-repeat',
     'tpope/vim-surround',
 
-    'ojroques/nvim-bufdel',
     'andymass/vim-matchup',
     'ibhagwan/fzf-lua',
     'lewis6991/impatient.nvim',
     'lewis6991/gitsigns.nvim',
     'numToStr/Comment.nvim',
+    'ojroques/nvim-bufdel',
     'wellle/targets.vim',
 
     'ThePrimeagen/harpoon',
