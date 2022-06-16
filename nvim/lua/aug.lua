@@ -7,6 +7,12 @@ au('FileType', {
     group = aug,
 })
 
+au('BufEnter', {
+    pattern = 'NvimTree_*',
+    command = 'setl wbr=',
+    group = aug,
+})
+
 au('VimLeave', {
     callback = function()
         vim.fn.system 'rm -rf /tmp/lua-language-server*'
@@ -21,7 +27,7 @@ au('ModeChanged', {
     group = aug,
 })
 
-au({ 'BufRead', 'BufNewFile' }, {
+au('FileType', {
     pattern = 'PKGBUILD',
     command = 'se ft=PKGBUILD',
     group = aug,
@@ -33,6 +39,11 @@ au('BufEnter', {
 
         if vim.api.nvim_eval 'FugitiveHead()' ~= '' then
             vim.cmd 'setl scl=yes:2'
+        end
+
+        local ft = vim.bo.ft
+        if ft ~= '' and ft ~= 'NvimTree' then
+            vim.opt_local.winbar = [[%{%v:lua.require'lualine'.winbar()%}]]
         end
     end,
     group = aug,

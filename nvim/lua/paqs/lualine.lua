@@ -1,5 +1,5 @@
-local current_lsp = function()
-    return vim.lsp.buf_get_clients(0)[1]
+local current_lsp = function(ind)
+    return vim.lsp.get_active_clients({ bufnr = 0 })[ind or 1]
 end
 
 local path = function()
@@ -67,7 +67,9 @@ require('lualine').setup {
         lualine_a = {
             {
                 function()
-                    return current_lsp().name
+                    local name = current_lsp().name
+
+                    return name == 'null-ls' and current_lsp(2).name or name
                 end,
                 cond = function()
                     return current_lsp() ~= nil

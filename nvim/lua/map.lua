@@ -4,9 +4,9 @@ local map, mapstr = utils.map, utils.mapstr
 -- Buffers --
 map { 'n', '[b', mapstr 'bp' }
 map { 'n', ']b', mapstr 'bn' }
-map { 'n', '<leader>bd', mapstr('utils', 'delete_buffer()') }
-map { 'n', '<leader>bw', mapstr('utils', 'delete_buffer(true)') }
-map { 'n', '<leader>bl', mapstr('fzf-lua', 'buffers()') }
+map { 'n', '<leader>bd', mapstr('bufdel', 'delete_buffer(0)') }
+map { 'n', '<leader>bw', mapstr('bufdel', 'delete_buffer(0, true)') }
+map { 'n', '<c-b>', mapstr('fzf-lua', 'buffers()') }
 
 -- Builtins --
 map({ 'n', ':', ';' }, { silent = false })

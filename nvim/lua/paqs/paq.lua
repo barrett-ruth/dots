@@ -31,6 +31,7 @@ require 'paq' {
     'tpope/vim-repeat',
     'tpope/vim-surround',
 
+    'ojroques/nvim-bufdel',
     'andymass/vim-matchup',
     'ibhagwan/fzf-lua',
     'lewis6991/impatient.nvim',
