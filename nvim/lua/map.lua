@@ -4,9 +4,9 @@ local map, mapstr = utils.map, utils.mapstr
 -- Buffers --
 map { 'n', '[b', mapstr 'bp' }
 map { 'n', ']b', mapstr 'bn' }
-map { 'n', '<leader>bd', mapstr('bufdel', 'delete_buffer(0)') }
-map { 'n', '<leader>bw', mapstr('bufdel', 'delete_buffer(0, true)') }
-map { 'n', '<c-b>', mapstr('fzf-lua', 'buffers()') }
+map { 'n', '<leader>bd', mapstr 'BufDel' }
+map { 'n', '<leader>bw', mapstr 'BufDel' }
+map { 'n', '<c-b>', mapstr 'FzfLua buffers' }
 
 -- Builtins --
 map({ 'n', ':', ';' }, { silent = false })
@@ -22,6 +22,7 @@ map { 'x', 'K', ":m '<-2<cr>gv" }
 map { 'n', 'x', '"_x' }
 map { 'n', 'Q', 'q:k' }
 map { 'n', '<leader>k', 'K' }
+vim.cmd 'cmap <c-n> <down>'
 
 -- Windows --
 map { 'n', '<c-h>', '<c-w>h' }
