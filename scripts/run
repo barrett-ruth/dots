@@ -17,6 +17,9 @@ c | cc | cpp)
     cmd="$comp $flags$file$args"
     extra="trap 'rm a.out' 1 2; $cmd && ./a.out && rm a.out"
     ;;
+html)
+    cmd="$BROWSER $file"
+    ;;
 py)
     [ "$VIRTUAL_ENV" ] && py="$VIRTUAL_ENV/bin/python" || py=python
     cmd="$(which $py) $args$file"

@@ -49,7 +49,9 @@ au('BufEnter', {
 
 au('WinLeave', {
     callback = function()
-        vim.opt_local.winbar = [[%{%v:lua.require'lualine'.winbar()%}]]
+        if vim.bo.ft ~= 'NvimTree' then
+            vim.opt_local.winbar = [[%{%v:lua.require'lualine'.winbar()%}]]
+        end
     end,
     group = aug,
 })
