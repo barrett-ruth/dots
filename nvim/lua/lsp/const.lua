@@ -34,6 +34,7 @@ LSP_SYMBOLS = {
 LSP_FILETYPES = {
     'c',
     'cpp',
+    'css',
     'html',
     'json',
     'python',
@@ -46,4 +47,9 @@ LSP_FILETYPES = {
     'Dockerfile',
     'sh',
     'bash',
+}
+
+NAVIC_DEPRECATED = {
+    'css',
+    'html',
 }

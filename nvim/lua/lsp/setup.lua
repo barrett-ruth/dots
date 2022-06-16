@@ -7,7 +7,7 @@ M.on_attach = function(client, bufnr)
         vim.lsp.codelens.display()
     end
 
-    if client.server_capabilities.documentSymbolProvider then
+    if client.server_capabilities.documentSymbolProvider and not vim.tbl_contains(NAVIC_DEPRECATED, vim.bo.ft) then
         require('nvim-navic').attach(client, bufnr)
     end
 
@@ -77,8 +77,10 @@ M.on_attach = function(client, bufnr)
     bmap { 'x', '\\i', '<esc>' .. mapstr('paqs.refactor', 'inline()') }
     bmap { 'x', '\\p', '<esc>' .. mapstr('paqs.refactor', 'print()') }
 
-    bmap { 'n', '\\li', mapstr 'NullLsInfo' }
-    bmap { 'n', '\\lI', mapstr 'LspInfo' }
+    bmap { 'n', '\\li', mapstr 'LspInfo' }
+    bmap { 'n', '\\lI', mapstr 'NullLsInfo' }
+    bmap { 'n', '\\lr', mapstr 'LspRestart' }
+    bmap { 'n', '\\lR', mapstr 'NullLsRestart' }
 end
 
 local lspconfig = require 'lspconfig'
