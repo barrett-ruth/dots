@@ -1,5 +1,5 @@
-local current_lsp = function(ind)
-    return vim.lsp.get_active_clients({ bufnr = 0 })[ind or 1]
+local current_lsp = function(nth)
+    return vim.lsp.get_active_clients({ bufnr = 0 })[nth or 1]
 end
 
 local path = function()

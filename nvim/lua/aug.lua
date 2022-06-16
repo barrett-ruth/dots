@@ -41,9 +41,10 @@ au('BufEnter', {
             vim.cmd 'setl scl=yes:2'
         end
 
-        local ft = vim.bo.ft
-        if ft ~= '' and ft ~= 'NvimTree' then
+        if vim.tbl_contains(LSP_FILETYPES, vim.bo.ft) then
             vim.opt_local.winbar = [[%{%v:lua.require'lualine'.winbar()%}]]
+        else
+            vim.opt_local.winbar = nil
         end
     end,
     group = aug,

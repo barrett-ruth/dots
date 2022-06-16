@@ -1,37 +1,5 @@
+require 'lsp.const'
 require 'lsp.signs'
-
-LSP_SYMBOLS = {
-    Class = 'ﴯ',
-    Constant = '',
-    Constructor = '',
-    Keyword = '',
-    Enum = '',
-    Field = 'ﰠ',
-    File = '',
-    Function = '',
-    Interface = '',
-    Method = '',
-    Module = '',
-    Namespace = '',
-    Number = '',
-    Object = '',
-    Operator = '',
-    Array = '',
-    Boolean = '◩',
-    EnumMember = '',
-    Key = '',
-    Package = '',
-    Event = '',
-    Property = 'ﰠ',
-    String = '',
-    Variable = 'π',
-    Folder = '',
-    Reference = '→',
-    Struct = 'פּ',
-    Text = '',
-    TypeParameter = '',
-    Unit = '塞',
-}
 
 local servers = {
     clangd = {},
@@ -45,7 +13,6 @@ local servers = {
                 diagnostics = { globals = { 'vim' } },
                 runtime = { version = 'LuaJIT' },
                 telemetry = { enable = false },
-                workspace = { library = vim.api.nvim_get_runtime_file('', true) },
             },
         },
     },
