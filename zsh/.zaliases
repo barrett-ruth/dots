@@ -23,6 +23,7 @@ alias qb='qutebrowser'
 alias sctl='systemctl'
 alias jctl='journalctl'
 alias tm='tmux'
+alias za='zathura --fork'
 
 # Make
 alias mk='make'
