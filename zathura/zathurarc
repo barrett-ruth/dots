@@ -1,0 +1,21 @@
+set font "monospace normal 13"
+set guioptions none
+
+set default-bg "#1d2021"
+set statusbar-bg "#1d2021"
+set inputbar-bg "#1d2021"
+set highlight-active-color "#fe8019"
+set highlight-color "#fabd2f"
+set statusbar-home-tilde true
+set selection-clipboard clipboard
+set statusbar-h-padding 0
+set statusbar-v-padding 0
+
+map b toggle_statusbar
+map u scroll half-up
+map d scroll half-down
+map g goto top
+map h zoom out
+map l zoom in
+map n navigate next
+map p navigate previous

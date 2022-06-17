@@ -1,5 +1,9 @@
 local M = {}
 
+function _G.pr(...)
+    vim.pretty_print(...)
+end
+
 function M.empty(s)
     return s == '' or s == nil
 end

@@ -21,6 +21,7 @@ linux-firmware
 linux-headers
 lua-language-server
 man-db
+mpv
 neovim-nightly-bin 0.8.0+dev+422+g619eb32c7-1
 nvidia
 nvidia-utils
@@ -41,4 +42,6 @@ xorg-xinit
 xorg-xrdb
 xorg-xset
 yarn
+zathura
+zathura-pdf-poppler
 zsh

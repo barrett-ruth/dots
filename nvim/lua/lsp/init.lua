@@ -11,7 +11,9 @@ local servers = {
         settings = {
             Lua = {
                 diagnostics = { globals = { 'vim' } },
-                runtime = { version = 'LuaJIT' },
+                runtime = {
+                    version = 'LuaJIT',
+                },
             },
         },
     },

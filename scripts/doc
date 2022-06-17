@@ -5,7 +5,7 @@ leave() {
     exit
 }
 
-prefix="$HOME/doc"
+prefix="$HOME/dev/tb"
 
 [ "$1" ] && leave "$(fd -e pdf -1 -t f -a "$1" -- . "$prefix")"
 

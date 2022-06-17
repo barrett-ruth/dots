@@ -19,6 +19,7 @@ local acc = {}
 
 for _, v in ipairs { { '({', '})' }, { '[[', ']]' } } do
     table.insert(acc, inline(v))
+    table.insert(acc, inline { v[1] .. ' ', ' ' .. v[2] })
     table.insert(acc, newline(v))
 end
 

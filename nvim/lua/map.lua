@@ -17,12 +17,14 @@ map({ 'n', '<leader>R', [[:%s/<c-r>=expand('<cword>')<cr>//g<left><left>]] }, { 
 map({ 'x', '<leader>R', '<esc>gv"ry:%s/<c-r>r//g<left><left>' }, { silent = false })
 map { 'n', 'J', 'mzJ`z' }
 map { 'n', 'K', 'mzkJ`z' }
-map { 'x', 'J', ":m '>+1<cr>gv" }
-map { 'x', 'K', ":m '<-2<cr>gv" }
 map { 'n', 'x', '"_x' }
 map { 'n', 'Q', 'q:k' }
 map { 'n', '<leader>k', 'K' }
-vim.cmd 'cmap <c-n> <down>'
+vim.cmd [[
+    cno <c-n> <down>
+    xn J :m '>+1<cr>gv
+    xn K :m '<-2<cr>gv
+]]
 
 -- Windows --
 map { 'n', '<c-h>', '<c-w>h' }

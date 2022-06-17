@@ -10,7 +10,7 @@ end
 M.inline = function(lr)
     local trig = lr[1]
 
-    if trig:len() == 3 then
+    if trig:len() == 3 and trig:sub(3, 3) ~= ' ' then
         lr[2] = lr[2] .. trig:sub(3, 3)
         lr[1] = trig:sub(1, 2)
     elseif lr[1]:sub(2, 2) == "'" or lr[1]:sub(2, 2) == '"' then
