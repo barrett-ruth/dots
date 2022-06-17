@@ -25,7 +25,7 @@ __set_git() {
   if [[ -z "${sb##*...*}" ]]; then
     local usi="${sb##*.}"
     local usr="${usi%%/*}"
-    [[ -n "$usr" ]] && us="%F{blue}$usr"
+    [[ -n "$usr" ]] && us="%f→%F{blue}$usr"
     [[ -n "${sb##*ahead*}" ]] || up_down+=↑
     [[ -n "${sb##*behind*}" ]] || up_down+=↓
     [ "${#up_down}" = 2 ] && up_down=↑↓
@@ -34,7 +34,7 @@ __set_git() {
   else
       br="${sb##* }"
   fi
-  PS1+="%f$dirty%F{green}$br%f→$us%f$up_down "
+  PS1+="%f$dirty%F{green}$br$us%f$up_down "
 }
 
 __set_venv() {

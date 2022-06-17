@@ -2,7 +2,11 @@
 
 # Make commands respect aliases
 alias ds='doas '
-alias mn='man '
+mn() {
+    page="$(ls -la "$(which "$1")" 2>/dev/null)"
+    [[ -n "$page" ]] && page="${page##* }" || page="$1"
+    man "$page"
+}
 
 # Color aliases
 alias ls='exa'

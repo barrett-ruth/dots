@@ -64,6 +64,7 @@ config.bind('<Ctrl-N>', 'fake-key <Down>', mode='insert')
 
 config.bind('su', 'set-cmd-text :spawn --userscript')
 config.bind('sg', 'set-cmd-text -s :spawn --userscript gh')
+config.bind('sp', 'spawn --userscript password_fill')
 config.bind('so', 'config-source')
 
 c.content.blocking.adblock.lists = [

@@ -25,6 +25,7 @@ neovim-nightly-bin 0.8.0+dev+422+g619eb32c7-1
 nvidia
 nvidia-utils
 openssh
+pass
 python-adblock
 qutebrowser
 ripgrep

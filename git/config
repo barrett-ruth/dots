@@ -1,6 +1,6 @@
 [user]
     name = Barrett Ruth
-    email = br@barrett-ruth.com
+    email = br@barrettruth.com
     username = barrett-ruth
 [init]
     defaultBranch = main
@@ -18,11 +18,13 @@
     b = branch
     c = commit
     cap = "!cap() { git add . && git commit -m \"$*\" && git push; }; cap"
+    cf = config
     ch = checkout
     cl = clone
     d = diff
     dt = difftool
     f = fetch
+    i = init
     lg = log --oneline --graph --decorate
     mg = merge
     p = pull
@@ -30,4 +32,5 @@
     r = remote
     rt = reset
     s = status
+    sw = switch
     wt = worktree
