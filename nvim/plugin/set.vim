@@ -10,10 +10,12 @@ se completeopt=menuone,noinsert,noselect
 
 se expandtab tabstop=4 shiftwidth=4
 
-se fillchars=fold:\ ,eob:\ ,vert:│
+se fillchars=fold:\ ,eob:\ ,vert:│,foldopen:∨,foldclose:>,foldsep:│
 
-se foldlevel=2
+se foldcolumn=auto:1
+se foldexpr=nvim_treesitter#foldexpr()
 se foldnestmax=2
+se foldtext=substitute(getline(v:foldstart),'\\t',repeat('\ ',&ts),'g').'...'.trim(getline(v:foldend))
 
 se isfname-==,
 
@@ -46,8 +48,6 @@ se stal=0
 se undofile
 
 se updatetime=50
-
-se wildcharm=<c-n>
 
 lua << EOF
     vim.cmd('se undodir=' .. vim.env.XDG_DATA_HOME .. '/nvim/undo')

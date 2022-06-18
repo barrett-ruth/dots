@@ -2,6 +2,20 @@ local treesitter_configs = require 'nvim-treesitter.configs'
 
 require('nvim-treesitter.configs').setup {
     textobjects = {
+        move = {
+            enable = true,
+            set_jumps = false,
+            goto_next_start = {
+                [']c'] = '@class.outer',
+                [']f'] = '@function.outer',
+                [']i'] = '@conditional.outer'
+            },
+            goto_previous_start = {
+                ['[c'] = '@class.outer',
+                ['[f'] = '@function.outer',
+                ['[i'] = '@conditional.outer'
+            },
+        },
         select = {
             enable = true,
             lookahead = true,
@@ -25,27 +39,47 @@ require('nvim-treesitter.configs').setup {
     },
 }
 
+local ecma_folds = { 'arrow_function', 'class_declaration', 'function', 'function_declaration', 'method_definition' }
+local treesitter_folds = {
+    bash = { 'function_definition' },
+    c = { 'enum_specifier', 'function_definition', 'struct_specifier' },
+    cpp = { 'class_specifier', 'namespace_definition' },
+    'css',
+    'dockerfile',
+    'go',
+    'html',
+    'http',
+    'java',
+    javascript = ecma_folds,
+    'json',
+    lua = { 'function_declaration', 'function_definition' },
+    'make',
+    python = { 'class_definition', 'function_definition' },
+    tsx = ecma_folds,
+    typescript = ecma_folds,
+    vim = { 'function_definition' },
+    'yaml',
+}
+
+local ensure_installed = {}
+
+for filetype, fold_types in pairs(treesitter_folds) do
+    if type(filetype) == 'string' then
+        table.insert(ensure_installed, filetype)
+
+        local formatted = {}
+        for _, v in ipairs(fold_types) do
+            table.insert(formatted, '(' .. v .. ')')
+        end
+
+        vim.treesitter.set_query(filetype, 'folds', string.format('[%s]@fold', table.concat(formatted)))
+    else
+        table.insert(ensure_installed, fold_types)
+    end
+end
+
 treesitter_configs.setup {
-    ensure_installed = {
-        'bash',
-        'c',
-        'cpp',
-        'css',
-        'dockerfile',
-        'go',
-        'html',
-        'http',
-        'java',
-        'javascript',
-        'json',
-        'lua',
-        'make',
-        'python',
-        'tsx',
-        'typescript',
-        'vim',
-        'yaml',
-    },
+    ensure_installed = ensure_installed,
     sync_install = false,
     indent = {
         enable = false,

@@ -13,18 +13,7 @@ map({ 'n', ':', ';' }, { silent = false })
 map({ 'n', ';', ':' }, { silent = false })
 map({ 'x', ':', ';' }, { silent = false })
 map({ 'x', ';', ':' }, { silent = false })
-map({ 'n', '<leader>R', [[:%s/<c-r>=expand('<cword>')<cr>//g<left><left>]] }, { silent = false })
-map({ 'x', '<leader>R', '<esc>gv"ry:%s/<c-r>r//g<left><left>' }, { silent = false })
-map { 'n', 'J', 'mzJ`z' }
-map { 'n', 'K', 'mzkJ`z' }
 map { 'n', 'x', '"_x' }
-map { 'n', 'Q', 'q:k' }
-map { 'n', '<leader>k', 'K' }
-vim.cmd [[
-    cno <c-n> <down>
-    xn J :m '>+1<cr>gv
-    xn K :m '<-2<cr>gv
-]]
 
 -- Windows --
 map { 'n', '<c-h>', '<c-w>h' }
@@ -36,7 +25,7 @@ map { 'n', '<c-w>j', '<c-w>J' }
 map { 'n', '<c-w>k', '<c-w>K' }
 map { 'n', '<c-w>l', '<c-w>L' }
 
--- Miscellaneous
+-- Miscellaneous --
 map {
     'n',
     '<leader><cr>',
@@ -58,6 +47,21 @@ map {
         vim.cmd 'vs|te run %'
     end,
 }
+map({ 'n', '<leader>R', [[:%s/<c-r>=expand('<cword>')<cr>//g<left><left>]] }, { silent = false })
+map({ 'x', '<leader>R', '<esc>gv"ry:%s/<c-r>r//g<left><left>' }, { silent = false })
+map { 'n', 'J', 'mzJ`z' }
+map { 'n', 'K', 'mzkJ`z' }
+map { 'n', 'Q', 'q:k' }
+map { 'n', '<leader>k', 'K' }
+vim.cmd [[
+    cno <c-n> <down>
+    xn J :m '>+1<cr>gv
+    xn K :m '<-2<cr>gv
+]]
+
+-- Folds --
+map { 'n', ']z', 'zj' }
+map { 'n', '[z', 'zk' }
 
 -- Location List --
 map { 'n', ']l', mapstr 'lne' }

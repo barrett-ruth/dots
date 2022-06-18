@@ -32,7 +32,7 @@ au('FileType', {
 
 au('BufEnter', {
     callback = function()
-        vim.cmd 'setl fo-=cro'
+        vim.cmd 'setl fo-=cro fdm=expr'
 
         if vim.api.nvim_eval 'FugitiveHead()' ~= '' then
             vim.cmd 'setl scl=yes:2'

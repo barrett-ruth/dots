@@ -30,6 +30,7 @@
     p = pull
     pu = push
     r = remote
+    rs = restore
     rt = reset
     s = status
     sw = switch

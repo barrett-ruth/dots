@@ -4,7 +4,7 @@ require('gitsigns').setup {
         change = { text = '▎' },
         delete = { text = '_' },
         topdelete = { text = '—' },
-        changedelete = { text = '▎' }
+        changedelete = { text = '▎' },
     },
     update_debounce = 0,
     current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d>',
@@ -24,6 +24,7 @@ require('gitsigns').setup {
         bmap { 'n', ']g', mapstr 'Gitsigns next_hunk' }
 
         bmap { 'n', '<leader>vb', mapstr('fzf-lua', 'git_branches()') }
+        bmap { 'n', '<leader>vh', mapstr('fzf-lua', 'git_bcommits()') }
         bmap { 'n', '<leader>vc', mapstr('fzf-lua', 'git_commits()') }
 
         map { 'n', '<leader>vw', mapstr('paqs.worktree', 'git_worktrees()') }

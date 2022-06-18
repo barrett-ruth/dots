@@ -41,7 +41,7 @@ function M.map(mapping, opts)
     vim.keymap.set(mapping[1], mapping[2], mapping[3], kopts)
 end
 
-function M.bmap(mapping, opts)
+M.bmap = function(mapping, opts)
     opts = opts or {}
     opts.buffer = 0
     M.map(mapping, opts)
