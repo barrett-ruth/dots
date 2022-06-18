@@ -6,14 +6,16 @@ require('nvim-treesitter.configs').setup {
             enable = true,
             set_jumps = false,
             goto_next_start = {
+                [']a'] = '@parameter.outer',
                 [']c'] = '@class.outer',
                 [']f'] = '@function.outer',
-                [']i'] = '@conditional.outer'
+                [']i'] = '@conditional.outer',
             },
             goto_previous_start = {
+                ['[a'] = '@parameter.outer',
                 ['[c'] = '@class.outer',
                 ['[f'] = '@function.outer',
-                ['[i'] = '@conditional.outer'
+                ['[i'] = '@conditional.outer',
             },
         },
         select = {
@@ -42,7 +44,7 @@ require('nvim-treesitter.configs').setup {
 local ecma_folds = { 'arrow_function', 'class_declaration', 'function', 'function_declaration', 'method_definition' }
 local treesitter_folds = {
     bash = { 'function_definition' },
-    c = { 'enum_specifier', 'function_definition', 'struct_specifier' },
+    c = { 'switch_statement', 'enum_specifier', 'function_definition', 'struct_specifier' },
     cpp = { 'class_specifier', 'namespace_definition' },
     'css',
     'dockerfile',

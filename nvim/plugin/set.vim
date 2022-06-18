@@ -12,7 +12,6 @@ se expandtab tabstop=4 shiftwidth=4
 
 se fillchars=fold:\ ,eob:\ ,vert:│,foldopen:∨,foldclose:>,foldsep:│
 
-se foldcolumn=auto:1
 se foldexpr=nvim_treesitter#foldexpr()
 se foldnestmax=2
 se foldtext=substitute(getline(v:foldstart),'\\t',repeat('\ ',&ts),'g').'...'.trim(getline(v:foldend))
