@@ -62,6 +62,7 @@ vim.cmd [[
 -- Folds --
 map { 'n', ']z', 'zj' }
 map { 'n', '[z', 'zk' }
+map { 'n', 'zt', 'zA', }
 
 -- Location List --
 map { 'n', ']l', mapstr 'lne' }

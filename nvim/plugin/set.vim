@@ -10,7 +10,7 @@ se completeopt=menuone,noinsert,noselect
 
 se expandtab tabstop=4 shiftwidth=4
 
-se fillchars=fold:\ ,eob:\ ,vert:│,foldopen:∨,foldclose:>,foldsep:│
+se fillchars=fold:\ ,eob:\ ,vert:│
 
 se foldexpr=nvim_treesitter#foldexpr()
 se foldnestmax=2

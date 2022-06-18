@@ -11,7 +11,6 @@ sign define DiagnosticSignInfo text=: texthl=BlueSign
 let nostr = 'ctermbg=NONE guibg=NONE gui=NONE'
 
 hi FloatBorder guibg=NONE
-hi Folded guibg=NONE
 hi MatchWord cterm=NONE gui=NONE
 hi MatchWordCur cterm=NONE gui=NONE
 hi MatchParenCur cterm=NONE gui=NONE
