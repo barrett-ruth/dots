@@ -5,6 +5,10 @@ require 'paq' {
     'jose-elias-alvarez/null-ls.nvim',
     'jose-elias-alvarez/nvim-lsp-ts-utils',
 
+    'hrsh7th/nvim-cmp',
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-nvim-lua',
+    'hrsh7th/cmp-path',
     'L3MON4D3/LuaSnip',
 
     'nvim-lua/plenary.nvim',
@@ -23,6 +27,7 @@ require 'paq' {
 
     'Julian/vim-textobj-variable-segment',
     'kana/vim-textobj-user',
+    'kana/vim-textobj-fold',
     'vimtaku/vim-textobj-keyvalue',
     'whatyouhide/vim-textobj-xmlattr',
 
@@ -50,3 +55,4 @@ map { 'n', '<leader>Pc', mapstr 'PaqClean' }
 map { 'n', '<leader>Pi', mapstr 'PaqInstall' }
 map { 'n', '<leader>Pu', mapstr 'PaqUpdate' }
 map { 'n', '<leader>Pl', mapstr 'PaqLogOpen' }
+map { 'n', '<leader>PL', mapstr 'PaqList' }

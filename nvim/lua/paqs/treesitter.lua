@@ -4,9 +4,9 @@ require('nvim-treesitter.configs').setup {
     textobjects = {
         move = {
             enable = true,
-            set_jumps = false,
+            set_jumps = true,
             goto_next_start = {
-                [']a'] = '@parameter.outer',
+                [']a'] = '@parameter.inner',
                 [']c'] = '@class.outer',
                 [']f'] = '@function.outer',
                 [']i'] = '@conditional.outer',

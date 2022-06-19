@@ -55,8 +55,8 @@ map { 'n', 'Q', 'q:k' }
 map { 'n', '<leader>k', 'K' }
 vim.cmd [[
     cno <c-n> <down>
-    xn J :m '>+1<cr>gv
-    xn K :m '<-2<cr>gv
+    xn J :m '>+1<cr><esc>gv
+    xn K :m '<-2<cr><esc>gv
 ]]
 
 -- Folds --

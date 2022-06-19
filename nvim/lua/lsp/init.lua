@@ -10,6 +10,7 @@ local servers = {
     sumneko_lua = {
         settings = {
             Lua = {
+                completion = { keywordSnippet = 'Disable' },
                 diagnostics = { globals = { 'vim' } },
                 runtime = {
                     version = 'LuaJIT',

@@ -1,6 +1,7 @@
 local files = {
     'paq',
     'bufdel',
+    'cmp',
     'comment',
     'luasnippets',
     'fzf',
