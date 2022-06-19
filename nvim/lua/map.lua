@@ -2,10 +2,10 @@ local utils = require 'utils'
 local map, mapstr = utils.map, utils.mapstr
 
 -- Buffers --
-map { 'n', '[b', mapstr 'bp' }
 map { 'n', ']b', mapstr 'bn' }
-map { 'n', '<leader>bd', mapstr 'BufDel' }
+map { 'n', '[b', mapstr 'bp' }
 map { 'n', '<leader>bw', mapstr 'BufDel!' }
+map { 'n', '<leader>bd', mapstr 'BufDel' }
 map { 'n', '<c-b>', mapstr 'FzfLua buffers' }
 
 -- Builtins --
@@ -49,20 +49,16 @@ map {
 }
 map({ 'n', '<leader>R', [[:%s/<c-r>=expand('<cword>')<cr>//g<left><left>]] }, { silent = false })
 map({ 'x', '<leader>R', '<esc>gv"ry:%s/<c-r>r//g<left><left>' }, { silent = false })
+map { 'n', '<leader>k', 'K' }
 map { 'n', 'J', 'mzJ`z' }
 map { 'n', 'K', 'mzkJ`z' }
 map { 'n', 'Q', 'q:k' }
-map { 'n', '<leader>k', 'K' }
-vim.cmd [[
-    cno <c-n> <down>
-    xn J :m '>+1<cr><esc>gv
-    xn K :m '<-2<cr><esc>gv
-]]
+vim.cmd 'cno <c-n> <down>'
 
 -- Folds --
 map { 'n', ']z', 'zj' }
 map { 'n', '[z', 'zk' }
-map { 'n', 'zt', 'zA', }
+map { 'n', 'zt', 'zA' }
 
 -- Location List --
 map { 'n', ']l', mapstr 'lne' }
