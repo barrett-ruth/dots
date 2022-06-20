@@ -14,6 +14,7 @@ se fillchars=fold:\ ,eob:\ ,vert:│
 
 se foldexpr=nvim_treesitter#foldexpr()
 se foldnestmax=2
+se foldopen=search
 se foldtext=substitute(getline(v:foldstart),'\\t',repeat('\ ',&ts),'g').'...'.trim(getline(v:foldend))
 
 se isfname-==,

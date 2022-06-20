@@ -3,19 +3,11 @@ local M = {}
 local deny_format = { tsserver = true, clangd = true, sumneko_lua = true, jsonls = true, vimls = true }
 
 M.on_attach = function(client, bufnr)
-    if client.server_capabilities.codeLensProdiver then
-        vim.lsp.codelens.display()
-    end
-
-    if client.server_capabilities.documentSymbolProvider and not vim.tbl_contains(NAVIC_DEPRECATED, vim.bo.ft) then
-        require('nvim-navic').attach(client, bufnr)
-    end
-
     local utils = require 'utils'
     local bmap, mapstr = utils.bmap, utils.mapstr
 
-    if deny_format[client.name] then
-        client.server_capabilities.documentFormattingProvider = false
+    if client.server_capabilities.documentSymbolProvider and not vim.tbl_contains(NAVIC_DEPRECATED, vim.bo.ft) then
+        require('nvim-navic').attach(client, bufnr)
         for k, v in pairs { a = '', f = 'Function', c = 'Class', m = 'Module' } do
             bmap {
                 'n',
@@ -48,12 +40,20 @@ M.on_attach = function(client, bufnr)
         bmap { 'n', '\\H', mapstr 'ClangdSwitchSourceHeader' }
     end
 
+    if deny_format[client.name] then
+        client.server_capabilities.documentFormattingProvider = false
+    end
+
+    if client.server_capabilities.codeLensProdiver then
+        vim.lsp.codelens.display()
+    end
+
     if client.server_capabilities.hoverProvider then
         bmap { 'n', '\\h', mapstr 'lua vim.lsp.buf.hover()' }
     end
 
     if client.server_capabilities.renameProvider then
-        bmap { 'n', '\\r', '<esc>' .. mapstr('paqs.refactor', [[setup_win('rename')]]) }
+        bmap { 'n', '\\r', '<esc>' .. mapstr('paqs.refactor', 'rename()') }
     end
 
     for k, v in pairs {
@@ -73,8 +73,7 @@ M.on_attach = function(client, bufnr)
     bmap { 'n', '[\\', mapstr 'lua vim.diagnostic.goto_prev()' }
     bmap { 'n', '\\f', mapstr 'lua vim.diagnostic.open_float()' }
 
-    bmap { 'x', '\\e', '<esc>' .. mapstr('paqs.refactor', [[setup_win('extract')]]) }
-    bmap { 'x', '\\i', '<esc>' .. mapstr('paqs.refactor', 'inline()') }
+    bmap { 'x', '\\e', '<esc>' .. mapstr('paqs.refactor', 'extract()') }
     bmap { 'x', '\\p', '<esc>' .. mapstr('paqs.refactor', 'print()') }
 
     bmap { 'n', '\\li', mapstr 'LspInfo' }

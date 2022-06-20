@@ -1,95 +1,67 @@
 local M = {}
 
+local console = { l = 'console.log(', r = ')' }
+local print = { l = 'print(', r = ')' }
 local fts = {
     extract = {
-        lua = { prefix = 'local ' },
-        vim = { prefix = 'let ' },
-        javascript = { prefix = 'const ' },
-        javascriptreact = { prefix = 'const ' },
         sh = { eq = '' },
-        typescript = { prefix = 'const ' },
-        typescriptreact = { prefix = 'const ' },
-    },
-    inline = {
-        c = 'h',
-        cpp = 'h',
     },
     print = {
-        javascript = { l = 'console.log(', r = ')' },
-        javascriptreact = { l = 'console.log(', r = ')' },
-        lua = { l = 'print(', r = ')' },
-        python = { l = 'print(', r = ')' },
-        typescript = { l = 'console.log(', r = ')' },
-        typescriptreact = { l = 'console.log(', r = ')' },
+        javascript = console,
+        javascriptreact = console,
+        lua = print,
+        python = print,
+        typescript = console,
+        typescriptreact = console,
         vim = { l = 'echo ' },
         sh = { l = 'echo "', r = '"' },
     },
 }
 
-local function teardown_win(win)
-    vim.api.nvim_win_close(win, true)
+local utils = require 'utils'
+local empty, rfind = utils.empty, utils.rfind
+
+function M.rename()
+    vim.ui.input({
+        prompt = string.format('Rename %s to: ', vim.fn.expand '<cword>'),
+    }, function(input)
+        if empty(input) then
+            return
+        end
+
+        vim.lsp.buf.rename(input)
+    end)
 end
 
-function M.setup_win(method)
-    local cword = vim.fn.expand '<cword>'
-    local buf = vim.api.nvim_create_buf(false, true)
-    local win = vim.api.nvim_open_win(buf, true, {
-        relative = 'cursor',
-        row = 1,
-        col = 0,
-        width = 18,
-        height = 1,
-        style = 'minimal',
-        border = 'single',
-    })
+function M.extract()
+    vim.cmd 'norm gv"ey'
 
-    if method == 'extract' then
-        cword = ''
-        vim.cmd 'start'
-    end
+    vim.ui.input({
+        prompt = string.format('Extract %s to: ', vim.fn.getreg 'e'),
+    }, function(input)
+        if empty(input) then
+            return
+        end
 
-    vim.api.nvim_buf_set_lines(buf, 0, -1, false, { cword })
-    vim.keymap.set('i', '<c-c>', '<cmd>q<cr>', { silent = true, buffer = buf })
-    vim.keymap.set('n', 'q', '<cmd>q<cr>', { silent = true, buffer = buf })
-    vim.keymap.set(
-        { 'n', 'i' },
-        '<cr>',
-        string.format([[<cmd>lua require 'paqs.refactor'.%s(%d)<cr>]], method, win),
-        { silent = true, buffer = buf }
-    )
-end
+        local pos = rfind(input, ',')
+        local num = pos and input:sub(pos + 2, #input) or '-'
+        local eq = fts.extract[vim.bo.ft] and fts.extract[vim.bo.ft].eq
+        local raw = input:sub(1, pos or #input)
+        local extracted_words = vim.split(raw, ' ')
+        local name = extracted_words[#extracted_words]
 
-function M.rename(win)
-    local name = vim.fn.getline '.'
-    teardown_win(win)
-
-    vim.lsp.buf.rename(name)
-    vim.cmd 'stopi | norm l'
-end
-
-local rfind = require('utils').rfind
-
-function M.extract(win)
-    local name = vim.trim(vim.fn.getline '.')
-    teardown_win(win)
-
-    local pos = rfind(name, ',')
-    local num = pos and string.sub(name, pos + 2, #name) or '-'
-    local prefix = fts.extract[vim.bo.ft].prefix
-    local eq = fts.extract[vim.bo.ft].eq
-    local extracted = string.sub(name, 1, pos or #name)
-
-    vim.cmd(
-        string.format(
-            [[cal feedkeys("mrgvc%s\<esc>O%s\<c-a>%s=%s\<c-r>\"\<esc>\<cmd>m%s\<cr>`r")]],
-            extracted,
-            prefix or '',
-            eq or ' ',
-            eq or ' ',
-            num
+        vim.cmd(
+            string.format(
+                [[cal feedkeys("mrgvc%s\<esc>O%s%s=%s\<c-r>\"\<esc>\<cmd>m%s\<cr>`r")]],
+                name,
+                raw,
+                eq or ' ',
+                eq or ' ',
+                num
+            )
         )
-    )
-    vim.cmd 'stopi'
+        vim.cmd 'stopi'
+    end)
 end
 
 function M.print()
@@ -100,15 +72,6 @@ function M.print()
     end
 
     vim.cmd(string.format([[cal feedkeys("mrgv\"ryo%s\<c-r>\"%s\<esc>`r")]], ft.l, ft.r))
-end
-
-function M.inline()
-    vim.cmd(
-        string.format(
-            [[cal feedkeys("gv\"ry2Wvg_%s\"lydd^/\<c-r>r\<cr>cgn\<c-r>l\<esc>")]],
-            fts.inline[vim.bo.ft] or ''
-        )
-    )
 end
 
 return M

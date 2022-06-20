@@ -26,6 +26,7 @@ LSP_SYMBOLS = {
     Folder = '',
     Reference = '→',
     Struct = 'פּ',
+    Null = '∅',
     Text = '',
     TypeParameter = '',
     Unit = '塞',
