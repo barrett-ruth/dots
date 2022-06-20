@@ -8,9 +8,9 @@ cmp.setup {
             require('luasnip').lsp_expand(args.body)
         end,
     },
-    completion = {
-        autocomplete = false,
-    },
+    enabled = function()
+        return (CMP_ENABLED == nil) and false or CMP_ENABLED
+    end,
     window = {
         completion = {
             border = 'single',
@@ -48,4 +48,18 @@ cmp.setup {
         ['<c-p>'] = cmp.mapping.select_prev_item(),
         ['<c-y>'] = cmp.mapping.confirm { select = true },
     },
+}
+
+local utils = require 'utils'
+utils.map {
+    { 'i', 'n' },
+    '<c-space>',
+    function()
+        CMP_ENABLED = not CMP_ENABLED
+        if CMP_ENABLED then
+            cmp.complete()
+        else
+            cmp.close()
+        end
+    end,
 }

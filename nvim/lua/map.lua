@@ -111,4 +111,4 @@ map { 'n', ']e', '@="m`:m+\\eg``"<cr>' }
 
 -- Toggling --
 map { 'n', '<leader>iw', mapstr 'setl invwrap' }
-map { 'n', '<leader>is', mapstr 'setl invspell' }
+map { 'n', '<leader>is', mapstr('utils', 'toggle_spellsitter()') }

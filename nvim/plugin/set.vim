@@ -41,7 +41,7 @@ se shortmess+=Ic
 
 se signcolumn=yes
 
-se spellcapcheck= spelllang=en_us
+se spell spellcapcheck= spelllang=en_us
 
 se splitbelow splitright
 

@@ -32,7 +32,7 @@ au('FileType', {
 
 au('BufEnter', {
     callback = function()
-        vim.cmd 'setl fo-=cro fdm=expr'
+        vim.cmd 'setl fo-=cro fdm=expr | norm zx'
 
         if vim.api.nvim_eval 'FugitiveHead()' ~= '' then
             vim.cmd 'setl scl=yes:2'
@@ -64,7 +64,7 @@ au('TextYankPost', {
 })
 
 au('TermOpen', {
-    command = 'setl nonu nornu scl=no | start',
+    command = 'setl nonu nornu nospell scl=no | start',
     group = aug,
 })
 

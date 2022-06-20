@@ -29,6 +29,16 @@ function M.toggle_list(prefix)
     vim.cmd(prefix == 'c' and 'cope' or 'lop')
 end
 
+SPELLSITTER_ENABLED = true
+function M.toggle_spellsitter()
+    if SPELLSITTER_ENABLED then
+        require('spellsitter').setup { enable = { 'none' } }
+    else
+        require('spellsitter').setup { enable = true }
+    end
+    SPELLSITTER_ENABLED = not SPELLSITTER_ENABLED
+end
+
 function M.map(mapping, opts)
     local kopts = { noremap = true, silent = true }
 
