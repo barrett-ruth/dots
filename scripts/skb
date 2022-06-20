@@ -1,0 +1,4 @@
+#!/bin/sh
+
+setxkbmap us
+xmodmap "$XDG_CONFIG_HOME/X11/xmodmap"

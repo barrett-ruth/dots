@@ -8,7 +8,7 @@ se cursorline
 
 se completeopt=menuone,noinsert,noselect
 
-se expandtab tabstop=4 shiftwidth=4
+se expandtab softtabstop=4 shiftwidth=4
 
 se fillchars=fold:\ ,eob:\ ,vert:│
 
@@ -41,6 +41,8 @@ se shortmess+=Ic
 
 se signcolumn=yes
 
+se spellcapcheck= spelllang=en_us
+
 se splitbelow splitright
 
 se stal=0
@@ -51,6 +53,7 @@ se updatetime=50
 
 lua << EOF
     vim.cmd('se undodir=' .. vim.env.XDG_DATA_HOME .. '/nvim/undo')
+    vim.cmd('se spellfile=' .. vim.env.XDG_DATA_HOME .. '/nvim/spell.encoding.add')
 
     local ignore = vim.env.XDG_CONFIG_HOME .. '/git/ignore'
     local wig = {}

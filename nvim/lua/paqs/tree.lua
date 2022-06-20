@@ -22,9 +22,9 @@ require('nvim-tree').setup {
             custom_only = true,
             list = {
                 { key = 'a', action = 'create' },
-                { key = 'b', action = 'dir_up' },
+                { key = 'h', action = 'dir_up' },
                 { key = 'd', action = 'remove' },
-                { key = 'f', action = 'cd' },
+                { key = 'l', action = 'cd' },
                 { key = 'm', action = 'rename' },
                 { key = 'n', action = 'next_sibling' },
                 { key = 'p', action = 'prev_sibling' },

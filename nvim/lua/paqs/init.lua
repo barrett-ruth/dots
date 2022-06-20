@@ -1,8 +1,6 @@
 local files = {
     'paq',
-    'bufdel',
     'cmp',
-    'comment',
     'luasnippets',
     'fzf',
     'gitsigns',
@@ -15,3 +13,6 @@ local files = {
 for _, v in ipairs(files) do
     require('paqs.' .. v)
 end
+
+require('bufdel').setup { next = 'alternate' }
+require('Comment').setup { mappings = { extra = true } }

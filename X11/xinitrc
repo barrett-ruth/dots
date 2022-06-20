@@ -10,6 +10,7 @@ smon
 (
     sbg
     sxs
+    skb
 ) &
 while true; do
     dwmb &
