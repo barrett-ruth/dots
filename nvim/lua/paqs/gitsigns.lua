@@ -23,9 +23,9 @@ require('gitsigns').setup {
         bmap { 'n', '[g', mapstr 'Gitsigns prev_hunk' }
         bmap { 'n', ']g', mapstr 'Gitsigns next_hunk' }
 
-        bmap { 'n', '<leader>vb', mapstr('fzf-lua', 'git_branches()') }
-        bmap { 'n', '<leader>vh', mapstr('fzf-lua', 'git_bcommits()') }
-        bmap { 'n', '<leader>vc', mapstr('fzf-lua', 'git_commits()') }
+        bmap { 'n', '<leader>vb', mapstr 'FzfLua git_branches' }
+        bmap { 'n', '<leader>vh', mapstr 'FzfLua git_bcommits' }
+        bmap { 'n', '<leader>vc', mapstr 'FzfLua git_commits' }
 
         map { 'n', '<leader>vw', mapstr('paqs.worktree', 'git_worktrees()') }
 

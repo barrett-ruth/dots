@@ -13,6 +13,10 @@ map({ 'n', ':', ';' }, { silent = false })
 map({ 'n', ';', ':' }, { silent = false })
 map({ 'x', ':', ';' }, { silent = false })
 map({ 'x', ';', ':' }, { silent = false })
+map { 'n', 'V', 'v' }
+map { 'n', 'v', 'V' }
+map { 'x', 'V', 'v' }
+map { 'x', 'v', 'V' }
 map { 'n', 'x', '"_x' }
 
 -- Windows --
@@ -63,13 +67,13 @@ map { 'n', 'zt', 'zA' }
 -- Location List --
 map { 'n', ']l', mapstr 'lne' }
 map { 'n', '[l', mapstr 'lp' }
-map { 'n', '<leader>l', mapstr('fzf-lua', 'loclist({})') }
+map { 'n', '<leader>l', mapstr 'FzfLua loclist' }
 map { 'n', '<leader>L', mapstr 'cal setloclist(0, []) | lcl' }
 
 -- Quickfix List --
 map { 'n', ']c', mapstr 'cn' }
 map { 'n', '[c', mapstr 'cp' }
-map { 'n', '<leader>c', mapstr('fzf-lua', 'quickfix({})') }
+map { 'n', '<leader>c', mapstr 'FzfLua quickfix' }
 map { 'n', '<leader>C', mapstr 'cal setqflist([]) | ccl' }
 
 -- Newlines --
@@ -107,3 +111,4 @@ map { 'n', ']e', '@="m`:m+\\eg``"<cr>' }
 
 -- Toggling --
 map { 'n', '<leader>iw', mapstr 'setl invwrap' }
+map { 'n', '<leader>is', mapstr 'setl invspell' }

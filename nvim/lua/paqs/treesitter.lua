@@ -92,7 +92,13 @@ map {
     end,
 }
 
-for k, v in pairs { a = '@parameter.inner', c = '@class.outer', f = '@function.outer', i = '@conditional.outer' } do
+for k, v in pairs {
+    a = '@parameter.inner',
+    c = '@call.outer',
+    C = '@class.outer',
+    f = '@function.outer',
+    i = '@conditional.outer',
+} do
     map(
         { 'n', ']' .. k, [[':<c-u>lua require("paqs.treesitter").next("]] .. v .. [[", ' . v:count1 . ')<cr>']] },
         { expr = true }

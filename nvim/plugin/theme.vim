@@ -14,6 +14,7 @@ hi FloatBorder guibg=NONE
 hi MatchWord cterm=NONE gui=NONE
 hi MatchWordCur cterm=NONE gui=NONE
 hi MatchParenCur cterm=NONE gui=NONE
+hi SpellBad guisp=#d8a657
 
 for e in [ 'SignColumn', 'FoldColumn' ]
     exe 'hi' e nostr
