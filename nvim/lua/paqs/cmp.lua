@@ -9,6 +9,7 @@ cmp.setup {
             require('luasnip').lsp_expand(args.body)
         end,
     },
+    enabled = false,
     window = {
         completion = {
             border = 'single',
@@ -52,10 +53,12 @@ utils.map {
     { 'i', 'n' },
     '<c-space>',
     function()
-        CMP_ENABLED = not CMP_ENABLED
+        CMP_ENABLED = (CMP_ENABLED == nil) and true or not CMP_ENABLED
         if CMP_ENABLED then
+            cmp.setup.buffer { enabled = true }
             cmp.complete()
         else
+            cmp.setup.buffer { enabled = false }
             cmp.close()
         end
     end,
