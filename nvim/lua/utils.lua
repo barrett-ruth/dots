@@ -20,23 +20,13 @@ end
 
 function M.toggle_list(prefix)
     for _, buf in ipairs(vim.fn.getbufinfo { buflisted = 1 }) do
-        if vim.api.nvim_buf_get_option(buf.bufnr, 'ft') == 'qf' then
-            vim.cmd(prefix == 'c' and 'ccl' or 'lcl')
+        if vim.api.nvim_buf_get_option(buf.bufnr, 'filetype') == 'qf' then
+            vim.cmd(prefix == 'c' and 'cclose' or 'lclose')
             return
         end
     end
 
-    vim.cmd(prefix == 'c' and 'cope' or 'lop')
-end
-
-SPELLSITTER_ENABLED = true
-function M.toggle_spellsitter()
-    if SPELLSITTER_ENABLED then
-        require('spellsitter').setup { enable = { 'none' } }
-    else
-        require('spellsitter').setup { enable = true }
-    end
-    SPELLSITTER_ENABLED = not SPELLSITTER_ENABLED
+    vim.cmd(prefix == 'c' and 'copen' or 'lopen')
 end
 
 function M.map(mapping, opts)

@@ -4,10 +4,6 @@ se cinkeys-=:
 
 se cmdheight=0
 
-se cursorline
-
-se completeopt=menuone,noinsert,noselect
-
 se expandtab softtabstop=4 shiftwidth=4
 
 se fillchars=fold:\ ,eob:\ ,vert:│
@@ -46,6 +42,8 @@ se spell spellcapcheck= spelllang=en_us
 se splitbelow splitright
 
 se stal=0
+
+se statusline=%{%v:lua.require'statusline'.statusline()%}
 
 se undofile
 

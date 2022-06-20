@@ -1,6 +1,7 @@
 local cmp = require 'cmp'
 
 vim.api.nvim_set_var('completion_matching_strategy_list', 'exact,substring,fuzzy')
+vim.api.nvim_set_var('completeopt', 'menuone,noinsert,noselect')
 
 cmp.setup {
     snippet = {
@@ -8,9 +9,6 @@ cmp.setup {
             require('luasnip').lsp_expand(args.body)
         end,
     },
-    enabled = function()
-        return (CMP_ENABLED == nil) and false or CMP_ENABLED
-    end,
     window = {
         completion = {
             border = 'single',
@@ -46,7 +44,6 @@ cmp.setup {
             end
         end),
         ['<c-p>'] = cmp.mapping.select_prev_item(),
-        ['<c-y>'] = cmp.mapping.confirm { select = true },
     },
 }
 

@@ -3,7 +3,7 @@ local bmap, mapstr = utils.map, utils.mapstr
 
 -- Fugitive
 bmap { 'n', '<leader>vv', mapstr 'G' }
-bmap { 'n', '<leader>vd', mapstr 'G d' }
+bmap { 'n', '<leader>vd', mapstr 'G diff' }
 bmap { 'n', '<leader>vf', mapstr 'G fetch' }
 bmap { 'n', '<leader>vp', mapstr 'G pull' }
 bmap { 'n', '<leader>vP', mapstr 'G push' }

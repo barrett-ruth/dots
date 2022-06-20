@@ -1,6 +1,6 @@
 local M = {}
 
-local deny_format = { tsserver = true, clangd = true, sumneko_lua = true, jsonls = true, vimls = true }
+local deny_format = { 'tsserver', 'clangd', 'jsonls', 'vimls' }
 
 M.on_attach = function(client, bufnr)
     local utils = require 'utils'
@@ -40,11 +40,11 @@ M.on_attach = function(client, bufnr)
         bmap { 'n', '\\H', mapstr 'ClangdSwitchSourceHeader' }
     end
 
-    if deny_format[client.name] then
+    if vim.tbl_contains(deny_format, client.name) then
         client.server_capabilities.documentFormattingProvider = false
     end
 
-    if client.server_capabilities.codeLensProdiver then
+    if client.server_capabilities.codeLensProvider then
         vim.lsp.codelens.display()
     end
 

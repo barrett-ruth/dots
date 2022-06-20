@@ -2,8 +2,8 @@ local utils = require 'utils'
 local map, mapstr = utils.map, utils.mapstr
 
 -- Buffers --
-map { 'n', ']b', mapstr 'bn' }
-map { 'n', '[b', mapstr 'bp' }
+map { 'n', ']b', mapstr 'bnext' }
+map { 'n', '[b', mapstr 'bprev' }
 map { 'n', '<leader>bw', mapstr 'BufDel!' }
 map { 'n', '<leader>bd', mapstr 'BufDel' }
 map { 'n', '<c-b>', mapstr 'FzfLua buffers' }
@@ -17,17 +17,9 @@ map { 'n', 'V', 'v' }
 map { 'n', 'v', 'V' }
 map { 'x', 'V', 'v' }
 map { 'x', 'v', 'V' }
-map { 'n', 'x', '"_x' }
 
 -- Windows --
-map { 'n', '<c-h>', '<c-w>h' }
-map { 'n', '<c-j>', '<c-w>j' }
-map { 'n', '<c-k>', '<c-w>k' }
-map { 'n', '<c-l>', '<c-w>l' }
-map { 'n', '<c-w>h', '<c-w>H' }
-map { 'n', '<c-w>j', '<c-w>J' }
-map { 'n', '<c-w>k', '<c-w>K' }
-map { 'n', '<c-w>l', '<c-w>L' }
+map { 'n', '<tab>', '<c-w>' }
 
 -- Miscellaneous --
 map {
@@ -48,10 +40,9 @@ map {
     'n',
     '<leader>r',
     function()
-        vim.cmd 'vs|te run %'
+        vim.cmd 'vsplit|terminal run %'
     end,
 }
-map({ 'n', '<leader>R', [[:%s/<c-r>=expand('<cword>')<cr>//g<left><left>]] }, { silent = false })
 map({ 'x', '<leader>R', '<esc>gv"ry:%s/<c-r>r//g<left><left>' }, { silent = false })
 map { 'n', '<leader>k', 'K' }
 map { 'n', 'J', 'mzJ`z' }
@@ -62,17 +53,16 @@ vim.cmd 'cno <c-n> <down>'
 -- Folds --
 map { 'n', ']z', 'zj' }
 map { 'n', '[z', 'zk' }
-map { 'n', 'zt', 'zA' }
 
 -- Location List --
-map { 'n', ']l', mapstr 'lne' }
-map { 'n', '[l', mapstr 'lp' }
+map { 'n', ']l', mapstr 'lnext' }
+map { 'n', '[l', mapstr 'lprev' }
 map { 'n', '<leader>l', mapstr 'FzfLua loclist' }
 map { 'n', '<leader>L', mapstr 'cal setloclist(0, []) | lcl' }
 
 -- Quickfix List --
-map { 'n', ']c', mapstr 'cn' }
-map { 'n', '[c', mapstr 'cp' }
+map { 'n', ']c', mapstr 'cnext' }
+map { 'n', '[c', mapstr 'cprev' }
 map { 'n', '<leader>c', mapstr 'FzfLua quickfix' }
 map { 'n', '<leader>C', mapstr 'cal setqflist([]) | ccl' }
 
@@ -86,10 +76,10 @@ map { '', '<leader>p', '"0p' }
 map { '', '<leader>y', '"+y' }
 
 -- Resizing --
-map { 'n', '<c-left>', mapstr 'vert res -10' }
-map { 'n', '<c-down>', mapstr 'res +10' }
-map { 'n', '<c-up>', mapstr 'res -10' }
-map { 'n', '<c-right>', mapstr 'vert res +10' }
+map { 'n', '<c-left>', mapstr 'vertical resize -10' }
+map { 'n', '<c-down>', mapstr 'resize +10' }
+map { 'n', '<c-up>', mapstr 'resize -10' }
+map { 'n', '<c-right>', mapstr 'vertical resize +10' }
 
 -- Saving/Exiting --
 map { 'n', '<leader>q', mapstr 'q' }
@@ -98,7 +88,8 @@ map {
     'n',
     '<leader>w',
     function()
-        vim.cmd 'w|sil lua vim.lsp.buf.format()'
+        vim.cmd 'lua vim.lsp.buf.format()'
+        vim.cmd 'w'
     end,
     { silent = false },
 }
@@ -106,9 +97,22 @@ map { 'n', '<leader>z', 'ZZ' }
 map { 'n', '<leader>Z', mapstr 'xa' }
 
 -- Swapping lines --
-map { 'n', '[e', '@="m`:m-2\\eg``"<cr>' }
-map { 'n', ']e', '@="m`:m+\\eg``"<cr>' }
+map { 'n', ']e', '<cmd>m+<cr>' }
+map { 'n', '[e', '<cmd>m-2<cr>' }
 
 -- Toggling --
 map { 'n', '<leader>iw', mapstr 'setl invwrap' }
-map { 'n', '<leader>is', mapstr('utils', 'toggle_spellsitter()') }
+map { 'n', '<leader>iz', mapstr 'setl invfoldenable' }
+map {
+    'n',
+    '<leader>is',
+    function()
+        SPELLSITTER_ENABLED = (SPELLSITTER_ENABLED == nil) and false or not SPELLSITTER_ENABLED
+
+        if SPELLSITTER_ENABLED then
+            require('spellsitter').setup { enable = { 'none' } }
+        else
+            require('spellsitter').setup { enable = true }
+        end
+    end,
+}

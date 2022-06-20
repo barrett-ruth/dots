@@ -6,7 +6,7 @@ local bmap, mapstr = utils.bmap, utils.mapstr
 
 au('FileType', {
     pattern = 'man',
-    command = 'se scl=no nu rnu',
+    command = 'setl signcolumn=no number relativenumber nospell',
     group = aug,
 })
 
@@ -24,33 +24,23 @@ au('ModeChanged', {
     group = aug,
 })
 
+au('VimResized', {
+    command = 'redrawstatus',
+    group = aug,
+})
+
 au('FileType', {
     pattern = 'PKGBUILD',
-    command = 'se ft=PKGBUILD',
+    command = 'se filetype=PKGBUILD',
     group = aug,
 })
 
 au('BufEnter', {
     callback = function()
-        vim.cmd 'setl fo-=cro fdm=expr | norm zx'
+        vim.cmd 'setl formatoptions-=cro'
 
         if vim.api.nvim_eval 'FugitiveHead()' ~= '' then
-            vim.cmd 'setl scl=yes:2'
-        end
-
-        if vim.tbl_contains(LSP_FILETYPES, vim.bo.ft) then
-            vim.opt_local.winbar = [[%{%v:lua.require'lualine'.winbar()%}]]
-        else
-            vim.opt_local.winbar = nil
-        end
-    end,
-    group = aug,
-})
-
-au('WinLeave', {
-    callback = function()
-        if vim.bo.ft ~= 'NvimTree' then
-            vim.opt_local.winbar = [[%{%v:lua.require'lualine'.winbar()%}]]
+            vim.cmd 'setl signcolumn=yes:2'
         end
     end,
     group = aug,
@@ -64,7 +54,7 @@ au('TextYankPost', {
 })
 
 au('TermOpen', {
-    command = 'setl nonu nornu nospell scl=no | start',
+    command = 'setl nonumber norelativenumber nospell signcolumn=no | start',
     group = aug,
 })
 
@@ -73,7 +63,7 @@ au('FileType', {
     callback = function()
         bmap { 'n', 'q', mapstr 'q' }
 
-        vim.cmd 'setl stl='
+        vim.cmd 'setl statusline='
     end,
     group = aug,
 })
