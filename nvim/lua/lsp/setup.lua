@@ -1,7 +1,5 @@
 local M = {}
 
-local deny_format = { 'tsserver', 'clangd', 'jsonls', 'vimls' }
-
 M.on_attach = function(client, bufnr)
     local utils = require 'utils'
     local bmap, mapstr = utils.bmap, utils.mapstr
@@ -38,10 +36,6 @@ M.on_attach = function(client, bufnr)
         bmap { 'n', '\\To', mapstr 'TSLspOrganize' }
     elseif client.name == 'clangd' then
         bmap { 'n', '\\H', mapstr 'ClangdSwitchSourceHeader' }
-    end
-
-    if vim.tbl_contains(deny_format, client.name) then
-        client.server_capabilities.documentFormattingProvider = false
     end
 
     if client.server_capabilities.codeLensProvider then

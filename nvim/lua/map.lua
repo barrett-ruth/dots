@@ -88,7 +88,12 @@ map {
     'n',
     '<leader>w',
     function()
-        vim.cmd 'lua vim.lsp.buf.format()'
+        vim.lsp.buf.format {
+            bufnr = vim.fn.bufnr '%',
+            filter = function(client)
+                return client.name == 'null-ls'
+            end,
+        }
         vim.cmd 'w'
     end,
     { silent = false },
