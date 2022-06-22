@@ -1,5 +1,7 @@
 local utils = require 'utils'
 
+local cs = vim.g.colors_name == 'gruvbox-material'
+
 local search = {
     value = function()
         local count = vim.fn.searchcount { maxcount = 999 }
@@ -26,7 +28,7 @@ local file = {
 
         return shrunk
     end,
-    highlight = 'YellowSign',
+    highlight = cs and 'YellowSign' or 'Function',
 }
 
 local git = {
@@ -38,13 +40,13 @@ local git = {
 
         return ok
     end,
-    highlight = 'OrangeSign',
+    highlight = cs and 'OrangeSign' or 'Statement',
     separator = 'post',
 }
 
 local line = {
     value = '%l:%L',
-    highlight = 'BlueSign',
+    highlight = cs and 'BlueSign' or 'Character',
     separator = 'post',
 }
 
@@ -55,7 +57,7 @@ local macro = {
     condition = function()
         return not utils.empty(vim.fn.reg_recording())
     end,
-    highlight = 'RedSign',
+    highlight = cs and 'RedSign' or 'WarningMsg',
     separator = 'post',
 }
 
@@ -67,7 +69,7 @@ local navic = {
     condition = function()
         return nvim_navic.is_available() and not utils.empty(nvim_navic.get_location())
     end,
-    highlight = 'Grey',
+    highlight = cs and 'Grey' or 'Ignore',
     separator = 'pre',
 }
 
@@ -80,7 +82,7 @@ local filetype = {
     value = function()
         return vim.bo.ft
     end,
-    highlight = 'Purple',
+    highlight = cs and 'Purple' or 'Number',
 }
 
 return {
