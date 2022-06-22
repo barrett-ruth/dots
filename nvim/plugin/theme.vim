@@ -2,6 +2,8 @@
 se bg=dark tgc
 colo melange
 
+hi FloatBorder guibg=NONE
+
 if g:colors_name == 'melange'
     sign define DiagnosticSignError text=> texthl=DiagnosticError
     sign define DiagnosticSignWarn text=— texthl=DiagnosticWarn
@@ -19,6 +21,7 @@ if g:colors_name == 'melange'
 
     hi MatchParen gui=NONE guifg=NONE
     hi SpellBad guisp=#ebc06d
+    hi NormalFloat guibg=NONE
 else
     sign define DiagnosticSignError text=> texthl=RedSign
     sign define DiagnosticSignWarn text=— texthl=YellowSign
@@ -27,7 +30,6 @@ else
 
     let nostr = 'ctermbg=NONE guibg=NONE gui=NONE'
 
-    hi FloatBorder guibg=NONE
     hi MatchWord cterm=NONE gui=NONE
     hi MatchWordCur cterm=NONE gui=NONE
     hi MatchParenCur cterm=NONE gui=NONE

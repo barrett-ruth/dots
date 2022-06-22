@@ -36,19 +36,6 @@ cmp.setup {
         { name = 'nvim_lsp' },
         { name = 'path' },
     },
-    mapping = cmp.mapping {
-        ['<c-b>'] = cmp.mapping.scroll_docs(-4),
-        ['<c-f>'] = cmp.mapping.scroll_docs(4),
-        ['<c-e>'] = cmp.mapping.abort(),
-        ['<c-n>'] = cmp.mapping(function()
-            if cmp.visible() then
-                cmp.select_next_item()
-            else
-                cmp.complete()
-            end
-        end),
-        ['<c-p>'] = cmp.mapping.select_prev_item(),
-    },
 }
 
 local utils = require 'utils'
@@ -66,3 +53,10 @@ utils.map {
         end
     end,
 }
+
+utils.map { 'i', '<c-n>', utils.mapstr('cmp', 'select_next_item()') }
+utils.map { 'i', '<c-p>', utils.mapstr('cmp', 'select_prev_item()') }
+utils.map { 'i', '<c-y>', utils.mapstr('cmp', 'confirm { select = true }') }
+utils.map { 'i', '<c-b>', utils.mapstr('cmp', 'scroll_docs(-4)') }
+utils.map { 'i', '<c-f>', utils.mapstr('cmp', 'scroll_docs(4)') }
+utils.map { 'i', '<c-e>', utils.mapstr('cmp', 'abort()') }
