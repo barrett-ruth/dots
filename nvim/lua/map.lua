@@ -17,6 +17,8 @@ map { 'n', 'V', 'v' }
 map { 'n', 'v', 'V' }
 map { 'x', 'V', 'v' }
 map { 'x', 'v', 'V' }
+map { 'n', ']p', '}' }
+map { 'n', '[p', '{' }
 
 -- Windows --
 map { 'n', '<tab>', '<c-w>' }
@@ -61,8 +63,8 @@ map { 'n', '<leader>l', mapstr 'FzfLua loclist' }
 map { 'n', '<leader>L', mapstr 'cal setloclist(0, []) | lcl' }
 
 -- Quickfix List --
-map { 'n', ']c', mapstr 'cnext' }
-map { 'n', '[c', mapstr 'cprev' }
+map { 'n', ']q', mapstr 'cnext' }
+map { 'n', '[q', mapstr 'cprev' }
 map { 'n', '<leader>c', mapstr 'FzfLua quickfix' }
 map { 'n', '<leader>C', mapstr 'cal setqflist([]) | ccl' }
 
@@ -72,7 +74,6 @@ map { 'n', '[o', '@="m`O\\eg``"<cr>' }
 
 -- Deleting/yanking/pasting --
 map { '', '<leader>d', '"_d' }
-map { '', '<leader>p', '"0p' }
 map { '', '<leader>y', '"+y' }
 
 -- Resizing --

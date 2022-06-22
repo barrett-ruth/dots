@@ -1,7 +1,8 @@
 let g:gruvbox_material_better_performance = 1
 let g:gruvbox_material_background = 'hard'
 se bg=dark tgc
-colo gruvbox-material
+" colo gruvbox-material
+colo melange
 
 sign define DiagnosticSignError text=> texthl=RedSign
 sign define DiagnosticSignWarn text=— texthl=YellowSign

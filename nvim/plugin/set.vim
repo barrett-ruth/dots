@@ -8,8 +8,10 @@ se expandtab softtabstop=4 shiftwidth=4
 
 se fillchars=fold:\ ,eob:\ ,vert:│
 
+se foldcolumn=0
 se foldexpr=nvim_treesitter#foldexpr()
-se foldnestmax=2
+se foldminlines=10
+se foldnestmax=1
 se foldopen=search
 se foldtext=substitute(getline(v:foldstart),'\\t',repeat('\ ',&ts),'g').'...'.trim(getline(v:foldend))
 
@@ -35,15 +37,13 @@ se pumheight=15
 
 se shortmess+=Ic
 
-se signcolumn=yes
+se signcolumn=yes:1
 
 se spell spellcapcheck= spelllang=en_us
 
 se splitbelow splitright
 
 se stal=0
-
-se statusline=%{%v:lua.require'statusline'.statusline()%}
 
 se undofile
 

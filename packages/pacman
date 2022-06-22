@@ -21,7 +21,7 @@ linux-firmware
 linux-headers
 lua-language-server
 man-db
-neovim-nightly-bin 0.8.0+dev+422+g619eb32c7-1
+neovim
 nvidia
 nvidia-utils
 openssh

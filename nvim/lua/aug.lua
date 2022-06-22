@@ -1,12 +1,14 @@
 local au = vim.api.nvim_create_autocmd
 local aug = vim.api.nvim_create_augroup('augs', { clear = true })
 
-local utils = require 'utils'
-local bmap, mapstr = utils.bmap, utils.mapstr
+au('BufEnter', {
+    pattern = 'PKGBUILD',
+    command = 'se filetype=PKGBUILD',
+    group = aug,
+})
 
-au('FileType', {
-    pattern = 'man',
-    command = 'setl signcolumn=no number relativenumber nospell',
+au('ColorScheme', {
+    command = [[se statusline=%{%v:lua.require'statusline'.statusline()%}]],
     group = aug,
 })
 
@@ -24,23 +26,16 @@ au('ModeChanged', {
     group = aug,
 })
 
-au('VimResized', {
-    command = 'redrawstatus',
-    group = aug,
-})
-
-au('FileType', {
-    pattern = 'PKGBUILD',
-    command = 'se filetype=PKGBUILD',
-    group = aug,
-})
-
 au('BufEnter', {
     callback = function()
-        vim.cmd 'setl formatoptions-=cro'
+        -- vim.cmd 'setl formatoptions-=cro foldmethod=expr'
 
         if vim.api.nvim_eval 'FugitiveHead()' ~= '' then
             vim.cmd 'setl signcolumn=yes:2'
+        end
+
+        if vim.bo.ft == 'fugitive' then
+            vim.cmd 'setl signcolumn=no'
         end
     end,
     group = aug,
@@ -54,16 +49,6 @@ au('TextYankPost', {
 })
 
 au('TermOpen', {
-    command = 'setl nonumber norelativenumber nospell signcolumn=no | start',
-    group = aug,
-})
-
-au('FileType', {
-    pattern = 'qf',
-    callback = function()
-        bmap { 'n', 'q', mapstr 'q' }
-
-        vim.cmd 'setl statusline='
-    end,
+    command = 'setl nonumber norelativenumber nospell nocursorline signcolumn=no | start',
     group = aug,
 })

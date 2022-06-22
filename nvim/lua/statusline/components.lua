@@ -7,7 +7,8 @@ local search = {
         return string.format('%s [%s/%d]', vim.fn.getreg '/', count.current, count.total)
     end,
     condition = function()
-        return vim.fn.searchcount().total > 0
+        local searchcount = vim.fn.searchcount()
+        return next(searchcount) and searchcount.total > 0
     end,
     highlight = 'Normal',
     separator = 'post',
@@ -44,7 +45,7 @@ local git = {
 local line = {
     value = '%l:%L',
     highlight = 'BlueSign',
-    separator = 'post'
+    separator = 'post',
 }
 
 local macro = {
@@ -55,7 +56,7 @@ local macro = {
         return not utils.empty(vim.fn.reg_recording())
     end,
     highlight = 'RedSign',
-    separator = 'post'
+    separator = 'post',
 }
 
 local nvim_navic = require 'nvim-navic'
@@ -67,12 +68,12 @@ local navic = {
         return nvim_navic.is_available() and not utils.empty(nvim_navic.get_location())
     end,
     highlight = 'Grey',
-    separator = 'pre'
+    separator = 'pre',
 }
 
 local right_align = {
     value = '%=',
-    highlight = 'Normal'
+    highlight = 'Normal',
 }
 
 local filetype = {
@@ -82,7 +83,7 @@ local filetype = {
     highlight = 'Purple',
 }
 
-local components = {
+return {
     [1] = git,
     [2] = file,
     [3] = navic,
@@ -90,41 +91,5 @@ local components = {
     [5] = macro,
     [6] = search,
     [7] = line,
-    [8] = filetype
-}
-
-local borfn = function(boolean_or_function)
-    if type(boolean_or_function) == 'function' then
-        return boolean_or_function()
-    end
-
-    return boolean_or_function
-end
-
-return {
-    statusline = function()
-        local statusline = ''
-
-        for i = 1, #components do
-            local component = components[i]
-
-            if borfn(component.condition) == false then
-                goto continue
-            end
-
-            local prettified = '%#' .. component.highlight .. '#'
-            prettified = prettified .. borfn(component.value)
-
-            if component.separator == 'post' then
-                prettified = prettified .. '%#Normal# │ '
-            elseif component.separator == 'pre' then
-                prettified = '%#Normal# │ ' .. prettified
-            end
-
-            statusline = statusline .. prettified
-            ::continue::
-        end
-
-        return '%#Normal# ' .. statusline .. ' '
-    end,
+    [8] = filetype,
 }

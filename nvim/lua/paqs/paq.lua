@@ -1,5 +1,6 @@
 require 'paq' {
     'savq/paq-nvim',
+    'savq/melange',
 
     'neovim/nvim-lspconfig',
     'jose-elias-alvarez/null-ls.nvim',
