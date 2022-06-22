@@ -21,7 +21,7 @@ local fts = {
 local utils = require 'utils'
 local empty, rfind = utils.empty, utils.rfind
 
-function M.rename()
+M.rename = function()
     vim.ui.input({
         prompt = string.format('Rename %s to: ', vim.fn.expand '<cword>'),
     }, function(input)
@@ -33,7 +33,7 @@ function M.rename()
     end)
 end
 
-function M.extract()
+M.extract = function()
     vim.cmd 'norm gv"ey'
 
     vim.ui.input({
@@ -64,14 +64,20 @@ function M.extract()
     end)
 end
 
-function M.print()
+M.print = function()
     local ft = fts.print[vim.bo.ft]
 
     if ft == nil then
         return
     end
 
-    vim.cmd(string.format([[cal feedkeys("mrgv\"ryo%s\<c-r>\"%s\<esc>`r")]], ft.l, ft.r))
+    vim.cmd(
+        string.format(
+            [[cal feedkeys("mrgv\"ryo%s\<c-r>\"%s\<esc>`r")]],
+            ft.l,
+            ft.r
+        )
+    )
 end
 
 return M

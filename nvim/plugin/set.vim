@@ -4,6 +4,8 @@ se cinkeys-=:
 
 se cmdheight=0
 
+se colorcolumn=81
+
 se expandtab softtabstop=4 shiftwidth=4
 
 se fillchars=fold:\ ,eob:\ ,vert:│

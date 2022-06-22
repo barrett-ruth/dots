@@ -1,6 +1,9 @@
 local cmp = require 'cmp'
 
-vim.api.nvim_set_var('completion_matching_strategy_list', 'exact,substring,fuzzy')
+vim.api.nvim_set_var(
+    'completion_matching_strategy_list',
+    'exact,substring,fuzzy'
+)
 vim.api.nvim_set_var('completeopt', 'menuone,noinsert,noselect')
 
 cmp.setup {

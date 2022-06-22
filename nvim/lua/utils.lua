@@ -1,14 +1,14 @@
 local M = {}
 
-function _G.pr(...)
+_G.pr = function(...)
     vim.pretty_print(...)
 end
 
-function M.empty(s)
+M.empty = function(s)
     return s == '' or s == nil
 end
 
-function M.rfind(str, char)
+M.rfind = function(str, char)
     local revpos = str:reverse():find(char)
 
     if revpos == nil then
@@ -18,7 +18,7 @@ function M.rfind(str, char)
     return #str - revpos
 end
 
-function M.toggle_list(prefix)
+M.toggle_list = function(prefix)
     for _, buf in ipairs(vim.fn.getbufinfo { buflisted = 1 }) do
         if vim.api.nvim_buf_get_option(buf.bufnr, 'filetype') == 'qf' then
             vim.cmd(prefix == 'c' and 'cclose' or 'lclose')
@@ -29,7 +29,7 @@ function M.toggle_list(prefix)
     vim.cmd(prefix == 'c' and 'copen' or 'lopen')
 end
 
-function M.map(mapping, opts)
+M.map = function(mapping, opts)
     local kopts = { noremap = true, silent = true }
 
     if opts then
@@ -47,7 +47,7 @@ M.bmap = function(mapping, opts)
     M.map(mapping, opts)
 end
 
-function M.mapstr(req, meth)
+M.mapstr = function(req, meth)
     return M.empty(meth) and string.format('<cmd>%s<cr>', req)
         or string.format([[<cmd>lua require '%s'.%s<cr>]], req, meth)
 end

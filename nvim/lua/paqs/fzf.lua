@@ -62,7 +62,12 @@ require('fzf-lua').setup {
         symbol_fmt = function(s)
             local first, last = s:find 'm', rfind(s, '')
             local color = s:sub(first + 1, last)
-            return string.format('[%s%s%s]', s:sub(1, first), LSP_SYMBOLS[color] or s, s:sub(last + 1, #s))
+            return string.format(
+                '[%s%s%s]',
+                s:sub(1, first),
+                LSP_SYMBOLS[color] or s,
+                s:sub(last + 1, #s)
+            )
         end,
         symbol_style = 3,
     },
@@ -85,8 +90,16 @@ map {
 }
 map { 'n', '<c-f>', mapstr 'FzfLua files' }
 map { 'n', '<c-g>', mapstr 'FzfLua live_grep_native' }
-map { 'n', '<leader>ff', mapstr('fzf-lua', [[files { cwd = vim.fn.expand '%:p:h' }]]) }
-map { 'n', '<leader>fg', mapstr('fzf-lua', [[live_grep_native { cwd = vim.fn.expand '%:p:h' }]]) }
+map {
+    'n',
+    '<leader>ff',
+    mapstr('fzf-lua', [[files { cwd = vim.fn.expand '%:p:h' }]]),
+}
+map {
+    'n',
+    '<leader>fg',
+    mapstr('fzf-lua', [[live_grep_native { cwd = vim.fn.expand '%:p:h' }]]),
+}
 map { 'n', '<leader>fh', mapstr 'FzfLua help_tags' }
 map { 'n', '<leader>fs', mapstr('fzf-lua', 'files { cwd = vim.env.SCRIPTS }') }
 map { 'n', '<leader>fr', mapstr 'FzfLua resume' }

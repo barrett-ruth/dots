@@ -6,7 +6,12 @@ local search = {
     value = function()
         local count = vim.fn.searchcount { maxcount = 999 }
 
-        return string.format('%s [%s/%d]', vim.fn.getreg '/', count.current, count.total)
+        return string.format(
+            '%s [%s/%d]',
+            vim.fn.getreg '/',
+            count.current,
+            count.total
+        )
     end,
     condition = function()
         local searchcount = vim.fn.searchcount()
@@ -67,7 +72,8 @@ local navic = {
         return nvim_navic.get_location()
     end,
     condition = function()
-        return nvim_navic.is_available() and not utils.empty(nvim_navic.get_location())
+        return nvim_navic.is_available()
+            and not utils.empty(nvim_navic.get_location())
     end,
     highlight = cs and 'Grey' or 'Ignore',
     separator = 'pre',

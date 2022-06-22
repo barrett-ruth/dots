@@ -1,8 +1,19 @@
 local ensure_installed = {}
-local ecma_folds = { 'arrow_function', 'class_declaration', 'function', 'function_declaration', 'method_definition' }
+local ecma_folds = {
+    'arrow_function',
+    'class_declaration',
+    'function',
+    'function_declaration',
+    'method_definition',
+}
 local treesitter_folds = {
     bash = { 'function_definition' },
-    c = { 'switch_statement', 'enum_specifier', 'function_definition', 'struct_specifier' },
+    c = {
+        'switch_statement',
+        'enum_specifier',
+        'function_definition',
+        'struct_specifier',
+    },
     cpp = { 'class_specifier', 'namespace_definition' },
     'css',
     'dockerfile',
@@ -30,7 +41,11 @@ for filetype, fold_types in pairs(treesitter_folds) do
             table.insert(formatted, '(' .. v .. ')')
         end
 
-        vim.treesitter.set_query(filetype, 'folds', string.format('[%s]@fold', table.concat(formatted)))
+        vim.treesitter.set_query(
+            filetype,
+            'folds',
+            string.format('[%s]@fold', table.concat(formatted))
+        )
     else
         table.insert(ensure_installed, fold_types)
     end
@@ -95,11 +110,23 @@ for k, v in pairs {
     i = '@conditional.outer',
 } do
     map(
-        { 'n', ']' .. k, [[':<c-u>lua require("paqs.treesitter").next("]] .. v .. [[", ' . v:count1 . ')<cr>']] },
+        {
+            'n',
+            ']' .. k,
+            [[':<c-u>lua require("paqs.treesitter").next("]]
+                .. v
+                .. [[", ' . v:count1 . ')<cr>']],
+        },
         { expr = true }
     )
     map(
-        { 'n', '[' .. k, [[':<c-u>lua require("paqs.treesitter").previous("]] .. v .. [[", ' . v:count1 . ')<cr>']] },
+        {
+            'n',
+            '[' .. k,
+            [[':<c-u>lua require("paqs.treesitter").previous("]]
+                .. v
+                .. [[", ' . v:count1 . ')<cr>']],
+        },
         { expr = true }
     )
 end
@@ -112,7 +139,9 @@ return {
     end,
     previous = function(type, count)
         for _ = 1, count do
-            require('nvim-treesitter.textobjects.move').goto_previous_start(type)
+            require('nvim-treesitter.textobjects.move').goto_previous_start(
+                type
+            )
         end
     end,
 }

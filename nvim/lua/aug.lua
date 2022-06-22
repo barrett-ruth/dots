@@ -7,6 +7,16 @@ au('BufEnter', {
     group = aug,
 })
 
+au('InsertEnter', {
+    command = 'se cursorline',
+    group = aug,
+})
+
+au('InsertLeave', {
+    command = 'se nocursorline',
+    group = aug,
+})
+
 au('ColorScheme', {
     command = [[se statusline=%{%v:lua.require'statusline'.statusline()%}]],
     group = aug,
@@ -28,7 +38,7 @@ au('ModeChanged', {
 
 au('BufEnter', {
     callback = function()
-        -- vim.cmd 'setl formatoptions-=cro foldmethod=expr'
+        vim.cmd 'setl formatoptions-=cro foldmethod=expr'
 
         if vim.api.nvim_eval 'FugitiveHead()' ~= '' then
             vim.cmd 'setl signcolumn=yes:2'

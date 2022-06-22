@@ -43,7 +43,13 @@ null_ls.setup {
         builtins.diagnostics.eslint_d.with {
             condition = function(utils)
                 return utils.root_has_file {
-                    { '.eslintrc', '.eslintrc.cjs', '.eslintrc.yaml', '.eslintrc.yml', '.eslintrc.json' },
+                    {
+                        '.eslintrc',
+                        '.eslintrc.cjs',
+                        '.eslintrc.yaml',
+                        '.eslintrc.yml',
+                        '.eslintrc.json',
+                    },
                 }
             end,
             diagnostics_format = '#{m}',
@@ -78,7 +84,10 @@ null_ls.setup {
             extra_args = { '-i', '4', '-ln=posix' },
         },
         builtins.formatting.stylua.with {
-            extra_args = { '--config-path', vim.fn.expand '~/.config/templates/stylua.toml' },
+            extra_args = {
+                '--config-path',
+                vim.fn.expand '~/.config/templates/stylua.toml',
+            },
         },
     },
     update_in_insert = true,

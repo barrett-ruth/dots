@@ -7,7 +7,11 @@ ls.config.set_config {
     history = true,
     ext_opts = {
         [types.choiceNode] = {
-            active = { virt_text = { { ' <- ', vim.wo.cursorline and 'CursorLine' or 'Normal' } } },
+            active = {
+                virt_text = {
+                    { ' <- ', vim.wo.cursorline and 'CursorLine' or 'Normal' },
+                },
+            },
         },
     },
 }
@@ -38,6 +42,8 @@ for _, v in ipairs { { "'", "'" }, { '"', '"' }, { '<', '>' } } do
 end
 
 ls.add_snippets(nil, { all = acc })
-require('luasnip.loaders.from_lua').lazy_load { paths = '~/.config/nvim/lua/paqs/luasnippets' }
+require('luasnip.loaders.from_lua').lazy_load {
+    paths = '~/.config/nvim/lua/paqs/luasnippets',
+}
 
 require 'paqs.luasnippets.map'

@@ -1,7 +1,11 @@
 local parse_entry = function(entry)
     local parsed = vim.split(entry, '%s+')
 
-    return { path = parsed[1], hash = parsed[2], branch = parsed[3]:sub(2, #parsed[3] - 1) }
+    return {
+        path = parsed[1],
+        hash = parsed[2],
+        branch = parsed[3]:sub(2, #parsed[3] - 1),
+    }
 end
 
 local switch_worktree = function(selected, _)
@@ -42,7 +46,10 @@ return {
         local opts = fzf.config.normalize_opts({}, fzf.config.globals.git)
 
         opts.cmd = fzf.libuv.spawn_nvim_fzf_cmd({
-            cmd = fzf.path.git_cwd('git worktree list | sed "s|$HOME|~|g"', opts),
+            cmd = fzf.path.git_cwd(
+                'git worktree list | sed "s|$HOME|~|g"',
+                opts
+            ),
         }, function(x)
             local parsed = parse_entry(x)
 

@@ -58,7 +58,7 @@ export FZF_ALT_C_COMMAND='fd --type directory --hidden --strip-cwd-prefix'
 export FZF_CTRL_R_OPTS='--reverse'
 export FZF_CTRL_T_COMMAND='fd --type file --hidden --strip-cwd-prefix'
 FZF_DEFAULT_OPTS='--bind=ctrl-a:select-all --no-info --no-bold '
-[[ "$THEME" == 'melange' ]] && FZF_DEFAULT_OPTS+='--color=fg:#ece1d7,bg:#2a2520,hl:bold:#78997a --color=fg+:#ece1d7,hl+:bold:#78997a,bg+:#2a2520 --color=pointer:#ece1d7'|| FZF_DEFAULT_OPTS+='--color=fg:#d4be98,bg:#1d2021,hl:bold:#a9b665 --color=fg+:#d4be98,hl+:bold:#a9b665,bg+:#1d2021 --color=pointer:#d4be98'
+[[ "$THEME" == 'melange' ]] && FZF_DEFAULT_OPTS+='--color=fg:#ece1d7,bg:#2a2520,hl:bold:#78997A --color=fg+:#ece1d7,hl+:bold:#78997A,bg+:#2a2520 --color=pointer:#ece1d7'|| FZF_DEFAULT_OPTS+='--color=fg:#d4be98,bg:#1d2021,hl:bold:#a9b665 --color=fg+:#d4be98,hl+:bold:#a9b665,bg+:#1d2021 --color=pointer:#d4be98'
 export FZF_DEFAULT_OPTS
 export FZF_TMUX=1
 

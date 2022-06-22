@@ -45,7 +45,10 @@ map {
         vim.cmd 'vsplit|terminal run %'
     end,
 }
-map({ 'x', '<leader>R', '<esc>gv"ry:%s/<c-r>r//g<left><left>' }, { silent = false })
+map(
+    { 'x', '<leader>R', '<esc>gv"ry:%s/<c-r>r//g<left><left>' },
+    { silent = false }
+)
 map { 'n', '<leader>k', 'K' }
 map { 'n', 'J', 'mzJ`z' }
 map { 'n', 'K', 'mzkJ`z' }
@@ -113,7 +116,8 @@ map {
     'n',
     '<leader>is',
     function()
-        SPELLSITTER_ENABLED = (SPELLSITTER_ENABLED == nil) and false or not SPELLSITTER_ENABLED
+        SPELLSITTER_ENABLED = (SPELLSITTER_ENABLED == nil) and false
+            or not SPELLSITTER_ENABLED
 
         if SPELLSITTER_ENABLED then
             require('spellsitter').setup { enable = { 'none' } }

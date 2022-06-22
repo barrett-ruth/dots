@@ -4,7 +4,10 @@ M.on_attach = function(client, bufnr)
     local utils = require 'utils'
     local bmap, mapstr = utils.bmap, utils.mapstr
 
-    if client.server_capabilities.documentSymbolProvider and not vim.tbl_contains(NAVIC_DEPRECATED, vim.bo.ft) then
+    if
+        client.server_capabilities.documentSymbolProvider
+        and not vim.tbl_contains(NAVIC_DEPRECATED, vim.bo.ft)
+    then
         require('nvim-navic').attach(client, bufnr)
         for k, v in pairs { a = '', f = 'Function', c = 'Class', m = 'Module' } do
             bmap {
@@ -81,7 +84,9 @@ local lspconfig = require 'lspconfig'
 M.setup = function(server, ...)
     local settings = ...
 
-    local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    local capabilities = require('cmp_nvim_lsp').update_capabilities(
+        vim.lsp.protocol.make_client_capabilities()
+    )
     capabilities.offsetEncoding = { 'utf-16' }
     capabilities.textDocument.completion.completionItem.snippetSupport = false
 

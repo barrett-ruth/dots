@@ -2,9 +2,12 @@ vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
     border = 'single',
 })
 
-vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-    border = 'single',
-})
+vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+    vim.lsp.handlers.signature_help,
+    {
+        border = 'single',
+    }
+)
 
 local sources = {
     Pyright = 'pyright',
@@ -23,7 +26,8 @@ vim.diagnostic.config {
         prefix = '',
         border = 'single',
         format = function(diagnostic)
-            local code = diagnostic.code or (diagnostic.user_data and diagnostic.user_data.code or '')
+            local code = diagnostic.code
+                or (diagnostic.user_data and diagnostic.user_data.code or '')
             local message = diagnostic.message
             local source = sources[diagnostic.source] or diagnostic.source
 
