@@ -47,7 +47,7 @@ let g:terminal_ansi_colors = [
 " Basic UI {{{
 cal Hi('Normal', { 'guifg': s:cs.white, 'guibg': s:cs.bg })
 
-cal Hi('ErrorMsg', { 'gui': 'bold,underline', 'guifg': s:cs.red })
+cal Hi('ErrorMsg', { 'gui': 'bold,underline', 'guifg': s:cs.red, 'guibg': 'NONE' })
 
 cal Hi('LineNr', { 'guifg': s:cs.black })
 cal Hi('CursorLineNr', { 'gui': 'NONE', 'guifg': s:cs.grey })

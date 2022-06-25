@@ -11,9 +11,13 @@
 "private"
 "protected"
 "public"
-"type"
+;"type"
 "readonly"
 ] @keyword
+
+[
+ "type"
+] @keyword.declaration
 
 ; types
 
