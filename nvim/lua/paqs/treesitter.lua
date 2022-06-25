@@ -51,6 +51,8 @@ for filetype, fold_types in pairs(treesitter_folds) do
     end
 end
 
+table.insert(ensure_installed, 'query')
+
 require('nvim-treesitter.configs').setup {
     ensure_installed = ensure_installed,
     indent = {
@@ -87,12 +89,18 @@ require('nvim-treesitter.configs').setup {
     },
 }
 
+require('nvim-treesitter.highlight').set_custom_captures {
+    ['keyword.local'] = 'TSLocal',
+    ['keyword.declaration'] = 'TSDeclaration',
+    ['conditional.ternary'] = 'TSOperator',
+}
+
 local utils = require 'utils'
 local map = utils.map
 
 map {
     'n',
-    '<leader>T',
+    '<leader>tr',
     function()
         package.loaded['paqs.treesitter'] = nil
         package.loaded['nvim-treesitter'] = nil
@@ -101,6 +109,7 @@ map {
         vim.cmd 'e'
     end,
 }
+map { 'n', '<leader>th', utils.mapstr 'TSHighlightCapturesUnderCursor' }
 
 for k, v in pairs {
     a = '@parameter.inner',
@@ -109,26 +118,20 @@ for k, v in pairs {
     f = '@function.outer',
     i = '@conditional.outer',
 } do
-    map(
-        {
-            'n',
-            ']' .. k,
-            [[':<c-u>lua require("paqs.treesitter").next("]]
-                .. v
-                .. [[", ' . v:count1 . ')<cr>']],
-        },
-        { expr = true }
-    )
-    map(
-        {
-            'n',
-            '[' .. k,
-            [[':<c-u>lua require("paqs.treesitter").previous("]]
-                .. v
-                .. [[", ' . v:count1 . ')<cr>']],
-        },
-        { expr = true }
-    )
+    map({
+        'n',
+        ']' .. k,
+        [[':<c-u>lua require("paqs.treesitter").next("]]
+            .. v
+            .. [[", ' . v:count1 . ')<cr>']],
+    }, { expr = true })
+    map({
+        'n',
+        '[' .. k,
+        [[':<c-u>lua require("paqs.treesitter").previous("]]
+            .. v
+            .. [[", ' . v:count1 . ')<cr>']],
+    }, { expr = true })
 end
 
 return {

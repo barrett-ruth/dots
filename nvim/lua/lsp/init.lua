@@ -6,7 +6,11 @@ local servers = {
     cssls = {},
     html = {},
     jsonls = {},
-    pyright = {},
+    pyright = {
+        settings = {
+            venv = vim.env.VIRTUAL_ENV or nil,
+        },
+    },
     sumneko_lua = {
         settings = {
             Lua = {

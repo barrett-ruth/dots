@@ -1,6 +1,5 @@
 require 'paq' {
     'savq/paq-nvim',
-    'savq/melange',
 
     'neovim/nvim-lspconfig',
     'jose-elias-alvarez/null-ls.nvim',
@@ -21,9 +20,10 @@ require 'paq' {
         end,
     },
     'nvim-treesitter/nvim-treesitter-textobjects',
+    'nvim-treesitter/playground',
 
-    'kyazdani42/nvim-tree.lua',
     'sainnhe/gruvbox-material',
+    'kyazdani42/nvim-tree.lua',
     'SmiteshP/nvim-navic',
 
     'Julian/vim-textobj-variable-segment',
@@ -39,6 +39,7 @@ require 'paq' {
 
     'andymass/vim-matchup',
     'ibhagwan/fzf-lua',
+    'junegunn/vim-easy-align',
     'lewis6991/impatient.nvim',
     'lewis6991/gitsigns.nvim',
     'numToStr/Comment.nvim',

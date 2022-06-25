@@ -19,6 +19,8 @@ map { 'x', 'V', 'v' }
 map { 'x', 'v', 'V' }
 map { 'n', ']p', '}' }
 map { 'n', '[p', '{' }
+map { 'n', 'ga', '<Plug>(EasyAlign)' }
+map { 'x', 'ga', '<Plug>(EasyAlign)' }
 
 -- Windows --
 map { 'n', '<tab>', '<c-w>' }
@@ -112,6 +114,19 @@ map { 'n', '[e', '<cmd>m-2<cr>' }
 -- Toggling --
 map { 'n', '<leader>iw', mapstr 'setl invwrap' }
 map { 'n', '<leader>iz', mapstr 'setl invfoldenable' }
+map {
+    'n',
+    '<leader>if',
+    function()
+        if vim.wo.foldmethod == 'marker' then
+            vim.cmd 'setl foldminlines=0'
+            vim.wo.foldmethod = 'expr'
+        else
+            vim.cmd 'setl foldminlines=10'
+            vim.wo.foldmethod = 'marker'
+        end
+    end,
+}
 map {
     'n',
     '<leader>is',

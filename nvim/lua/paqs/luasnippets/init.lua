@@ -9,7 +9,7 @@ ls.config.set_config {
         [types.choiceNode] = {
             active = {
                 virt_text = {
-                    { ' <- ', vim.wo.cursorline and 'CursorLine' or 'Normal' },
+                    { ' <- ', 'CursorLine' },
                 },
             },
         },

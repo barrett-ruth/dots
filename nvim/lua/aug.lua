@@ -1,6 +1,8 @@
 local au = vim.api.nvim_create_autocmd
 local aug = vim.api.nvim_create_augroup('augs', { clear = true })
 
+local utils = require 'utils'
+
 au('BufEnter', {
     pattern = 'PKGBUILD',
     command = 'se filetype=PKGBUILD',
@@ -8,11 +10,16 @@ au('BufEnter', {
 })
 
 au('InsertEnter', {
-    command = 'se cursorline',
+    command = 'se colorcolumn=81',
     group = aug,
 })
 
 au('InsertLeave', {
+    command = 'se colorcolumn=',
+    group = aug,
+})
+
+au('FocusLost', {
     command = 'se nocursorline',
     group = aug,
 })
@@ -38,14 +45,22 @@ au('ModeChanged', {
 
 au('BufEnter', {
     callback = function()
-        vim.cmd 'setl formatoptions-=cro foldmethod=expr'
+        if vim.wo.foldmethod ~= 'marker' then
+            vim.cmd 'setl foldmethod=expr'
+        end
+
+        vim.cmd 'setl formatoptions-=cro'
 
         if vim.api.nvim_eval 'FugitiveHead()' ~= '' then
             vim.cmd 'setl signcolumn=yes:2'
         end
 
-        if vim.bo.ft == 'fugitive' then
+        local ft = vim.bo.ft
+
+        if ft == 'fugitive' then
             vim.cmd 'setl signcolumn=no'
+        elseif utils.empty(ft) and utils.empty(vim.bo.bt) then
+            vim.cmd 'LspStop | setl signcolumn=no'
         end
     end,
     group = aug,

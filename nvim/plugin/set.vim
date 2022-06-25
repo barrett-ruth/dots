@@ -2,9 +2,7 @@ se autowrite
 
 se cinkeys-=:
 
-se cmdheight=0
-
-se colorcolumn=81
+se cursorline
 
 se expandtab softtabstop=4 shiftwidth=4
 
@@ -12,8 +10,8 @@ se fillchars=fold:\ ,eob:\ ,vert:│
 
 se foldcolumn=0
 se foldexpr=nvim_treesitter#foldexpr()
-se foldminlines=10
-se foldnestmax=1
+se foldmethod=marker
+se foldnestmax=2
 se foldopen=search
 se foldtext=substitute(getline(v:foldstart),'\\t',repeat('\ ',&ts),'g').'...'.trim(getline(v:foldend))
 
@@ -46,6 +44,8 @@ se spell spellcapcheck= spelllang=en_us
 se splitbelow splitright
 
 se stal=0
+
+se textwidth=80
 
 se undofile
 
