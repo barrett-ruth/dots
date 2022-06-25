@@ -48,15 +48,20 @@ let g:terminal_ansi_colors = [
 cal Hi('Normal', { 'guifg': s:cs.white, 'guibg': s:cs.bg })
 
 cal Hi('ErrorMsg', { 'gui': 'bold,underline', 'guifg': s:cs.red, 'guibg': 'NONE' })
+cal Hi('MoreMsg', { 'gui': 'bold', 'guifg': s:cs.yellow })
 
+" Line numbers {{{ X
 cal Hi('LineNr', { 'guifg': s:cs.black })
 cal Hi('CursorLineNr', { 'gui': 'NONE', 'guifg': s:cs.grey })
 cal Hi('CursorLine', { 'guibg': s:cs.light_grey })
+" }}}
 
+" Folds/Columns {{{ X
 cal Hi('ColorColumn', { 'guibg': s:cs.light_grey })
 cal Hi('SignColumn', { 'guibg': s:cs.bg })
 cal Hi('FoldColumn', { 'guibg': s:cs.bg })
 cal Hi('Folded', { 'guifg': s:cs.grey, 'guibg': s:cs.light_grey })
+" }}}
 
 cal Hi('VertSplit', { 'guifg': s:cs.black })
 cal Hi('MatchParen', { 'guibg': s:cs.grey_white })
@@ -65,7 +70,12 @@ cal Hi('NormalFloat', { 'guibg': 'NONE' })
 cal Hi('Visual', { 'guibg': s:cs.grey_white })
 cal Hi('Whitespace', { 'guifg': s:cs.black })
 
+cal Hi('Search', { 'guifg': 'NONE', 'guibg': 'NONE', 'gui': 'inverse' })
+cal Link('Search', 'IncSearch')
+
+cal Hi('Title', { 'gui': 'bold', 'guifg': s:cs.orange })
 cal Hi('Special', { 'guifg': s:cs.yellow })
+cal Hi('SpecialKey', { 'guifg': s:cs.black })
 cal Hi('Statement', { 'gui': 'italic', 'guifg': s:cs.red })
 cal Hi('Identifier', { 'guifg': s:cs.blue })
 " }}}
@@ -113,6 +123,12 @@ endfo
 cal Hi('DiffAdd', { 'guibg': '#34381b' })
 cal Hi('DiffChange', { 'guibg': '#0e363e' })
 cal Hi('DiffDelete', { 'guibg': '#402120' })
+cal Hi('diffAdded', { 'guifg': s:cs.green })
+cal Hi('diffFile', { 'guifg': s:cs.cyan })
+cal Hi('diffLine', { 'guifg': s:cs.grey })
+cal Hi('diffOldFile', { 'guifg': s:cs.yellow })
+cal Hi('diffNewFile', { 'guifg': s:cs.orange })
+cal Hi('diffIndexLine', { 'guifg': s:cs.purple })
 " }}}
 
 " Gitsigns {{{ X
@@ -231,6 +247,13 @@ cal Hi('cppTSBoolean', { 'guifg': s:cs.purple })
 cal Hi('TSLocal', { 'guifg': s:cs.red })
 cal Hi('luaTSConstructor', { 'guifg': s:cs.white })
 cal Hi('luaTSConstBuiltin', { 'guifg': s:cs.cyan })
+cal Hi('luaFunction', { 'gui': 'italic', 'guifg': s:cs.red })
+cal Hi('luaFunc', { 'guifg': s:cs.green })
+cal Hi('luaIn', { 'gui': 'italic', 'guifg': s:cs.red })
+" }}}
+
+" Vim {{{
+cal Hi('vimTSVariableBuiltin', { 'guifg': s:cs.cyan })
 " }}}
 
 " Python {{{

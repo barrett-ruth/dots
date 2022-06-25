@@ -16,4 +16,4 @@ fi
 
 eval "$cmd"
 
-cd "$dir" || exit
+cd "$dir" || return

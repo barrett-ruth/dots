@@ -9,4 +9,4 @@ case "$1" in
         [[ "$1" == '-' ]] && dir="$1" || dir=$dirs[$1];;
 esac
 
-cd "$dir" 1>/dev/null || exit
+cd "$dir"
