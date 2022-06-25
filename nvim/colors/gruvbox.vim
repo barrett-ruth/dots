@@ -74,7 +74,11 @@ cal Hi('Search', { 'guifg': 'NONE', 'guibg': 'NONE', 'gui': 'inverse' })
 cal Link('Search', 'IncSearch')
 
 cal Hi('Title', { 'gui': 'bold', 'guifg': s:cs.orange })
+cal Hi('Question', { 'gui': 'NONE', 'guifg': s:cs.yellow })
 cal Hi('Special', { 'guifg': s:cs.yellow })
+cal Hi('Todo', { 'gui': 'italic', 'guifg': s:cs.purple })
+cal Hi('helpNote', { 'gui': 'bold', 'guifg': s:cs.purple })
+cal Hi('helpCommand', { 'guifg': s:cs.cyan })
 cal Hi('SpecialKey', { 'guifg': s:cs.black })
 cal Hi('Statement', { 'gui': 'italic', 'guifg': s:cs.red })
 cal Hi('Identifier', { 'guifg': s:cs.blue })
@@ -243,24 +247,6 @@ cal Hi('cTSBoolean', { 'guifg': s:cs.purple })
 cal Hi('cppTSBoolean', { 'guifg': s:cs.purple })
 " }}}
 
-" Lua {{{
-cal Hi('TSLocal', { 'guifg': s:cs.red })
-cal Hi('luaTSConstructor', { 'guifg': s:cs.white })
-cal Hi('luaTSConstBuiltin', { 'guifg': s:cs.cyan })
-cal Hi('luaFunction', { 'gui': 'italic', 'guifg': s:cs.red })
-cal Hi('luaFunc', { 'guifg': s:cs.green })
-cal Hi('luaIn', { 'gui': 'italic', 'guifg': s:cs.red })
-" }}}
-
-" Vim {{{
-cal Hi('vimTSVariableBuiltin', { 'guifg': s:cs.cyan })
-" }}}
-
-" Python {{{
-cal Hi('pythonTSConstructor', { 'guifg': s:cs.green })
-cal Hi('pythonTSInclude', { 'gui': 'italic', 'guifg': s:cs.purple })
-" }}}
-
 " Type/Javascript {{{
 cal Hi('TSDeclaration', { 'guifg': s:cs.orange })
 cal Hi('javascriptTSBoolean', { 'guifg': s:cs.purple })
@@ -269,12 +255,6 @@ cal Hi('typescriptTSKeywordOperator', { 'gui': 'italic', 'guifg': s:cs.red })
 cal Hi('javascriptTSKeywordOperator', { 'gui': 'italic', 'guifg': s:cs.red })
 cal Hi('typescriptTSInclude', { 'gui': 'italic', 'guifg': s:cs.purple })
 cal Hi('javascriptTSInclude', { 'gui': 'italic', 'guifg': s:cs.purple })
-" }}}
-
-" sh {{{
-cal Hi('bashTSPunctSpecial', { 'guifg': s:cs.purple })
-cal Hi('zshFunction', { 'guifg': s:cs.green })
-cal Hi('zshOperator', { 'guifg': s:cs.orange })
 " }}}
 
 " }}}

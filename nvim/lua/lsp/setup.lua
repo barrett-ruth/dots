@@ -9,7 +9,12 @@ M.on_attach = function(client, bufnr)
         and not vim.tbl_contains(NAVIC_DEPRECATED, vim.bo.ft)
     then
         require('nvim-navic').attach(client, bufnr)
-        for k, v in pairs { a = '', f = 'Function', c = 'Class', m = 'Module' } do
+        for k, v in pairs {
+            a = '',
+            f = 'Function',
+            c = 'Class',
+            m = 'Module',
+        } do
             bmap {
                 'n',
                 '\\s' .. k,
