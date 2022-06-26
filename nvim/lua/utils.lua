@@ -4,6 +4,38 @@ _G.pr = function(...)
     vim.pretty_print(...)
 end
 
+M.cs = {
+    bg = '#282828',
+    black = '#5a524c',
+    red = '#ea6962',
+    green = '#a9b665',
+    yellow = '#d8a657',
+    blue = '#7daea3',
+    purple = '#d3869b',
+    cyan = '#89b482',
+    white = '#d4be98',
+    orange = '#e78a4e',
+    grey = '#928374',
+    light_grey = '#32302f',
+    grey_white = '#45403d',
+    hi = '#a89984',
+}
+
+M.hi = function(group, highlights)
+    if highlights.none then
+        highlights.none = nil
+        highlights.undercurl = false
+        highlights.italic = false
+        highlights.bold = false
+    end
+    vim.api.nvim_set_hl(0, group, highlights)
+end
+
+M.link = function(from, to)
+    vim.api.nvim_set_hl(0, to, { link = from })
+end
+
+
 M.empty = function(s)
     return s == '' or s == nil
 end

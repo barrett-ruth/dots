@@ -40,6 +40,9 @@ require('fzf-lua').setup {
         },
         prompt = 'buf> ',
     },
+    helptags = {
+        prompt = 'help> ',
+    },
     files = {
         fd_opts = vim.env.FZF_CTRL_T_COMMAND:match ' (.*)',
         git_icons = false,
