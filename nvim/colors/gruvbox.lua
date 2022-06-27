@@ -290,5 +290,3 @@ hi('javascriptTSInclude', { italic = true, fg = cs.purple })
 -- highlight! link TSUnderline Underlined
 -- highlight! link TSVariable Identifier
 -- }}}
-
--- vim: set sw=2 fdm=marker fmr={{{,}}}

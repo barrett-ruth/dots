@@ -1,8 +1,6 @@
 local au = vim.api.nvim_create_autocmd
 local aug = vim.api.nvim_create_augroup('augs', { clear = true })
 
-local utils = require 'utils'
-
 au('BufEnter', {
     pattern = 'PKGBUILD',
     command = 'se filetype=PKGBUILD',
@@ -38,11 +36,7 @@ au('ModeChanged', {
 
 au('BufEnter', {
     callback = function()
-        if vim.wo.foldmethod ~= 'marker' then
-            vim.cmd 'setl foldmethod=expr'
-        end
-
-        vim.cmd 'setl formatoptions-=cro'
+        vim.cmd 'setl formatoptions-=cro foldmethod=expr'
 
         if vim.api.nvim_eval 'FugitiveHead()' ~= '' then
             vim.cmd 'setl signcolumn=yes:2'
@@ -52,8 +46,6 @@ au('BufEnter', {
 
         if ft == 'fugitive' then
             vim.cmd 'setl signcolumn=no'
-        elseif utils.empty(ft) and utils.empty(vim.bo.bt) then
-            vim.cmd 'LspStop | setl signcolumn=no'
         end
     end,
     group = aug,

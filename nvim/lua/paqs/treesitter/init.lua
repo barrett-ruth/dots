@@ -23,7 +23,11 @@ local treesitter_folds = {
     'java',
     javascript = ecma_folds,
     'json',
-    lua = { 'function_declaration', 'function_definition' },
+    lua = {
+        'function_declaration',
+        'function_definition',
+        'table_constructor',
+    },
     'make',
     python = { 'class_definition', 'function_definition' },
     tsx = ecma_folds,

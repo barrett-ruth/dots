@@ -35,7 +35,6 @@ M.link = function(from, to)
     vim.api.nvim_set_hl(0, to, { link = from })
 end
 
-
 M.empty = function(s)
     return s == '' or s == nil
 end

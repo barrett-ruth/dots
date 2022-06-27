@@ -118,12 +118,13 @@ map {
     'n',
     '<leader>if',
     function()
-        if vim.wo.foldmethod == 'marker' then
-            vim.cmd 'setl foldminlines=0'
-            vim.wo.foldmethod = 'expr'
+        local fdm = vim.wo.foldmethod
+        FOLDMINLINES = vim.wo.foldminlines == 0 and FOLDMINLINES
+            or vim.wo.foldminlines
+        if fdm == 'marker' or fdm == 'manual' then
+            vim.cmd('setl foldmethod=expr foldminlines=' .. FOLDMINLINES)
         else
-            vim.cmd 'setl foldminlines=10'
-            vim.wo.foldmethod = 'marker'
+            vim.cmd 'setl foldmethod=marker foldminlines=0'
         end
     end,
 }

@@ -10,7 +10,7 @@ se fillchars=fold:\ ,eob:\ ,vert:│
 
 se foldcolumn=0
 se foldexpr=nvim_treesitter#foldexpr()
-se foldmethod=marker
+se foldminlines=10
 se foldnestmax=2
 se foldopen=search
 se foldtext=substitute(getline(v:foldstart),'\\t',repeat('\ ',&ts),'g').'...'.trim(getline(v:foldend))
@@ -28,6 +28,8 @@ se laststatus=3
 se lazyredraw
 
 se list listchars=trail:·
+
+se nomodeline
 
 se nowrap
 
