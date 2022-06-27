@@ -23,6 +23,7 @@
     cf = config
     ch = checkout
     cl = clone
+    cp = cherry-pick
     d = diff
     dt = difftool
     f = fetch
@@ -32,6 +33,7 @@
     p = pull
     pu = push
     r = remote
+    rb = rebase
     rs = restore
     rt = reset
     s = status

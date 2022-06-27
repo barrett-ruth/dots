@@ -1,7 +1,7 @@
 vim.cmd [[
     highlight clear
     if exists('syntax_on')
-    syntax reset
+        syntax reset
     en
 ]]
 
@@ -227,6 +227,7 @@ hi('TSField', { fg = cs.white })
 
 -- Misc/Custom {{{
 hi('TSConstructor', { fg = cs.cyan })
+hi('TSDeclaration', { fg = cs.orange })
 hi('TSNamespace', { fg = cs.cyan })
 hi('TSLocal', { fg = cs.red })
 hi('TSSelf', { italic = true, fg = cs.purple })
@@ -244,7 +245,6 @@ hi('cppTSBoolean', { fg = cs.purple })
 -- }}}
 
 -- Type/Javascript {{{
-hi('TSDeclaration', { fg = cs.orange })
 hi('javascriptTSBoolean', { fg = cs.purple })
 hi('typescriptTSBoolean', { fg = cs.purple })
 hi('typescriptTSKeywordOperator', { italic = true, fg = cs.red })
