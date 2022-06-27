@@ -1,7 +1,6 @@
-local utils = require('utils')
+local utils = require 'utils'
 local cs, hi = utils.cs, utils.hi
 
-hi('TSLocal', { fg = cs.red })
 hi('luaTSConstructor', { fg = cs.white })
 hi('luaTSConstBuiltin', { fg = cs.purple })
 hi('luaFunction', { italic = true, fg = cs.red })

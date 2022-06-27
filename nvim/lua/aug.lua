@@ -29,13 +29,6 @@ au('ColorScheme', {
     group = aug,
 })
 
-au('VimLeave', {
-    callback = function()
-        vim.fn.system 'rm -rf /tmp/lua-language-server*'
-    end,
-    group = aug,
-})
-
 au('ModeChanged', {
     callback = function()
         require('paqs.luasnippets.utils').leave_snippet()

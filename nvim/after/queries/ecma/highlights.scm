@@ -97,7 +97,8 @@
 ; Literals
 ;---------
 
-(this) @variable.builtin
+;(this) @variable.builtin
+(this) @keyword.self
 (super) @variable.builtin
 
 (true) @boolean
@@ -218,7 +219,7 @@
 "class"
 ;"const"
 "debugger"
-; "export"
+;"export"
 "extends"
 "get"
 "in"

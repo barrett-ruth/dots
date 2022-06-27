@@ -42,6 +42,7 @@ export SAVEHIST=2000
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
 
 # Programs
+export FONTCONFIG=/usr/share/fonts
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 export LESSHISTFILE="$XDG_DATA_HOME/lesshst"
 export NPM_CONFIG_PREFIX='/usr/local'

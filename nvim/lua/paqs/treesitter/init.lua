@@ -91,60 +91,9 @@ require('nvim-treesitter.configs').setup {
 
 require('nvim-treesitter.highlight').set_custom_captures {
     ['keyword.local'] = 'TSLocal',
+    ['keyword.self'] = 'TSSelf',
     ['keyword.declaration'] = 'TSDeclaration',
     ['conditional.ternary'] = 'TSOperator',
 }
 
-local utils = require 'utils'
-local map = utils.map
-
-map {
-    'n',
-    '<leader>tr',
-    function()
-        package.loaded['paqs.treesitter'] = nil
-        package.loaded['nvim-treesitter'] = nil
-        require 'paqs.treesitter'
-        require 'nvim-treesitter'
-        vim.cmd 'e'
-    end,
-}
-map { 'n', '<leader>th', utils.mapstr 'TSHighlightCapturesUnderCursor' }
-
-for k, v in pairs {
-    a = '@parameter.inner',
-    c = '@call.outer',
-    C = '@class.outer',
-    f = '@function.outer',
-    i = '@conditional.outer',
-} do
-    map({
-        'n',
-        ']' .. k,
-        [[':<c-u>lua require("paqs.treesitter").next("]]
-            .. v
-            .. [[", ' . v:count1 . ')<cr>']],
-    }, { expr = true })
-    map({
-        'n',
-        '[' .. k,
-        [[':<c-u>lua require("paqs.treesitter").previous("]]
-            .. v
-            .. [[", ' . v:count1 . ')<cr>']],
-    }, { expr = true })
-end
-
-return {
-    next = function(type, count)
-        for _ = 1, count do
-            require('nvim-treesitter.textobjects.move').goto_next_start(type)
-        end
-    end,
-    previous = function(type, count)
-        for _ = 1, count do
-            require('nvim-treesitter.textobjects.move').goto_previous_start(
-                type
-            )
-        end
-    end,
-}
+require 'paqs.treesitter.map'

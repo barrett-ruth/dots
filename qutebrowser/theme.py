@@ -1,3 +1,7 @@
+# type: ignore
+c = c  # noqa: F821
+config = config  # noqa: F821
+
 base00 = "#1d2021"
 base01 = "#3c3836"
 base02 = "#504945"

@@ -225,9 +225,11 @@ hi('TSProperty', { fg = cs.white })
 hi('TSField', { fg = cs.white })
 -- }}}
 
--- Misc {{{
+-- Misc/Custom {{{
 hi('TSConstructor', { fg = cs.cyan })
 hi('TSNamespace', { fg = cs.cyan })
+hi('TSLocal', { fg = cs.red })
+hi('TSSelf', { italic = true, fg = cs.purple })
 -- }}}
 
 -- }}}

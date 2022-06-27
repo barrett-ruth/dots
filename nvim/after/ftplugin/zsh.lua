@@ -1,3 +1,4 @@
-local hi = require('utils').hi
-hi('zshFunction', { fg = CS.green })
-hi('zshOperator', { fg = CS.orange })
+local utils = require 'utils'
+local cs, hi = utils.cs, utils.hi
+hi('zshFunction', { fg = cs.green })
+hi('zshOperator', { fg = cs.orange })

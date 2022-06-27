@@ -6,6 +6,8 @@ cd "$cfg" || exit
 
 rmb .git installation old packages misc .
 
+cp /etc/pacman.conf misc
+
 cp -r "$SCRIPTS" .
 
 cp -r ~/.local/share/fonts .
