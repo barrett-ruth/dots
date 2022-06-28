@@ -4,8 +4,6 @@ M.on_attach = function(client, bufnr)
     local signcolumn = vim.wo.signcolumn
     if signcolumn == 'no' then
         vim.wo.signcolumn = 'yes:1'
-    elseif signcolumn == 'yes:1' then
-        vim.wo.signcolumn = 'yes:2'
     end
 
     local utils = require 'utils'
