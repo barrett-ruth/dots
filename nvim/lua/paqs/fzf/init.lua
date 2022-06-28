@@ -83,3 +83,5 @@ require('fzf-lua').setup {
         prompt = 'qfl> ',
     },
 }
+
+require 'paqs.fzf.map'

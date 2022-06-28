@@ -7,16 +7,6 @@ au('BufEnter', {
     group = aug,
 })
 
-au('InsertEnter', {
-    command = 'se colorcolumn=81',
-    group = aug,
-})
-
-au('InsertLeave', {
-    command = 'se colorcolumn=',
-    group = aug,
-})
-
 au('FocusLost', {
     command = 'se nocursorline',
     group = aug,
@@ -38,13 +28,7 @@ au('BufEnter', {
     callback = function()
         vim.cmd 'setl formatoptions-=cro foldmethod=expr'
 
-        if vim.api.nvim_eval 'FugitiveHead()' ~= '' then
-            vim.cmd 'setl signcolumn=yes:2'
-        end
-
-        local ft = vim.bo.ft
-
-        if ft == 'fugitive' then
+        if vim.bo.ft == 'fugitive' then
             vim.cmd 'setl signcolumn=no'
         end
     end,

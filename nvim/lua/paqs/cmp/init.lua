@@ -37,3 +37,5 @@ cmp.setup {
         { name = 'path' },
     },
 }
+
+require 'paqs.cmp.map'

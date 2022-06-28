@@ -2,6 +2,6 @@
 
 set -eu
 
-resp="$(printf '%s\n' 'Yes' 'No' | dmenu -p 'Shutdown?')"
+resp="$(echo 'yes\nno' | dmenu -p 'Shutdown?')"
 
-[ "$resp" = Yes ] && doas shutdown now
+[ "$resp" = 'yes' ] && doas shutdown now

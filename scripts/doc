@@ -5,7 +5,7 @@ leave() {
     exit
 }
 
-prefix="$HOME/dev/tb"
+prefix="$HOME/tb"
 
 [ "$1" ] && leave "$(fd -e pdf -1 -t f -a "$1" -- . "$prefix")"
 
@@ -15,7 +15,7 @@ done
 
 docs="${docs#??}"
 
-entry="$(echo "$(printf '%s\n' "$docs")" | dmenu -p 'Documents:')"
+entry="$(echo "$docs" | dmenu -p 'Documents:')"
 
 [ "$entry" ] || exit
 

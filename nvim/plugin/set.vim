@@ -2,6 +2,8 @@ se autowrite
 
 se cinkeys-=:
 
+se colorcolumn=81
+
 se cursorline
 
 se expandtab softtabstop=4 shiftwidth=4
@@ -39,7 +41,7 @@ se pumheight=15
 
 se shortmess+=Ic
 
-se signcolumn=yes:1
+se signcolumn=no
 
 se spell spellcapcheck= spelllang=en_us
 

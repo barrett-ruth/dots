@@ -19,6 +19,7 @@ alias lss='less --use-color --color=d+b --color=P+c --color=u+g'
 alias bk='bindkey'
 alias g='git'
 alias ka='killall'
+alias mp='makepkg'
 alias nv='nvim'
 alias nvh='nvim config.h'
 alias pe='printenv'
@@ -49,7 +50,6 @@ yg() { y global "$@"; }
 # Misc
 alias cp='cp -v'
 gcl() { . _gcl "$@" }
-alias int='ping -c 3 archlinux.org'
 rmd() { [ "$1" = "$HOME" ] || rm -rf "$@"; }
 alias mkd='mkdir -pv'
 mkcd() { mkdir -pv "$1" && cd "$1"; }

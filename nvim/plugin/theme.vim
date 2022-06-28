@@ -1,4 +1,4 @@
-se bg=dark tgc
+se background=dark termguicolors
 colo gruvbox
 
 sign define DiagnosticSignError text=> texthl=DiagnosticError

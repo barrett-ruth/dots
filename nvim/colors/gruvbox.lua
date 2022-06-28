@@ -35,9 +35,11 @@ vim.g.terminal_ansi_colors = {
 hi('Normal', { fg = cs.white, bg = cs.bg })
 hi('NonText', { fg = cs.black })
 
+-- Messages {{{ X
 hi('ErrorMsg', { bold = true, underline = true, fg = cs.red, bg = 'NONE' })
 hi('MoreMsg', { bold = true, fg = cs.yellow })
 hi('WarningMsg', { bold = true, fg = cs.yellow })
+-- }}}
 
 -- Line numbers {{{ X
 hi('LineNr', { fg = cs.black })
@@ -52,6 +54,19 @@ hi('FoldColumn', { bg = cs.bg })
 hi('Folded', { fg = cs.grey, bg = cs.light_grey })
 -- }}}
 
+-- Health {{{ X
+hi('HealthSuccess', { fg = cs.green })
+hi('HealthWarning', { fg = cs.yellow })
+hi('HealthError', { fg = cs.red })
+-- }}}
+
+-- Help {{{ X
+hi('helpNote', { bold = true, fg = cs.purple })
+hi('helpExample', { none = true, fg = cs.green })
+hi('helpCommand', { fg = cs.cyan })
+hi('SpecialKey', { fg = cs.black })
+-- }}}
+
 hi('VertSplit', { fg = cs.black })
 hi('MatchParen', { bg = cs.grey_white })
 
@@ -62,6 +77,7 @@ hi('Whitespace', { fg = cs.black })
 hi('Search', { fg = 'NONE', bg = 'NONE', reverse = true })
 link('Search', 'IncSearch')
 
+hi('Error', { fg = cs.red })
 hi('Title', { bold = true, fg = cs.orange })
 hi('Question', { none = true, fg = cs.yellow })
 hi('Special', { fg = cs.yellow })
@@ -69,10 +85,6 @@ hi('Statement', { italic = true, fg = cs.red })
 hi('Identifier', { fg = cs.blue })
 hi('Todo', { italic = true, fg = cs.purple, bg = 'NONE' })
 
-hi('helpNote', { bold = true, fg = cs.purple })
-hi('helpExample', { none = true, fg = cs.green })
-hi('helpCommand', { fg = cs.cyan })
-hi('SpecialKey', { fg = cs.black })
 -- }}}
 
 -- Completion {{{ X
@@ -122,6 +134,7 @@ hi('DiffChange', { bg = '#0e363e' })
 hi('DiffDelete', { none = true, fg = cs.white, bg = '#402120' })
 hi('DiffText', { none = true, fg = cs.bg, bg = cs.blue })
 hi('diffAdded', { fg = cs.green })
+hi('diffRemoved', { fg = cs.red })
 hi('diffFile', { fg = cs.cyan })
 hi('diffLine', { fg = cs.grey })
 hi('diffOldFile', { fg = cs.yellow })
@@ -253,40 +266,4 @@ hi('typescriptTSInclude', { italic = true, fg = cs.purple })
 hi('javascriptTSInclude', { italic = true, fg = cs.purple })
 -- }}}
 
--- }}}
-
--- Links {{{
--- highlight! link CursorColumn ColorColumn
--- highlight! link CursorLine ColorColumn
--- highlight! link DiffAdded DiffAdd
--- highlight! link DiffRemoved DiffDelete
--- highlight! link EndOfBuffer Whitespace
--- highlight! link FoldColumn LineNr
--- highlight! link LspDiagnosticsDefaultError DiagnosticError
--- highlight! link LspDiagnosticsDefaultHint DiagnosticHint
--- highlight! link LspDiagnosticsDefaultInformation DiagnosticInfo
--- highlight! link LspDiagnosticsDefaultWarning DiagnosticWarn
--- highlight! link LspReferenceRead Visual
--- highlight! link LspReferenceText Visual
--- highlight! link LspReferenceWrite Visual
--- highlight! link NonText Whitespace
--- highlight! link Pmenu NormalFloat
--- highlight! link PmenuSbar Pmenu
--- highlight! link PmenuThumb PmenuSel
--- highlight! link Question MoreMsg
--- highlight! link SignColumn LineNr
--- highlight! link SignifySignAdd GitSignsAdd
--- highlight! link SignifySignChange GitSignsChange
--- highlight! link SignifySignDelete GitSignsDelete
--- highlight! link SpecialKey Whitespace
--- highlight! link StatusLine NormalFloat
--- highlight! link TSConstMacro Constant
--- highlight! link TSEmphasis Italic
--- highlight! link TSEnvironment Statement
--- highlight! link TSEnvironmentName PreProc
--- highlight! link TSFuncBuiltin Function
--- highlight! link TSFuncMacro Function
--- highlight! link TSKeywordFunction PreProc
--- highlight! link TSUnderline Underlined
--- highlight! link TSVariable Identifier
 -- }}}

@@ -22,6 +22,7 @@ require 'paq' {
     'nvim-treesitter/nvim-treesitter-textobjects',
     'nvim-treesitter/playground',
 
+    'sainnhe/gruvbox-material',
     'kyazdani42/nvim-tree.lua',
     'SmiteshP/nvim-navic',
 
