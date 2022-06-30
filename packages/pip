@@ -1,4 +1,5 @@
 black
 curlylint
+isort
 neovim
 virtualenv
