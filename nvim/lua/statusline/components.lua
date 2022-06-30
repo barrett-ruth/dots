@@ -36,7 +36,7 @@ local file = {
 
 local git = {
     value = function()
-        return vim.api.nvim_buf_get_var(0, 'gitsigns_head')
+        return vim.api.nvim_eval('FugitiveHead()')
     end,
     condition = function()
         local ok, _ = pcall(vim.api.nvim_buf_get_var, 0, 'gitsigns_head')

@@ -29,7 +29,7 @@
     f = fetch
     i = init
     lg = log --oneline --graph --decorate
-    mg = merge
+    m = merge
     p = pull
     pu = push
     r = remote
@@ -37,5 +37,6 @@
     rs = restore
     rt = reset
     s = status
+    st = stash
     sw = switch
     wt = worktree

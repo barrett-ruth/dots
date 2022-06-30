@@ -40,6 +40,6 @@ sh)
     ;;
 esac
 
-echo " > $cmd"
+echo " > $cmd" | sed "s|$HOME|~|g"
 [ "$extra" ] && cmd="$extra"
 eval "$cmd"

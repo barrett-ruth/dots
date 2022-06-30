@@ -55,8 +55,10 @@ null_ls.setup {
             diagnostics_format = '#{m}',
         },
         builtins.diagnostics.flake8.with {
-            condition = function()
-                return vim.fn.executable 'flake8'
+            diagnostics_postprocess = function(diagnostic)
+                if diagnostic.severity == vim.diagnostic.severity.ERROR then
+                    diagnostic.severity = vim.diagnostic.severity.WARN
+                end
             end,
             diagnostics_format = '#{m}',
         },
@@ -64,9 +66,12 @@ null_ls.setup {
             diagnostics_format = '#{m}',
         },
         builtins.diagnostics.mypy.with {
-            condition = function()
-                return vim.fn.executable 'mypy'
+            diagnostics_postprocess = function(diagnostic)
+                if diagnostic.message:find 'Need type annotation' then
+                    diagnostic.severity = vim.diagnostic.severity.WARN
+                end
             end,
+            diagnostics_format = '#{m}',
         },
         builtins.diagnostics.shellcheck.with {
             diagnostics_format = '#{m}',
@@ -76,9 +81,10 @@ null_ls.setup {
             condition = function()
                 return vim.fn.executable 'black'
             end,
-            extra_args = { '-S', '--fast' },
+            extra_args = { '-S', '--fast', '--line-length=79' },
         },
         builtins.formatting.clang_format,
+        builtins.formatting.isort,
         builtins.formatting.prettierd,
         builtins.formatting.shfmt.with {
             extra_args = { '-i', '4', '-ln=posix' },

@@ -2,7 +2,9 @@ se autowrite
 
 se cinkeys-=:
 
-se colorcolumn=81
+se cmdheight=0
+
+se colorcolumn=80
 
 se cursorline
 
