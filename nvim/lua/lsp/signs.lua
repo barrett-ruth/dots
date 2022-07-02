@@ -10,11 +10,10 @@ vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
 )
 
 local sources = {
-    Pyright = 'pyright',
     vimlsp = 'vimls',
+    ['Lua Diagnostics.'] = 'luals',
+    ['Lua Syntax Check.'] = 'luals',
 }
-sources['Lua Diagnostics.'] = 'luals'
-sources['Lua Syntax Check.'] = 'luals'
 
 vim.diagnostic.config {
     update_in_insert = true,
@@ -32,13 +31,9 @@ vim.diagnostic.config {
             local source = sources[diagnostic.source] or diagnostic.source
 
             if require('utils').empty(code) then
-                return string.format('%s [%s]', message, source)
+                return string.format('%s (%s)', message, source)
             else
-                if source == 'pyright' then
-                    code = code:gsub('report', ''):gsub('^%u', string.lower)
-                end
-
-                return string.format('%s [%s] [%s]', message, code, source)
+                return string.format('%s [%s] (%s)', message, code, source)
             end
         end,
     },

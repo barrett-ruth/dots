@@ -12,6 +12,20 @@ au('FocusLost', {
     group = aug,
 })
 
+au('InsertEnter', {
+    callback = function()
+        vim.cmd 'setl colorcolumn=80'
+    end,
+    group = aug,
+})
+
+au('InsertLeave', {
+    callback = function()
+        vim.cmd 'setl colorcolumn='
+    end,
+    group = aug,
+})
+
 au('ColorScheme', {
     command = [[se statusline=%{%v:lua.require'statusline'.statusline()%}]],
     group = aug,
@@ -26,7 +40,7 @@ au('ModeChanged', {
 
 au('BufEnter', {
     callback = function()
-        vim.cmd 'setl formatoptions-=cro foldmethod=expr'
+        vim.cmd 'setl formatoptions-=cro'
 
         if vim.bo.ft == 'fugitive' then
             vim.cmd 'setl signcolumn=no'

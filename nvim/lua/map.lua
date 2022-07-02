@@ -22,6 +22,10 @@ map { 'n', '[p', '{' }
 map { 'n', 'ga', '<Plug>(EasyAlign)' }
 map { 'x', 'ga', '<Plug>(EasyAlign)' }
 
+-- Folds --
+map { 'n', ']z', 'zj' }
+map { 'n', '[z', 'zk' }
+
 -- Windows --
 map { 'n', '<tab>', '<c-w>' }
 
@@ -57,10 +61,6 @@ map { 'n', 'K', 'mzkJ`z' }
 map { 'n', 'Q', 'q:k' }
 vim.cmd 'cno <c-n> <down>'
 
--- Folds --
-map { 'n', ']z', 'zj' }
-map { 'n', '[z', 'zk' }
-
 -- Location List --
 map { 'n', ']l', mapstr 'lnext' }
 map { 'n', '[l', mapstr 'lprev' }
@@ -94,12 +94,7 @@ map {
     'n',
     '<leader>w',
     function()
-        vim.lsp.buf.format {
-            bufnr = vim.fn.bufnr '%',
-            filter = function(client)
-                return client.name == 'null-ls'
-            end,
-        }
+        vim.lsp.buf.format { bufnr = vim.fn.bufnr '%' }
         vim.cmd 'w'
     end,
     { silent = false },
@@ -113,21 +108,6 @@ map { 'n', '[e', '<cmd>m-2<cr>' }
 
 -- Toggling --
 map { 'n', '<leader>iw', mapstr 'setl invwrap' }
-map { 'n', '<leader>iz', mapstr 'setl invfoldenable' }
-map {
-    'n',
-    '<leader>if',
-    function()
-        local fdm = vim.wo.foldmethod
-        FOLDMINLINES = vim.wo.foldminlines == 0 and FOLDMINLINES
-            or vim.wo.foldminlines
-        if fdm == 'marker' or fdm == 'manual' then
-            vim.cmd('setl foldmethod=expr foldminlines=' .. FOLDMINLINES)
-        else
-            vim.cmd 'setl foldmethod=marker foldminlines=0'
-        end
-    end,
-}
 map {
     'n',
     '<leader>is',

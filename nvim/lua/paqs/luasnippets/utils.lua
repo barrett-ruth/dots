@@ -7,13 +7,17 @@ local function snipopts(trig)
     return { trig = trig, wordTrig = false }
 end
 
+local add_node = { '"', "'", '{' }
+
 M.inline = function(lr)
     local trig = lr[1]
-    local add_node = { '"', "'", '{' }
 
     if trig:len() == 3 and trig:sub(3, 3) ~= ' ' then
         lr[2] = lr[2] .. trig:sub(3, 3)
         lr[1] = trig:sub(1, 2)
+    elseif lr[1]:sub(2, 2) == ',' then
+        lr[2] = lr[2] .. ','
+        lr[1] = lr[1]:sub(1, 1)
     elseif vim.tbl_keys(add_node, lr[1]:sub(2, 2)) then
         return s(
             snipopts(trig),
@@ -26,18 +30,15 @@ end
 
 M.newline = function(lr)
     if lr[2]:sub(1, 1) == '}' then
-        return s(
-            snipopts(lr[2]),
-            {
-                t(lr[1]),
-                t { '', '\t' },
-                i(1),
-                t { '', '' },
-                t(lr[2]:sub(1, 1)),
-                i(2),
-                t(lr[2]:sub(2, 2)),
-            }
-        )
+        return s(snipopts(lr[2]), {
+            t(lr[1]),
+            t { '', '\t' },
+            i(1),
+            t { '', '' },
+            t(lr[2]:sub(1, 1)),
+            i(2),
+            t(lr[2]:sub(2, 2)),
+        })
     end
 
     return s(

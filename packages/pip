@@ -1,5 +1,6 @@
 black
 curlylint
 isort
+jedi-language-server
 neovim
 virtualenv
