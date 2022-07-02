@@ -2,6 +2,7 @@ black
 curlylint
 isort
 jedi-language-server
+mypy
 neovim
 virtualenv
 yamllint
