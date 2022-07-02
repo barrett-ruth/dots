@@ -54,11 +54,4 @@ require('nvim-treesitter.configs').setup {
     },
 }
 
-require('nvim-treesitter.highlight').set_custom_captures {
-    ['keyword.local'] = 'TSLocal',
-    ['keyword.self'] = 'TSSelf',
-    ['keyword.declaration'] = 'TSDeclaration',
-    ['conditional.ternary'] = 'TSOperator',
-}
-
 require 'paqs.treesitter.map'

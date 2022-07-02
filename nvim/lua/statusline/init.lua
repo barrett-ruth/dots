@@ -1,9 +1,9 @@
-local borfn = function(boolean_or_function)
-    if type(boolean_or_function) == 'function' then
-        return boolean_or_function()
+local vorfn = function(val_or_fn)
+    if type(val_or_fn) == 'function' then
+        return val_or_fn()
     end
 
-    return boolean_or_function
+    return val_or_fn
 end
 
 local components = require 'statusline.components'
@@ -15,12 +15,12 @@ M.statusline = function()
     for i = 1, #components do
         local component = components[i]
 
-        if borfn(component.condition) == false then
+        if vorfn(component.condition) == false then
             goto continue
         end
 
         local prettified = '%#' .. component.highlight .. '#'
-        prettified = prettified .. borfn(component.value)
+        prettified = prettified .. vorfn(component.value)
 
         if component.separator == 'post' then
             prettified = prettified .. '%#Normal# │ '

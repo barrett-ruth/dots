@@ -12,9 +12,9 @@ se fillchars=fold:\ ,eob:\ ,vert:│
 
 se foldcolumn=0
 se foldmethod=marker
-se foldmarker=::,::
+se foldmarker=[:,:]
 se foldnestmax=2
-se foldtext=substitute(getline(v:foldstart),'\\t',repeat('\ ',&ts),'g').'...'.trim(getline(v:foldend))
+se foldtext=substitute(getline(v:foldstart),'\\t',repeat('\ ',&ts),'g').trim(getline(v:foldend))
 
 se isfname-==,
 

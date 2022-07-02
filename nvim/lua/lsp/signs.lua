@@ -10,9 +10,10 @@ vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
 )
 
 local sources = {
-    vimlsp = 'vimls',
-    ['Lua Diagnostics.'] = 'luals',
-    ['Lua Syntax Check.'] = 'luals',
+    vimlsp = 'vim',
+    Pyright = 'pyright',
+    ['Lua Diagnostics.'] = 'lua',
+    ['Lua Syntax Check.'] = 'lua',
 }
 
 vim.diagnostic.config {

@@ -16,6 +16,15 @@ local send_to_ll = function(selected, opts)
     vim.fn.setloclist(0, ll)
 end
 
+local lsp_symbols = {
+    Class = 'class',
+    Enum = 'enum',
+    Field = 'field',
+    Function = 'f',
+    Struct = 'struct',
+    Variable = 'var',
+}
+
 require('fzf-lua').setup {
     global_resume = true,
     global_resume_query = true,
@@ -66,7 +75,7 @@ require('fzf-lua').setup {
             return string.format(
                 '[%s%s%s]',
                 s:sub(1, first),
-                LSP_SYMBOLS[color] or s,
+                lsp_symbols[color] or s,
                 s:sub(last + 1, #s)
             )
         end,

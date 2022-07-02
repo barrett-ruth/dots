@@ -9,10 +9,7 @@ M.on_attach = function(client, bufnr)
     local utils = require 'utils'
     local bmap, mapstr = utils.bmap, utils.mapstr
 
-    if
-        client.server_capabilities.documentSymbolProvider
-        and not vim.tbl_contains(NAVIC_DEPRECATED, vim.bo.ft)
-    then
+    if client.server_capabilities.documentSymbolProvider then
         require('nvim-navic').attach(client, bufnr)
         for k, v in pairs {
             a = '',
@@ -26,29 +23,13 @@ M.on_attach = function(client, bufnr)
                 mapstr(
                     'fzf-lua',
                     string.format(
-                        [[lsp_document_symbols { fzf_opts = { ['--with-nth'] = '2..', ['--delimiter'] = ':' }, prompt = 'sym> ', regex_filter = '%s.*' } ]],
+                        [[lsp_document_symbols { fzf_opts = { ['--with-nth'] = '2..', ['--delimiter'] = ':' }, prompt = 'sym> ', regex_filter = '%s.*' } ]]
+                        ,
                         v
                     )
                 ),
             }
         end
-    end
-
-    if client.name == 'tsserver' then
-        local ts_utils = require 'nvim-lsp-ts-utils'
-
-        ts_utils.setup {
-            auto_inlay_hints = false,
-            enable_import_on_completion = true,
-            update_imports_on_move = true,
-        }
-
-        ts_utils.setup_client(client)
-
-        bmap { 'n', '\\Ti', mapstr 'TSLspImportAll' }
-        bmap { 'n', '\\To', mapstr 'TSLspOrganize' }
-    elseif client.name == 'clangd' then
-        bmap { 'n', '\\H', mapstr 'ClangdSwitchSourceHeader' }
     end
 
     if client.server_capabilities.codeLensProvider then
@@ -91,18 +72,15 @@ end
 
 local lspconfig = require 'lspconfig'
 
-M.setup = function(server, ...)
-    local settings = ...
-
-    local capabilities = require('cmp_nvim_lsp').update_capabilities(
+M.setup = function(server, settings)
+    settings = settings or {}
+    settings.capabilities = require('cmp_nvim_lsp').update_capabilities(
         vim.lsp.protocol.make_client_capabilities()
     )
-    capabilities.offsetEncoding = { 'utf-16' }
-    capabilities.textDocument.completion.completionItem.snippetSupport = false
-
-    settings.capabilities = capabilities
-    settings.on_attach = M.on_attach
+    settings.capabilities.offsetEncoding = { 'utf-16' }
+    settings.capabilities.textDocument.completion.completionItem.snippetSupport = false
     settings.flags = { debounce_text_changes = 0 }
+    settings.on_attach = settings.on_attach or M.on_attach
 
     lspconfig[server].setup(settings)
 end

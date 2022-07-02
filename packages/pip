@@ -4,3 +4,4 @@ isort
 jedi-language-server
 neovim
 virtualenv
+yamllint

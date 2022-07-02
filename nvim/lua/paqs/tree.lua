@@ -58,4 +58,12 @@ local utils = require 'utils'
 local map, mapstr = utils.map, utils.mapstr
 
 map { 'n', '<c-n>', mapstr 'NvimTreeCollapse' .. mapstr 'NvimTreeToggle' }
-map { 'n', '<leader>n', mapstr 'NvimTreeFindFileToggle' }
+map {
+    'n',
+    '<leader>n',
+    function()
+        vim.cmd('cd ' .. vim.fn.expand '%:p:h')
+        vim.cmd 'NvimTreeFindFileToggle'
+        vim.cmd 'cd -'
+    end,
+}

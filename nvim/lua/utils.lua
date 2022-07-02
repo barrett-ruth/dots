@@ -4,6 +4,7 @@ _G.pr = function(...)
     vim.pretty_print(...)
 end
 
+-- Colorscheme [:
 M.cs = {
     bg = '#282828',
     black = '#5a524c',
@@ -30,6 +31,7 @@ M.hi = function(group, highlights)
     end
     vim.api.nvim_set_hl(0, group, highlights)
 end
+-- :]
 
 M.link = function(from, to)
     vim.api.nvim_set_hl(0, to, { link = from })
@@ -80,7 +82,7 @@ end
 
 M.mapstr = function(req, meth)
     return M.empty(meth) and string.format('<cmd>%s<cr>', req)
-        or string.format([[<cmd>lua require '%s'.%s<cr>]], req, meth)
+        or string.format([[<cmd>lua require('%s').%s<cr>]], req, meth)
 end
 
 return M
