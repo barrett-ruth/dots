@@ -1,4 +1,14 @@
 vim.g.matchup_matchparen_offscreen = {}
+vim.g.Hexokinase_highlighters = { 'foregroundfull' }
+vim.g.Hexokinase_ftEnabled = {
+    'c',
+    'css',
+    'html',
+    'javascript',
+    'javascriptreact',
+    'typescript',
+    'typescriptreact',
+}
 vim.g.did_load_filetypes = 1
 
 local disabled_builtins = {

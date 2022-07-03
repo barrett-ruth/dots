@@ -44,6 +44,7 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
 # Programs
 export FONTCONFIG=/usr/share/fonts
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
+export GOPATH="$XDG_DATA_HOME/go"
 export LESSHISTFILE="$XDG_DATA_HOME/lesshst"
 export NPM_CONFIG_PREFIX='/usr/local'
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"

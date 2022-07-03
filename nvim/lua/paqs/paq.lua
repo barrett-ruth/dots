@@ -23,6 +23,7 @@ require 'paq' {
     'nvim-treesitter/playground',
 
     'kyazdani42/nvim-tree.lua',
+    'RRethy/vim-hexokinase',
     'SmiteshP/nvim-navic',
 
     'Julian/vim-textobj-variable-segment',

@@ -40,6 +40,7 @@ null_ls.setup {
         builtins.diagnostics.shellcheck.with {
             diagnostics_format = '#{m}',
         },
+        builtins.diagnostics.tsc,
         builtins.diagnostics.yamllint.with {
             diagnostics_format = '#{m}',
         },
@@ -66,7 +67,7 @@ null_ls.setup {
         },
         -- :]
     },
-    update_in_insert = true,
+    update_in_insert = false,
     diagnostics_format = '#{m} [#{c}] (#{s})',
     on_attach = on_attach,
     debounce = 0,
