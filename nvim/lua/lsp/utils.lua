@@ -75,7 +75,7 @@ end
 
 local lspconfig = require 'lspconfig'
 
-M.setup = function(server, settings)
+M.prepare_lsp_settings = function(settings)
     settings = settings or {}
     settings.capabilities = require('cmp_nvim_lsp').update_capabilities(
         vim.lsp.protocol.make_client_capabilities()
@@ -85,7 +85,19 @@ M.setup = function(server, settings)
     settings.flags = { debounce_text_changes = 0 }
     settings.on_attach = settings.on_attach or M.on_attach
 
-    lspconfig[server].setup(settings)
+    return settings
+end
+
+M.setup_lspconfig = function(server, settings)
+    local lspconfig_settings = M.prepare_lsp_settings(settings)
+
+    lspconfig[server].setup(lspconfig_settings)
+end
+
+M.setup_custom = function(server, settings)
+    local lspconfig_settings = M.prepare_lsp_settings(settings)
+
+    require(server).setup { server = lspconfig_settings }
 end
 
 return M

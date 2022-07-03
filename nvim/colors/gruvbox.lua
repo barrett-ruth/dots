@@ -26,36 +26,36 @@ vim.g.terminal_ansi_colors = {
     cs.white,
 }
 
--- Basic UI [:
+-- basic UI [:
 hi('Normal', { fg = cs.white, bg = cs.bg })
 hi('NonText', { fg = cs.black })
 
--- Messages [:
+-- messages [:
 hi('ErrorMsg', { bold = true, underline = true, fg = cs.red, bg = 'NONE' })
 hi('MoreMsg', { bold = true, fg = cs.yellow })
 hi('WarningMsg', { bold = true, fg = cs.yellow })
 -- :]
 
--- Line numbers [:
+-- line numbers [:
 hi('LineNr', { fg = cs.black })
 hi('CursorLineNr', { none = true, fg = cs.grey })
 hi('CursorLine', { bg = cs.light_grey })
 -- :]
 
--- Folds/Columns [:
+-- folds/Columns [:
 hi('ColorColumn', { bg = cs.light_grey })
 hi('SignColumn', { bg = cs.bg })
 hi('FoldColumn', { bg = cs.bg })
 hi('Folded', { fg = cs.grey, bg = cs.light_grey })
 -- :]
 
--- Health [:
+-- health [:
 hi('HealthSuccess', { fg = cs.green })
 hi('HealthWarning', { fg = cs.yellow })
 hi('HealthError', { fg = cs.red })
 -- :]
 
--- Help [:
+-- help [:
 hi('helpNote', { bold = true, fg = cs.purple })
 hi('helpExample', { none = true, fg = cs.green })
 hi('helpCommand', { fg = cs.cyan })
@@ -81,9 +81,9 @@ hi('Identifier', { fg = cs.blue })
 hi('Todo', { italic = true, fg = cs.purple, bg = 'NONE' })
 -- :]
 
--- Completion [:
+-- completion [:
 
--- Pmenu [:
+-- pmenu [:
 hi('Pmenu', { bg = cs.grey_white })
 hi('PmenuSel', { fg = cs.grey_white, bg = cs.hi })
 hi('PmenuSbar', { bg = cs.grey_white })
@@ -97,13 +97,13 @@ hi('markdownUrl', { underline = true, fg = cs.blue })
 hi('markdownLinkText', { fg = cs.purple })
 -- :]
 
--- Nvim-tree [:
+-- nvim-tree [:
 hi('NvimTreeIndentMarker', { fg = cs.grey })
 hi('Directory', { fg = cs.orange })
 link('Directory', 'NvimTreeFolderName')
 -- :]
 
--- LSP/Diagnostics [:
+-- lsp/diagnostics [:
 hi('DiagnosticError', { fg = cs.red })
 hi('DiagnosticWarn', { fg = cs.yellow })
 hi('DiagnosticHint', { fg = cs.green })
@@ -121,7 +121,7 @@ for _, v in ipairs { 'Error', 'Warn', 'Hint', 'Info' } do
 end
 -- :]
 
--- Diffs [:
+-- diffs [:
 hi('DiffAdd', { bg = '#34381b' })
 hi('DiffChange', { bg = '#0e363e' })
 hi('DiffDelete', { none = true, fg = cs.white, bg = '#402120' })
@@ -135,102 +135,102 @@ hi('diffNewFile', { fg = cs.orange })
 hi('diffIndexLine', { fg = cs.purple })
 -- :]
 
--- Gitsigns [:
+-- gitsigns [:
 hi('GitSignsAdd', { fg = cs.green })
 hi('GitSignsChange', { fg = cs.blue })
 hi('GitSignsDelete', { fg = cs.red })
 -- :]
 
--- Spelling [:
+-- spelling [:
 hi('SpellBad', { undercurl = true, special = cs.red })
 hi('SpellRare', { undercurl = true, special = cs.purple })
 hi('SpellCap', { undercurl = true, special = cs.blue })
 hi('SpellLocal', { undercurl = true, special = cs.cyan })
 -- :]
 
--- Treesitter [:
+-- treesitter [:
 
 -- Comments
 hi('Comment', { italic = true, fg = cs.grey })
 link('Comment', 'TSComment')
 
--- Booleans [:
+-- booleans [:
 hi('Boolean', { fg = cs.cyan })
 link('Boolean', 'TSBoolean')
 -- :]
 
--- Constants [:
+-- constants [:
 hi('Constant', { fg = cs.white })
 link('Constant', 'TSConstant')
 hi('TSConstBuiltin', { fg = cs.purple })
 -- :]
 
--- Strings [:
+-- strings [:
 hi('String', { fg = cs.yellow })
 link('String', 'TSString')
 hi('TSStringEscape', { fg = cs.green })
 -- :]
 
--- Operators [:
+-- operators [:
 hi('Operator', { fg = cs.orange })
 link('Operator', 'TSOperator')
 link('Operator', 'TSKeywordOperator')
 -- :]
 
--- Types [:
+-- types [:
 hi('Type', { none = true, fg = cs.cyan })
 link('Type', 'TSType')
 hi('TSTypeBuiltin', { fg = cs.blue })
 -- :]
 
--- Functions [:
+-- functions [:
 hi('Function', { fg = cs.green })
 link('Function', 'TSFunction')
 link('Function', 'TSMethod')
 hi('TSFuncBuiltin', { fg = cs.green })
 -- :]
 
--- Macros [:
+-- macros [:
 hi('Macro', { fg = cs.green })
 link('Macro', 'TSFuncMacro')
 hi('TSConstMacro', { italic = true, fg = cs.red })
 hi('PreProc', { fg = cs.purple })
 -- :]
 
--- Keywords [:
+-- keywords [:
 hi('Keyword', { italic = true, fg = cs.red })
 link('Keyword', 'TSKeywordFunction')
 hi('TSConditional', { italic = true, fg = cs.red })
 hi('TSRepeat', { italic = true, fg = cs.red })
 -- :]
 
--- Numbers [:
+-- numbers [:
 hi('Number', { fg = cs.purple })
 link('Number', 'TSNumber')
 -- :]
 
--- Variables [:
+-- variables [:
 hi('TSParameter', { fg = cs.white })
 hi('TSVariable', { fg = cs.white })
 hi('TSVariableBuiltin', { fg = cs.purple })
 -- :]
 
--- Includes [:
+-- includes [:
 hi('Include', { italic = true, fg = cs.red })
 link('Include', 'TSInclude')
 -- :]
 
--- Punctuation [:
+-- punctuation [:
 hi('TSPunctDelimiter', { fg = cs.grey })
 hi('TSPunctBracket', { fg = cs.white })
 -- :]
 
--- Fields [:
+-- fields [:
 hi('TSProperty', { fg = cs.white })
 hi('TSField', { fg = cs.white })
 -- :]
 
--- Misc/Custom [:
+-- misc/custom [:
 hi('TSConstructor', { fg = cs.cyan })
 hi('TSDeclaration', { fg = cs.orange })
 hi('TSNamespace', { fg = cs.cyan })
@@ -239,16 +239,16 @@ hi('TSTagDelimiter', { fg = cs.green })
 link('markdownUrl', 'TSURI')
 -- :]
 
--- Language-specific highlights [:
+-- language-specific highlights [:
 
--- C/C++ [:
+-- c/c++ [:
 hi('cTSType', { fg = cs.blue })
 hi('cppTSType', { fg = cs.blue })
 hi('cTSBoolean', { fg = cs.purple })
 hi('cppTSBoolean', { fg = cs.purple })
 -- :]
 
--- Type/Javascript [:
+-- type/javascript [:
 hi('javascriptTSBoolean', { fg = cs.purple })
 hi('typescriptTSBoolean', { fg = cs.purple })
 hi('typescriptTSKeywordOperator', { italic = true, fg = cs.red })

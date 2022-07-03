@@ -1,16 +1,22 @@
 require 'paq' {
     'savq/paq-nvim',
 
+    -- lsp [:
     'neovim/nvim-lspconfig',
     'jose-elias-alvarez/null-ls.nvim',
+    'jose-elias-alvarez/typescript.nvim',
     'jose-elias-alvarez/nvim-lsp-ts-utils',
+    -- :]
 
+    -- cmp [:
     'hrsh7th/nvim-cmp',
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-nvim-lua',
     'hrsh7th/cmp-path',
     'L3MON4D3/LuaSnip',
+    -- :]
 
+    -- treesitter [:
     'lewis6991/spellsitter.nvim',
     'nvim-lua/plenary.nvim',
     {
@@ -21,22 +27,30 @@ require 'paq' {
     },
     'nvim-treesitter/nvim-treesitter-textobjects',
     'nvim-treesitter/playground',
+    -- :]
 
+    -- cosmetic [:
     'kyazdani42/nvim-tree.lua',
     'RRethy/vim-hexokinase',
     'SmiteshP/nvim-navic',
+    -- :]
 
+    -- textobjects [:
     'Julian/vim-textobj-variable-segment',
     'kana/vim-textobj-user',
     'kana/vim-textobj-fold',
     'vimtaku/vim-textobj-keyvalue',
     'whatyouhide/vim-textobj-xmlattr',
+    -- :]
 
+    -- tpope [:
     'tpope/vim-abolish',
     'tpope/vim-fugitive',
     'tpope/vim-repeat',
     'tpope/vim-surround',
+    -- :]
 
+    -- misc [:
     'andymass/vim-matchup',
     'ibhagwan/fzf-lua',
     'junegunn/vim-easy-align',
@@ -45,9 +59,12 @@ require 'paq' {
     'numToStr/Comment.nvim',
     'ojroques/nvim-bufdel',
     'wellle/targets.vim',
+    -- :]
 
+    -- primagen [:
     'ThePrimeagen/harpoon',
     'ThePrimeagen/git-worktree.nvim',
+    -- :]
 }
 
 local utils = require 'utils'

@@ -1,4 +1,5 @@
 vim.g.matchup_matchparen_offscreen = {}
+vim.g.c_syntax_for_h = 1
 vim.g.Hexokinase_highlighters = { 'foregroundfull' }
 vim.g.Hexokinase_ftEnabled = {
     'c',
