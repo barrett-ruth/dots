@@ -17,6 +17,7 @@ local disabled_builtins = {
     'vimballPlugin',
     '2html_plugin',
     'logipat',
+    'tutor_mode_plugin',
     'rrhelper',
     'matchit',
 }

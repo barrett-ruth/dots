@@ -34,6 +34,10 @@ vim.diagnostic.config {
             if require('utils').empty(code) then
                 return string.format('%s (%s)', message, source)
             else
+                if source == 'pyright' then
+                    code = code:gsub('report', ''):gsub('^%u', string.lower)
+                end
+
                 return string.format('%s [%s] (%s)', message, code, source)
             end
         end,

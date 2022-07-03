@@ -32,20 +32,17 @@ null_ls.setup {
             diagnostics_format = '#{m} (#{s})',
         },
         builtins.diagnostics.hadolint.with {
-            diagnostics_format = '#{m} (#{s})',
+            diagnostics_format = '#{m}',
         },
         builtins.diagnostics.mypy.with {
-            diagnostics_postprocess = function(diagnostic)
-                if diagnostic.message:find 'Need type annotation' then
-                    diagnostic.severity = vim.diagnostic.severity.WARN
-                end
-            end,
             diagnostics_format = '#{m} (#{s})',
         },
         builtins.diagnostics.shellcheck.with {
-            diagnostics_format = '#{m} (#{s})',
+            diagnostics_format = '#{m}',
         },
-        builtins.diagnostics.yamllint,
+        builtins.diagnostics.yamllint.with {
+            diagnostics_format = '#{m}',
+        },
         -- :]
 
         -- Formatting [:

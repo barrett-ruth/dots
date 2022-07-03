@@ -64,10 +64,13 @@ M.on_attach = function(client, bufnr)
     bmap { 'x', '\\e', '<esc>' .. mapstr('paqs.refactor', 'extract()') }
     bmap { 'x', '\\p', '<esc>' .. mapstr('paqs.refactor', 'print()') }
 
-    bmap { 'n', '\\li', mapstr 'LspInfo' }
-    bmap { 'n', '\\lI', mapstr 'NullLsInfo' }
-    bmap { 'n', '\\lr', mapstr 'LspRestart' }
-    bmap { 'n', '\\lR', mapstr 'NullLsRestart' }
+    bmap { 'n', '\\l', mapstr 'lua vim.diagnostic.setloclist()' }
+    bmap { 'n', '\\q', mapstr 'lua vim.diagnostic.setqflist()' }
+
+    bmap { 'n', '\\Li', mapstr 'LspInfo' }
+    bmap { 'n', '\\LI', mapstr 'NullLsInfo' }
+    bmap { 'n', '\\Lr', mapstr 'LspRestart' }
+    bmap { 'n', '\\LR', mapstr 'NullLsRestart' }
 end
 
 local lspconfig = require 'lspconfig'

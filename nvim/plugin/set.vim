@@ -30,6 +30,8 @@ se lazyredraw
 
 se list listchars=trail:·
 
+se nofixendofline
+
 se nomodeline
 
 se nowrap
@@ -38,7 +40,7 @@ se path+=**
 
 se pumheight=15
 
-se shortmess+=Ic
+se shortmess+=Icr
 
 se signcolumn=no
 

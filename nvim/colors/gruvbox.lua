@@ -1,9 +1,6 @@
-vim.cmd [[
-    highlight clear
-    if exists('syntax_on')
-        syntax reset
-    en
-]]
+if vim.g.colors_name then
+    vim.cmd 'highlight clear'
+end
 
 local utils = require 'utils'
 local cs, hi, link = utils.cs, utils.hi, utils.link
