@@ -12,8 +12,6 @@ info "pyright@1.1.256" has binaries:
 info "typescript@4.7.3" has binaries:
    - tsc
    - tsserver
-info "typescript-language-server@0.11.0" has binaries:
-   - typescript-language-server
 info "vim-language-server@2.2.10" has binaries:
    - vim-language-server
 info "vscode-langservers-extracted@4.2.1" has binaries:
