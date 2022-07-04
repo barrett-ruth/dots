@@ -37,8 +37,9 @@ require 'paq' {
 
     -- textobjects [:
     'Julian/vim-textobj-variable-segment',
-    'kana/vim-textobj-user',
+    'kana/vim-textobj-entire',
     'kana/vim-textobj-fold',
+    'kana/vim-textobj-user',
     'vimtaku/vim-textobj-keyvalue',
     'whatyouhide/vim-textobj-xmlattr',
     -- :]

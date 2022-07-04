@@ -32,10 +32,6 @@ M.on_attach = function(client, bufnr)
         end
     end
 
-    if client.server_capabilities.codeLensProvider then
-        vim.lsp.codelens.display()
-    end
-
     if client.server_capabilities.hoverProvider then
         bmap { 'n', '\\h', mapstr 'lua vim.lsp.buf.hover()' }
     end
@@ -57,7 +53,7 @@ M.on_attach = function(client, bufnr)
         end
     end
 
-    bmap { 'n', '<leader>fd', mapstr 'FzfLua lsp_document_diagnostics' }
+    bmap { 'n', '<leader>fd', mapstr 'FzfLua lsp_workspace_diagnostics' }
 
     bmap { 'n', ']\\', mapstr 'lua vim.diagnostic.goto_next()' }
     bmap { 'n', '[\\', mapstr 'lua vim.diagnostic.goto_prev()' }
