@@ -34,7 +34,7 @@ end
 -- :]
 
 M.tempcd = function(cmd)
-    vim.cmd 'cd %:p:h'
+    vim.cmd 'cd %:h'
     vim.cmd(cmd)
     vim.cmd 'cd -'
 end

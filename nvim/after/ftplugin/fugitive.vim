@@ -1,1 +1,1 @@
-setl signcolumn=no
+se signcolumn=no

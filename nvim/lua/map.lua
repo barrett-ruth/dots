@@ -101,8 +101,8 @@ map {
     'n',
     '<leader>w',
     function()
-        vim.cmd 'w'
         vim.lsp.buf.format { bufnr = vim.fn.bufnr '%' }
+        vim.cmd 'w'
     end,
     { silent = false },
 }

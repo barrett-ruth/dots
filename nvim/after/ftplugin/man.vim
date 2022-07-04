@@ -1,3 +1,3 @@
-setl number relativenumber
-setl nospell
-setl signcolumn=no
+se number relativenumber
+se nospell
+se signcolumn=no

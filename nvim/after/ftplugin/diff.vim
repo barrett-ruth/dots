@@ -1,1 +1,1 @@
-setl nospell
+se nospell

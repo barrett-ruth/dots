@@ -12,10 +12,10 @@ M.on_attach = function(client, bufnr)
     if client.server_capabilities.documentSymbolProvider then
         require('nvim-navic').attach(client, bufnr)
         for k, v in pairs {
-            a = '',
-            f = 'Function',
-            c = 'Class',
-            m = 'Module',
+            a = [[query = '!EnumMember ']],
+            c = [[regex_filter = 'Class.*']],
+            f = [[regex_filter = 'Function.*']],
+            m = [[regex_filter = 'Module.*']],
         } do
             bmap {
                 'n',
@@ -23,7 +23,7 @@ M.on_attach = function(client, bufnr)
                 mapstr(
                     'fzf-lua',
                     string.format(
-                        [[lsp_document_symbols { fzf_opts = { ['--with-nth'] = '2..', ['--delimiter'] = ':' }, prompt = 'sym> ', regex_filter = '%s.*' } ]]
+                        [[lsp_document_symbols { fzf_opts = { ['--with-nth'] = '2..', ['--delimiter'] = ':' }, no_header = true, prompt = 'sym> ', %s } ]]
                         ,
                         v
                     )
@@ -57,15 +57,14 @@ M.on_attach = function(client, bufnr)
         end
     end
 
+    bmap { 'n', '<leader>fd', mapstr 'FzfLua lsp_document_diagnostics' }
+
     bmap { 'n', ']\\', mapstr 'lua vim.diagnostic.goto_next()' }
     bmap { 'n', '[\\', mapstr 'lua vim.diagnostic.goto_prev()' }
     bmap { 'n', '\\f', mapstr 'lua vim.diagnostic.open_float()' }
 
     bmap { 'x', '\\e', '<esc>' .. mapstr('paqs.refactor', 'extract()') }
     bmap { 'x', '\\p', '<esc>' .. mapstr('paqs.refactor', 'print()') }
-
-    bmap { 'n', '\\l', mapstr 'lua vim.diagnostic.setloclist()' }
-    bmap { 'n', '\\q', mapstr 'lua vim.diagnostic.setqflist()' }
 
     bmap { 'n', '\\Li', mapstr 'LspInfo' }
     bmap { 'n', '\\LI', mapstr 'NullLsInfo' }

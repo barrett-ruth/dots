@@ -21,6 +21,7 @@ local lsp_symbols = {
     Enum = 'enum',
     Field = 'field',
     Function = 'f',
+    Property = 'prop',
     Struct = 'struct',
     Variable = 'var',
 }
@@ -66,26 +67,31 @@ require('fzf-lua').setup {
     },
     lsp = {
         jump_to_single_result = true,
-        no_header = true,
         prompt = 'lsp> ',
-        symbol_fmt = function(s)
-            local rfind = require('utils').rfind
-            local first, last = s:find 'm', rfind(s, '')
-            local color = s:sub(first + 1, last)
-            return string.format(
-                '[%s%s%s]',
-                s:sub(1, first),
-                lsp_symbols[color] or s,
-                s:sub(last + 1, #s)
-            )
-        end,
-        symbol_style = 3,
+        symbols = {
+            symbol_fmt = function(s)
+                local rfind = require('utils').rfind
+                local first, last = s:find 'm', rfind(s, '')
+                local color = s:sub(first + 1, last)
+                return string.format(
+                    '[%s%s%s]',
+                    s:sub(1, first),
+                    lsp_symbols[color] or s,
+                    s:sub(last + 1, #s)
+                )
+            end,
+            symbol_style = 3,
+        },
     },
     winopts = {
         preview = {
             hidden = 'hidden',
             scrollbar = false,
         },
+    },
+    diagnostics = {
+        prompt = 'diag> ',
+        file_icons = false,
     },
     quickfix = {
         path_shorten = true,
