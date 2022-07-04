@@ -1,4 +1,4 @@
-return {
+local settings = {
     settings = {
         Lua = {
             completion = { keywordSnippet = 'Disable' },
@@ -8,4 +8,17 @@ return {
             },
         },
     },
+    capabilities = {
+        textDocument = {
+            completion = {
+                completionItem = {
+                    snippetSupport = false,
+                },
+            },
+        },
+    },
+}
+
+return require('lua-dev').setup {
+    lspconfig = require('lsp.utils').prepare_lsp_settings(settings),
 }

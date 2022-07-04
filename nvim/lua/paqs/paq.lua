@@ -3,6 +3,8 @@ require 'paq' {
 
     -- lsp [:
     'neovim/nvim-lspconfig',
+    'b0o/schemastore.nvim',
+    'folke/lua-dev.nvim',
     'jose-elias-alvarez/null-ls.nvim',
     'jose-elias-alvarez/typescript.nvim',
     'jose-elias-alvarez/nvim-lsp-ts-utils',
@@ -11,7 +13,6 @@ require 'paq' {
     -- cmp [:
     'hrsh7th/nvim-cmp',
     'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/cmp-nvim-lua',
     'hrsh7th/cmp-path',
     'L3MON4D3/LuaSnip',
     -- :]

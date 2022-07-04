@@ -66,10 +66,10 @@ M.on_attach = function(client, bufnr)
     bmap { 'x', '\\e', '<esc>' .. mapstr('paqs.refactor', 'extract()') }
     bmap { 'x', '\\p', '<esc>' .. mapstr('paqs.refactor', 'print()') }
 
-    bmap { 'n', '\\Li', mapstr 'LspInfo' }
-    bmap { 'n', '\\LI', mapstr 'NullLsInfo' }
-    bmap { 'n', '\\Lr', mapstr 'LspRestart' }
-    bmap { 'n', '\\LR', mapstr 'NullLsRestart' }
+    bmap { 'n', '\\li', mapstr 'LspInfo' }
+    bmap { 'n', '\\lI', mapstr 'NullLsInfo' }
+    bmap { 'n', '\\lr', mapstr 'LspRestart' }
+    bmap { 'n', '\\lR', mapstr 'NullLsRestart' }
 end
 
 local lspconfig = require 'lspconfig'
@@ -79,24 +79,27 @@ M.prepare_lsp_settings = function(settings)
     settings.capabilities = require('cmp_nvim_lsp').update_capabilities(
         vim.lsp.protocol.make_client_capabilities()
     )
-    settings.capabilities.offsetEncoding = { 'utf-16' }
-    settings.capabilities.textDocument.completion.completionItem.snippetSupport = false
-    settings.flags = { debounce_text_changes = 0 }
-    settings.on_attach = settings.on_attach or M.on_attach
+    local generic_settings = {
+        capabilities = {
+            offsetEncoding = { 'utf-16' },
+            textDocument = {
+                completion = {
+                    completionItem = {
+                        snippetSupport = false,
+                    },
+                },
+            },
+        },
+        flags = { debounce_text_changes = 0 },
+        on_attach = M.on_attach,
+    }
 
-    return settings
+    return vim.tbl_extend('force', generic_settings, settings)
 end
 
 M.setup_lspconfig = function(server, settings)
-    local lspconfig_settings = M.prepare_lsp_settings(settings)
-
-    lspconfig[server].setup(lspconfig_settings)
-end
-
-M.setup_custom = function(server, settings)
-    local lspconfig_settings = M.prepare_lsp_settings(settings)
-
-    require(server).setup { server = lspconfig_settings }
+    settings = settings or M.prepare_lsp_settings {}
+    lspconfig[server].setup(settings)
 end
 
 return M
