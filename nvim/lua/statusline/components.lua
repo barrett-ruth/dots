@@ -26,7 +26,7 @@ local file = {
 
         if vim.startswith(expanded, vim.env.HOME) then
             local path = require 'plenary.path'
-            shrunk = path:new(vim.fn.expandcmd '%:~'):shorten()
+            shrunk = path:new(vim.fn.expand '%:~'):shorten()
         end
 
         return shrunk

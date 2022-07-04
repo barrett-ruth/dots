@@ -42,7 +42,6 @@ export SAVEHIST=2000
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
 
 # Programs
-export CARGOHOME="$XDG_CONFIG_HOME/cargo"
 export FONTCONFIG=/usr/share/fonts
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 export GOPATH="$XDG_DATA_HOME/go"

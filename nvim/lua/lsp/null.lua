@@ -6,7 +6,7 @@ null_ls.setup {
     sources = {
         -- Diagnostics [:
         builtins.diagnostics.curlylint.with {
-            diagnostics_format = '#{m} (#{s})',
+            diagnostics_format = '#{m}',
             extra_filetypes = { 'html' },
         },
         builtins.diagnostics.eslint_d.with {
@@ -29,13 +29,13 @@ null_ls.setup {
                     diagnostic.severity = vim.diagnostic.severity.WARN
                 end
             end,
-            diagnostics_format = '#{m} (#{s})',
+            diagnostics_format = '#{m}',
         },
         builtins.diagnostics.hadolint.with {
             diagnostics_format = '#{m}',
         },
         builtins.diagnostics.mypy.with {
-            diagnostics_format = '#{m} (#{s})',
+            diagnostics_format = '#{m}',
         },
         builtins.diagnostics.shellcheck.with {
             diagnostics_format = '#{m}',
@@ -48,9 +48,6 @@ null_ls.setup {
 
         -- Formatting [:
         builtins.formatting.black.with {
-            condition = function()
-                return vim.fn.executable 'black'
-            end,
             extra_args = { '-S', '--fast', '--line-length=79' },
         },
         builtins.formatting.clang_format,

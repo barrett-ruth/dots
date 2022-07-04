@@ -8,7 +8,7 @@ au('BufEnter', {
 })
 
 au('FocusLost', {
-    command = 'se nocursorline | writeall',
+    command = 'se nocursorline | wall',
     group = aug,
 })
 
