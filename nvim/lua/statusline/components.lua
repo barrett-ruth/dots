@@ -36,7 +36,7 @@ local file = {
 
 local git = {
     value = function()
-        return vim.api.nvim_eval('FugitiveHead()')
+        return vim.api.nvim_eval 'FugitiveHead()'
     end,
     condition = function()
         local ok, _ = pcall(vim.api.nvim_buf_get_var, 0, 'gitsigns_head')
@@ -49,7 +49,7 @@ local git = {
 
 local line = {
     value = '%l:%L',
-    highlight = 'DiagnosticInfo'
+    highlight = 'DiagnosticInfo',
 }
 
 local macro = {

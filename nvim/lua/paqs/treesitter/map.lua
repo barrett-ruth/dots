@@ -1,17 +1,6 @@
 local utils = require 'utils'
 local map = utils.map
 
-map {
-    'n',
-    '<leader>tr',
-    function()
-        package.loaded['paqs.treesitter'] = nil
-        package.loaded['nvim-treesitter'] = nil
-        require 'paqs.treesitter'
-        require 'nvim-treesitter'
-        vim.cmd 'e'
-    end,
-}
 map { 'n', '<leader>th', utils.mapstr 'TSHighlightCapturesUnderCursor' }
 
 for k, v in pairs {

@@ -8,7 +8,7 @@ au('BufEnter', {
 })
 
 au('FocusLost', {
-    command = 'se nocursorline',
+    command = 'se nocursorline | writeall',
     group = aug,
 })
 
@@ -41,10 +41,6 @@ au('ModeChanged', {
 au('BufEnter', {
     callback = function()
         vim.cmd 'setl formatoptions-=cro'
-
-        if vim.bo.ft == 'fugitive' then
-            vim.cmd 'setl signcolumn=no'
-        end
     end,
     group = aug,
 })

@@ -8,31 +8,30 @@ end
 
 local components = require 'statusline.components'
 
-local M = {}
-M.statusline = function()
-    local statusline = ''
+return {
+    statusline = function()
+        local statusline = ''
 
-    for i = 1, #components do
-        local component = components[i]
+        for i = 1, #components do
+            local component = components[i]
 
-        if vorfn(component.condition) == false then
-            goto continue
+            if vorfn(component.condition) == false then
+                goto continue
+            end
+
+            local prettified = '%#' .. component.highlight .. '#'
+            prettified = prettified .. vorfn(component.value)
+
+            if component.separator == 'post' then
+                prettified = prettified .. '%#Normal# │ '
+            elseif component.separator == 'pre' then
+                prettified = '%#Normal# │ ' .. prettified
+            end
+
+            statusline = statusline .. prettified
+            ::continue::
         end
 
-        local prettified = '%#' .. component.highlight .. '#'
-        prettified = prettified .. vorfn(component.value)
-
-        if component.separator == 'post' then
-            prettified = prettified .. '%#Normal# │ '
-        elseif component.separator == 'pre' then
-            prettified = '%#Normal# │ ' .. prettified
-        end
-
-        statusline = statusline .. prettified
-        ::continue::
+        return '%#Normal# ' .. statusline .. ' '
     end
-
-    return '%#Normal# ' .. statusline .. ' '
-end
-
-return M
+}

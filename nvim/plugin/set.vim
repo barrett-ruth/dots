@@ -2,8 +2,6 @@ se autowrite
 
 se cinkeys-=:
 
-se cmdheight=0
-
 se cursorline
 
 se expandtab softtabstop=4 shiftwidth=4
@@ -29,8 +27,6 @@ se laststatus=3
 se lazyredraw
 
 se list listchars=trail:·
-
-se nofixendofline
 
 se nomodeline
 
@@ -68,6 +64,4 @@ lua << EOF
     end
 
     vim.api.nvim_set_var('wildignore', wig)
-
-    require 'paqs.tree'
 EOF

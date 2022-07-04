@@ -30,7 +30,6 @@ require 'paq' {
     -- :]
 
     -- cosmetic [:
-    'kyazdani42/nvim-tree.lua',
     'RRethy/vim-hexokinase',
     'SmiteshP/nvim-navic',
     -- :]
@@ -45,6 +44,7 @@ require 'paq' {
 
     -- tpope [:
     'tpope/vim-abolish',
+    'tpope/vim-eunuch',
     'tpope/vim-fugitive',
     'tpope/vim-repeat',
     'tpope/vim-surround',

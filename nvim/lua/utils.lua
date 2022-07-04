@@ -33,6 +33,12 @@ M.hi = function(group, highlights)
 end
 -- :]
 
+M.tempcd = function(cmd)
+    vim.cmd 'cd %:p:h'
+    vim.cmd(cmd)
+    vim.cmd 'cd -'
+end
+
 M.link = function(from, to)
     vim.api.nvim_set_hl(0, to, { link = from })
 end

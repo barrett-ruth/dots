@@ -19,5 +19,6 @@ map {
     mapstr('fzf-lua', [[live_grep_native { cwd = vim.fn.expand '%:p:h' }]]),
 }
 map { 'n', '<leader>fh', mapstr 'FzfLua help_tags' }
-map { 'n', '<leader>fs', mapstr('fzf-lua', 'files { cwd = vim.env.SCRIPTS }') }
+map { 'n', '<leader>fm', mapstr 'FzfLua man_pages' }
 map { 'n', '<leader>fr', mapstr 'FzfLua resume' }
+map { 'n', '<leader>fs', mapstr('fzf-lua', 'files { cwd = vim.env.SCRIPTS }') }
