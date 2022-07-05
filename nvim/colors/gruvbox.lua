@@ -77,6 +77,7 @@ hi('Title', { bold = true, fg = cs.orange })
 hi('Question', { none = true, fg = cs.yellow })
 hi('Special', { fg = cs.yellow })
 hi('Statement', { italic = true, fg = cs.red })
+hi('Statusline', { none = true })
 hi('Identifier', { fg = cs.blue })
 hi('Todo', { italic = true, fg = cs.purple, bg = 'NONE' })
 -- :]

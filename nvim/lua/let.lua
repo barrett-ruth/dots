@@ -10,6 +10,7 @@ vim.g.Hexokinase_ftEnabled = {
     'typescript',
     'typescriptreact',
 }
+
 vim.g.did_load_filetypes = 1
 
 local disabled_builtins = {

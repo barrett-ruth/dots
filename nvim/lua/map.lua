@@ -44,19 +44,10 @@ map {
     end,
 }
 map { 'n', '<leader>-', 'S<esc>' }
-map {
-    'n',
-    '<leader>r',
-    function()
-        vim.cmd 'vs|te run %'
-    end,
-}
+map { 'n', '<leader>r', mapstr 'vs|te run %' }
 map({ 'x', 'R', '<esc>gv"ry:%s/<c-r>r//g<left><left>' }, { silent = false })
 map { 'n', 'J', 'mzJ`z' }
-map { 'n', 'K', 'mzkJ`z' }
-map { 'n', '<leader>k', 'K' }
 map { 'n', 'Q', 'q:k' }
-map { 'n', '<bs>', '<c-^>' }
 vim.cmd 'cno <c-n> <down>'
 -- :]
 
@@ -82,13 +73,6 @@ map { 'n', '[o', '@="m`O\\eg``"<cr>' }
 -- Deleting/yanking/pasting [:
 map { '', '<leader>d', '"_d' }
 map { '', '<leader>y', '"+y' }
--- :]
-
--- Resizing [:
-map { 'n', '<c-left>', mapstr 'vertical resize -10' }
-map { 'n', '<c-down>', mapstr 'resize +10' }
-map { 'n', '<c-up>', mapstr 'resize -10' }
-map { 'n', '<c-right>', mapstr 'vertical resize +10' }
 -- :]
 
 -- Saving/Exiting [:

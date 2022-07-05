@@ -4,7 +4,7 @@ vim.o.background = 'dark'
 
 vim.opt.cinkeys:remove ':'
 
-vim.o.cmdheight = 0
+-- vim.o.cmdheight = 0
 
 vim.o.cursorline = true
 
