@@ -33,3 +33,15 @@ require('gitsigns').setup {
     },
     update_debounce = 0,
 }
+
+local gitsigns_signs = {
+    Add = { text = '▎' },
+    Change = { text = '▎' },
+    Changedelete = { text = '~' },
+    Delete = { text = '_' },
+    Topdelete = { text = '‾' },
+}
+
+for name, v in pairs(gitsigns_signs) do
+    vim.fn.sign_define('GitSigns' .. name, { text = v.text })
+end

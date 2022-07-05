@@ -1,6 +1,7 @@
 vim.cmd [[
     syntax on
     filetype plugin indent on
+    colo gruvbox
 ]]
 
 vim.api.nvim_set_var('mapleader', ' ')

@@ -14,10 +14,6 @@ map({ 'n', ':', ';' }, { silent = false })
 map({ 'n', ';', ':' }, { silent = false })
 map({ 'x', ':', ';' }, { silent = false })
 map({ 'x', ';', ':' }, { silent = false })
-map { 'n', 'V', 'v' }
-map { 'n', 'v', 'V' }
-map { 'x', 'V', 'v' }
-map { 'x', 'v', 'V' }
 map { 'n', ']p', '}' }
 map { 'n', '[p', '{' }
 map { 'n', 'ga', '<Plug>(EasyAlign)' }
@@ -58,6 +54,7 @@ map {
 map({ 'x', 'R', '<esc>gv"ry:%s/<c-r>r//g<left><left>' }, { silent = false })
 map { 'n', 'J', 'mzJ`z' }
 map { 'n', 'K', 'mzkJ`z' }
+map { 'n', '<leader>k', 'K' }
 map { 'n', 'Q', 'q:k' }
 map { 'n', '<bs>', '<c-^>' }
 vim.cmd 'cno <c-n> <down>'

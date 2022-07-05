@@ -28,6 +28,7 @@ alias qb='qutebrowser'
 alias sctl='systemctl'
 alias jctl='journalctl'
 alias tm='tmux'
+alias tre='tree --noreport -CFL 2 | tail -n +2'
 alias za='zathura --fork'
 
 # Make

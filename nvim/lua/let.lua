@@ -13,24 +13,16 @@ vim.g.Hexokinase_ftEnabled = {
 vim.g.did_load_filetypes = 1
 
 local disabled_builtins = {
-    'netrw',
-    'netrwPlugin',
-    'netrwSettings',
-    'netrwFileHandlers',
     'gzip',
-    'zip',
-    'zipPlugin',
-    'tar',
-    'tarPlugin',
-    'getscript',
-    'getscriptPlugin',
-    'vimball',
-    'vimballPlugin',
-    '2html_plugin',
-    'logipat',
-    'tutor_mode_plugin',
-    'rrhelper',
     'matchit',
+    'matchparen',
+    'netrwPlugin',
+    'rplugin',
+    'spellfile',
+    'tarPlugin',
+    'tohtml',
+    'tutor',
+    'zipPlugin',
 }
 
 for _, plugin in pairs(disabled_builtins) do

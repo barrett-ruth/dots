@@ -1,0 +1,5 @@
+#!/bin/sh
+
+[ "$(pgrep tmux)" ] || cmd='start\; run ~/.config/tmux/tmux-resurrect/scripts/restore.sh\; '
+
+eval "tmux $cmd"a

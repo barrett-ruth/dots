@@ -1,3 +1,0 @@
-#!/bin/sh
-
-[ "$1" ] || tmux start\; run ~/.config/tmux/plugins/tmux-resurrect/scripts/restore.sh\; a

@@ -7,7 +7,6 @@ for key, command in pairs {
     k = 'Mkdir',
     K = 'Rmdir',
     m = 'Move',
-    r = 'Rename',
     d = 'sil !rm',
 } do
     map({ 'n', '<leader>e' .. key, ':' .. command .. ' ' }, { silent = false })
@@ -20,6 +19,13 @@ for key, command in pairs {
     }, { silent = false })
 end
 
+map {
+    'n',
+    '<leader>er',
+    function()
+        vim.fn.feedkeys(';Rename ' .. vim.fn.expand '%:t')
+    end,
+}
 map({ 'n', '<leader>eD', mapstr 'Delete!' }, { silent = false })
 
 vim.cmd [[command -nargs=? -complete=file Add lua require('paqs.eunuch').add('<args>')]]
