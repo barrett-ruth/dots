@@ -1,6 +1,7 @@
 require('gitsigns').setup {
+    attach_to_untracked = false,
     current_line_blame = true,
-    current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d>',
+    current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
     current_line_blame_opts = {
         delay = 0,
     },

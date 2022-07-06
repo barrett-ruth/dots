@@ -35,6 +35,7 @@ setroot
 shellcheck
 shfmt
 stylua
+tree-sitter
 ttf-hanazono
 ttf-liberation
 ungoogled-chromium

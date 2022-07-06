@@ -1,6 +1,6 @@
 #!/bin/sh
 
-mons="$(xrandr | rg ' connected ' | awk '{ print $1 }')"
+mons="$(xrandr | rg --no-config ' connected ' | awk '{ print $1 }')"
 
 one="$(echo "$mons" | head -n 1)"
 two="$(echo "$mons" | tail -n 1)"

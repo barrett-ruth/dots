@@ -3,6 +3,5 @@
 --colors=path:fg:blue
 --column
 --hidden
---line-number
 --no-heading
 --smart-case

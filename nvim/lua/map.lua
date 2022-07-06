@@ -70,8 +70,10 @@ map {
     'n',
     '<leader>w',
     function()
-        vim.lsp.buf.format { bufnr = vim.fn.bufnr '%' }
+        if next(vim.lsp.get_active_clients { bufnr = 0 }) then
+            vim.lsp.buf.format { bufnr = 0 }
         vim.cmd 'w'
+        end
     end,
     { silent = false },
 }

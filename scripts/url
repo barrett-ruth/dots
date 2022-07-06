@@ -1,14 +1,14 @@
 #!/bin/sh
 
-set -eu
-
 regex="(((http|https|git)://|www\\.)[a-zA-Z0-9.]*[:]?[a-zA-Z0-9./@$&%?$\#=_~-]*)|((magnet:\\?xt=urn:btih:)[a-zA-Z0-9]*)"
 
-urls="$(sed 's/.*│//g' | tr -d '\n' | rg -ao "$regex" | sort -u | uniq | sed "s/\(\.\|,\|;\|\!\\|\?\)$//; s/^www./http:\/\/www\./")"
+urls="$(sed 's/.*│//g' | tr -d '\n' | rg --no-config -ao "$regex" | sort -u | uniq | sed "s/\(\.\|,\|;\|\!\\|\?\)$//; s/^www./http:\/\/www\./")"
 
 [ "$urls" ] || exit
 
 [ "$(echo "$urls" | wc -l)" -eq 1 ] && url="$urls" || url="$(echo "$urls" | dmenu -i -p "$1 url:" -l 10)"
+
+[ "$url" ] || exit
 
 [ "$1" = open ] && eval "$BROWSER $url" || (
     prev="$(xclip -o -sel c)"
