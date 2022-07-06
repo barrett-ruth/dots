@@ -20,9 +20,6 @@ c | cc | cpp)
 html)
     cmd="$BROWSER $file"
     ;;
-lua)
-    cmd="lua $file"
-    ;;
 py)
     [ "$VIRTUAL_ENV" ] && py="$VIRTUAL_ENV/bin/python" || py=python
     cmd="$(which $py) $args$file"

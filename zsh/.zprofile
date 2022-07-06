@@ -54,9 +54,8 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 # Path
 export SCRIPTS="$HOME/.local/bin/scripts"
-for e in "$SCRIPTS" "$HOME/.local/bin"
-    [[ "$PATH" == *"$e"* ]] || PATH+=":$e"
-export PATH
+[[ "$PATH" == *"$SCRIPTS"* ]] || export PATH="$PATH:$SCRIPTS"
+[[ "$PATH" == *"$HOME/.local/bin"* ]] || export PATH="$PATH:$HOME/.local/bin"
 
 export FZF_COMPLETION_TRIGGER=\;
 export FZF_ALT_C_COMMAND='fd --type directory --hidden --strip-cwd-prefix'

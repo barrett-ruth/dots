@@ -1,1 +1,1 @@
-vim.wo.signcolumn = false
+vim.wo.signcolumn = 'no'

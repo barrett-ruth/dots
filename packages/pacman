@@ -21,7 +21,6 @@ libxinerama
 linux
 linux-firmware
 linux-headers
-lua
 lua-language-server
 man-db
 neovim

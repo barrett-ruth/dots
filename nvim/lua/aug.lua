@@ -13,16 +13,12 @@ au('FocusLost', {
 })
 
 au('InsertEnter', {
-    callback = function()
-        vim.cmd 'setl colorcolumn=80'
-    end,
+    command = 'setl colorcolumn=80',
     group = aug,
 })
 
 au('InsertLeave', {
-    callback = function()
-        vim.cmd 'setl colorcolumn='
-    end,
+    command = 'setl colorcolumn=',
     group = aug,
 })
 
@@ -39,9 +35,7 @@ au('ModeChanged', {
 })
 
 au('BufEnter', {
-    callback = function()
-        vim.cmd 'setl formatoptions-=cro'
-    end,
+    command = 'setl formatoptions-=cro',
     group = aug,
 })
 

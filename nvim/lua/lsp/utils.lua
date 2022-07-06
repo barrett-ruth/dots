@@ -1,8 +1,7 @@
 local M = {}
 
 M.on_attach = function(client, bufnr)
-    local signcolumn = vim.wo.signcolumn
-    if signcolumn == 'no' then
+    if vim.wo.signcolumn == 'no' then
         vim.wo.signcolumn = 'yes:1'
     end
 
