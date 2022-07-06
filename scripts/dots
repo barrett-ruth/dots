@@ -14,7 +14,7 @@ cp -r ~/.local/share/fonts .
 
 cp -r "$XDG_CONFIG_HOME/templates" .
 
-for e in git nvim python qutebrowser tmux X11 yarn zathura zsh; do
+for e in git nvim python qutebrowser rg tmux X11 yarn zathura zsh; do
     cp -r "$XDG_CONFIG_HOME/$e" .
 done
 
