@@ -13,9 +13,6 @@ set completion-ignore-case on
 unset completealiases
 setopt auto_cd incappendhistory extendedhistory histignorealldups
 
-# Vars
-export SCRIPTS="$HOME/.local/bin/scripts"
-[[ "$PATH" == *"$HOME/.local/bin:$SCRIPTS"* ]] || export PATH="$PATH:$HOME/.local/bin:$SCRIPTS"
 export LC_ALL='en_US.UTF-8'
 
 # XDG
@@ -52,7 +49,14 @@ export NODE_REPL_HISTORY="$XDG_DATA_HOME/.node_repl_history"
 export PASSWORD_STORE_DIR="$XDG_CONFIG_HOME/password-store"
 export PRETTIERD_DEFAULT_CONFIG="$XDG_CONFIG_HOME/prettierd"
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
+export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/rg/config"
 export VIRTUAL_ENV_DISABLE_PROMPT=1
+
+# Path
+export SCRIPTS="$HOME/.local/bin/scripts"
+for e in "$SCRIPTS" "$HOME/.local/bin"
+    [[ "$PATH" == *"$e"* ]] || PATH+=":$e"
+export PATH
 
 export FZF_COMPLETION_TRIGGER=\;
 export FZF_ALT_C_COMMAND='fd --type directory --hidden --strip-cwd-prefix'

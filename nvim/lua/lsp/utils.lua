@@ -72,19 +72,10 @@ local lspconfig = require 'lspconfig'
 
 M.prepare_lsp_settings = function(settings)
     settings = settings or {}
-    settings.capabilities = require('cmp_nvim_lsp').update_capabilities(
-        vim.lsp.protocol.make_client_capabilities()
-    )
+    settings.capabilities = vim.lsp.protocol.make_client_capabilities()
     local generic_settings = {
         capabilities = {
             offsetEncoding = { 'utf-16' },
-            textDocument = {
-                completion = {
-                    completionItem = {
-                        snippetSupport = false,
-                    },
-                },
-            },
         },
         flags = { debounce_text_changes = 0 },
         on_attach = M.on_attach,

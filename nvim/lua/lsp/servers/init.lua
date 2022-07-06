@@ -2,6 +2,7 @@ local noconfig_servers = {
     'cssls',
     'html',
     'jedi_language_server',
+    'jsonls',
     'vimls',
 }
 
@@ -13,7 +14,7 @@ for _, server in ipairs(noconfig_servers) do
     setup_lspconfig(server)
 end
 
-local servers = { 'clangd', 'jsonls', 'pyright' }
+local servers = { 'clangd', 'pyright' }
 
 for _, server in ipairs(servers) do
     local settings = require('lsp.servers.' .. server)

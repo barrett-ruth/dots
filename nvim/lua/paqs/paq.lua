@@ -3,18 +3,10 @@ require 'paq' {
 
     -- lsp [:
     'neovim/nvim-lspconfig',
-    'b0o/schemastore.nvim',
     'folke/lua-dev.nvim',
     'jose-elias-alvarez/null-ls.nvim',
     'jose-elias-alvarez/typescript.nvim',
     'jose-elias-alvarez/nvim-lsp-ts-utils',
-    -- :]
-
-    -- cmp [:
-    'hrsh7th/nvim-cmp',
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/cmp-path',
-    'L3MON4D3/LuaSnip',
     -- :]
 
     -- treesitter [:
@@ -33,6 +25,11 @@ require 'paq' {
     -- cosmetic [:
     'RRethy/vim-hexokinase',
     'SmiteshP/nvim-navic',
+    -- :]
+
+    -- primeagen [:
+    'ThePrimeagen/harpoon',
+    'ThePrimeagen/git-worktree.nvim',
     -- :]
 
     -- textobjects [:
@@ -58,15 +55,12 @@ require 'paq' {
     'junegunn/vim-easy-align',
     'lewis6991/impatient.nvim',
     'lewis6991/gitsigns.nvim',
+    'L3MON4D3/LuaSnip',
     'numToStr/Comment.nvim',
     'ojroques/nvim-bufdel',
     'wellle/targets.vim',
     -- :]
 
-    -- primagen [:
-    'ThePrimeagen/harpoon',
-    'ThePrimeagen/git-worktree.nvim',
-    -- :]
 }
 
 local utils = require 'utils'

@@ -1,7 +1,6 @@
 local files = {
     'eunuch',
     'paq',
-    'cmp',
     'luasnippets',
     'fzf',
     'gitsigns',

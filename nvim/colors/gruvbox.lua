@@ -82,20 +82,11 @@ hi('Identifier', { fg = cs.blue })
 hi('Todo', { italic = true, fg = cs.purple, bg = 'NONE' })
 -- :]
 
--- completion [:
-
 -- pmenu [:
 hi('Pmenu', { bg = cs.grey_white })
 hi('PmenuSel', { fg = cs.grey_white, bg = cs.hi })
 hi('PmenuSbar', { bg = cs.grey_white })
 hi('PmenuThumb', { bg = cs.hi })
--- :]
-
--- nvim-cmp [:
-hi('CmpItemAbbrMatch', { bold = true, fg = cs.green })
-hi('CmpItemAbbrMatchFuzzy', { bold = true, fg = cs.green })
-hi('markdownUrl', { underline = true, fg = cs.blue })
-hi('markdownLinkText', { fg = cs.purple })
 -- :]
 
 -- nvim-tree [:
@@ -109,7 +100,6 @@ hi('DiagnosticError', { fg = cs.red })
 hi('DiagnosticWarn', { fg = cs.yellow })
 hi('DiagnosticHint', { fg = cs.green })
 hi('DiagnosticInfo', { fg = cs.blue })
--- :]
 
 hi('DiagnosticUnderlineError', { undercurl = true, special = cs.red })
 hi('DiagnosticUnderlineWarn', { undercurl = true, special = cs.yellow })

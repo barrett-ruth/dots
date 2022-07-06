@@ -10,6 +10,8 @@ local ensure_installed = {
     'json',
     'lua',
     'make',
+    'markdown',
+    'markdown_inline',
     'python',
     'query',
     'tsx',

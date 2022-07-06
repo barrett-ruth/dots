@@ -30,19 +30,7 @@ map { 'n', '<tab>', '<c-w>' }
 -- :]
 
 -- Miscellaneous [:
-map {
-    'n',
-    '<leader><cr>',
-    function()
-        local file = string.match(vim.fn.expand '%', 'lua/(.*).lua')
-
-        if vim.bo.ft == 'lua' then
-            package.loaded[file] = nil
-        end
-
-        vim.cmd 'so %'
-    end,
-}
+map { 'n', '<leader><cr>', mapstr 'so %' }
 map { 'n', '<leader>-', 'S<esc>' }
 map { 'n', '<leader>r', mapstr 'vs|te run %' }
 map({ 'x', 'R', '<esc>gv"ry:%s/<c-r>r//g<left><left>' }, { silent = false })
@@ -52,15 +40,15 @@ vim.cmd 'cno <c-n> <down>'
 -- :]
 
 -- Location List [:
-map { 'n', ']l', mapstr 'lnext' }
-map { 'n', '[l', mapstr 'lprev' }
+map { 'n', ']l', mapstr 'w|lnext' }
+map { 'n', '[l', mapstr 'w|lprev' }
 map { 'n', '<leader>l', mapstr 'FzfLua loclist' }
 map { 'n', '<leader>L', mapstr 'cal setloclist(0, []) | lcl' }
 -- :]
 
 -- Quickfix List [:
-map { 'n', ']q', mapstr 'cnext' }
-map { 'n', '[q', mapstr 'cprev' }
+map { 'n', ']q', mapstr 'w|cnext' }
+map { 'n', '[q', mapstr 'w|cprev' }
 map { 'n', '<leader>c', mapstr 'FzfLua quickfix' }
 map { 'n', '<leader>C', mapstr 'cal setqflist([]) | ccl' }
 -- :]
@@ -97,7 +85,6 @@ map { 'n', '[e', '<cmd>m-2<cr>' }
 -- :]
 
 -- Toggling [:
-map { 'n', '<leader>iw', mapstr 'setl invwrap' }
 map {
     'n',
     '<leader>is',
@@ -112,4 +99,5 @@ map {
         end
     end,
 }
+map { 'n', '<leader>iw', mapstr 'setl invwrap' }
 -- :]

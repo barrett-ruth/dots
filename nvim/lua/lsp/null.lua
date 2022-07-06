@@ -59,7 +59,7 @@ null_ls.setup {
         builtins.formatting.stylua.with {
             extra_args = {
                 '--config-path',
-                vim.fn.expand '~/.config/templates/stylua.toml',
+                vim.env.XDG_CONFIG_HOME .. '/templates/stylua.toml',
             },
         },
         -- :]

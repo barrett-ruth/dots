@@ -16,6 +16,11 @@ local send_to_ll = function(selected, opts)
     vim.fn.setloclist(0, ll)
 end
 
+local rg_opts = ''
+for line in io.lines(vim.env.RIPGREP_CONFIG_PATH) do
+    rg_opts = rg_opts .. line .. ' '
+end
+
 local lsp_symbols = {
     Class = 'class',
     Enum = 'enum',
@@ -57,7 +62,7 @@ require('fzf-lua').setup {
     },
     fzf_args = vim.env.FZF_DEFAULT_OPTS,
     grep = {
-        rg_opts = '--hidden --color=always --colors=match:fg:green --colors=path:fg:blue --line-number --smart-case',
+        rg_opts = rg_opts,
         no_header_i = true,
         prompt = 'rg> ',
     },

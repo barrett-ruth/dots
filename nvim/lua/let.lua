@@ -7,9 +7,12 @@ vim.g.Hexokinase_ftEnabled = {
     'html',
     'javascript',
     'javascriptreact',
+    'python',
     'typescript',
     'typescriptreact',
+    'vim',
 }
+vim.g.markdown_fenced_languages = vim.g.Hexokinase_ftEnabled
 
 vim.g.did_load_filetypes = 1
 
