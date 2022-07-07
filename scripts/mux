@@ -13,13 +13,16 @@ bar)
     bar="$(tmux ls -F '#S' | nl -w1 -v0 -s ':' | paste -sd '|' | sed "s/|/#[fg=white] │ #[fg=#928374]/g;s/$2/$2*/")"
     echo "#[fg=#928374]$bar "
     ;;
-run)
-    [ "$(tmux lsw -F '#W' | rg run)" ] || tmux neww -c '#{pane_current_path}' -dn run
-    tmux send -t run "cd $2" 'enter' 'C-l' 'run "$(pwd)"' 'enter'
+git | run)
+    [ "$(tmux lsw -F '#W' | rg "$1")" ] && tmux selectw -t "$1" || tmux neww -c '#{pane_current_path}' -n "$1"
+
+    [ "$1" = run ] && cmd='run "$(pwd)"' || cmd='nvim -c "G|on"'
+
+    tmux send -t "$1" "cd $2" 'enter' 'C-l' "$cmd" 'enter'
     ;;
 *)
-    session_name="$1"
-    session="$(tmux ls -F '#S' | tail -n "+$((session_name + 1))" | head -1)"
+    session_id="$1"
+    session="$(tmux ls -F '#S' | tail -n "+$((session_id + 1))" | head -1)"
     tmux switch -t "$session"
     ;;
 esac
