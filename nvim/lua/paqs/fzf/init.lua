@@ -31,6 +31,8 @@ local lsp_symbols = {
     Variable = 'var',
 }
 
+AAA = {}
+
 require('fzf-lua').setup {
     global_resume = true,
     global_resume_query = true,
@@ -77,14 +79,20 @@ require('fzf-lua').setup {
             symbol_fmt = function(s)
                 local rfind = require('utils').rfind
                 local first, last = s:find 'm', rfind(s, '')
-                local color = s:sub(first + 1, last)
+
+                if not first or not last then
+                    return s
+                end
+
+                local word = s:sub(first + 1, last)
                 return string.format(
                     '[%s%s%s]',
                     s:sub(1, first),
-                    lsp_symbols[color] or s,
+                    lsp_symbols[word] or s,
                     s:sub(last + 1, #s)
                 )
             end,
+            symbol_hl_prefix = 'TS',
             symbol_style = 3,
         },
     },

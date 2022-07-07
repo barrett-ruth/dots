@@ -221,11 +221,16 @@ hi('TSProperty', { fg = cs.white })
 hi('TSField', { fg = cs.white })
 -- :]
 
--- misc/custom [:
+-- misc [:
 hi('TSConstructor', { fg = cs.cyan })
 hi('TSDeclaration', { fg = cs.orange })
 hi('TSNamespace', { fg = cs.cyan })
 hi('TSTag', { fg = cs.orange })
+hi('StorageClass', { fg = cs.cyan })
+link('StorageClass', 'TSStorageClass')
+link('StorageClass', 'TSClass')
+link('StorageClass', 'TSStruct')
+hi('TSEnum', { fg = cs.purple })
 hi('TSTagDelimiter', { fg = cs.green })
 link('markdownUrl', 'TSURI')
 -- :]
