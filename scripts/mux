@@ -6,13 +6,20 @@ attach_or_restore() {
     eval "tmux $cmd"a
 }
 
-if [ "$1" = bar ]; then
+[ "$1" ] || attach_or_restore
+
+case "$1" in
+bar)
     bar="$(tmux ls -F '#S' | nl -w1 -v0 -s ':' | paste -sd '|' | sed "s/|/#[fg=white] │ #[fg=#928374]/g;s/$2/$2*/")"
     echo "#[fg=#928374]$bar "
-elif [ "$1" ]; then
+    ;;
+run)
+    [ "$(tmux lsw -F '#W' | rg run)" ] || tmux neww -c '#{pane_current_path}' -n run
+    tmux send 'C-l' 'run "$(pwd)"' 'enter'
+    ;;
+*)
     session_name="$1"
     session="$(tmux ls -F '#S' | tail -n "+$((session_name + 1))" | head -1)"
     tmux switch -t "$session"
-else
-    attach_or_restore
-fi
+    ;;
+esac
