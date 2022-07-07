@@ -8,7 +8,12 @@ au('BufEnter', {
 })
 
 au('FocusLost', {
-    command = 'se nocursorline | wall',
+    callback = function()
+        vim.o.cursorline = false
+        if not require('utils').empty(vim.fn.bufname()) then
+            vim.cmd 'wall'
+        end
+    end,
     group = aug,
 })
 
