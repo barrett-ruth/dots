@@ -26,8 +26,8 @@ vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
 local sources = {
     vimlsp = 'vimls',
     Pyright = 'pyright',
-    ['Lua Diagnostics.'] = 'sumneko',
-    ['Lua Syntax Check.'] = 'sumneko',
+    ['Lua Diagnostics.'] = 'luals',
+    ['Lua Syntax Check.'] = 'luals',
 }
 
 vim.diagnostic.config {
@@ -49,7 +49,7 @@ vim.diagnostic.config {
                 return string.format('%s (%s)', message, source)
             else
                 if source == 'pyright' then
-                    code = code:gsub('report', ''):gsub('^%u', string.lower)
+                    code = code:gsub('report', ''):gsub('^%u', string.lower, 1)
                 end
 
                 return string.format('%s [%s] (%s)', message, code, source)

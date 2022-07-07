@@ -14,6 +14,4 @@ else
     dir="${dir%%.*}"
 fi
 
-eval "$cmd"
-
-cd "$dir" || return
+eval "$cmd $dir" && cd "$dir" || return

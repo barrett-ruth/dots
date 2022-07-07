@@ -28,6 +28,5 @@ rmb tmux.conf tmux
 
 [ "$1" ] || exit
 
-git add .
-git commit -m "$*"
+git commit -am "$*"
 git push

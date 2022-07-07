@@ -1,5 +1,18 @@
 #!/bin/sh
 
-[ "$(pgrep tmux)" ] || cmd='start\; run ~/.config/tmux/tmux-resurrect/scripts/restore.sh\; '
+attach_or_restore() {
+    [ "$(pgrep tmux)" ] || cmd='start\; run ~/.config/tmux/tmux-resurrect/scripts/restore.sh\; '
 
-eval "tmux $cmd"a
+    eval "tmux $cmd"a
+}
+
+if [ "$1" = bar ]; then
+    bar="$(tmux ls -F '#S' | nl -w1 -v0 -s ':' | paste -sd '|' | sed "s/|/#[fg=white] │ #[fg=#928374]/g;s/$2/$2*/")"
+    echo "#[fg=#928374]$bar "
+elif [ "$1" ]; then
+    session_name="$1"
+    session="$(tmux ls -F '#S' | tail -n "+$((session_name + 1))" | head -1)"
+    tmux switch -t "$session"
+else
+    attach_or_restore
+fi

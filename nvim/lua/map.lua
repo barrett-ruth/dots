@@ -72,8 +72,8 @@ map {
     function()
         if next(vim.lsp.get_active_clients { bufnr = 0 }) then
             vim.lsp.buf.format { bufnr = 0 }
-        vim.cmd 'w'
         end
+        vim.cmd 'w'
     end,
     { silent = false },
 }
@@ -87,6 +87,7 @@ map { 'n', '[e', '<cmd>m-2<cr>' }
 -- :]
 
 -- Toggling [:
+map { 'n', '<leader>ic', mapstr 'let &ch = (&ch + 1) % 2' }
 map {
     'n',
     '<leader>is',

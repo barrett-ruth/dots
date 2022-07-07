@@ -37,6 +37,7 @@
     rs = restore
     rt = reset
     s = status
+    sm = submodule
     st = stash
     sw = switch
     wt = worktree

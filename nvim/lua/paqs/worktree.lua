@@ -43,7 +43,7 @@ end
 
 return {
     git_worktrees = function()
-        fzf.fzf_exec('git worktree list | sed "s|$HOME|~|g"', {
+        fzf.fzf_exec('git worktree list | tail -n +2 | sed "s|$HOME|~|g"', {
             fn_transform = function(x)
                 local parsed = parse_entry(x)
 
@@ -64,7 +64,7 @@ return {
                 ['default'] = switch_worktree,
                 ['ctrl-a'] = { create_worktree, actions.resume },
                 ['ctrl-d'] = { delete_worktree, actions.resume },
-            }
+            },
         })
-    end
+    end,
 }
