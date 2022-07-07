@@ -13,6 +13,7 @@ smon
     skb
 ) &
 sclip &
+mux &
 while true; do
     dwmb &
     dwm

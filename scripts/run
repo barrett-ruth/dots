@@ -1,7 +1,5 @@
 #!/bin/sh
 
-[ "$1" ] || exit
-
 file="$1"
 shift
 
