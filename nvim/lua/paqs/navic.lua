@@ -34,4 +34,4 @@ local navic_icons = {
 
 vim.g.navic_silence = true
 
-require('nvim-navic').setup { icons = navic_icons, depth_limit = 4 }
+require('nvim-navic').setup { icons = navic_icons, depth_limit = 3 }

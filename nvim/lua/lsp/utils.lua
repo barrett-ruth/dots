@@ -9,7 +9,7 @@ M.on_attach = function(client, bufnr)
     if client.server_capabilities.documentSymbolProvider then
         require('nvim-navic').attach(client, bufnr)
         for k, v in pairs {
-            a = [[query = '!EnumMember !Variable ']],
+            a = [[query = '!const !enumm !field !prop !var !( ']],
             c = [[regex_filter = 'Class.*']],
             f = [[regex_filter = 'Function.*']],
             m = [[regex_filter = 'Module.*']],

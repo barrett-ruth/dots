@@ -93,6 +93,10 @@ hi('Directory', { fg = cs.orange })
 link('Directory', 'NvimTreeFolderName')
 -- :]
 
+-- fzf-lua [:
+link('Normal', 'FzfLuaBorder')
+-- ]:
+
 -- lsp/diagnostics [:
 hi('DiagnosticError', { fg = cs.red })
 hi('DiagnosticWarn', { fg = cs.yellow })

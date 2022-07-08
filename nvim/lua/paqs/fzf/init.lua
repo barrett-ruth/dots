@@ -23,9 +23,11 @@ end
 
 local lsp_symbols = {
     Class = 'class',
+    Constant = 'const',
     Enum = 'enum',
+    EnumMember = 'enumm',
     Field = 'field',
-    Function = 'f',
+    Function = 'func',
     Property = 'prop',
     Struct = 'struct',
     Variable = 'var',
@@ -40,7 +42,7 @@ require('fzf-lua').setup {
             ['ctrl-l'] = send_to_ll,
             ['ctrl-q'] = function(...)
                 actions.file_sel_to_qf(...)
-                vim.cmd 'ccl'
+                vim.cmd 'cclose'
             end,
             ['ctrl-v'] = actions.file_vsplit,
             ['ctrl-x'] = actions.file_split,
@@ -100,6 +102,7 @@ require('fzf-lua').setup {
     },
     diagnostics = {
         prompt = 'diag> ',
+        file_icons = false,
     },
     quickfix = {
         path_shorten = true,
