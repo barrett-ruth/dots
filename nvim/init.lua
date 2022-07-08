@@ -1,9 +1,4 @@
-vim.cmd [[
-    filetype plugin indent on
-    colo gruvbox
-]]
-
-vim.api.nvim_set_var('mapleader', ' ')
+vim.cmd 'colo gruvbox'
 
 require 'impatient'
 require 'aug'
