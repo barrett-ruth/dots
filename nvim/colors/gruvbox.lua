@@ -1,4 +1,4 @@
-if vim.g.colors_name then vim.cmd 'highlight clear' end
+if vim.g.colors_name then vim.cmd 'hi clear' end
 
 local utils = require 'utils'
 local cs, hi, link = utils.cs, utils.hi, utils.link

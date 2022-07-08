@@ -1,5 +1,4 @@
 vim.cmd [[
-    syntax on
     filetype plugin indent on
     colo gruvbox
 ]]

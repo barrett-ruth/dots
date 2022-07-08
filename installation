@@ -33,3 +33,5 @@ fzf:
     clone
     ./install --xdg --no-update-rc --no-bash --no-fish --key-bindings --completion
     replace all ~/.ssh with ~/.config/ssh
+docker:
+    if permission errors: usermod -aG docker <user>

@@ -9,6 +9,8 @@ clang
 dash
 dhcpcd
 doas
+docker
+docker-compose
 exa
 fd
 git
