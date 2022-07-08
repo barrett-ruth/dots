@@ -31,8 +31,6 @@ local lsp_symbols = {
     Variable = 'var',
 }
 
-AAA = {}
-
 require('fzf-lua').setup {
     global_resume = true,
     global_resume_query = true,
@@ -80,9 +78,7 @@ require('fzf-lua').setup {
                 local rfind = require('utils').rfind
                 local first, last = s:find 'm', rfind(s, '')
 
-                if not first or not last then
-                    return s
-                end
+                if not first or not last then return s end
 
                 local word = s:sub(first + 1, last)
                 return string.format(
@@ -104,7 +100,6 @@ require('fzf-lua').setup {
     },
     diagnostics = {
         prompt = 'diag> ',
-        file_icons = false,
     },
     quickfix = {
         path_shorten = true,

@@ -7,13 +7,16 @@ au('BufEnter', {
     group = aug,
 })
 
-au('FocusLost', {
+au({ 'FocusLost', 'WinLeave' }, {
     callback = function()
-        vim.o.cursorline = false
-        if not require('utils').empty(vim.fn.bufname()) then
-            vim.cmd 'wall'
-        end
+        vim.wo.cursorline = false
+        if not require('utils').empty(vim.fn.bufname()) then vim.cmd 'wall' end
     end,
+    group = aug,
+})
+
+au({ 'FocusGained', 'WinEnter' }, {
+    command = 'setl cursorline',
     group = aug,
 })
 
@@ -33,9 +36,7 @@ au('ColorScheme', {
 })
 
 au('ModeChanged', {
-    callback = function()
-        require('paqs.luasnippets.utils').leave_snippet()
-    end,
+    callback = function() require('paqs.luasnippets.utils').leave_snippet() end,
     group = aug,
 })
 

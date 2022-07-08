@@ -1,3 +1,4 @@
+collapse_simple_statement = "Always"
 quote_style = "AutoPreferSingle"
 call_parentheses = "None"
 indent_type = "Spaces"

@@ -36,6 +36,7 @@ map { 'n', '<leader>r', mapstr 'vs|te run-file %' }
 map({ 'x', 'R', '<esc>gv"ry:%s/<c-r>r//g<left><left>' }, { silent = false })
 map { 'n', 'J', 'mzJ`z' }
 map { 'n', 'Q', 'q:k' }
+map { 'n', '<bs>', '<c-^>' }
 vim.cmd 'cno <c-n> <down>'
 -- :]
 

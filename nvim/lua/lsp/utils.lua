@@ -1,9 +1,7 @@
 local M = {}
 
 M.on_attach = function(client, bufnr)
-    if vim.wo.signcolumn == 'no' then
-        vim.wo.signcolumn = 'yes:1'
-    end
+    if vim.wo.signcolumn == 'no' then vim.wo.signcolumn = 'yes:1' end
 
     local utils = require 'utils'
     local bmap, mapstr = utils.bmap, utils.mapstr
@@ -22,8 +20,7 @@ M.on_attach = function(client, bufnr)
                 mapstr(
                     'fzf-lua',
                     string.format(
-                        [[lsp_document_symbols { fzf_opts = { ['--with-nth'] = '2..', ['--delimiter'] = ':' }, no_header = true, prompt = 'sym> ', %s } ]]
-                        ,
+                        [[lsp_document_symbols { fzf_opts = { ['--with-nth'] = '2..', ['--delimiter'] = ':' }, no_header = true, prompt = 'sym> ', %s } ]],
                         v
                     )
                 ),
@@ -72,10 +69,9 @@ local lspconfig = require 'lspconfig'
 M.prepare_lsp_settings = function(settings)
     settings = settings or {}
     settings.capabilities = vim.lsp.protocol.make_client_capabilities()
+    settings.capabilities.offsetEncoding = { 'utf-16' }
+
     local generic_settings = {
-        capabilities = {
-            offsetEncoding = { 'utf-16' },
-        },
         flags = { debounce_text_changes = 0 },
         on_attach = M.on_attach,
     }

@@ -13,18 +13,14 @@ for key, command in pairs {
     map({
         'n',
         '<leader>et' .. key,
-        function()
-            vim.fn.feedkeys(';' .. command .. ' ' .. vim.fn.expand '%:h' .. '/')
-        end,
+        function() vim.fn.feedkeys(';' .. command .. ' ' .. vim.fn.expand '%:h' .. '/') end,
     }, { silent = false })
 end
 
 map {
     'n',
     '<leader>er',
-    function()
-        vim.fn.feedkeys(';Rename ' .. vim.fn.expand '%:t')
-    end,
+    function() vim.fn.feedkeys(';Rename ' .. vim.fn.expand '%:t') end,
 }
 map({ 'n', '<leader>eD', mapstr 'Delete!' }, { silent = false })
 

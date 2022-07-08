@@ -16,12 +16,10 @@ vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
     border = 'single',
 })
 
-vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
-    vim.lsp.handlers.signature_help,
-    {
+vim.lsp.handlers['textDocument/signatureHelp'] =
+    vim.lsp.with(vim.lsp.handlers.signature_help, {
         border = 'single',
-    }
-)
+    })
 
 local sources = {
     vimlsp = 'vimls',
@@ -68,9 +66,7 @@ local function set_signs(bufnr)
 
     for _, d in pairs(diags) do
         local m = line_severity[d.lnum]
-        if not m or d.severity < m.severity then
-            line_severity[d.lnum] = d
-        end
+        if not m or d.severity < m.severity then line_severity[d.lnum] = d end
     end
 
     local fixed = vim.tbl_values(line_severity)

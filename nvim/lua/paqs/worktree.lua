@@ -31,9 +31,7 @@ local actions = require 'fzf-lua.actions'
 
 local create_worktree = function(_)
     local query = fzf.config.__resume_data.last_query
-    if require('utils').empty(query) then
-        return
-    end
+    if require('utils').empty(query) then return end
 
     local path, branch, upstream = unpack(vim.split(vim.trim(query), ' '))
     branch = not branch and vim.fn.fnamemodify(path, ':t') or branch

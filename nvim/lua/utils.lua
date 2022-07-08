@@ -1,8 +1,6 @@
 local M = {}
 
-_G.pr = function(...)
-    vim.pretty_print(...)
-end
+_G.pr = function(...) vim.pretty_print(...) end
 
 -- Colorscheme [:
 M.cs = {
@@ -33,20 +31,14 @@ M.hi = function(group, highlights)
 end
 -- :]
 
-M.link = function(from, to)
-    vim.api.nvim_set_hl(0, to, { link = from })
-end
+M.link = function(from, to) vim.api.nvim_set_hl(0, to, { link = from }) end
 
-M.empty = function(s)
-    return s == '' or s == nil
-end
+M.empty = function(s) return s == '' or s == nil end
 
 M.rfind = function(str, char)
     local revpos = str:reverse():find(char)
 
-    if revpos == nil then
-        return nil
-    end
+    if revpos == nil then return nil end
 
     return #str - revpos
 end

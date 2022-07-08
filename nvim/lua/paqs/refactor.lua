@@ -25,9 +25,7 @@ M.rename = function()
     vim.ui.input({
         prompt = string.format('Rename %s to: ', vim.fn.expand '<cword>'),
     }, function(input)
-        if empty(input) then
-            return
-        end
+        if empty(input) then return end
 
         vim.lsp.buf.rename(input)
     end)
@@ -39,9 +37,7 @@ M.extract = function()
     vim.ui.input({
         prompt = string.format('Extract %s to: ', vim.fn.getreg 'e'),
     }, function(input)
-        if empty(input) then
-            return
-        end
+        if empty(input) then return end
 
         local pos = rfind(input, ',')
         local num = pos and input:sub(pos + 2, #input) or '-'
@@ -67,9 +63,7 @@ end
 M.print = function()
     local ft = fts.print[vim.bo.ft]
 
-    if ft == nil then
-        return
-    end
+    if ft == nil then return end
 
     vim.cmd(
         string.format(

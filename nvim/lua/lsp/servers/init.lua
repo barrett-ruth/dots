@@ -8,7 +8,7 @@ local noconfig_servers = {
 
 local utils = require 'lsp.utils'
 local prepare_lsp_settings, setup_lspconfig =
-utils.prepare_lsp_settings, utils.setup_lspconfig
+    utils.prepare_lsp_settings, utils.setup_lspconfig
 
 for _, server in ipairs(noconfig_servers) do
     setup_lspconfig(server)

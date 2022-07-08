@@ -4,7 +4,7 @@
 alias ds='doas '
 mn() {
     page="$(ls -la "$(which "$1")" 2>/dev/null)"
-    [[ -n "$page" ]] && page="${page##* }" || page="$1"
+    [[ -n "$page" ]] && page="${page##*/}" || page="$1"
     man "$page"
 }
 

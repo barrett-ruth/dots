@@ -35,14 +35,8 @@ local file = {
 }
 
 local git = {
-    value = function()
-        return vim.api.nvim_eval 'FugitiveHead()'
-    end,
-    condition = function()
-        local ok, _ = pcall(vim.api.nvim_buf_get_var, 0, 'gitsigns_head')
-
-        return ok
-    end,
+    value = function() return vim.b.gitsigns_head end,
+    condition = function() return vim.b.gitsigns_head ~= nil end,
     highlight = 'Operator',
     separator = 'post',
 }
@@ -53,21 +47,15 @@ local line = {
 }
 
 local macro = {
-    value = function()
-        return '[' .. vim.fn.reg_recording() .. ']'
-    end,
-    condition = function()
-        return not utils.empty(vim.fn.reg_recording())
-    end,
+    value = function() return '[' .. vim.fn.reg_recording() .. ']' end,
+    condition = function() return not utils.empty(vim.fn.reg_recording()) end,
     highlight = 'DiagnosticError',
     separator = 'post',
 }
 
 local nvim_navic = require 'nvim-navic'
 local navic = {
-    value = function()
-        return nvim_navic.get_location()
-    end,
+    value = function() return nvim_navic.get_location() end,
     condition = function()
         return nvim_navic.is_available()
             and not utils.empty(nvim_navic.get_location())
@@ -85,9 +73,7 @@ local filetype = {
     value = function()
         local ft = vim.bo.ft
 
-        if utils.empty(ft) then
-            ft = vim.bo.bt
-        end
+        if utils.empty(ft) then ft = vim.bo.bt end
 
         return ft
     end,

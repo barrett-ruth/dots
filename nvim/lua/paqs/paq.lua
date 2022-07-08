@@ -14,9 +14,7 @@ require 'paq' {
     'nvim-lua/plenary.nvim',
     {
         'nvim-treesitter/nvim-treesitter',
-        run = function()
-            vim.cmd 'TSUpdate'
-        end,
+        run = function() vim.cmd 'TSUpdate' end,
     },
     'nvim-treesitter/nvim-treesitter-textobjects',
     'nvim-treesitter/playground',
@@ -60,7 +58,6 @@ require 'paq' {
     'ojroques/nvim-bufdel',
     'wellle/targets.vim',
     -- :]
-
 }
 
 local utils = require 'utils'

@@ -6,18 +6,14 @@ map {
     { 'i', 's' },
     '<c-h>',
     function()
-        if ls.jumpable(-1) then
-            ls.jump(-1)
-        end
+        if ls.jumpable(-1) then ls.jump(-1) end
     end,
 }
 map {
     { 'i', 's' },
     '<c-l>',
     function()
-        if ls.jumpable(1) then
-            ls.jump(1)
-        end
+        if ls.jumpable(1) then ls.jump(1) end
     end,
 }
 
@@ -25,9 +21,7 @@ map {
     'i',
     '<c-s>',
     function()
-        if ls.expandable() then
-            ls.expand()
-        end
+        if ls.expandable() then ls.expand() end
     end,
 }
 map {

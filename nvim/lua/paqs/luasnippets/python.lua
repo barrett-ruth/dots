@@ -3,9 +3,7 @@ local ls = require 'luasnip'
 local fmt = require('luasnip.extras.fmt').fmt
 local c, i, s, t = ls.c, ls.i, ls.s, ls.t
 
-local either = function(pos, a, b)
-    return c(pos, { t(a), t(b) })
-end
+local either = function(pos, a, b) return c(pos, { t(a), t(b) }) end
 
 ls.add_snippets('python', {
     s(

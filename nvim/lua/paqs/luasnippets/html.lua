@@ -4,9 +4,7 @@ local fmt = require('luasnip.extras.fmt').fmt
 local i, f, s = ls.i, ls.f, ls.s
 
 local word = function(index)
-    return f(function(name)
-        return vim.split(name[1][1], ' ')[1]
-    end, { index })
+    return f(function(name) return vim.split(name[1][1], ' ')[1] end, { index })
 end
 
 local tags = {

@@ -3,9 +3,7 @@ local M = {}
 local ls = require 'luasnip'
 local i, s, t = ls.i, ls.s, ls.t
 
-local function snipopts(trig)
-    return { trig = trig, wordTrig = false }
-end
+local function snipopts(trig) return { trig = trig, wordTrig = false } end
 
 local add_node = { '"', "'", '{' }
 

@@ -4,9 +4,15 @@
 
 proj="$1"
 
-case "$proj" in
-"$HOME/dev/barrett-ruth.github.io")
+proj_name="${proj##*/}"
+
+case "$proj_name" in
+barrett-ruth.github.io)
     cmd="$BROWSER index.html"
+    ;;
+dmenu | dwm | dwmb | st)
+    cmd='make clean install; make clean'
+    [ "${proj##*/}" = 'dwmb' ] && cmd="$cmd; killall dwmb; dwmb &"
     ;;
 esac
 
