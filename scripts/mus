@@ -1,0 +1,21 @@
+#!/bin/sh
+
+leave() {
+    [ "$(ps aux | rg mpv | wc -l)" -gt 1 ] && killall mpv
+    mpv "$1" &
+    exit 0
+}
+
+prefix="$HOME/mus"
+
+cd "$prefix" || exit
+
+[ "$1" ] && leave "$(fd -1 -t f -a "$1")"
+
+muss="$(fd -d 2 -t f | sed 's|./||;s|.mp3||')"
+
+entry="$(echo "$muss" | dmenu -p 'Music:')"
+
+[ "$entry" ] || exit
+
+leave "$prefix/$entry.mp3"

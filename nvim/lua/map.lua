@@ -32,7 +32,7 @@ map { 'n', '<tab>', '<c-w>' }
 -- Miscellaneous [:
 map { 'n', '<leader><cr>', mapstr 'so %' }
 map { 'n', '<leader>-', 'S<esc>' }
-map { 'n', '<leader>r', mapstr 'vs|te run-file %' }
+map { 'n', '<leader>r', mapstr('utils', 'save()') .. mapstr 'vs|te run-file %' }
 map({ 'x', 'R', '<esc>gv"ry:%s/<c-r>r//g<left><left>' }, { silent = false })
 map { 'n', 'J', 'mzJ`z' }
 map { 'n', 'Q', 'q:k' }
@@ -70,12 +70,7 @@ map { 'n', '<leader>Q', mapstr 'q!' }
 map {
     'n',
     '<leader>w',
-    function()
-        if next(vim.lsp.get_active_clients { bufnr = 0 }) then
-            vim.lsp.buf.format { bufnr = 0 }
-        end
-        vim.cmd 'w'
-    end,
+    mapstr('utils', 'save()'),
     { silent = false },
 }
 map { 'n', '<leader>z', 'ZZ' }

@@ -35,6 +35,13 @@ M.link = function(from, to) vim.api.nvim_set_hl(0, to, { link = from }) end
 
 M.empty = function(s) return s == '' or s == nil end
 
+M.save = function()
+    if next(vim.lsp.get_active_clients { bufnr = 0 }) then
+        vim.lsp.buf.format { bufnr = 0 }
+    end
+    vim.cmd 'w'
+end
+
 M.rfind = function(str, char)
     local revpos = str:reverse():find(char)
 

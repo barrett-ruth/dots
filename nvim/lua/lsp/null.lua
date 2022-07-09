@@ -35,6 +35,11 @@ null_ls.setup {
             diagnostics_format = '#{m}',
         },
         builtins.diagnostics.mypy.with {
+            diagnostics_postprocess = function(diagnostic)
+                if diagnostic.message:find 'Need type annotation for' then
+                    diagnostic.severity = vim.diagnostic.severity.WARN
+                end
+            end,
             diagnostics_format = '#{m}',
         },
         builtins.diagnostics.shellcheck.with {

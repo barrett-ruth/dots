@@ -25,6 +25,9 @@ py)
 js)
     cmd="node $file"
     ;;
+lua)
+    cmd="lua $file"
+    ;;
 ts)
     cmd="ts-node $file"
     ;;
