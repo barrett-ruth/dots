@@ -23,7 +23,8 @@ local empty, rfind = utils.empty, utils.rfind
 
 M.rename = function()
     vim.ui.input({
-        prompt = string.format('Rename %s to: ', vim.fn.expand '<cword>'),
+        prompt = string.format 'Rename to: ',
+        default = vim.fn.expand '<cword>',
     }, function(input)
         if empty(input) then return end
 
