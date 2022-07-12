@@ -41,7 +41,6 @@ require 'paq' {
 
     -- tpope [:
     'tpope/vim-abolish',
-    'tpope/vim-eunuch',
     'tpope/vim-fugitive',
     'tpope/vim-repeat',
     'tpope/vim-surround',
@@ -49,6 +48,7 @@ require 'paq' {
 
     -- misc [:
     'andymass/vim-matchup',
+    'elihunter173/dirbuf.nvim',
     'ibhagwan/fzf-lua',
     'junegunn/vim-easy-align',
     'lewis6991/impatient.nvim',

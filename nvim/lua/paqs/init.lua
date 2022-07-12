@@ -1,5 +1,5 @@
 local files = {
-    'eunuch',
+    'dirbuf',
     'paq',
     'luasnippets',
     'fzf',
