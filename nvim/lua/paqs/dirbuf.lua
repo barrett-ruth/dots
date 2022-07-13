@@ -9,8 +9,5 @@ map { 'n', '<c-e>', mapstr 'e .' }
 map {
     'n',
     '<leader>e',
-    function()
-        vim.cmd('cd ' .. vim.fn.expand '%:p:h')
-        vim.cmd 'e . | cd -'
-    end,
+    function() vim.cmd('e ' .. vim.fn.expand '%:p:h') end,
 }

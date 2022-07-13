@@ -7,10 +7,14 @@ au('BufEnter', {
     group = aug,
 })
 
+local save_disabled = { '', 'dirbuf' }
+
 au({ 'FocusLost', 'WinLeave' }, {
     callback = function()
         vim.wo.cursorline = false
-        if not require('utils').empty(vim.fn.bufname()) then vim.cmd 'wall' end
+        if not vim.tbl_contains(save_disabled, vim.fn.bufname()) then
+            vim.cmd 'wall'
+        end
     end,
     group = aug,
 })
@@ -26,17 +30,15 @@ au('InsertEnter', {
 })
 
 au('InsertLeave', {
-    command = 'setl colorcolumn=',
+    callback = function()
+        vim.cmd 'setl colorcolumn='
+        require('paqs.luasnippets.utils').leave_snippet()
+    end,
     group = aug,
 })
 
 au('ColorScheme', {
     command = [[se statusline=%{%v:lua.require'statusline'.statusline()%}]],
-    group = aug,
-})
-
-au('ModeChanged', {
-    callback = function() require('paqs.luasnippets.utils').leave_snippet() end,
     group = aug,
 })
 
