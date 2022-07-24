@@ -28,7 +28,7 @@ map { 'n', '<tab>', '<c-w>' }
 -- :]
 
 -- Miscellaneous [:
-map { 'n', '<leader><cr>', mapstr 'so %' }
+map { 'n', '<leader><cr>', mapstr 'so' }
 map { 'n', '<leader>-', 'S<esc>' }
 map { 'n', 'ga', '<Plug>(EasyAlign)' }
 map { 'x', 'ga', '<Plug>(EasyAlign)' }
