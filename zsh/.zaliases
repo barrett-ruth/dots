@@ -56,7 +56,7 @@ rmd() { [ "$1" = "$HOME" ] || rm -rf "$@"; }
 alias mkd='mkdir -pv'
 mkcd() { mkdir -pv "$1" && cd "$1"; }
 z() { . _z "$@"; }
-declare -A dirs=(['']=~ [scr]="$SCRIPTS" [cfg]=~/.config [nv]=~/.config/nvim [qb]=~/.config/qutebrowser [tm]=~/.config/tmux [x11]=~/.config/X11 [zsh]=~/.config/zsh [dev]=~/dev [git]=~/dev/learning-git [py]=~/dev/learning-python [site]=~/dev/barrett-ruth.github.io [paq]=~/.local/share/nvim/site/pack/paqs/start)
+declare -A dirs=(['']=~ [scr]="$SCRIPTS" [cfg]=~/.config [nv]=~/.config/nvim [qb]=~/.config/qutebrowser [tm]=~/.config/tmux [x11]=~/.config/X11 [zsh]=~/.config/zsh [dev]=~/dev [wp]=~/wp [git]=~/dev/learning-git [py]=~/dev/learning-python [site]=~/dev/barrett-ruth.github.io [paq]=~/.local/share/nvim/site/pack/paqs/start)
 for e in ~/dev/* ~/dev/sl/*; do
     [[ -d "$e" ]] && dirs[$(basename "$e")]="$e"
 done
