@@ -1,6 +1,6 @@
 grub
     edit /etc/default/grub:
-        include itb=off flag to GRUB_CMDLINE_LINUX_DEFAULT before performing grub-install
+        include ibt=off flag to GRUB_CMDLINE_LINUX_DEFAULT before performing grub-install
 dash
     create post-install hook
 doas
