@@ -1,5 +1,7 @@
 info "@fsouza/prettierd@0.21.1" has binaries:
    - prettierd
+info "@tailwindcss/language-server@0.0.7" has binaries:
+   - tailwindcss-language-server
 info "eslint_d@12.2.0" has binaries:
    - eslint_d
 info "neovim@4.10.1" has binaries:
