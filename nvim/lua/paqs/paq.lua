@@ -1,8 +1,15 @@
 require 'paq' {
     'savq/paq-nvim',
 
+    -- cmp [:
+    'hrsh7th/nvim-cmp',
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-path',
+    -- :]
+
     -- lsp [:
     'neovim/nvim-lspconfig',
+    'b0o/SchemaStore.nvim',
     'folke/lua-dev.nvim',
     'jose-elias-alvarez/null-ls.nvim',
     'jose-elias-alvarez/typescript.nvim',

@@ -16,7 +16,7 @@ c.completion.open_categories = ['searchengines', 'quickmarks']
 c.completion.height = '0%'
 
 c.downloads.remove_finished = 5000
-c.downloads.location.directory = os.getenv('HOME')
+c.downloads.location.directory = os.getenv('HOME') + '/dl'
 
 c.tabs.title.format = '{perc}{index}:{current_title}'
 c.tabs.show = 'multiple'

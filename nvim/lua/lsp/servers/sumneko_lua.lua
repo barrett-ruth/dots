@@ -1,4 +1,13 @@
 local settings = {
+    capabilities = {
+        textDocument = {
+            completion = {
+                completionItem = {
+                    snippetSupport = false,
+                },
+            },
+        },
+    },
     on_attach = function(client, bufnr)
         client.server_capabilities.documentFormattingProvider = false
 
@@ -6,6 +15,7 @@ local settings = {
     end,
     settings = {
         Lua = {
+            completion = { keywordSnippet = 'Disable' },
             diagnostics = { globals = { 'vim' } },
             runtime = {
                 version = 'LuaJIT',

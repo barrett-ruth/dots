@@ -13,8 +13,6 @@ set completion-ignore-case on
 unset completealiases
 setopt auto_cd incappendhistory extendedhistory histignorealldups
 
-export LC_ALL='en_US.UTF-8'
-
 # XDG
 export XRESOURCES="$XDG_CONFIG_HOME/X11/xresources"
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -27,6 +25,8 @@ export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 export BROWSER='qutebrowser'
 export EDITOR='nvim'
 export MANPAGER='nvim +Man!'
+
+export LC_ALL=en_US.UTF-8
 
 # ZSH
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"

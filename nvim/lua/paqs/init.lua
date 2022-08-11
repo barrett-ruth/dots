@@ -1,4 +1,5 @@
 local files = {
+    'cmp',
     'dirbuf',
     'paq',
     'luasnippets',

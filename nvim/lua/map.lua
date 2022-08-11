@@ -45,15 +45,15 @@ vim.cmd 'cno <c-n> <down>'
 -- :]
 
 -- Location List [:
-map { 'n', ']l', mapstr 'w | lnext' }
-map { 'n', '[l', mapstr 'w | lprev' }
+map { 'n', ']l', mapstr 'lnext' }
+map { 'n', '[l', mapstr 'lprev' }
 map { 'n', '<leader>l', mapstr 'FzfLua loclist' }
 map { 'n', '<leader>L', mapstr 'cal setloclist(0, []) | lcl' }
 -- :]
 
 -- Quickfix List [:
-map { 'n', ']q', mapstr 'w | cnext' }
-map { 'n', '[q', mapstr 'w | cprev' }
+map { 'n', ']q', mapstr 'cnext' }
+map { 'n', '[q', mapstr 'cprev' }
 map { 'n', '<leader>c', mapstr 'FzfLua quickfix' }
 map { 'n', '<leader>C', mapstr 'cal setqflist([]) | ccl' }
 -- :]

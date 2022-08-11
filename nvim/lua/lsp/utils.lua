@@ -64,24 +64,18 @@ M.on_attach = function(client, bufnr)
     bmap { 'n', '\\lR', mapstr 'NullLsRestart' }
 end
 
-local lspconfig = require 'lspconfig'
-
 M.prepare_lsp_settings = function(settings)
-    settings = settings or {}
-    settings.capabilities = vim.lsp.protocol.make_client_capabilities()
-    settings.capabilities.offsetEncoding = { 'utf-16' }
+    local default_settings = {}
+    default_settings.capabilities = require('cmp_nvim_lsp').update_capabilities(
+        vim.lsp.protocol.make_client_capabilities()
+    )
+    default_settings.capabilities.offsetEncoding = { 'utf-16' }
+    default_settings.capabilities.textDocument.completion.completionItem.snippetSupport =
+        false
+    default_settings.flags = { debounce_text_changes = 0 }
+    default_settings.on_attach = M.on_attach
 
-    local generic_settings = {
-        flags = { debounce_text_changes = 0 },
-        on_attach = M.on_attach,
-    }
-
-    return vim.tbl_extend('force', generic_settings, settings)
-end
-
-M.setup_lspconfig = function(server, settings)
-    settings = settings or M.prepare_lsp_settings {}
-    lspconfig[server].setup(settings)
+    return vim.tbl_extend('force', default_settings, settings or {})
 end
 
 return M
