@@ -5,6 +5,9 @@ local on_attach = require('lsp.utils').on_attach
 null_ls.setup {
     sources = {
         -- Diagnostics [:
+        builtins.diagnostics.chktex.with {
+            diagnostics_format = '#{m}'
+        },
         builtins.diagnostics.curlylint.with {
             diagnostics_format = '#{m}',
             extra_filetypes = { 'html' },

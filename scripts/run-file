@@ -19,7 +19,7 @@ html)
     cmd="chromium --new-window $file"
     ;;
 py)
-    [ "$VIRTUAL_ENV" ] && py="$VIRTUAL_ENV/bin/python" || py=python
+    [ "$VIRTUAL_ENV" ] && py="$VIRTUAL_ENV/bin/python" || py='python'
     cmd="$(which $py) $args$file"
     ;;
 js)

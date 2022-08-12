@@ -9,3 +9,4 @@ cache/
 .mypy_cache/
 *.exe
 *.o
+*.fls

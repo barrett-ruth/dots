@@ -32,8 +32,6 @@ local cpp = {
             #define pii pair<int, int>
             #define vi vector<int>
 
-            #define imax INT_MAX
-            #define imin INT_MIN
             #define mod 10e9 + 7
 
             void solve() {{

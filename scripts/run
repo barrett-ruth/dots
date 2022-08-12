@@ -16,7 +16,7 @@ dmenu | dwm | dwmb | st)
     ;;
 *)
     if [ "$(ls ./*.tex)" ]; then
-        cmd='latexmk -pvc -output-directory=build *.tex'
+        cmd='latexmk -pvc *.tex'
     else
         echo "Project '$proj_name' unknown."
         exit

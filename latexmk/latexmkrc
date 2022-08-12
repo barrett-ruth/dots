@@ -1,2 +1,5 @@
 $pdf_mode = 1;
-$pdf_previewer = "zathura --fork %O %S";
+$pdf_previewer = 'zathura --fork %O %S';
+$emulate_aux = 1;
+$aux_dir = 'build';
+$out_dir = 'pdf';
