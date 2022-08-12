@@ -22,7 +22,7 @@ export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 [[ -f "$XAUTHORITY" ]] || touch "$XAUTHORITY"
 
 # Utils
-export BROWSER='qutebrowser'
+export BROWSER='chromium'
 export EDITOR='nvim'
 export MANPAGER='nvim +Man!'
 

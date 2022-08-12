@@ -7,6 +7,12 @@ au('BufEnter', {
     group = aug,
 })
 
+au('BufEnter', {
+    pattern = '*.tex',
+    command = 'se filetype=tex',
+    group = aug
+})
+
 local save_disabled = { '', 'dirbuf' }
 
 au({ 'FocusLost', 'WinLeave' }, {

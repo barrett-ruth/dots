@@ -15,8 +15,12 @@ dmenu | dwm | dwmb | st)
     [ "${proj##*/}" = 'dwmb' ] && cmd="$cmd; killall dwmb; dwmb &"
     ;;
 *)
-    echo "Project '$proj_name' unknown."
-    exit
+    if [ "$(ls ./*.tex)" ]; then
+        cmd='latexmk -pvc -output-directory=build *.tex'
+    else
+        echo "Project '$proj_name' unknown."
+        exit
+    fi
 esac
 
 echo " > $cmd" | sed "s|$HOME|~|g"
