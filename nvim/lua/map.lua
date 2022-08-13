@@ -33,11 +33,6 @@ map { 'n', '<leader>-', 'S<esc>' }
 map { 'n', 'x', '"_x' }
 map { 'n', 'ga', '<Plug>(EasyAlign)' }
 map { 'x', 'ga', '<Plug>(EasyAlign)' }
-map {
-    'n',
-    '<leader>r',
-    mapstr('utils', 'save()') .. mapstr 'vs | te run-file %',
-}
 map({ 'x', 'R', '<esc>gv"ry:%s/<c-r>r//g<left><left>' }, { silent = false })
 map { 'n', 'J', 'mzJ`z' }
 map { 'n', 'Q', 'q:k' }
@@ -75,7 +70,7 @@ map { 'n', '<leader>Q', mapstr 'q!' }
 map {
     'n',
     '<leader>w',
-    mapstr('utils', 'save()'),
+    mapstr('utils', 'format()') .. mapstr 'w',
     { silent = false },
 }
 map { 'n', '<leader>z', 'ZZ' }
