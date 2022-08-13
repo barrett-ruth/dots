@@ -87,6 +87,11 @@ hi('PmenuSbar', { bg = cs.grey_white })
 hi('PmenuThumb', { bg = cs.hi })
 -- :]
 
+-- nvim-cmp [:
+hi('CmpItemAbbrMatch', { fg = cs.green })
+hi('CmpItemAbbrMatchFuzzy', { fg = cs.green })
+-- ]:
+
 -- nvim-tree [:
 hi('NvimTreeIndentMarker', { fg = cs.grey })
 hi('Directory', { fg = cs.orange })
