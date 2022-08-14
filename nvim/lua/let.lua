@@ -1,7 +1,5 @@
 vim.g.mapleader = ' '
 
-vim.g.livepreview_previewer = 'zathura'
-
 vim.g.matchup_matchparen_offscreen = {}
 vim.g.c_syntax_for_h = 1
 vim.g.Hexokinase_highlighters = { 'foregroundfull' }

@@ -24,7 +24,7 @@ vim.g.terminal_ansi_colors = {
     cs.white,
 }
 
--- basic UI [:
+-- basic ui [:
 hi('Normal', { fg = cs.white, bg = cs.bg })
 hi('NonText', { fg = cs.black })
 
@@ -90,7 +90,7 @@ hi('PmenuThumb', { bg = cs.hi })
 -- nvim-cmp [:
 hi('CmpItemAbbrMatch', { fg = cs.green })
 hi('CmpItemAbbrMatchFuzzy', { fg = cs.green })
--- ]:
+-- :]
 
 -- nvim-tree [:
 hi('NvimTreeIndentMarker', { fg = cs.grey })
@@ -148,7 +148,7 @@ hi('SpellLocal', { undercurl = true, special = cs.cyan })
 
 -- treesitter [:
 
--- Comments
+-- comments
 hi('Comment', { italic = true, fg = cs.grey })
 link('Comment', 'TSComment')
 
@@ -239,7 +239,7 @@ link('StorageClass', 'TSClass')
 link('StorageClass', 'TSStruct')
 hi('TSEnum', { fg = cs.purple })
 hi('TSTagDelimiter', { fg = cs.green })
-link('markdownUrl', 'TSURI')
+hi('TSURI', { fg = cs.blue })
 -- :]
 
 -- language-specific highlights [:
@@ -254,8 +254,8 @@ hi('cppTSBoolean', { fg = cs.purple })
 -- type/javascript [:
 hi('javascriptTSBoolean', { fg = cs.purple })
 hi('typescriptTSBoolean', { fg = cs.purple })
-hi('typescriptTSKeywordOperator', { italic = true, fg = cs.red })
 hi('javascriptTSKeywordOperator', { italic = true, fg = cs.red })
+hi('typescriptTSKeywordOperator', { italic = true, fg = cs.red })
 hi('typescriptTSInclude', { italic = true, fg = cs.purple })
 hi('javascriptTSInclude', { italic = true, fg = cs.purple })
 -- :]
