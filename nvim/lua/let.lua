@@ -1,5 +1,9 @@
 vim.g.mapleader = ' '
 
+vim.g.mkdp_auto_close = 0
+vim.g.mkdp_refresh_slow = 1
+vim.g.mkdp_page_title = '${name}'
+
 vim.g.matchup_matchparen_offscreen = {}
 vim.g.c_syntax_for_h = 1
 vim.g.Hexokinase_highlighters = { 'foregroundfull' }

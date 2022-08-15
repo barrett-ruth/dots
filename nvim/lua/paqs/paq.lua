@@ -55,6 +55,10 @@ require 'paq' {
 
     -- misc [:
     'andymass/vim-matchup',
+    {
+        'iamcco/markdown-preview.nvim',
+        run = 'cd app && yarn install',
+    },
     'ibhagwan/fzf-lua',
     'junegunn/vim-easy-align',
     'wellle/targets.vim',
