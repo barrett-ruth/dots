@@ -239,7 +239,8 @@ link('StorageClass', 'TSClass')
 link('StorageClass', 'TSStruct')
 hi('TSEnum', { fg = cs.purple })
 hi('TSTagDelimiter', { fg = cs.green })
-hi('TSURI', { fg = cs.blue })
+hi('TSURI', { fg = cs.green })
+hi('TSTextReference', { fg = cs.blue })
 -- :]
 
 -- language-specific highlights [:

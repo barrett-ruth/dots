@@ -1,7 +1,7 @@
 #!/bin/sh
 
 leave() {
-    sioyek --fork "$1"
+    sioyek "$1"
     exit
 }
 
