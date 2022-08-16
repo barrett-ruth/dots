@@ -16,7 +16,6 @@ alias la='ll -R'
 alias lss='less --use-color --color=d+b --color=P+c --color=u+g'
 
 # Basic programs
-alias bk='bindkey'
 alias clc='calcurse'
 alias g='git'
 alias dk='docker'
@@ -26,12 +25,10 @@ alias nv='nvim'
 alias nvh='nvim config.h'
 alias pe='printenv'
 alias py='python'
-alias qb='qutebrowser'
 alias sctl='systemctl'
 alias jctl='journalctl'
 alias sy='sioyek'
 alias tm='tmux'
-alias za='zathura --fork'
 
 # Make
 alias mk='make'
@@ -51,6 +48,7 @@ y() {
 yg() { y global "$@"; }
 
 # Misc
+alias clearhist='echo > $HISTFILE'
 alias cp='cp -v'
 gcl() { . _gcl "$@" }
 rmd() { [ "$1" = "$HOME" ] || rm -rf "$@"; }

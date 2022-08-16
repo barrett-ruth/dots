@@ -6,6 +6,7 @@ local commands = {
     sh = 'sh',
     c = 'gcc ' .. compile_c,
     cc = 'g++ ' .. compile_c,
+    cpp = 'g++ ' .. compile_c,
 }
 
 local M = {}
@@ -19,7 +20,7 @@ M.run = function()
     local command = commands[extension] .. ' ' .. filename
     local header = string.gsub(' > ' .. command, vim.env.HOME, '~')
 
-    if extension == 'c' or extension == 'cc' then
+    if vim.tbl_contains({ 'c', 'cc', 'cpp' }, extension) then
         command = "trap 'rm a.out' 1 2; "
             .. command
             .. ' && ./a.out && rm a.out'
@@ -38,6 +39,11 @@ M.run = function()
 
             if vim.fn.bufwinid(scratch_bufnr) == -1 then
                 vim.cmd 'vs scratch'
+                vim.api.nvim_win_set_option(
+                    vim.fn.bufwinid(scratch_bufnr),
+                    'spell',
+                    false
+                )
             end
 
             vim.api.nvim_buf_set_lines(
@@ -50,6 +56,10 @@ M.run = function()
 
             local output_data = function(_, data)
                 if data[1] ~= '' then
+                    for k, v in ipairs(data) do
+                        data[k] = string.gsub(v, vim.env.HOME, '~')
+                    end
+
                     vim.api.nvim_buf_set_lines(
                         scratch_bufnr,
                         -1,

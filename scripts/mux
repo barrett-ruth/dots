@@ -3,7 +3,7 @@
 attach_or_restore() {
     [ "$(pgrep tmux)" ] || cmd='start\; run ~/.config/tmux/tmux-resurrect/scripts/restore.sh\; '
 
-    eval "tmux $cmd"a
+    eval "tmux $cmd"a 2>/dev/null || tmux
 }
 
 [ "$1" ] || attach_or_restore
