@@ -70,7 +70,14 @@ map { 'n', '<leader>Q', mapstr 'q!' }
 map {
     'n',
     '<leader>w',
-    mapstr('utils', 'format()') .. mapstr 'w',
+    function()
+        require 'utils'.format()
+        if vim.bo.ft == 'dirbuf' then
+            vim.cmd 'w!'
+        else
+            vim.cmd 'w'
+        end
+    end,
     { silent = false },
 }
 map { 'n', '<leader>z', 'ZZ' }
