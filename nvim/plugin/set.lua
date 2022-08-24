@@ -34,6 +34,8 @@ vim.o.listchars = 'trail:·'
 
 vim.o.modeline = false
 
+vim.opt.mouse:remove 'n'
+
 vim.opt.matchpairs:append '<:>'
 
 vim.o.number = true
