@@ -17,6 +17,8 @@ hadolint-bin 2.10.0-1
 imlib2 1.9.1-1
 intel-ucode 20220809-1
 iwd 1.29-1
+jdk-openjdk 18.0.2.1.u0-1
+jdtls 1.14.0-2
 libxft 2.3.4-1
 libxinerama 1.1.4-4
 linux 5.18.16.arch1-1
