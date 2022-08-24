@@ -9,6 +9,7 @@ local cpp = {
         'cp',
         fmt(
             [[
+            // [:
             #include <algorithm>
             #include <bitset>
             #include <climits>
@@ -33,6 +34,7 @@ local cpp = {
             #define vi vector<int>
 
             #define mod 10e9 + 7
+            // :]
 
             void solve() {{
                 {}

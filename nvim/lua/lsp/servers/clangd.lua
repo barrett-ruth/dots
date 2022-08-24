@@ -3,6 +3,11 @@ return {
         require('lsp.utils').on_attach(client, bufnr)
 
         local utils = require 'utils'
-        utils.bmap { 'n', '\\H', utils.mapstr 'ClangdSwitchSourceHeader' }
+        local bmap, mapstr = utils.bmap, utils.mapstr
+
+        bmap { 'n', '\\Ca', mapstr 'ClangdAST' }
+        bmap { 'n', '\\Cm', mapstr 'ClangdMemoryUsage' }
+        bmap { 'n', '\\Cs', mapstr 'ClangdSwitchSourceHeader' }
+        bmap { 'n', '\\Ct', mapstr 'ClangdToggleInlayHints' }
     end,
 }
