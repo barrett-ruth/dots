@@ -1,5 +1,0 @@
-#!/bin/sh
-
-echo "open -t https://github.com/$1/$2" >> "$QUTE_FIFO"
-
-# vim: ft=sh

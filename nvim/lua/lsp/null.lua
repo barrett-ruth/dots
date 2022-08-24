@@ -58,7 +58,10 @@ null_ls.setup {
         builtins.formatting.black.with {
             extra_args = { '-S', '--fast', '--line-length=79' },
         },
-        builtins.formatting.clang_format,
+        builtins.formatting.clang_format.with {
+            filetypes = { 'c', 'cpp' }
+        },
+        builtins.formatting.google_java_format,
         builtins.formatting.isort,
         builtins.formatting.prettierd,
         builtins.formatting.shfmt.with {

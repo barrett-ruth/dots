@@ -44,13 +44,15 @@ export FONTCONFIG=/usr/share/fonts
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 export GOPATH="$XDG_DATA_HOME/go"
 export LESSHISTFILE="$XDG_DATA_HOME/lesshst"
+export MYPY_CACHE_DIR="$XDG_CACHE_HOME/mypy"
 export NPM_CONFIG_PREFIX='/usr/local'
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
-export NODE_REPL_HISTORY="$XDG_DATA_HOME/.node_repl_history"
+export NODE_REPL_HISTORY="$XDG_DATA_HOME/node_repl_history"
 export PASSWORD_STORE_DIR="$XDG_CONFIG_HOME/password-store"
 export PRETTIERD_DEFAULT_CONFIG="$XDG_CONFIG_HOME/prettierd"
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/rg/config"
+export TERMINFO="$XDG_DATA_HOME/terminfo"
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 # Path

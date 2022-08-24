@@ -12,6 +12,7 @@ fakeroot 1.29-1
 fd 8.4.0-1
 git 2.37.1-1
 go 2:1.19-1
+google-java-format 1.15.0-1
 grub 2:2.06.r261.g2f4430cc0-1
 hadolint-bin 2.10.0-1
 imlib2 1.9.1-1

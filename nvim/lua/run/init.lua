@@ -7,6 +7,7 @@ local commands = {
     c = 'gcc ' .. compile_c,
     cc = 'g++ ' .. compile_c,
     cpp = 'g++ ' .. compile_c,
+    java = 'java'
 }
 
 local M = {}
@@ -24,6 +25,8 @@ M.run = function()
         command = "trap 'rm a.out' 1 2; "
             .. command
             .. ' && ./a.out && rm a.out'
+    elseif 'java' == extension then
+        command = command .. ' && javac ' .. filename
     end
 
     vim.api.nvim_create_autocmd('BufWritePost', {
