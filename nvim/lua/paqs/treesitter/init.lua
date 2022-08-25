@@ -6,6 +6,7 @@ local ensure_installed = {
     'dockerfile',
     'html',
     'http',
+    'java',
     'javascript',
     'json',
     'lua',

@@ -24,6 +24,7 @@ vim.lsp.handlers['textDocument/signatureHelp'] =
 local sources = {
     vimlsp = 'vimls',
     Pyright = 'pyright',
+    Java = 'jdtls',
     ['Lua Diagnostics.'] = 'luals',
     ['Lua Syntax Check.'] = 'luals',
 }

@@ -8,11 +8,12 @@ require 'paq' {
     -- :]
 
     -- lsp [:
-    'neovim/nvim-lspconfig',
     'b0o/SchemaStore.nvim',
     'folke/lua-dev.nvim',
     'jose-elias-alvarez/null-ls.nvim',
     'jose-elias-alvarez/typescript.nvim',
+    'mfussenegger/nvim-jdtls',
+    'neovim/nvim-lspconfig',
     'p00f/clangd_extensions.nvim',
     -- :]
 

@@ -7,6 +7,7 @@ local fts = {
         sh = { eq = '' },
     },
     print = {
+        java = { l = 'System.out.println(', r = ');' },
         javascript = console,
         javascriptreact = console,
         lua = print,
