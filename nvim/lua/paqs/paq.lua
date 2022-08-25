@@ -13,7 +13,6 @@ require 'paq' {
     'folke/lua-dev.nvim',
     'jose-elias-alvarez/null-ls.nvim',
     'jose-elias-alvarez/typescript.nvim',
-    'jose-elias-alvarez/nvim-lsp-ts-utils',
     'p00f/clangd_extensions.nvim',
     -- :]
 

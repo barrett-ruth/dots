@@ -5,10 +5,10 @@ local commands = {
         or 'python',
     sh = 'sh',
     c = 'gcc ' .. compile_c,
-    cc = 'g++ ' .. compile_c,
     cpp = 'g++ ' .. compile_c,
-    java = 'java'
+    java = 'java',
 }
+commands.cc = commands.cpp
 
 local M = {}
 
@@ -19,14 +19,10 @@ M.run = function()
 
     local filename = vim.fn.expand '%:p'
     local command = commands[extension] .. ' ' .. filename
-    local header = string.gsub(' > ' .. command, vim.env.HOME, '~')
+    local header = ' > ' .. string.gsub(command, vim.env.HOME, '~')
 
     if vim.tbl_contains({ 'c', 'cc', 'cpp' }, extension) then
-        command = "trap 'rm a.out' 1 2; "
-            .. command
-            .. ' && ./a.out && rm a.out'
-    elseif 'java' == extension then
-        command = command .. ' && javac ' .. filename
+        command = command .. ' && ./a.out; [ -f a.out ] && rm a.out'
     end
 
     vim.api.nvim_create_autocmd('BufWritePost', {
