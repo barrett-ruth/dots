@@ -10,9 +10,6 @@ local workspace_folder = vim.env.HOME
     .. '/.local/share/eclipse/'
     .. vim.fn.fnamemodify(root_dir, ':p:h:t')
 
-local settings =
-    require('lsp.utils').prepare_lsp_settings(require 'lsp.servers.jdtls')
-
 local config = {
     cmd = {
         'java',
@@ -37,6 +34,9 @@ local config = {
     },
     root_dir = require('jdtls.setup').find_root(root_markers),
 }
+
+local settings =
+    require('lsp.utils').prepare_lsp_settings(require 'lsp.servers.jdtls')
 
 for k, v in pairs(settings) do
     config[k] = v

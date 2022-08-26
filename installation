@@ -35,3 +35,5 @@ fzf:
     replace all ~/.ssh with ~/.config/ssh
 docker:
     if permission errors: usermod -aG docker <user>
+note:
+    xf86-video-intel has brightness incompatibility, but currently glitches out dwm
