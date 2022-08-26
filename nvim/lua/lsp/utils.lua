@@ -33,7 +33,7 @@ M.on_attach = function(client, bufnr)
     end
 
     if client.server_capabilities.renameProvider then
-        bmap { 'n', '\\r', '<esc>' .. mapstr('paqs.refactor', 'rename()') }
+        bmap { 'n', '\\r', mapstr 'lua vim.lsp.buf.rename()' }
     end
 
     for k, v in pairs {
@@ -54,9 +54,6 @@ M.on_attach = function(client, bufnr)
     bmap { 'n', ']\\', mapstr 'lua vim.diagnostic.goto_next()' }
     bmap { 'n', '[\\', mapstr 'lua vim.diagnostic.goto_prev()' }
     bmap { 'n', '\\f', mapstr 'lua vim.diagnostic.open_float()' }
-
-    bmap { 'x', '\\e', '<esc>' .. mapstr('paqs.refactor', 'extract()') }
-    bmap { 'x', '\\p', '<esc>' .. mapstr('paqs.refactor', 'print()') }
 
     bmap { 'n', '\\li', mapstr 'LspInfo' }
     bmap { 'n', '\\lI', mapstr 'NullLsInfo' }
