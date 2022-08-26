@@ -25,8 +25,13 @@ cmp.setup {
         format = function(_, vim_item)
             vim_item.menu = ''
             vim_item.kind = ''
+
             if vim_item.abbr:sub(-1, -1) == '~' then
                 vim_item.abbr = vim_item.abbr:sub(0, -2)
+            end
+
+            if string.find(vim_item.abbr, ' - java.') then
+                vim_item.abbr = vim_item.abbr:gsub('java%.', '', 1)
             end
 
             return vim_item
@@ -37,6 +42,7 @@ cmp.setup {
         { name = 'path' },
     },
     mapping = cmp.mapping {
+        ['<c-y>'] = cmp.mapping.confirm(),
         ['<c-b>'] = cmp.mapping.scroll_docs(-4),
         ['<c-f>'] = cmp.mapping.scroll_docs(4),
         ['<c-e>'] = cmp.mapping.abort(),

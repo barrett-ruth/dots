@@ -66,7 +66,7 @@ map { '', '<leader>y', '"+y' }
 
 -- Saving/Exiting [:
 map { 'n', '<leader>q', mapstr 'q' }
-map { 'n', '<leader>Q', mapstr 'q!' }
+map { 'n', '<leader>Q', mapstr 'qa!' }
 map {
     'n',
     '<leader>w',
