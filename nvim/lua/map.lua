@@ -65,13 +65,22 @@ map { '', '<leader>y', '"+y' }
 -- :]
 
 -- Saving/Exiting [:
-map { 'n', '<leader>q', mapstr 'q' }
+map {
+    'n',
+    '<leader>q',
+    function()
+        local scratch_bufnr = vim.fn.bufnr 'scratch'
+        if scratch_bufnr ~= -1 then vim.cmd('bd ' .. scratch_bufnr) end
+
+        vim.cmd 'q'
+    end,
+}
 map { 'n', '<leader>Q', mapstr 'qa!' }
 map {
     'n',
     '<leader>w',
     function()
-        require 'utils'.format()
+        require('utils').format()
         if vim.bo.ft == 'dirbuf' then
             vim.cmd 'w!'
         else
