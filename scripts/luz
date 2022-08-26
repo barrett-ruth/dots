@@ -1,5 +1,5 @@
 #!/bin/sh
 
-[ "$1" = up ] && cmd=inc || cmd=dec
+[ "$1" = up ] && cmd=A || cmd=U
 
-eval "xbacklight -$cmd 5"
+eval "light -s sysfs/backlight/intel_backlight -$cmd 5"

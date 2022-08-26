@@ -22,6 +22,7 @@ jdk-openjdk 18.0.2.1.u0-1
 jdtls 1.14.0-2
 libxft 2.3.4-1
 libxinerama 1.1.4-4
+light 1.2.2-3
 linux 5.18.16.arch1-1
 linux-firmware 20220708.be7798e-1
 linux-headers 5.18.16.arch1-1
@@ -53,7 +54,6 @@ which 2.21-5
 xclip 0.13-3
 xorg-server 21.1.4-1
 xorg-setxkbmap 1.3.3-1
-xorg-xbacklight 1.2.3-3
 xorg-xinit 1.4.1-3
 xorg-xmodmap 1.0.11-1
 xorg-xrandr 1.5.1-2
