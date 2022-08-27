@@ -13,6 +13,7 @@ return {
         bmap { 'n', '\\jb', mapstr 'JdtBytecode' }
         bmap { 'n', '\\jc', mapstr('jdtls', 'extract_constant()') }
         bmap { 'n', '\\je', mapstr('jdtls', 'extract_variable()') }
+        bmap { 'v', '\\jl', mapstr 'JdtShowLogs' }
         bmap { 'v', '\\jm', mapstr('jdtls', 'extract_method(true)') }
         bmap { 'n', '\\jo', mapstr('jdtls', 'organize_imports()') }
         bmap { 'n', '\\jr', mapstr 'JdtRestart' }
