@@ -1,5 +1,6 @@
 require 'paq' {
     'savq/paq-nvim',
+    'phaazon/hop.nvim',
 
     -- cmp [:
     'hrsh7th/nvim-cmp',
