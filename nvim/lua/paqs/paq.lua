@@ -1,6 +1,5 @@
 require 'paq' {
     'savq/paq-nvim',
-    'phaazon/hop.nvim',
 
     -- cmp [:
     'hrsh7th/nvim-cmp',
@@ -57,20 +56,20 @@ require 'paq' {
 
     -- misc [:
     'andymass/vim-matchup',
+    'elihunter173/dirbuf.nvim',
     {
         'iamcco/markdown-preview.nvim',
         run = 'cd app && yarn install',
     },
     'ibhagwan/fzf-lua',
     'junegunn/vim-easy-align',
-    'wellle/targets.vim',
-
-    'elihunter173/dirbuf.nvim',
     'lewis6991/impatient.nvim',
     'lewis6991/gitsigns.nvim',
     'L3MON4D3/LuaSnip',
     'numToStr/Comment.nvim',
     'ojroques/nvim-bufdel',
+    'phaazon/hop.nvim',
+    'wellle/targets.vim',
     -- :]
 }
 
