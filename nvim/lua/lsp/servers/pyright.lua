@@ -5,4 +5,11 @@ return {
 
         require('lsp.utils').on_attach(client, bufnr)
     end,
+    settings = {
+        python = {
+            analysis = {
+                typeCheckingMode = 'off',
+            },
+        },
+    },
 }

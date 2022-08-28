@@ -17,6 +17,6 @@ xrandr --output "$two" --set TearFree on
 # cmd="$cmd --pos 0x2160 --output $two --mode 2560x1440 --scale 1.5x1.5 --pos 0x0"
 
 # Leftward monitor
-cmd="$cmd --pos 2560x0 --output $two --rotate left --mode 2560x1440 --scale 1.5x1.5 --pos 0x0"
+cmd="$cmd --pos 2160x0 --output $two --rotate left --mode 2560x1440 --scale 1.5x1.5 --pos 0x0"
 
 eval "$cmd"

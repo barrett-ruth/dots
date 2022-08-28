@@ -13,16 +13,16 @@ au('BufEnter', {
     group = aug,
 })
 
- au('QuitPre', {
-     callback = function()
-         local bufnr = vim.fn.bufnr()
-         local bufname = 'scratch' .. bufnr
-         local scratch_bufnr = vim.fn.bufnr(bufname)
+au('QuitPre', {
+    callback = function()
+        local bufnr = vim.fn.bufnr()
+        local bufname = 'scratch' .. bufnr
+        local scratch_bufnr = vim.fn.bufnr(bufname)
 
-         if scratch_bufnr ~= -1 then vim.cmd('bd ' .. bufname) end
-     end,
-     group = aug,
- })
+        if scratch_bufnr ~= -1 then vim.cmd('bd ' .. bufname) end
+    end,
+    group = aug,
+})
 
 local save_disabled = { '', 'dirbuf' }
 
@@ -48,7 +48,7 @@ au('InsertEnter', {
 
 au('InsertLeave', {
     callback = function()
-        vim.cmd 'setl colorcolumn='
+        vim.opt_local.colorcolumn = nil
         require('paqs.luasnippets.utils').leave_snippet()
     end,
     group = aug,
