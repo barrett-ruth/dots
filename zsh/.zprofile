@@ -40,7 +40,6 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
 
 # Programs
 export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
-export ECLIPSE_HOME="$XDG_CONFIG_HOME/eclipse"
 export FONTCONFIG=/usr/share/fonts
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 export GOPATH="$XDG_DATA_HOME/go"

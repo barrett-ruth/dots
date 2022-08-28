@@ -29,15 +29,17 @@ M.run = function()
         group = vim.api.nvim_create_augroup('run', { clear = true }),
         pattern = filename,
         callback = function()
-            local scratch_bufnr = vim.fn.bufnr 'scratch'
+            local bufnr = vim.fn.bufnr()
+            local scratch_name = 'scratch' .. bufnr
+            local scratch_bufnr = vim.fn.bufnr(scratch_name)
 
             if scratch_bufnr == -1 then
                 scratch_bufnr = vim.api.nvim_create_buf(false, true)
-                vim.api.nvim_buf_set_name(scratch_bufnr, 'scratch')
+                vim.api.nvim_buf_set_name(scratch_bufnr, scratch_name)
             end
 
             if vim.fn.bufwinid(scratch_bufnr) == -1 then
-                vim.cmd 'vs scratch'
+                vim.cmd('vs ' .. scratch_name)
                 vim.api.nvim_win_set_option(
                     vim.fn.bufwinid(scratch_bufnr),
                     'spell',

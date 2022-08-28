@@ -10,8 +10,19 @@ au('BufEnter', {
 au('BufEnter', {
     pattern = '*.tex',
     command = 'se filetype=tex',
-    group = aug
+    group = aug,
 })
+
+ au('QuitPre', {
+     callback = function()
+         local bufnr = vim.fn.bufnr()
+         local bufname = 'scratch' .. bufnr
+         local scratch_bufnr = vim.fn.bufnr(bufname)
+
+         if scratch_bufnr ~= -1 then vim.cmd('bd ' .. bufname) end
+     end,
+     group = aug,
+ })
 
 local save_disabled = { '', 'dirbuf' }
 

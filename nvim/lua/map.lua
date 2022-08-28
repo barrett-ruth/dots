@@ -68,12 +68,7 @@ map { '', '<leader>y', '"+y' }
 map {
     'n',
     '<leader>q',
-    function()
-        local scratch_bufnr = vim.fn.bufnr 'scratch'
-        if scratch_bufnr ~= -1 then vim.cmd('bd ' .. scratch_bufnr) end
-
-        vim.cmd 'q'
-    end,
+    mapstr 'q',
 }
 map { 'n', '<leader>Q', mapstr 'qa!' }
 map {
