@@ -12,7 +12,10 @@ barrett-ruth.github.io)
     ;;
 dmenu | dwm | dwmb | st)
     cmd='make clean install; make clean'
-    [ "${proj##*/}" = 'dwmb' ] && cmd="$cmd; killall dwmb; dwmb &"
+    [ "$proj_name" = 'dwmb' ] && cmd="$cmd; killall dwmb; dwmb &"
+    ;;
+Homework*)
+    cmd='java src/*.java'
     ;;
 *)
     if [ "$(ls ./*.tex)" ]; then
@@ -21,6 +24,7 @@ dmenu | dwm | dwmb | st)
         echo "Project '$proj_name' unknown."
         exit
     fi
+    ;;
 esac
 
 echo " > $cmd" | sed "s|$HOME|~|g"
