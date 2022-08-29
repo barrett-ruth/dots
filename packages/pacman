@@ -36,9 +36,9 @@ opendoas 6.8.2-1
 openssh 9.0p1-1
 os-prober 1.80-1
 patch 2.7.6-8
+postgresql 14.5-1
 python 3.10.5-2
 python-adblock 0.6.0-1
-qutebrowser 2.5.2-1
 ripgrep 13.0.0-2
 shellcheck 0.8.0-153
 shfmt 3.5.1-1
