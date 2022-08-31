@@ -75,12 +75,12 @@ map {
     'n',
     '<leader>w',
     function()
-        require('utils').format()
         if vim.bo.ft == 'dirbuf' then
             vim.cmd 'w!'
         else
             vim.cmd 'w'
         end
+        require('utils').format()
     end,
     { silent = false },
 }

@@ -4,15 +4,15 @@
 
 proj="$1"
 
-proj_name="${proj##*/}"
-
-case "$proj_name" in
+case "$(basename "$proj")" in
 barrett-ruth.github.io)
     cmd='chromium --new-window index.html'
     ;;
-dmenu | dwm | dwmb | st)
+dmenu | dwm | st)
     cmd='make clean install; make clean'
-    [ "$proj_name" = 'dwmb' ] && cmd="$cmd; killall dwmb; dwmb &"
+    ;;
+dwmb)
+    cmd='make clean install; make clean; killall dwmb; dwmb &'
     ;;
 Homework*)
     cmd='java src/*.java'

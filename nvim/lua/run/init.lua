@@ -86,9 +86,9 @@ M.setup = function()
     utils.map {
         'n',
         '<leader>r',
-        utils.mapstr('utils', 'format()')
-            .. utils.mapstr('run', 'run()')
-            .. utils.mapstr 'w',
+        utils.mapstr 'w'
+            .. utils.mapstr('utils', 'format()')
+            .. utils.mapstr('run', 'run()'),
     }
 end
 

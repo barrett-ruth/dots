@@ -12,7 +12,7 @@ vim.opt.expandtab = true
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 
-vim.opt.fillchars = 'fold: ,eob: ,vert:│'
+vim.opt.fillchars = 'fold: ,eob: ,vert:│,diff:╱'
 
 vim.opt.foldcolumn = '0'
 vim.opt.foldmethod = 'marker'
