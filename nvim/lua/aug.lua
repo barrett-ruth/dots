@@ -19,7 +19,7 @@ au('QuitPre', {
         local bufname = 'scratch' .. bufnr
         local scratch_bufnr = vim.fn.bufnr(bufname)
 
-        if scratch_bufnr ~= -1 then vim.cmd('BufDel ' .. bufname) end
+        if scratch_bufnr ~= -1 then vim.cmd('BufDel! ' .. bufname) end
     end,
     group = aug,
 })
