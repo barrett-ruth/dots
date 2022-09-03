@@ -56,7 +56,7 @@ echo
 
 mid() {
 vared -p 'Enter timezone: [Region/city]: ' -c timezone
-run "ln -sf /usr/share/zoneinfo/$timezone /etc/localtime"
+run "ln -sf /usr/share/zoneinfo/\"$timezone\" /etc/localtime"
 
 
 run 'hwclock --systohc'
@@ -76,13 +76,13 @@ mv misc/hosts /etc/hosts
 sed -i "s|{HOST}|$hostname|g" /etc/hosts
 
 
-run 'vim /etc/doas.conf'
-
-
 run 'passwd'
 vared -p 'Enter username: ' -c username
 run "useradd -m $username"
 run "usermod -aG wheel,storage,power $username"
+
+
+run 'nvim /etc/doas.conf'
 
 
 run 'systemctl enable dhcpcd.service'
