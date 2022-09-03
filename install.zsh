@@ -56,7 +56,7 @@ echo
 
 mid() {
 vared -p 'Enter timezone: [Region/city]: ' -c timezone
-run "ln -sf /usr/share/zoneinfo/\"$timezone\" /etc/localtime"
+run "ln -sf '/usr/share/zoneinfo/$timezone' /etc/localtime"
 
 
 run 'hwclock --systohc'
