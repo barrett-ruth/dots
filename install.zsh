@@ -1,23 +1,7 @@
-vared -p 'before, mid, or post install? [b/m/p]' -c status
-case "$status" in
-b)
-	before
-	;;
-m)
-	mid
-	;;
-p)
-	post
-	;;
-*)
-	exit
-	;;
-esac
-
-
-
 run() {
+	echo
 	echo "> $*"
+	echo
 	eval "$*"
 }
 
@@ -34,9 +18,11 @@ run "cfdisk /dev/$disk"
 
 
 # Format partitions
+lsblk
 vared -p 'Enter root partition suffix: ' -c root
 vared -p 'Enter home partition suffix: ' -c home
 vared -p 'Enter swap partition suffix: ' -c swap
+vared -p 'Enter efi partition suffix: ' -c efi
 
 run "mkfs.ext4 /dev/$disk$root"
 run "mkfs.ext4 /dev/$disk$home"
@@ -44,7 +30,6 @@ run "mkswap /dev/$disk$swap"
 
 
 # Mount partitions
-vared -p 'Enter efi partition suffix: ' -c efi
 run "mount --mkdir /dev/$disk$efi /mnt/boot/efi"
 run "mount /dev/$disk$root /mnt"
 run "mount --mkdir /dev/$disk$home /mnt/home"
@@ -54,22 +39,22 @@ run "mount --mkdir /dev/$disk$home /mnt/home"
 run "swapon /dev/$disk$swap"
 
 
-run 'pacstrap /mnt base linux linux-firmware linux-headers man-db intel-ucode nvidia nvidia-utils xf86-video-intel iwd dhcpcd opendoas grub efibootmgr os-prober ntfs-3g'
+run 'pacstrap /mnt base linux linux-firmware linux-headers man-db intel-ucode nvidia nvidia-utils xf86-video-intel iwd dhcpcd opendoas git neovim grub efibootmgr os-prober ntfs-3g'
 
 
 run 'genfstab -U /mnt >> /mnt/etc/fstab'
 
 
-echo '***********************************************************************************'
-echo "run 'arch-chroot /mnt; mv /root/dots /mnt/home; cd /mnt/home/dots; zsh install.zsh'"
-echo '***********************************************************************************'
+echo
+echo '**********************************************************************'
+echo "run 'cd /; mv /root/dots /mnt/home; arch-chroot /mnt; zsh install.zsh'"
+echo '**********************************************************************'
+echo
 }
 
 
 
 mid() {
-pacman -Rs vim
-
 vared -p 'Enter timezone: [Region/city]: ' -c timezone
 run "ln -sf /usr/share/zoneinfo/$timezone /etc/localtime"
 
@@ -110,12 +95,29 @@ run 'grub-install --target=x86_64-efi --bootloader-id=grub --recheck'
 run 'grub-mkconfig -o /boot/grub/grub.cfg'
 
 
+echo
 echo '*********************************************************'
 echo "run 'umount -lR /mnt; reboot' and remove the flash drive."
 echo '*********************************************************'
+echo
 }
 
 
 
 post() {
 }
+
+
+
+vared -p 'before, mid, or post install? [b/m/p] ' -c installation_status
+case "$installation_status" in
+b)
+	before
+	;;
+m)
+	mid
+	;;
+p)
+	post
+	;;
+esac
