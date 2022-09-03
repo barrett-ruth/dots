@@ -45,6 +45,9 @@ run 'pacstrap /mnt base linux linux-firmware linux-headers man-db intel-ucode nv
 run 'genfstab -U /mnt >> /mnt/etc/fstab'
 
 
+lsblk
+
+
 echo
 echo '**********************************************************************'
 echo "run 'cd /; mv /root/dots /mnt/home; arch-chroot /mnt; zsh install.zsh'"
