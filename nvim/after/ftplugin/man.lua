@@ -1,4 +1,4 @@
-vim.o.number = true
-vim.o.relativenumber = true
-vim.o.spell = false
-vim.o.signcolumn = 'no'
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.spell = false
+vim.opt.signcolumn = 'no'
