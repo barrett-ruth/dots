@@ -49,9 +49,9 @@ lsblk
 
 
 echo
-echo '**********************************************************************'
-echo "run 'cd /; mv /root/dots /mnt/home; arch-chroot /mnt; zsh install.zsh'"
-echo '**********************************************************************'
+echo '*************************************************************************************'
+echo "run 'cd /; mv /root/dots /mnt/home; arch-chroot /mnt; cd /home/dots; zsh install.zsh'"
+echo '*************************************************************************************'
 echo
 }
 
@@ -99,9 +99,9 @@ run 'grub-install --target=x86_64-efi --bootloader-id=grub --recheck'
 
 
 echo
-echo '*********************************************************'
-echo "run 'umount -lR /mnt; reboot' and remove the flash drive."
-echo '*********************************************************'
+echo '***************************************************************'
+echo "run 'exit; umount -lR /mnt; reboot' and remove the flash drive."
+echo '***************************************************************'
 echo
 }
 
