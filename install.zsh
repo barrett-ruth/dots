@@ -39,7 +39,7 @@ run "mount --mkdir /dev/$disk$home /mnt/home"
 run "swapon /dev/$disk$swap"
 
 
-run 'pacstrap /mnt base linux linux-firmware linux-headers man-db intel-ucode nvidia nvidia-utils xf86-video-intel iwd dhcpcd opendoas git neovim grub efibootmgr os-prober ntfs-3g'
+run 'pacstrap /mnt base linux linux-firmware linux-headers man-db intel-ucode nvidia nvidia-utils xf86-video-intel iwd dhcpcd opendoas git zsh neovim grub efibootmgr os-prober ntfs-3g'
 
 
 run 'genfstab -U /mnt >> /mnt/etc/fstab'
