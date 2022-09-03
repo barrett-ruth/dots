@@ -1,4 +1,4 @@
-vim.o.spell = false
+vim.opt.spell = false
 
 local utils = require 'utils'
 
