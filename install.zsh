@@ -157,6 +157,18 @@ post() {
     run 'git clone https://github.com/tmux-plugins/tmux-resurrect .config/tmux'
     run 'ln -s .config/git .config/fd'
 
+    # suckless programs
+    mkdir dev; cd dev
+    git clone https://githuh.com/barrett-ruth/sl.git dev
+    for e in dmenu dwm dwmb st; do
+        cd "$e"
+        make install
+        make clean
+    done
+    cd
+    
+    git clone https://github.com/barrett-ruth/wp.git
+
 
     run 'rm -rf dots'
 }
