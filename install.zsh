@@ -37,7 +37,7 @@ run "mount --mkdir /dev/$disk$home /mnt/home"
 run "swapon /dev/$disk$swap"
 
 
-run 'pacstrap /mnt base linux linux-firmware linux-headers man-db intel-ucode nvidia nvidia-utils xf86-video-intel iwd dhcpcd opendoas git zsh neovim grub efibootmgr dosfstools mtools os-prober ntfs-3g'
+run 'pacstrap /mnt base linux linux-firmware linux-headers man-db intel-ucode nvidia nvidia-utils xf86-video-intel iwd dhcpcd opendoas git zsh neovim grub efibootmgr os-prober ntfs-3g'
 
 
 run 'genfstab -U /mnt >> /mnt/etc/fstab'
@@ -99,7 +99,7 @@ run 'systemctl start dhcpcd.service'
 run "sed -i '/^#GRUB_DISABLE_OS_PROBER=false/ s/^#*//' /etc/default/grub"
 run "sed -i '/^GRUB_CMDLINE_LINUX_DEFAULT/ s/\"$/ ibt=off\"/' /etc/default/grub"
 run 'grub-install --target=x86_64-efi --bootloader-id=grub --recheck'
-[[ "$(run 'grub-mkconfig -o /boot/grub/grub.cfg' | grep Windows)" ]] || echo ' ***!!! Windows not found in grub install !!!*** '
+run 'grub-mkconfig -o /boot/grub/grub.cfg'
 
 
 echo
@@ -112,6 +112,8 @@ echo
 
 
 post() {
+    # Rebuild grub config to recognize Windows Boot Manager
+    grub-mkconfig -o /boot/grub/grub.cfg
 }
 
 
