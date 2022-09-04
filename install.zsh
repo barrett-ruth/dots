@@ -180,7 +180,7 @@ setup_fzf() {
 git clone https://github.com/junegunn/fzf ~/.config/fzf
 cd .config/fzf
 ./install --xdg --no-update-rc --no-fish --no-bash --completion --key-bindings
-sed -i 's|.ssh|.config/ssh|g|' shell/completion.zsh
+sed -i 's|.ssh|.config/ssh|g' shell/completion.zsh
 cd
 }
 
@@ -200,10 +200,10 @@ cd
 
 
 setup_ssh() {
-sed -i '/#*IdentityFile/ s|.ssh|.config/ssh|g' ssh_config
-sed -i '/#*IdentityFile/ s|^#*||g' ssh_config
-sed -i '/#*AuthorizedKeysFile/ s|.ssh|.config/ssh|g' sshd_config
-sed -i '/#*AuthorizedKeysFile/ s|^#*||g' sshd_config
+doas sed -i '/#*IdentityFile/ s|.ssh|.config/ssh|g' /etc/ssh_config
+doas sed -i '/#*IdentityFile/ s|^#*||g' /etc/ssh_config
+doas sed -i '/#*AuthorizedKeysFile/ s|.ssh|.config/ssh|g' /etc/sshd_config
+doas sed -i '/#*AuthorizedKeysFile/ s|^#*||g' /etc/sshd_config
 
 vared -p 'Enter email to use for ssh account: ' -c email
 run "ssh-keygen -t ed25519 -C $email"
