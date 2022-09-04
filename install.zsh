@@ -146,6 +146,10 @@ post() {
     run 'git clone https://github.com/savq/paq-nvim ~/.local/share/nvim/site/pack/paqs/start/paq-nvim'
     run 'nvim --clean .config/nvim/lua/paqs/paq.lua -c "so|PaqInstall"'
     
+    # zsh
+    chsh -s "$(which zsh)"
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.config/zsh
+
     run 'mv dots/fonts .local/share'
     run 'mv dots/scripts .local/bin'
     run 'git clone https://github.com/tmux-plugins/tmux-resurrect .config/tmux'
