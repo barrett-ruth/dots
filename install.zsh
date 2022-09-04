@@ -116,7 +116,7 @@ post() {
     # opendoas
     sed -i "s|{USERNAME}|$(whoami)|g" dots/misc/doas.conf
     run 'doas mv dots/misc/doas.conf /etc'
-    run 'ln -s /usr/bin/doas /usr/bin/sudo'
+    run 'doas ln -s /usr/bin/doas /usr/bin/sudo'
 
     # nvidia
     run 'chmod +x dots/misc/nvidia.shutdown'
@@ -128,7 +128,7 @@ post() {
     doas sed -i '/^#ParallelDownloads/ s|^#*||' /etc/pacman.conf
 
     run 'doas mv dots/misc/dash.hook /etc/pacman.d/hooks'
-    run 'doaa mv dots/misc/zshenv /etc/zsh'
+    run 'doas mv dots/misc/zshenv /etc/zsh'
 
     # Rebuild grub config to recognize Windows Boot Manager
     run 'doas grub-mkconfig -o /boot/grub/grub.cfg'
@@ -146,15 +146,15 @@ post() {
     # neovim
     run 'mv .config/nvim/spell.encoding.add .local/share/nvim'
     run 'git clone https://github.com/savq/paq-nvim ~/.local/share/nvim/site/pack/paqs/start/paq-nvim'
-    # todo: cd anx make hexokinass (aftwr its xlonex)
     cd .config/nvim
     for e in 'init.lua' plugin after; do
         mv "$e" "t$e"
     done
-    run 'nvim lua/paqs/paq.lua -c "so|PaqInstall|PaqUpdate|q"'
+    run 'nvim lua/paqs/paq.lua -c "so|PaqInstall|q"'
     for e in 'init.lua' plugin after; do
         mv "t$e" "$e"
     done
+    run 'cd ~/.local/share/nvim/site/pack/paqs/start/vim-hexokinase; make vim-hexokinase'
     cd
     
     # zsh
