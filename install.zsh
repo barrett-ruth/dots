@@ -110,25 +110,24 @@ echo
 
 
 post() {
+    # Superuser-requiring actions
     run 'su'
 
-
-    # Setup opendoas
+    # opendoas
     run 'mv dots/misc/doas.conf /etc'
     sed -i "s|{USERNAME}|$username|g" /etc/doas.conf
     run 'ln -s /usr/bin/doas /usr/bin/sudo'
 
+    run 'chmod +x dots/misc/nvidia.shutdown'
+    run 'mv dots/misc/nvidia.shutdown /usr/lib/systemd/system-shutdown'
 
     sed -i "/^#ParallelDownloads/ s|^#*||g" /etc/pacman.conf
-
 
     run 'mv dots/misc/dash.hook /etc/pacman.d/hooks'
     run 'mv dots/misc/zshenv /etc/zsh'
 
-
     # Rebuild grub config to recognize Windows Boot Manager
     run 'grub-mkconfig -o /boot/grub/grub.cfg'
-
 
     # Swap back to initial user
     exit
