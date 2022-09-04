@@ -139,8 +139,11 @@ post() {
     for e in git nvim pythin rg sioyek templates tmux X11 yarn zsh; do
         run "mv dots/$e .config"
     done
-
+    
+    # Neovim
     run 'mv .config/nvim/spell.encoding.add .local/share/nvim'
+    run 'git clone https://github.com/savq/paq-nvim ~/.local/share/nvim/site/pack/paqs/start/paq-nvim'
+    
     run 'mv dots/fonts .local/share'
     run 'mv dots/scripts .local/bin'
     run 'git clone https://github.com/tmux-plugins/tmux-resurrect .config/tmux'
