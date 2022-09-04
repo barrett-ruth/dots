@@ -2,4 +2,4 @@ post install
 separate aur and official to just pacman -S from file
 re test
 make sure to remove neovim and install with nightly
-remove misc fules unneeded
+remove misc fules unneeded eg latexmk
