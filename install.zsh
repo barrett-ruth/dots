@@ -135,7 +135,7 @@ post() {
 
 
     # Misc cleanup
-    rm -rf .bash* .cache
+    rm -rf .bash* .cache .lesshst
 
     # Individual program configs
     run 'mkdir -p .config .local/share/nvim .local/bin'
