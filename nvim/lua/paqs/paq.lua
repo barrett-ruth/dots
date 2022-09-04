@@ -29,7 +29,10 @@ require 'paq' {
     -- :]
 
     -- cosmetic [:
-    'RRethy/vim-hexokinase',
+    {
+        'RRethy/vim-hexokinase',
+        run = 'cd ~/.local/share/nvim/site/pack/paqs/start/vim-hexokinase; make hexokinase'
+    },
     'SmiteshP/nvim-navic',
     -- :]
 
