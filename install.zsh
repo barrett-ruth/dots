@@ -30,7 +30,6 @@ run "mkswap /dev/$disk$swap"
 
 
 # Mount partitions
-run "mount --mkdir /dev/$disk$efi /mnt/boot/efi"
 run "mount /dev/$disk$root /mnt"
 run "mount --mkdir /dev/$disk$home /mnt/home"
 
@@ -63,6 +62,9 @@ run "ln -sf '/usr/share/zoneinfo/$timezone' /etc/localtime"
 
 
 run 'hwclock --systohc'
+
+
+run "mount --mkdir /dev/$disk$efi /mnt/boot/efi"
 
 
 run "sed -i '/^#en_US.UTF-8 UTF-8/ s/^#*//' /etc/locale.gen"
