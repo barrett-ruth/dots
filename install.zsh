@@ -150,7 +150,7 @@ post() {
     for e in 'init.lua' plugin after; do
         mv "$e" "t$e"
     done
-    run 'nvim lua/paqs/paq.lua -c "so|PaqInstall"'
+    run 'nvim lua/paqs/paq.lua -c "so|PaqInstall|q"'
     for e in 'init.lua' plugin after; do
         mv "t$e" "$e"
     done
@@ -165,7 +165,7 @@ post() {
     git clone https://github.com/junegunn/fzf ~/.config/fzf
     cd .config/fzf
     ./install --xdg --no-update-rc --no-fish --no-bash --completion --key-bindings
-    nvim -c '%s/\~\/\.ssh/\~\/\.config\/.ssh/g' shell/completion.zsh
+    nvim -c '%s/\~\/\.ssh/\~\/\.config\/.ssh/g|wq' shell/completion.zsh
     cd
     
     run 'mv dots/fonts .local/share'
@@ -174,16 +174,14 @@ post() {
     run 'ln -s .config/git .config/fd'
 
     # suckless programs
-    zsh
     mkdir dev; cd dev
     git clone https://github.com/barrett-ruth/sl.git; cd sl
     for e in dmenu dwm dwmb st; do
         cd "$e"
-        LC_ALL= make install
+        TERMINFO=~/.local/share/terminfo LC_ALL= make install
         make clean
         cd ..
     done
-    exit
     
     git clone https://github.com/barrett-ruth/wp.git
 
