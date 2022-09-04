@@ -132,6 +132,7 @@ post() {
     mv .config/nvim/spell.encoding.add .local/share/nvim
     mv dots/fonts .local/share
     mv dots/scripts .local/bin
+    git clone https://github.com/tmux-plugins/tmux-resurrect .config/tmux
 }
 
 
