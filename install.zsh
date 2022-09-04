@@ -64,7 +64,7 @@ run "ln -sf '/usr/share/zoneinfo/$timezone' /etc/localtime"
 run 'hwclock --systohc'
 
 
-run "mount --mkdir /dev/$disk$efi /mnt/boot/efi"
+run "mount --mkdir /dev/$disk$efi /boot/efi"
 
 
 run "sed -i '/^#en_US.UTF-8 UTF-8/ s/^#*//' /etc/locale.gen"
