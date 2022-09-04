@@ -113,6 +113,7 @@ post() {
     run 'su'
     run 'mv dots/misc/doas.conf /etc'
     sed -i "s|{USERNAME}|$username|g" /etc/doas.conf
+     ln -s /usr/bin/doas /usr/bin/sudo
 
 
     # Rebuild grub config to recognize Windows Boot Manager
@@ -133,6 +134,7 @@ post() {
     mv dots/fonts .local/share
     mv dots/scripts .local/bin
     git clone https://github.com/tmux-plugins/tmux-resurrect .config/tmux
+    ln -s .config/git .config/fd
 }
 
 
