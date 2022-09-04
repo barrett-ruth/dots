@@ -111,6 +111,7 @@ echo
 
 post() {
     # Superuser-requiring actions
+    username="$(whoami)"
     run 'su'
 
     # opendoas
