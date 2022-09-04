@@ -5,3 +5,6 @@ make sure to remove neovim and install with nightly
 makebfolder structure
 clone everyrhing (e.g wp)
 grub dont count down
+ssh key and open ssh
+removing oackages dir by just transgerring pip installs and yarn installs into installatiob
+probably a refactor of the install script
