@@ -113,7 +113,10 @@ post() {
     run 'su'
     run 'mv dots/misc/doas.conf /etc'
     sed -i "s|{USERNAME}|$username|g" /etc/doas.conf
-     ln -s /usr/bin/doas /usr/bin/sudo
+    ln -s /usr/bin/doas /usr/bin/sudo
+
+
+    mv dots/misc/zshenv /etc/zsh
 
 
     # Rebuild grub config to recognize Windows Boot Manager
