@@ -1,5 +1,0 @@
-$pdf_mode = 1;
-$pdf_previewer = 'sioyek --new-instance %O %S';
-$emulate_aux = 1;
-$aux_dir = 'build';
-$out_dir = 'pdf';
