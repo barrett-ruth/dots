@@ -114,6 +114,9 @@ post() {
     username="$(whoami)"
     run 'su'
 
+    # Get last of packages
+    pacman -S make
+
     # opendoas
     run 'mv dots/misc/doas.conf /etc'
     sed -i "s|{USERNAME}|$username|g" /etc/doas.conf
@@ -167,7 +170,7 @@ post() {
 
     # suckless programs
     mkdir dev; cd dev
-    git clone https://githuh.com/barrett-ruth/sl.git
+    git clone https://githuh.com/barrett-ruth/sl.git; cd sl
     for e in dmenu dwm dwmb st; do
         cd "$e"
         make install
