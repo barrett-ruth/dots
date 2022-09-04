@@ -110,7 +110,6 @@ echo
 
 
 post() {
-    username="$(whoami)"
     run 'su'
     run 'mv dots/misc/doas.conf /etc'
     sed -i "s|{USERNAME}|$username|g" /etc/doas.conf
@@ -118,7 +117,8 @@ post() {
     # Rebuild grub config to recognize Windows Boot Manager
     run 'grub-mkconfig -o /boot/grub/grub.cfg'
 
-    run "su $username"
+    # Swap back to initial user
+    exit
 }
 
 
