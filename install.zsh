@@ -162,7 +162,7 @@ post() {
     
     # zsh
     chsh -s "$(which zsh)"
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.config/zsh
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.config/zsh/zsh-syntax-highlighting
 
     run 'mv dots/fonts .local/share'
     run 'mv dots/scripts .local/bin'
