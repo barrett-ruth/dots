@@ -1,11 +1,4 @@
-post install
-separate aur and official to just pacman -S from file
-re test
-make sure to remove neovim and install with nightly
-makebfolder structure
-clone everyrhing (e.g wp)
+setting up light automatically
+make sure postgres su works
+make sure sioyek is correct install
 grub dont count down
-ssh key and open ssh
-removing oackages dir by just transgerring pip installs and yarn installs into installatiob
-probably a refactor of the install script
-removing initial dotfiles formed from installation

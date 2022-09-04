@@ -1,9 +1,0 @@
-black
-curlylint
-isort
-jedi-language-server
-mypy
-neovim
-flake8
-virtualenv
-yamllint
