@@ -186,7 +186,7 @@ post() {
     git clone https://github.com/barrett-ruth/sl.git; cd sl
     for e in dmenu dwm dwmb st; do
         cd "$e"
-        make install
+        LC_ALL= make install
         make clean
         cd ..
     done
