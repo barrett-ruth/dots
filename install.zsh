@@ -182,6 +182,7 @@ post() {
         make clean
         cd ..
     done
+    cd
     
     git clone https://github.com/barrett-ruth/wp.git
 
