@@ -18,12 +18,8 @@ Homework*)
     cmd='java src/*.java'
     ;;
 *)
-    if [ "$(ls ./*.tex)" ]; then
-        cmd='latexmk -pvc *.tex'
-    else
-        echo "Project '$proj_name' unknown."
-        exit
-    fi
+    echo "Project '$proj_name' unknown."
+    exit
     ;;
 esac
 
