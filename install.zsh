@@ -114,11 +114,24 @@ post() {
     run 'mv dots/misc/doas.conf /etc'
     sed -i "s|{USERNAME}|$username|g" /etc/doas.conf
 
+
     # Rebuild grub config to recognize Windows Boot Manager
     run 'grub-mkconfig -o /boot/grub/grub.cfg'
 
+
     # Swap back to initial user
     exit
+
+
+    # Individual program configs
+    mkdir -p .config .local/share/nvim .local/bin
+    for e in git nvim pythin rg sioyek templates tmux X11 yarn zsh; do
+        mv "dots/$e" .config
+    done
+
+    mv .config/nvim/spell.encoding.add .local/share/nvim
+    mv dots/fonts .local/share
+    mv dots/scripts .local/bin
 }
 
 
