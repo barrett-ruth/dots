@@ -21,6 +21,8 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 [[ -f "$XAUTHORITY" ]] || touch "$XAUTHORITY"
 
+export LC_ALL=en_US.UTF-8
+
 # Utils
 export BROWSER='chromium'
 export EDITOR='nvim'
