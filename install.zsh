@@ -65,7 +65,7 @@ run 'hwclock --systohc'
 
 
 # Set locales
-run "sed -i '/^#en_US.UTF-8 UTF-8/ s/^#*//' /etc/locale.gen"
+run "sed -i '/^#en_US.UTF-8 UTF-8/ s|^#*||' /etc/locale.gen"
 run "echo 'LANG=en_US.UTF-8' > /etc/locale.conf"
 
 
@@ -90,8 +90,8 @@ run 'systemctl enable iwd.service'
 
 
 # Configure grub
-sed -i '/^#GRUB_DISABLE_OS_PROBER=false/ s/^#*//' /etc/default/grub
-sed -i '/^GRUB_CMDLINE_LINUX_DEFAULT/ s/\"$/ ibt=off\"/' /etc/default/grub
+sed -i '/^#GRUB_DISABLE_OS_PROBER=false/ s|^#*||' /etc/default/grub
+sed -i '/^GRUB_CMDLINE_LINUX_DEFAULT/ s|"$| ibt=off"|' /etc/default/grub
 run 'grub-install --target=x86_64-efi --bootloader-id=grub --recheck'
 run 'grub-mkconfig -o /boot/grub/grub.cfg'
 
@@ -114,6 +114,9 @@ post() {
     run 'mv dots/misc/doas.conf /etc'
     sed -i "s|{USERNAME}|$username|g" /etc/doas.conf
     ln -s /usr/bin/doas /usr/bin/sudo
+
+
+    sed -i "/^#ParallelDownloads/ s|^#*||g" /etc/pacman.conf
 
 
     mv dots/misc/zshenv /etc/zsh
