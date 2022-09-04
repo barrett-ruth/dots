@@ -113,7 +113,10 @@ echo
 
 post() {
     # Rebuild grub config to recognize Windows Boot Manager
-    grub-mkconfig -o /boot/grub/grub.cfg
+    run 'grub-mkconfig -o /boot/grub/grub.cfg'
+
+    
+    run "mv /home/dots /home/$username"
 }
 
 
