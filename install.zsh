@@ -166,7 +166,12 @@ post() {
     # zsh
     chsh -s "$(which zsh)"
     git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.config/zsh/zsh-syntax-highlighting
-
+    git clone https://github.com/junegunn/fzf ~/.config/zsh/fzf
+    cd .config/zsh/fzf
+    ./install --xdg --no-update-rc --no-fish --no-bash --completion --key-bindings
+    nvim -c '%s/\~\/\.ssh/\~\/\.config\/.ssh/g' shell/completion.zsh
+    cd
+    
     run 'mv dots/fonts .local/share'
     run 'mv dots/scripts .local/bin'
     run 'git clone https://github.com/tmux-plugins/tmux-resurrect .config/tmux/tmux-resurrect'
