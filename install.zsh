@@ -22,6 +22,7 @@ lsblk
 vared -p 'Enter root partition suffix: ' -c root
 vared -p 'Enter home partition suffix: ' -c home
 vared -p 'Enter swap partition suffix: ' -c swap
+vared -p 'Enter efi partition suffix: ' -c efi
 
 run "mkfs.ext4 /dev/$disk$root"
 run "mkfs.ext4 /dev/$disk$home"
@@ -31,7 +32,7 @@ run "mkswap /dev/$disk$swap"
 # Mount partitions
 run "mount /dev/$disk$root /mnt"
 run "mount --mkdir /dev/$disk$home /mnt/home"
-
+run "mount --mkdir /dev/$disk$efi /mnt/boot/efi"
 
 # Enable swap volume
 run "swapon /dev/$disk$swap"
@@ -63,13 +64,8 @@ run "ln -sf '/usr/share/zoneinfo/$timezone' /etc/localtime"
 run 'hwclock --systohc'
 
 
-vared -p 'Enter efi partition suffix: ' -c efi
-run "mount --mkdir /dev/$disk$efi /boot/efi"
-
-
+# Set locales
 run "sed -i '/^#en_US.UTF-8 UTF-8/ s/^#*//' /etc/locale.gen"
-
-
 run "echo 'LANG=en_US.UTF-8' > /etc/locale.conf"
 
 
@@ -81,6 +77,7 @@ run 'mv dots/misc/hosts /etc'
 sed -i "s|{HOST}|$hostname|g" /etc/hosts
 
 
+# Configure users
 run 'passwd'
 vared -p 'Enter username: ' -c username
 run "useradd -m $username"
@@ -88,24 +85,19 @@ run "usermod -aG wheel,storage,power $username"
 run "passwd $username"
 
 
-# add this to post instead, make sure to use run and doas
-# mv dots/misc/doas.conf /etc
-# sed -i "s|{USER}|$username|g" /etc/doas.conf
+run 'systemctl enable dhcpcd.service'
+run 'systemctl enable iwd.service'
+
+
+# Configure grub
+sed -i '/^#GRUB_DISABLE_OS_PROBER=false/ s/^#*//' /etc/default/grub
+sed -i '/^GRUB_CMDLINE_LINUX_DEFAULT/ s/\"$/ ibt=off\"/' /etc/default/grub
+run 'grub-install --target=x86_64-efi --bootloader-id=grub --recheck'
+run 'grub-mkconfig -o /boot/grub/grub.cfg'
 
 
 # Relocate dots
 run "mv dots /home/$username"
-
-
-run 'systemctl enable dhcpcd.service'
-run 'systemctl start dhcpcd.service'
-
-
-# Configure grub
-run "sed -i '/^#GRUB_DISABLE_OS_PROBER=false/ s/^#*//' /etc/default/grub"
-run "sed -i '/^GRUB_CMDLINE_LINUX_DEFAULT/ s/\"$/ ibt=off\"/' /etc/default/grub"
-run 'grub-install --target=x86_64-efi --bootloader-id=grub --recheck'
-run 'grub-mkconfig -o /boot/grub/grub.cfg'
 
 
 echo
@@ -118,8 +110,15 @@ echo
 
 
 post() {
+    username="$(whoami)"
+    run 'su'
+    run 'mv dots/misc/doas.conf /etc'
+    sed -i "s|{USERNAME}|$username|g" /etc/doas.conf
+
     # Rebuild grub config to recognize Windows Boot Manager
-    run 'doas grub-mkconfig -o /boot/grub/grub.cfg'
+    run 'grub-mkconfig -o /boot/grub/grub.cfg'
+
+    run "su $username"
 }
 
 
