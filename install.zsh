@@ -155,6 +155,9 @@ post() {
     run 'mv dots/scripts .local/bin'
     run 'git clone https://github.com/tmux-plugins/tmux-resurrect .config/tmux'
     run 'ln -s .config/git .config/fd'
+
+
+    run 'rm -rf dots'
 }
 
 
