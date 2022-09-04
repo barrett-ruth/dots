@@ -101,9 +101,9 @@ run "mv dots /home/$username"
 
 
 echo
-echo '***************************************************************'
-echo "run 'exit; umount -lR /mnt; reboot' and remove the flash drive."
-echo '***************************************************************'
+echo '*********************************************************'
+echo "run 'exit; umount -lR /mnt; reboot; zsh dots/install.zzh'"
+echo '*********************************************************'
 echo
 }
 
@@ -114,7 +114,7 @@ post() {
     run 'doas pacman -S gcc libxft libxinerama make pkgconf which'
 
     # opendoas
-    sed -i "s|{USERNAME}|$username|g" dots/misc/doas.conf
+    sed -i "s|{USERNAME}|$(whoami)|g" dots/misc/doas.conf
     run 'doas mv dots/misc/doas.conf /etc'
     run 'ln -s /usr/bin/doas /usr/bin/sudo'
 
