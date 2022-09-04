@@ -22,7 +22,6 @@ lsblk
 vared -p 'Enter root partition suffix: ' -c root
 vared -p 'Enter home partition suffix: ' -c home
 vared -p 'Enter swap partition suffix: ' -c swap
-vared -p 'Enter efi partition suffix: ' -c efi
 
 run "mkfs.ext4 /dev/$disk$root"
 run "mkfs.ext4 /dev/$disk$home"
@@ -64,6 +63,7 @@ run "ln -sf '/usr/share/zoneinfo/$timezone' /etc/localtime"
 run 'hwclock --systohc'
 
 
+vared -p 'Enter efi partition suffix: ' -c efi
 run "mount --mkdir /dev/$disk$efi /boot/efi"
 
 
