@@ -47,9 +47,9 @@ lsblk
 
 
 echo
-echo '*************************************************************************************'
-echo "run 'cd /; mv /root/dots /mnt/home; arch-chroot /mnt; cd /home/dots; zsh install.zsh'"
-echo '*************************************************************************************'
+echo '**********************************************************************'
+echo "run 'cd /; mv /root/dots /mnt; arch-chroot /mnt; zsh dots/install.zsh'"
+echo '**********************************************************************'
 echo
 }
 
@@ -77,8 +77,12 @@ vared -p 'Enter hostname: ' -c hostname
 run "echo $hostname > /etc/hostname"
 
 
-mv misc/hosts /etc/hosts
+mv dots/misc/hosts /etc
 sed -i "s|{HOST}|$hostname|g" /etc/hosts
+
+
+mv dots/misc/doas.conf /etc
+sed -i "s|{HOST}|$hostname|g" /etc/doas.conf
 
 
 run 'passwd'
@@ -88,7 +92,8 @@ run "usermod -aG wheel,storage,power $username"
 run "passwd $username"
 
 
-run 'nvim /etc/doas.conf'
+# Relocate dots
+run "mv dots /home/$username"
 
 
 run 'systemctl enable dhcpcd.service'
@@ -113,10 +118,7 @@ echo
 
 post() {
     # Rebuild grub config to recognize Windows Boot Manager
-    run 'grub-mkconfig -o /boot/grub/grub.cfg'
-
-    
-    run "mv /home/dots /home/$username"
+    run 'doas grub-mkconfig -o /boot/grub/grub.cfg'
 }
 
 
