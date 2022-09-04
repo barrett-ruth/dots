@@ -173,6 +173,7 @@ post() {
     run 'ln -s .config/git .config/fd'
 
     # suckless programs
+    zsh
     mkdir dev; cd dev
     git clone https://github.com/barrett-ruth/sl.git; cd sl
     for e in dmenu dwm dwmb st; do
@@ -181,7 +182,7 @@ post() {
         make clean
         cd ..
     done
-    cd
+    exit
     
     git clone https://github.com/barrett-ruth/wp.git
 
