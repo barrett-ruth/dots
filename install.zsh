@@ -143,6 +143,7 @@ post() {
     # Neovim
     run 'mv .config/nvim/spell.encoding.add .local/share/nvim'
     run 'git clone https://github.com/savq/paq-nvim ~/.local/share/nvim/site/pack/paqs/start/paq-nvim'
+    run 'nvim --clean .config/nvim/lua/paqs/paq.lua -c "so|PaqInstall"'
     
     run 'mv dots/fonts .local/share'
     run 'mv dots/scripts .local/bin'
