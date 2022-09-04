@@ -2,5 +2,4 @@ post install
 separate aur and official to just pacman -S from file
 re test
 make sure to remove neovim and install with nightly
-see if mtools is needeD
-add kernel itb=offf
+remove misc fules unneeded
