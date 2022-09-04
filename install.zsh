@@ -110,35 +110,28 @@ echo
 
 
 post() {
-    # Superuser-requiring actions
-    username="$(whoami)"
-    run 'su'
-
     # Get last of packages
-    pacman -S gcc libxft libxinerama make pkgconf which
+    run 'doas pacman -S gcc libxft libxinerama make pkgconf which'
 
     # opendoas
-    run 'mv dots/misc/doas.conf /etc'
-    sed -i "s|{USERNAME}|$username|g" /etc/doas.conf
+    sed -i "s|{USERNAME}|$username|g" dots/misc/doas.conf
+    run 'doas mv dots/misc/doas.conf /etc'
     run 'ln -s /usr/bin/doas /usr/bin/sudo'
 
     # nvidia
     run 'chmod +x dots/misc/nvidia.shutdown'
-    run 'mv dots/misc/nvidia.shutdown /usr/lib/systemd/system-shutdown'
-    run 'mv dots/misc/nvidia.hook /etc/pacman.d/hooks'
+    run 'doas mv dots/misc/nvidia.shutdown /usr/lib/systemd/system-shutdown'
+    run 'doas mv dots/misc/nvidia.hook /etc/pacman.d/hooks'
     # todo: add nvidia modules and rebuild mkinitcpio
 
-    sed -i '/^#HookDir/ s|^#*||' /etc/pacman.conf
-    sed -i '/^#ParallelDownloads/ s|^#*||' /etc/pacman.conf
+    doas sed -i '/^#HookDir/ s|^#*||' /etc/pacman.conf
+    doas sed -i '/^#ParallelDownloads/ s|^#*||' /etc/pacman.conf
 
-    run 'mv dots/misc/dash.hook /etc/pacman.d/hooks'
-    run 'mv dots/misc/zshenv /etc/zsh'
+    run 'doas mv dots/misc/dash.hook /etc/pacman.d/hooks'
+    run 'doaa mv dots/misc/zshenv /etc/zsh'
 
     # Rebuild grub config to recognize Windows Boot Manager
-    run 'grub-mkconfig -o /boot/grub/grub.cfg'
-
-    # Swap back to initial user
-    exit
+    run 'doas grub-mkconfig -o /boot/grub/grub.cfg'
 
 
     # Misc cleanup
