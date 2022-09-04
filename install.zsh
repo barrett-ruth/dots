@@ -128,7 +128,7 @@ post() {
     run 'mv dots/misc/nvidia.hook /etc/pacman.d/hooks'
     # todo: add nvidia modules and rebuild mkinitcpio
 
-    sed -i '/HookDir/ s|^#*||' /etc/pacman.conf
+    sed -i '/^#HookDir/ s|^#*||' /etc/pacman.conf
     sed -i '/^#ParallelDownloads/ s|^#*||' /etc/pacman.conf
 
     run 'mv dots/misc/dash.hook /etc/pacman.d/hooks'
@@ -166,7 +166,7 @@ post() {
 
     run 'mv dots/fonts .local/share'
     run 'mv dots/scripts .local/bin'
-    run 'git clone https://github.com/tmux-plugins/tmux-resurrect .config/tmux'
+    run 'git clone https://github.com/tmux-plugins/tmux-resurrect .config/tmux/tmux-resurrect'
     run 'ln -s .config/git .config/fd'
 
     # suckless programs
@@ -176,6 +176,7 @@ post() {
         cd "$e"
         make install
         make clean
+        cd ..
     done
     cd
     
