@@ -146,6 +146,7 @@ post() {
     # neovim
     run 'mv .config/nvim/spell.encoding.add .local/share/nvim'
     run 'git clone https://github.com/savq/paq-nvim ~/.local/share/nvim/site/pack/paqs/start/paq-nvim'
+    # todo: cd anx make hexokinass (aftwr its xlonex)
     cd .config/nvim
     for e in 'init.lua' plugin after; do
         mv "$e" "t$e"
