@@ -166,8 +166,11 @@ post() {
     # zsh
     chsh -s "$(which zsh)"
     git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.config/zsh/zsh-syntax-highlighting
-    git clone https://github.com/junegunn/fzf ~/.config/zsh/fzf
-    cd .config/zsh/fzf
+   
+
+    # fzf
+    git clone https://github.com/junegunn/fzf ~/.config/fzf
+    cd .config/fzf
     ./install --xdg --no-update-rc --no-fish --no-bash --completion --key-bindings
     nvim -c '%s/\~\/\.ssh/\~\/\.config\/.ssh/g' shell/completion.zsh
     cd
