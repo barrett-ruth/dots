@@ -96,6 +96,7 @@ run 'systemctl start dhcpcd.service'
 
 # Configure grub
 run "sed -i '/^#GRUB_DISABLE_OS_PROBER=false/ s/^#*//' /etc/default/grub"
+run "sed -i '/^GRUB_CMDLINE_LINUX_DEFAULT/ s/\"$/ ibt=off\"/' /etc/default/grub"
 run 'grub-install --target=x86_64-efi --bootloader-id=grub --recheck'
 [[ "$(run 'grub-mkconfig -o /boot/grub/grub.cfg' | grep Windows)" ]] || echo ' ***!!! Windows not found in grub install !!!*** '
 
