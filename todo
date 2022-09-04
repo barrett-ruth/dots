@@ -8,3 +8,4 @@ grub dont count down
 ssh key and open ssh
 removing oackages dir by just transgerring pip installs and yarn installs into installatiob
 probably a refactor of the install script
+removing initial dotfiles formed from installation
