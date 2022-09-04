@@ -6,12 +6,6 @@ run() {
 }
 
 
-partition_disk() {
-lsblk
-run "cfdisk /dev/$1"
-}
-
-
 format_partitions() {
 run "mkfs.ext4 /dev/$1$2"
 run "mkfs.ext4 /dev/$1$3"
@@ -29,8 +23,9 @@ run "mount --mkdir /dev/$1$4 /mnt/boot/efi"
 before() {
 run 'timedatectl set-ntp true'
 
+lsblk
 vared -p 'Enter disk to partition: ' -c disk
-partition_disk "$disk"
+cfdisk "/dev/$disk"
 
 lsblk
 vared -p 'Enter root partition suffix: ' -c root
