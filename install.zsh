@@ -146,7 +146,15 @@ post() {
     # neovim
     run 'mv .config/nvim/spell.encoding.add .local/share/nvim'
     run 'git clone https://github.com/savq/paq-nvim ~/.local/share/nvim/site/pack/paqs/start/paq-nvim'
-    run 'nvim --clean .config/nvim/lua/paqs/paq.lua -c "so|PaqInstall"'
+    cd .config/nvim
+    for e in 'init.lua' plugin after; do
+        mv "$e" "t$e"
+    done
+    run 'nvim lua/paqs/paq.lua -c "so|PaqInstall"'
+    for e in 'init.lua' plugin after; do
+        mv "t$e" "$e"
+    done
+    cd
     
     # zsh
     chsh -s "$(which zsh)"
