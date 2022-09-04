@@ -77,12 +77,8 @@ vared -p 'Enter hostname: ' -c hostname
 run "echo $hostname > /etc/hostname"
 
 
-mv dots/misc/hosts /etc
+run 'mv dots/misc/hosts /etc'
 sed -i "s|{HOST}|$hostname|g" /etc/hosts
-
-
-mv dots/misc/doas.conf /etc
-sed -i "s|{HOST}|$hostname|g" /etc/doas.conf
 
 
 run 'passwd'
@@ -90,6 +86,11 @@ vared -p 'Enter username: ' -c username
 run "useradd -m $username"
 run "usermod -aG wheel,storage,power $username"
 run "passwd $username"
+
+
+# add this to post instead, make sure to use run and doas
+# mv dots/misc/doas.conf /etc
+# sed -i "s|{USER}|$username|g" /etc/doas.conf
 
 
 # Relocate dots
