@@ -85,6 +85,7 @@ run 'passwd'
 vared -p 'Enter username: ' -c username
 run "useradd -m $username"
 run "usermod -aG wheel,storage,power $username"
+run "passwd $username"
 
 
 run 'nvim /etc/doas.conf'
