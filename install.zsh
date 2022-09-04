@@ -120,6 +120,7 @@ post() {
 
     # nvidia
     run 'chmod +x dots/misc/nvidia.shutdown'
+    run 'mv dots/misc/nvidia.hook /etc/pacman.d/hooks'
     run 'mv dots/misc/nvidia.shutdown /usr/lib/systemd/system-shutdown'
     # todo: add nvidia modules and rebuild mkinitcpio
 
