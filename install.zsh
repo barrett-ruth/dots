@@ -141,6 +141,9 @@ post() {
     exit
 
 
+    # Misc cleanup
+    rm -rf .bash* .cache
+
     # Individual program configs
     run 'mkdir -p .config .local/share/nvim .local/bin'
     for e in git nvim python rg sioyek templates tmux X11 yarn zsh; do
@@ -171,7 +174,7 @@ post() {
 
     # suckless programs
     mkdir dev; cd dev
-    git clone https://githuh.com/barrett-ruth/sl.git; cd sl
+    git clone https://github.com/barrett-ruth/sl.git; cd sl
     for e in dmenu dwm dwmb st; do
         cd "$e"
         make install
