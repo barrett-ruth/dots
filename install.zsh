@@ -167,7 +167,7 @@ post() {
 
     # suckless programs
     mkdir dev; cd dev
-    git clone https://githuh.com/barrett-ruth/sl.git dev
+    git clone https://githuh.com/barrett-ruth/sl.git
     for e in dmenu dwm dwmb st; do
         cd "$e"
         make install
