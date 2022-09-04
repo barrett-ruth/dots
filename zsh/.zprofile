@@ -26,8 +26,6 @@ export BROWSER='chromium'
 export EDITOR='nvim'
 export MANPAGER='nvim +Man!'
 
-export LC_ALL=en_US.UTF-8
-
 # ZSH
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export HYPHEN_INSENSITIVE='true'
