@@ -118,8 +118,10 @@ post() {
     sed -i "s|{USERNAME}|$username|g" /etc/doas.conf
     run 'ln -s /usr/bin/doas /usr/bin/sudo'
 
+    # nvidia
     run 'chmod +x dots/misc/nvidia.shutdown'
     run 'mv dots/misc/nvidia.shutdown /usr/lib/systemd/system-shutdown'
+    # todo: add nvidia modules and rebuild mkinitcpio
 
     sed -i "/^#ParallelDownloads/ s|^#*||g" /etc/pacman.conf
 
@@ -139,7 +141,7 @@ post() {
         run "mv dots/$e .config"
     done
     
-    # Neovim
+    # neovim
     run 'mv .config/nvim/spell.encoding.add .local/share/nvim'
     run 'git clone https://github.com/savq/paq-nvim ~/.local/share/nvim/site/pack/paqs/start/paq-nvim'
     run 'nvim --clean .config/nvim/lua/paqs/paq.lua -c "so|PaqInstall"'
