@@ -111,15 +111,19 @@ echo
 
 post() {
     run 'su'
+
+
+    # Setup opendoas
     run 'mv dots/misc/doas.conf /etc'
     sed -i "s|{USERNAME}|$username|g" /etc/doas.conf
-    ln -s /usr/bin/doas /usr/bin/sudo
+    run 'ln -s /usr/bin/doas /usr/bin/sudo'
 
 
     sed -i "/^#ParallelDownloads/ s|^#*||g" /etc/pacman.conf
 
 
-    mv dots/misc/zshenv /etc/zsh
+    run 'mv dots/misc/dash.hook /etc/pacman.d/hooks'
+    run 'mv dots/misc/zshenv /etc/zsh'
 
 
     # Rebuild grub config to recognize Windows Boot Manager
@@ -131,16 +135,16 @@ post() {
 
 
     # Individual program configs
-    mkdir -p .config .local/share/nvim .local/bin
+    run 'mkdir -p .config .local/share/nvim .local/bin'
     for e in git nvim pythin rg sioyek templates tmux X11 yarn zsh; do
-        mv "dots/$e" .config
+        run "mv dots/$e .config"
     done
 
-    mv .config/nvim/spell.encoding.add .local/share/nvim
-    mv dots/fonts .local/share
-    mv dots/scripts .local/bin
-    git clone https://github.com/tmux-plugins/tmux-resurrect .config/tmux
-    ln -s .config/git .config/fd
+    run 'mv .config/nvim/spell.encoding.add .local/share/nvim'
+    run 'mv dots/fonts .local/share'
+    run 'mv dots/scripts .local/bin'
+    run 'git clone https://github.com/tmux-plugins/tmux-resurrect .config/tmux'
+    run 'ln -s .config/git .config/fd'
 }
 
 
