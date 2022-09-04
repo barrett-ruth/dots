@@ -150,7 +150,7 @@ post() {
     for e in 'init.lua' plugin after; do
         mv "$e" "t$e"
     done
-    run 'nvim lua/paqs/paq.lua -c "so|PaqInstall|q"'
+    run 'nvim lua/paqs/paq.lua -c "so|PaqInstall|PaqUpdate|q"'
     for e in 'init.lua' plugin after; do
         mv "t$e" "$e"
     done
@@ -178,7 +178,7 @@ post() {
     git clone https://github.com/barrett-ruth/sl.git; cd sl
     for e in dmenu dwm dwmb st; do
         cd "$e"
-        TERMINFO=~/.local/share/terminfo LC_ALL= make install
+        TERMINFO=~/.local/share/terminfo make install
         make clean
         cd ..
     done
