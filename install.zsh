@@ -115,7 +115,7 @@ post() {
     run 'su'
 
     # Get last of packages
-    pacman -S make
+    pacman -S gcc libxft libxinerama make pkgconf which
 
     # opendoas
     run 'mv dots/misc/doas.conf /etc'
