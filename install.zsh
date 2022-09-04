@@ -121,8 +121,8 @@ post() {
 
     # nvidia
     run 'chmod +x dots/misc/nvidia.shutdown'
-    run 'mv dots/misc/nvidia.hook /etc/pacman.d/hooks'
     run 'mv dots/misc/nvidia.shutdown /usr/lib/systemd/system-shutdown'
+    run 'mv dots/misc/nvidia.hook /etc/pacman.d/hooks'
     # todo: add nvidia modules and rebuild mkinitcpio
 
     sed -i "/^#ParallelDownloads/ s|^#*||g" /etc/pacman.conf
@@ -139,7 +139,7 @@ post() {
 
     # Individual program configs
     run 'mkdir -p .config .local/share/nvim .local/bin'
-    for e in git nvim pythin rg sioyek templates tmux X11 yarn zsh; do
+    for e in git nvim python rg sioyek templates tmux X11 yarn zsh; do
         run "mv dots/$e .config"
     done
     
