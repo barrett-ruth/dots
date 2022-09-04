@@ -128,7 +128,8 @@ post() {
     run 'mv dots/misc/nvidia.hook /etc/pacman.d/hooks'
     # todo: add nvidia modules and rebuild mkinitcpio
 
-    sed -i '/^#ParallelDownloads/ s|^#*||g' /etc/pacman.conf
+    sed -i '/HookDir/ s|^#*||' /etc/pacman.conf
+    sed -i '/^#ParallelDownloads/ s|^#*||' /etc/pacman.conf
 
     run 'mv dots/misc/dash.hook /etc/pacman.d/hooks'
     run 'mv dots/misc/zshenv /etc/zsh'
