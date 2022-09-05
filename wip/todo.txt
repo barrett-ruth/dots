@@ -2,3 +2,4 @@ setting up light automatically
 make sure postgres su works
 make sure sioyek is correct install
 grub dont count down
+fix todos ocommenyed
