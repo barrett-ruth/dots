@@ -117,6 +117,9 @@ echo
 
 setup_doas() {
 sed -i "s|{USERNAME}|$(whoami)|g" dots/misc/doas.conf
+# todo: move this conf to before (just this one linr) in method above where you already have suoeruser priviledges
+# maybe judy all the doas ones
+# using doas to make doas file - obviously it breaks
 run 'doas mv dots/misc/doas.conf /etc'
 run 'doas ln -s /usr/bin/doas /usr/bin/sudo'
 }
