@@ -110,7 +110,9 @@ run 'mkinitcpio -P'
 setup_doas() {
 sed -i "s|{USERNAME}|$1|g" dots/misc/doas.conf
 run 'mv dots/misc/doas.conf /etc'
-run 'ln -s /usr/bin/doas /usr/bin/sudo'
+cd /usr/bin
+run 'ln -s doas sudo'
+cd
 }
 
 
@@ -169,7 +171,9 @@ done
 run 'mv dots/fonts .local/share'
 run 'mv dots/scripts .local/bin'
 run 'git clone https://github.com/tmux-plugins/tmux-resurrect .config/tmux/tmux-resurrect'
-run 'ln -s .config/git .config/fd'
+cd .config
+run 'ln -s git fd'
+cd
 }
 
 
