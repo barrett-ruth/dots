@@ -97,6 +97,37 @@ run 'grub-mkconfig -o /boot/grub/grub.cfg'
 }
 
 
+setup_nvidia() {
+run 'chmod +x dots/misc/nvidia.shutdown'
+run 'mv dots/misc/nvidia.shutdown /usr/lib/systemd/system-shutdown'
+run 'mv dots/misc/nvidia.hook /etc/pacman.d/hooks'
+sed -i 's|^MODULES=()$|MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)|' /etc/mkinitcpio.conf
+run 'mkinitcpio -P'
+}
+
+
+setup_doas() {
+sed -i "s|{USERNAME}|$1|g" dots/misc/doas.conf
+run 'mv dots/misc/doas.conf /etc'
+run 'ln -s /usr/bin/doas /usr/bin/sudo'
+}
+
+
+setup_ssh_etc() {
+sed -i '/#*IdentityFile/ s|.ssh|.config/ssh|g' /etc/ssh_config
+sed -i '/#*IdentityFile/ s|^#*||g' /etc/ssh_config
+sed -i '/#*AuthorizedKeysFile/ s|.ssh|.config/ssh|g' /etc/sshd_config
+sed -i '/#*AuthorizedKeysFile/ s|^#*||g' /etc/sshd_config
+}
+
+
+setup_pacman() {
+sed -i '/^#HookDir/ s|^#*||' /etc/pacman.conf
+sed -i '/^#ParallelDownloads/ s|^#*||' /etc/pacman.conf
+run 'mv dots/misc/dash.hook /etc/pacman.d/hooks'
+}
+
+
 mid() {
 setup_time
 
@@ -105,10 +136,20 @@ setup_locale
 vared -p 'Enter username: ' -c username
 setup_users "$username"
 
+setup_doas "$username"
+
 run 'systemctl enable dhcpcd.service'
 run 'systemctl enable iwd.service'
 
+run 'mv dots/misc/zshenv /etc/zsh'
+
 setup_grub
+
+setup_nvidia
+
+setup_ssh_etc
+
+setup_pacman
 
 run "mv dots /home/$username"
 
@@ -120,22 +161,7 @@ echo
 }
 
 
-setup_doas() {
-sed -i "s|{USERNAME}|$(whoami)|g" dots/misc/doas.conf
-run 'doas mv dots/misc/doas.conf /etc'
-run 'doas ln -s /usr/bin/doas /usr/bin/sudo'
-}
-
-
-setup_nvidia() {
-run 'chmod +x dots/misc/nvidia.shutdown'
-run 'doas mv dots/misc/nvidia.shutdown /usr/lib/systemd/system-shutdown'
-run 'doas mv dots/misc/nvidia.hook /etc/pacman.d/hooks'
-doas sed -i 's|^MODULES=()$|MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)|' /etc/mkinitcpio.conf
-run 'mkinitcpio -P'
-}
-
-setup_misc() {
+setup_misc_configs() {
 for e in git nvim python rg sioyek templates tmux X11 yarn zsh; do
     run "mv dots/$e .config"
 done
@@ -180,7 +206,7 @@ setup_fzf() {
 git clone https://github.com/junegunn/fzf ~/.config/fzf
 cd .config/fzf
 ./install --xdg --no-update-rc --no-fish --no-bash --completion --key-bindings
-sed -i 's|.ssh|.config/ssh|g|' shell/completion.zsh
+sed -i 's|.ssh|.config/ssh|g' shell/completion.zsh
 cd
 }
 
@@ -199,12 +225,7 @@ cd
 }
 
 
-setup_ssh() {
-sed -i '/#*IdentityFile/ s|.ssh|.config/ssh|g' ssh_config
-sed -i '/#*IdentityFile/ s|^#*||g' ssh_config
-sed -i '/#*AuthorizedKeysFile/ s|.ssh|.config/ssh|g' sshd_config
-sed -i '/#*AuthorizedKeysFile/ s|^#*||g' sshd_config
-
+setup_ssh_key() {
 vared -p 'Enter email to use for ssh account: ' -c email
 run "ssh-keygen -t ed25519 -C $email"
 eval "$(ssh-agent -s)"
@@ -287,22 +308,12 @@ rm "$HOME/.yarnrc"
 post() {
 run 'doas pacman -S clang dash docker docker-compose exa fakeroot fd gcc go google-java-format jdk-openjdk jdtls imlib2 libxft libxinerama light lua-language-server make openssh patch pkgconf postgresql python ripgrep shellcheck shfmt tmux ttf-hanazono ttf-liberation xorg-server xorg-setxkbmap xorg-xinit xorg-xmodmap xorg-xrandr xorg-xrdb xorg-xset which xclip yarn'
 
-setup_doas
-
-setup_nvidia
-
-doas sed -i '/^#HookDir/ s|^#*||' /etc/pacman.conf
-doas sed -i '/^#ParallelDownloads/ s|^#*||' /etc/pacman.conf
-
-run 'doas mv dots/misc/dash.hook /etc/pacman.d/hooks'
-run 'doas mv dots/misc/zshenv /etc/zsh'
-
 # Rebuild grub config to recognize Windows Boot Manager
 run 'doas grub-mkconfig -o /boot/grub/grub.cfg'
 
 run 'mkdir -p .config/ssh .local/share/nvim .local/bin'
 
-setup_misc
+setup_misc_configs
 
 setup_misc_packages
 
@@ -316,7 +327,7 @@ setup_fzf
 
 setup_suckless
 
-setup_ssh
+setup_ssh_key
 
 setup_yarn
 
