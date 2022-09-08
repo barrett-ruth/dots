@@ -149,7 +149,8 @@ setup_ssh_etc
 
 setup_pacman
 
-run "mv dots /home/$username"
+run 'rm -rf dots'
+run "doas $username git clone https://github.com/barrett-ruth/dots.git /home/$username/dots"
 
 echo
 echo '*********************************************************'
