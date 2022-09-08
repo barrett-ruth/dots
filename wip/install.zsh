@@ -79,7 +79,7 @@ run 'mv dots/misc/hosts /etc'
 setup_users() {
 run 'passwd'
 run "useradd -m $1"
-run "usermod -aG wheel,storage,power,docker,video $1"
+run "usermod -aG wheel,storage,power $1"
 run "passwd $1"
 }
 
@@ -308,6 +308,8 @@ rm "$HOME/.yarnrc"
 
 post() {
 run 'doas pacman -S clang dash docker docker-compose exa fakeroot fd gcc go google-java-format jdk-openjdk jdtls imlib2 libxft libxinerama light lua-language-server make openssh patch pkgconf postgresql python ripgrep shellcheck shfmt tmux ttf-hanazono ttf-liberation xorg-server xorg-setxkbmap xorg-xinit xorg-xmodmap xorg-xrandr xorg-xrdb xorg-xset which xclip yarn'
+
+run 'doas usermod -aG docker "$(whoami)"'
 
 # Rebuild grub config to recognize Windows Boot Manager
 run 'doas grub-mkconfig -o /boot/grub/grub.cfg'
