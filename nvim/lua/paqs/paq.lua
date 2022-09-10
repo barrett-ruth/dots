@@ -29,7 +29,10 @@ require 'paq' {
     -- :]
 
     -- cosmetic [:
-    'RRethy/vim-hexokinase',
+    {
+        'RRethy/vim-hexokinase',
+        run = 'make hexokinase',
+    },
     'SmiteshP/nvim-navic',
     -- :]
 
@@ -62,13 +65,13 @@ require 'paq' {
         run = 'cd app && yarn install',
     },
     'ibhagwan/fzf-lua',
+    'jinh0/eyeliner.nvim',
     'junegunn/vim-easy-align',
     'lewis6991/impatient.nvim',
     'lewis6991/gitsigns.nvim',
     'L3MON4D3/LuaSnip',
     'numToStr/Comment.nvim',
     'ojroques/nvim-bufdel',
-    'phaazon/hop.nvim',
     'wellle/targets.vim',
     -- :]
 }

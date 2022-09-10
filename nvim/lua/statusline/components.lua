@@ -36,7 +36,7 @@ local file = {
 
 local git = {
     value = function() return vim.b.gitsigns_head end,
-    condition = function() return vim.b.gitsigns_head ~= nil and vim.b.gitsigns_head ~= '' end,
+    condition = function() return not utils.empty(vim.b.gitsigns_head) end,
     highlight = 'Operator',
     separator = 'post',
 }

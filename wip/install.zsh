@@ -293,6 +293,14 @@ cd ..
 rm -rf sioyek-git
 
 # chromium
+# chrome://flags: {
+#    Handling of extension MIME type requests: Always prompt for install
+#    Remove Tabsearch Button: Enabled
+#}
+# chrome://new-tab-page -> customize {
+#    shortcuts -> hide shortcuts
+#    color & theme -> midnight blue
+#}
 run 'git clone https://aur.archlinux.org/ungoogled-chromium-xdg-bin.git'
 cd ungoogled-chromium-xdg-bin
 run 'makepkg -si'

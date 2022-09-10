@@ -80,6 +80,11 @@ hi('Identifier', { fg = cs.blue })
 hi('Todo', { italic = true, fg = cs.purple, bg = 'NONE' })
 -- :]
 
+-- eyeliner [:
+hi('EyelinerPrimary', { fg = cs.orange })
+hi('EyelinerSecondary', { fg = cs.blue })
+-- :]
+
 -- pmenu [:
 hi('Pmenu', { bg = cs.grey_white })
 hi('PmenuSel', { fg = cs.grey_white, bg = cs.hi })

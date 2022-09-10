@@ -1,7 +1,6 @@
 local files = {
     'cmp',
     'dirbuf',
-    'hop',
     'paq',
     'luasnippets',
     'fzf',
@@ -16,6 +15,7 @@ for _, v in ipairs(files) do
 end
 
 require('run').setup()
+require('eyeliner').setup { highlight_on_key = true }
 require('bufdel').setup { next = 'alternate' }
 require('Comment').setup { mappings = { extra = true } }
 require('spellsitter').setup()
