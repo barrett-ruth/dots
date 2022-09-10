@@ -102,6 +102,11 @@ run 'mkinitcpio -P'
 }
 
 
+setup_x11() {
+run 'mv dots/misc/30-libinput.conf /etc/X11/xorg.conf.d'
+}
+
+
 setup_doas() {
 sed -i "s|{USERNAME}|$1|g" dots/misc/doas.conf
 run 'mv dots/misc/doas.conf /etc'
@@ -144,6 +149,8 @@ run 'mv dots/misc/zshenv /etc/zsh'
 setup_grub
 
 setup_nvidia
+
+setup_X11
 
 setup_ssh_etc
 

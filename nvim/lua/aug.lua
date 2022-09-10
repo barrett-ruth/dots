@@ -42,7 +42,7 @@ au({ 'FocusGained', 'WinEnter' }, {
 })
 
 au('InsertEnter', {
-    command = 'setl colorcolumn=80',
+    command = 'setl colorcolumn=80|norm zz',
     group = aug,
 })
 
