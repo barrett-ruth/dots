@@ -7,12 +7,6 @@ au('BufEnter', {
     group = aug,
 })
 
-au('BufEnter', {
-    pattern = '*.tex',
-    command = 'se filetype=tex',
-    group = aug,
-})
-
 au('QuitPre', {
     callback = function()
         local bufnr = vim.fn.bufnr()
@@ -60,7 +54,7 @@ au('ColorScheme', {
 })
 
 au('BufEnter', {
-    command = 'setl formatoptions-=cro',
+    command = 'setl formatoptions-=cro spelloptions=camel',
     group = aug,
 })
 

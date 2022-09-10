@@ -4,20 +4,22 @@ _G.pr = function(...) vim.pretty_print(...) end
 
 -- Colorscheme [:
 M.cs = {
-    bg = '#282828',
-    black = '#5a524c',
-    red = '#ea6962',
-    green = '#a9b665',
-    yellow = '#d8a657',
-    blue = '#7daea3',
-    purple = '#d3869b',
-    cyan = '#89b482',
-    white = '#d4be98',
-    orange = '#e78a4e',
-    grey = '#928374',
-    light_grey = '#32302f',
-    grey_white = '#45403d',
-    hi = '#a89984',
+    gruvbox = {
+        bg = '#282828',
+        black = '#5a524c',
+        red = '#ea6962',
+        green = '#a9b665',
+        yellow = '#d8a657',
+        blue = '#7daea3',
+        purple = '#d3869b',
+        cyan = '#89b482',
+        white = '#d4be98',
+        orange = '#e78a4e',
+        grey = '#928374',
+        light_grey = '#32302f',
+        grey_white = '#45403d',
+        hi = '#a89984',
+    },
 }
 
 M.hi = function(group, highlights)

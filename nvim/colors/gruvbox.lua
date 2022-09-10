@@ -1,7 +1,7 @@
 if vim.g.colors_name then vim.cmd 'hi clear' end
 
 local utils = require 'utils'
-local cs, hi, link = utils.cs, utils.hi, utils.link
+local cs, hi, link = utils.cs.gruvbox, utils.hi, utils.link
 
 vim.g.colors_name = 'gruvbox'
 
