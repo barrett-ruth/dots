@@ -10,11 +10,12 @@ local cpp = {
         fmt(
             [[
             // [:
+            #include <math.h>
+
             #include <algorithm>
             #include <bitset>
             #include <climits>
             #include <iostream>
-            #include <math.h>
             #include <queue>
             #include <stack>
             #include <string>

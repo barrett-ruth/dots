@@ -4,7 +4,7 @@ cfg="$HOME/dev/dots"
 
 cd "$cfg" || exit
 
-rmb .git installation old packages misc .
+rmb .git installation misc wip .
 
 cp /etc/pacman.conf misc
 cp /etc/default/grub misc
@@ -15,13 +15,12 @@ cp -r ~/.local/share/fonts .
 
 cp -r "$XDG_CONFIG_HOME/templates" .
 
-for e in git sioyek latexmk nvim python rg tmux X11 yarn zsh; do
+for e in git sioyek nvim python rg tmux X11 yarn zsh; do
     cp -r "$XDG_CONFIG_HOME/$e" .
 done
 
 cp "$XDG_DATA_HOME/nvim/spell/spell.encoding.add" nvim
 
-yarn global list | sed '1d;$d' >packages/yarn
 rm -rf nvim/undo
 rmb .zshrc .zprofile .zaliases zsh
 rmb tmux.conf tmux

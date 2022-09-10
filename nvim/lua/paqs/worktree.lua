@@ -42,6 +42,7 @@ end
 return {
     git_worktrees = function()
         fzf.fzf_exec('git worktree list | tail -n +2 | sed "s|$HOME|~|g"', {
+            prompt = 'wt> ',
             fn_transform = function(x)
                 local parsed = parse_entry(x)
 
