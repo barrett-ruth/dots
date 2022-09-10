@@ -24,6 +24,8 @@ vim.g.terminal_ansi_colors = {
     cs.white,
 }
 
+hi('ftFT', { fg = cs.blue, italic = true })
+
 -- basic ui [:
 hi('Normal', { fg = cs.white, bg = cs.bg })
 hi('NonText', { fg = cs.black })
@@ -78,11 +80,6 @@ hi('Statement', { italic = true, fg = cs.red })
 hi('Statusline', { none = true })
 hi('Identifier', { fg = cs.blue })
 hi('Todo', { italic = true, fg = cs.purple, bg = 'NONE' })
--- :]
-
--- eyeliner [:
-hi('EyelinerPrimary', { fg = cs.orange })
-hi('EyelinerSecondary', { fg = cs.blue })
 -- :]
 
 -- pmenu [:
