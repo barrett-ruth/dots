@@ -1,8 +1,8 @@
 run() {
-	echo
-	echo "> $*"
-	echo
-	eval "$*"
+    echo
+    echo "> $*"
+    echo
+    eval "$*"
 }
 
 
@@ -301,6 +301,9 @@ rm -rf sioyek-git
 #    shortcuts -> hide shortcuts
 #    color & theme -> midnight blue
 #}
+# chrome://settings/searchEngines {
+#    Arch Wikipedia, Github, ZLib site searches
+#}
 run 'git clone https://aur.archlinux.org/ungoogled-chromium-xdg-bin.git'
 cd ungoogled-chromium-xdg-bin
 run 'makepkg -si'
@@ -374,12 +377,12 @@ echo
 vared -p 'before, mid, or post install? [b/m/p] ' -c installation_status
 case "$installation_status" in
 b)
-	before
-	;;
+    before
+    ;;
 m)
-	mid
-	;;
+    mid
+    ;;
 p)
-	post
-	;;
+    post
+    ;;
 esac
