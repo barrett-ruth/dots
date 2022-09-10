@@ -39,7 +39,7 @@ mount_partitions "$disk" "$root" "$home" "$efi"
 # Enable swap volume
 run "swapon /dev/$disk$swap"
 
-run 'pacstrap /mnt base linux linux-firmware linux-headers man-db intel-ucode nvidia nvidia-utils xf86-video-intel iwd dhcpcd opendoas git zsh grub efibootmgr os-prober ntfs-3g'
+run 'pacstrap /mnt base linux linux-firmware linux-headers man-db intel-ucode nvidia nvidia-utils iwd dhcpcd opendoas git zsh grub efibootmgr os-prober ntfs-3g'
 
 run 'genfstab -U /mnt >> /mnt/etc/fstab'
 
@@ -243,6 +243,14 @@ echo
 
 
 setup_misc_packages() {
+# TODO: jdtls
+run 'git clone https://aur.archlinux.org/jdtls.git'
+cd jdtls
+sed -i 's|*|linux|g' PKGBUILD
+sed -i 's|${pkgdir}/usr|~/.local|g' PKGBUILD
+makepkg -si
+cd ..
+
 run 'git clone https://github.com/barrett-ruth/wp.git'
 cd wp
 git remote set-url origin git@github.com:barrett-ruth/wp.git
@@ -309,7 +317,7 @@ rm "$HOME/.yarnrc"
 post() {
 run 'doas pacman -S clang dash docker docker-compose exa fakeroot fd gcc go google-java-format jdk-openjdk jdtls imlib2 libxft libxinerama light lua-language-server make openssh patch pkgconf postgresql python ripgrep shellcheck shfmt tmux ttf-hanazono ttf-liberation xorg-server xorg-setxkbmap xorg-xinit xorg-xmodmap xorg-xrandr xorg-xrdb xorg-xset which xclip yarn'
 
-run 'doas usermod -aG docker "$(whoami)"'
+run 'doas usermod -aG docker,light "$(whoami)"'
 
 # Rebuild grub config to recognize Windows Boot Manager
 run 'doas grub-mkconfig -o /boot/grub/grub.cfg'
