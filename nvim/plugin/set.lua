@@ -55,7 +55,7 @@ vim.opt.signcolumn = 'no'
 
 vim.opt.spell = true
 vim.opt.spellcapcheck = ''
-vim.opt.spellfile = vim.env.XDG_DATA_HOME .. '/nvim/spell.encoding.add'
+vim.opt.spellfile = vim.env.XDG_DATA_HOME .. '/nvim/spell/spell.encoding.add'
 vim.opt.spelllang = 'en_us'
 
 vim.opt.splitbelow = true
