@@ -8,11 +8,6 @@ local settings = {
             },
         },
     },
-    on_attach = function(client, bufnr)
-        client.server_capabilities.documentFormattingProvider = false
-
-        require('lsp.utils').on_attach(client, bufnr)
-    end,
     settings = {
         Lua = {
             completion = { keywordSnippet = 'Disable' },

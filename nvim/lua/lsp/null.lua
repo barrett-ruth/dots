@@ -59,7 +59,7 @@ null_ls.setup {
             extra_args = { '-S', '--fast', '--line-length=79' },
         },
         builtins.formatting.clang_format.with {
-            filetypes = { 'c', 'cpp' }
+            filetypes = { 'c', 'cpp' },
         },
         builtins.formatting.google_java_format,
         builtins.formatting.isort,

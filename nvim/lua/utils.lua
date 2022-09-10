@@ -37,7 +37,18 @@ M.empty = function(s) return s == '' or s == nil end
 
 M.format = function()
     if next(vim.lsp.get_active_clients { bufnr = 0 }) then
-        vim.lsp.buf.format { bufnr = 0 }
+        vim.lsp.buf.format {
+            filter = function(client)
+                return not vim.tbl_contains({
+                    'clangd',
+                    'jdt.ls',
+                    'jedi_language_server',
+                    'pyright',
+                    'sumneko_lua',
+                    'tsserver',
+                }, client.name)
+            end,
+        }
     end
 end
 
