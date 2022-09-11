@@ -250,11 +250,15 @@ echo
 
 
 setup_misc_packages() {
-# TODO: jdtls
 run 'git clone https://aur.archlinux.org/jdtls.git'
 cd jdtls
 sed -i 's|*|linux|g' PKGBUILD
 sed -i 's|${pkgdir}/usr|~/.local|g' PKGBUILD
+makepkg -si
+cd ..
+
+run 'git clone https://aur.archlinux.org/shellcheck-bin.git'
+cd shellcheck-bin
 makepkg -si
 cd ..
 
@@ -333,7 +337,7 @@ rm "$HOME/.yarnrc"
 
 
 post() {
-run 'doas pacman -S clang dash docker docker-compose exa fakeroot fd gcc go google-java-format jdk-openjdk jdtls imlib2 libxft libxinerama light lua-language-server make openssh patch pkgconf postgresql python ripgrep shellcheck shfmt tmux ttf-hanazono ttf-liberation xorg-server xorg-setxkbmap xorg-xinit xorg-xmodmap xorg-xrandr xorg-xrdb xorg-xset which xclip yarn'
+run 'doas pacman -S clang dash docker docker-compose exa fakeroot fd gcc go google-java-format jdk-openjdk jdtls imlib2 libxft libxinerama light lua-language-server make openssh patch pkgconf postgresql python ripgrep shfmt tmux ttf-hanazono ttf-liberation xorg-server xorg-setxkbmap xorg-xinit xorg-xmodmap xorg-xrandr xorg-xrdb xorg-xset which xclip yarn'
 
 run 'doas usermod -aG docker,light "$(whoami)"'
 
