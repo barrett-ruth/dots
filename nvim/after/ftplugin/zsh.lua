@@ -1,5 +1,4 @@
-local utils = require 'utils'
-local cs, hi = utils.cs, utils.hi
+local link = require('utils').link
 
-hi('zshFunction', { fg = cs.green })
-hi('zshOperator', { fg = cs.orange })
+link('TSFunction', 'zshFunction')
+link('TSOperator', 'zshOperator')
