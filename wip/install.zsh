@@ -39,7 +39,7 @@ mount_partitions "$disk" "$root" "$home" "$efi"
 # Enable swap volume
 run "swapon /dev/$disk$swap"
 
-run 'pacstrap /mnt base linux linux-firmware linux-headers man-db intel-ucode nvidia nvidia-utils iwd dhcpcd opendoas git zsh grub efibootmgr os-prober ntfs-3g'
+run 'pacstrap /mnt base linux linux-firmware linux-headers man-db intel-ucode nvidia nvidia-utils iwd dhcpcd opendoas git zsh grub efibootmgr os-prober ntfs-3g feh'
 
 run 'genfstab -U /mnt >> /mnt/etc/fstab'
 
@@ -103,7 +103,7 @@ run 'mkinitcpio -P'
 
 
 setup_x11() {
-run 'mv dots/misc/30-libinput.conf /etc/X11/xorg.conf.d'
+run 'mv dots/misc/*-*.conf /etc/X11/xorg.conf.d'
 }
 
 
@@ -280,14 +280,6 @@ cd hadolint-bin
 run 'makepkg -si'
 cd ..
 rm -rf hadolint-bin
-
-# setroot
-run 'git clone https://github.com/ttzhou/setroot.git'
-cd setroot
-sed -i 's|`imlib2-config --libs`|-lImlib2|' Makefile
-run 'sudo make xinerama=1'
-cd ..
-rm -rf setroot
 
 # sioyek
 git clone 'https://aur.archlinux.org/sioyek-git.git'
