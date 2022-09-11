@@ -1,11 +1,4 @@
-local vorfn = function(val_or_fn)
-    if type(val_or_fn) == 'function' then
-        return val_or_fn()
-    end
-
-    return val_or_fn
-end
-
+local vorfn = require('utils').vorfn
 local components = require 'statusline.components'
 
 return {

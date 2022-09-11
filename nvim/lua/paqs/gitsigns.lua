@@ -18,8 +18,8 @@ require('gitsigns').setup {
 
         bmap { 'n', '<leader>gb', mapstr 'Gitsigns toggle_current_blame_line' }
         bmap { 'n', '<leader>gp', mapstr 'Gitsigns preview_hunk' }
-        bmap { 'n', '[g', mapstr 'Gitsigns prev_hunk' }
-        bmap { 'n', ']g', mapstr 'Gitsigns next_hunk' }
+        bmap { 'n', '[g', mapstr 'sil Gitsigns prev_hunk' }
+        bmap { 'n', ']g', mapstr 'sil Gitsigns next_hunk' }
 
         bmap { 'n', '<leader>vb', mapstr('fzf-lua', 'git_branches()') }
         bmap { 'n', '<leader>vh', mapstr 'FzfLua git_bcommits' }

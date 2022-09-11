@@ -37,6 +37,8 @@ map({ 'x', 'R', '<esc>gv"ry:%s/<c-r>r//g<left><left>' }, { silent = false })
 map { 'n', 'J', 'mzJ`z' }
 map { 'n', 'Q', 'q:k' }
 map { 'n', '<bs>', '<c-^>' }
+map { 'n', '<c-d>', '<c-d>zz' }
+map { 'n', '<c-u>', '<c-u>zz' }
 vim.cmd 'cno <c-n> <down>'
 -- :]
 
@@ -61,6 +63,7 @@ map { 'n', '[o', '@="m`O\\eg``"<cr>' }
 
 -- Deleting/yanking/pasting [:
 map { '', '<leader>d', '"_d' }
+map { 'v', '<leader>p', '"_dP' }
 map { '', '<leader>y', '"+y' }
 -- :]
 

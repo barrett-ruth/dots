@@ -29,9 +29,16 @@ M.hi = function(group, highlights)
     end
     vim.api.nvim_set_hl(0, group, highlights)
 end
--- :]
 
 M.link = function(from, to) vim.api.nvim_set_hl(0, to, { link = from }) end
+
+-- :]
+
+M.vorfn = function(val_or_fn)
+    if type(val_or_fn) == 'function' then return val_or_fn() end
+
+    return val_or_fn
+end
 
 M.empty = function(s) return s == '' or s == nil end
 
