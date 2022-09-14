@@ -48,12 +48,13 @@ y() {
 yg() { y global "$@"; }
 
 # Misc
-alias clearhist='echo > $HISTFILE'
+alias clrhist='echo > $HISTFILE'
 alias cp='cp -v'
 gcl() { . _gcl "$@" }
 rmd() { [ "$1" = "$HOME" ] || rm -rf "$@"; }
 alias mkd='mkdir -pv'
 mkcd() { mkdir -pv "$1" && cd "$1"; }
+alias psag='ps aux | rg'
 z() { . _z "$@"; }
 declare -A dirs=(['']=~ [scr]="$SCRIPTS" [dev]=~/dev [dots]=~/dev/dots [cp]=~/dev/cp [dsa1]=~/dev/uva/dsa1 [nv]=~/.config/nvim [paqs]=~/.local/share/nvim/site/pack/paqs/start [tm]=~/.config/tmux [x11]=~/.config/X11 [zsh]=~/.config/zsh [py]=~/dev/learning-python [site]=~/dev/barrett-ruth.github.io)
 for e in ~/dev/sl/*; do

@@ -70,7 +70,8 @@ export FZF_TMUX=1
 # Plugins
 . "$ZDOTDIR/.zaliases"
 . "$XDG_CONFIG_HOME/fzf/fzf.zsh"
-. "$ZDOTDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+. /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+. /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 fzf-config-widget() {
     file="$(FZF_CTRL_T_COMMAND="fd --type file --hidden . ~/.config | sed 's|$HOME|~|g'" __fsel | cut -c2-)"

@@ -39,7 +39,7 @@ mount_partitions "$disk" "$root" "$home" "$efi"
 # Enable swap volume
 run "swapon /dev/$disk$swap"
 
-run 'pacstrap /mnt base linux linux-firmware linux-headers man-db intel-ucode nvidia nvidia-utils iwd dhcpcd opendoas git zsh grub efibootmgr os-prober ntfs-3g feh'
+run 'pacstrap /mnt base linux linux-firmware linux-headers dkms man-db intel-ucode nvidia nvidia-utils iwd dhcpcd opendoas git zsh zsh-autosuggestions zsh-syntax-highlighting zsh-completions grub efibootmgr os-prober ntfs-3g feh'
 
 run 'genfstab -U /mnt >> /mnt/etc/fstab'
 
@@ -97,7 +97,7 @@ setup_nvidia() {
 run 'chmod +x dots/misc/nvidia.shutdown'
 run 'mv dots/misc/nvidia.shutdown /usr/lib/systemd/system-shutdown'
 run 'mv dots/misc/nvidia.hook /etc/pacman.d/hooks'
-sed -i 's|^MODULES=()$|MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)|' /etc/mkinitcpio.conf
+sed -i 's|^MODULES=()$|MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm i915)|' /etc/mkinitcpio.conf
 run 'mkinitcpio -P'
 }
 
@@ -142,6 +142,7 @@ setup_users "$username"
 setup_doas "$username"
 
 run 'systemctl enable dhcpcd.service'
+run 'systemctl enable fstrim.timer'
 run 'systemctl enable iwd.service'
 
 run 'mv dots/misc/zshenv /etc/zsh'
