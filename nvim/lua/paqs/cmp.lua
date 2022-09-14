@@ -38,6 +38,7 @@ cmp.setup {
         end,
     },
     sources = cmp.config.sources {
+        { name = 'git' },
         { name = 'nvim_lsp' },
         { name = 'path' },
     },
@@ -50,6 +51,8 @@ cmp.setup {
         ['<c-p>'] = cmp.mapping.select_prev_item(),
     },
 }
+
+require('cmp_git').setup()
 
 local utils = require 'utils'
 utils.map {
