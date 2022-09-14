@@ -11,4 +11,4 @@ else
     [ -f "$dir_two/$(basename "$one")" ] && two="$dir_two/$(basename "$one")" || two="$(fd -t f . "$dir_two" | shuf -n 1)"
 fi
 
-setroot -z "$one" -z "$two"
+feh --no-fehbg --bg-scale "$one" --bg-fill "$two"

@@ -22,7 +22,7 @@ M.run = function()
     local header = ' > ' .. string.gsub(command, vim.env.HOME, '~')
 
     if vim.tbl_contains({ 'c', 'cc', 'cpp' }, extension) then
-        command = command .. ' && ./a.out; [ -f a.out ] && rm a.out'
+        command = command .. ' && ./a.out; test -f a.out && rm a.out'
     end
 
     vim.api.nvim_create_autocmd('BufWritePost', {
