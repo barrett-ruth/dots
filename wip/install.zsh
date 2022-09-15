@@ -193,7 +193,6 @@ run 'nvim lua/paqs/paq.lua -c "so|PaqInstall|q"'
 for e in 'init.lua' plugin after; do
     mv "t$e" "$e"
 done
-run 'cd ~/.local/share/nvim/site/pack/paqs/start/vim-hexokinase; make vim-hexokinase'
 cd
 }
 
