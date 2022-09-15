@@ -8,8 +8,7 @@ vim.g.mkdp_page_title = '${name}'
 
 vim.g.matchup_matchparen_offscreen = {}
 vim.g.c_syntax_for_h = 1
-vim.g.Hexokinase_highlighters = { 'foregroundfull' }
-vim.g.Hexokinase_ftEnabled = {
+vim.g.markdown_fenced_languages = {
     'c',
     'css',
     'html',
@@ -20,7 +19,6 @@ vim.g.Hexokinase_ftEnabled = {
     'typescriptreact',
     'vim',
 }
-vim.g.markdown_fenced_languages = vim.g.Hexokinase_ftEnabled
 
 local disabled_builtins = {
     'gzip',

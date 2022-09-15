@@ -28,14 +28,6 @@ require 'paq' {
     'nvim-treesitter/playground',
     -- :]
 
-    -- cosmetic [:
-    {
-        'RRethy/vim-hexokinase',
-        run = 'make hexokinase',
-    },
-    'SmiteshP/nvim-navic',
-    -- :]
-
     -- primeagen [:
     'ThePrimeagen/harpoon',
     'ThePrimeagen/git-worktree.nvim',
@@ -71,7 +63,9 @@ require 'paq' {
     'lewis6991/gitsigns.nvim',
     'L3MON4D3/LuaSnip',
     'numToStr/Comment.nvim',
+    'NvChad/nvim-colorizer.lua',
     'ojroques/nvim-bufdel',
+    'SmiteshP/nvim-navic',
     'wellle/targets.vim',
     -- :]
 }

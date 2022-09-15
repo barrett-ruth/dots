@@ -1,5 +1,6 @@
 local files = {
     'cmp',
+    'colorizer',
     'dirbuf',
     'paq',
     'luasnippets',
