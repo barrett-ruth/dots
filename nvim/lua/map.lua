@@ -78,11 +78,7 @@ map {
     'n',
     '<leader>w',
     function()
-        if vim.bo.ft == 'dirbuf' then
-            vim.cmd 'w!'
-        else
-            vim.cmd 'w'
-        end
+        vim.cmd 'w'
         require('utils').format()
     end,
     { silent = false },
@@ -97,20 +93,6 @@ map { 'n', '[e', '<cmd>m-2<cr>' }
 -- :]
 
 -- Toggling [:
-map { 'n', '<leader>ic', mapstr 'let &ch = (&ch + 1) % 2' }
-map {
-    'n',
-    '<leader>is',
-    function()
-        SPELLSITTER_ENABLED = (SPELLSITTER_ENABLED == nil) and false
-            or not SPELLSITTER_ENABLED
-
-        if SPELLSITTER_ENABLED then
-            require('spellsitter').setup { enable = { 'none' } }
-        else
-            require('spellsitter').setup { enable = true }
-        end
-    end,
-}
+map { 'n', '<leader>ic', mapstr 'let &l:ch = (&ch + 1) % 2' }
 map { 'n', '<leader>iw', mapstr 'setl invwrap' }
 -- :]

@@ -19,7 +19,6 @@ require 'paq' {
     -- :]
 
     -- treesitter [:
-    'lewis6991/spellsitter.nvim',
     'nvim-lua/plenary.nvim',
     {
         'nvim-treesitter/nvim-treesitter',

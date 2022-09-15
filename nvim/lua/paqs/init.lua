@@ -18,4 +18,3 @@ require('run').setup()
 require('bufdel').setup { next = 'alternate' }
 require('Comment').setup { mappings = { extra = true } }
 require('ftFT').setup()
-require('spellsitter').setup()

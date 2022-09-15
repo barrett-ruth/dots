@@ -52,7 +52,7 @@ au('ColorScheme', {
 
 au('BufEnter', {
     callback = function()
-        vim.cmd 'setl formatoptions-=cro spelloptions=camel'
+        vim.cmd 'setl formatoptions-=cro spelloptions=camel,noplainbuffer'
 
         for _, buf in ipairs(vim.fn.getbufinfo { buflisted = 1 }) do
             local winid = vim.fn.bufwinid(buf.bufnr)
