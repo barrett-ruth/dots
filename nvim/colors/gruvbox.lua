@@ -79,7 +79,6 @@ hi('Special', { fg = cs.yellow })
 hi('Statement', { italic = true, fg = cs.red })
 hi('Statusline', { none = true })
 hi('Identifier', { fg = cs.blue })
-hi('Todo', { italic = true, fg = cs.purple, bg = 'NONE' })
 -- :]
 
 -- pmenu [:
@@ -92,6 +91,10 @@ hi('PmenuThumb', { bg = cs.hi })
 -- nvim-cmp [:
 hi('CmpItemAbbrMatch', { fg = cs.green })
 hi('CmpItemAbbrMatchFuzzy', { fg = cs.green })
+-- :]
+
+-- vim-highlighturl [:
+hi('HighlightUrl', { fg = cs.blue, italic = true })
 -- :]
 
 -- nvim-tree [:
@@ -153,6 +156,9 @@ hi('SpellLocal', { undercurl = true, special = cs.cyan })
 -- comments
 hi('Comment', { italic = true, fg = cs.grey })
 link('Comment', 'TSComment')
+
+hi('TSWarning', { fg = cs.purple, bold = true })
+hi('TSDanger', { fg = cs.yellow, bold = true })
 
 -- booleans [:
 hi('Boolean', { fg = cs.cyan })

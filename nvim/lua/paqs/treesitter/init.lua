@@ -1,9 +1,11 @@
 local ensure_installed = {
-    'bash',
     'c',
+    'comment',
     'cpp',
     'css',
     'dockerfile',
+    'gitignore',
+    'graphql',
     'html',
     'http',
     'java',
@@ -15,6 +17,7 @@ local ensure_installed = {
     'markdown_inline',
     'python',
     'query',
+    'sql',
     'tsx',
     'typescript',
     'vim',
@@ -24,7 +27,7 @@ local ensure_installed = {
 require('nvim-treesitter.configs').setup {
     ensure_installed = ensure_installed,
     indent = {
-        enable = false
+        enable = false,
     },
     highlight = {
         enable = true,

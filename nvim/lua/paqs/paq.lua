@@ -34,6 +34,7 @@ require 'paq' {
     -- :]
 
     -- textobjects [:
+    'glts/vim-textobj-comment',
     'Julian/vim-textobj-variable-segment',
     'kana/vim-textobj-entire',
     'kana/vim-textobj-fold',
@@ -56,17 +57,21 @@ require 'paq' {
         'iamcco/markdown-preview.nvim',
         run = 'cd app && yarn install',
     },
-    'gukz/ftFT.nvim',
     'ibhagwan/fzf-lua',
     'junegunn/vim-easy-align',
     'lewis6991/impatient.nvim',
     'lewis6991/gitsigns.nvim',
     'L3MON4D3/LuaSnip',
     'numToStr/Comment.nvim',
-    'NvChad/nvim-colorizer.lua',
     'ojroques/nvim-bufdel',
     'SmiteshP/nvim-navic',
     'wellle/targets.vim',
+    -- :]
+
+    -- aesthetic [:
+    'itchyny/vim-highlighturl',
+    'gukz/ftFT.nvim',
+    'NvChad/nvim-colorizer.lua',
     -- :]
 }
 
@@ -77,4 +82,3 @@ map { 'n', '<leader>Pc', mapstr 'PaqClean' }
 map { 'n', '<leader>Pi', mapstr 'PaqInstall' }
 map { 'n', '<leader>Pu', mapstr 'PaqUpdate' }
 map { 'n', '<leader>Pl', mapstr 'PaqLogOpen' }
-map { 'n', '<leader>PL', mapstr 'PaqList' }

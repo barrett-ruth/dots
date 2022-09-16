@@ -9,7 +9,7 @@ fi
 smon
 sxs
 (
-    sbg ~/wp/one/socrates.jpg
+    sbg ~/wp/one/diogenes.jpg
     skb
 ) &
 sclip &
