@@ -19,6 +19,10 @@ run "mount --mkdir /dev/$1$3 /mnt/home"
 run "mount --mkdir /dev/$1$4 /mnt/boot/efi"
 }
 
+if [ 1 -eq 2 ]; then
+    echo
+fi
+
 
 before() {
 run 'timedatectl set-ntp true'

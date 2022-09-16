@@ -30,7 +30,7 @@ vim.opt.laststatus = 3
 vim.opt.lazyredraw = true
 
 vim.opt.list = true
-vim.opt.listchars = 'trail:·'
+vim.opt.listchars = 'trail:·,leadmultispace:│   '
 
 vim.opt.modeline = false
 

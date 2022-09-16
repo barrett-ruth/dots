@@ -7,6 +7,12 @@ au('BufEnter', {
     group = aug,
 })
 
+au('OptionSet', {
+    pattern = 'shiftwidth',
+    command = [[vim.opt_local.listchars:append('leadmultispace:|' .. string.rep(' ', vim.bo.shiftwidth - 1))]],
+    group = aug,
+})
+
 au('QuitPre', {
     callback = function()
         local bufname = 'scratch' .. vim.fn.bufnr()
