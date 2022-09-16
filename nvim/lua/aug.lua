@@ -3,7 +3,7 @@ local aug = vim.api.nvim_create_augroup('augs', { clear = true })
 
 au('BufEnter', {
     pattern = 'PKGBUILD',
-    command = 'se filetype=PKGBUILD',
+    command = 'se filetype=sh',
     group = aug,
 })
 
