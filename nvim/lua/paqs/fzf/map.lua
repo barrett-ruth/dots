@@ -8,6 +8,7 @@ map {
 }
 map { 'n', '<c-f>', mapstr 'FzfLua files' }
 map { 'n', '<c-g>', mapstr 'FzfLua live_grep_native' }
+map { 'n', '<leader>fc', mapstr [[lua require('neoclip.fzf')()]] }
 map {
     'n',
     '<leader>ff',

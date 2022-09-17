@@ -51,6 +51,7 @@ require 'paq' {
     -- :]
 
     -- misc [:
+    'AckslD/nvim-neoclip.lua',
     'andymass/vim-matchup',
     'elihunter173/dirbuf.nvim',
     {
