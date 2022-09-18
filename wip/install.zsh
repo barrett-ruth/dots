@@ -327,6 +327,10 @@ python -m ensurepip
 pip install black curlylint flake8 isort jedi-language-server mypy neovim virtualenv yamllint
 }
 
+setup_go() {
+    go install github.com/lighttiger2505/sqls@latest
+}
+
 
 setup_yarn() {
 yarn --use-yarnrc ~/.config/yarn/config global add @fsouza/prettierd @tailwindcss/language-server eslint_d neovim prettier pyright typescript typescript-language-server vim-language-server vscode-langservers-extracted
@@ -359,6 +363,8 @@ setup_fzf
 setup_suckless
 
 setup_ssh_key
+
+setup_go
 
 setup_yarn
 

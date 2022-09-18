@@ -4,6 +4,8 @@ vim.g.mkdp_auto_close = 0
 vim.g.mkdp_refresh_slow = 1
 vim.g.mkdp_page_title = '${name}'
 
+vim.g.db_ui_save_location = vim.env.XDG_DATA_HOME .. '/nvim/db_ui'
+vim.g.db_ui_show_help = 0
 vim.g.db_ui_icons = {
     expanded = 'v',
     collapsed = '>',

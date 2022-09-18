@@ -2,6 +2,7 @@ local noconfig_servers = {
     'cssls',
     'html',
     'jedi_language_server',
+    'sqls',
     'vimls',
 }
 

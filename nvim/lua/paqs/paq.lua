@@ -18,9 +18,11 @@ require 'paq' {
     'mfussenegger/nvim-jdtls',
     'neovim/nvim-lspconfig',
     'p00f/clangd_extensions.nvim',
+
     -- postgres [:
     'kristijanhusak/vim-dadbod-ui',
     'kristijanhusak/vim-dadbod-completion',
+    'nanotee/sqls.nvim',
     'tpope/vim-dadbod',
     -- :]
     -- :]

@@ -29,13 +29,13 @@ au('QuitPre', {
     group = aug,
 })
 
-local save_disabled = { '', 'dirbuf' }
+local save_disabled = { '', 'dbui', 'dirbuf' }
 
 au({ 'FocusLost', 'WinLeave' }, {
     callback = function()
         vim.wo.cursorline = false
 
-        if not vim.tbl_contains(save_disabled, vim.o.filetype) then
+        if not vim.tbl_contains(save_disabled, vim.bo.filetype) then
             vim.cmd 'wall'
         end
     end,

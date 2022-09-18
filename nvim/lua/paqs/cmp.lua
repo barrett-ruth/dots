@@ -51,6 +51,12 @@ cmp.setup {
     },
 }
 
+cmp.setup.filetype({ 'sql', 'mysql', 'plsql' }, {
+    sources = cmp.config.sources {
+        { name = 'vim-dadbod-completion' },
+    },
+})
+
 cmp.setup.filetype('gitcommit', {
     sources = cmp.config.sources {
         { name = 'git' },
