@@ -9,7 +9,13 @@ au('BufEnter', {
 
 au('OptionSet', {
     pattern = 'shiftwidth',
-    command = [[vim.opt_local.listchars:append('leadmultispace:|' .. string.rep(' ', vim.bo.shiftwidth - 1))]],
+    callback = function()
+        if vim.bo.filetype == '' then return end
+
+        vim.opt_local.listchars:append(
+            'leadmultispace:|' .. string.rep(' ', vim.bo.shiftwidth - 1)
+        )
+    end,
     group = aug,
 })
 

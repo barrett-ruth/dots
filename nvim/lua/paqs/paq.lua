@@ -16,6 +16,11 @@ require 'paq' {
     'mfussenegger/nvim-jdtls',
     'neovim/nvim-lspconfig',
     'p00f/clangd_extensions.nvim',
+    -- postgres [:
+    'kristijanhusak/vim-dadbod-ui',
+    'kristijanhusak/vim-dadbod-completion',
+    'tpope/vim-dadbod',
+    -- :]
     -- :]
 
     -- treesitter [:
@@ -52,6 +57,7 @@ require 'paq' {
 
     -- misc [:
     'AckslD/nvim-neoclip.lua',
+    'AndrewRadev/splitjoin.vim',
     'andymass/vim-matchup',
     'elihunter173/dirbuf.nvim',
     {
@@ -71,7 +77,6 @@ require 'paq' {
 
     -- aesthetic [:
     'itchyny/vim-highlighturl',
-    'gukz/ftFT.nvim',
     'NvChad/nvim-colorizer.lua',
     -- :]
 }

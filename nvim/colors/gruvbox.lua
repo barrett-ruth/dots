@@ -24,8 +24,6 @@ vim.g.terminal_ansi_colors = {
     cs.white,
 }
 
-hi('ftFT', { fg = cs.blue, italic = true })
-
 -- basic ui [:
 hi('Normal', { fg = cs.white, bg = cs.bg })
 hi('NonText', { fg = cs.black })
