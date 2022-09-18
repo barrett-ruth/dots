@@ -304,7 +304,7 @@ rm -rf sioyek-git
 #}
 # chrome://settings/searchEngines {
 #    Arch Wikipedia, Github, ZLib site searches
-# extensions: wikiwand, ublockorigin, react devtools, vimium c
+# extensions: wikiwand, ublockorigin, react devtools, vimium c, clear new tab (background rgb(69, 87, 96, 1))
 #}
 run 'git clone https://aur.archlinux.org/ungoogled-chromium-xdg-bin.git'
 cd ungoogled-chromium-xdg-bin
