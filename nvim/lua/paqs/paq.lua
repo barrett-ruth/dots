@@ -1,6 +1,8 @@
 require 'paq' {
     'savq/paq-nvim',
 
+    'lewis6991/impatient.nvim',
+
     -- cmp [:
     'hrsh7th/nvim-cmp',
     'hrsh7th/cmp-nvim-lsp',
@@ -48,36 +50,39 @@ require 'paq' {
     'whatyouhide/vim-textobj-xmlattr',
     -- :]
 
-    -- tpope [:
-    'tpope/vim-abolish',
+    -- git [:
     'tpope/vim-fugitive',
+    'lewis6991/gitsigns.nvim',
+    -- :]
+
+    -- utility [:
+    'AckslD/nvim-neoclip.lua',
+    'elihunter173/dirbuf.nvim',
+    'numToStr/Comment.nvim',
+    'ojroques/nvim-bufdel',
+    'tpope/vim-abolish',
     'tpope/vim-repeat',
     'tpope/vim-surround',
     -- :]
 
     -- misc [:
-    'AckslD/nvim-neoclip.lua',
     'AndrewRadev/splitjoin.vim',
     'andymass/vim-matchup',
-    'elihunter173/dirbuf.nvim',
+    'junegunn/vim-easy-align',
+    'wellle/targets.vim',
+
     {
         'iamcco/markdown-preview.nvim',
         run = 'cd app && yarn install',
     },
     'ibhagwan/fzf-lua',
-    'junegunn/vim-easy-align',
-    'lewis6991/impatient.nvim',
-    'lewis6991/gitsigns.nvim',
     'L3MON4D3/LuaSnip',
-    'numToStr/Comment.nvim',
-    'ojroques/nvim-bufdel',
-    'SmiteshP/nvim-navic',
-    'wellle/targets.vim',
     -- :]
 
     -- aesthetic [:
     'itchyny/vim-highlighturl',
     'NvChad/nvim-colorizer.lua',
+    'SmiteshP/nvim-navic',
     -- :]
 }
 

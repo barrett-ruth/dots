@@ -62,7 +62,6 @@ map { 'n', '[o', '@="m`O\\eg``"<cr>' }
 -- :]
 
 -- Deleting/yanking/pasting [:
-map { '', '<leader>d', '"_d' }
 map { 'v', '<leader>p', '"_dP' }
 map { '', '<leader>y', '"+y' }
 -- :]

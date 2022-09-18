@@ -1,5 +1,4 @@
 local ensure_installed = {
-    'c',
     'comment',
     'cpp',
     'css',
