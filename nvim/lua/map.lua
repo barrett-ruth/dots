@@ -39,6 +39,8 @@ map { 'n', 'Q', 'q:k' }
 map { 'n', '<bs>', '<c-^>' }
 map { 'n', '<c-d>', '<c-d>zz' }
 map { 'n', '<c-u>', '<c-u>zz' }
+map { 'n', 'H', 'zH' }
+map { 'n', 'L', 'zL' }
 vim.cmd 'cno <c-n> <down>'
 -- :]
 
