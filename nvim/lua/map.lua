@@ -41,7 +41,9 @@ map { 'n', '<c-d>', '<c-d>zz' }
 map { 'n', '<c-u>', '<c-u>zz' }
 map { 'n', 'H', 'zH' }
 map { 'n', 'L', 'zL' }
-vim.cmd 'cno <c-n> <down>'
+map({ 'c', '<c-p>', '<up>' }, { silent = false })
+map({ 'c', '<c-n>', '<down>' }, { silent = false })
+map({ 'c', ';', 'norm ' }, { silent = false })
 -- :]
 
 -- Location List [:
