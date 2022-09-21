@@ -67,17 +67,6 @@ M.rfind = function(str, char)
     return #str - revpos
 end
 
-M.toggle_list = function(prefix)
-    for _, buf in ipairs(vim.fn.getbufinfo { buflisted = 1 }) do
-        if vim.api.nvim_buf_get_option(buf.bufnr, 'filetype') == 'qf' then
-            vim.cmd(prefix == 'c' and 'cclose' or 'lclose')
-            return
-        end
-    end
-
-    vim.cmd(prefix == 'c' and 'copen' or 'lopen')
-end
-
 M.map = function(mapping, opts)
     local kopts = { noremap = true, silent = true }
 

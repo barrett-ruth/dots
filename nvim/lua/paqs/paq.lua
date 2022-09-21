@@ -31,7 +31,7 @@ require 'paq' {
     'nvim-lua/plenary.nvim',
     {
         'nvim-treesitter/nvim-treesitter',
-        run = function() vim.cmd 'TSUpdate' end,
+        run = function() require('nvim-treesitter.install').update { with_sync = true } end,
     },
     'nvim-treesitter/nvim-treesitter-textobjects',
     'nvim-treesitter/playground',
