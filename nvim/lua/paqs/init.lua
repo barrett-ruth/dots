@@ -10,6 +10,7 @@ local files = {
     'harpoon',
     'navic',
     'treesitter',
+    'undotree',
 }
 
 for _, v in ipairs(files) do

@@ -123,10 +123,10 @@ end
 -- :]
 
 -- diffs [:
-hi('DiffAdd', { bg = '#34381b' })
-hi('DiffChange', { bg = '#0e363e' })
-hi('DiffDelete', { none = true, fg = cs.white, bg = '#402120' })
-hi('DiffText', { none = true, fg = cs.bg, bg = cs.blue })
+hi('DiffAdd', { fg = cs.green, reverse = true })
+hi('DiffChange', { fg = cs.blue, reverse = true })
+hi('DiffDelete', { fg = cs.red, reverse = true })
+-- hi('DiffText', { none = true, fg = cs.bg, bg = cs.blue })
 hi('diffAdded', { fg = cs.green })
 hi('diffRemoved', { fg = cs.red })
 hi('diffFile', { fg = cs.cyan })

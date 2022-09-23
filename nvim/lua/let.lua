@@ -1,5 +1,8 @@
 vim.g.mapleader = ' '
 
+vim.g.undotree_HelpLine = 0
+vim.g.undotree_ShortIndicators = 1
+
 vim.g.mkdp_auto_close = 0
 vim.g.mkdp_refresh_slow = 1
 vim.g.mkdp_page_title = '${name}'

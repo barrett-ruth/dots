@@ -22,6 +22,3 @@ xrandr --output "$two" --set TearFree on
 cmd="$cmd --pos 2160x0 --output $two --rotate left --mode 2560x1440 --scale 1.5x1.5 --pos 0x0"
 
 eval "$cmd"
-
-# Prevent flicker
-# xrandr --output "$one" --scale 0.9999x0.9999

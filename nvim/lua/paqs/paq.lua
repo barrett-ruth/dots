@@ -2,6 +2,7 @@ require 'paq' {
     'savq/paq-nvim',
 
     'lewis6991/impatient.nvim',
+    'mbbill/undotree',
 
     -- cmp [:
     'hrsh7th/nvim-cmp',
@@ -75,7 +76,7 @@ require 'paq' {
 
     {
         'iamcco/markdown-preview.nvim',
-        run = 'cd app && yarn install',
+        run = function() vim.fn['mkdp#util#install']() end,
     },
     'ibhagwan/fzf-lua',
     'L3MON4D3/LuaSnip',
