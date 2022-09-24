@@ -30,8 +30,14 @@ cmp.setup {
                 vim_item.abbr = vim_item.abbr:sub(0, -2)
             end
 
-            if string.find(vim_item.abbr, ' - java.') then
-                vim_item.abbr = vim_item.abbr:gsub('java%.', '', 1)
+            -- Trim padding added by clangd
+            if vim_item.abbr:sub(0, 1) == ' ' then
+                vim_item.abbr = vim_item.abbr:sub(2)
+            end
+
+            -- Remove redunant java text
+            if string.find(vim_item.abbr, ' - java') then
+                vim_item.abbr = vim_item.abbr:gsub('- java', '[', 1) .. ']'
             end
 
             return vim_item

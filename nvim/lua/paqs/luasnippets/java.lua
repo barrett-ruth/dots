@@ -4,6 +4,7 @@ local fmt = require('luasnip.extras.fmt').fmt
 local i, s = ls.i, ls.s
 
 local java = {
+    s('/* ', fmt('/* {} */', { i(1) })),
     s(
         'main',
         fmt(

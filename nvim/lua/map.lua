@@ -43,7 +43,7 @@ map { 'n', 'H', 'zH' }
 map { 'n', 'L', 'zL' }
 map({ 'c', '<c-p>', '<up>' }, { silent = false })
 map({ 'c', '<c-n>', '<down>' }, { silent = false })
-map({ 'c', ';', 'norm ' }, { silent = false })
+map({ 'c', ';;', 'norm ' }, { silent = false })
 -- :]
 
 -- Location List [:
