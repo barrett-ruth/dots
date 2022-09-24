@@ -7,18 +7,6 @@ au('BufEnter', {
     group = aug,
 })
 
-au('OptionSet', {
-    pattern = 'shiftwidth',
-    callback = function()
-        if vim.bo.filetype == '' then return end
-
-        vim.opt_local.listchars:append(
-            'leadmultispace:|' .. string.rep(' ', vim.bo.shiftwidth - 1)
-        )
-    end,
-    group = aug,
-})
-
 au('QuitPre', {
     callback = function()
         local bufname = 'scratch' .. vim.fn.bufnr()
@@ -44,12 +32,12 @@ au({ 'FocusGained', 'WinEnter' }, {
 })
 
 au('InsertEnter', {
-    command = 'setl colorcolumn=80|norm zz',
+    command = 'setl norm zz',
     group = aug,
 })
 
 au('InsertLeave', {
-    command = [[setl colorcolumn= | lua require('paqs.luasnippets.utils').leave_snippet()]],
+    command = [[lua require('paqs.luasnippets.utils').leave_snippet()]],
     group = aug,
 })
 
@@ -85,6 +73,6 @@ au('TextYankPost', {
 })
 
 au('TermOpen', {
-    command = 'setl nonumber norelativenumber nospell nocursorline signcolumn=no | start',
+    command = 'setl nonumber norelativenumber nocursorline signcolumn=no | start',
     group = aug,
 })

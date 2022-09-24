@@ -28,7 +28,7 @@ vim.opt.laststatus = 3
 vim.opt.lazyredraw = true
 
 vim.opt.list = true
-vim.opt.listchars = 'trail:·,leadmultispace:│   '
+vim.opt.listchars = 'trail:·'
 
 vim.opt.modeline = false
 
@@ -51,7 +51,7 @@ vim.opt.showtabline = 0
 
 vim.opt.signcolumn = 'no'
 
-vim.opt.spell = true
+vim.opt.spell = false
 vim.opt.spellcapcheck = ''
 vim.opt.spellfile = vim.env.XDG_DATA_HOME .. '/nvim/spell/spell.encoding.add'
 vim.opt.spelllang = 'en_us'

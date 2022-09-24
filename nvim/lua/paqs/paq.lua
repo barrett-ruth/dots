@@ -2,7 +2,6 @@ require 'paq' {
     'savq/paq-nvim',
 
     'lewis6991/impatient.nvim',
-    'mbbill/undotree',
 
     -- cmp [:
     'hrsh7th/nvim-cmp',
@@ -61,6 +60,7 @@ require 'paq' {
     -- utility [:
     'AckslD/nvim-neoclip.lua',
     'elihunter173/dirbuf.nvim',
+    'mbbill/undotree',
     'numToStr/Comment.nvim',
     'ojroques/nvim-bufdel',
     'tpope/vim-abolish',

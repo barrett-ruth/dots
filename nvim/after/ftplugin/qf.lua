@@ -1,4 +1,3 @@
-vim.wo.spell = false
 vim.opt_local.statusline = nil
 
 local utils = require 'utils'

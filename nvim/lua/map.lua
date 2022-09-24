@@ -97,5 +97,6 @@ map { 'n', '[e', '<cmd>m-2<cr>' }
 
 -- Toggling [:
 map { 'n', '<leader>ic', mapstr 'let &l:ch = (&ch + 1) % 2' }
+map { 'n', '<leader>is', mapstr 'setl invspell' }
 map { 'n', '<leader>iw', mapstr 'setl invwrap' }
 -- :]
