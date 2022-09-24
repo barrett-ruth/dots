@@ -7,6 +7,20 @@ au('BufEnter', {
     group = aug,
 })
 
+au('FileType', {
+    pattern = 'harpoon',
+    callback = function()
+        vim.keymap.set('n', '<c-v>', function()
+            local line = vim.api.nvim_get_current_line()
+            local pwd = vim.fn.getcwd() .. '/'
+            local path = pwd .. line
+
+            vim.cmd('vs ' .. path)
+        end, { noremap = true, silent = true })
+    end,
+    group = aug
+})
+
 au('QuitPre', {
     callback = function()
         local bufname = 'scratch' .. vim.fn.bufnr()
@@ -32,7 +46,7 @@ au({ 'FocusGained', 'WinEnter' }, {
 })
 
 au('InsertEnter', {
-    command = 'setl norm zz',
+    command = 'norm zz',
     group = aug,
 })
 
