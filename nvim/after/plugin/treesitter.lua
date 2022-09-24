@@ -35,6 +35,20 @@ require('nvim-treesitter.configs').setup {
         move = {
             enable = true,
             set_jumps = true,
+            goto_previous_start = {
+                ['[a'] = '@parameter.inner',
+                ['[c'] = '@call.outer',
+                ['[C'] = '@class.outer',
+                ['[f'] = '@function.outer',
+                ['[i'] = '@conditional.outer',
+            },
+            goto_next_start = {
+                [']a'] = '@parameter.inner',
+                [']c'] = '@call.outer',
+                [']C'] = '@class.outer',
+                [']f'] = '@function.outer',
+                [']i'] = '@conditional.outer',
+            },
         },
         select = {
             enable = true,
@@ -59,4 +73,6 @@ require('nvim-treesitter.configs').setup {
     },
 }
 
-require 'paqs.treesitter.map'
+local utils = require 'utils'
+
+utils.map { 'n', '<leader>th', utils.mapstr 'TSHighlightCapturesUnderCursor' }
