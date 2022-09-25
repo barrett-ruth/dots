@@ -8,5 +8,6 @@ return {
         bmap { 'n', '\\Ca', mapstr 'ClangdAST' }
         bmap { 'n', '\\Cm', mapstr 'ClangdMemoryUsage' }
         bmap { 'n', '\\Cs', mapstr 'ClangdSwitchSourceHeader' }
+        bmap { 'n', '\\Ct', mapstr 'ClangdTypeHierarchy' }
     end,
 }

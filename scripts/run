@@ -5,9 +5,6 @@
 proj="$1"
 
 case "$(basename "$proj")" in
-barrett-ruth.github.io)
-    cmd='chromium --new-window index.html'
-    ;;
 dmenu | dwm | st)
     cmd='make clean install; make clean'
     ;;

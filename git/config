@@ -20,6 +20,7 @@
     b = branch
     c = commit
     cap = "!cap() { git add . && git commit -m \"$*\" && git push; }; cap"
+    cane = commit --amend --no-edit
     cf = config
     ch = checkout
     cl = clone

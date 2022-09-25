@@ -20,6 +20,8 @@ gitsigns.setup {
 
         bmap { 'n', '<leader>gb', mapstr 'Gitsigns toggle_current_blame_line' }
         bmap { 'n', '<leader>gp', mapstr 'Gitsigns preview_hunk' }
+        bmap { 'n', '<leader>gs', mapstr 'Gitsigns stage_hunk' }
+
         bmap { 'n', '[g', mapstr 'Gitsigns prev_hunk' }
         bmap { 'n', ']g', mapstr 'Gitsigns next_hunk' }
 

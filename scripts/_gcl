@@ -9,10 +9,13 @@ if [ "$2" ]; then
         cmd="$cmd git@github.com:$1/$2"
     fi
     dir="$2"
+    shift
+    shift
 else
     cmd="$cmd $1"
     dir="${1##*/}"
     dir="${dir%%.*}"
+    shift
 fi
 
-eval "$cmd $dir" && cd "$dir" || return
+eval "$cmd $dir $*" && cd "$dir" || return
