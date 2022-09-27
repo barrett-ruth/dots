@@ -7,8 +7,26 @@ __set_code() {
     [[ $code -eq 0 ]] || PS1=" %F{red}$code%f"
 }
 
+__shrink() {
+    dir=${PWD/#$HOME/\~} base="$(basename $dir)"
+    typeset -a tree=(${(s:/:)dir})
+
+    if [[ $tree[1] == '~' ]]; then
+        res='~'
+        shift tree
+    else
+        echo "%c" && exit
+    fi
+    for dir in $tree; do
+        [[ $dir == $base ]] && res+=/$dir && break
+        res+=/$dir[1]
+        [[ $dir[1] == '.' ]] && res+=$dir[2]
+    done
+    echo $res
+}
+
 __set_dir() {
-    PS1+=" %F{cyan}%~ "
+    PS1+=" %F{cyan}$(__shrink) "
 }
 
 __set_git() {

@@ -13,7 +13,7 @@ au('FileType', {
     callback = function()
         utils.bmap {
             'n',
-            '<c-v>',
+            'v',
             function()
                 local line = vim.api.nvim_get_current_line()
                 local pwd = vim.fn.getcwd() .. '/'

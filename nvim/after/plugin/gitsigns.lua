@@ -36,8 +36,8 @@ gitsigns.setup {
 }
 
 local gitsigns_signs = {
-    Add = { text = '|' },
-    Change = { text = '|' },
+    Add = { text = '│' },
+    Change = { text = '│' },
     Changedelete = { text = '~' },
     Delete = { text = '_' },
     Topdelete = { text = '‾' },
