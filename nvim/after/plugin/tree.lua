@@ -1,6 +1,10 @@
 local gitignore = {}
 for _, v in ipairs(vim.g.wildignore) do
-    table.insert(gitignore, '^' .. v:sub(1, #v - 1) .. '$')
+    if v:sub(-1) == '/' then
+        table.insert(gitignore, '^' .. v:sub(1, -2) .. '$')
+    else
+        table.insert(gitignore, v)
+    end
 end
 
 require('nvim-tree').setup {
@@ -20,14 +24,17 @@ require('nvim-tree').setup {
             list = {
                 { key = 'a', action = 'create' },
                 { key = 'b', action = 'dir_up' },
+                { key = 'c', action = 'copy' },
                 { key = 'd', action = 'remove' },
-                { key = 'f', action = 'cd' },
-                { key = 'm', action = 'rename' },
+                { key = 'g', action = 'cd' },
+                { key = 'r', action = 'rename' },
                 { key = 'p', action = 'parent_node' },
                 { key = 'q', action = 'close' },
-                { key = '<cr>', action = 'edit' },
                 { key = 'v', action = 'vsplit' },
                 { key = 'x', action = 'split' },
+                { key = '<cr>', action = 'edit' },
+                { key = '<bs>', action = 'close_node' },
+                { key = '?', action = 'toggle_help' },
             },
         },
         number = true,
