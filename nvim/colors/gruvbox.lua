@@ -60,10 +60,10 @@ hi('SpecialKey', { fg = cs.black })
 -- :]
 
 hi('VertSplit', { fg = cs.black })
-hi('MatchParen', { bg = cs.grey_white })
+hi('MatchParen', { bg = cs.dark_grey })
 
 hi('NormalFloat', { bg = 'NONE' })
-hi('Visual', { bg = cs.grey_white })
+hi('Visual', { bg = cs.dark_grey })
 hi('Whitespace', { fg = cs.black })
 
 hi('Search', { fg = 'NONE', bg = 'NONE', reverse = true })
@@ -79,9 +79,9 @@ hi('Identifier', { fg = cs.blue })
 -- :]
 
 -- pmenu [:
-hi('Pmenu', { bg = cs.grey_white })
-hi('PmenuSel', { fg = cs.grey_white, bg = cs.hi })
-hi('PmenuSbar', { bg = cs.grey_white })
+hi('Pmenu', { bg = cs.dark_grey })
+hi('PmenuSel', { fg = cs.dark_grey, bg = cs.hi })
+hi('PmenuSbar', { bg = cs.dark_grey })
 hi('PmenuThumb', { bg = cs.hi })
 -- :]
 
@@ -96,9 +96,13 @@ hi('HighlightUrl', { fg = cs.blue, italic = true })
 
 -- nvim-tree [:
 hi('NvimTreeIndentMarker', { fg = cs.grey })
-hi('Directory', { fg = cs.blue })
+hi('Directory', { fg = cs.light_blue })
 link('Directory', 'NvimTreeFolderName')
 hi('NvimTreeRootFolder', { fg = cs.cyan })
+hi(
+    'NvimTreeSpecialFile',
+    { bold = true, fg = cs.light_yellow, underline = true }
+)
 -- :]
 
 -- fzf-lua [:
