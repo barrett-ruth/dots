@@ -20,7 +20,7 @@ alias g='git'
 alias dk='docker'
 alias ka='killall'
 alias mp='makepkg'
-alias nv='nvim'
+nv() { [[ "$*" ]] && nvim "$*" || nvim . }
 alias nvh='nvim config.h'
 alias nvt='nvim ~/todo.txt'
 alias perg='printenv | rg'

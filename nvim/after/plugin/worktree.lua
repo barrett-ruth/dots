@@ -39,8 +39,11 @@ local create_worktree = function(_)
     require('git-worktree').create_worktree(path, branch, upstream)
 end
 
-return {
-    git_worktrees = function()
+local utils = require 'utils'
+utils.map {
+    'n',
+    '<leader>vw',
+    function()
         fzf.fzf_exec('git worktree list | tail -n +2 | sed "s|$HOME|~|g"', {
             prompt = 'wt> ',
             fn_transform = function(x)
