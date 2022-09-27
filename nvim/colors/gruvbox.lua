@@ -96,9 +96,9 @@ hi('HighlightUrl', { fg = cs.blue, italic = true })
 
 -- nvim-tree [:
 hi('NvimTreeIndentMarker', { fg = cs.grey })
-hi('Directory', { fg = cs.orange })
+hi('Directory', { fg = cs.blue })
 link('Directory', 'NvimTreeFolderName')
-hi('NvimTreeRootFolder', { fg = cs.grey })
+hi('NvimTreeRootFolder', { fg = cs.cyan })
 -- :]
 
 -- fzf-lua [:
