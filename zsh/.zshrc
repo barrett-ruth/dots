@@ -61,11 +61,21 @@ __set_venv() {
     PS1+="%F{yellow}$(basename "$VIRTUAL_ENV")$suffix%f "
 }
 
+__set_beam_cursor() { echo -ne '\e[5 q'; }
+__set_block_cursor() { echo -ne '\e[1 q'; }
+
+zle-keymap-select() {
+    [[ "$KEYMAP" = main || "$KEYMAP" = viins || -z "$KEYMAP" ]] && __set_beam_cursor || __set_block_cursor
+}
+
+zle -N zle-keymap-select
+
 precmd() {
     code=$?
     __set_code
     __set_dir
     __set_git
     __set_venv
+    __set_beam_cursor
     PS1+="%f"
 }
