@@ -59,7 +59,7 @@ require 'paq' {
 
     -- utility [:
     'AckslD/nvim-neoclip.lua',
-    'elihunter173/dirbuf.nvim',
+    'kyazdani42/nvim-tree.lua',
     'mbbill/undotree',
     'numToStr/Comment.nvim',
     'ojroques/nvim-bufdel',

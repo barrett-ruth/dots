@@ -77,4 +77,4 @@ for line in io.lines(ignore) do
     table.insert(wig, line)
 end
 
-vim.g.wildignore = ignore
+vim.g.wildignore = wig

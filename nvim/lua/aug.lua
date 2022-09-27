@@ -1,5 +1,6 @@
 local au = vim.api.nvim_create_autocmd
 local aug = vim.api.nvim_create_augroup('augs', { clear = true })
+local utils = require 'utils'
 
 au('BufEnter', {
     pattern = 'PKGBUILD',
@@ -10,15 +11,19 @@ au('BufEnter', {
 au('FileType', {
     pattern = 'harpoon',
     callback = function()
-        vim.keymap.set('n', '<c-v>', function()
-            local line = vim.api.nvim_get_current_line()
-            local pwd = vim.fn.getcwd() .. '/'
-            local path = pwd .. line
+        utils.bmap {
+            'n',
+            '<c-v>',
+            function()
+                local line = vim.api.nvim_get_current_line()
+                local pwd = vim.fn.getcwd() .. '/'
+                local path = pwd .. line
 
-            vim.cmd('vs ' .. path)
-        end, { noremap = true, silent = true })
+                vim.cmd('vs ' .. path)
+            end,
+        }
     end,
-    group = aug
+    group = aug,
 })
 
 au('QuitPre', {
