@@ -26,6 +26,8 @@ cmp.setup {
             vim_item.menu = ''
             vim_item.kind = ''
 
+            -- Change snippets that leaked through from
+            -- lua-dev into regular entries
             if vim_item.abbr:sub(-1, -1) == '~' then
                 vim_item.abbr = vim_item.abbr:sub(0, -2)
             end

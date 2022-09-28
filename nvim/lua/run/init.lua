@@ -12,6 +12,7 @@ commands.cc = commands.cpp
 
 local M = {}
 
+-- Run file in corresponding output buffer on save
 M.run = function()
     local extension = vim.fn.expand '%:e'
 

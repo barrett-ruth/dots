@@ -1,4 +1,6 @@
 local ignore = {}
+
+-- nvim-tree requires wildignore folders to be in format ^name$
 for _, v in ipairs(vim.g.wildignore) do
     if v:sub(-1) == '/' then
         table.insert(ignore, '^' .. v:sub(1, -2) .. '$')
