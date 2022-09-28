@@ -1,48 +1,45 @@
 local M = {}
 
 local ls = require 'luasnip'
-local i, s, t = ls.i, ls.s, ls.t
+
+local i, s = ls.i, ls.s
+local fmt = require('luasnip.extras.fmt').fmt
 
 local function snipopts(trig) return { trig = trig, wordTrig = false } end
 
-local add_node = { '"', "'", '{' }
+M.basic_inline = function(lr)
+    local left = lr[1]:gsub('{', '{{')
+    local right = lr[2]:gsub('}', '}}')
 
-M.inline = function(lr)
-    local trig = lr[1]
+    return s(snipopts(lr[1]), fmt(left .. '{}' .. right, { i(1) }))
+end
 
-    if trig:len() == 3 and trig:sub(3, 3) ~= ' ' then
-        lr[2] = lr[2] .. trig:sub(3, 3)
-        lr[1] = trig:sub(1, 2)
-    elseif lr[1]:sub(2, 2) == ',' then
-        lr[2] = lr[2] .. ','
-        lr[1] = lr[1]:sub(1, 1)
-    elseif vim.tbl_keys(add_node, lr[1]:sub(2, 2)) then
-        return s(
-            snipopts(trig),
-            { t(lr[1]), i(1), t(lr[2]:sub(1, 1)), i(2), t(lr[2]:sub(2, 2)) }
+M.inline_with_node = function(lr)
+    local left = lr[1]:gsub('{', '{{')
+    local right = lr[2]:gsub('}', '}}')
+
+    return s(
+        snipopts(lr[1]),
+        fmt(
+            left
+                .. '{}'
+                .. right:sub(1, 1)
+                .. '{}'
+                .. right:sub(right:sub(-1) == '}' and -2 or -1),
+            { i(1), i(2) }
         )
-    end
+    )
+end
 
-    return s(snipopts(trig), { t(lr[1]), i(1), t(lr[2]) })
+M.inline_special = function(lr)
+    if lr == '({ ' then return s(snipopts(lr), fmt('({{ {} }})', { i(1) })) end
 end
 
 M.newline = function(lr)
-    if lr[2]:sub(1, 1) == '}' then
-        return s(snipopts(lr[2]), {
-            t(lr[1]),
-            t { '', '\t' },
-            i(1),
-            t { '', '' },
-            t(lr[2]:sub(1, 1)),
-            i(2),
-            t(lr[2]:sub(2, 2)),
-        })
-    end
+    local left = lr[1]:gsub('{', '{{')
+    local right = lr[2]:gsub('}', '}}')
 
-    return s(
-        snipopts(lr[2]),
-        { t(lr[1]), t { '', '\t' }, i(1), t { '', '' }, t(lr[2]) }
-    )
+    return s(snipopts(lr[2]), fmt(left .. '\n\t{}\n' .. right, { i(1) }))
 end
 
 M.leave_snippet = function()

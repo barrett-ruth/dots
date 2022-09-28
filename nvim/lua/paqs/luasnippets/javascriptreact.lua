@@ -14,7 +14,7 @@ local javascriptreact = {
     s('uR', fmt('useRef({})', { i(1) })),
     s(
         'us',
-        fmt('const [{}, {}] = useState({});', {
+        fmt('const [{}, {}] = useState({})', {
             i(1),
             f(
                 function(state) return 'set' .. state[1][1]:gsub('^%l', string.upper) end,

@@ -17,29 +17,56 @@ ls.config.set_config {
 }
 
 local utils = require 'paqs.luasnippets.utils'
-local inline, newline = utils.inline, utils.newline
+local basic_inline, inline_with_node, inline_special, newline =
+    utils.basic_inline,
+    utils.inline_with_node,
+    utils.inline_special,
+    utils.newline
 
 local acc = {}
 
-for _, v in ipairs { { '({', '})' }, { '[[', ']]' } } do
-    table.insert(acc, inline(v))
-    table.insert(acc, inline { v[1] .. ' ', ' ' .. v[2] })
-    table.insert(acc, newline(v))
+for _, v in ipairs {
+    { '("', '")' },
+    { "('", "')" },
+    { '([', '])' },
+    { '{"', '"}' },
+    { "{'", "'}" },
+    { '["', '"]' },
+    { "['", "']" },
+    { '[(', ')]' },
+} do
+    table.insert(acc, inline_with_node(v))
 end
 
-for _, v in ipairs { { '{', '}' }, { '(', ')' }, { '[', ']' } } do
-    table.insert(acc, inline(v))
-    table.insert(acc, inline { v[1] .. ' ', ' ' .. v[2] })
-    table.insert(acc, inline { v[1] .. ' ,', ' ' .. v[2] })
-    table.insert(acc, inline { v[1] .. ',', '' .. v[2] })
-    table.insert(acc, inline { v[1] .. "'", "'" .. v[2] })
-    table.insert(acc, inline { v[1] .. '"', '"' .. v[2] })
-    table.insert(acc, newline(v))
-    table.insert(acc, newline { v[1], v[2] .. ',' })
+table.insert(acc, inline_special '({ ')
+
+for _, v in pairs {
+    { '"', '"' },
+    { "'", "'" },
+    { '<', '>' },
+
+    { '(', ')' },
+    { '{', '}' },
+    { '[[', ']]' },
+    { '[', ']' },
+
+    { '( ', ' )' },
+    { '{ ', ' }' },
+    { '[ ', ' ]' },
+} do
+    table.insert(acc, basic_inline(v))
 end
 
-for _, v in ipairs { { "'", "'" }, { '"', '"' }, { '<', '>' }, { '`', '`' } } do
-    table.insert(acc, inline(v))
+for _, v in ipairs {
+    { '(', ')' },
+    { '{', '}' },
+    { '[', ']' },
+
+    { '(', '),' },
+    { '{', '},' },
+    { '[', '],' },
+} do
+    table.insert(acc, newline(v))
 end
 
 ls.add_snippets(nil, { all = acc })
