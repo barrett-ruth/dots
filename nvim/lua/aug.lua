@@ -1,28 +1,9 @@
 local au = vim.api.nvim_create_autocmd
 local aug = vim.api.nvim_create_augroup('augs', { clear = true })
-local utils = require 'utils'
 
 au('BufEnter', {
     pattern = 'PKGBUILD',
     command = 'se filetype=sh',
-    group = aug,
-})
-
-au('FileType', {
-    pattern = 'harpoon',
-    callback = function()
-        utils.bmap {
-            'n',
-            'v',
-            function()
-                local line = vim.api.nvim_get_current_line()
-                local pwd = vim.fn.getcwd() .. '/'
-                local path = pwd .. line
-
-                vim.cmd('vs ' .. path)
-            end,
-        }
-    end,
     group = aug,
 })
 

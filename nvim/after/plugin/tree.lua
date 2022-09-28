@@ -33,7 +33,6 @@ require('nvim-tree').setup {
                 { key = 'r', action = 'rename' },
                 { key = 'q', action = 'close' },
                 { key = 'u', action = 'parent_node' },
-                { key = 'v', action = 'vsplit' },
                 { key = 'x', action = 'split' },
                 { key = 'y', action = 'copy' },
                 { key = '<cr>', action = 'edit' },
@@ -64,5 +63,5 @@ require('nvim-tree').setup {
 local utils = require 'utils'
 local map, mapstr = utils.map, utils.mapstr
 
-map { 'n', '<c-n>', mapstr 'NvimTreeCollapse' .. mapstr 'NvimTreeToggle' }
-map { 'n', '<leader>n', mapstr 'NvimTreeFindFileToggle' }
+map { 'n', '<c-n>', mapstr 'e .' }
+map { 'n', '<leader>n', function() vim.cmd('e ' .. vim.fn.expand '%:h') end }
