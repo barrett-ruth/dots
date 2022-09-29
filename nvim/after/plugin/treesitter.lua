@@ -89,4 +89,8 @@ require('nvim-treesitter.configs').setup {
 
 local utils = require 'utils'
 
-utils.map { 'n', '<leader>th', utils.mapstr 'TSHighlightCapturesUnderCursor' }
+utils.map {
+    'n',
+    '<leader>th',
+    utils.mapstr 'TSHighlightCapturesUnderCursor' .. utils.mapstr 'setl wbr=',
+}
