@@ -17,11 +17,8 @@ ls.config.set_config {
 }
 
 local utils = require 'paqs.luasnippets.utils'
-local basic_inline, inline_with_node, inline_special, newline =
-    utils.basic_inline,
-    utils.inline_with_node,
-    utils.inline_special,
-    utils.newline
+local inline, inline_with_node, newline =
+    utils.inline, utils.inline_with_node, utils.newline
 
 local acc = {}
 
@@ -38,8 +35,6 @@ for _, v in ipairs {
     table.insert(acc, inline_with_node(v))
 end
 
-table.insert(acc, inline_special '({ ')
-
 for _, v in pairs {
     { '"', '"' },
     { "'", "'" },
@@ -53,13 +48,16 @@ for _, v in pairs {
     { '( ', ' )' },
     { '{ ', ' }' },
     { '[ ', ' ]' },
+
+    { '({ ', ' })' },
 } do
-    table.insert(acc, basic_inline(v))
+    table.insert(acc, inline(v))
 end
 
 for _, v in ipairs {
     { '(', ')' },
     { '{', '}' },
+    { '[[', ']]' },
     { '[', ']' },
 
     { '(', '),' },

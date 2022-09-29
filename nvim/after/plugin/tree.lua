@@ -31,7 +31,6 @@ require('nvim-tree').setup {
                 { key = 'm', action = 'rename' },
                 { key = 'p', action = 'paste' },
                 { key = 'r', action = 'rename' },
-                { key = 'q', action = 'close' },
                 { key = 'u', action = 'parent_node' },
                 { key = 'x', action = 'split' },
                 { key = 'y', action = 'copy' },

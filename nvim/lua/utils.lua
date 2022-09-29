@@ -50,7 +50,10 @@ end
 M.empty = function(s) return s == '' or s == nil end
 
 M.format = function()
-    if next(vim.lsp.get_active_clients { bufnr = 0 }) then
+    local clients = vim.lsp.get_active_clients { bufnr = 0 }
+    if clients[1].name == 'vimls' then return end
+
+    if next(clients) then
         vim.lsp.buf.format {
             filter = function(client)
                 return not vim.tbl_contains({

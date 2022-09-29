@@ -7,7 +7,7 @@ local fmt = require('luasnip.extras.fmt').fmt
 
 local function snipopts(trig) return { trig = trig, wordTrig = false } end
 
-M.basic_inline = function(lr)
+M.inline = function(lr)
     local left = lr[1]:gsub('{', '{{')
     local right = lr[2]:gsub('}', '}}')
 
@@ -29,10 +29,6 @@ M.inline_with_node = function(lr)
             { i(1), i(2) }
         )
     )
-end
-
-M.inline_special = function(lr)
-    if lr == '({ ' then return s(snipopts(lr), fmt('({{ {} }})', { i(1) })) end
 end
 
 M.newline = function(lr)

@@ -50,6 +50,9 @@ au('BufEnter', {
     callback = function()
         vim.cmd 'setl formatoptions-=cro spelloptions=camel,noplainbuffer'
 
+        -- Ignore floating windows
+        if vim.bo.filetype == '' then return end
+
         -- Show winbar on inactive buffers
         for _, buf in ipairs(vim.fn.getbufinfo { buflisted = 1 }) do
             local winid = vim.fn.bufwinid(buf.bufnr)
