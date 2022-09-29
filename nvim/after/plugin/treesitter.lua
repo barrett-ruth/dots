@@ -52,16 +52,30 @@ require('nvim-treesitter.configs').setup {
             goto_previous_start = {
                 ['[a'] = '@parameter.inner',
                 ['[c'] = '@call.outer',
-                ['[C'] = '@class.outer',
+                ['[s'] = '@class.outer',
                 ['[f'] = '@function.outer',
                 ['[i'] = '@conditional.outer',
+            },
+            goto_previous_end = {
+                ['[A'] = '@parameter.inner',
+                ['[C'] = '@call.outer',
+                ['[S'] = '@class.outer',
+                ['[F'] = '@function.outer',
+                ['[I'] = '@conditional.outer',
             },
             goto_next_start = {
                 [']a'] = '@parameter.inner',
                 [']c'] = '@call.outer',
-                [']C'] = '@class.outer',
+                [']s'] = '@class.outer',
                 [']f'] = '@function.outer',
                 [']i'] = '@conditional.outer',
+            },
+            goto_next_end = {
+                [']A'] = '@parameter.inner',
+                [']C'] = '@call.outer',
+                [']S'] = '@class.outer',
+                [']F'] = '@function.outer',
+                [']I'] = '@conditional.outer',
             },
         },
         select = {
