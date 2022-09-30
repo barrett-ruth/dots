@@ -43,7 +43,7 @@ mount_partitions "$disk" "$root" "$home" "$efi"
 # Enable swap volume
 run "swapon /dev/$disk$swap"
 
-run 'pacstrap /mnt base linux linux-firmware linux-headers dkms man-db intel-ucode nvidia nvidia-utils iwd dhcpcd opendoas git zsh zsh-autosuggestions zsh-syntax-highlighting zsh-completions grub efibootmgr os-prober ntfs-3g feh'
+run 'pacstrap /mnt base linux linux-firmware linux-headers dkms man-db intel-ucode nvidia nvidia-utils iwd dhcpcd opendoas git zsh zsh-autosuggestions zsh-syntax-highlighting zsh-completions grub efibootmgr os-prober ntfs-3g feh pipewire-jack'
 
 run 'genfstab -U /mnt >> /mnt/etc/fstab'
 

@@ -65,6 +65,7 @@ M.on_attach = function(client, bufnr)
 
     bmap { 'n', '\\li', mapstr 'LspInfo' }
     bmap { 'n', '\\lI', mapstr 'NullLsInfo' }
+    bmap { 'n', '\\ll', mapstr 'LspLog' }
     bmap { 'n', '\\lr', mapstr 'LspRestart' }
     bmap { 'n', '\\lR', mapstr 'NullLsRestart' }
 end
