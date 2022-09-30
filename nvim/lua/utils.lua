@@ -50,23 +50,18 @@ end
 M.empty = function(s) return s == '' or s == nil end
 
 M.format = function()
-    local clients = vim.lsp.get_active_clients { bufnr = 0 }
-    if clients[1].name == 'vimls' then return end
-
-    if next(clients) then
-        vim.lsp.buf.format {
-            filter = function(client)
-                return not vim.tbl_contains({
-                    'clangd',
-                    'jdt.ls',
-                    'jedi_language_server',
-                    'pyright',
-                    'sumneko_lua',
-                    'tsserver',
-                }, client.name)
-            end,
-        }
-    end
+    vim.lsp.buf.format {
+        filter = function(client)
+            return not vim.tbl_contains({
+                'clangd',
+                'jdt.ls',
+                'jedi_language_server',
+                'pyright',
+                'sumneko_lua',
+                'tsserver',
+            }, client.name)
+        end,
+    }
 end
 
 M.rfind = function(str, char)

@@ -14,6 +14,9 @@ require('nvim-tree').setup {
         custom = ignore,
     },
     actions = {
+        change_dir = {
+            enable = false
+        },
         open_file = {
             quit_on_open = true,
             window_picker = { enable = false },
@@ -26,6 +29,7 @@ require('nvim-tree').setup {
             list = {
                 { key = 'a', action = 'create' },
                 { key = 'b', action = 'dir_up' },
+                { key = 'c', action = 'close_node' },
                 { key = 'd', action = 'remove' },
                 { key = 'g', action = 'cd' },
                 { key = 'm', action = 'rename' },
@@ -35,7 +39,6 @@ require('nvim-tree').setup {
                 { key = 'x', action = 'split' },
                 { key = 'y', action = 'copy' },
                 { key = '<cr>', action = 'edit' },
-                { key = '<bs>', action = 'close_node' },
                 { key = '?', action = 'toggle_help' },
             },
         },

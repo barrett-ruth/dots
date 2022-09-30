@@ -28,6 +28,14 @@ M.on_attach = function(client, bufnr)
         end
     end
 
+    if client.server_capabilities.documentFormattingProvider then
+        bmap {
+            'n',
+            '<leader>w',
+            mapstr 'w' .. mapstr('utils', 'format()'),
+        }
+    end
+
     if client.server_capabilities.hoverProvider then
         bmap { 'n', '\\h', mapstr 'lua vim.lsp.buf.hover()' }
     end

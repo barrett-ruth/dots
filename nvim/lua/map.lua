@@ -80,10 +80,7 @@ map { 'n', '<leader>Q', mapstr 'qa!' }
 map {
     'n',
     '<leader>w',
-    function()
-        vim.cmd 'w'
-        require('utils').format()
-    end,
+    mapstr 'w',
     { silent = false },
 }
 map { 'n', '<leader>z', 'ZZ' }

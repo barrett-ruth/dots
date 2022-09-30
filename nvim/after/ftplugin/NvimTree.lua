@@ -3,7 +3,7 @@ local utils = require 'utils'
 utils.bmap {
     'n',
     'q',
-    utils.mapstr 'BufDel',
+    utils.mapstr 'bd',
 }
 utils.bmap {
     'n',
