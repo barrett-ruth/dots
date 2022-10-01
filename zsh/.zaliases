@@ -29,7 +29,8 @@ alias sctl='systemctl'
 alias jctl='journalctl'
 alias sy='sioyek'
 alias tm='tmux'
-alias tor='transmission-remote'
+alias tcli='transmission-cli'
+alias trem='transmission-remote'
 
 # Make
 alias mk='make'
