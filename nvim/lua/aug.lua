@@ -31,11 +31,6 @@ au({ 'FocusGained', 'WinEnter' }, {
     group = aug,
 })
 
-au('InsertEnter', {
-    command = 'norm zz',
-    group = aug,
-})
-
 au('InsertLeave', {
     command = [[lua require('paqs.luasnippets.utils').leave_snippet()]],
     group = aug,
