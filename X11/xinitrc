@@ -13,7 +13,6 @@ sxs
     skb
 ) &
 sclip &
-transmission-daemon &
 mux &
 while true; do
     dwmb &
