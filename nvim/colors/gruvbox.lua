@@ -103,6 +103,7 @@ hi(
     'NvimTreeSpecialFile',
     { bold = true, fg = cs.light_yellow, underline = true }
 )
+hi('NvimTreeExecFile', { bold = true, fg = cs.light_green })
 -- :]
 
 -- fzf-lua [:

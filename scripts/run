@@ -11,9 +11,6 @@ dmenu | dwm | st)
 dwmb)
     cmd='make clean install; make clean; killall dwmb; dwmb &'
     ;;
-Homework*)
-    cmd='java src/*.java'
-    ;;
 *)
     echo "Project '$proj_name' unknown."
     exit

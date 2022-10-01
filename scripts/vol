@@ -1,0 +1,26 @@
+#!/bin/sh
+
+[ "$1" ] || exit
+
+cmd="$1"
+shift
+sink="$(pacmd list-sinks | rg '\* index: ' | tail -c 2)"
+
+case "$cmd" in
+up | down)
+    [ "$cmd" = up ] && change=+ || change=-
+    pactl set-sink-volume "$sink" "$change${1:-5}%"
+    ;;
+mute)
+    pactl set-sink-mute "$sink" toggle
+    muted="$(pacmd list-sink | rg 'muted' | sed -n "$sink"p)"
+    muted="${muted##* }"
+    ;;
+toggle)
+    state="$(pacmd list-sinks | rg 'state: ')"
+    [ "${state##*RUNNING*}" ] && sus=0 || sus=1
+    pacmd suspend-sink alsa_output.usb-AudioQuest_AudioQuest_DragonFly_Red_v1.0_AQDFRD0100141742-00.analog-stereo "$sus"
+    ;;
+esac
+
+pkill -RTMIN+5 dwmb
