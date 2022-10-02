@@ -69,7 +69,6 @@ export FZF_TMUX=1
 # Plugins
 . "$ZDOTDIR/.zaliases"
 . "$XDG_CONFIG_HOME/fzf/fzf.zsh"
-. /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 fzf-config-widget() {
@@ -80,7 +79,6 @@ fzf-config-widget() {
 zle -N fzf-config-widget
 
 bindkey -v
-bindkey -r '^[c' '^E' '^R' '^T'
 bindkey '^E' fzf-config-widget
 bindkey '^F' fzf-file-widget
 bindkey '^G' fzf-cd-widget

@@ -7,6 +7,10 @@ __set_code() {
     [[ $code -eq 0 ]] || PS1=" %F{red}$code%f"
 }
 
+__set_ssh() {
+    [[ "$SSH_CONNECTION" ]] && PS1+=" %F{095}%n%F{058}@%F{243}%m"
+}
+
 __shrink() {
     dir=${PWD/#$HOME/\~} base="$(basename $dir)"
     typeset -a tree=(${(s:/:)dir})
@@ -73,6 +77,7 @@ zle -N zle-keymap-select
 precmd() {
     code=$?
     __set_code
+    __set_ssh
     __set_dir
     __set_git
     __set_venv
