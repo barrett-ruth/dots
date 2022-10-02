@@ -16,6 +16,8 @@ map({ 'x', ':', ';' }, { silent = false })
 map({ 'x', ';', ':' }, { silent = false })
 map { 'n', ']p', '}' }
 map { 'n', '[p', '{' }
+map { 'n', ']d', ']s' }
+map { 'n', '[d', '[s' }
 -- :]
 
 -- Folds [:
