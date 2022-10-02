@@ -127,8 +127,6 @@ cd
 
 
 setup_ssh_etc() {
-sed -i '/#*IdentityFile/ s|.ssh|.config/ssh|g' /etc/ssh_config
-sed -i '/#*IdentityFile/ s|^#*||g' /etc/ssh_config
 sed -i '/#*AuthorizedKeysFile/ s|.ssh|.config/ssh|g' /etc/sshd_config
 sed -i '/#*AuthorizedKeysFile/ s|^#*||g' /etc/sshd_config
 }
@@ -152,6 +150,7 @@ setup_users "$username"
 setup_doas "$username"
 
 run 'systemctl enable dhcpcd.service'
+run 'systemctl enable sshd.service'
 run 'systemctl enable fstrim.timer'
 run 'systemctl enable iwd.service'
 

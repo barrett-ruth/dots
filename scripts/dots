@@ -13,7 +13,7 @@ cp -r "$SCRIPTS" .
 
 cp -r ~/.local/share/fonts .
 
-for e in git sioyek nvim python rg templates tmux transmission transmission-daemon X11 yarn zsh; do
+for e in git sioyek nvim python rg ssh templates tmux transmission transmission-daemon X11 yarn zsh; do
     cp -r "$XDG_CONFIG_HOME/$e" .
 done
 
@@ -22,6 +22,8 @@ cp "$XDG_DATA_HOME/nvim/spell/spell.encoding.add" nvim
 rm -rf nvim/undo
 rmb .zshrc .zprofile .zaliases zsh
 rmb tmux.conf tmux
+rmb config ssh
+sed -i '/^Host [^*]/,$d' ssh/config
 rmb settings.json transmission
 rmb settings.json transmission-daemon
 sed -i '/password/d' transmission/settings.json
