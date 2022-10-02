@@ -112,6 +112,11 @@ run 'mv dots/misc/*-*.conf /etc/X11/xorg.conf.d'
 }
 
 
+setup_transmission() {
+run 'mv dots/misc/99-transmission.conf /etc/sysctl.d'
+}
+
+
 setup_doas() {
 sed -i "s|{USERNAME}|$1|g" dots/misc/doas.conf
 run 'mv dots/misc/doas.conf /etc'
@@ -157,6 +162,8 @@ setup_grub
 setup_nvidia
 
 setup_X11
+
+setup_transmission
 
 setup_ssh_etc
 

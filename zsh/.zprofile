@@ -92,4 +92,4 @@ bindkey '^J' backward-char
 bindkey '^K' forward-char
 
 # X server
-[ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ] && startx "$XDG_CONFIG_HOME/X11/xinitrc"
+[[ -z "$DISPLAY" ]] && [[ $XDG_VTNR = 1 ]] && startx "$XDG_CONFIG_HOME/X11/xinitrc"
