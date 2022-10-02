@@ -4,6 +4,8 @@ vim.opt.background = 'dark'
 
 vim.opt.cinkeys:remove ':'
 
+vim.opt.cmdheight = 0
+
 vim.opt.cursorline = true
 
 vim.opt.expandtab = true
@@ -51,7 +53,7 @@ vim.opt.showtabline = 0
 
 vim.opt.signcolumn = 'no'
 
-vim.opt.spell = false
+vim.opt.spell = true
 vim.opt.spellcapcheck = ''
 vim.opt.spellfile = vim.env.XDG_DATA_HOME .. '/nvim/spell/spell.encoding.add'
 vim.opt.spelllang = 'en_us'

@@ -52,7 +52,10 @@ au('BufEnter', {
         for _, buf in ipairs(vim.fn.getbufinfo { buflisted = 1 }) do
             local winid = vim.fn.bufwinid(buf.bufnr)
 
-            if winid ~= -1 then
+            if
+                winid ~= -1
+                and vim.api.nvim_buf_get_option(buf.bufnr, 'filetype') ~= ''
+            then
                 vim.api.nvim_win_set_option(
                     vim.fn.bufwinid(buf.bufnr),
                     'winbar',
