@@ -28,6 +28,7 @@ alias py='python'
 alias sctl='systemctl'
 alias jctl='journalctl'
 alias ssh='ssh -F ~/.config/ssh/config'
+alias rs="rsync -e 'ssh -F $HOME/.config/ssh/config'"
 alias sy='sioyek'
 alias tm='tmux'
 alias tcli='transmission-tcli'
