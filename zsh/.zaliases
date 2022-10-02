@@ -29,7 +29,7 @@ alias sctl='systemctl'
 alias jctl='journalctl'
 alias sy='sioyek'
 alias tm='tmux'
-alias tcli='transmission-cli'
+tcli() { [[ "$*" ]] && transmission-cli --torrent "$1" --start; }
 alias trem='transmission-remote'
 
 # Make
