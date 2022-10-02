@@ -65,5 +65,5 @@ require('nvim-tree').setup {
 local utils = require 'utils'
 local map, mapstr = utils.map, utils.mapstr
 
-map { 'n', '<c-n>', mapstr 'e .' }
-map { 'n', '<leader>n', function() vim.cmd('e ' .. vim.fn.expand '%:h') end }
+map { 'n', '<c-t>', mapstr 'e .' }
+map { 'n', '<leader>t', function() vim.cmd('e ' .. vim.fn.expand '%:h') end }

@@ -80,6 +80,8 @@ M.run = function()
             })
         end,
     })
+
+    vim.cmd 'w'
 end
 
 M.setup = function()
