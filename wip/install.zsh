@@ -43,7 +43,7 @@ mount_partitions "$disk" "$root" "$home" "$efi"
 # Enable swap volume
 run "swapon /dev/$disk$swap"
 
-run 'pacstrap /mnt base linux linux-firmware linux-headers dkms man-db intel-ucode nvidia nvidia-utils iwd dhcpcd opendoas git zsh zsh-autosuggestions zsh-syntax-highlighting zsh-completions grub efibootmgr os-prober ntfs-3g feh'
+run 'pacstrap /mnt base linux linux-firmware linux-headers dkms man-db intel-ucode nvidia nvidia-utils iwd dhcpcd opendoas git zsh zsh-syntax-highlighting zsh-completions grub efibootmgr os-prober ntfs-3g feh'
 
 run 'genfstab -U /mnt >> /mnt/etc/fstab'
 
@@ -217,12 +217,6 @@ run 'su -l postgres'
 }
 
 
-setup_zsh() {
-chsh -s "$(which zsh)"
-git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.config/zsh/zsh-syntax-highlighting
-}
-
-
 setup_fzf() {
 git clone https://github.com/junegunn/fzf ~/.config/fzf
 cd .config/fzf
@@ -364,7 +358,7 @@ setup_neovim
 
 setup_postgres
 
-setup_zsh
+chsh -s "$(which zsh)"
 
 setup_fzf
 
