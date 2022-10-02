@@ -105,6 +105,6 @@ local utils = require 'utils'
 
 utils.map {
     'n',
-    '<leader>H',
+    '<c-h>',
     utils.mapstr 'TSHighlightCapturesUnderCursor',
 }
