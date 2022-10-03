@@ -343,7 +343,7 @@ rm "$HOME/.yarnrc"
 
 
 post() {
-run 'doas pacman -S clang dash docker docker-compose exa fakeroot harfbuzz tree-sitter fd gcc go google-java-format jdk-openjdk jdtls libxft xf86-video-intel libxinerama libglvnd light lua-language-server make openssh patch pkgconf postgresql python ripgrep rustup shfmt tmux ttf-hanazono ttf-liberation xorg-server xorg-setxkbmap xorg-xinit xorg-xmodmap xorg-xrandr xorg-xrdb xorg-xset which xclip yarn pulseaudio mpv rsync'
+run 'doas pacman -S clang dash docker docker-compose exa fakeroot harfbuzz tree-sitter fd gcc go google-java-format jdk-openjdk jdtls libxft xf86-video-intel libxinerama libglvnd light lua-language-server make openssh patch pkgconf postgresql python ripgrep rustup shfmt tmux ttf-hanazono ttf-liberation xorg-server xorg-setxkbmap xorg-xinit xorg-xmodmap xorg-xrandr xorg-xrdb xorg-xset which xclip yarn pulseaudio mpv rsync transmission-cli'
 
 run 'doas usermod -aG docker,video "$(whoami)"'
 
