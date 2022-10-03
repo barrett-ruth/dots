@@ -2,7 +2,7 @@
 
 leave() {
     [ "$(ps aux | rg mpv | wc -l)" -gt 1 ] && killall mpv
-    mpv "$1" &
+    mpv --no-terminal --no-audio-display "$1" &
     exit 0
 }
 
@@ -14,8 +14,8 @@ cd "$prefix" || exit
 
 songs="$(fd -d 3 -t f | sed 's|./||;s|.flac||')"
 
-entry="$(echo "$songs" | dmenu -p 'Music:')"
+entry="$(echo "$songs" | dmenu -i -p 'Music:')"
 
 [ "$entry" ] || exit
 
-leave "$prefix/$entry.mp3"
+leave "$prefix/$entry.flac"
