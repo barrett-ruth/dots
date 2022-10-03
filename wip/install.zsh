@@ -153,10 +153,11 @@ setup_users "$username"
 
 setup_doas "$username"
 
-run 'systemctl enable dhcpcd.service'
-run 'systemctl enable sshd.service'
+run 'systemctl enable dhcpcd'
+run 'systemctl enable sshd'
+run 'systemctl enable postgresql'
 run 'systemctl enable fstrim.timer'
-run 'systemctl enable iwd.service'
+run 'systemctl enable iwd'
 
 run 'mv dots/misc/zshenv /etc/zsh'
 
@@ -212,10 +213,10 @@ cd
 
 
 setup_postgres() {
-echo '**************************************'
-echo "run 'initdb -D /var/lib/postgres/data'"
-echo '**************************************'
-run 'su -l postgres'
+echo '******************************************************'
+echo "run 'su -l postgres; initdb -D /var/lib/postgres/data'"
+echo '******************************************************'
+run 'su'
 }
 
 
