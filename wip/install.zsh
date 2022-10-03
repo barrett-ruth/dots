@@ -8,14 +8,16 @@ run() {
 
 format_partitions() {
 run "mkfs.ext4 /dev/$1$2"
-run "mkfs.ext4 /dev/$1$3"
+# currently using one root partition only
+# run "mkfs.ext4 /dev/$1$3"
 run "mkswap /dev/$1$4"
 }
 
 
 mount_partitions() {
 run "mount /dev/$1$2 /mnt"
-run "mount --mkdir /dev/$1$3 /mnt/home"
+# currently using one root partition only
+# run "mount --mkdir /dev/$1$3 /mnt/home"
 run "mount --mkdir /dev/$1$4 /mnt/boot/efi"
 }
 
