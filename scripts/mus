@@ -1,21 +1,18 @@
 #!/bin/sh
 
-leave() {
-    [ "$(ps aux | rg mpv | wc -l)" -gt 1 ] && killall mpv
-    mpv --no-terminal --no-audio-display "$1" &
-    exit 0
-}
-
 prefix="$HOME/mus"
 
 cd "$prefix" || exit
 
-[ "$1" ] && leave "$(fd -1 -t f -a "$1")"
+artists="$(fd -d 1 -t d | sed 's|./||')"
+artist="$(echo "$artists" | dmenu -i -p 'Artist:')"
 
-songs="$(fd -d 3 -t f | sed 's|./||;s|.flac||')"
+[ "$artist" ] && cd "$artist" || exit
 
-entry="$(echo "$songs" | dmenu -i -p 'Music:')"
+albums="$(fd -d 1 -t d | sed 's|./||')"
+album="$(echo "$albums" | dmenu -i -p 'Album:')"
 
-[ "$entry" ] || exit
+[ "$album" ] || exit
 
-leave "$prefix/$entry.flac"
+[ "$(ps aux | rg mpv | wc -l)" -gt 1 ] && killall mpv
+mpv --no-terminal --no-audio-display "$album" &
