@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-autoload -U compinit && compinit -u
+autoload -U compinit && compinit -d "$XDG_STATE_HOME/zcompdump" -u
 autoload -U colors && colors
 zmodload zsh/complist
 
@@ -16,8 +16,9 @@ setopt auto_cd incappendhistory extendedhistory histignorealldups
 # XDG
 export XRESOURCES="$XDG_CONFIG_HOME/X11/xresources"
 export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_CACHE_HOME="$XDG_CONFIG_HOME/cache"
+export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
 export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 [[ -f "$XAUTHORITY" ]] || touch "$XAUTHORITY"
 
@@ -30,7 +31,7 @@ export MANPAGER='nvim +Man!'
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export HYPHEN_INSENSITIVE='true'
 export HIST_STAMPS='dd/mm/yyyy'
-export HISTFILE="$ZDOTDIR/.zsh_history"
+export HISTFILE="$XDG_STATE_HOME/zsh_history"
 export HISTSIZE=2000
 export HISTFILESIZE=2000
 export SAVEHIST=2000
@@ -41,13 +42,13 @@ export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 export FONTCONFIG=/usr/share/fonts
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 export GOPATH="$XDG_DATA_HOME/go"
-export LESSHISTFILE="$XDG_DATA_HOME/lesshst"
+export LESSHISTFILE="$XDG_STATE_HOME/lesshst"
 export MYPY_CACHE_DIR="$XDG_CACHE_HOME/mypy"
 export NPM_CONFIG_PREFIX='/usr/local'
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
-export NODE_REPL_HISTORY="$XDG_DATA_HOME/node_repl_history"
+export NODE_REPL_HISTORY="$XDG_STATE_HOME/node_repl_history"
 export PRETTIERD_DEFAULT_CONFIG="$XDG_CONFIG_HOME/prettierd"
-export PSQL_HISTORY="$XDG_DATA_HOME/psql_history"
+export PSQL_HISTORY="$XDG_STATE_HOME/psql_history"
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/rg/config"
 export TERMINFO="$XDG_DATA_HOME/terminfo"

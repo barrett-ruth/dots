@@ -9,11 +9,11 @@ fi
 smon
 sxs
 (
-    sbg ~/wp/one/forest.jpg
+    sbg ~/wp/one/cortes.jpg
     skb
 ) &
 sclip &
-transmission-daemon &
+transmission-daemon --logfile "$XDG_STATE_HOME/transmission-daemon.log" &
 mux &
 while true; do
     dwmb &
