@@ -343,7 +343,7 @@ rm "$HOME/.yarnrc"
 post() {
 run 'doas pacman -S clang dash docker docker-compose exa fakeroot harfbuzz tree-sitter fd gcc go google-java-format jdk-openjdk jdtls libxft libxinerama libglvnd light lua-language-server make openssh patch pkgconf postgresql python ripgrep rustup shfmt tmux ttf-hanazono ttf-liberation xorg-server xorg-setxkbmap xorg-xinit xorg-xmodmap xorg-xrandr xorg-xrdb xorg-xset which xclip yarn pulseaudio mpv rsync'
 
-run 'doas usermod -aG docker,light "$(whoami)"'
+run 'doas usermod -aG docker,video "$(whoami)"'
 
 # Rebuild grub config to recognize Windows Boot Manager
 run 'doas grub-mkconfig -o /boot/grub/grub.cfg'
