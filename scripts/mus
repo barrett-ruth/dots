@@ -12,7 +12,7 @@ cd "$prefix" || exit
 
 [ "$1" ] && leave "$(fd -1 -t f -a "$1")"
 
-songs="$(fd -d 2 -t f | sed 's|./||;s|.flac||')"
+songs="$(fd -d 3 -t f | sed 's|./||;s|.flac||')"
 
 entry="$(echo "$songs" | dmenu -p 'Music:')"
 

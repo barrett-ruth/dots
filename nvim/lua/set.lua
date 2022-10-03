@@ -4,8 +4,6 @@ vim.opt.background = 'dark'
 
 vim.opt.cinkeys:remove ':'
 
-vim.opt.cmdheight = 0
-
 vim.opt.cursorline = true
 
 vim.opt.expandtab = true

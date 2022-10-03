@@ -13,7 +13,9 @@ local search = {
     end,
     condition = function()
         local searchcount = vim.fn.searchcount()
-        return next(searchcount) and searchcount.total > 0
+        if not searchcount then return false end
+
+        return searchcount.total > 0
     end,
     highlight = 'Normal',
     separator = 'post',

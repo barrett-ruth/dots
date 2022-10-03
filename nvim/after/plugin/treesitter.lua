@@ -16,6 +16,7 @@ vim.g.markdown_fenced_languages = {
 
 require('nvim-treesitter.configs').setup {
     ensure_installed = {
+        'c',
         'comment',
         'cpp',
         'css',
