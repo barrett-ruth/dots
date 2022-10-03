@@ -108,7 +108,9 @@ run 'mkinitcpio -P'
 
 
 setup_x11() {
-run 'mv dots/misc/*-*.conf /etc/X11/xorg.conf.d'
+# run 'mv dots/misc/10-nvidia-rm-outputclass.conf /etc/X11/xorg.conf.d'
+# run 'mv dots/misc/20-nvidia.conf /etc/X11/xorg.conf.d'
+run 'mv dots/misc/30-libinput.conf /etc/X11/xorg.conf.d'
 }
 
 
