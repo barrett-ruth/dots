@@ -15,4 +15,9 @@ album="$(echo "$albums" | dmenu -i -p 'Album:')"
 [ "$album" ] || exit
 
 [ "$(ps aux | rg mpv | wc -l)" -gt 1 ] && killall mpv
-mpv "$album" &
+mpv --no-terminal \
+    --no-audio-display \
+    --input-ipc-server=/tmp/mpvsocket \
+    "$album" &
+
+pkill -RTMIN+6 dwmb
