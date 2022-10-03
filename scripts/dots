@@ -20,6 +20,7 @@ done
 cp "$XDG_DATA_HOME/nvim/spell/spell.encoding.add" nvim
 
 sed -i "s|$(whoami)|{USER}|g" yarn/config
+rmb config yarn
 rm -rf nvim/undo
 rmb .zshrc .zprofile .zaliases zsh
 rmb tmux.conf tmux
