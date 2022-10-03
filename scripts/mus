@@ -15,4 +15,4 @@ album="$(echo "$albums" | dmenu -i -p 'Album:')"
 [ "$album" ] || exit
 
 [ "$(ps aux | rg mpv | wc -l)" -gt 1 ] && killall mpv
-mpv --no-terminal --no-audio-display "$album" &
+mpv "$album" &
