@@ -1,23 +1,36 @@
 #!/bin/sh
 
-prefix="$HOME/mus"
+case "$1" in
+prev)
+    echo 'playlist-prev' | socat - /tmp/mpvsocket
+    ;;
+next)
+    echo 'playlist-next' | socat - /tmp/mpvsocket
+    ;;
+toggle)
+    echo 'cycle pause' | socat - /tmp/mpvsocket
+    ;;
+*)
+    prefix="$HOME/mus"
 
-cd "$prefix" || exit
+    cd "$prefix" || exit
 
-artists="$(fd -d 1 -t d | sed 's|./||')"
-artist="$(echo "$artists" | dmenu -i -p 'Artist:')"
+    artists="$(fd -d 1 -t d | sed 's|./||')"
+    artist="$(echo "$artists" | dmenu -i -p 'Artist:')"
 
-[ "$artist" ] && cd "$artist" || exit
+    [ "$artist" ] && cd "$artist" || exit
 
-albums="$(fd -d 1 -t d | sed 's|./||')"
-album="$(echo "$albums" | dmenu -i -p 'Album:')"
+    albums="$(fd -d 1 -t d | sed 's|./||')"
+    album="$(echo "$albums" | dmenu -i -p 'Album:')"
 
-[ "$album" ] || exit
+    [ "$album" ] || exit
 
-[ "$(ps aux | rg mpv | wc -l)" -gt 1 ] && killall mpv
-mpv --no-terminal \
-    --no-audio-display \
-    --input-ipc-server=/tmp/mpvsocket \
-    "$album" &
+    [ "$(ps aux | rg mpv | wc -l)" -gt 1 ] && killall mpv
+    mpv --no-terminal \
+        --no-audio-display \
+        --input-ipc-server=/tmp/mpvsocket \
+        "$album" &
+    ;;
+esac
 
 pkill -RTMIN+6 dwmb
