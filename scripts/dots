@@ -4,7 +4,7 @@ cfg="$HOME/dev/dots"
 
 cd "$cfg" || exit
 
-rmb .git installation misc wip ssh transmission transmission-daemon .
+rmb .git installation misc wip ssh .
 
 cp /etc/pacman.conf misc
 cp /etc/default/grub misc
