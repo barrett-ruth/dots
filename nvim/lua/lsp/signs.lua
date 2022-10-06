@@ -32,7 +32,7 @@ local sources = {
 vim.diagnostic.config {
     update_in_insert = false,
     virtual_text = false,
-    signs = false,
+    signs = true,
     severity_sort = true,
     float = {
         header = '',
