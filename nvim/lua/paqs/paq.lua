@@ -3,6 +3,8 @@ require 'paq' {
 
     'lewis6991/impatient.nvim',
 
+    'Maan2003/lsp_lines.nvim',
+
     -- cmp [:
     'hrsh7th/nvim-cmp',
     'hrsh7th/cmp-nvim-lsp',

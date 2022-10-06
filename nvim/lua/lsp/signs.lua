@@ -57,28 +57,30 @@ vim.diagnostic.config {
     },
 }
 
--- Only show most severe sign
-local ns = vim.api.nvim_create_namespace 'lsp_signs'
-local dshow = vim.diagnostic.show
+-- Only show most sever diagnostics
+local ns = vim.api.nvim_create_namespace 'lsp-signs'
 
-local function set_signs(bufnr)
-    local diags = vim.diagnostic.get(bufnr)
-    local line_severity = {}
+-- Get a reference to the original signs handler
+local orig_signs_handler = vim.diagnostic.handlers.signs
 
-    for _, d in pairs(diags) do
-        local m = line_severity[d.lnum]
-        if not m or d.severity < m.severity then line_severity[d.lnum] = d end
-    end
+-- Override the built-in signs handler
+vim.diagnostic.handlers.signs = {
+    show = function(_, bufnr, _, opts)
+        -- Get all diagnostics from the whole buffer rather than just the
+        -- diagnostics passed to the handler
+        local diagnostics = vim.diagnostic.get(bufnr)
 
-    local fixed = vim.tbl_values(line_severity)
-    dshow(ns, bufnr, fixed, {
-        focus = false,
-        priority = 0,
-        signs = true,
-    })
-end
+        -- Find the "worst" diagnostic per line
+        local max_severity_per_line = {}
+        for _, d in pairs(diagnostics) do
+            local m = max_severity_per_line[d.lnum]
+            if not m or d.severity < m.severity then
+                max_severity_per_line[d.lnum] = d
+            end
+        end
 
-function vim.diagnostic.show(nsc, bufnr, ...)
-    dshow(nsc, bufnr, ...)
-    set_signs(bufnr)
-end
+        local filtered_diagnostics = vim.tbl_values(max_severity_per_line)
+        orig_signs_handler.show(ns, bufnr, filtered_diagnostics, opts)
+    end,
+    hide = function(_, bufnr) orig_signs_handler.hide(ns, bufnr) end,
+}
