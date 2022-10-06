@@ -148,10 +148,10 @@ hi('GitSignsDelete', { fg = cs.red })
 -- :]
 
 -- spelling [:
-hi('SpellBad', { undercurl = true, special = cs.red })
-hi('SpellRare', { undercurl = true, special = cs.purple })
-hi('SpellCap', { undercurl = true, special = cs.blue })
-hi('SpellLocal', { undercurl = true, special = cs.cyan })
+hi('SpellBad', { underline = true, special = cs.red })
+hi('SpellRare', { underline = true, special = cs.purple })
+hi('SpellCap', { underline = true, special = cs.blue })
+hi('SpellLocal', { underline = true, special = cs.cyan })
 -- :]
 
 -- treesitter [:

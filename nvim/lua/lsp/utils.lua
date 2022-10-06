@@ -68,6 +68,8 @@ M.on_attach = function(client, bufnr)
     bmap { 'n', '\\ll', mapstr 'LspLog' }
     bmap { 'n', '\\lr', mapstr 'LspRestart' }
     bmap { 'n', '\\lR', mapstr 'NullLsRestart' }
+
+    bmap { 'n', '\\lt', mapstr('lsp_lines', 'toggle()') }
 end
 
 M.prepare_lsp_settings = function(settings)
