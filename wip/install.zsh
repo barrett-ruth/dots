@@ -280,13 +280,6 @@ cd wp
 git remote set-url origin git@github.com:barrett-ruth/wp.git
 cd ..
 
-# neovim-nightly
-run 'git clone https://aur.archlinux.org/neovim-nightly-bin.git'
-cd neovim-nightly-bin
-run 'makepkg -si'
-cd ..
-rm -rf neovim-nightly-bin
-
 # hadolint-bin
 run 'git clone https://aur.archlinux.org/hadolint-bin.git'
 cd hadolint-bin
