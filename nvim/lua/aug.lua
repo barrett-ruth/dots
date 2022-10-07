@@ -7,6 +7,14 @@ au('BufEnter', {
     group = aug,
 })
 
+au('BufEnter', {
+    pattern = '*.conf',
+    callback = function()
+        if vim.bo.filetype == '' then vim.bo.filetype = 'xf86conf' end
+    end,
+    group = aug,
+})
+
 au('QuitPre', {
     callback = function()
         local bufname = 'scratch' .. vim.fn.bufnr()
