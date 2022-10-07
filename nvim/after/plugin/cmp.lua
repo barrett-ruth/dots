@@ -68,10 +68,18 @@ cmp.setup.filetype({ 'sql', 'mysql', 'plsql' }, {
 cmp.setup.filetype('gitcommit', {
     sources = cmp.config.sources {
         { name = 'git' },
+        { name = buffer },
+        { name = 'conventionalcommits' },
     },
 })
 
-require('cmp_git').setup()
+require('cmp_git').setup {
+    github = {
+        issues = {
+            state = 'all',
+        },
+    },
+}
 
 local utils = require 'utils'
 utils.map {

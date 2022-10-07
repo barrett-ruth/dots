@@ -10,6 +10,7 @@ require 'paq' {
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
     'petertriho/cmp-git',
+    'davidsierradz/cmp-conventionalcommits',
     -- :]
 
     -- lsp [:
