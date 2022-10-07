@@ -68,7 +68,6 @@ cmp.setup.filetype({ 'sql', 'mysql', 'plsql' }, {
 cmp.setup.filetype('gitcommit', {
     sources = cmp.config.sources {
         { name = 'git' },
-        { name = buffer },
         { name = 'conventionalcommits' },
     },
 })
