@@ -57,7 +57,7 @@ vim.diagnostic.config {
     },
 }
 
--- Only show most sever diagnostics
+-- Only show most severe diagnostics
 local ns = vim.api.nvim_create_namespace 'lsp-signs'
 
 -- Get a reference to the original signs handler

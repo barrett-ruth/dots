@@ -20,7 +20,9 @@ for _, server in ipairs(servers) do
     lspconfig[server].setup(prepare_lsp_settings(settings))
 end
 
-lspconfig.sumneko_lua.setup(require 'lsp.servers.sumneko_lua')
+lspconfig.sumneko_lua.setup(
+    prepare_lsp_settings(require 'lsp.servers.sumneko_lua')
+)
 
 require('clangd_extensions').setup {
     server = prepare_lsp_settings(require 'lsp.servers.clangd'),
