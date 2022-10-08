@@ -38,7 +38,6 @@ export SAVEHIST=2000
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
 
 # Programs
-export __GL_ExperimentalPerfStrategy=1
 export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 export FONTCONFIG=/usr/share/fonts
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
