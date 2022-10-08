@@ -25,11 +25,15 @@ au('QuitPre', {
     group = aug,
 })
 
+local disable_save = { '', 'checkhealth' }
+
 au({ 'FocusLost', 'WinLeave' }, {
     callback = function()
         vim.wo.cursorline = false
 
-        vim.cmd 'sil wall'
+        if not vim.tbl_contains(disable_save, vim.bo.filetype) then
+            vim.cmd 'sil wall'
+        end
     end,
     group = aug,
 })

@@ -1,7 +1,5 @@
 #!/bin/sh
 
-xrandr --setprovideroutputsource modesetting NVIDIA-0
-
 mons="$(xrandr | rg --no-config ' connected ' | awk '{ print $1 }')"
 
 one="$(echo "$mons" | head -n 1)"
