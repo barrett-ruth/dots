@@ -6,7 +6,7 @@ case "$1" in
             echo -n "[$k]=$v | " | sed "s|$HOME|~|g"
         done;;
     *)
-        [[ "$1" == '-' ]] && dir="$1" || dir=$dirs[$1];;
+        dir=$dirs[$1];;
 esac
 
 cd "$dir"
