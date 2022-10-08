@@ -6,16 +6,16 @@ proj="$1"
 
 case "$(basename "$proj")" in
 dmenu | dwm | st)
-    cmd='make clean install; make clean'
+    cmd='make clean install && make clean'
     ;;
 dwmb)
-    cmd='make clean install; make clean; killall dwmb; dwmb &'
+    cmd='make clean install && make clean && killall dwmb && dwmb &'
     ;;
 *)
-    echo "Project '$proj_name' unknown."
+    echo "Project '$proj' unknown."
     exit
     ;;
 esac
 
 echo " > $cmd" | sed "s|$HOME|~|g"
-eval "$cmd"
+eval "$cmd && tmux last-window"
