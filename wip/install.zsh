@@ -45,7 +45,7 @@ mount_partitions "$disk" "$root" "$home" "$efi"
 # Enable swap volume
 run "swapon /dev/$disk$swap"
 
-run 'pacstrap /mnt base linux linux-firmware linux-headers dkms intel-ucode nvidia nvidia-utils iwd dhcpcd opendoas git zsh zsh-syntax-highlighting zsh-completions grub efibootmgr os-prober ntfs-3g feh'
+run 'pacstrap /mnt base linux linux-firmware linux-headers dkms xf86-video-intel intel-ucode nvidia nvidia-utils iwd dhcpcd opendoas git zsh zsh-syntax-highlighting zsh-completions grub efibootmgr os-prober ntfs-3g feh'
 
 run 'genfstab -U /mnt >> /mnt/etc/fstab'
 
@@ -93,7 +93,8 @@ run "passwd $1"
 setup_grub() {
 sed -i '/^#GRUB_DISABLE_OS_PROBER=false/ s|^#*||' /etc/default/grub
 sed -i '/^GRUB_GFXMODE/ s|auto|1920x1080x32|' /etc/default/grub
-sed -i '/^GRUB_CMDLINE_LINUX_DEFAULT/ s|"$| ibt=off nvidia_drm.modeset=1"|' /etc/default/grub
+# sed -i '/^GRUB_CMDLINE_LINUX_DEFAULT/ s|"$| ibt=off nvidia_drm.modeset=1"|' /etc/default/grub
+sed -i '/^GRUB_CMDLINE_LINUX_DEFAULT/ s|"$| ibt=off"|' /etc/default/grub
 sed -i '/^GRUB_TIMEOUT/ s|.$|-1|' /etc/default/grub
 run 'grub-install --target=x86_64-efi --bootloader-id=grub --recheck'
 run 'grub-mkconfig -o /boot/grub/grub.cfg'
@@ -104,16 +105,17 @@ setup_nvidia() {
 run 'chmod +x dots/misc/nvidia.shutdown'
 run 'mv dots/misc/nvidia.shutdown /usr/lib/systemd/system-shutdown'
 run 'mv dots/misc/nvidia.hook /etc/pacman.d/hooks'
-sed -i 's|^MODULES=()$|MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm i915)|' /etc/mkinitcpio.conf
+# sed -i 's|^MODULES=()$|MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm i915)|' /etc/mkinitcpio.conf
+sed -i 's|^MODULES=()$|MODULES=(i915)|' /etc/mkinitcpio.conf
 run 'mkinitcpio -P'
 }
 
 
 setup_x11() {
 # not using now
-run 'mv dots/misc/10-nvidia-drm-outputclass.conf /etc/X11/xorg.conf.d'
+# run 'mv dots/misc/10-nvidia-drm-outputclass.conf /etc/X11/xorg.conf.d'
 # run 'mv dots/misc/20-nvidia.conf /etc/X11/xorg.conf.d'
-# run 'mv dots/misc/30-libinput.conf /etc/X11/xorg.conf.d'
+run 'mv dots/misc/30-libinput.conf /etc/X11/xorg.conf.d'
 }
 
 
