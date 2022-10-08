@@ -18,4 +18,4 @@ dwmb)
 esac
 
 echo " > $cmd" | sed "s|$HOME|~|g"
-eval "$cmd && tmux last-window"
+eval "$cmd || tmux last-window"

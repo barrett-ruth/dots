@@ -17,7 +17,7 @@ git)
     tmux neww -c '#{pane_current_path}' -n git 'nvim -c "Git|only"'
     ;;
 run)
-    [ "$(tmux lsw -F '#W' | rg run)" ] && tmux selectw -t run || tmux neww -c '#{pane_current_path}' -n run
+    [ "$(tmux lsw -F '#W' | rg run)" ] || tmux neww -dc '#{pane_current_path}' -n run
 
     tmux send -t run "cd $2" 'enter' 'C-l' "mux-run \$(pwd)" 'enter'
     ;;
