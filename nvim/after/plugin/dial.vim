@@ -1,0 +1,6 @@
+nmap <c-a> <Plug>(dial-increment)
+nmap <c-x> <Plug>(dial-decrement)
+vmap <c-a> <Plug>(dial-increment)
+vmap <c-x> <Plug>(dial-decrement)
+vmap g<c-a> g<Plug>(dial-increment)
+vmap g<c-x> g<Plug>(dial-decrement)

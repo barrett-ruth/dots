@@ -59,8 +59,8 @@ M.on_attach = function(client, bufnr)
 
     bmap { 'n', '<leader>fd', mapstr 'FzfLua lsp_workspace_diagnostics' }
 
-    bmap { 'n', ']\\', mapstr 'lua vim.diagnostic.goto_next({ float = false })' }
-    bmap { 'n', '[\\', mapstr 'lua vim.diagnostic.goto_prev({ float = false })' }
+    bmap { 'n', ']\\', mapstr 'lua vim.diagnostic.goto_next()' }
+    bmap { 'n', '[\\', mapstr 'lua vim.diagnostic.goto_prev()' }
     bmap { 'n', '\\f', mapstr 'lua vim.diagnostic.open_float()' }
 
     bmap { 'n', '\\li', mapstr 'LspInfo' }
@@ -68,8 +68,6 @@ M.on_attach = function(client, bufnr)
     bmap { 'n', '\\ll', mapstr 'LspLog' }
     bmap { 'n', '\\lr', mapstr 'LspRestart' }
     bmap { 'n', '\\lR', mapstr 'NullLsRestart' }
-
-    bmap { 'n', '\\lt', mapstr('lsp_lines', 'toggle()') }
 end
 
 M.prepare_lsp_settings = function(settings)

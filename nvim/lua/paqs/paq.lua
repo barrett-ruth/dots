@@ -63,6 +63,7 @@ require 'paq' {
     'AckslD/nvim-neoclip.lua',
     'kyazdani42/nvim-tree.lua',
     'mbbill/undotree',
+    'monaqa/dial.nvim',
     'numToStr/Comment.nvim',
     'ojroques/nvim-bufdel',
     'tpope/vim-abolish',
