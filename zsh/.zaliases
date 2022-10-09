@@ -59,7 +59,7 @@ rmd() { [[ "$1" == "$HOME" ]] || rm -rf "$@"; }
 alias mkd='mkdir -pv'
 mkcd() { mkdir -pv "$1" && cd "$1"; }
 alias psag='ps aux | rg'
-z() { . _z "$@"; }
+j() { . _j "$@"; }
 declare -A dirs=(['']=~ [scr]="$SCRIPTS" [dev]=~/dev [dots]=~/dev/dots [cp]=~/dev/cp [dsa1]=~/dev/uva/dsa1 [nv]=~/.config/nvim [paq]=~/.local/share/nvim/site/pack/paqs/start [tm]=~/.config/tmux [x11]=~/.config/X11 [zsh]=~/.config/zsh [py]=~/dev/learning-python [site]=~/dev/barrett-ruth.github.io [sl]=~/dev/sl)
 -() { cd - >/dev/null; }
 for e in ~/dev/sl/*; do

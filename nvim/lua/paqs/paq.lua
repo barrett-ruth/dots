@@ -3,8 +3,6 @@ require 'paq' {
 
     'lewis6991/impatient.nvim',
 
-    'Maan2003/lsp_lines.nvim',
-
     -- cmp [:
     'hrsh7th/nvim-cmp',
     'hrsh7th/cmp-nvim-lsp',
@@ -18,6 +16,7 @@ require 'paq' {
     'folke/lua-dev.nvim',
     'jose-elias-alvarez/null-ls.nvim',
     'jose-elias-alvarez/typescript.nvim',
+    'Maan2003/lsp_lines.nvim',
     'mfussenegger/nvim-jdtls',
     'neovim/nvim-lspconfig',
     'p00f/clangd_extensions.nvim',
