@@ -144,6 +144,7 @@ setup_pacman() {
 sed -i '/^#HookDir/ s|^#*||' /etc/pacman.conf
 sed -i '/^#ParallelDownloads/ s|^#*||' /etc/pacman.conf
 run 'mv dots/misc/dash.hook /etc/pacman.d/hooks'
+run 'pacman -S bash'
 }
 
 
