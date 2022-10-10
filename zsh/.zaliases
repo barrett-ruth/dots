@@ -33,6 +33,7 @@ alias sy='sioyek'
 alias tm='tmux'
 alias tcli='transmission-cli'
 alias trem='transmission-remote'
+alias venv='virtualenv'
 
 # Make
 alias mk='make'

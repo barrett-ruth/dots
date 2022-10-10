@@ -66,6 +66,7 @@ null_ls.setup {
         builtins.formatting.shfmt.with {
             extra_args = { '-i', '4', '-ln=posix' },
         },
+        builtins.formatting.sql_formatter,
         builtins.formatting.stylua.with {
             extra_args = {
                 '--config-path',

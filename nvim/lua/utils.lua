@@ -57,6 +57,7 @@ M.format = function()
                 'jdt.ls',
                 'jedi_language_server',
                 'pyright',
+                'sqls',
                 'sumneko_lua',
                 'tsserver',
             }, client.name)

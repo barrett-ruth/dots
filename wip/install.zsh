@@ -105,7 +105,7 @@ setup_nvidia() {
 run 'chmod +x dots/misc/nvidia.shutdown'
 run 'mv dots/misc/nvidia.shutdown /usr/lib/systemd/system-shutdown'
 run 'mv dots/misc/nvidia.hook /etc/pacman.d/hooks'
-sed -i 's|^MODULES=()$|MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm i915)|' /etc/mkinitcpio.conf
+sed -i 's|^MODULES=()$|MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)|' /etc/mkinitcpio.conf
 run 'mkinitcpio -P'
 }
 
@@ -335,7 +335,7 @@ setup_go() {
 
 
 setup_yarn() {
-yarn --use-yarnrc ~/.config/yarn/config global add @fsouza/prettierd @tailwindcss/language-server eslint_d neovim prettier pyright typescript typescript-language-server vim-language-server vscode-langservers-extracted
+yarn --use-yarnrc ~/.config/yarn/config global add @fsouza/prettierd @tailwindcss/language-server eslint_d neovim prettier pyright typescript typescript-language-server vim-language-server vscode-langservers-extracted sql-formatter
 rm "$HOME/.yarnrc"
 }
 
