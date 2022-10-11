@@ -235,7 +235,7 @@ cd
 
 
 setup_suckless() {
-mkdir dev; cd dev
+cd dev
 git clone https://github.com/barrett-ruth/sl.git; cd sl
 git remote set-url origin git@github.com:barrett-ruth/sl.git
 for e in dmenu dwm dwmb st; do
@@ -341,6 +341,11 @@ rm "$HOME/.yarnrc"
 }
 
 
+setup_dirs() {
+mkdir -p doc book dl mus .local/bin .local/share/nvim .config/ssh
+}
+
+
 post() {
 run 'doas pacman -S clang dash docker docker-compose exa fakeroot harfbuzz tree-sitter fd gcc go google-java-format jdk-openjdk jdtls libxft libxinerama libglvnd light lua-language-server make openssh patch pkgconf postgresql python ripgrep rustup shfmt tmux ttf-hanazono ttf-liberation xorg-server xorg-setxkbmap xorg-xinit xorg-xmodmap xorg-xrandr xorg-xrdb xorg-xset which xclip yarn pulseaudio mpv rsync transmission-cli jq socat man-db'
 
@@ -351,7 +356,7 @@ run 'doas usermod -aG docker,video "$(whoami)"'
 # Rebuild grub config to recognize Windows Boot Manager
 run 'doas grub-mkconfig -o /boot/grub/grub.cfg'
 
-run 'mkdir -p .config/ssh .local/share/nvim .local/bin'
+setup_dirs
 
 setup_misc_configs
 
