@@ -27,6 +27,7 @@ local javascript = {
         )
     ),
     s('for', fmt('for ({}) {{\n\t{}\n}}', { i(1), i(2) })),
+    s('`$', fmt('`${{{}}}`', { i(1) })),
 }
 
 ls.add_snippets('javascript', javascript)

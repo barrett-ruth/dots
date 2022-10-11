@@ -61,6 +61,7 @@ require 'paq' {
 
     -- utility [:
     'AckslD/nvim-neoclip.lua',
+    'axelvc/template-string.nvim',
     'kyazdani42/nvim-tree.lua',
     'mbbill/undotree',
     'monaqa/dial.nvim',
