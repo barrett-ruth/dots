@@ -8,6 +8,7 @@ vim.api.nvim_set_var(
 vim.api.nvim_set_var('completeopt', 'menuone,noinsert,noselect')
 
 cmp.setup {
+    enabled = false,
     snippet = {
         expand = function(args) require('luasnip').lsp_expand(args.body) end,
     },
@@ -92,7 +93,7 @@ utils.map {
     'i',
     '<c-space>',
     function()
-        if CMP_ENABLED == nil or CMP_ENABLED then
+        if CMP_ENABLED then
             cmp.setup.buffer { enabled = false }
             cmp.close()
             CMP_ENABLED = false
