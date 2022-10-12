@@ -105,7 +105,7 @@ setup_nvidia() {
 run 'chmod +x dots/misc/nvidia.shutdown'
 run 'mv dots/misc/nvidia.shutdown /usr/lib/systemd/system-shutdown'
 run 'mv dots/misc/nvidia.hook /etc/pacman.d/hooks'
-sed -i 's|^MODULES=()$|MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)|' /etc/mkinitcpio.conf
+sed -i 's|^MODULES=()$|MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm i915)|' /etc/mkinitcpio.conf
 run 'mkinitcpio -P'
 }
 
