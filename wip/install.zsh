@@ -45,7 +45,7 @@ mount_partitions "$disk" "$root" "$home" "$efi"
 # Enable swap volume
 run "swapon /dev/$disk$swap"
 
-run 'pacstrap /mnt base linux linux-firmware linux-headers dkms xf86-video-intel intel-ucode nvidia nvidia-utils iwd dhcpcd opendoas git zsh zsh-syntax-highlighting zsh-completions grub efibootmgr os-prober ntfs-3g feh'
+run 'pacstrap /mnt base linux linux-firmware linux-headers dkms intel-ucode nvidia nvidia-utils iwd dhcpcd opendoas git zsh zsh-syntax-highlighting zsh-completions grub efibootmgr os-prober ntfs-3g feh'
 
 run 'genfstab -U /mnt >> /mnt/etc/fstab'
 
@@ -347,6 +347,7 @@ mkdir -p doc book dl mus .local/bin .local/share/nvim .config/ssh
 
 
 post() {
+# no xf86-video-intel for now
 run 'doas pacman -S clang dash docker docker-compose exa fakeroot harfbuzz tree-sitter fd gcc go google-java-format jdk-openjdk jdtls libxft libxinerama libglvnd light lua-language-server make openssh patch pkgconf postgresql python ripgrep rustup shfmt tmux ttf-hanazono ttf-liberation xorg-server xorg-setxkbmap xorg-xinit xorg-xmodmap xorg-xrandr xorg-xrdb xorg-xset which xclip yarn pulseaudio mpv rsync transmission-cli jq socat man-db'
 
 run 'mandb'
