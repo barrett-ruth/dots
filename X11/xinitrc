@@ -13,6 +13,7 @@ sxs
     skb
 ) &
 sclip &
+systemctl restart iwd &
 transmission-daemon --logfile "$XDG_STATE_HOME/transmission-daemon.log" &
 mux &
 while true; do

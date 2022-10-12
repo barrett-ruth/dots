@@ -1,22 +1,23 @@
 #!/bin/sh
 
+[ "$3" ] || exit
+dir="$HOME/doc/$1"
+ext="$2"
+prompt="$3"
+
 leave() {
     sioyek "$1"
     exit
 }
 
-prefix="$HOME/doc"
-
-[ "$1" ] && leave "$(fd -e pdf -1 -t f -a "$1" -- . "$prefix")"
-
-for i in "$prefix"/*; do
-    test -d "$i" && get_docs "$i" || docs="$docs\n$(echo "$i" | sed "s|\.pdf||g;s|$prefix/||g")"
+for i in "$dir"/*; do
+    test -d "$i" && get_docs "$i" || docs="$docs\n$(echo "$i" | sed "s|\.$ext||g;s|$dir/||g")"
 done
 
 docs="${docs#??}"
 
-entry="$(echo "$docs" | dmenu -i -p 'Documents:')"
+entry="$(echo "$docs" | dmenu -i -p "$prompt:")"
 
 [ "$entry" ] || exit
 
-leave "$prefix/$entry.pdf"
+leave "$dir/$entry.$ext"

@@ -7,7 +7,6 @@ M.on_attach = function(client, bufnr)
     local bmap, mapstr = utils.bmap, utils.mapstr
 
     if client.server_capabilities.documentSymbolProvider then
-        require('nvim-navic').attach(client, bufnr)
         for k, v in pairs {
             a = [[query = '!const !enumm !field !prop !var !( ']],
             c = [[regex_filter = 'Class.*']],

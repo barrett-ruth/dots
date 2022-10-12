@@ -37,6 +37,7 @@ require 'paq' {
         'nvim-treesitter/nvim-treesitter',
         run = function() require('nvim-treesitter.install').update { with_sync = true } end,
     },
+    'nvim-treesitter/nvim-treesitter-context',
     'nvim-treesitter/nvim-treesitter-textobjects',
     'nvim-treesitter/playground',
     -- :]
@@ -82,7 +83,7 @@ require 'paq' {
 
     {
         'iamcco/markdown-preview.nvim',
-        run = function() vim.fn['mkdp#util#install']() end,
+        run = 'cd app && yarn install',
     },
     'ibhagwan/fzf-lua',
     'L3MON4D3/LuaSnip',
@@ -91,7 +92,6 @@ require 'paq' {
     -- aesthetic [:
     'itchyny/vim-highlighturl',
     'NvChad/nvim-colorizer.lua',
-    'SmiteshP/nvim-navic',
     -- :]
 }
 

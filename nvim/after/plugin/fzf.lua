@@ -94,6 +94,9 @@ require('fzf-lua').setup {
             symbol_style = 3,
         },
     },
+    man_pages = {
+        prompt = 'man>',
+    },
     winopts = {
         preview = {
             hidden = 'hidden',

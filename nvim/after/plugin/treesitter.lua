@@ -14,6 +14,8 @@ vim.g.markdown_fenced_languages = {
     'yaml',
 }
 
+require('treesitter-context').setup()
+
 require('nvim-treesitter.configs').setup {
     ensure_installed = {
         'c',

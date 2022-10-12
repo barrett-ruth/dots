@@ -1,7 +1,6 @@
 #!/bin/sh
 
-# nvidia graphics
-# xrandr --setprovideroutputsource modesetting NVIDIA-0
+xrandr --dpi 192
 
 mons="$(xrandr | rg --no-config ' connected ' | awk '{ print $1 }')"
 
@@ -10,9 +9,9 @@ two="$(echo "$mons" | tail -n 1)"
 
 xrandr --output "$one" --set TearFree on
 
-cmd="xrandr --dpi 192 --output $one --primary --mode 3840x2400 --scale 1x1"
+cmd="xrandr --output $one --primary --mode 3840x2400 --scale 1x1"
 
-[ "$one" = "$two" ] && xrandr --auto && exit
+[ "$one" = "$two" ] && eval "$cmd" && exit
 
 xrandr --output "$two" --set TearFree on
 

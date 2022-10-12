@@ -55,17 +55,6 @@ local macro = {
     separator = 'post',
 }
 
-local nvim_navic = require 'nvim-navic'
-local navic = {
-    value = function() return nvim_navic.get_location() end,
-    condition = function()
-        return nvim_navic.is_available()
-            and not utils.empty(nvim_navic.get_location())
-    end,
-    highlight = 'CursorLineNr',
-    separator = 'pre',
-}
-
 local right_align = {
     value = '%=',
     highlight = 'Normal',
@@ -89,10 +78,9 @@ local filetype = {
 return {
     [1] = git,
     [2] = file,
-    [3] = navic,
-    [4] = right_align,
-    [5] = search,
-    [6] = macro,
-    [7] = line,
-    [8] = filetype,
+    [3] = right_align,
+    [4] = search,
+    [5] = macro,
+    [6] = line,
+    [7] = filetype,
 }
