@@ -8,5 +8,3 @@ require 'set'
 require 'lsp'
 require 'map'
 require 'paqs'
-
-require('treesitter-context').setup()

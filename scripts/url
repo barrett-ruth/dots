@@ -1,6 +1,6 @@
 #!/bin/sh
 
-regex="(((http|https|git)://|www\\.)[a-zA-Z0-9.]*[:]?[a-zA-Z0-9./@$&%?$\#=_~-]*)|((magnet:\\?xt=urn:btih:)[a-zA-Z0-9]*)"
+regex="(((http|https|git|gopher|ftp)://|www\\.)[a-zA-Z0-9.]*[:]?[a-zA-Z0-9./@$&%?$\#=_~-]*)|((magnet:\\?xt=urn:btih:)[a-zA-Z0-9]*)"
 
 urls="$(sed 's/.*│//g' | tr -d '\n' | rg --no-config -ao "$regex" | sort -u | uniq | sed "s/\(\.\|,\|;\|\!\\|\?\)$//; s/^www./http:\/\/www\./")"
 

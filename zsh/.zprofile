@@ -13,6 +13,8 @@ set completion-ignore-case on
 unset completealiases
 setopt auto_cd incappendhistory extendedhistory histignorealldups
 
+export __GL_ExperimentalPerfStrategy=1
+
 # XDG
 export XRESOURCES="$XDG_CONFIG_HOME/X11/xresources"
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -39,7 +41,6 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
 
 # Programs
 export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
-export FONTCONFIG=/usr/share/fonts
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 export GOPATH="$XDG_DATA_HOME/go"
 export LESSHISTFILE="$XDG_STATE_HOME/lesshst"
