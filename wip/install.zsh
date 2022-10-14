@@ -349,6 +349,7 @@ setup_pip
 
 # Cleanup
 run 'rm -rf .bash* .cache .lesshst dots'
+run 'pacman -Rs $(pacman -Qtdq)'
 
 echo
 echo '*************'
