@@ -21,10 +21,6 @@ run "mount /dev/$1$2 /mnt"
 run "mount --mkdir /dev/$1$4 /mnt/boot/efi"
 }
 
-if [ 1 -eq 2 ]; then
-    echo
-fi
-
 
 before() {
 lsblk
