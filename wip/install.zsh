@@ -39,7 +39,16 @@ mount_partitions "$disk" "$root" "$home" "$efi"
 # Enable swap volume
 run "swapon /dev/$disk$swap"
 
-run 'pacstrap -K /mnt base linux-lts linux-firmware linux-lts-headers dkms intel-ucode nvidia-dkms nvidia-utils iwd dhcpcd opendoas git zsh zsh-syntax-highlighting zsh-completions grub efibootmgr os-prober ntfs-3g feh clang dash docker docker-compose exa fakeroot harfbuzz tree-sitter fd gcc go jdk-openjdk stylua libxft libxinerama light lua-language-server make openssh patch pkgconf postgresql python ripgrep shfmt tmux ttf-hanazono ttf-liberation xorg-server xorg-setxkbmap xorg-xinit xorg-xmodmap xorg-xrandr xorg-xrdb xorg-xset which xclip yarn pulseaudio mpv rsync transmission-cli jq socat man-db'
+run 'pacstrap -K /mnt base linux-lts linux-firmware linux-lts-headers dkms intel-ucode nvidia-lts nvidia-utils \
+    clang dhcpcd docker docker-compose fakeroot fd gcc git iwd light make opendoas openssh patch pkgconf python ripgrep which xclip \
+    ttf-hanazono ttf-liberation \
+    zsh zsh-syntax-highlighting zsh-completions \
+    grub efibootmgr os-prober ntfs-3g \
+    xorg-server xorg-setxkbmap xorg-xinit xorg-xmodmap xorg-xrandr xorg-xrdb xorg-xset \
+    libxft libxinerama
+    dash exa feh harfbuzz man-db man-pages postgresql tmux yarn \
+    go jdk-openjdk shfmt stylua tidy tree-sitter lua-language-server \
+    jq mpv pulseaudio rsync socat transmission-cli'
 
 run 'genfstab -U /mnt >> /mnt/etc/fstab'
 
