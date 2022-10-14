@@ -1,8 +1,6 @@
 require 'paq' {
     'savq/paq-nvim',
 
-    'rest-nvim/rest.nvim',
-
     'lewis6991/impatient.nvim',
 
     -- cmp [:
@@ -54,6 +52,7 @@ require 'paq' {
     'Julian/vim-textobj-variable-segment',
     'kana/vim-textobj-entire',
     'kana/vim-textobj-fold',
+    'kana/vim-textobj-indent',
     'kana/vim-textobj-user',
     'vimtaku/vim-textobj-keyvalue',
     'whatyouhide/vim-textobj-xmlattr',
@@ -64,36 +63,34 @@ require 'paq' {
     'lewis6991/gitsigns.nvim',
     -- :]
 
-    -- utility [:
-    'AckslD/nvim-neoclip.lua',
-    'axelvc/template-string.nvim',
-    'kyazdani42/nvim-tree.lua',
-    'mbbill/undotree',
-    'monaqa/dial.nvim',
-    'numToStr/Comment.nvim',
-    'ojroques/nvim-bufdel',
-    'tpope/vim-abolish',
-    'tpope/vim-repeat',
-    'tpope/vim-surround',
+    -- aesthetic [:
+    'itchyny/vim-highlighturl',
+    'NvChad/nvim-colorizer.lua',
     -- :]
 
     -- misc [:
+    'AckslD/nvim-neoclip.lua',
     'AndrewRadev/splitjoin.vim',
     'andymass/vim-matchup',
-    'junegunn/vim-easy-align',
-    'wellle/targets.vim',
-
+    'axelvc/template-string.nvim',
     {
         'iamcco/markdown-preview.nvim',
         run = 'cd app && yarn install',
     },
     'ibhagwan/fzf-lua',
+    'jeetsukumaran/vim-indentwise',
+    'junegunn/vim-easy-align',
+    'kyazdani42/nvim-tree.lua',
     'L3MON4D3/LuaSnip',
-    -- :]
-
-    -- aesthetic [:
-    'itchyny/vim-highlighturl',
-    'NvChad/nvim-colorizer.lua',
+    'mbbill/undotree',
+    'monaqa/dial.nvim',
+    'numToStr/Comment.nvim',
+    'ojroques/nvim-bufdel',
+    'rest-nvim/rest.nvim',
+    'tpope/vim-abolish',
+    'tpope/vim-repeat',
+    'tpope/vim-surround',
+    'wellle/targets.vim',
     -- :]
 }
 
