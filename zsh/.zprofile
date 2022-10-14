@@ -13,7 +13,8 @@ set completion-ignore-case on
 unset completealiases
 setopt auto_cd incappendhistory extendedhistory histignorealldups
 
-export __GL_ExperimentalPerfStrategy=1
+# nvidia performance
+# export __GL_ExperimentalPerfStrategy=1
 
 # XDG
 export XRESOURCES="$XDG_CONFIG_HOME/X11/xresources"

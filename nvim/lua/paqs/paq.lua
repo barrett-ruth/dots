@@ -1,6 +1,8 @@
 require 'paq' {
     'savq/paq-nvim',
 
+    'rest-nvim/rest.nvim',
+
     'lewis6991/impatient.nvim',
 
     -- cmp [:
@@ -15,7 +17,7 @@ require 'paq' {
 
     -- lsp [:
     'b0o/SchemaStore.nvim',
-    'folke/lua-dev.nvim',
+    'folke/neodev.nvim',
     'jose-elias-alvarez/null-ls.nvim',
     'jose-elias-alvarez/typescript.nvim',
     'Maan2003/lsp_lines.nvim',
