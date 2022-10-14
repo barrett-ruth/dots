@@ -265,36 +265,24 @@ echo
 
 
 setup_misc_packages() {
-run 'git clone https://aur.archlinux.org/jdtls.git'
-cd jdtls
-sed -i 's|*|linux|g' PKGBUILD
-sed -i 's|${pkgdir}/usr|~/.local|g' PKGBUILD
-makepkg -si
-cd ..
-
-run 'git clone https://aur.archlinux.org/shellcheck-bin.git'
-cd shellcheck-bin
-makepkg -si
-cd ..
+for i in 'clipmenu-git' 'jdtls' 'shellcheck-bin' 'hadolint-bin' 'sioyek-git' 'google-java-format' 'ungoogled-chromium-xdg-bin'; do
+    git clone https://aur.archlinux.org/"$i".git
+    cd "$i"
+    if [[ "$i" == 'clipmenu-git' ]]; then
+        sed -i '/^depends*/ s|dmenu ||' PKGBUILD
+    elif [[ "$i" == 'jdtls' ]]; then
+        sed -i 's|*|linux|g' PKGBUILD
+        sed -i 's|${pkgdir}/usr|~/.local|g' PKGBUILD
+    fi
+    makepkg -si
+    cd ..
+    rm -rf "$i"
+done
 
 run 'git clone https://github.com/barrett-ruth/wp.git'
 cd wp
 git remote set-url origin git@github.com:barrett-ruth/wp.git
 cd ..
-
-# hadolint-bin
-run 'git clone https://aur.archlinux.org/hadolint-bin.git'
-cd hadolint-bin
-run 'makepkg -si'
-cd ..
-rm -rf hadolint-bin
-
-# sioyek
-git clone 'https://aur.archlinux.org/sioyek-git.git'
-cd sioyek-git
-run 'makepkg -si'
-cd ..
-rm -rf sioyek-git
 
 # chromium
 # chrome://flags: {
@@ -309,20 +297,6 @@ rm -rf sioyek-git
 #    Arch Wikipedia, Github, ZLib site searches
 # extensions: wikiwand, ublockorigin, react devtools, vimium c, clear new tab (background rgb(69, 87, 96, 1)), google translate
 #}
-run 'git clone https://aur.archlinux.org/ungoogled-chromium-xdg-bin.git'
-cd ungoogled-chromium-xdg-bin
-run 'makepkg -si'
-cd ..
-rm -rf ungoogled-chromium-xdg-bin
-
-# clipmenu
-run 'git clone https://aur.archlinux.org/clipmenu-git.git'
-cd clipmenu-git
-sed -i '/^depends*/ s|dmenu ||' PKGBUILD
-run 'makepkg -si'
-cd ..
-rm -rf clipmenu-git
-}
 
 
 setup_pip() {
@@ -342,7 +316,7 @@ rm "$HOME/.yarnrc"
 
 
 setup_dirs() {
-mkdir -p doc book dl mus .local/bin .local/share/nvim .config/ssh
+mkdir -p doc dl mus .local/bin .local/share/nvim .config/ssh
 }
 
 
