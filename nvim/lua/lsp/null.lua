@@ -2,11 +2,7 @@ local null_ls = require 'null-ls'
 local builtins = null_ls.builtins
 local on_attach = require('lsp.utils').on_attach
 
-local projects = {
-    theCourseForum2 = {
-        enabled = { 'autopep8' },
-    },
-}
+local projects = require 'projects'
 
 null_ls.setup {
     sources = {
@@ -64,7 +60,7 @@ null_ls.setup {
 
                 if projects[project] then
                     return vim.tbl_contains(
-                        projects[project].enabled,
+                        projects[project].null_ls.enabled,
                         'autopep8'
                     )
                 end
@@ -78,7 +74,10 @@ null_ls.setup {
                 local project = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
 
                 if projects[project] then
-                    return vim.tbl_contains(projects[project].enabled, 'black')
+                    return vim.tbl_contains(
+                        projects[project].null_ls.enabled,
+                        'black'
+                    )
                 end
 
                 return true
@@ -90,7 +89,10 @@ null_ls.setup {
                 local project = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
 
                 if projects[project] then
-                    return vim.tbl_contains(projects[project].enabled, 'isort')
+                    return vim.tbl_contains(
+                        projects[project].null_ls.enabled,
+                        'isort'
+                    )
                 end
 
                 return true

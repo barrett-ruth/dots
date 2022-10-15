@@ -3,6 +3,10 @@ require 'paq' {
 
     'lewis6991/impatient.nvim',
 
+    'nvim-telescope/telescope.nvim',
+    'kyazdani42/nvim-web-devicons',
+    'arnamak/nvim-nonicons',
+
     -- cmp [:
     'hrsh7th/nvim-cmp',
     'hrsh7th/cmp-buffer',

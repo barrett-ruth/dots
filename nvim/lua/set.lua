@@ -19,7 +19,7 @@ vim.opt.foldmethod = 'marker'
 vim.opt.foldmarker = ' [:, :]'
 vim.opt.foldnestmax = 2
 vim.opt.foldtext =
-    [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&ts),'g').trim(getline(v:foldend))]]
+    [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g'). '  [' . (v:foldend - v:foldstart + 1) . ']']]
 
 vim.opt.hlsearch = false
 
