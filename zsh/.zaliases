@@ -46,11 +46,10 @@ alias pm='pacman'
 alias pmqg='pacman -Q | rg'
 
 # Yarn
-y() {
+wool() {
     yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config" "$@"
     test -f "$HOME/.yarnrc" && rm "$HOME/.yarnrc"
 }
-yg() { y global "$@"; }
 
 # Misc
 alias clrhist='echo > $HISTFILE'
@@ -61,7 +60,7 @@ alias mkd='mkdir -pv'
 mkcd() { mkdir -pv "$1" && cd "$1"; }
 alias psag='ps aux | rg'
 j() { . _j "$@"; }
-declare -A dirs=(['']=~ [dl]=~/dl [scr]="$SCRIPTS" [dev]=~/dev [dots]=~/dev/dots [cp]=~/dev/cp [nv]=~/.config/nvim [paq]=~/.local/share/nvim/site/pack/paqs/start [tm]=~/.config/tmux [x11]=~/.config/X11 [zsh]=~/.config/zsh [site]=~/dev/barrett-ruth.github.io [sl]=~/dev/sl)
+declare -A dirs=(['']=~ [dl]=~/dl [scr]="$SCRIPTS" [dev]=~/dev [tcf]=~/dev/theCourseForum2 [dots]=~/dev/dots [cp]=~/dev/cp [nv]=~/.config/nvim [paq]=~/.local/share/nvim/site/pack/paqs/start [tm]=~/.config/tmux [x11]=~/.config/X11 [zsh]=~/.config/zsh [site]=~/dev/barrett-ruth.github.io [sl]=~/dev/sl)
 -() { cd - >/dev/null; }
 for e in ~/dev/sl/*; do
     [[ -d "$e" ]] && dirs[$(basename "$e")]="$e"

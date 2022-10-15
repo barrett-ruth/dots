@@ -1,6 +1,6 @@
 local M = {}
 
-M.on_attach = function(client, bufnr)
+M.on_attach = function(client, _)
     if vim.wo.signcolumn == 'no' then vim.wo.signcolumn = 'yes:1' end
 
     local utils = require 'utils'
@@ -65,6 +65,7 @@ M.on_attach = function(client, bufnr)
     bmap { 'n', '\\li', mapstr 'LspInfo' }
     bmap { 'n', '\\lI', mapstr 'NullLsInfo' }
     bmap { 'n', '\\ll', mapstr 'LspLog' }
+    bmap { 'n', '\\lL', mapstr 'NullLsLog' }
     bmap { 'n', '\\lr', mapstr 'LspRestart' }
     bmap { 'n', '\\lR', mapstr 'NullLsRestart' }
 end

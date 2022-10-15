@@ -11,6 +11,9 @@ dmenu | dwm | st)
 dwmb)
     cmd='make clean install && make clean && killall dwmb && dwmb &'
     ;;
+theCourseForum2)
+    cmd='docker compose up'
+    ;;
 *)
     echo "Project '$proj' unknown."
     exit
@@ -18,4 +21,4 @@ dwmb)
 esac
 
 echo " > $cmd" | sed "s|$HOME|~|g"
-eval "$cmd"
+eval "$cmd && tmux last-window"

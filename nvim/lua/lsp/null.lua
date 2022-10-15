@@ -2,6 +2,12 @@ local null_ls = require 'null-ls'
 local builtins = null_ls.builtins
 local on_attach = require('lsp.utils').on_attach
 
+local projects = {
+    theCourseForum2 = {
+        enabled = { 'autopep8' },
+    },
+}
+
 null_ls.setup {
     sources = {
         -- Diagnostics [:
@@ -52,14 +58,49 @@ null_ls.setup {
         -- :]
 
         -- Formatting [:
+        builtins.formatting.autopep8.with {
+            condition = function(_)
+                local project = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
+
+                if projects[project] then
+                    return vim.tbl_contains(
+                        projects[project].enabled,
+                        'autopep8'
+                    )
+                end
+
+                -- Use black otherwise
+                return false
+            end,
+        },
         builtins.formatting.black.with {
+            condition = function(_)
+                local project = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
+
+                if projects[project] then
+                    return vim.tbl_contains(projects[project].enabled, 'black')
+                end
+
+                return true
+            end,
             extra_args = { '-S', '--fast', '--line-length=79' },
         },
+        builtins.formatting.isort.with {
+            condition = function(_)
+                local project = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
+
+                if projects[project] then
+                    return vim.tbl_contains(projects[project].enabled, 'isort')
+                end
+
+                return true
+            end,
+        },
+
         builtins.formatting.clang_format.with {
             filetypes = { 'c', 'cpp' },
         },
         builtins.formatting.google_java_format,
-        builtins.formatting.isort,
         builtins.formatting.prettierd.with {
             filetypes = { 'css', 'graphql', 'html', 'json', 'markdown', 'yaml' },
         },

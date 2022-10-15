@@ -22,7 +22,9 @@ map { 'n', '[d', '[s' }
 
 -- Folds [:
 map { 'n', ']z', 'zj' }
+map { 'n', ']Z', 'zo]z' }
 map { 'n', '[z', 'zk' }
+map { 'n', '[Z', 'zo[z' }
 -- :]
 
 -- Windows [:
