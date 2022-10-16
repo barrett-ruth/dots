@@ -39,7 +39,9 @@ mount_partitions "$disk" "$root" "$home" "$efi"
 # Enable swap volume
 run "swapon /dev/$disk$swap"
 
-run 'pacstrap -K /mnt base linux-lts linux-firmware linux-lts-headers dkms intel-ucode nvidia-lts nvidia-utils \
+run "sed -i '/^#ParallelDownloads/ s|^#*||' /etc/pacman.conf"
+
+run 'pacstrap -K /mnt base linux-lts linux-firmware linux-lts-headers dkms intel-ucode nvidia-lts nvidia-utils reflector \
     clang dhcpcd docker docker-compose fakeroot fd gcc git iwd light make opendoas openssh patch pkgconf python ripgrep which xclip \
     ttf-hanazono ttf-liberation \
     zsh zsh-syntax-highlighting zsh-completions \
@@ -147,6 +149,7 @@ setup_pacman() {
 sed -i '/^#HookDir/ s|^#*||' /etc/pacman.conf
 sed -i '/^#ParallelDownloads/ s|^#*||' /etc/pacman.conf
 run 'mv dots/misc/dash.hook /etc/pacman.d/hooks'
+run 'mv dots/misc/reflector.conf /etc/xdg/reflector/'
 run 'pacman -S bash'
 }
 
@@ -161,10 +164,13 @@ setup_users "$username"
 
 setup_doas "$username"
 
+setup_pacman
+
 run 'systemctl enable dhcpcd'
 run 'systemctl enable sshd'
 run 'systemctl enable postgresql'
 run 'systemctl enable fstrim.timer'
+run 'systemctl enable reflector.timer'
 run 'systemctl enable iwd'
 
 run 'mv dots/misc/zshenv /etc/zsh'
@@ -178,8 +184,6 @@ setup_X11
 setup_transmission
 
 setup_ssh_etc
-
-setup_pacman
 
 run 'rm -rf dots'
 run "doas $username git clone https://github.com/barrett-ruth/dots.git /home/$username/dots"

@@ -8,6 +8,7 @@ rmb .git installation misc wip ssh .
 
 cp /etc/pacman.conf misc
 cp /etc/default/grub misc
+cp /etc/xdg/reflector/reflector.conf misc
 
 cp -r "$SCRIPTS" .
 
