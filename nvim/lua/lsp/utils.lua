@@ -1,8 +1,6 @@
 local M = {}
 
 M.on_attach = function(client, _)
-    if vim.wo.signcolumn == 'no' then vim.wo.signcolumn = 'yes:1' end
-
     local utils = require 'utils'
     local bmap, mapstr = utils.bmap, utils.mapstr
 

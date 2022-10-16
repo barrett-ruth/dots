@@ -118,8 +118,13 @@ null_ls.setup {
         },
         -- :]
     },
-    update_in_insert = false,
     diagnostics_format = '#{m} [#{c}] (#{s})',
+    diagnostic_config = {
+        signs = false,
+        severity_sort = true,
+        update_in_insert = false,
+        virtual_text = false,
+    },
     on_attach = on_attach,
     debounce = 0,
 }
