@@ -8,7 +8,9 @@ vim.api.nvim_set_var(
 vim.api.nvim_set_var('completeopt', 'menuone,noinsert,noselect')
 
 cmp.setup {
-    enabled = false,
+    completion = {
+        autocomplete = false,
+    },
     snippet = {
         expand = function(args) require('luasnip').lsp_expand(args.body) end,
     },
@@ -88,8 +90,7 @@ require('cmp_git').setup {
     },
 }
 
-local utils = require 'utils'
-utils.map {
+require('utils').map {
     'i',
     '<c-space>',
     function()
