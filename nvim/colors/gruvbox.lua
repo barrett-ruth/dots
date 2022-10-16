@@ -156,6 +156,8 @@ hi('SpellLocal', { underline = true, special = cs.cyan })
 
 -- treesitter [:
 
+link('Visual', 'TreesitterContext')
+
 -- comments
 hi('Comment', { italic = true, fg = cs.grey })
 link('Comment', 'TSComment')

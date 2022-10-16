@@ -14,7 +14,19 @@ vim.g.markdown_fenced_languages = {
     'yaml',
 }
 
-require('treesitter-context').setup()
+require('treesitter-context').setup {
+    enable = false,
+    max_lines = true,
+    patterns = {
+        default = {
+            'class',
+            'function',
+            'method',
+            'switch',
+            'case',
+        },
+    },
+}
 
 require('nvim-treesitter.configs').setup {
     ensure_installed = {

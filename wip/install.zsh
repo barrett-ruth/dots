@@ -43,6 +43,7 @@ run "sed -i '/^#ParallelDownloads/ s|^#*||' /etc/pacman.conf"
 
 run 'pacstrap -K /mnt base linux-lts linux-firmware linux-lts-headers dkms intel-ucode nvidia-lts nvidia-utils reflector \
     clang dhcpcd docker docker-compose fakeroot fd gcc git iwd light make opendoas openssh patch pkgconf python ripgrep which xclip \
+    nvim tree-sitter \
     ttf-hanazono ttf-liberation \
     zsh zsh-syntax-highlighting zsh-completions \
     grub efibootmgr os-prober ntfs-3g \

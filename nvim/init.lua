@@ -1,3 +1,5 @@
+vim.cmd 'colo gruvbox'
+
 require 'impatient'
 
 require 'aug'
@@ -6,5 +8,3 @@ require 'set'
 require 'lsp'
 require 'map'
 require 'paqs'
-
-vim.cmd 'colo gruvbox'
