@@ -41,8 +41,6 @@ map({ 'x', 'R', '<esc>gv"ry:%s/<c-r>r//g<left><left>' }, { silent = false })
 map { 'n', 'J', 'mzJ`z' }
 map { 'n', 'Q', 'q:k' }
 map { 'n', '<bs>', '<c-^>' }
-map { 'n', '<c-d>', '<c-d>zz' }
-map { 'n', '<c-u>', '<c-u>zz' }
 map { 'n', 'H', 'zH' }
 map { 'n', 'L', 'zL' }
 map({ 'c', '<c-p>', '<up>' }, { silent = false })
