@@ -32,7 +32,7 @@ vim.opt.listchars = 'trail:·'
 
 vim.opt.modeline = false
 
-vim.opt.mouse:remove 'a'
+vim.opt.mouse = ''
 
 vim.opt.matchpairs:append '<:>'
 

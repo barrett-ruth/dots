@@ -5,3 +5,4 @@
 --hidden
 --no-heading
 --smart-case
+--ignore-file=/home/beirut/.config/git/ignore
