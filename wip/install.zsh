@@ -205,7 +205,7 @@ run 'mv dots/fonts .local/share'
 run 'mv dots/scripts .local/bin'
 run 'git clone https://github.com/tmux-plugins/tmux-resurrect .config/tmux/tmux-resurrect'
 cd .config
-run 'ln -s git fd'
+run 'run mkdir fd; ln -s git/ignore fd/ignore'
 cd
 }
 

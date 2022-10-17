@@ -28,6 +28,8 @@ local lsp_symbols = {
     Variable = 'var',
 }
 
+local fd_opts = vim.env.FZF_CTRL_T_COMMAND:match ' (.*)'
+
 require('fzf-lua').setup {
     global_resume = true,
     global_resume_query = true,
@@ -53,7 +55,7 @@ require('fzf-lua').setup {
         prompt = 'help> ',
     },
     files = {
-        fd_opts = vim.env.FZF_CTRL_T_COMMAND:match ' (.*)',
+        fd_opts = fd_opts,
         git_icons = false,
         file_icons = false,
     },
@@ -122,6 +124,17 @@ map {
     'n',
     '<leader>ff',
     mapstr('fzf-lua', [[files { cwd = vim.fn.expand '%:p:h' }]]),
+}
+map {
+    'n',
+    '<leader>fF',
+    mapstr(
+        'fzf-lua',
+        string.format(
+            [[files { fd_opts = '%s' }]],
+            fd_opts .. ' --unrestricted'
+        )
+    ),
 }
 map {
     'n',
