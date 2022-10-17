@@ -4,7 +4,8 @@ local fmt = require('luasnip.extras.fmt').fmt
 local i, f, s = ls.i, ls.f, ls.s
 
 local lastword = function(variable)
-    local parts = vim.split(variable[1][1], '.', true)
+    local parts =
+        vim.split(variable[1][1], '.', { plain = true, trimempty = true })
     return parts[#parts] or ''
 end
 

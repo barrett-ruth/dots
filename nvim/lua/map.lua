@@ -28,7 +28,10 @@ map { 'n', '[Z', 'zo[z' }
 -- :]
 
 -- Windows [:
-map { 'n', '<tab>', '<c-w>' }
+map { 'n', 'H', '<c-w>h' }
+map { 'n', 'J', '<c-w>j' }
+map { 'n', 'K', '<c-w>k' }
+map { 'n', 'L', '<c-w>l' }
 -- :]
 
 -- Miscellaneous [:
@@ -38,11 +41,9 @@ map { 'n', 'x', '"_x' }
 map { 'n', 'ga', '<Plug>(EasyAlign)' }
 map { 'x', 'ga', '<Plug>(EasyAlign)' }
 map({ 'x', 'R', '<esc>gv"ry:%s/<c-r>r//g<left><left>' }, { silent = false })
-map { 'n', 'J', 'mzJ`z' }
+map { 'n', '<c-j>', 'mzJ`z' }
 map { 'n', 'Q', 'q:k' }
 map { 'n', '<bs>', '<c-^>' }
-map { 'n', 'H', 'zH' }
-map { 'n', 'L', 'zL' }
 map({ 'c', '<c-p>', '<up>' }, { silent = false })
 map({ 'c', '<c-n>', '<down>' }, { silent = false })
 map({ 'c', ';;', 'norm ' }, { silent = false })

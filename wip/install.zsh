@@ -221,6 +221,11 @@ run 'nvim lua/paqs/paq.lua -c "so|PaqInstall|q"'
 for e in 'init.lua' plugin after; do
     mv "t$e" "$e"
 done
+
+virtualenv venv
+. venv/bin/activate
+pip install neovim
+deactivate
 cd
 }
 
@@ -309,7 +314,7 @@ cd ..
 
 setup_pip() {
 python -m ensurepip
-pip install black curlylint flake8 isort jedi-language-server mypy neovim virtualenv yamllint
+pip3 install black curlylint flake8 isort jedi-language-server mypy virtualenv yamllint
 }
 
 setup_go() {

@@ -1,5 +1,7 @@
 vim.g.mapleader = ' '
 
+vim.g.python3_host_prog = vim.env.XDG_CONFIG_HOME .. '/nvim/venv/bin/python'
+
 vim.g.matchup_matchparen_offscreen = {}
 vim.g.c_syntax_for_h = 1
 

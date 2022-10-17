@@ -60,8 +60,7 @@ __set_git() {
 }
 
 __set_venv() {
-    [[ -f "$VIRTUAL_ENV" && "$VIRTUAL_ENV" != "$PWD/$(basename "$VIRTUAL_ENV")" ]] && deactivate
-    [[ -x venv/bin/python ]] && . venv/bin/activate || return
+    [[ -n "$VIRTUAL_ENV" ]] || return
     PS1+="%F{yellow}$(basename "$VIRTUAL_ENV")$suffix%f "
 }
 

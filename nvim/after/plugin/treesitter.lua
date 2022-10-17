@@ -15,8 +15,7 @@ vim.g.markdown_fenced_languages = {
 }
 
 require('treesitter-context').setup {
-    enable = false,
-    max_lines = true,
+    max_lines = 1,
     patterns = {
         default = {
             'class',

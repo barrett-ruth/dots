@@ -70,7 +70,7 @@ require('fzf-lua').setup {
     },
     loclist = {
         prompt = 'll> ',
-        path_shorten = true,
+        path_shorten = true
     },
     lsp = {
         jump_to_single_result = true,
@@ -90,7 +90,7 @@ require('fzf-lua').setup {
                     s:sub(last + 1, #s)
                 )
             end,
-            symbol_hl_prefix = 'TS',
+            symbol_hl_prefix = '@',
             symbol_style = 3,
         },
     },
