@@ -158,120 +158,134 @@ hi('SpellLocal', { underline = true, special = cs.cyan })
 
 link('Visual', 'TreesitterContext')
 
+-- Spelling [:
+link('SpellBad', '@spell.bad')
+link('SpellRare', '@spell.rare')
+link('SpellCap', '@spell.cap')
+link('SpellLocal', '@spell.local')
+-- :]
+
 -- comments
 hi('Comment', { italic = true, fg = cs.grey })
-link('Comment', 'TSComment')
+link('Comment', '@comment')
 
-hi('TSWarning', { fg = cs.purple, bold = true })
-hi('TSDanger', { fg = cs.yellow, bold = true })
+hi('@todo', { fg = cs.purple, bold = true })
+hi('@text.warning', { fg = cs.yellow, bold = true })
 
 -- booleans [:
 hi('Boolean', { fg = cs.cyan })
-link('Boolean', 'TSBoolean')
+link('Boolean', '@boolean')
 -- :]
 
 -- constants [:
 hi('Constant', { fg = cs.white })
-link('Constant', 'TSConstant')
-hi('TSConstBuiltin', { fg = cs.purple })
+link('Constant', '@constant')
+hi('@constant.builtin', { fg = cs.purple })
+-- TODO: check if valid highlight group in most recent TS
+hi('@constant.macro', { italic = true, fg = cs.red })
 -- :]
 
 -- strings [:
 hi('String', { fg = cs.yellow })
-link('String', 'TSString')
-hi('TSStringEscape', { fg = cs.green })
+link('String', '@string')
+hi('@string.escape', { fg = cs.green })
 -- :]
 
 -- operators [:
 hi('Operator', { fg = cs.orange })
-link('Operator', 'TSOperator')
-link('Operator', 'TSKeywordOperator')
+link('Operator', '@operator')
+-- TODO: check if valid highlight group in most recent TS
+link('Operator', '@keyword.operator')
 -- :]
 
 -- types [:
 hi('Type', { none = true, fg = cs.cyan })
-link('Type', 'TSType')
-hi('TSTypeBuiltin', { fg = cs.blue })
+link('Type', '@type')
+hi('@type.builtin', { fg = cs.blue })
 -- :]
 
 -- functions [:
 hi('Function', { fg = cs.green })
-link('Function', 'TSFunction')
-link('Function', 'TSMethod')
-hi('TSFuncBuiltin', { fg = cs.green })
+link('Function', '@function')
+link('Function', '@method')
+hi('@function.builtin', { fg = cs.green })
 -- :]
 
 -- macros [:
-hi('Macro', { fg = cs.green })
-link('Macro', 'TSFuncMacro')
-hi('TSConstMacro', { italic = true, fg = cs.red })
-hi('PreProc', { fg = cs.purple })
+hi('@macro', { fg = cs.green })
+link('@macro', '@function.macro')
+hi('@preproc', { fg = cs.purple })
 -- :]
 
 -- keywords [:
 hi('Keyword', { italic = true, fg = cs.red })
-link('Keyword', 'TSKeywordFunction')
-hi('TSConditional', { italic = true, fg = cs.red })
-hi('TSRepeat', { italic = true, fg = cs.red })
+link('Keyword', '@keyword')
+-- TODO: check if valid highlight group in most recent TS
+link('Keyword', '@keyword.function')
+hi('@conditional', { italic = true, fg = cs.red })
+hi('@repeat', { italic = true, fg = cs.red })
 -- :]
 
 -- numbers [:
 hi('Number', { fg = cs.purple })
-link('Number', 'TSNumber')
+link('Number', '@number')
 -- :]
 
 -- variables [:
-hi('TSParameter', { fg = cs.white })
-hi('TSVariable', { fg = cs.white })
-hi('TSVariableBuiltin', { fg = cs.purple })
+hi('@parameter', { fg = cs.white })
+hi('@variable', { fg = cs.white })
+hi('@variable.builtin', { fg = cs.purple })
 -- :]
 
 -- includes [:
 hi('Include', { italic = true, fg = cs.red })
-link('Include', 'TSInclude')
+link('Include', '@include')
 -- :]
 
 -- punctuation [:
-hi('TSPunctDelimiter', { fg = cs.grey })
-hi('TSPunctBracket', { fg = cs.white })
+hi('@punctuation', { fg = cs.grey })
+-- TODO: check if valid highlight group in most recent TS
+link('@punctuation', '@punctuation.delimiter')
+hi('@punctuation.bracket', { fg = cs.white })
 -- :]
 
 -- fields [:
-hi('TSProperty', { fg = cs.white })
-hi('TSField', { fg = cs.white })
+hi('@property', { fg = cs.white })
+hi('@field', { fg = cs.white })
 -- :]
 
 -- misc [:
-hi('TSConstructor', { fg = cs.cyan })
-hi('TSDeclaration', { fg = cs.orange })
-hi('TSNamespace', { fg = cs.cyan })
-hi('TSTag', { fg = cs.orange })
+hi('@constructor', { fg = cs.cyan })
+-- TODO: check if valid highlight group in most recent TS
+hi('@declaration', { fg = cs.orange })
+hi('@namespace', { fg = cs.cyan })
+hi('@tag', { fg = cs.orange })
 hi('StorageClass', { fg = cs.cyan })
-link('StorageClass', 'TSStorageClass')
-link('StorageClass', 'TSClass')
-link('StorageClass', 'TSStruct')
-hi('TSEnum', { fg = cs.purple })
-hi('TSTagDelimiter', { fg = cs.green })
-hi('TSURI', { fg = cs.green })
-hi('TSTextReference', { fg = cs.blue })
+link('StorageClass', '@storageclass')
+link('StorageClass', '@class')
+link('StorageClass', '@struct')
+hi('@enum', { fg = cs.purple })
+hi('@tag.delimiter', { fg = cs.green })
+hi('@uri', { fg = cs.green })
+hi('@text.reference', { fg = cs.blue })
 -- :]
 
 -- language-specific highlights [:
 
 -- c/c++ [:
-hi('cTSType', { fg = cs.blue })
-hi('cppTSType', { fg = cs.blue })
-hi('cTSBoolean', { fg = cs.purple })
-hi('cppTSBoolean', { fg = cs.purple })
+hi('cType', { fg = cs.blue })
+hi('cppType', { fg = cs.blue })
+hi('cBoolean', { fg = cs.purple })
+hi('cppBoolean', { fg = cs.purple })
 -- :]
 
 -- type/javascript [:
-hi('javascriptTSBoolean', { fg = cs.purple })
-hi('typescriptTSBoolean', { fg = cs.purple })
-hi('javascriptTSKeywordOperator', { italic = true, fg = cs.red })
-hi('typescriptTSKeywordOperator', { italic = true, fg = cs.red })
-hi('typescriptTSInclude', { italic = true, fg = cs.purple })
-hi('javascriptTSInclude', { italic = true, fg = cs.purple })
+hi('javascriptBoolean', { fg = cs.purple })
+hi('typescriptBoolean', { fg = cs.purple })
+hi('javascriptKeywordOperator', { italic = true, fg = cs.red })
+hi('typescriptKeywordOperator', { italic = true, fg = cs.red })
+hi('typescriptInclude', { italic = true, fg = cs.purple })
+hi('javascriptInclude', { italic = true, fg = cs.purple })
 -- :]
 
 -- :]

@@ -1,4 +1,4 @@
 local link = require('utils').link
 
-link('TSFunction', 'zshFunction')
-link('TSOperator', 'zshOperator')
+link('@function', 'zshFunction')
+link('@operator', 'zshOperator')
