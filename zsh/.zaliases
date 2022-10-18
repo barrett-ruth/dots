@@ -45,6 +45,11 @@ alias mku='mk uninstall'
 alias pm='pacman'
 alias pmqg='pacman -Q | rg'
 
+# Virtualenv
+alias rmv='rm -rf venv'
+alias srcv='. venv/bin/activate'
+alias dv='deactivate'
+
 # Yarn
 wool() {
     yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config" "$@"

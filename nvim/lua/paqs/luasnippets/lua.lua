@@ -3,10 +3,22 @@ local ls = require 'luasnip'
 local fmt = require('luasnip.extras.fmt').fmt
 local i, f, s = ls.i, ls.f, ls.s
 
-local lastword = function(variable)
-    local parts =
-        vim.split(variable[1][1], '.', { plain = true, trimempty = true })
-    return parts[#parts] or ''
+local extract_vars = function(args)
+    local vars = {}
+
+    for _, e in ipairs(vim.split(args[1][1], ', ', { trimempty = true })) do
+        if e:len() > 0 then
+            local var = e
+
+            var = var:match '[^.]+$' or var
+            var = var:match "'([^']*)'" or var
+            if var:sub(-1) == "'" then var = var:sub(1, -2) end
+
+            table.insert(vars, var)
+        end
+    end
+
+    return table.concat(vars, ', ')
 end
 
 ls.add_snippets('lua', {
@@ -18,14 +30,7 @@ ls.add_snippets('lua', {
     s(
         'lo',
         fmt('local {} = {}', {
-            f(lastword, { 1 }),
-            i(1),
-        })
-    ),
-    s(
-        'lr',
-        fmt([[local {} = require '{}']], {
-            f(lastword, { 1 }),
+            f(extract_vars, { 1 }),
             i(1),
         })
     ),

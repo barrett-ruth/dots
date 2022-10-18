@@ -278,7 +278,7 @@ echo
 
 
 setup_misc_packages() {
-for i in 'clipmenu-git' 'jdtls' 'shellcheck-bin' 'hadolint-bin' 'sioyek-git' 'google-java-format' 'ungoogled-chromium-xdg-bin'; do
+for i in 'clipmenu-git' 'jdtls' 'shellcheck-bin' 'hadolint-bin' 'sioyek-git' 'google-java-format' 'ungoogled-chromium-xdg-bin' 'neovim-nightly-bin'; do
     git clone https://aur.archlinux.org/"$i".git
     cd "$i"
     if [[ "$i" == 'clipmenu-git' ]]; then

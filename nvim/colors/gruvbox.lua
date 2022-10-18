@@ -214,7 +214,8 @@ hi('@function.builtin', { fg = cs.green })
 -- macros [:
 hi('@macro', { fg = cs.green })
 link('@macro', '@function.macro')
-hi('@preproc', { fg = cs.purple })
+hi('PreProc', { fg = cs.purple })
+link('PreProc', '@preproc')
 -- :]
 
 -- keywords [:

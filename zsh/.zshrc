@@ -60,8 +60,10 @@ __set_git() {
 }
 
 __set_venv() {
-    [[ -n "$VIRTUAL_ENV" ]] || return
-    PS1+="%F{yellow}$(basename "$VIRTUAL_ENV")$suffix%f "
+    [[ -x venv/bin/python ]] || return
+    venv="%F{yellow}$(basename "${VIRTUAL_ENV:-venv}")"
+    [[ -z "$VIRTUAL_ENV" ]] && venv+='!'
+    PS1+="$venv%f "
 }
 
 __set_beam_cursor() { echo -ne '\e[5 q'; }

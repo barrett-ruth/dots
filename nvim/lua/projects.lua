@@ -4,8 +4,8 @@ local projects = {
             enabled = { 'autopep8' },
         },
         on_attach = function()
-            vim.o.foldmethod = 'expr'
-            vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
+            vim.opt_local.foldmethod = 'expr'
+            vim.opt_local.foldexpr = 'nvim_treesitter#foldexpr()'
         end,
     },
 }
