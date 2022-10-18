@@ -181,7 +181,6 @@ link('Boolean', '@boolean')
 hi('Constant', { fg = cs.white })
 link('Constant', '@constant')
 hi('@constant.builtin', { fg = cs.purple })
--- TODO: check if valid highlight group in most recent TS
 hi('@constant.macro', { italic = true, fg = cs.red })
 -- :]
 
@@ -194,7 +193,6 @@ hi('@string.escape', { fg = cs.green })
 -- operators [:
 hi('Operator', { fg = cs.orange })
 link('Operator', '@operator')
--- TODO: check if valid highlight group in most recent TS
 link('Operator', '@keyword.operator')
 -- :]
 
@@ -221,7 +219,6 @@ link('PreProc', '@preproc')
 -- keywords [:
 hi('Keyword', { italic = true, fg = cs.red })
 link('Keyword', '@keyword')
--- TODO: check if valid highlight group in most recent TS
 link('Keyword', '@keyword.function')
 hi('@conditional', { italic = true, fg = cs.red })
 hi('@repeat', { italic = true, fg = cs.red })
@@ -245,7 +242,6 @@ link('Include', '@include')
 
 -- punctuation [:
 hi('@punctuation', { fg = cs.grey })
--- TODO: check if valid highlight group in most recent TS
 link('@punctuation', '@punctuation.delimiter')
 hi('@punctuation.bracket', { fg = cs.white })
 -- :]
@@ -257,17 +253,19 @@ hi('@field', { fg = cs.white })
 
 -- misc [:
 hi('@constructor', { fg = cs.cyan })
--- TODO: check if valid highlight group in most recent TS
 hi('@declaration', { fg = cs.orange })
 hi('@namespace', { fg = cs.cyan })
-hi('@tag', { fg = cs.orange })
 hi('StorageClass', { fg = cs.cyan })
+
 link('StorageClass', '@storageclass')
 link('StorageClass', '@class')
 link('StorageClass', '@struct')
 hi('@enum', { fg = cs.purple })
+
+hi('@tag', { fg = cs.orange })
 hi('@tag.delimiter', { fg = cs.green })
-hi('@uri', { fg = cs.green })
+
+hi('@text.uri', { fg = cs.blue })
 hi('@text.reference', { fg = cs.blue })
 -- :]
 
