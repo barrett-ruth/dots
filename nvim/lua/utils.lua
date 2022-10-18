@@ -54,8 +54,11 @@ M.format = function()
         filter = function(client)
             return not vim.tbl_contains({
                 'clangd',
+                'cssls',
+                'html',
                 'jdt.ls',
                 'jedi_language_server',
+                'jsonls',
                 'pyright',
                 'sqls',
                 'sumneko_lua',

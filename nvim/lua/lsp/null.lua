@@ -104,7 +104,18 @@ null_ls.setup {
         },
         builtins.formatting.google_java_format,
         builtins.formatting.prettierd.with {
-            filetypes = { 'css', 'graphql', 'html', 'json', 'markdown', 'yaml' },
+            filetypes = {
+                'css',
+                'graphql',
+                'html',
+                'javascript',
+                'javascriptreact',
+                'json',
+                'markdown',
+                'typescript',
+                'typescriptreact',
+                'yaml',
+            },
         },
         builtins.formatting.shfmt.with {
             extra_args = { '-i', '4', '-ln=posix' },
