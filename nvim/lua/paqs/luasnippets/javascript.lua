@@ -31,7 +31,6 @@ local javascript = {
     s('im', fmt([[import {} from '{}']], { i(1), i(2) })),
     s('pr', fmt('console.log({})', { i(1) })),
     s('for', fmt('for ({}) {{\n\t{}\n}}', { i(1), i(2) })),
-    s('`$', fmt('`${{{}}}`', { i(1) })),
 }
 
 ls.add_snippets('javascript', {})

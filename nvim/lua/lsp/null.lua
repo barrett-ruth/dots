@@ -4,6 +4,11 @@ local on_attach = require('lsp.utils').on_attach
 
 local projects = require 'projects'
 
+local mypy_warnings = {
+    'Need type annotation for',
+    'Cannot find implementation or library stub',
+}
+
 null_ls.setup {
     sources = {
         -- Diagnostics [:
@@ -26,6 +31,18 @@ null_ls.setup {
             diagnostics_format = '#{m} (#{s})',
         },
         builtins.diagnostics.flake8.with {
+            condition = function(_)
+                local project = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
+
+                if projects[project] then
+                    return vim.tbl_contains(
+                        projects[project].null_ls.enabled,
+                        'flake8'
+                    )
+                end
+
+                return true
+            end,
             diagnostics_postprocess = function(diagnostic)
                 if diagnostic.severity == vim.diagnostic.severity.ERROR then
                     diagnostic.severity = vim.diagnostic.severity.WARN
@@ -38,8 +55,10 @@ null_ls.setup {
         },
         builtins.diagnostics.mypy.with {
             diagnostics_postprocess = function(diagnostic)
-                if diagnostic.message:find 'Need type annotation for' then
-                    diagnostic.severity = vim.diagnostic.severity.WARN
+                for _, mypy_warning in ipairs(mypy_warnings) do
+                    if diagnostic.message:find(mypy_warning) then
+                        diagnostic.severity = vim.diagnostic.severity.WARN
+                    end
                 end
             end,
             diagnostics_format = '#{m}',

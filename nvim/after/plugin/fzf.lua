@@ -130,16 +130,18 @@ map {
     '<leader>fF',
     mapstr(
         'fzf-lua',
-        string.format(
-            [[files { fd_opts = '%s' }]],
-            fd_opts .. ' --unrestricted'
-        )
+        string.format([[files { fd_opts = '%s --unrestricted' }]], fd_opts)
     ),
 }
 map {
     'n',
     '<leader>fg',
     mapstr('fzf-lua', [[live_grep_native { cwd = vim.fn.expand '%:p:h' }]]),
+}
+map {
+    'n',
+    '<leader>fG',
+    mapstr('fzf-lua', [[live_grep_native { rg_opts = '-uuu' }]]),
 }
 map { 'n', '<leader>fh', mapstr 'FzfLua help_tags' }
 map { 'n', '<leader>fm', mapstr 'FzfLua man_pages' }

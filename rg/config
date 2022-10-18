@@ -6,4 +6,4 @@
 --no-heading
 --smart-case
 --follow
---ignore-file=/home/beirut/.config/git/ignore
+--no-require-git

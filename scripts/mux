@@ -19,7 +19,7 @@ git)
 run)
     [ "$(tmux lsw -F '#W' | rg run)" ] || tmux neww -c '#{pane_current_path}' -n run
 
-    tmux send -t run "cd $2" 'enter' 'C-l' "mux-run \$(pwd)" 'enter'
+    tmux send -t run 'C-c' 'enter' "cd $2" 'enter' 'C-l' 'mux-run' 'enter'
     ;;
 switch)
     mux-switch "$2"
