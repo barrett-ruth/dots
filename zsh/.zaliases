@@ -10,8 +10,8 @@ mn() {
 
 # Color aliases
 alias ls='exa'
-alias l='ls -a --color=auto --group-directories-first'
-alias ll='l -lF'
+alias l='ls --color=auto --group-directories-first'
+alias ll='l -alF'
 alias la='ll -R'
 alias lss='less --use-color --color=d+b --color=P+c --color=u+g'
 

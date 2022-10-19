@@ -115,10 +115,24 @@ local map, mapstr = utils.map, utils.mapstr
 map {
     'n',
     '<leader>fe',
-    mapstr('fzf-lua', 'files({ cwd = vim.env.XDG_CONFIG_HOME })'),
+    mapstr('fzf-lua', 'files { cwd = vim.env.XDG_CONFIG_HOME }'),
 }
-map { 'n', '<c-f>', mapstr 'FzfLua files' }
-map { 'n', '<c-g>', mapstr 'FzfLua live_grep_native' }
+map {
+    'n',
+    '<c-f>',
+    mapstr(
+        'fzf-lua',
+        string.format([[files { fd_opts = '%s --no-hidden' }]], fd_opts)
+    ),
+}
+map {
+    'n',
+    '<c-g>',
+    mapstr(
+        'fzf-lua',
+        string.format([[live_grep_native { rg_opts = '--no-hidden' }]], fd_opts)
+    ),
+}
 map { 'n', '<leader>fc', mapstr [[lua require('neoclip.fzf')()]] }
 map {
     'n',
@@ -127,21 +141,8 @@ map {
 }
 map {
     'n',
-    '<leader>fF',
-    mapstr(
-        'fzf-lua',
-        string.format([[files { fd_opts = '%s --unrestricted' }]], fd_opts)
-    ),
-}
-map {
-    'n',
     '<leader>fg',
     mapstr('fzf-lua', [[live_grep_native { cwd = vim.fn.expand '%:p:h' }]]),
-}
-map {
-    'n',
-    '<leader>fG',
-    mapstr('fzf-lua', [[live_grep_native { rg_opts = '-uuu' }]]),
 }
 map { 'n', '<leader>fh', mapstr 'FzfLua help_tags' }
 map { 'n', '<leader>fm', mapstr 'FzfLua man_pages' }

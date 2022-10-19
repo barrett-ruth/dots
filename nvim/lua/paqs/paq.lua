@@ -89,6 +89,7 @@ require 'paq' {
     'rest-nvim/rest.nvim',
     'tpope/vim-abolish',
     'tpope/vim-repeat',
+    'tpope/vim-sleuth',
     'tpope/vim-surround',
     'wellle/targets.vim',
     -- :]
