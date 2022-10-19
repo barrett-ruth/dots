@@ -20,15 +20,14 @@ alias g='git'
 alias dk='docker'
 alias ka='killall'
 alias mp='makepkg'
-alias nv='nvim'
 alias nvh='nvim config.h'
 alias nvt='nvim ~/todo.txt'
 alias perg='printenv | rg'
 alias py='python'
 alias sctl='systemctl'
 alias jctl='journalctl'
-alias rs="rsync -e 'ssh -F $HOME/.config/ssh/config'"
-alias ssh='ssh -F ~/.config/ssh/config'
+alias rs="rsync -e 'ssh -F $XDG_CONFIG_HOME/ssh/config'"
+alias ssh="ssh -F $XDG_CONFIG_HOME/ssh/config"
 alias sy='sioyek'
 alias tm='tmux'
 alias tcli='transmission-cli'
@@ -50,6 +49,19 @@ alias pmqg='pacman -Q | rg'
 alias rmv='rm -rf venv'
 alias srcv='. venv/bin/activate'
 alias dv='deactivate'
+
+# Nvim
+nv() {
+    if [[ -z "$*" ]]; then
+        nvim -c 'NvimTreeOpen' .
+    else
+        if [[ -f "$1" ]] && (( $(wc -l "$1" | cut -d ' ' -f 1) > 5000 )); then
+            nvim --noplugin "$*"
+        else
+            nvim "$*"
+        fi
+    fi
+}
 
 # Yarn
 wool() {

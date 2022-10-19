@@ -49,8 +49,6 @@ vim.opt.showmode = false
 
 vim.opt.showtabline = 0
 
-vim.opt.signcolumn = 'no'
-
 vim.opt.spell = false
 vim.opt.spellcapcheck = ''
 vim.opt.spellfile = vim.env.XDG_DATA_HOME .. '/nvim/spell/spell.encoding.add'
