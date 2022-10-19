@@ -1,0 +1,5 @@
+{
+    "download-dir": "/home/beirut/dl",
+    "incomplete-dir": "/home/beirut/dl",
+    "peer-port-random-on-start": true
+}

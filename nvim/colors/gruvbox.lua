@@ -244,6 +244,7 @@ link('Include', '@include')
 hi('@punctuation', { fg = cs.grey })
 link('@punctuation', '@punctuation.delimiter')
 hi('@punctuation.bracket', { fg = cs.white })
+hi('@punctuation.special', { fg = cs.green })
 -- :]
 
 -- fields [:

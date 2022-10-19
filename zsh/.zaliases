@@ -32,6 +32,7 @@ alias ssh='ssh -F ~/.config/ssh/config'
 alias sy='sioyek'
 alias tm='tmux'
 alias tcli='transmission-cli'
+alias tdae="transmission-daemon --logfile $XDG_STATE_HOME/transmission-daemon.log &"
 alias trem='transmission-remote'
 alias venv='virtualenv'
 

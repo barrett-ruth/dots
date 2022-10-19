@@ -78,3 +78,4 @@ for line in io.lines(ignore) do
 end
 
 vim.g.wildignore = wig
+vim.g.wildcharm = '<tab>'

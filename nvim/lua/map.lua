@@ -40,7 +40,6 @@ map { 'n', '<leader>-', 'S<esc>' }
 map { 'n', 'x', '"_x' }
 map { 'n', 'ga', '<Plug>(EasyAlign)' }
 map { 'x', 'ga', '<Plug>(EasyAlign)' }
-map({ 'x', 'R', '<esc>gv"ry:%s/<c-r>r//g<left><left>' }, { silent = false })
 map { 'n', '<c-j>', 'mzJ`z' }
 map { 'n', 'Q', 'q:k' }
 map { 'n', '<bs>', '<c-^>' }

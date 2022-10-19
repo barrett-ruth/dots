@@ -122,7 +122,7 @@ null_ls.setup {
             filetypes = { 'c', 'cpp' },
         },
         builtins.formatting.google_java_format,
-        builtins.formatting.prettierd.with {
+        builtins.formatting.prettier.with {
             filetypes = {
                 'css',
                 'graphql',
@@ -134,6 +134,10 @@ null_ls.setup {
                 'typescript',
                 'typescriptreact',
                 'yaml',
+            },
+            extra_args = {
+                '--config',
+                vim.env.XDG_CONFIG_HOME .. '/prettier.json',
             },
         },
         builtins.formatting.shfmt.with {

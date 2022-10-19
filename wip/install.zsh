@@ -323,7 +323,7 @@ setup_go() {
 
 
 setup_yarn() {
-yarn --use-yarnrc ~/.config/yarn/config global add @fsouza/prettierd @tailwindcss/language-server eslint_d neovim prettier pyright typescript typescript-language-server vim-language-server vscode-langservers-extracted sql-formatter
+yarn --use-yarnrc ~/.config/yarn/config global add prettier @tailwindcss/language-server eslint_d neovim prettier pyright typescript typescript-language-server ts-node vim-language-server vscode-langservers-extracted sql-formatter
 rm "$HOME/.yarnrc"
 }
 
