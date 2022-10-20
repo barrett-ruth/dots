@@ -137,7 +137,7 @@ null_ls.setup {
             },
             extra_args = {
                 '--config',
-                vim.env.XDG_CONFIG_HOME .. '/prettier.json',
+                vim.env.XDG_CONFIG_HOME .. '/templates/prettierrc.json',
             },
         },
         builtins.formatting.shfmt.with {

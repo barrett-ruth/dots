@@ -70,7 +70,6 @@ hi('Search', { fg = 'NONE', bg = 'NONE', reverse = true })
 link('Search', 'IncSearch')
 
 hi('Error', { fg = cs.red })
-hi('Title', { bold = true, fg = cs.orange })
 hi('Question', { none = true, fg = cs.yellow })
 hi('Special', { fg = cs.yellow })
 hi('Statement', { italic = true, fg = cs.red })
@@ -169,8 +168,15 @@ link('SpellLocal', '@spell.local')
 hi('Comment', { italic = true, fg = cs.grey })
 link('Comment', '@comment')
 
+-- text [:
 hi('@todo', { fg = cs.purple, bold = true })
 hi('@text.warning', { fg = cs.yellow, bold = true })
+hi('Title', { bold = true, fg = cs.orange })
+link('Title', '@text.title')
+hi('@text.strong', { bold = true })
+hi('@text.uri', { fg = cs.blue })
+hi('@text.reference', { fg = cs.blue })
+-- :]
 
 -- booleans [:
 hi('Boolean', { fg = cs.cyan })
@@ -266,8 +272,6 @@ hi('@enum', { fg = cs.purple })
 hi('@tag', { fg = cs.orange })
 hi('@tag.delimiter', { fg = cs.green })
 
-hi('@text.uri', { fg = cs.blue })
-hi('@text.reference', { fg = cs.blue })
 -- :]
 
 -- language-specific highlights [:

@@ -12,6 +12,9 @@ dwmb)
 theCourseForum2)
     cmd='docker compose up'
     ;;
+prettier)
+    cmd='ts-node overrides.ts'
+    ;;
 *)
     echo "Project '$proj' unknown."
     exit
