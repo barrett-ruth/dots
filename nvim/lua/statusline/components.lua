@@ -12,8 +12,8 @@ local search = {
         )
     end,
     condition = function()
-        local searchcount = vim.fn.searchcount()
-        if not searchcount then return false end
+        local status, searchcount = pcall(vim.fn.searchcount)
+        if not status then return false end
 
         return searchcount.total > 0
     end,

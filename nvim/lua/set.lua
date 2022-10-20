@@ -61,6 +61,8 @@ vim.opt.swapfile = false
 
 vim.opt.termguicolors = true
 
+vim.opt.textwidth = 80
+
 vim.opt.undodir = vim.env.XDG_DATA_HOME .. '/nvim/undo'
 vim.opt.undofile = true
 
