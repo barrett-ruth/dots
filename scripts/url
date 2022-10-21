@@ -10,7 +10,7 @@ urls="$(sed 's/.*│//g' | tr -d '\n' | rg --no-config -ao "$regex" | sort -u | 
 
 [ "$url" ] || exit
 
-[ "$1" = open ] && eval "$BROWSER --new-window $url" || (
+[ "$1" = open ] && eval "$BROWSER $url" || (
     prev="$(xclip -o -sel c)"
     echo "$url" | xclip -sel c
     sleep 2

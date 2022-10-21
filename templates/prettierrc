@@ -1,0 +1,10 @@
+arrowParens: "avoid"
+trailingComma: "es5"
+semi: false
+singleQuote: true
+jsxSingleQuote: true
+tabWidth: 4
+overrides:
+  - files: ["*.css", "*.md", "*.html", "*.yaml", "*.yml"]
+    options:
+      tabWidth: 2
