@@ -1,0 +1,7 @@
+#!/bin/sh
+
+filename="$(dmenu -p 'Enter filename of screenshot:')"
+
+[ "$filename" ] || exit
+
+magick import ~/img/ss/"$filename"

@@ -35,6 +35,7 @@ require('nvim-tree').setup {
                 { key = 'm', action = 'rename' },
                 { key = 'p', action = 'paste' },
                 { key = 'r', action = 'rename' },
+                { key = 't', action = 'toggle_dotfiles' },
                 { key = 'u', action = 'parent_node' },
                 { key = 'x', action = 'split' },
                 { key = 'y', action = 'copy' },
@@ -60,6 +61,9 @@ require('nvim-tree').setup {
             enable = true,
         },
     },
+    filters = {
+        dotfiles = true
+    }
 }
 
 local utils = require 'utils'

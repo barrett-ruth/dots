@@ -1,7 +1,0 @@
-#!/bin/sh
-
-set -eu
-
-resp="$(echo 'yes\nno' | dmenu -p 'Shutdown?')"
-
-[ "$resp" = 'yes' ] && doas shutdown now

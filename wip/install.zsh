@@ -51,6 +51,7 @@ run 'pacstrap -K /mnt base linux-lts linux-firmware linux-lts-headers dkms intel
     libxft libxinerama
     dash exa feh harfbuzz man-db man-pages postgresql tmux yarn \
     go jdk-openjdk shfmt stylua tidy tree-sitter lua-language-server \
+    imagemagick \
     jq mpv pulseaudio rsync socat transmission-cli'
 
 run 'genfstab -U /mnt >> /mnt/etc/fstab'

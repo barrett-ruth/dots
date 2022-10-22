@@ -1,6 +1,6 @@
 #!/bin/sh
 
-wps="$HOME/wp"
+wps="$HOME/img/wp"
 
 [ "$(xrandr | rg ' connected ' | wc -l)" -eq 1 ] && mons=1 || mons=2
 

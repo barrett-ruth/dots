@@ -10,10 +10,8 @@ dwmb)
     cmd='make clean install && make clean && killall dwmb && dwmb &'
     ;;
 theCourseForum2)
+    # docker compose up --build
     cmd='docker compose up'
-    ;;
-prettier)
-    cmd='ts-node overrides.ts'
     ;;
 *)
     echo "Project '$proj' unknown."
