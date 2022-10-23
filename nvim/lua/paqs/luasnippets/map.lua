@@ -31,7 +31,7 @@ map {
         if ls.choice_active() then
             ls.change_choice(-1)
         else
-            vim.cmd 'norm j'
+            vim.cmd.norm 'j'
         end
     end,
 }
@@ -42,7 +42,7 @@ map {
         if ls.choice_active() then
             ls.change_choice(1)
         else
-            vim.cmd 'norm k'
+            vim.cmd.norm 'k'
         end
     end,
 }

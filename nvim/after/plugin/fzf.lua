@@ -39,7 +39,7 @@ require('fzf-lua').setup {
             ['ctrl-l'] = send_to_ll,
             ['ctrl-q'] = function(...)
                 actions.file_sel_to_qf(...)
-                vim.cmd 'cclose'
+                vim.cmd.cclose()
             end,
             ['ctrl-v'] = actions.file_vsplit,
             ['ctrl-x'] = actions.file_split,
@@ -112,6 +112,9 @@ require('fzf-lua').setup {
 local utils = require 'utils'
 local map, mapstr = utils.map, utils.mapstr
 
+map { 'n', '<c-b>', mapstr 'FzfLua buffers' }
+map { 'n', '<leader>l', mapstr 'FzfLua loclist' }
+map { 'n', '<leader>c', mapstr 'FzfLua quickfix' }
 map {
     'n',
     '<leader>fe',
@@ -133,7 +136,6 @@ map {
         string.format([[live_grep_native { rg_opts = '--no-hidden' }]], fd_opts)
     ),
 }
-map { 'n', '<leader>fc', mapstr [[lua require('neoclip.fzf')()]] }
 map {
     'n',
     '<leader>ff',

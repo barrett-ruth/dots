@@ -7,14 +7,6 @@ au('BufEnter', {
     group = aug,
 })
 
-au('BufEnter', {
-    pattern = '*.conf',
-    callback = function()
-        if vim.bo.filetype == '' then vim.bo.filetype = 'xf86conf' end
-    end,
-    group = aug,
-})
-
 au('QuitPre', {
     callback = function()
         local bufname = 'scratch' .. vim.fn.bufnr()
@@ -55,7 +47,8 @@ au('ColorScheme', {
 
 au('BufEnter', {
     callback = function()
-        vim.cmd 'setl formatoptions-=cro spelloptions=camel,noplainbuffer'
+        vim.opt_local.formatoptions:remove 'cro'
+        vim.opt_local.spelloptions = 'camel,noplainbuffer'
 
         -- Ignore floating windows
         if vim.bo.filetype == '' then return end

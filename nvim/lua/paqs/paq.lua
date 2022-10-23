@@ -68,7 +68,6 @@ require 'paq' {
     -- :]
 
     -- misc [:
-    'AckslD/nvim-neoclip.lua',
     'AndrewRadev/splitjoin.vim',
     'andymass/vim-matchup',
     'axelvc/template-string.nvim',
@@ -86,10 +85,12 @@ require 'paq' {
     'numToStr/Comment.nvim',
     'ojroques/nvim-bufdel',
     'rest-nvim/rest.nvim',
+
     'tpope/vim-abolish',
     'tpope/vim-repeat',
     'tpope/vim-sleuth',
     'tpope/vim-surround',
+
     'wellle/targets.vim',
     -- :]
 }

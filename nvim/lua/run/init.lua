@@ -40,7 +40,7 @@ M.run = function()
             end
 
             if vim.fn.bufwinid(scratch_bufnr) == -1 then
-                vim.cmd('vs ' .. scratch_name)
+                vim.cmd.vs(scratch_name)
                 vim.api.nvim_win_set_option(
                     vim.fn.bufwinid(scratch_bufnr),
                     'spell',
@@ -81,7 +81,7 @@ M.run = function()
         end,
     })
 
-    vim.cmd 'w'
+    vim.cmd.w()
 end
 
 M.setup = function()

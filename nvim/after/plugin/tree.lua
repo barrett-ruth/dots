@@ -12,6 +12,7 @@ end
 require('nvim-tree').setup {
     filters = {
         custom = ignore,
+        dotfiles = true,
     },
     actions = {
         change_dir = {
@@ -61,13 +62,10 @@ require('nvim-tree').setup {
             enable = true,
         },
     },
-    filters = {
-        dotfiles = true
-    }
 }
 
 local utils = require 'utils'
 local map, mapstr = utils.map, utils.mapstr
 
 map { 'n', '<c-e>', mapstr 'e .' }
-map { 'n', '<leader>e', function() vim.cmd('e ' .. vim.fn.expand '%:h') end }
+map { 'n', '<leader>e', function() vim.cmd.e(vim.fn.expand '%:h') end }

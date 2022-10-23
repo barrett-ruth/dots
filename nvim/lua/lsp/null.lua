@@ -53,6 +53,9 @@ null_ls.setup {
         builtins.diagnostics.hadolint.with {
             diagnostics_format = '#{m}',
         },
+        builtins.diagnostics.markdownlint.with {
+            diagnostics_format = '#{m}'
+        },
         builtins.diagnostics.mypy.with {
             diagnostics_postprocess = function(diagnostic)
                 for _, mypy_warning in ipairs(mypy_warnings) do

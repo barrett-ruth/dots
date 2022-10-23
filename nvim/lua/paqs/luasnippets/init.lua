@@ -2,6 +2,7 @@ local ls = require 'luasnip'
 local types = require 'luasnip.util.types'
 
 ls.config.set_config {
+    region_check_events = 'InsertEnter',
     delete_check_events = 'TextChanged,TextChangedI,InsertLeave',
     update_events = 'TextChanged,TextChangedI,InsertLeave',
     history = true,

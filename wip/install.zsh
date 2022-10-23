@@ -324,7 +324,7 @@ setup_go() {
 
 
 setup_yarn() {
-yarn --use-yarnrc ~/.config/yarn/config global add prettier @tailwindcss/language-server eslint_d neovim prettier pyright typescript typescript-language-server ts-node vim-language-server vscode-langservers-extracted sql-formatter
+yarn --use-yarnrc ~/.config/yarn/config global add prettier @tailwindcss/language-server eslint_d neovim prettier pyright typescript typescript-language-server ts-node @types/node vim-language-server vscode-langservers-extracted sql-formatter markdownlint markdownlint-cli
 rm "$HOME/.yarnrc"
 }
 

@@ -19,7 +19,7 @@ git)
 run)
     [ "$(tmux lsw -F '#W' | rg run)" ] || tmux neww -dc '#{pane_current_path}' -n run
 
-    tmux selectw -t run\; send "cd $2" 'enter' 'C-l' 'mux-run' 'enter'
+    tmux selectw -t run\; send 'test -d venv && . venv/bin/activate' 'enter' 'C-l' 'mux-run' 'enter'
     ;;
 switch)
     mux-switch "$2"

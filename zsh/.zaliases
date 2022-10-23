@@ -19,6 +19,7 @@ alias lss='less --use-color --color=d+b --color=P+c --color=u+g'
 alias g='git'
 alias dk='docker'
 alias ka='killall'
+alias nv='nvim'
 alias perg='printenv | rg'
 alias sctl='systemctl'
 alias rs="rsync -e 'ssh -F $XDG_CONFIG_HOME/ssh/config'"
@@ -40,19 +41,6 @@ alias pmqg='pacman -Q | rg'
 alias rmv='rm -rf venv'
 alias srcv='. venv/bin/activate'
 alias dv='deactivate'
-
-# Nvim
-nv() {
-    if [[ -z "$*" ]]; then
-        nvim -c 'NvimTreeOpen' .
-    else
-        if [[ -f "$1" ]] && (( $(wc -l "$1" | cut -d ' ' -f 1) > 5000 )); then
-            nvim --noplugin "$*"
-        else
-            nvim "$*"
-        fi
-    fi
-}
 
 # Yarn
 wool() {

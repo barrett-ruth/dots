@@ -8,6 +8,6 @@ utils.bmap {
         local pwd = vim.fn.getcwd() .. '/'
         local path = pwd .. line
 
-        vim.cmd('vs ' .. path)
+        vim.cmd.vs(path)
     end,
 }
