@@ -4,7 +4,15 @@ local map, mapstr = utils.map, utils.mapstr
 -- Buffers [:
 map { 'n', ']b', mapstr 'bnext' }
 map { 'n', '[b', mapstr 'bprev' }
-map { 'n', '<leader>bw', mapstr 'BufDel!' }
+map {
+    'n',
+    '<leader>bw',
+    function()
+        local bufnr = vim.fn.bufnr()
+        vim.cmd 'BufDel!'
+        vim.cmd.bw(bufnr)
+    end,
+}
 map { 'n', '<leader>bd', mapstr 'BufDel' }
 -- :]
 
@@ -38,6 +46,7 @@ map { 'n', '<leader>k', 'K' }
 
 -- Miscellaneous [:
 map { 'n', '<leader><cr>', mapstr 'so' }
+map { 'n', '<leader>-', 'S<esc>' }
 map { 'n', 'Q', 'q:k' }
 map { 'n', '<bs>', '<c-^>' }
 map({ 'c', '<c-p>', '<up>' }, { silent = false })
