@@ -47,8 +47,7 @@ au('ColorScheme', {
 
 au('BufEnter', {
     callback = function()
-        vim.opt_local.formatoptions:remove 'cro'
-        vim.opt_local.spelloptions = 'camel,noplainbuffer'
+        vim.cmd 'setl formatoptions-=cro spelloptions=camel,noplainbuffer'
 
         -- Ignore floating windows
         if vim.bo.filetype == '' then return end

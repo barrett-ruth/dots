@@ -20,10 +20,10 @@ map { 'n', '[d', '[s' }
 -- :]
 
 -- Folds [:
-map { 'n', ']z', 'zj' }
-map { 'n', ']Z', 'zo]z' }
-map { 'n', '[z', 'zk' }
-map { 'n', '[Z', 'zo[z' }
+map { 'n', ']z', 'zjzo' }
+map { 'n', ']Z', ']z' }
+map { 'n', '[z', 'zkzo[z' }
+map { 'n', '[Z', '[z' }
 -- :]
 
 -- Windows [:
@@ -93,6 +93,6 @@ map { 'n', '[e', '<cmd>m-2<cr>' }
 
 -- Toggling [:
 map { 'n', '<leader>ic', mapstr 'let &l:ch = (&ch + 1) % 2' }
-map { 'n', '<leader>is', mapstr 'setl invspell' }
-map { 'n', '<leader>iw', mapstr 'setl invwrap' }
+map { 'n', '<leader>is', mapstr 'setl spell!' }
+map { 'n', '<leader>iw', mapstr 'setl wrap!' }
 -- :]
