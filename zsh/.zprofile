@@ -13,9 +13,6 @@ set completion-ignore-case on
 unset completealiases
 setopt auto_cd incappendhistory extendedhistory histignorealldups
 
-# nvidia performance
-# export __GL_ExperimentalPerfStrategy=1
-
 # XDG
 export XRESOURCES="$XDG_CONFIG_HOME/X11/xresources"
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -47,6 +44,7 @@ export GOPATH="$XDG_DATA_HOME/go"
 export LESSHISTFILE="$XDG_STATE_HOME/lesshst"
 export MYPY_CACHE_DIR="$XDG_CACHE_HOME/mypy"
 export NODE_REPL_HISTORY="$XDG_STATE_HOME/node_repl_history"
+export PRETTIERD_DEFAULT_CONFIG="$XDG_CONFIG_HOME/templates/prettierrc.yaml"
 export PSQL_HISTORY="$XDG_STATE_HOME/psql_history"
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/rg/config"

@@ -54,7 +54,7 @@ null_ls.setup {
             diagnostics_format = '#{m}',
         },
         builtins.diagnostics.markdownlint.with {
-            diagnostics_format = '#{m}'
+            diagnostics_format = '#{m}',
         },
         builtins.diagnostics.mypy.with {
             diagnostics_postprocess = function(diagnostic)
@@ -137,10 +137,6 @@ null_ls.setup {
                 'typescript',
                 'typescriptreact',
                 'yaml',
-            },
-            extra_args = {
-                '--config',
-                vim.env.XDG_CONFIG_HOME .. '/templates/prettierrc',
             },
         },
         builtins.formatting.shfmt.with {

@@ -17,16 +17,16 @@ M.format = function()
     vim.lsp.buf.format {
         filter = function(client)
             return not vim.tbl_contains({
-                'clangd',
-                'cssls',
-                'html',
-                'jdt.ls',
-                'jedi_language_server',
-                'jsonls',
-                'pyright',
-                'sqls',
-                'sumneko_lua',
-                'tsserver',
+                'clangd', -- clang-format
+                'cssls', -- null-ls
+                'html', -- null-ls
+                'jdt.ls', -- google-java-format
+                'jedi_language_server', -- black/autopep8
+                'jsonls', -- null-ls
+                'pyright', -- black/autopep8
+                'sqls', -- sql-formatter
+                'sumneko_lua', --stylua
+                'tsserver', -- null-ls
             }, client.name)
         end,
     }
