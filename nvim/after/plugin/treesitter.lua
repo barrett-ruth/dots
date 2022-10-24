@@ -1,19 +1,3 @@
-vim.g.markdown_fenced_languages = {
-    'c',
-    'css',
-    'html',
-    'javascript',
-    'javascriptreact',
-    'json',
-    'lua',
-    'python',
-    'sql',
-    'typescript',
-    'typescriptreact',
-    'vim',
-    'yaml',
-}
-
 require('treesitter-context').setup {
     max_lines = 1,
     patterns = {

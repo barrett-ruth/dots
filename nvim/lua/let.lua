@@ -1,3 +1,19 @@
+vim.g.markdown_fenced_languages = {
+    'c',
+    'css',
+    'html',
+    'javascript',
+    'javascriptreact',
+    'json',
+    'lua',
+    'python',
+    'sql',
+    'typescript',
+    'typescriptreact',
+    'vim',
+    'yaml',
+}
+
 vim.g.mapleader = ' '
 
 vim.g.python3_host_prog = vim.env.XDG_CONFIG_HOME .. '/nvim/venv/bin/python'

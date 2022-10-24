@@ -1,5 +1,5 @@
 require('colorizer').setup {
-    filetypes = vim.g.markdown_fenced_languages,
+    vim.g.markdown_fenced_languages,
     user_default_options = {
         RRGGBB = true,
         RRGGBBAA = true,

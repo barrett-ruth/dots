@@ -2,7 +2,8 @@ local utils = require 'utils'
 
 utils.map { 'n', '<leader>m', utils.mapstr 'MarkdownPreviewToggle' }
 
-local cs, hi = utils.cs, utils.hi
+local gruvbox = require 'gruvbox'
+local cs, hi = gruvbox.cs, gruvbox.hi
 
 hi('markdownTitle', { fg = cs.orange })
 

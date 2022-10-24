@@ -1,4 +1,4 @@
-vim.cmd.colorscheme 'gruvbox'
+require('gruvbox').setup()
 
 require 'impatient'
 

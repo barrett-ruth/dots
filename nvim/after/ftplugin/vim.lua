@@ -1,6 +1,6 @@
 vim.bo.keywordprg = ':help'
 
-local utils = require 'utils'
-local cs, hi = utils.cs, utils.hi
+local gruvbox = require 'gruvbox'
+local cs, hi = gruvbox.cs, gruvbox.hi
 
 hi('vimVariableBuiltin', { fg = cs.purple })

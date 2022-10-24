@@ -1,4 +1,4 @@
-local link = require('utils').link
+local link = require('gruvbox').link
 
 link('@function', 'zshFunction')
 link('@operator', 'zshOperator')
