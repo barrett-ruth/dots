@@ -1,5 +1,8 @@
+local fn = vim.fn
+
 local null_ls = require 'null-ls'
 local builtins = null_ls.builtins
+local diagnostics, formatting = builtins.diagnostics, builtins.formatting
 local on_attach = require('lsp.utils').on_attach
 
 local projects = require 'projects'
@@ -11,12 +14,16 @@ local mypy_warnings = {
 
 null_ls.setup {
     sources = {
+        -- Code Actions [:
+        builtins.code_actions.gitrebase,
+        -- :]
+
         -- Diagnostics [:
-        builtins.diagnostics.curlylint.with {
+        diagnostics.curlylint.with {
             diagnostics_format = '#{m}',
             extra_filetypes = { 'html' },
         },
-        builtins.diagnostics.eslint_d.with {
+        diagnostics.eslint_d.with {
             condition = function(utils)
                 return utils.root_has_file {
                     {
@@ -30,9 +37,9 @@ null_ls.setup {
             end,
             diagnostics_format = '#{m} (#{s})',
         },
-        builtins.diagnostics.flake8.with {
+        diagnostics.flake8.with {
             condition = function(_)
-                local project = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
+                local project = fn.fnamemodify(fn.getcwd(), ':t')
 
                 if projects[project] then
                     return vim.tbl_contains(
@@ -50,13 +57,13 @@ null_ls.setup {
             end,
             diagnostics_format = '#{m}',
         },
-        builtins.diagnostics.hadolint.with {
+        diagnostics.hadolint.with {
             diagnostics_format = '#{m}',
         },
-        builtins.diagnostics.markdownlint.with {
+        diagnostics.markdownlint.with {
             diagnostics_format = '#{m}',
         },
-        builtins.diagnostics.mypy.with {
+        diagnostics.mypy.with {
             diagnostics_postprocess = function(diagnostic)
                 for _, mypy_warning in ipairs(mypy_warnings) do
                     if diagnostic.message:find(mypy_warning) then
@@ -66,19 +73,19 @@ null_ls.setup {
             end,
             diagnostics_format = '#{m}',
         },
-        builtins.diagnostics.shellcheck.with {
+        diagnostics.shellcheck.with {
             diagnostics_format = '#{m}',
         },
-        builtins.diagnostics.tsc,
-        builtins.diagnostics.yamllint.with {
+        diagnostics.tsc,
+        diagnostics.yamllint.with {
             diagnostics_format = '#{m}',
         },
         -- :]
 
         -- Formatting [:
-        builtins.formatting.autopep8.with {
+        formatting.autopep8.with {
             condition = function(_)
-                local project = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
+                local project = fn.fnamemodify(fn.getcwd(), ':t')
 
                 if projects[project] then
                     return vim.tbl_contains(
@@ -91,9 +98,9 @@ null_ls.setup {
                 return false
             end,
         },
-        builtins.formatting.black.with {
+        formatting.black.with {
             condition = function(_)
-                local project = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
+                local project = fn.fnamemodify(fn.getcwd(), ':t')
 
                 if projects[project] then
                     return vim.tbl_contains(
@@ -106,9 +113,9 @@ null_ls.setup {
             end,
             extra_args = { '-S', '--fast', '--line-length=79' },
         },
-        builtins.formatting.isort.with {
+        formatting.isort.with {
             condition = function(_)
-                local project = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
+                local project = fn.fnamemodify(fn.getcwd(), ':t')
 
                 if projects[project] then
                     return vim.tbl_contains(
@@ -121,11 +128,11 @@ null_ls.setup {
             end,
         },
 
-        builtins.formatting.clang_format.with {
+        formatting.clang_format.with {
             filetypes = { 'c', 'cpp' },
         },
-        builtins.formatting.google_java_format,
-        builtins.formatting.prettierd.with {
+        formatting.google_java_format,
+        formatting.prettierd.with {
             filetypes = {
                 'css',
                 'graphql',
@@ -139,11 +146,11 @@ null_ls.setup {
                 'yaml',
             },
         },
-        builtins.formatting.shfmt.with {
+        formatting.shfmt.with {
             extra_args = { '-i', '4', '-ln=posix' },
         },
-        builtins.formatting.sql_formatter,
-        builtins.formatting.stylua.with {
+        formatting.sql_formatter,
+        formatting.stylua.with {
             extra_args = {
                 '--config-path',
                 vim.env.XDG_CONFIG_HOME .. '/templates/stylua.toml',

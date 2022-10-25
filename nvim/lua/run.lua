@@ -1,7 +1,9 @@
+local api, fn, env = vim.api, vim.fn, vim.env
+
 local compile_c =
     '-Wall -Wextra -Wshadow -Wconversion -Wdouble-promotion -Wundef'
 local commands = {
-    py = vim.env.VIRTUAL_ENV and vim.env.VIRTUAL_ENV .. '/bin/python'
+    py = env.VIRTUAL_ENV and env.VIRTUAL_ENV .. '/bin/python'
         or 'python',
     sh = 'sh',
     c = 'gcc ' .. compile_c,
@@ -14,65 +16,53 @@ local M = {}
 
 -- Run file in corresponding output buffer on save
 M.run = function()
-    local extension = vim.fn.expand '%:e'
+    local extension = fn.expand '%:e'
 
     if not commands[extension] then return end
 
-    local filename = vim.fn.expand '%:p'
+    local filename = fn.expand '%:p'
     local command = commands[extension] .. ' ' .. filename
-    local header = ' > ' .. string.gsub(command, vim.env.HOME, '~')
+    local header = ' > ' .. string.gsub(command, env.HOME, '~')
 
     if vim.tbl_contains({ 'c', 'cc', 'cpp' }, extension) then
         command = command .. ' && ./a.out; test -f a.out && rm a.out'
     end
 
-    vim.api.nvim_create_autocmd('BufWritePost', {
-        group = vim.api.nvim_create_augroup('run', { clear = true }),
+    api.nvim_create_autocmd('BufWritePost', {
+        group = api.nvim_create_augroup('run', { clear = true }),
         pattern = filename,
         callback = function()
-            local bufnr = vim.fn.bufnr()
+            local bufnr = fn.bufnr()
             local scratch_name = 'scratch' .. bufnr
-            local scratch_bufnr = vim.fn.bufnr(scratch_name)
+            local scratch_bufnr = fn.bufnr(scratch_name)
 
             if scratch_bufnr == -1 then
-                scratch_bufnr = vim.api.nvim_create_buf(false, true)
-                vim.api.nvim_buf_set_name(scratch_bufnr, scratch_name)
+                scratch_bufnr = api.nvim_create_buf(false, true)
+                api.nvim_buf_set_name(scratch_bufnr, scratch_name)
             end
 
-            if vim.fn.bufwinid(scratch_bufnr) == -1 then
+            if fn.bufwinid(scratch_bufnr) == -1 then
                 vim.cmd.vs(scratch_name)
-                vim.api.nvim_win_set_option(
-                    vim.fn.bufwinid(scratch_bufnr),
+                api.nvim_win_set_option(
+                    fn.bufwinid(scratch_bufnr),
                     'spell',
                     false
                 )
             end
 
-            vim.api.nvim_buf_set_lines(
-                scratch_bufnr,
-                0,
-                -1,
-                false,
-                { header, '' }
-            )
+            api.nvim_buf_set_lines(scratch_bufnr, 0, -1, false, { header, '' })
 
             local output_data = function(_, data)
                 if data[1] ~= '' then
                     for k, v in ipairs(data) do
-                        data[k] = string.gsub(v, vim.env.HOME, '~')
+                        data[k] = string.gsub(v, env.HOME, '~')
                     end
 
-                    vim.api.nvim_buf_set_lines(
-                        scratch_bufnr,
-                        -1,
-                        -1,
-                        false,
-                        data
-                    )
+                    api.nvim_buf_set_lines(scratch_bufnr, -1, -1, false, data)
                 end
             end
 
-            vim.fn.jobstart(command, {
+            fn.jobstart(command, {
                 stdout_buffered = true,
                 stderr_buffered = true,
                 on_stdout = output_data,

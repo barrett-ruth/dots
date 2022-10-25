@@ -83,6 +83,7 @@ require 'paq' {
     'L3MON4D3/LuaSnip',
     'mbbill/undotree',
     'monaqa/dial.nvim',
+    'nacro90/numb.nvim',
     'numToStr/Comment.nvim',
     'ojroques/nvim-bufdel',
     'rest-nvim/rest.nvim',

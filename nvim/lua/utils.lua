@@ -2,9 +2,6 @@ local M = {}
 
 _G.pr = function(...) vim.pretty_print(...) end
 
--- Colorscheme [:
--- :]
-
 M.vorfn = function(val_or_fn)
     if type(val_or_fn) == 'function' then return val_or_fn() end
 

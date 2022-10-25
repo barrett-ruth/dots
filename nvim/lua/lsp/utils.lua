@@ -34,11 +34,11 @@ M.on_attach = function(client, _)
     end
 
     if client.server_capabilities.hoverProvider then
-        bmap { 'n', '\\h', mapstr 'lua vim.lsp.buf.hover()' }
+        bmap { 'n', '\\h', vim.lsp.buf.hover }
     end
 
     if client.server_capabilities.renameProvider then
-        bmap { 'n', '\\r', mapstr 'lua vim.lsp.buf.rename()' }
+        bmap { 'n', '\\r', vim.lsp.buf.rename }
     end
 
     for k, v in pairs {
@@ -50,15 +50,15 @@ M.on_attach = function(client, _)
         t = { 'typeDefinition', 'typedefs' },
     } do
         if client.server_capabilities[v[1] .. 'Provider'] then
-            bmap { 'n', '\\' .. k, mapstr('fzf-lua', 'lsp_' .. v[2] .. '()') }
+            bmap { 'n', '\\' .. k, mapstr('FzfLua lsp_' .. v[2]) }
         end
     end
 
     bmap { 'n', '<leader>fd', mapstr 'FzfLua lsp_workspace_diagnostics' }
 
-    bmap { 'n', ']\\', mapstr 'lua vim.diagnostic.goto_next()' }
-    bmap { 'n', '[\\', mapstr 'lua vim.diagnostic.goto_prev()' }
-    bmap { 'n', '\\f', mapstr 'lua vim.diagnostic.open_float()' }
+    bmap { 'n', ']\\', vim.diagnostic.goto_next }
+    bmap { 'n', '[\\', vim.diagnostic.goto_prev }
+    bmap { 'n', '\\f', vim.diagnostic.open_float }
 
     bmap { 'n', '\\li', mapstr 'LspInfo' }
     bmap { 'n', '\\lI', mapstr 'NullLsInfo' }

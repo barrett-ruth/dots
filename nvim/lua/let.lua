@@ -1,4 +1,6 @@
-vim.g.markdown_fenced_languages = {
+local g = vim.g
+
+g.markdown_fenced_languages = {
     'c',
     'css',
     'html',
@@ -14,12 +16,12 @@ vim.g.markdown_fenced_languages = {
     'yaml',
 }
 
-vim.g.mapleader = ' '
+g.mapleader = ' '
 
-vim.g.python3_host_prog = vim.env.XDG_CONFIG_HOME .. '/nvim/venv/bin/python'
+g.python3_host_prog = vim.env.XDG_CONFIG_HOME .. '/nvim/venv/bin/python'
 
-vim.g.matchup_matchparen_offscreen = {}
-vim.g.c_syntax_for_h = 1
+g.matchup_matchparen_offscreen = {}
+g.c_syntax_for_h = 1
 
 local disabled_builtins = {
     'gzip',
@@ -35,5 +37,5 @@ local disabled_builtins = {
 }
 
 for _, plugin in pairs(disabled_builtins) do
-    vim.g['loaded_' .. plugin] = 1
+    g['loaded_' .. plugin] = 1
 end

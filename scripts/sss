@@ -5,3 +5,4 @@ filename="$(dmenu -p 'Enter filename:' </dev/null)"
 [ "$filename" ] || filename="$(openssl rand -hex 10)"
 
 magick import ~/img/ss/"$filename.jpg"
+xclip -sel c -t image/png ~/img/ss/"$filename.jpg"

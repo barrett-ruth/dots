@@ -1,18 +1,20 @@
+local fn = vim.fn
+
 local utils = require 'utils'
 
 local search = {
     value = function()
-        local count = vim.fn.searchcount { maxcount = 999 }
+        local count = fn.searchcount { maxcount = 999 }
 
         return string.format(
             '%s [%s/%d]',
-            vim.fn.getreg '/',
+            fn.getreg '/',
             count.current,
             count.total
         )
     end,
     condition = function()
-        local status, searchcount = pcall(vim.fn.searchcount)
+        local status, searchcount = pcall(fn.searchcount)
         if not status then return false end
 
         return searchcount.total > 0
@@ -39,8 +41,8 @@ local line = {
 }
 
 local macro = {
-    value = function() return '[' .. vim.fn.reg_recording() .. ']' end,
-    condition = function() return not utils.empty(vim.fn.reg_recording()) end,
+    value = function() return '[' .. fn.reg_recording() .. ']' end,
+    condition = function() return not utils.empty(fn.reg_recording()) end,
     highlight = 'DiagnosticError',
     separator = 'post',
 }

@@ -1,5 +1,7 @@
-local au = vim.api.nvim_create_autocmd
-local aug = vim.api.nvim_create_augroup('augs', { clear = true })
+local api, fn = vim.api, vim.fn
+
+local au = api.nvim_create_autocmd
+local aug = api.nvim_create_augroup('augs', { clear = true })
 
 au('BufEnter', {
     pattern = 'PKGBUILD',
@@ -9,8 +11,8 @@ au('BufEnter', {
 
 au('QuitPre', {
     callback = function()
-        local bufname = 'scratch' .. vim.fn.bufnr()
-        local scratch_bufnr = vim.fn.bufnr(bufname)
+        local bufname = 'scratch' .. fn.bufnr()
+        local scratch_bufnr = fn.bufnr(bufname)
 
         if scratch_bufnr ~= -1 then vim.cmd('BufDel! ' .. bufname) end
     end,
@@ -53,15 +55,15 @@ au('BufEnter', {
         if vim.bo.filetype == '' then return end
 
         -- Show winbar on inactive buffers
-        for _, buf in ipairs(vim.fn.getbufinfo { buflisted = 1 }) do
-            local winid = vim.fn.bufwinid(buf.bufnr)
+        for _, buf in ipairs(fn.getbufinfo { buflisted = 1 }) do
+            local winid = fn.bufwinid(buf.bufnr)
 
             if
                 winid ~= -1
-                and vim.api.nvim_buf_get_option(buf.bufnr, 'filetype') ~= ''
+                and api.nvim_buf_get_option(buf.bufnr, 'filetype') ~= ''
             then
-                vim.api.nvim_win_set_option(
-                    vim.fn.bufwinid(buf.bufnr),
+                api.nvim_win_set_option(
+                    fn.bufwinid(buf.bufnr),
                     'winbar',
                     [[%{%v:lua.require'winbar'.winbar()%}]]
                 )
