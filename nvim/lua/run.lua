@@ -21,7 +21,7 @@ M.run = function()
 
     local filename = fn.expand '%:p'
     local command = commands[extension] .. ' ' .. filename
-    local header = ' > ' .. string.gsub(command, env.HOME, '~')
+    local header = ' > ' .. command:gsub(env.HOME, '~')
 
     if vim.tbl_contains({ 'c', 'cc', 'cpp' }, extension) then
         command = command .. ' && ./a.out; test -f a.out && rm a.out'
@@ -54,7 +54,7 @@ M.run = function()
             local output_data = function(_, data)
                 if data[1] ~= '' then
                     for k, v in ipairs(data) do
-                        data[k] = string.gsub(v, env.HOME, '~')
+                        data[k] = v:gsub(env.HOME, '~')
                     end
 
                     api.nvim_buf_set_lines(scratch_bufnr, -1, -1, false, data)

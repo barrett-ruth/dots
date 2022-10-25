@@ -6,12 +6,7 @@ local search = {
     value = function()
         local count = fn.searchcount { maxcount = 999 }
 
-        return string.format(
-            '%s [%s/%d]',
-            fn.getreg '/',
-            count.current,
-            count.total
-        )
+        return ('%s [%s/%d]'):format(fn.getreg '/', count.current, count.total)
     end,
     condition = function()
         local status, searchcount = pcall(fn.searchcount)

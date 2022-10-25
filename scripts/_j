@@ -5,6 +5,9 @@ case "$1" in
         for k v in "${(@kv)dirs}"; do
             echo -n "[$k]=$v | " | sed "s|$HOME|~|g"
         done;;
+    -)
+        cd - >/dev/null && return
+        ;;
     *)
         dir=$dirs[$1];;
 esac

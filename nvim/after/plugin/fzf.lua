@@ -80,8 +80,7 @@ fzf.setup {
                 if not first or not last then return s end
 
                 local word = s:sub(first + 1, last)
-                return string.format(
-                    '[%s%s%s]',
+                return ('[%s%s%s]'):format(
                     s:sub(1, first),
                     lsp_symbols[word] or s,
                     s:sub(last + 1, #s)
@@ -123,7 +122,7 @@ map {
     '<c-f>',
     mapstr(
         'fzf-lua',
-        string.format([[files { fd_opts = '%s --no-hidden' }]], fd_opts)
+        ([[files { fd_opts = '%s --no-hidden' }]]):format(fd_opts)
     ),
 }
 map {
@@ -131,7 +130,7 @@ map {
     '<c-g>',
     mapstr(
         'fzf-lua',
-        string.format([[live_grep_native { rg_opts = '--no-hidden' }]], fd_opts)
+        ([[live_grep_native { rg_opts = '--no-hidden' }]]):format(fd_opts)
     ),
 }
 map {

@@ -16,8 +16,7 @@ M.on_attach = function(client, _)
                 '\\s' .. k,
                 mapstr(
                     'fzf-lua',
-                    string.format(
-                        [[lsp_document_symbols { fzf_opts = { ['--with-nth'] = '2..', ['--delimiter'] = ':' }, no_header = true, prompt = 'sym> ', %s }]],
+                    ([[lsp_document_symbols { fzf_opts = { ['--with-nth'] = '2..', ['--delimiter'] = ':' }, no_header = true, prompt = 'sym> ', %s }]]):format(
                         v
                     )
                 ),

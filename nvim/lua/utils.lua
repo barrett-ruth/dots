@@ -102,8 +102,8 @@ M.bmap = function(mapping, opts)
 end
 
 M.mapstr = function(req, meth)
-    return M.empty(meth) and string.format('<cmd>%s<cr>', req)
-        or string.format([[<cmd>lua require('%s').%s<cr>]], req, meth)
+    return M.empty(meth) and ('<cmd>%s<cr>'):format(req)
+        or ([[<cmd>lua require('%s').%s<cr>]]):format(req, meth)
 end
 
 return M

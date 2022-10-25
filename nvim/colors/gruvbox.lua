@@ -1,11 +1,13 @@
-if vim.g.colors_name then vim.cmd.hi 'clear' end
+local g = vim.g
+
+if g.colors_name then vim.cmd.hi 'clear' end
 
 local gruvbox = require 'gruvbox'
 local cs, hi, link = gruvbox.cs, gruvbox.hi, gruvbox.link
 
-vim.g.colors_name = 'gruvbox'
+g.colors_name = 'gruvbox'
 
-vim.g.terminal_ansi_colors = {
+g.terminal_ansi_colors = {
     cs.black,
     cs.red,
     cs.green,
@@ -135,7 +137,6 @@ end
 hi('DiffAdd', { fg = cs.green, reverse = true })
 hi('DiffChange', { fg = cs.blue, reverse = true })
 hi('DiffDelete', { fg = cs.red, reverse = true })
--- hi('DiffText', { none = true, fg = cs.bg, bg = cs.blue })
 hi('diffAdded', { fg = cs.green })
 hi('diffRemoved', { fg = cs.red })
 hi('diffFile', { fg = cs.cyan })

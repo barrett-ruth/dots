@@ -50,14 +50,13 @@ wool() {
 
 # Misc
 alias cp='cp -v'
+alias mkd='mkdir -pv'
+alias psag='ps aux | rg'
 gcl() { . _gcl "$@" }
 rmd() { [[ "$1" == "$HOME" ]] || rm -rf "$@"; }
-alias mkd='mkdir -pv'
 mkcd() { mkdir -pv "$1" && cd "$1"; }
-alias psag='ps aux | rg'
--() { cd - >/dev/null; }
 j() { . _j "$@"; }
 declare -A dirs=(['']=~ [dl]=~/dl [scr]="$SCRIPTS" [dev]=~/dev [tcf]=~/dev/theCourseForum2 [dots]=~/dev/dots [cp]=~/dev/cp [nv]=~/.config/nvim [paq]=~/.local/share/nvim/site/pack/paqs/start [tm]=~/.config/tmux [x11]=~/.config/X11 [zsh]=~/.config/zsh [site]=~/dev/barrett-ruth.github.io [sl]=~/dev/sl)
 for e in ~/dev/sl/*; do
-    [[ -d "$e" ]] && dirs[$(basename "$e")]="$e"
+    dirs[$(basename "$e")]="$e"
 done

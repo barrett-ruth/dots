@@ -1,11 +1,7 @@
 local cmp = require 'cmp'
 
-vim.api.nvim_set_var(
-    'completion_matching_strategy_list',
-    'exact,substring,fuzzy'
-)
-
-vim.api.nvim_set_var('completeopt', 'menuone,noinsert,noselect')
+vim.g.completion_matching_strategy_list = 'exact,substring,fuzzy'
+vim.g.completeopt = 'menuone,noinsert,noselect'
 
 cmp.setup {
     completion = {
@@ -41,7 +37,7 @@ cmp.setup {
             end
 
             -- Remove redunant java text
-            if string.find(vim_item.abbr, ' - java') then
+            if vim_item.abbr:find ' - java' then
                 vim_item.abbr = vim_item.abbr:gsub('- java', '[', 1) .. ']'
             end
 

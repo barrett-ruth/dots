@@ -18,7 +18,7 @@ local delete_worktree = function(selected, _)
     local parsed = parse_entry(selected[1])
 
     vim.ui.input({
-        prompt = string.format('Delete worktree %s? [y/N] ', parsed.branch),
+        prompt = ('Delete worktree %s? [y/N] '):format(parsed.branch),
     }, function(input)
         if vim.trim(input):lower() == 'y' then
             require('git-worktree').delete_worktree(parsed.branch, true)
