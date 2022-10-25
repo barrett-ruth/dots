@@ -10,6 +10,52 @@ end
 
 M.empty = function(s) return s == '' or s == nil end
 
+M.rename = function()
+    local old_name = vim.fn.expand '<cword>'
+    local api = vim.api
+
+    local bufnr = api.nvim_create_buf(false, true)
+    local win = api.nvim_open_win(bufnr, true, {
+        style = 'minimal',
+        border = 'single',
+        relative = 'cursor',
+        row = 1,
+        col = -1,
+        width = math.floor(old_name:len() > 20 and old_name:len() * 1.5 or 20),
+        height = 1,
+    })
+
+    vim.wo.cursorline = false
+    api.nvim_buf_set_lines(bufnr, 0, -1, true, { old_name })
+
+    M.bmap({ 'i', '<c-c>', M.mapstr 'q' }, { buffer = bufnr })
+    M.bmap({ 'n', 'q', M.mapstr 'q' }, { buffer = bufnr })
+    M.bmap {
+        { 'i', 'n' },
+        '<cr>',
+        function()
+            local new_name = vim.trim(vim.fn.getline '.')
+
+            api.nvim_win_close(win, true)
+
+            if M.empty(new_name) or new_name == old_name then return end
+
+            vim.lsp.buf.rename(new_name)
+        end,
+    }
+end
+
+M.open_url = function()
+    local url = vim.fn.expand('<cfile>', nil)
+
+    -- user/repo github urls
+    if not url:match 'https' and url:match '/' then
+        url = 'https://github.com/' .. url
+    end
+
+    vim.fn.jobstart { vim.env.BROWSER, '--new-window', url }
+end
+
 M.format = function()
     vim.lsp.buf.format {
         filter = function(client)

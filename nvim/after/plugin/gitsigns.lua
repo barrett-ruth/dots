@@ -14,12 +14,12 @@ gitsigns.setup {
         local utils = require 'utils'
         local bmap, mapstr = utils.bmap, utils.mapstr
 
-        bmap { 'n', '<leader>gb', mapstr 'Gitsigns toggle_current_line_blame' }
-        bmap { 'n', '<leader>gp', mapstr 'Gitsigns preview_hunk' }
-        bmap { 'n', '<leader>gs', mapstr 'Gitsigns stage_hunk' }
+        bmap { 'n', '<leader>gb', gitsigns.toggle_current_line_blame }
+        bmap { 'n', '<leader>gp', gitsigns.preview_hunk }
+        bmap { 'n', '<leader>gs', gitsigns.stage_hunk }
 
-        bmap { 'n', '[g', mapstr 'Gitsigns prev_hunk' }
-        bmap { 'n', ']g', mapstr 'Gitsigns next_hunk' }
+        bmap { 'n', '[g', gitsigns.prev_hunk }
+        bmap { 'n', ']g', gitsigns.next_hunk }
 
         bmap { 'n', '<leader>vb', mapstr 'FzfLua git_branches' }
         bmap { 'n', '<leader>vh', mapstr 'FzfLua git_bcommits' }

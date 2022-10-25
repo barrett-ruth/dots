@@ -1,4 +1,6 @@
-require('rest-nvim').setup {
+local rest = require 'rest-nvim'
+
+rest.setup {
     highlight = {
         enabled = false,
     },
@@ -7,4 +9,4 @@ require('rest-nvim').setup {
 
 local utils = require 'utils'
 
-utils.map { 'n', '<leader>R', utils.mapstr('rest-nvim', 'run()') }
+utils.map { 'n', '<leader>R', rest.run }

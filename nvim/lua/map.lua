@@ -1,16 +1,18 @@
+local cmd = vim.cmd
+
 local utils = require 'utils'
 local map, mapstr = utils.map, utils.mapstr
 
 -- Buffers [:
-map { 'n', ']b', mapstr 'bnext' }
-map { 'n', '[b', mapstr 'bprev' }
+map { 'n', ']b', cmd.bnext }
+map { 'n', '[b', cmd.bprev }
 map {
     'n',
     '<leader>bw',
     function()
         local bufnr = vim.fn.bufnr()
-        vim.cmd 'BufDel!'
-        vim.cmd.bw(bufnr)
+        cmd 'BufDel!'
+        cmd.bw(bufnr)
     end,
 }
 map { 'n', '<leader>bd', mapstr 'BufDel' }
@@ -45,7 +47,7 @@ map { 'n', '<leader>k', 'K' }
 -- :]
 
 -- Miscellaneous [:
-map { 'n', '<leader><cr>', mapstr 'so' }
+map { 'n', '<leader><cr>', cmd.source }
 map { 'n', '<leader>-', 'S<esc>' }
 map { 'n', 'Q', 'q:k' }
 map { 'n', '<bs>', '<c-^>' }
@@ -57,14 +59,14 @@ map { 'v', 'K', [[:m '<-2<cr>gv=gv]] }
 -- :]
 
 -- Location List [:
-map { 'n', ']l', mapstr 'lnext' }
-map { 'n', '[l', mapstr 'lprev' }
+map { 'n', ']l', cmd.lnext }
+map { 'n', '[l', cmd.lprev }
 map { 'n', '<leader>L', mapstr 'cal setloclist(0, []) | lcl' }
 -- :]
 
 -- Quickfix List [:
-map { 'n', ']q', mapstr 'cnext' }
-map { 'n', '[q', mapstr 'cprev' }
+map { 'n', ']q', cmd.cnext }
+map { 'n', '[q', cmd.cprev }
 map { 'n', '<leader>C', mapstr 'cal setqflist([]) | ccl' }
 -- :]
 
@@ -82,22 +84,22 @@ map { '', '<leader>y', '"+y' }
 map {
     'n',
     '<leader>q',
-    mapstr 'q',
+    cmd.q,
 }
 map { 'n', '<leader>Q', mapstr 'qa!' }
 map {
     'n',
     '<leader>w',
-    mapstr 'w',
+    cmd.w,
     { silent = false },
 }
 map { 'n', '<leader>z', 'ZZ' }
-map { 'n', '<leader>Z', mapstr 'wqall' }
+map { 'n', '<leader>Z', cmd.wqall }
 -- :]
 
 -- Swapping lines [:
-map { 'n', ']e', '<cmd>m+<cr>' }
-map { 'n', '[e', '<cmd>m-2<cr>' }
+map { 'n', ']e', mapstr 'm+' }
+map { 'n', '[e', mapstr 'm-2' }
 -- :]
 
 -- Toggling [:

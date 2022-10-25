@@ -17,7 +17,7 @@ M.on_attach = function(client, _)
                 mapstr(
                     'fzf-lua',
                     string.format(
-                        [[lsp_document_symbols { fzf_opts = { ['--with-nth'] = '2..', ['--delimiter'] = ':' }, no_header = true, prompt = 'sym> ', %s } ]],
+                        [[lsp_document_symbols { fzf_opts = { ['--with-nth'] = '2..', ['--delimiter'] = ':' }, no_header = true, prompt = 'sym> ', %s }]],
                         v
                     )
                 ),
@@ -29,7 +29,10 @@ M.on_attach = function(client, _)
         bmap {
             'n',
             '<leader>w',
-            mapstr 'w' .. mapstr('utils', 'format()'),
+            function()
+                vim.cmd.w()
+                utils.format()
+            end,
         }
     end
 
@@ -38,7 +41,7 @@ M.on_attach = function(client, _)
     end
 
     if client.server_capabilities.renameProvider then
-        bmap { 'n', '\\r', vim.lsp.buf.rename }
+        bmap { 'n', '\\r', utils.rename }
     end
 
     for k, v in pairs {

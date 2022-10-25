@@ -29,8 +29,9 @@ local lsp_symbols = {
 }
 
 local fd_opts = vim.env.FZF_CTRL_T_COMMAND:match ' (.*)'
+local fzf = require 'fzf-lua'
 
-require('fzf-lua').setup {
+fzf.setup {
     global_resume = true,
     global_resume_query = true,
     actions = {
@@ -90,9 +91,6 @@ require('fzf-lua').setup {
             symbol_style = 3,
         },
     },
-    man_pages = {
-        prompt = 'man>',
-    },
     winopts = {
         preview = {
             hidden = 'hidden',
@@ -112,9 +110,9 @@ require('fzf-lua').setup {
 local utils = require 'utils'
 local map, mapstr = utils.map, utils.mapstr
 
-map { 'n', '<c-b>', mapstr 'FzfLua buffers' }
-map { 'n', '<leader>l', mapstr 'FzfLua loclist' }
-map { 'n', '<leader>c', mapstr 'FzfLua quickfix' }
+map { 'n', '<c-b>', fzf.buffers }
+map { 'n', '<leader>l', fzf.loclist }
+map { 'n', '<leader>c', fzf.quickfix }
 map {
     'n',
     '<leader>fe',
@@ -146,7 +144,7 @@ map {
     '<leader>fg',
     mapstr('fzf-lua', [[live_grep_native { cwd = vim.fn.expand '%:p:h' }]]),
 }
-map { 'n', '<leader>fh', mapstr 'FzfLua help_tags' }
-map { 'n', '<leader>fm', mapstr 'FzfLua man_pages' }
-map { 'n', '<leader>fr', mapstr 'FzfLua resume' }
+map { 'n', '<leader>fh', fzf.help_tags }
+map { 'n', '<leader>fm', fzf.man_pages }
+map { 'n', '<leader>fr', fzf.resume }
 map { 'n', '<leader>fs', mapstr('fzf-lua', 'files { cwd = vim.env.SCRIPTS }') }

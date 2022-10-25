@@ -3,8 +3,7 @@ local api, fn, env = vim.api, vim.fn, vim.env
 local compile_c =
     '-Wall -Wextra -Wshadow -Wconversion -Wdouble-promotion -Wundef'
 local commands = {
-    py = env.VIRTUAL_ENV and env.VIRTUAL_ENV .. '/bin/python'
-        or 'python',
+    py = env.VIRTUAL_ENV and env.VIRTUAL_ENV .. '/bin/python' or 'python',
     sh = 'sh',
     c = 'gcc ' .. compile_c,
     cpp = 'g++ ' .. compile_c,
@@ -79,9 +78,11 @@ M.setup = function()
     utils.map {
         'n',
         '<leader>r',
-        utils.mapstr 'w'
-            .. utils.mapstr('utils', 'format()')
-            .. utils.mapstr('run', 'run()'),
+        function()
+            vim.cmd.w()
+            utils.format()
+            require('run').run()
+        end,
     }
 end
 

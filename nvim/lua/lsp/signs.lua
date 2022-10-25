@@ -1,3 +1,17 @@
+local diagnostic_signs = {
+    Error = { text = '>' },
+    Warn = { text = '—' },
+    Hint = { text = '*' },
+    Info = { text = ':' },
+}
+
+for name, v in pairs(diagnostic_signs) do
+    vim.fn.sign_define(
+        'DiagnosticSign' .. name,
+        { text = v.text, texthl = 'Diagnostic' .. name }
+    )
+end
+
 local lsp = vim.lsp
 
 lsp.handlers['textDocument/hover'] = lsp.with(lsp.handlers.hover, {

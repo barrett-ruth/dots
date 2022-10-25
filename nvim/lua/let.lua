@@ -39,3 +39,7 @@ local disabled_builtins = {
 for _, plugin in pairs(disabled_builtins) do
     g['loaded_' .. plugin] = 1
 end
+
+local utils = require 'utils'
+
+utils.map { 'n', 'gx', utils.open_url }
