@@ -76,6 +76,7 @@ require 'paq' {
         'iamcco/markdown-preview.nvim',
         run = 'cd app && yarn install',
     },
+    'ggandor/leap.nvim',
     'ibhagwan/fzf-lua',
     'jeetsukumaran/vim-indentwise',
     'junegunn/vim-easy-align',

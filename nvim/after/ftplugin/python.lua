@@ -1,5 +1,5 @@
-local utils = require 'utils'
-local cs, hi = utils.cs, utils.hi
+local gruvbox = require 'gruvbox'
+local cs, hi = gruvbox.cs, gruvbox.hi
 
 hi('pythonInclude', { italic = true, fg = cs.purple })
 hi('pythonConstructor', { fg = cs.green })

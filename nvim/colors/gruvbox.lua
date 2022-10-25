@@ -115,6 +115,11 @@ hi('NvimTreeExecFile', { bold = true, fg = cs.light_green })
 link('Normal', 'FzfLuaBorder')
 -- :]
 
+-- leap.nvim [:
+hi('LeapLabelPrimary', { reverse = true })
+hi('LeapLabelSecondary', { reverse = true })
+-- :]
+
 -- lsp/diagnostics [:
 hi('DiagnosticError', { fg = cs.red })
 hi('DiagnosticWarn', { fg = cs.yellow })

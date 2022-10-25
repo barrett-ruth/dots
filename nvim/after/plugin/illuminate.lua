@@ -3,6 +3,9 @@ require('illuminate').configure {
     providers = {
         'treesitter',
         'lsp',
-        'regex'
-    }
+        'regex',
+    },
 }
+
+local utils = require 'utils'
+utils.map { 'n', '<leader>ii', utils.mapstr('illuminate', 'toggle_buf()') }
