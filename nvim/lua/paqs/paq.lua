@@ -65,7 +65,6 @@ require 'paq' {
     -- aesthetic [:
     'itchyny/vim-highlighturl',
     'NvChad/nvim-colorizer.lua',
-    'RRethy/vim-illuminate',
     -- :]
 
     -- misc [:

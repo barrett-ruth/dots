@@ -93,12 +93,6 @@ hi('CmpItemAbbrMatchFuzzy', { fg = cs.green })
 hi('HighlightUrl', { fg = cs.blue, italic = true })
 -- :]
 
--- vim-illuminate [:
-link('Visual', 'IlluminatedWordRead')
-link('Visual', 'IlluminatedWordText')
-link('Visual', 'IlluminatedWordWrite')
--- :]
-
 -- nvim-tree [:
 hi('NvimTreeIndentMarker', { fg = cs.grey })
 hi('Directory', { fg = cs.light_blue })
