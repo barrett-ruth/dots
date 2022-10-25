@@ -80,7 +80,7 @@ M.prepare_lsp_settings = function(settings)
     default_settings.flags = { debounce_text_changes = 0 }
     default_settings.on_attach = M.on_attach
 
-    return vim.tbl_extend('force', default_settings, settings or {})
+    return vim.tbl_extend('force', default_settings, settings)
 end
 
 return M

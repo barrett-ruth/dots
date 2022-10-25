@@ -1,27 +1,24 @@
-local noconfig_servers = {
+local servers = {
     'cssls',
     'html',
+    'jedi_language_server',
+    'jsonls',
+    'pyright',
     'sqls',
+    'sumneko_lua',
+    'tailwindcss',
     'vimls',
 }
-
 local lspconfig = require 'lspconfig'
 local prepare_lsp_settings = require('lsp.utils').prepare_lsp_settings
 
-for _, server in ipairs(noconfig_servers) do
-    lspconfig[server].setup(prepare_lsp_settings())
-end
-
-local servers = { 'jedi_language_server', 'jsonls', 'pyright', 'tailwindcss' }
-
 for _, server in ipairs(servers) do
-    local settings = require('lsp.servers.' .. server)
+    local status, settings = pcall(require, 'lsp.servers.' .. server)
+
+    if not status then settings = {} end
+
     lspconfig[server].setup(prepare_lsp_settings(settings))
 end
-
-lspconfig.sumneko_lua.setup(
-    prepare_lsp_settings(require 'lsp.servers.sumneko_lua')
-)
 
 require('clangd_extensions').setup {
     server = prepare_lsp_settings(require 'lsp.servers.clangd'),

@@ -43,7 +43,7 @@ hi('CursorLine', { bg = cs.light_grey })
 -- folds/Columns [:
 hi('SignColumn', { bg = cs.bg })
 hi('FoldColumn', { bg = cs.bg })
-hi('Folded', { fg = cs.grey, bg = cs.light_grey })
+hi('Folded', { fg = cs.grey })
 -- :]
 
 -- health [:
@@ -91,6 +91,12 @@ hi('CmpItemAbbrMatchFuzzy', { fg = cs.green })
 
 -- vim-highlighturl [:
 hi('HighlightUrl', { fg = cs.blue, italic = true })
+-- :]
+
+-- vim-illuminate [:
+link('Visual', 'IlluminatedWordRead')
+link('Visual', 'IlluminatedWordText')
+link('Visual', 'IlluminatedWordWrite')
 -- :]
 
 -- nvim-tree [:
