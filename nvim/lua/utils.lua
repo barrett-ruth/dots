@@ -61,15 +61,15 @@ M.format = function()
         filter = function(client)
             return not vim.tbl_contains({
                 'clangd', -- clang-format
-                'cssls', -- null-ls
-                'html', -- null-ls
+                'cssls', -- prettierd
+                'html', -- prettierd
                 'jdt.ls', -- google-java-format
                 'jedi_language_server', -- black/autopep8
-                'jsonls', -- null-ls
+                'jsonls', -- prettierd
                 'pyright', -- black/autopep8
                 'sqls', -- sql-formatter
                 'sumneko_lua', --stylua
-                'tsserver', -- null-ls
+                'tsserver', -- prettierd
             }, client.name)
         end,
     }
