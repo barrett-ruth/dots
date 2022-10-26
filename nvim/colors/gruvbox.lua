@@ -1,11 +1,13 @@
 local g = vim.g
 
 if g.colors_name then vim.cmd.hi 'clear' end
+if vim.fn.exists 'syntax_on' then vim.cmd.syntax 'reset' end
 
 local gruvbox = require 'gruvbox'
 local cs, hi, link = gruvbox.cs, gruvbox.hi, gruvbox.link
 
 g.colors_name = 'gruvbox'
+vim.o.termguicolors = true
 
 g.terminal_ansi_colors = {
     cs.black,
@@ -40,6 +42,7 @@ hi('WarningMsg', { bold = true, fg = cs.yellow })
 hi('LineNr', { fg = cs.black })
 hi('CursorLineNr', { none = true, fg = cs.grey })
 hi('CursorLine', { bg = cs.light_grey })
+hi('ColorColumn', { bg = cs.light_grey })
 -- :]
 
 -- folds/Columns [:

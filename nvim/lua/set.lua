@@ -63,8 +63,6 @@ o.splitright = true
 
 o.swapfile = false
 
-o.termguicolors = true
-
 o.textwidth = 80
 
 o.undodir = env.XDG_DATA_HOME .. '/nvim/undo'

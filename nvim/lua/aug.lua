@@ -49,7 +49,7 @@ au('ColorScheme', {
 
 au('BufEnter', {
     callback = function()
-        vim.cmd 'setl formatoptions-=cro spelloptions=camel,noplainbuffer'
+        vim.cmd 'setl formatoptions-=cro spelloptions=camel,noplainbuffer cursorline'
 
         -- Ignore floating windows
         if vim.bo.filetype == '' then return end
