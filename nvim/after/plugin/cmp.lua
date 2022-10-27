@@ -4,9 +4,6 @@ vim.g.completion_matching_strategy_list = 'exact,substring,fuzzy'
 vim.g.completeopt = 'menuone,noinsert,noselect'
 
 cmp.setup {
-    completion = {
-        autocomplete = false,
-    },
     snippet = {
         expand = function(args) require('luasnip').lsp_expand(args.body) end,
     },
@@ -22,7 +19,6 @@ cmp.setup {
     },
     formatting = {
         format = function(_, vim_item)
-            vim_item.menu = ''
             vim_item.kind = ''
 
             -- Change snippets that leaked through from
@@ -47,6 +43,7 @@ cmp.setup {
     sources = cmp.config.sources {
         { name = 'nvim_lsp' },
         { name = 'path' },
+        { name = 'buffer' },
     },
     mapping = cmp.mapping {
         ['<c-y>'] = cmp.mapping.confirm(),
@@ -57,13 +54,6 @@ cmp.setup {
         ['<c-p>'] = cmp.mapping.select_prev_item(),
     },
 }
-
-cmp.setup.cmdline({ '/', '?' }, {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = {
-        { name = 'buffer' },
-    },
-})
 
 cmp.setup.filetype({ 'sql', 'mysql', 'plsql' }, {
     sources = cmp.config.sources {

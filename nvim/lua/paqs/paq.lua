@@ -6,7 +6,6 @@ require 'paq' {
     -- cmp [:
     'hrsh7th/nvim-cmp',
     'hrsh7th/cmp-buffer',
-    'hrsh7th/cmp-cmdline',
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
     'petertriho/cmp-git',
@@ -47,7 +46,6 @@ require 'paq' {
     -- :]
 
     -- textobjects [:
-    'glts/vim-textobj-comment',
     'Julian/vim-textobj-variable-segment',
     'kana/vim-textobj-entire',
     'kana/vim-textobj-fold',
@@ -75,7 +73,6 @@ require 'paq' {
         'iamcco/markdown-preview.nvim',
         run = 'cd app && yarn install',
     },
-    'ggandor/leap.nvim',
     'ibhagwan/fzf-lua',
     'jeetsukumaran/vim-indentwise',
     'junegunn/vim-easy-align',

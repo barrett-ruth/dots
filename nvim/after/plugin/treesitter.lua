@@ -54,6 +54,7 @@ require('nvim-treesitter.configs').setup {
                 ['[s'] = '@class.outer',
                 ['[f'] = '@function.outer',
                 ['[i'] = '@conditional.outer',
+                ['[/'] = '@comment.outer',
             },
             goto_previous_end = {
                 ['[A'] = '@parameter.inner',
@@ -68,6 +69,7 @@ require('nvim-treesitter.configs').setup {
                 [']s'] = '@class.outer',
                 [']f'] = '@function.outer',
                 [']i'] = '@conditional.outer',
+                [']/'] = '@comment.outer',
             },
             goto_next_end = {
                 [']A'] = '@parameter.inner',
@@ -95,6 +97,8 @@ require('nvim-treesitter.configs').setup {
                 iL = '@loop.inner',
                 aa = '@parameter.outer',
                 ia = '@parameter.inner',
+                ['i/'] = '@comment.inner',
+                ['a/'] = '@comment.outer'
             },
         },
     },
