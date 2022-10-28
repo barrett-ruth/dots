@@ -75,19 +75,3 @@ require('cmp_git').setup {
         },
     },
 }
-
-require('utils').map {
-    'i',
-    '<c-space>',
-    function()
-        if CMP_ENABLED then
-            cmp.setup.buffer { enabled = false }
-            cmp.close()
-            CMP_ENABLED = false
-        else
-            cmp.setup.buffer { enabled = true }
-            cmp.complete()
-            CMP_ENABLED = true
-        end
-    end,
-}
