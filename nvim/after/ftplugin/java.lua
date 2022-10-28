@@ -1,3 +1,5 @@
+local env = vim.env
+
 local jdtls = require 'jdtls'
 local root_markers = {
     '.git',
@@ -6,8 +8,8 @@ local root_markers = {
     'pom.xml',
 }
 local root_dir = require('jdtls.setup').find_root(root_markers)
-local workspace_folder = vim.env.HOME
-    .. '/.local/share/eclipse/'
+local workspace_folder = env.XDG_DATA_HOME
+    .. '/eclipse/'
     .. vim.fn.fnamemodify(root_dir, ':p:h:t')
 
 local config = {
@@ -25,10 +27,10 @@ local config = {
         '--add-opens',
         'java.base/java.lang=ALL-UNNAMED',
         '-jar',
-        vim.env.XDG_DATA_HOME
+        env.XDG_DATA_HOME
             .. '/java/jdtls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar',
         '-configuration',
-        vim.env.XDG_DATA_HOME .. '/java/jdtls/config_linux',
+        env.XDG_DATA_HOME .. '/java/jdtls/config_linux',
         '-data',
         workspace_folder,
     },

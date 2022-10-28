@@ -1,4 +1,4 @@
-local g = vim.g
+local env, g = vim.env, vim.g
 
 g.markdown_fenced_languages = {
     'c',
@@ -18,7 +18,15 @@ g.markdown_fenced_languages = {
 
 g.mapleader = ' '
 
-g.python3_host_prog = vim.env.XDG_CONFIG_HOME .. '/nvim/venv/bin/python'
+if env.XDG_CONFIG_HOME == nil then
+    env.XDG_CONFIG_HOME = env.HOME .. '/.config'
+end
+
+if env.XDG_DATA_HOME == nil then
+    env.XDG_DATA_HOME = env.HOME .. '/.local/share'
+end
+
+g.python3_host_prog = env.XDG_CONFIG_HOME .. '/nvim/venv/bin/python'
 
 g.matchup_matchparen_offscreen = {}
 g.c_syntax_for_h = 1

@@ -66,8 +66,8 @@ fzf.setup {
         prompt = 'rg> ',
     },
     loclist = {
-        prompt = 'll> ',
         path_shorten = true,
+        prompt = 'll> ',
     },
     lsp = {
         jump_to_single_result = true,

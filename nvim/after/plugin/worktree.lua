@@ -49,17 +49,18 @@ utils.map {
             fn_transform = function(x)
                 local parsed = parse_entry(x)
 
-                local first_whitespace = { x:find '%s+' }
+                local _, first_whitespace = x:find '%s+'
                 local _, second_whitespace_begin = x:find '.*%S%s'
                 local _, second_whitespace_end = x:find '.*%s+'
 
                 local colored = table.concat {
                     fzf.utils.ansi_codes.blue(parsed.path),
-                    x:sub(unpack(first_whitespace)),
+                    x:sub(first_whitespace),
                     fzf.utils.ansi_codes.yellow(parsed.hash),
                     x:sub(second_whitespace_begin, second_whitespace_end),
                     fzf.utils.ansi_codes.green('[' .. parsed.branch .. ']'),
                 }
+
                 return colored
             end,
             actions = {
