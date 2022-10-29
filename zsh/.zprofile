@@ -40,7 +40,6 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
 # Programs
 export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
-export GOPATH="$XDG_DATA_HOME/go"
 export LESSHISTFILE="$XDG_STATE_HOME/lesshst"
 export MYPY_CACHE_DIR="$XDG_CACHE_HOME/mypy"
 export NODE_REPL_HISTORY="$XDG_STATE_HOME/node_repl_history"
@@ -53,7 +52,8 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 # Path
 export SCRIPTS="$HOME/.local/bin/scripts"
-[[ "$PATH" == *"$HOME/.local/bin:$SCRIPTS"* ]] || export PATH="$PATH:$HOME/.local/bin:$SCRIPTS:$GOPATH/bin"
+[[ "$PATH" == *"$HOME/.local/bin"* ]] || export PATH="$PATH:$HOME/.local/bin"
+[[ "$PATH" == *"$SCRIPTS"* ]] || export PATH="$PATH:$SCRIPTS"
 
 export FZF_COMPLETION_TRIGGER=\;
 export FZF_ALT_C_COMMAND='fd --type directory --hidden --strip-cwd-prefix'
