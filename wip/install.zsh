@@ -41,7 +41,7 @@ run "swapon /dev/$disk$swap"
 
 run "sed -i '/^#ParallelDownloads/ s|^#*||' /etc/pacman.conf"
 
-run 'pacstrap -K /mnt base linux-lts linux-firmware linux-lts-headers dkms intel-ucode nvidia-lts nvidia-utils reflector \
+run 'pacstrap -K /mnt base linux-lts linux-firmware linux-lts-headers intel-ucode nvidia-lts nvidia-utils reflector \
     clang dhcpcd docker docker-compose fakeroot fd gcc git iwd light make opendoas openssh patch pkgconf python ripgrep which xclip \
     nvim tree-sitter \
     ttf-hanazono ttf-liberation ttf-jetbrains-mono \
@@ -50,7 +50,7 @@ run 'pacstrap -K /mnt base linux-lts linux-firmware linux-lts-headers dkms intel
     xorg-server xorg-setxkbmap xorg-xinit xorg-xmodmap xorg-xrandr xorg-xrdb xorg-xset \
     libxft libxinerama
     dash exa feh harfbuzz man-db man-pages postgresql tmux yarn \
-    go jdk-openjdk shfmt stylua tidy tree-sitter lua-language-server \
+    shfmt stylua tidy tree-sitter lua-language-server \
     imagemagick \
     jq mpv pulseaudio rsync socat transmission-cli'
 
@@ -279,7 +279,7 @@ echo
 
 
 setup_misc_packages() {
-for i in 'clipmenu-git' 'shellcheck-bin' 'hadolint-bin' 'sioyek-git' 'ungoogled-chromium-xdg-bin' 'neovim-nightly-bin'; do
+for i in 'clipmenu-git' 'shellcheck-bin' 'hadolint-bin' 'sioyek-git' 'sqls-bin' 'ungoogled-chromium-xdg-bin' 'neovim-nightly-bin'; do
     git clone https://aur.archlinux.org/"$i".git
     cd "$i"
     if [[ "$i" == 'clipmenu-git' ]]; then
@@ -313,10 +313,6 @@ cd ..
 setup_pip() {
 python -m ensurepip
 pip3 install black curlylint flake8 isort jedi-language-server mypy virtualenv yamllint
-}
-
-setup_go() {
-    go install github.com/lighttiger2505/sqls@latest
 }
 
 
@@ -357,8 +353,6 @@ setup_fzf
 setup_suckless
 
 setup_ssh_key
-
-setup_go
 
 setup_yarn
 
