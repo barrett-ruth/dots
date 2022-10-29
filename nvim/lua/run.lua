@@ -7,7 +7,6 @@ local commands = {
     sh = 'sh',
     c = 'gcc ' .. compile_c,
     cpp = 'g++ ' .. compile_c,
-    java = 'java',
 }
 commands.cc = commands.cpp
 
@@ -42,11 +41,6 @@ M.run = function()
 
             if fn.bufwinid(scratch_bufnr) == -1 then
                 vim.cmd.vs(scratch_name)
-                api.nvim_win_set_option(
-                    fn.bufwinid(scratch_bufnr),
-                    'spell',
-                    false
-                )
             end
 
             api.nvim_buf_set_lines(scratch_bufnr, 0, -1, false, { header, '' })
@@ -73,17 +67,6 @@ M.run = function()
     vim.cmd.w()
 end
 
-M.setup = function()
-    local utils = require 'utils'
-    utils.map {
-        'n',
-        '<leader>r',
-        function()
-            vim.cmd.w()
-            utils.format()
-            require('run').run()
-        end,
-    }
-end
+M.setup = function() require('utils').map { 'n', '<leader>r', M.run } end
 
 return M

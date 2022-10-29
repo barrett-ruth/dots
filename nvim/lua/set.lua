@@ -27,8 +27,6 @@ opt.isfname:remove '=,'
 
 o.laststatus = 3
 
-o.lazyredraw = true
-
 o.list = true
 o.listchars = 'trail:·'
 

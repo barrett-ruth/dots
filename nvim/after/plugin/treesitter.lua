@@ -23,7 +23,6 @@ require('nvim-treesitter.configs').setup {
         'graphql',
         'html',
         'http',
-        'java',
         'javascript',
         'json',
         'lua',
@@ -98,7 +97,7 @@ require('nvim-treesitter.configs').setup {
                 aa = '@parameter.outer',
                 ia = '@parameter.inner',
                 ['i/'] = '@comment.inner',
-                ['a/'] = '@comment.outer'
+                ['a/'] = '@comment.outer',
             },
         },
     },

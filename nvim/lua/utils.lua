@@ -63,7 +63,6 @@ M.format = function()
                 'clangd', -- clang-format
                 'cssls', -- prettierd
                 'html', -- prettierd
-                'jdt.ls', -- google-java-format
                 'jedi_language_server', -- black/autopep8
                 'jsonls', -- prettierd
                 'pyright', -- black/autopep8

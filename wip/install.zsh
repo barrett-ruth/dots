@@ -279,14 +279,11 @@ echo
 
 
 setup_misc_packages() {
-for i in 'clipmenu-git' 'jdtls' 'shellcheck-bin' 'hadolint-bin' 'sioyek-git' 'google-java-format' 'ungoogled-chromium-xdg-bin' 'neovim-nightly-bin'; do
+for i in 'clipmenu-git' 'shellcheck-bin' 'hadolint-bin' 'sioyek-git' 'ungoogled-chromium-xdg-bin' 'neovim-nightly-bin'; do
     git clone https://aur.archlinux.org/"$i".git
     cd "$i"
     if [[ "$i" == 'clipmenu-git' ]]; then
         sed -i '/^depends*/ s|dmenu ||' PKGBUILD
-    elif [[ "$i" == 'jdtls' ]]; then
-        sed -i 's|*|linux|g' PKGBUILD
-        sed -i 's|${pkgdir}/usr|~/.local|g' PKGBUILD
     fi
     makepkg -si
     cd ..
