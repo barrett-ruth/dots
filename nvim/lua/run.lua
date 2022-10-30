@@ -1,10 +1,10 @@
-local api, fn, env = vim.api, vim.fn, vim.env
+local api, fn = vim.api, vim.fn
 local aug
 
 local compile_c =
     '-Wall -Wextra -Wshadow -Wconversion -Wdouble-promotion -Wundef'
 local commands = {
-    py = env.VIRTUAL_ENV and env.VIRTUAL_ENV .. '/bin/python' or 'python',
+    py = (vim.env.VIRTUAL_ENV or '/usr') .. '/bin/python',
     sh = 'sh',
     c = 'gcc ' .. compile_c,
     cpp = 'g++ ' .. compile_c,
@@ -21,14 +21,14 @@ M.run = function()
 
     local filename = fn.expand '%:p'
     local command = commands[extension] .. ' ' .. filename
-    local header = ' > ' .. command:gsub(env.HOME, '~')
+    local header = ' > ' .. command:gsub(vim.env.HOME, '~')
 
     if vim.tbl_contains({ 'c', 'cc', 'cpp' }, extension) then
         command = command .. ' && ./a.out; test -f a.out && rm a.out'
     end
 
     api.nvim_create_autocmd('QuitPre', {
-        callback = function() pcall(vim.cmd, 'BufDel!', 'scratch' .. fn.bufnr()) end,
+        callback = function() pcall(vim.cmd, 'BufDel! scratch' .. fn.bufnr()) end,
         group = aug,
     })
 
