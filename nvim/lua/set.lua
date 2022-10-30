@@ -61,8 +61,6 @@ o.splitright = true
 
 o.swapfile = false
 
-o.textwidth = 80
-
 o.undodir = env.XDG_DATA_HOME .. '/nvim/undo'
 o.undofile = true
 

@@ -27,10 +27,11 @@ cmp.setup {
                 vim_item.abbr = vim_item.abbr:sub(0, -2)
             end
 
-            -- Trim padding added by clangd
+            -- Trim padding and weird chars added by clangd
             if vim_item.abbr:sub(0, 1) == ' ' then
                 vim_item.abbr = vim_item.abbr:sub(2)
             end
+            vim_item.abbr = vim_item.abbr:gsub('•', '')
 
             return vim_item
         end,

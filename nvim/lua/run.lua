@@ -46,13 +46,9 @@ M.run = function()
             api.nvim_buf_set_lines(scratch_bufnr, 0, -1, false, { header, '' })
 
             local output_data = function(_, data)
-                if data[1] ~= '' then
-                    for k, v in ipairs(data) do
-                        data[k] = v:gsub(env.HOME, '~')
-                    end
+                if data[1] == '' then return end
 
-                    api.nvim_buf_set_lines(scratch_bufnr, -1, -1, false, data)
-                end
+                api.nvim_buf_set_lines(scratch_bufnr, -1, -1, false, data)
             end
 
             fn.jobstart(command, {
