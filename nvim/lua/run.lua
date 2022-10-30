@@ -1,13 +1,10 @@
 local api, fn = vim.api, vim.fn
 local aug
 
-local compile_c =
-    '-Wall -Wextra -Wshadow -Wconversion -Wdouble-promotion -Wundef'
 local commands = {
     py = (vim.env.VIRTUAL_ENV or '/usr') .. '/bin/python',
     sh = 'sh',
-    c = 'gcc ' .. compile_c,
-    cpp = 'g++ ' .. compile_c,
+    cpp = 'g++ -Wall -Wextra -Wshadow -Wconversion -Wdouble-promotion -Wundef'
 }
 commands.cc = commands.cpp
 
@@ -23,7 +20,7 @@ M.run = function()
     local command = commands[extension] .. ' ' .. filename
     local header = ' > ' .. command:gsub(vim.env.HOME, '~')
 
-    if vim.tbl_contains({ 'c', 'cc', 'cpp' }, extension) then
+    if vim.tbl_contains({ 'cc', 'cpp' }, extension) then
         command = command .. ' && ./a.out; test -f a.out && rm a.out'
     end
 
