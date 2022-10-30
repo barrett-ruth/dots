@@ -4,7 +4,7 @@ local aug
 local commands = {
     py = (vim.env.VIRTUAL_ENV or '/usr') .. '/bin/python',
     sh = 'sh',
-    cpp = 'g++ -Wall -Wextra -Wshadow -Wconversion -Wdouble-promotion -Wundef'
+    cpp = 'g++ -Wall -Wextra -Wshadow -Wconversion -Wdouble-promotion -Wundef',
 }
 commands.cc = commands.cpp
 
@@ -39,6 +39,7 @@ M.run = function()
             if scratch_bufnr == -1 then
                 scratch_bufnr = api.nvim_create_buf(false, true)
                 api.nvim_buf_set_name(scratch_bufnr, scratch_name)
+                api.nvim_buf_set_option(scratch_bufnr, 'filetype', 'run')
             end
 
             if fn.bufwinid(scratch_bufnr) == -1 then
@@ -53,11 +54,33 @@ M.run = function()
                 api.nvim_buf_set_lines(scratch_bufnr, -1, -1, false, data)
             end
 
+            local start_time = fn.reltime()
+
             fn.jobstart(command, {
                 stdout_buffered = true,
                 stderr_buffered = true,
                 on_stdout = output_data,
                 on_stderr = output_data,
+                on_exit = function(_, exit_code)
+                    local end_time = fn.reltime(start_time)
+                    local total_time, units =
+                    tonumber(vim.trim(fn.reltimestr(end_time))), 's'
+
+                    if total_time < 1 then
+                        total_time, units = total_time * 1000, 'ms'
+                    end
+
+                    local msg = exit_code == 0 and 'DONE' or 'ERROR'
+
+                    api.nvim_buf_set_lines(scratch_bufnr, -1, -1, false, {
+                        ('[%s] exited with code=%s in %s%s'):format(
+                            msg,
+                            exit_code,
+                            total_time,
+                            units
+                        ),
+                    })
+                end,
             })
         end,
         group = aug,
