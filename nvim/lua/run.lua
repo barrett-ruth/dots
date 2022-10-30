@@ -1,4 +1,5 @@
 local api, fn, env = vim.api, vim.fn, vim.env
+local aug
 
 local compile_c =
     '-Wall -Wextra -Wshadow -Wconversion -Wdouble-promotion -Wundef'
@@ -26,8 +27,12 @@ M.run = function()
         command = command .. ' && ./a.out; test -f a.out && rm a.out'
     end
 
+    api.nvim_create_autocmd('QuitPre', {
+        callback = function() pcall(vim.cmd, 'BufDel!', 'scratch' .. fn.bufnr()) end,
+        group = aug,
+    })
+
     api.nvim_create_autocmd('BufWritePost', {
-        group = api.nvim_create_augroup('run', { clear = true }),
         pattern = filename,
         callback = function()
             local bufnr = fn.bufnr()
@@ -58,11 +63,15 @@ M.run = function()
                 on_stderr = output_data,
             })
         end,
+        group = aug,
     })
 
     vim.cmd.w()
 end
 
-M.setup = function() require('utils').map { 'n', '<leader>r', M.run } end
+M.setup = function()
+    aug = api.nvim_create_augroup('run', { clear = true })
+    require('utils').map { 'n', '<leader>r', M.run }
+end
 
 return M

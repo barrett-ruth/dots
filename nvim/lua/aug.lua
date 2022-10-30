@@ -9,16 +9,6 @@ au('BufEnter', {
     group = aug,
 })
 
-au('QuitPre', {
-    callback = function()
-        local bufname = 'scratch' .. fn.bufnr()
-        local scratch_bufnr = fn.bufnr(bufname)
-
-        if scratch_bufnr ~= -1 then vim.cmd('BufDel! ' .. bufname) end
-    end,
-    group = aug,
-})
-
 local disable_save = { '', 'checkhealth' }
 
 au({ 'FocusLost', 'WinLeave' }, {
