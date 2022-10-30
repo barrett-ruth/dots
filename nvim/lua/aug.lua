@@ -50,7 +50,7 @@ au('BufEnter', {
 
             if
                 winid ~= -1
-                and api.nvim_buf_get_option(buf.bufnr, 'filetype') ~= ''
+                and not vim.tbl_contains({ '', 'run' }, api.nvim_buf_get_option(buf.bufnr, 'filetype'))
             then
                 api.nvim_win_set_option(
                     fn.bufwinid(buf.bufnr),
