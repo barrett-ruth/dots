@@ -43,14 +43,14 @@ run "sed -i '/^#ParallelDownloads/ s|^#*||' /etc/pacman.conf"
 
 run 'pacstrap -K /mnt base linux-lts linux-firmware linux-lts-headers intel-ucode nvidia-lts nvidia-utils reflector \
     clang dhcpcd docker docker-compose fakeroot fd gcc git iwd light make opendoas openssh patch pkgconf python ripgrep which xclip \
-    tree-sitter cmake ninja unzip \
+    cmake ninja unzip \
     ttf-hanazono ttf-liberation ttf-jetbrains-mono \
     zsh zsh-syntax-highlighting zsh-completions \
     grub efibootmgr os-prober ntfs-3g \
     xorg-server xorg-setxkbmap xorg-xinit xorg-xmodmap xorg-xrandr xorg-xrdb xorg-xset \
     libxft libxinerama
     dash exa feh harfbuzz man-db man-pages postgresql tmux yarn \
-    shfmt stylua tidy tree-sitter lua-language-server \
+    shfmt lua stylua tidy tree-sitter lua-language-server \
     imagemagick \
     jq mpv pulseaudio rsync socat transmission-cli'
 
