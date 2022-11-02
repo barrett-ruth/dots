@@ -16,7 +16,7 @@ M.run = function()
     local command = commands[extension] .. ' ' .. filename
     local header = ' > ' .. command:gsub(vim.env.HOME, '~')
 
-    -- TODO: cleaner way to do this
+    -- TODO: cleaner way to do this -- perhaps build, run, cleanup command structure
     if vim.tbl_contains({ 'cc', 'cpp' }, extension) then
         command = command .. ' && ./a.out; test -f a.out && rm a.out'
     end
@@ -29,13 +29,14 @@ M.run = function()
     api.nvim_create_autocmd('BufWritePost', {
         pattern = filename,
         callback = function()
-            local scratch_bufnr, scratch_name = utils.scratch_buffer_info()
+            local bufnr = fn.bufnr()
+            local scratch_name = 'scratch' .. bufnr
+            local scratch_bufnr = fn.bufnr(scratch_name)
 
-            -- Create & split scratch buffer
-            scratch_bufnr =
-                utils.create_scratch_buffer(scratch_bufnr, scratch_name)
+            if scratch_bufnr == -1 then
+                scratch_bufnr = utils.create_scratch_buffer(scratch_name)
+            end
 
-            -- Split if not open
             if fn.bufwinid(scratch_bufnr) == -1 then
                 vim.cmd.vs(scratch_name)
             end
