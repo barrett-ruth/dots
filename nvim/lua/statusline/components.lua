@@ -62,6 +62,12 @@ local filetype = {
     separator = 'pre',
 }
 
+local fileinfo = {
+    value = function() return ('%s[%s]'):format(vim.bo.fileencoding, vim.bo.fileformat) end,
+    highlight = 'Function',
+    separator = 'pre',
+}
+
 return {
     [1] = git,
     [2] = file,
@@ -70,4 +76,5 @@ return {
     [5] = macro,
     [6] = line,
     [7] = filetype,
+    [8] = fileinfo,
 }

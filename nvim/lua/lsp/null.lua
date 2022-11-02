@@ -124,7 +124,7 @@ null_ls.setup {
         formatting.clang_format.with {
             filetypes = { 'c', 'cpp' },
         },
-        formatting.prettierd.with {
+        formatting.prettier.with {
             filetypes = {
                 'css',
                 'graphql',
