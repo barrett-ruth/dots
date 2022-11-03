@@ -24,8 +24,3 @@ rmb config yarn
 rm -rf nvim/undo
 rmb .zshrc .zprofile .zaliases zsh
 rmb tmux.conf tmux
-
-[ "$1" ] || exit
-
-git commit -am "$*"
-git push

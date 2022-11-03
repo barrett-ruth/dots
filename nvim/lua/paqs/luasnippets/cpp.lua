@@ -9,7 +9,6 @@ local cpp = {
         'cp',
         fmt(
             [[
-            // [:
             #include <math.h>
 
             #include <algorithm>
@@ -35,7 +34,6 @@ local cpp = {
             #define vi vector<int>
 
             #define mod 10e9 + 7
-            // :]
 
             void solve() {{
                 {}
@@ -56,6 +54,7 @@ local cpp = {
         )
     ),
     s('pr', fmt('std::cout << {}', { i(1) })),
+    s('s', fmt('std::{}', { i(1) })),
 }
 
 ls.add_snippets('cpp', cpp)

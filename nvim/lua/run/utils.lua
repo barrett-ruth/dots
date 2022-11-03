@@ -19,14 +19,21 @@ M.on_exit = function(_, exit_code, scratch_bufnr, start_time)
 
     local msg = exit_code == 0 and 'DONE' or 'ERROR'
 
-    api.nvim_buf_set_lines(scratch_bufnr, -1, -1, false, {
-        ('[%s] exited with code=%s in %s%s'):format(
-            msg,
-            exit_code,
-            total_time,
-            units
-        ),
-    })
+    api.nvim_buf_set_lines(
+        scratch_bufnr,
+        -1,
+        -1,
+        false,
+        {
+            '',
+            ('[%s] exited with code=%s in %s%s'):format(
+                msg,
+                exit_code,
+                total_time,
+                units
+            ),
+        }
+    )
 end
 
 M.output_data = function(_, data, scratch_bufnr)

@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-# Make commands respect aliases
+# Make doas respect aliases
 alias ds='doas '
 mn() {
     page="$(ls -la "$(which "$1")" 2>/dev/null)"
@@ -16,31 +16,16 @@ alias la='ll -R'
 alias lss='less --use-color --color=d+b --color=P+c --color=u+g'
 
 # Basic programs
-alias g='git'
-alias dk='docker'
-alias ka='killall'
 alias nv='nvim'
-alias perg='printenv | rg'
-alias sctl='systemctl'
+alias pe='printenv'
 alias rs="rsync -e 'ssh -F $XDG_CONFIG_HOME/ssh/config'"
 alias ssh="ssh -F $XDG_CONFIG_HOME/ssh/config"
-alias sy='sioyek'
 alias tcli='transmission-cli'
 alias tdae="transmission-daemon --logfile $XDG_STATE_HOME/transmission-daemon.log &"
 
-# Make
-alias mkc='make clean'
-alias mkcic='mkc install && make clean'
-alias mku='mk uninstall'
-
 # Pacman
 alias pm='pacman'
-alias pmqg='pacman -Q | rg'
-
-# Virtualenv
-alias rmv='rm -rf venv'
-alias srcv='. venv/bin/activate'
-alias dv='deactivate'
+alias pmq='pacman -Q'
 
 # Yarn
 wool() {
@@ -49,14 +34,6 @@ wool() {
 }
 
 # Misc
-alias cp='cp -v'
-alias mkd='mkdir -pv'
 alias psag='ps aux | rg'
-gcl() { . _gcl "$@" }
-rmd() { [[ "$1" == "$HOME" ]] || rm -rf "$@"; }
-mkcd() { mkdir -pv "$1" && cd "$1"; }
+gcl() { . _gcl "$@"; }
 j() { . _j "$@"; }
-declare -A dirs=(['']=~ [dl]=~/dl [scr]="$SCRIPTS" [dev]=~/dev [neovim]=~/dev/neovim [tcf]=~/dev/theCourseForum2 [dots]=~/dev/dots [cp]=~/dev/cp [nv]=~/.config/nvim [paq]=~/.local/share/nvim/site/pack/paqs/start [tm]=~/.config/tmux [x11]=~/.config/X11 [zsh]=~/.config/zsh [site]=~/dev/site [sl]=~/dev/sl)
-for e in ~/dev/sl/*; do
-    dirs[$(basename "$e")]="$e"
-done

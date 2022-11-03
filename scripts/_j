@@ -1,15 +1,17 @@
 #!/usr/bin/env zsh
 
 case "$1" in
-    -l)
-        for k v in "${(@kv)dirs}"; do
-            echo -n "[$k]=$v | " | sed "s|$HOME|~|g"
-        done;;
-    -)
-        cd - >/dev/null && return
-        ;;
-    *)
-        dir=$dirs[$1];;
+    -) cd - >/dev/null && return;;
+    '') cd ~;;
+    dl) cd ~/dl;;
+    scr) cd "$SCRIPTS";;
+    dev) cd ~/dev;;
+    dmenu) cd ~/dev/sl/dmenu;;
+    dots) cd ~/dev/dots;;
+    dwm) cd ~/dev/sl/dwm;;
+    dwmb) cd ~/dev/sl/dwmb;;
+    st) cd ~/dev/sl/st;;
+    tcf) cd ~/dev/theCourseForum2;;
+    nv) cd ~/.config/nvim;;
+    zsh) cd ~/.config/zsh;;
 esac
-
-cd "$dir"
