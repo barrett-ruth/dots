@@ -20,8 +20,8 @@ gitsigns.setup {
         bmap { 'n', '<leader>gh', builtin.git_bcommits }
 
         local git_worktree = require('telescope').extensions.git_worktree
-        bmap { 'n', '<leader>gw', git_worktree.git_worktrees() }
-        bmap { 'n', '<leader>gW', git_worktree.create_git_worktree() }
+        bmap { 'n', '<leader>gw', git_worktree.git_worktrees }
+        bmap { 'n', '<leader>gW', git_worktree.create_git_worktree }
     end,
     preview_config = {
         border = 'single',

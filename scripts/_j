@@ -13,6 +13,7 @@ case "$1" in
     sl) cd ~/dev/sl;;
     st) cd ~/dev/sl/st;;
     tcf) cd ~/dev/theCourseForum2;;
+    tm) cd ~/.config/tmux;;
     nv) cd ~/.config/nvim;;
     paq) cd ~/.local/share/nvim/site/pack/paqs/start;;
     zsh) cd ~/.config/zsh;;

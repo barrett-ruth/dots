@@ -7,13 +7,12 @@ local code_actions, diagnostics, formatting =
 
 null_ls.setup {
     sources = {
-        -- Code Actions [:
+        -- Code Actions
         code_actions.eslint_d,
         code_actions.gitrebase,
         code_actions.shellcheck,
-        -- :]
 
-        -- Diagnostics [:
+        -- Diagnostics
         diagnostics.curlylint.with {
             extra_filetypes = { 'html' },
         },
@@ -45,11 +44,14 @@ null_ls.setup {
         diagnostics.shellcheck,
         diagnostics.tsc,
         diagnostics.yamllint,
-        -- :]
 
-        -- Formatting [:
+        -- Formatting
         formatting.black.with {
-            extra_args = { '--skip-string-normalization', '--fast', '--line-length=79' },
+            extra_args = {
+                '--skip-string-normalization',
+                '--fast',
+                '--line-length=79',
+            },
         },
         formatting.isort,
 
@@ -75,7 +77,6 @@ null_ls.setup {
         },
         formatting.sql_formatter,
         formatting.stylua,
-        -- :]
     },
     diagnostic_config = {
         signs = false,
