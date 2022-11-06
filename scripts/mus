@@ -15,12 +15,12 @@ toggle)
 
     cd "$prefix" || exit
 
-    artists="$(fd -d 1 -t d | sed 's|./||')"
+    artists="$(fd -d 1 -t d)"
     artist="$(echo "$artists" | dmenu -i -p 'Artist:')"
 
     [ "$artist" ] && cd "$artist" || exit
 
-    albums="$(fd -d 1 -t d | sed 's|./||')"
+    albums="$(fd -d 1 -t d)"
     album="$(echo "$albums" | dmenu -i -p 'Album:')"
 
     [ "$album" ] || exit

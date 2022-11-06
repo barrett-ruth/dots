@@ -2,4 +2,4 @@
 
 [ "$1" = up ] && cmd=A || cmd=U
 
-eval "light -s sysfs/backlight/intel_backlight -$cmd 5"
+eval "light -s sysfs/backlight/intel_backlight -$cmd 10"

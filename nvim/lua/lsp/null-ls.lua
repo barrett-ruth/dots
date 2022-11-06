@@ -1,4 +1,7 @@
+local fn = vim.fn
+
 local on_attach = require('lsp.utils').on_attach
+local projects = require 'projects'
 
 local null_ls = require 'null-ls'
 local builtins = null_ls.builtins
@@ -46,14 +49,38 @@ null_ls.setup {
         diagnostics.yamllint,
 
         -- Formatting
+        formatting.autopep8.with {
+            condition = function(_)
+                local project = fn.fnamemodify(fn.getcwd(), ':t')
+
+                if projects[project] then
+                    return projects[project].lsp_sources.autopep8
+                end
+            end,
+        },
         formatting.black.with {
+            condition = function(_)
+                local project = fn.fnamemodify(fn.getcwd(), ':t')
+
+                if projects[project] then
+                    return projects[project].lsp_sources.black
+                end
+            end,
             extra_args = {
                 '--skip-string-normalization',
                 '--fast',
                 '--line-length=79',
             },
         },
-        formatting.isort,
+        formatting.isort.with {
+            condition = function(_)
+                local project = fn.fnamemodify(fn.getcwd(), ':t')
+
+                if projects[project] then
+                    return projects[project].lsp_sources.isort
+                end
+            end,
+        },
 
         formatting.clang_format.with {
             filetypes = { 'c', 'cpp' },
