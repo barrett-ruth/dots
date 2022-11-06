@@ -40,6 +40,9 @@ map { 'n', 'Q', 'q:k' }
 map { 'n', '<leader><cr>', cmd.source }
 map { 'n', '<leader>-', 'S<esc>' }
 
+map { 'n', '<leader>is', '<cmd>setl spell!<cr>' }
+map { 'n', '<leader>iw', '<cmd>setl wrap!<cr>' }
+
 map({ '', '<leader>y', '"+y' }, { silent = false })
 map { '', '<leader>Y', function() vim.fn.setreg('+', vim.fn.getreg '"') end }
 map { '', '<leader>p', '"_dP' }
