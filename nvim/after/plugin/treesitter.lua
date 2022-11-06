@@ -1,3 +1,7 @@
+require('treesitter-context').setup {
+    max_lines = 1,
+}
+
 require('nvim-treesitter.configs').setup {
     ensure_installed = {
         'c',
