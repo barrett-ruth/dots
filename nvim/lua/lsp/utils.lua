@@ -1,81 +1,154 @@
 local M = {}
 
+local format = function()
+    vim.lsp.buf.format {
+        filter = function(client)
+            return not vim.tbl_contains({
+                'clangd', -- clang-format
+                'cssls', -- prettierd
+                'html', -- prettierd
+                'jedi_language_server', -- black/autopep8
+                'jsonls', -- prettierd
+                'pyright', -- black/autopep8
+                'sqls', -- sql-formatter
+                'sumneko_lua', --stylua
+                'tsserver', -- prettierd
+            }, client.name)
+        end,
+    }
+end
+
+local builtin = require 'telescope.builtin'
+
+local rename = function()
+    local old_name = vim.fn.expand '<cword>'
+    local api = vim.api
+
+    local bufnr = api.nvim_create_buf(false, true)
+    local win = api.nvim_open_win(bufnr, true, {
+        style = 'minimal',
+        border = 'single',
+        relative = 'cursor',
+        row = 1,
+        col = -1,
+        width = math.floor(old_name:len() > 20 and old_name:len() * 1.5 or 20),
+        height = 1,
+    })
+
+    api.nvim_buf_set_lines(bufnr, 0, -1, true, { old_name })
+
+    bmap({ 'i', '<c-c>', vim.cmd.q }, { buffer = bufnr })
+    bmap({ 'n', 'q', vim.cmd.q }, { buffer = bufnr })
+    bmap {
+        { 'i', 'n' },
+        '<cr>',
+        function()
+            local new_name = vim.trim(vim.fn.getline '.')
+
+            api.nvim_win_close(win, true)
+
+            if require('utils').empty(new_name) or new_name == old_name then return end
+
+            vim.lsp.buf.rename(new_name)
+        end,
+    }
+end
+
 M.on_attach = function(client, _)
-    local utils = require 'utils'
-    local bmap, mapstr = utils.bmap, utils.mapstr
+    local server_capabilities = client.server_capabilities
+    local diagnostic, buf = vim.diagnostic, vim.lsp.buf
 
-    if client.server_capabilities.documentSymbolProvider then
-        for k, v in pairs {
-            a = [[query = '!const !enumm !field !prop !var !( ']],
-            c = [[regex_filter = 'Class.*']],
-            f = [[regex_filter = 'Function.*']],
-            m = [[regex_filter = 'Module.*']],
-        } do
-            bmap {
-                'n',
-                '\\s' .. k,
-                mapstr(
-                    'fzf-lua',
-                    ([[lsp_document_symbols { fzf_opts = { ['--with-nth'] = '2..', ['--delimiter'] = ':' }, no_header = true, prompt = 'sym> ', %s }]]):format(
-                        v
-                    )
-                ),
-            }
-        end
-    end
-
-    if client.server_capabilities.documentFormattingProvider then
+    if server_capabilities.documentFormattingProvider then
         bmap {
             'n',
             '<leader>w',
             function()
                 vim.cmd.w()
-                utils.format()
+                format()
             end,
         }
     end
 
-    if client.server_capabilities.hoverProvider then
-        bmap { 'n', '\\h', vim.lsp.buf.hover }
+    if server_capabilities.codeActionProvider then
+        bmap { 'n', '\\c', buf.code_action }
     end
 
-    if client.server_capabilities.renameProvider then
-        bmap { 'n', '\\r', utils.rename }
+    if server_capabilities.definitionProvider then
+        bmap { 'n', '\\d', builtin.lsp_definitions }
     end
 
-    for k, v in pairs {
-        c = { 'codeAction', 'code_actions' },
-        d = { 'definition', 'definitions' },
-        D = { 'declaration', 'declarations' },
-        i = { 'implementation', 'implementations' },
-        R = { 'references', 'references' },
-        t = { 'typeDefinition', 'typedefs' },
-    } do
-        if client.server_capabilities[v[1] .. 'Provider'] then
-            bmap { 'n', '\\' .. k, mapstr('FzfLua lsp_' .. v[2]) }
-        end
+    bmap { 'n', '\\e', builtin.diagnostics }
+
+    if server_capabilities.declarationProvider then
+        bmap { 'n', '\\D', buf.declaration }
     end
 
-    bmap { 'n', '<leader>fd', mapstr 'FzfLua lsp_workspace_diagnostics' }
+    if server_capabilities.implementationProvider then
+        bmap { 'n', '\\i', builtin.lsp_implementations }
+    end
 
-    bmap { 'n', ']\\', vim.diagnostic.goto_next }
-    bmap { 'n', '[\\', vim.diagnostic.goto_prev }
-    bmap { 'n', '\\f', vim.diagnostic.open_float }
+    if server_capabilities.floatProvider then
+        bmap { 'n', '\\f', diagnostic.open_float }
+    end
 
-    bmap { 'n', '\\li', mapstr 'LspInfo' }
-    bmap { 'n', '\\lI', mapstr 'NullLsInfo' }
-    bmap { 'n', '\\ll', mapstr 'LspLog' }
-    bmap { 'n', '\\lL', mapstr 'NullLsLog' }
-    bmap { 'n', '\\lr', mapstr 'LspRestart' }
-    bmap { 'n', '\\lR', mapstr 'NullLsRestart' }
+    if server_capabilities.hoverProvider then bmap { 'n', '\\h', buf.hover } end
+
+    if server_capabilities.renameProvider then
+        bmap { 'n', '\\r', rename }
+    end
+
+    if server_capabilities.referencesProvider then
+        bmap { 'n', '\\R', builtin.lsp_references }
+    end
+
+    if server_capabilities.documentSymbolProvider then
+        bmap {
+            'n',
+            '\\sa',
+            function()
+                builtin.lsp_document_symbols {
+                    ignore_symbols = {
+                        'array',
+                        'constant',
+                        'enummember',
+                        'field',
+                        'string',
+                        'variable',
+                    },
+                }
+            end,
+        }
+        bmap {
+            'n',
+            '\\sc',
+            function() builtin.lsp_document_symbols { symbols = 'Class' } end,
+        }
+        bmap {
+            'n',
+            '\\sf',
+            function() builtin.lsp_document_symbols { symbols = 'Function' } end,
+        }
+    end
+
+    if server_capabilities.typeDefinitionProvider then
+        bmap { 'n', '\\t', builtin.lsp_type_definitions }
+    end
+
+    bmap { 'n', ']\\', diagnostic.goto_next }
+    bmap { 'n', '[\\', diagnostic.goto_prev }
+
+    bmap { 'n', '\\li', '<cmd>LspInfo<cr>' }
+    bmap { 'n', '\\lI', '<cmd>NullLsInfo<cr>' }
+    bmap { 'n', '\\ll', '<cmd>LspLog<cr>' }
+    bmap { 'n', '\\lL', '<cmd>NullLsLog<cr>' }
+    bmap { 'n', '\\lr', '<cmd>LspRestart<cr>' }
+    bmap { 'n', '\\lR', '<cmd>NullLsRestart<cr>' }
 end
 
 M.prepare_lsp_settings = function(settings)
     local default_settings = {}
-    default_settings.capabilities =
-        require('cmp_nvim_lsp').default_capabilities(
-            vim.lsp.protocol.make_client_capabilities()
-        )
+
+    default_settings.capabilities = vim.lsp.protocol.make_client_capabilities()
     default_settings.capabilities.offsetEncoding = { 'utf-16' }
     default_settings.capabilities.textDocument.completion.completionItem.snippetSupport =
         false

@@ -1,16 +1,3 @@
-require('treesitter-context').setup {
-    max_lines = 1,
-    patterns = {
-        default = {
-            'class',
-            'function',
-            'method',
-            'switch',
-            'case',
-        },
-    },
-}
-
 require('nvim-treesitter.configs').setup {
     ensure_installed = {
         'c',
@@ -19,7 +6,6 @@ require('nvim-treesitter.configs').setup {
         'css',
         'dockerfile',
         'gitignore',
-        'go',
         'graphql',
         'html',
         'http',
@@ -37,12 +23,8 @@ require('nvim-treesitter.configs').setup {
         'vim',
         'yaml',
     },
-    indent = {
-        enable = false,
-    },
-    highlight = {
-        enable = true,
-    },
+    indent = { enable = false },
+    highlight = { enable = true },
     textobjects = {
         move = {
             enable = true,
@@ -82,31 +64,25 @@ require('nvim-treesitter.configs').setup {
             enable = true,
             lookahead = true,
             keymaps = {
+                aa = '@parameter.outer',
+                ia = '@parameter.inner',
                 ab = '@block.outer',
                 ib = '@block.inner',
-                af = '@function.outer',
-                ['if'] = '@function.inner',
                 ac = '@call.outer',
                 ic = '@call.inner',
                 aC = '@class.outer',
                 iC = '@class.inner',
+                af = '@function.outer',
+                ['if'] = '@function.inner',
                 ai = '@conditional.outer',
                 ii = '@conditional.inner',
                 aL = '@loop.outer',
                 iL = '@loop.inner',
-                aa = '@parameter.outer',
-                ia = '@parameter.inner',
-                ['i/'] = '@comment.inner',
                 ['a/'] = '@comment.outer',
+                ['i/'] = '@comment.inner',
             },
         },
     },
 }
 
-local utils = require 'utils'
-
-utils.map {
-    'n',
-    '<c-h>',
-    utils.mapstr 'TSHighlightCapturesUnderCursor',
-}
+map { 'n', '<leader>H', '<cmd>TSHighlightCapturesUnderCursor<cr>' }

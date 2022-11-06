@@ -1,10 +1,12 @@
-require('gruvbox').setup()
+vim.g.mapleader = ' '
 
 require 'impatient'
 
-require 'aug'
-require 'let'
 require 'map'
-require 'set'
+require 'aug'
+require 'plugins'
+require 'snippets'
 require 'lsp'
-require 'paqs'
+require('run').setup()
+
+vim.cmd.colorscheme 'gruvbox'

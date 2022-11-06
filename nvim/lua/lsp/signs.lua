@@ -13,18 +13,17 @@ for name, v in pairs(diagnostic_signs) do
 end
 
 local lsp = vim.lsp
+local handlers = lsp.handlers
 
-lsp.handlers['textDocument/hover'] = lsp.with(lsp.handlers.hover, {
+handlers['textDocument/hover'] = lsp.with(handlers.hover, {
     border = 'single',
 })
 
-lsp.handlers['textDocument/signatureHelp'] =
-    lsp.with(lsp.handlers.signature_help, {
-        border = 'single',
-    })
+handlers['textDocument/signatureHelp'] = lsp.with(handlers.signature_help, {
+    border = 'single',
+})
 
 local sources = {
-    vimlsp = 'vimls',
     Pyright = 'pyright',
     ['Lua Diagnostics.'] = 'luals',
     ['Lua Syntax Check.'] = 'luals',

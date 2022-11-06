@@ -1,12 +1,13 @@
-local utils = require 'utils'
-local map, mapstr = utils.map, utils.mapstr
+local mark, ui = require 'harpoon.mark', require 'harpoon.ui'
 
-map { 'n', '<leader>ha', mapstr('harpoon.mark', 'add_file()') }
-map { 'n', '<leader>hd', mapstr('harpoon.mark', 'rm_file()') }
-map { 'n', '<leader>hq', mapstr('harpoon.ui', 'toggle_quick_menu()') }
-map { 'n', '<leader>hh', mapstr('harpoon.ui', 'nav_file(1)') }
-map { 'n', '<leader>hj', mapstr('harpoon.ui', 'nav_file(2)') }
-map { 'n', '<leader>hk', mapstr('harpoon.ui', 'nav_file(3)') }
-map { 'n', '<leader>hl', mapstr('harpoon.ui', 'nav_file(4)') }
-map { 'n', '<leader>hn', mapstr('harpoon.ui', 'nav_next()') }
-map { 'n', '<leader>hp', mapstr('harpoon.ui', 'nav_prev()') }
+map { 'n', '<leader>ha', mark.add_file }
+map { 'n', '<leader>hd', mark.rm_file }
+
+map { 'n', '<leader>hq', ui.toggle_quick_menu }
+map { 'n', '<leader>hn', ui.nav_next }
+map { 'n', '<leader>hp', ui.nav_prev }
+
+map { 'n', '<leader>hh', function() ui.nav_file(1) end }
+map { 'n', '<leader>hj', function() ui.nav_file(2) end }
+map { 'n', '<leader>hk', function() ui.nav_file(3) end }
+map { 'n', '<leader>hl', function() ui.nav_file(4) end }

@@ -1,13 +1,15 @@
 local g = vim.g
 
+vim.o.termguicolors = true
+
 if g.colors_name then vim.cmd.hi 'clear' end
+
+g.colors_name = 'gruvbox'
+
 if vim.fn.exists 'syntax_on' then vim.cmd.syntax 'reset' end
 
 local gruvbox = require 'gruvbox'
 local cs, hi, link = gruvbox.cs, gruvbox.hi, gruvbox.link
-
-g.colors_name = 'gruvbox'
-vim.o.termguicolors = true
 
 g.terminal_ansi_colors = {
     cs.black,
@@ -27,6 +29,22 @@ g.terminal_ansi_colors = {
     cs.cyan,
     cs.white,
 }
+
+-- basic colors [:
+for _, color in ipairs {
+    'Red',
+    'Orange',
+    'Yellow',
+    'Green',
+    'Cyan',
+    'Blue',
+    'Purple',
+    'White',
+    'Black',
+} do
+    hi(color, { fg = cs[color:lower()] })
+end
+-- :]
 
 -- basic ui [:
 hi('Normal', { fg = cs.white, bg = cs.bg })
@@ -110,8 +128,13 @@ hi(
 hi('NvimTreeExecFile', { bold = true, fg = cs.light_green })
 -- :]
 
--- fzf-lua [:
-link('Normal', 'FzfLuaBorder')
+-- telescope [:
+link('Green', 'TelescopeMatching')
+-- :]
+
+-- mini [:
+link('Visual', 'MiniCursorword')
+hi('MiniCursorwordCurrent', { bg = cs.bg })
 -- :]
 
 -- lsp/diagnostics [:

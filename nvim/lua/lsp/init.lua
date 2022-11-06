@@ -1,3 +1,3 @@
 require 'lsp.signs'
-require 'lsp.null'
+require 'lsp.null-ls'
 require 'lsp.servers'

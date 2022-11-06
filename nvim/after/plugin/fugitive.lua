@@ -1,12 +1,9 @@
-local utils = require 'utils'
-local bmap, mapstr = utils.bmap, utils.mapstr
-
-bmap { 'n', '<leader>vv', mapstr 'G' }
-bmap { 'n', '<leader>vd', mapstr 'Gvdiffsplit!' }
-bmap { 'n', '<leader>vf', mapstr 'G fetch' }
-bmap { 'n', '<leader>vp', mapstr 'G pull' }
-bmap { 'n', '<leader>vP', mapstr 'G push' }
-bmap { 'n', '<leader>vs', mapstr 'G status' }
-bmap { 'n', '<leader>v2', mapstr 'diffget //2' }
-bmap { 'n', '<leader>v3', mapstr 'diffget //3' }
-bmap { 'n', '<leader>vl', mapstr 'G log' }
+bmap { 'n', '<leader>fv', '<cmd>G<cr>' }
+bmap { 'n', '<leader>fd', '<cmd>Gvdiffsplit!<cr>' }
+bmap { 'n', '<leader>ff', '<cmd>G fetch<cr>' }
+bmap { 'n', '<leader>fp', '<cmd>G pull<cr>' }
+bmap { 'n', '<leader>fP', '<cmd>G push<cr>' }
+bmap { 'n', '<leader>fs', '<cmd>G status<cr>' }
+bmap { 'n', '<leader>f2', '<cmd>diffget //2<cr>' }
+bmap { 'n', '<leader>f3', '<cmd>diffget //3<cr>' }
+bmap { 'n', '<leader>fl', '<cmd>G log<cr>' }

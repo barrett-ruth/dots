@@ -1,25 +1,20 @@
 local api, fn = vim.api, vim.fn
 local aug
+local bufs = {}
 
 local utils = require 'run.utils'
 local commands = utils.commands
 
 local M = {}
 
--- Run file in corresponding output buffer on save
-M.run = function()
+local run = function()
     local extension = fn.expand '%:e'
 
     if not commands[extension] then return end
 
-    local filename = fn.expand '%:p'
-    local command = commands[extension] .. ' ' .. filename
-    local header = ' > ' .. command:gsub(vim.env.HOME, '~')
+    local filename = fn.expand '%'
 
-    -- TODO: cleaner way to do this -- perhaps build, run, cleanup command structure
-    if vim.tbl_contains({ 'cc', 'cpp' }, extension) then
-        command = command .. ' && ./a.out; test -f a.out && rm a.out'
-    end
+    local header, jobcmd = utils.get_job_info(commands[extension], filename)
 
     api.nvim_create_autocmd('QuitPre', {
         callback = utils.delete_scratch_buffer,
@@ -30,15 +25,15 @@ M.run = function()
         pattern = filename,
         callback = function()
             local bufnr = fn.bufnr()
-            local scratch_name = 'scratch' .. bufnr
-            local scratch_bufnr = fn.bufnr(scratch_name)
+            local scratch_bufnr = bufs[bufnr]
 
-            if scratch_bufnr == -1 then
-                scratch_bufnr = utils.create_scratch_buffer(scratch_name)
+            if not scratch_bufnr then
+                scratch_bufnr = utils.create_scratch_buffer()
+                bufs[bufnr] = scratch_bufnr
             end
 
             if fn.bufwinid(scratch_bufnr) == -1 then
-                vim.cmd.vs(scratch_name)
+                vim.cmd('vert sbuffer ' .. scratch_bufnr)
             end
 
             api.nvim_buf_set_lines(scratch_bufnr, 0, -1, false, { header, '' })
@@ -48,7 +43,7 @@ M.run = function()
 
             local start_time = fn.reltime()
 
-            fn.jobstart(command, {
+            fn.jobstart(jobcmd, {
                 stdout_buffered = true,
                 stderr_buffered = true,
                 on_stdout = output_data,
@@ -66,7 +61,8 @@ end
 
 M.setup = function()
     aug = api.nvim_create_augroup('run', { clear = true })
-    require('utils').map { 'n', '<leader>r', M.run }
+    bufs = {}
+    map { 'n', '<leader>r', run }
 end
 
 return M
