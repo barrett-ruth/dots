@@ -1,4 +1,5 @@
 local bufremove = require 'mini.bufremove'
+
 bufremove.setup {}
 
 map { 'n', '<leader>bd', bufremove.delete }

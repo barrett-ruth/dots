@@ -1,7 +1,5 @@
 local env, g, o, opt = vim.env, vim.g, vim.o, vim.opt
 
-opt.cinkeys:remove ':'
-
 o.expandtab = true
 
 o.fillchars = 'fold: ,eob: ,vert:│,diff:╱'

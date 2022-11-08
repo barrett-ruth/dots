@@ -1,4 +1,5 @@
 local hop = require 'hop'
 
 hop.setup()
-map { 'n', '<cr>', hop.hint_char2 }
+
+map { 'n', '<c-space>', hop.hint_char2 }

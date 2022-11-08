@@ -103,6 +103,9 @@ hi('PmenuThumb', { bg = cs.hi })
 hi('CmpItemAbbrMatch', { fg = cs.green })
 hi('CmpItemAbbrMatchFuzzy', { fg = cs.green })
 
+-- dirbuf.nvim
+hi('Directory', { fg = cs.light_blue })
+
 -- vim-highlighturl
 hi('HighlightUrl', { fg = cs.blue, italic = true })
 
@@ -168,12 +171,13 @@ link('Comment', '@comment')
 
 -- text
 hi('@todo', { fg = cs.purple, bold = true })
-hi('@text.warning', { fg = cs.yellow, bold = true })
 hi('Title', { bold = true, fg = cs.orange })
 link('Title', '@text.title')
+hi('@text.emphasis', { italic = true })
+hi('@text.reference', { fg = cs.blue })
 hi('@text.strong', { bold = true })
 hi('@text.uri', { fg = cs.blue })
-hi('@text.reference', { fg = cs.blue })
+hi('@text.warning', { fg = cs.yellow, bold = true })
 
 -- booleans
 hi('Boolean', { fg = cs.cyan })

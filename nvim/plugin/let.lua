@@ -1,7 +1,5 @@
 local g, env = vim.g, vim.env
 
-g.c_syntax_for_h = 1
-
 g.markdown_fenced_languages = {
     'c',
     'css',

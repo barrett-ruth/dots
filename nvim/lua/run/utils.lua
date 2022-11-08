@@ -9,9 +9,24 @@ M.commands = {
         build = 'g++ -Wall -Wextra -Wshadow -Wconversion -Wdouble-promotion -Wundef',
         run = './a.out',
         clean = 'test -f a.out && rm a.out',
+        kill = 'rm a.out && killall a.out',
     },
 }
 M.commands.cc = M.commands.cpp
+
+M.create_scratch_buffer = function()
+    local scratch_bufnr = api.nvim_create_buf(false, true)
+
+    api.nvim_buf_set_option(scratch_bufnr, 'filetype', 'run')
+
+    return scratch_bufnr
+end
+
+M.delete_scratch_buffer = function(scratch_bufnr)
+    if scratch_bufnr then vim.cmd.bw(scratch_bufnr) end
+
+    require('mini.bufremove').delete(0, false)
+end
 
 M.get_job_info = function(command, filename)
     local header, jobcmd = '', ''
@@ -34,7 +49,12 @@ M.get_job_info = function(command, filename)
     return header, jobcmd
 end
 
-M.on_exit = function(_, exit_code, scratch_bufnr, start_time)
+local exit_code_messages = {
+    [0] = 'DONE',
+    [143] = 'SIGKILL',
+}
+
+M.on_exit = function(exit_code, scratch_bufnr, start_time)
     local end_time = fn.reltime(start_time)
     local total_time, units = tonumber(vim.trim(fn.reltimestr(end_time))), 's'
 
@@ -42,7 +62,7 @@ M.on_exit = function(_, exit_code, scratch_bufnr, start_time)
         total_time, units = total_time * 1000, 'ms'
     end
 
-    local msg = exit_code == 0 and 'DONE' or 'ERROR'
+    local msg = exit_code_messages[exit_code] or 'ERROR'
 
     api.nvim_buf_set_lines(scratch_bufnr, -1, -1, false, {
         '',
@@ -60,16 +80,5 @@ M.output_data = function(_, data, scratch_bufnr)
 
     api.nvim_buf_set_lines(scratch_bufnr, -1, -1, false, data)
 end
-
-M.create_scratch_buffer = function()
-    local scratch_bufnr = api.nvim_create_buf(false, true)
-
-    api.nvim_buf_set_option(scratch_bufnr, 'filetype', 'run')
-
-    return scratch_bufnr
-end
-
-M.delete_scratch_buffer =
-    function() pcall(vim.cmd, 'BufDel! scratch' .. fn.bufnr()) end
 
 return M

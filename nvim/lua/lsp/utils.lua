@@ -2,6 +2,7 @@ local M = {}
 
 local format = function()
     vim.lsp.buf.format {
+        async = true,
         filter = function(client)
             return not vim.tbl_contains({
                 'clangd', -- clang-format
@@ -47,7 +48,9 @@ local rename = function()
 
             api.nvim_win_close(win, true)
 
-            if require('utils').empty(new_name) or new_name == old_name then return end
+            if require('utils').empty(new_name) or new_name == old_name then
+                return
+            end
 
             vim.lsp.buf.rename(new_name)
         end,
@@ -87,15 +90,11 @@ M.on_attach = function(client, _)
         bmap { 'n', '\\i', builtin.lsp_implementations }
     end
 
-    if server_capabilities.floatProvider then
-        bmap { 'n', '\\f', diagnostic.open_float }
-    end
+    bmap { 'n', '\\f', diagnostic.open_float }
 
     if server_capabilities.hoverProvider then bmap { 'n', '\\h', buf.hover } end
 
-    if server_capabilities.renameProvider then
-        bmap { 'n', '\\r', rename }
-    end
+    if server_capabilities.renameProvider then bmap { 'n', '\\r', rename } end
 
     if server_capabilities.referencesProvider then
         bmap { 'n', '\\R', builtin.lsp_references }

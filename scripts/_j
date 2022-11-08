@@ -3,6 +3,7 @@
 case "$1" in
     -) cd - >/dev/null && return;;
     '') cd ~;;
+    cp) cd ~/dev/competitive-programming;;
     dl) cd ~/dl;;
     scr) cd "$SCRIPTS";;
     dev) cd ~/dev;;

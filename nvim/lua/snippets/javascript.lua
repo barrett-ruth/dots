@@ -1,6 +1,13 @@
-local function surround(args, char)
+local function surroundl(args)
     if args[1][1]:len() ~= 0 and args[1][1]:find ',' then
-        return sn(nil, { t { char } })
+        return sn(nil, { t '(' })
+    end
+
+    return sn(nil, { t '' })
+end
+local function surroundr(args)
+    if args[1][1]:len() ~= 0 and args[1][1]:find ',' then
+        return sn(nil, { t ')' })
     end
 
     return sn(nil, { t '' })
@@ -10,9 +17,9 @@ return {
     s(
         'af',
         fmt('{}{}{} => {}', {
-            d(1, function(...) surround(..., '(') end, { 2 }),
+            d(1, surroundl, { 2 }),
             i(2),
-            d(3, function(...) surround(..., ')') end, { 2 }),
+            d(3, surroundr, { 2 }),
             i(4),
         })
     ),

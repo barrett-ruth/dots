@@ -16,6 +16,7 @@ alias la='ll -R'
 alias lss='less --use-color --color=d+b --color=P+c --color=u+g'
 
 # Basic programs
+alias g='git'
 alias nv='nvim'
 alias pe='printenv'
 alias rs="rsync -e 'ssh -F $XDG_CONFIG_HOME/ssh/config'"
@@ -34,6 +35,6 @@ wool() {
 }
 
 # Misc
-alias psag='ps aux | rg'
+alias psa='ps aux'
 gcl() { . _gcl "$@"; }
 j() { . _j "$@"; }

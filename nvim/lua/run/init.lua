@@ -13,11 +13,22 @@ local run = function()
     if not commands[extension] then return end
 
     local filename = fn.expand '%'
+    local command = commands[extension]
 
-    local header, jobcmd = utils.get_job_info(commands[extension], filename)
+    local header, jobcmd = utils.get_job_info(command, filename)
+
+    bmap {
+        'n',
+        '<leader>bd',
+        function()
+            utils.delete_scratch_buffer(bufs[fn.bufnr()])
+
+            require('mini.bufremove').delete(0, false)
+        end,
+    }
 
     api.nvim_create_autocmd('QuitPre', {
-        callback = utils.delete_scratch_buffer,
+        callback = function() utils.delete_scratch_buffer(bufs[fn.bufnr()]) end,
         group = aug,
     })
 
@@ -43,15 +54,26 @@ local run = function()
 
             local start_time = fn.reltime()
 
-            fn.jobstart(jobcmd, {
+            local id = fn.jobstart(jobcmd, {
                 stdout_buffered = true,
                 stderr_buffered = true,
                 on_stdout = output_data,
                 on_stderr = output_data,
-                on_exit = function(_, exit_code)
-                    utils.on_exit(_, exit_code, scratch_bufnr, start_time)
-                end,
+                on_exit = function(_, exit_code, _)
+                    utils.on_exit(exit_code, scratch_bufnr, start_time)
+                end
             })
+
+            vim.cmd.redraw()
+
+            local status = fn.jobwait({ id })[1]
+
+            -- Stopped with <c-c>
+            if status == -2 then
+                utils.on_exit(143, scratch_bufnr, start_time)
+                fn.jobstart(command.kill)
+            else
+            end
         end,
         group = aug,
     })

@@ -8,6 +8,7 @@ map { 'v', 'g<c-a>', dial_map.inc_gvisual() }
 map { 'v', 'g<c-x>', dial_map.dec_gvisual() }
 
 local augend = require 'dial.augend'
+
 require('dial.config').augends:register_group {
     default = {
         augend.constant.alias.alpha,

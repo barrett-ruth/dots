@@ -27,6 +27,11 @@ map {
     end,
 }
 
+map { 'n', '<up>', '<cmd>resize -5<cr>' }
+map { 'n', '<down>', '<cmd>resize +5<cr>' }
+map { 'n', '<left>', '<cmd>vert resize +5<cr>' }
+map { 'n', '<right>', '<cmd>vert resize -5<cr>' }
+
 map({ 'n', ':', ';' }, { silent = false })
 map({ 'n', ';', ':' }, { silent = false })
 map({ 'x', ':', ';' }, { silent = false })
