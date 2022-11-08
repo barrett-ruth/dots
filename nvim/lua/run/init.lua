@@ -72,7 +72,6 @@ local run = function()
             if status == -2 then
                 utils.on_exit(143, scratch_bufnr, start_time)
                 fn.jobstart(command.kill)
-            else
             end
         end,
         group = aug,

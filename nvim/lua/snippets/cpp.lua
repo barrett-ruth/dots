@@ -49,4 +49,5 @@ return {
     ),
     s('pr', fmt('std::cout << {}', { i(1) })),
     s('s', fmt('std::{}', { i(1) })),
+    s('uns', t 'using namespace std;'),
 }
