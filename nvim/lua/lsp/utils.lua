@@ -41,7 +41,7 @@ local rename = function()
 
     bmap({ 'i', '<c-c>', vim.cmd.q }, { buffer = bufnr })
     bmap({ 'n', 'q', vim.cmd.q }, { buffer = bufnr })
-    bmap {
+    bmap({
         { 'i', 'n' },
         '<cr>',
         function()
@@ -57,7 +57,7 @@ local rename = function()
 
             api.nvim_input '<esc>l'
         end,
-    }
+    }, { buffer = bufnr })
 end
 
 M.on_attach = function(client, _)
@@ -104,24 +104,7 @@ M.on_attach = function(client, _)
     end
 
     if server_capabilities.signatureHelpProvider then
-        local sighelp_opened = false
-        bmap {
-            'i',
-            '<c-space>',
-            function()
-                if sighelp_opened then
-                    for _, winid in pairs(vim.api.nvim_tabpage_list_wins(0)) do
-                        if vim.api.nvim_win_get_config(winid).zindex then
-                            vim.api.nvim_win_close(winid, true)
-                            break
-                        end
-                    end
-                else
-                    buf.signature_help()
-                end
-                sighelp_opened = not sighelp_opened
-            end,
-        }
+        bmap { 'i', '<c-space>', buf.signature_help }
     end
 
     if server_capabilities.documentSymbolProvider then

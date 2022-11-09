@@ -117,6 +117,7 @@ link('Visual', 'MiniCursorword')
 hi('MiniCursorwordCurrent', { bg = cs.bg })
 
 -- lsp/diagnostics
+hi('LspSignatureActiveParameter', { italic = true, underline = true })
 hi('DiagnosticError', { fg = cs.red })
 hi('DiagnosticWarn', { fg = cs.yellow })
 hi('DiagnosticHint', { fg = cs.green })

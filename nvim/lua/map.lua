@@ -38,8 +38,8 @@ map({ 'x', ':', ';' }, { silent = false })
 map({ 'x', ';', ':' }, { silent = false })
 
 map { 'n', 'J', 'mzJ`z' }
-map { 'v', 'J', [[:m '>+1<cr>gv=gv]] }
-map { 'v', 'K', [[:m '<-2<cr>gv=gv]] }
+map { 'x', 'J', [[:m '>+1<cr>gv=gv]] }
+map { 'x', 'K', [[:m '<-2<cr>gv=gv]] }
 map { 'n', 'Q', 'q:k' }
 
 map { 'n', '<leader><cr>', cmd.source }
@@ -50,7 +50,7 @@ map { 'n', '<leader>iw', '<cmd>setl wrap!<cr>' }
 
 map({ '', '<leader>y', '"+y' }, { silent = false })
 map { '', '<leader>Y', function() vim.fn.setreg('+', vim.fn.getreg '"') end }
-map { '', '<leader>p', '"_dP' }
+map { 'x', '<leader>p', '"_dP' }
 map { 'n', '<leader>q', cmd.q }
 map { 'n', '<leader>Q', function() vim.cmd 'qall!' end }
 map {

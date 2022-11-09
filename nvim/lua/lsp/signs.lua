@@ -21,7 +21,6 @@ handlers['textDocument/hover'] = lsp.with(handlers.hover, {
 
 handlers['textDocument/signatureHelp'] = lsp.with(handlers.signature_help, {
     border = 'single',
-    close_events = { 'InsertLeave' },
 })
 
 local sources = {

@@ -2,10 +2,10 @@ local dial_map = require 'dial.map'
 
 map { 'n', '<c-a>', dial_map.inc_normal() }
 map { 'n', '<c-x>', dial_map.dec_normal() }
-map { 'v', '<c-a>', dial_map.inc_visual() }
-map { 'v', '<c-x>', dial_map.dec_visual() }
-map { 'v', 'g<c-a>', dial_map.inc_gvisual() }
-map { 'v', 'g<c-x>', dial_map.dec_gvisual() }
+map { 'x', '<c-a>', dial_map.inc_visual() }
+map { 'x', '<c-x>', dial_map.dec_visual() }
+map { 'x', 'g<c-a>', dial_map.inc_gvisual() }
+map { 'x', 'g<c-x>', dial_map.dec_gvisual() }
 
 local augend = require 'dial.augend'
 
