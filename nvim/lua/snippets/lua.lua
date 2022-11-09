@@ -8,10 +8,11 @@ local extract_vars = function(args)
             local var = e
 
             if var:match '%.' then
-                var = var:sub(utils.rfind(var, '.'))
+
+                var = var:sub(utils.rfind(var, '%.'))
 
                 if var:match "'" then
-                    var = var:sub(1, utils.rfind(var, "'"))
+                    var = var:sub(1, utils.rfind(var, "'") - 1)
                 end
 
                 if var:match '%.' then var = var:sub(2) end

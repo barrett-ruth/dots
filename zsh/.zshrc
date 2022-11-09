@@ -19,7 +19,7 @@ __shrink() {
         res='~'
         shift tree
     else
-        echo "%c" && exit
+        echo '%c' && exit
     fi
     for dir in $tree; do
         [[ $dir == $base ]] && res+=/$dir && break
@@ -61,7 +61,10 @@ __set_git() {
 
 __set_venv() {
     ! test -x venv/bin/python || . venv/bin/activate
-    [[ -z "$VIRTUAL_ENV" ]] || PS1+="%F{yellow}venv%f "
+    [[ -z "$VIRTUAL_ENV" ]] && return
+    PS1+='%F{yellow}venv'
+    [[ "$(dirname "$VIRTUAL_ENV")" == "$PWD" ]] || PS1+='!'
+    PS1+='%f '
 }
 
 __set_beam_cursor() { echo -ne '\e[5 q'; }
@@ -81,5 +84,5 @@ precmd() {
     __set_git
     __set_venv
     __set_beam_cursor
-    PS1+="%f"
+    PS1+='%f'
 }

@@ -19,11 +19,12 @@ local format = function()
     }
 end
 
+local api = vim.api
+
 local builtin = require 'telescope.builtin'
 
 local rename = function()
     local old_name = vim.fn.expand '<cword>'
-    local api = vim.api
 
     local bufnr = api.nvim_create_buf(false, true)
     local win = api.nvim_open_win(bufnr, true, {
@@ -53,6 +54,8 @@ local rename = function()
             end
 
             vim.lsp.buf.rename(new_name)
+
+            api.nvim_input '<esc>l'
         end,
     }
 end
@@ -99,6 +102,23 @@ M.on_attach = function(client, _)
     if server_capabilities.referencesProvider then
         bmap { 'n', '\\R', builtin.lsp_references }
     end
+
+    -- if server_capabilities.signatureHelpProvider then
+        -- bmap {
+        --     'i',
+        --     '<c-space>',
+        --     -- function()
+            --     for _, winid in pairs(vim.api.nvim_tabpage_list_wins(0)) do
+            --         if vim.api.nvim_win_get_config(winid).zindex then
+            --             vim.api.nvim_win_close(winid, true)
+            --             return
+            --         end
+            --     end
+            --
+            --     buf.signature_help()
+            -- end,
+        -- }
+    -- end
 
     if server_capabilities.documentSymbolProvider then
         bmap {

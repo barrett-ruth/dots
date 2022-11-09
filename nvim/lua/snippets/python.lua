@@ -4,7 +4,7 @@ local function class_assign_args(args)
     if arg:len() == 0 then return sn(nil, { t { '', '\t\t' } }) end
 
     local assign_args = {}
-    for e in arg:gmatch(' ?([^,]*): ?') do
+    for e in arg:gmatch ' ?([^,]*): ?' do
         if e:len() > 0 then
             e = e:sub(1, require('utils').rfind(e, ':') or #e)
             table.insert(

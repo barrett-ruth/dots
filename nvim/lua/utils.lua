@@ -7,7 +7,7 @@ M.rfind = function(str, char)
 
     if revpos == nil then return nil end
 
-    return #str - revpos
+    return #str - revpos + 1
 end
 
 return M
