@@ -103,22 +103,26 @@ M.on_attach = function(client, _)
         bmap { 'n', '\\R', builtin.lsp_references }
     end
 
-    -- if server_capabilities.signatureHelpProvider then
-        -- bmap {
-        --     'i',
-        --     '<c-space>',
-        --     -- function()
-            --     for _, winid in pairs(vim.api.nvim_tabpage_list_wins(0)) do
-            --         if vim.api.nvim_win_get_config(winid).zindex then
-            --             vim.api.nvim_win_close(winid, true)
-            --             return
-            --         end
-            --     end
-            --
-            --     buf.signature_help()
-            -- end,
-        -- }
-    -- end
+    if server_capabilities.signatureHelpProvider then
+        local sighelp_opened = false
+        bmap {
+            'i',
+            '<c-space>',
+            function()
+                if sighelp_opened then
+                    for _, winid in pairs(vim.api.nvim_tabpage_list_wins(0)) do
+                        if vim.api.nvim_win_get_config(winid).zindex then
+                            vim.api.nvim_win_close(winid, true)
+                            break
+                        end
+                    end
+                else
+                    buf.signature_help()
+                end
+                sighelp_opened = not sighelp_opened
+            end,
+        }
+    end
 
     if server_capabilities.documentSymbolProvider then
         bmap {
