@@ -8,7 +8,7 @@ _G.map = function(mapping, opts)
 end
 
 _G.bmap = function(mapping, opts)
-    map(mapping, vim.tbl_extend('force', opts or {}, { buffer = 0 }))
+    map(mapping, vim.tbl_extend('keep', opts or {}, { buffer = 0 }))
 end
 
 local cmd = vim.cmd

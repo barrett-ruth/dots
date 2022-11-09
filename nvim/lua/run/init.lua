@@ -1,6 +1,5 @@
 local api, fn = vim.api, vim.fn
-local aug
-local bufs = {}
+local aug, cache
 
 local utils = require 'run.utils'
 local commands = utils.commands
@@ -17,34 +16,59 @@ local run = function()
 
     local header, jobcmd = utils.get_job_info(command, filename)
 
+    local bufnr = fn.bufnr()
+
     bmap {
         'n',
         '<leader>bd',
         function()
-            utils.delete_scratch_buffer(bufs[fn.bufnr()])
+            utils.delete_scratch_buffer(cache[bufnr].bufnr)
 
             require('mini.bufremove').delete(0, false)
+
+            cache[bufnr] = nil
         end,
     }
 
+    bmap({
+        'n',
+        '<c-c>',
+        function()
+            if not cache[bufnr] then return end
+
+            local id = cache[bufnr].job_id
+
+            if not id then return end
+
+            fn.jobstop(id)
+            fn.jobstart(command.kill)
+
+            cache[bufnr].job_id = nil
+        end,
+    }, { buffer = bufnr })
+
     api.nvim_create_autocmd('QuitPre', {
-        callback = function() utils.delete_scratch_buffer(bufs[fn.bufnr()]) end,
+        pattern = '<buffer>',
+        callback = function()
+            utils.delete_scratch_buffer(cache[bufnr].bufnr)
+            cache[bufnr] = nil
+        end,
         group = aug,
     })
 
     api.nvim_create_autocmd('BufWritePost', {
-        pattern = filename,
+        pattern = '<buffer>',
         callback = function()
-            local bufnr = fn.bufnr()
-            local scratch_bufnr = bufs[bufnr]
+            local scratch_bufnr
+            if cache[bufnr] then scratch_bufnr = cache[bufnr].bufnr end
 
             if not scratch_bufnr then
                 scratch_bufnr = utils.create_scratch_buffer()
-                bufs[bufnr] = scratch_bufnr
+                cache[bufnr] = { bufnr = scratch_bufnr }
             end
 
             if fn.bufwinid(scratch_bufnr) == -1 then
-                vim.cmd('vert sbuffer ' .. scratch_bufnr)
+                utils.show_scratch_buffer(scratch_bufnr)
             end
 
             api.nvim_buf_set_lines(scratch_bufnr, 0, -1, false, { header, '' })
@@ -61,18 +85,12 @@ local run = function()
                 on_stderr = output_data,
                 on_exit = function(_, exit_code, _)
                     utils.on_exit(exit_code, scratch_bufnr, start_time)
-                end
+
+                    cache[bufnr].job_id = nil
+                end,
             })
 
-            vim.cmd.redraw()
-
-            local status = fn.jobwait({ id })[1]
-
-            -- Stopped with <c-c>
-            if status == -2 then
-                utils.on_exit(143, scratch_bufnr, start_time)
-                fn.jobstart(command.kill)
-            end
+            cache[bufnr].job_id = id
         end,
         group = aug,
     })
@@ -82,7 +100,8 @@ end
 
 M.setup = function()
     aug = api.nvim_create_augroup('run', { clear = true })
-    bufs = {}
+    -- [bufnr] -> { bufnr: scratch_bufnr, job_id: job_id }
+    cache = {}
     map { 'n', '<leader>r', run }
 end
 

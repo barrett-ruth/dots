@@ -22,10 +22,13 @@ M.create_scratch_buffer = function()
     return scratch_bufnr
 end
 
-M.delete_scratch_buffer = function(scratch_bufnr)
-    if scratch_bufnr then vim.cmd.bw(scratch_bufnr) end
+M.delete_scratch_buffer = function(scratch_bufnr) vim.cmd.bw(scratch_bufnr) end
 
-    require('mini.bufremove').delete(0, false)
+M.show_scratch_buffer = function(scratch_bufnr)
+    vim.cmd('vert sbuffer ' .. scratch_bufnr)
+    api.nvim_win_set_option(fn.bufwinid(scratch_bufnr), 'number', false)
+    api.nvim_win_set_option(fn.bufwinid(scratch_bufnr), 'relativenumber', false)
+    api.nvim_win_set_option(fn.bufwinid(scratch_bufnr), 'signcolumn', 'yes')
 end
 
 M.get_job_info = function(command, filename)
@@ -44,7 +47,7 @@ M.get_job_info = function(command, filename)
         header = command
     end
 
-    header = (' > %s %s'):format(header, filename)
+    header = ('> %s %s'):format(header, filename)
 
     return header, jobcmd
 end
@@ -65,7 +68,6 @@ M.on_exit = function(exit_code, scratch_bufnr, start_time)
     local msg = exit_code_messages[exit_code] or 'ERROR'
 
     api.nvim_buf_set_lines(scratch_bufnr, -1, -1, false, {
-        '',
         ('[%s] exited with code=%s in %s%s'):format(
             msg,
             exit_code,
@@ -76,8 +78,6 @@ M.on_exit = function(exit_code, scratch_bufnr, start_time)
 end
 
 M.output_data = function(_, data, scratch_bufnr)
-    if data[1] == '' then return end
-
     api.nvim_buf_set_lines(scratch_bufnr, -1, -1, false, data)
 end
 

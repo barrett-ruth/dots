@@ -2,6 +2,7 @@ local g, env = vim.g, vim.env
 
 g.markdown_fenced_languages = {
     'c',
+    'cpp',
     'css',
     'html',
     'javascript',

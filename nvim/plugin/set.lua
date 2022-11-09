@@ -1,5 +1,7 @@
 local env, g, o, opt = vim.env, vim.g, vim.o, vim.opt
 
+o.autowrite = true
+
 o.expandtab = true
 
 o.fillchars = 'fold: ,eob: ,vert:│,diff:╱'
