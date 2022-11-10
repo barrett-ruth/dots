@@ -1,7 +1,7 @@
 local api = vim.api
 local au = api.nvim_create_autocmd
 
-local aug = api.nvim_create_augroup('augs', { clear = true })
+local aug = api.nvim_create_augroup('augs', {})
 
 au('FileType', {
     pattern = 'dirbuf',

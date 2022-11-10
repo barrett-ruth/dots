@@ -9,6 +9,9 @@ return {
                 version = 'LuaJIT',
             },
             telemetry = { enable = false },
+            workspace = {
+                checkThirdParty = false,
+            },
         },
     },
 }

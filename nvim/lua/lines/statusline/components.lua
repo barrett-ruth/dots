@@ -18,7 +18,13 @@ local search = {
 }
 
 local file = {
-    value = function() return vim.fn.expand '%:~' end,
+    value = function()
+        local file = fn.expand '%:f'
+
+        if file:find(vim.env.HOME) then file = fn.expand '%:~' end
+
+        return file
+    end,
     highlight = 'Yellow',
 }
 
