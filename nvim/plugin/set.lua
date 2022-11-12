@@ -2,9 +2,16 @@ local env, g, o, opt = vim.env, vim.g, vim.o, vim.opt
 
 o.autowrite = true
 
+opt.diffopt:append 'linematch:60'
+
 o.expandtab = true
 
-o.fillchars = 'fold: ,eob: ,vert:│,diff:╱'
+opt.fillchars = { fold = ' ', eob = ' ', vert = '│', diff = '╱' }
+
+o.foldcolumn = '0'
+o.foldtext =
+    [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g'). '  [' . (v:foldend - v:foldstart + 1) . ']']]
+o.foldnestmax = 2
 
 o.hlsearch = false
 

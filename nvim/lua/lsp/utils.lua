@@ -104,11 +104,8 @@ M.on_attach = function(client, _)
     end
 
     if server_capabilities.signatureHelpProvider then
-        vim.api.nvim_create_autocmd('TextChangedI', {
-            group = vim.api.nvim_create_augroup('LspSignature', {}),
-            pattern = '<buffer>',
-            callback = vim.lsp.buf.signature_help,
-        })
+        require('lsp.signature').setup(client)
+        bmap { 'i', '<c-space>', buf.signature_help }
     end
 
     if server_capabilities.documentSymbolProvider then

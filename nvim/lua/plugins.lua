@@ -56,7 +56,7 @@ paq {
 
     'NvChad/nvim-colorizer.lua',
 
-    'phaazon/hop.nvim',
+    'sindrets/diffview.nvim',
 
     'tommcdo/vim-exchange',
 

@@ -10,7 +10,7 @@ telescope.setup {
                 ['<c-f>'] = actions.results_scrolling_down,
                 ['<c-l>'] = actions.smart_send_to_loclist,
                 ['<c-q>'] = actions.smart_send_to_qflist,
-            }
+            },
         },
         prompt_title = '',
         borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
@@ -25,6 +25,9 @@ telescope.setup {
         buffers = {
             ignore_current_buffer = true,
             sort_mru = true,
+        },
+        git_files = {
+            show_untracked = true,
         },
         lsp_document_symbols = {
             show_line = true,
