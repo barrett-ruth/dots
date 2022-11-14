@@ -20,9 +20,9 @@ diff)
     tmux neww -c '#{pane_current_path}' -n diff 'nvim -c DiffviewOpen'
     ;;
 run)
-    [ "$(tmux lsw -F '#W' | rg run)" ] || tmux neww -dc '#{pane_current_path}' -n run
+    [ "$(tmux lsw -F '#W' | rg run)" ] && tmux killw -t run
 
-    tmux selectw -t run\; send 'C-l' 'mux-run' 'enter'
+    tmux neww -dc '#{pane_current_path}' -n run \; selectw -t run\; send 'C-l' 'mux-run' 'enter'
     ;;
 switch)
     mux-switch "$2"

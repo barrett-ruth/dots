@@ -30,8 +30,7 @@ end
 return {
     s('pr', fmt('print({})', { i(1) })),
     s('af', fmt('function({}) {} end', { i(1), i(2) })),
-    s('afu', fmt('function({})\n\t{}\nend', { i(1), i(2) })),
-    s('fun', fmt('function {}({})\n\t{}\nend', { i(1), i(2), i(3) })),
+    s('fun', fmt('function({})\n\t{}\nend', { i(1), i(2) })),
     s('if', fmt('if {} then\n\t{}\nend', { i(1), i(2) })),
     s('for', fmt('for {} in {} do\n\t{}\nend', { i(1), i(2), i(3) })),
     s(

@@ -8,6 +8,16 @@ local builtins = null_ls.builtins
 local code_actions, diagnostics, formatting =
     builtins.code_actions, builtins.diagnostics, builtins.formatting
 
+local project_contains_source = function(name, default)
+    local project = fn.fnamemodify(fn.getcwd(), ':t')
+
+    if projects[project] then
+        return vim.tbl_contains(projects[project].lsp_sources, name)
+    end
+
+    return default
+end
+
 null_ls.setup {
     sources = {
         -- Code Actions
@@ -51,20 +61,12 @@ null_ls.setup {
         -- Formatting
         formatting.autopep8.with {
             condition = function(_)
-                local project = fn.fnamemodify(fn.getcwd(), ':t')
-
-                if projects[project] then
-                    return projects[project].lsp_sources.autopep8
-                end
+                return project_contains_source('autopep8', false)
             end,
         },
         formatting.black.with {
             condition = function(_)
-                local project = fn.fnamemodify(fn.getcwd(), ':t')
-
-                if projects[project] then
-                    return projects[project].lsp_sources.black
-                end
+                return project_contains_source('black', true)
             end,
             extra_args = {
                 '--skip-string-normalization',
@@ -74,11 +76,7 @@ null_ls.setup {
         },
         formatting.isort.with {
             condition = function(_)
-                local project = fn.fnamemodify(fn.getcwd(), ':t')
-
-                if projects[project] then
-                    return projects[project].lsp_sources.isort
-                end
+                return project_contains_source('isort', true)
             end,
         },
 

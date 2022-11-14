@@ -12,7 +12,7 @@ local format = function()
                 'jsonls', -- prettierd
                 'pyright', -- black/autopep8
                 'sqls', -- sql-formatter
-                'sumneko_lua', --stylua
+                'sumneko_lua', -- stylua
                 'tsserver', -- prettierd
             }, client.name)
         end,
