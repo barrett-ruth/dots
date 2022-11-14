@@ -2,8 +2,7 @@
 --colors=match:fg:green
 --colors=path:fg:blue
 --column
---hidden
 --no-heading
 --smart-case
 --follow
---no-require-git
+--ignore-file=/home/beirut/.config/git/ignore

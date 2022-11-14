@@ -14,16 +14,6 @@ M.commands = {
 }
 M.commands.cc = M.commands.cpp
 
-M.create_scratch_buffer = function()
-    local scratch_bufnr = api.nvim_create_buf(false, true)
-
-    api.nvim_buf_set_option(scratch_bufnr, 'filetype', 'run')
-
-    return scratch_bufnr
-end
-
-M.delete_scratch_buffer = function(scratch_bufnr) vim.cmd.bw(scratch_bufnr) end
-
 M.show_scratch_buffer = function(scratch_bufnr)
     vim.cmd('vert sbuffer ' .. scratch_bufnr)
     api.nvim_win_set_option(fn.bufwinid(scratch_bufnr), 'number', false)
@@ -35,11 +25,11 @@ M.get_job_info = function(command, filename)
     local header, jobcmd = '', ''
 
     if command.build then
-        jobcmd = ('%s %s && %s; %s'):format(
+        jobcmd = ('%s %s && %s%s'):format(
             command.build,
             filename,
             command.run,
-            command.clean
+            command.clean and ('; ' .. command.clean) or ''
         )
         header = command.build
     else
@@ -75,10 +65,6 @@ M.on_exit = function(exit_code, scratch_bufnr, start_time)
             units
         ),
     })
-end
-
-M.output_data = function(_, data, scratch_bufnr)
-    api.nvim_buf_set_lines(scratch_bufnr, -1, -1, false, data)
 end
 
 return M

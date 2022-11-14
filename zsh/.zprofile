@@ -54,6 +54,7 @@ export SCRIPTS="$HOME/.local/bin/scripts"
 [[ "$PATH" == *"$HOME/.local/bin"* ]] || export PATH="$PATH:$HOME/.local/bin"
 [[ "$PATH" == *"$SCRIPTS"* ]] || export PATH="$PATH:$SCRIPTS"
 
+# FZF
 export FZF_COMPLETION_TRIGGER=\;
 export FZF_ALT_C_COMMAND='fd --type directory --hidden --strip-cwd-prefix'
 export FZF_CTRL_R_OPTS='--reverse'

@@ -22,7 +22,7 @@ local run = function()
         'n',
         '<leader>bd',
         function()
-            utils.delete_scratch_buffer(cache[bufnr].bufnr)
+            vim.cmd.bw(cache[bufnr].bufnr)
 
             require('mini.bufremove').delete(0, false)
 
@@ -30,7 +30,7 @@ local run = function()
         end,
     }
 
-    bmap({
+    bmap {
         'n',
         '<c-c>',
         function()
@@ -41,16 +41,16 @@ local run = function()
             if not id then return end
 
             fn.jobstop(id)
-            fn.jobstart(command.kill)
-
             cache[bufnr].job_id = nil
+
+            fn.jobstart(command.kill)
         end,
-    }, { buffer = bufnr })
+    }
 
     api.nvim_create_autocmd('QuitPre', {
         pattern = '<buffer>',
         callback = function()
-            utils.delete_scratch_buffer(cache[bufnr].bufnr)
+            vim.cmd.bw(cache[bufnr].bufnr)
             cache[bufnr] = nil
         end,
         group = aug,
@@ -63,7 +63,8 @@ local run = function()
             if cache[bufnr] then scratch_bufnr = cache[bufnr].bufnr end
 
             if not scratch_bufnr then
-                scratch_bufnr = utils.create_scratch_buffer()
+                scratch_bufnr = api.nvim_create_buf(false, true)
+                api.nvim_buf_set_option(scratch_bufnr, 'filetype', 'run')
                 cache[bufnr] = { bufnr = scratch_bufnr }
             end
 
@@ -73,8 +74,9 @@ local run = function()
 
             api.nvim_buf_set_lines(scratch_bufnr, 0, -1, false, { header, '' })
 
-            local output_data =
-                function(_, data) utils.output_data(_, data, scratch_bufnr) end
+            local output_data = function(_, data)
+                api.nvim_buf_set_lines(scratch_bufnr, -1, -1, false, data)
+            end
 
             local start_time = fn.reltime()
 

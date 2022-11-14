@@ -18,6 +18,7 @@ ls.config.set_config {
 }
 
 ls.filetype_extend('cpp', { 'c' })
+ls.filetype_extend('htmldjango', { 'html' })
 ls.filetype_extend('javascriptreact', { 'javascript', 'html' })
 ls.filetype_extend('typescript', { 'javascript' })
 ls.filetype_extend('typescriptreact', { 'javascriptreact' })

@@ -40,11 +40,11 @@ map({ 'x', ';', ':' }, { silent = false })
 map { 'n', 'J', 'mzJ`z' }
 map { 'x', 'J', [[:m '>+1<cr>gv=gv]] }
 map { 'x', 'K', [[:m '<-2<cr>gv=gv]] }
-map { 'n', 'Q', 'q:k' }
 
 map { 'n', '<leader><cr>', cmd.source }
 map { 'n', '<leader>-', 'S<esc>' }
 
+map { 'n', '<leader>ic', '<cmd>let &ch = (&ch + 1) % 2<cr>' }
 map { 'n', '<leader>is', '<cmd>setl spell!<cr>' }
 map { 'n', '<leader>iw', '<cmd>setl wrap!<cr>' }
 

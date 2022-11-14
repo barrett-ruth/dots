@@ -64,6 +64,8 @@ M.on_attach = function(client, _)
     local server_capabilities = client.server_capabilities
     local diagnostic, buf = vim.diagnostic, vim.lsp.buf
 
+    require('cmp').setup.buffer { enabled = false }
+
     if server_capabilities.documentFormattingProvider then
         bmap {
             'n',
@@ -104,8 +106,7 @@ M.on_attach = function(client, _)
     end
 
     if server_capabilities.signatureHelpProvider then
-        require('lsp.signature').setup(client)
-        bmap { 'i', '<c-space>', buf.signature_help }
+        bmap { 'i', '<c-h>', buf.signature_help }
     end
 
     if server_capabilities.documentSymbolProvider then

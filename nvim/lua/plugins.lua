@@ -3,11 +3,6 @@ local paq = require 'paq'
 paq {
     'savq/paq-nvim',
 
-    'folke/neodev.nvim',
-    'kristijanhusak/vim-dadbod-ui',
-    'nanotee/sqls.nvim',
-    'neovim/nvim-lspconfig',
-
     'andymass/vim-matchup',
 
     'AndrewRadev/splitjoin.vim',
@@ -17,14 +12,26 @@ paq {
         run = function() vim.fn['mkdp#util#install']() end,
     },
 
+    'davidsierradz/cmp-conventionalcommits',
+    'hrsh7th/nvim-cmp',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-path',
+    'kristijanhusak/vim-dadbod-completion',
+    'petertriho/cmp-git',
+
     'echasnovski/mini.ai',
     'echasnovski/mini.align',
     'echasnovski/mini.bufremove',
-    'echasnovski/mini.comment',
     'echasnovski/mini.cursorword',
     'echasnovski/mini.pairs',
 
     'elihunter173/dirbuf.nvim',
+
+    'folke/neodev.nvim',
+    'kristijanhusak/vim-dadbod-ui',
+    'nanotee/sqls.nvim',
+    'neovim/nvim-lspconfig',
 
     'jose-elias-alvarez/null-ls.nvim',
     'jose-elias-alvarez/typescript.nvim',
@@ -41,6 +48,8 @@ paq {
     'L3MON4D3/LuaSnip',
 
     'monaqa/dial.nvim',
+
+    'numToStr/Comment.nvim',
 
     'nvim-telescope/telescope.nvim',
     'nvim-telescope/telescope-fzy-native.nvim',
