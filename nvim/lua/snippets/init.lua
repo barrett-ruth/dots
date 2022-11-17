@@ -85,3 +85,4 @@ map {
         end
     end,
 }
+map { 'i', '<c-d>', '<c-k>' }

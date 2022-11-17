@@ -27,7 +27,7 @@ null_ls.setup {
 
         -- Diagnostics
         diagnostics.curlylint.with {
-            extra_filetypes = { 'html' },
+            extra_filetypes = { 'html', 'htmldjango' },
         },
         diagnostics.eslint_d.with {
             condition = function(utils)
@@ -88,6 +88,7 @@ null_ls.setup {
                 'css',
                 'graphql',
                 'html',
+                'htmldjango',
                 'javascript',
                 'javascriptreact',
                 'json',

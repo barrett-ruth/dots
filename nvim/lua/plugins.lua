@@ -52,6 +52,7 @@ paq {
     'numToStr/Comment.nvim',
 
     'nvim-telescope/telescope.nvim',
+    'barrett-ruth/telescope-http.nvim',
     'nvim-telescope/telescope-fzy-native.nvim',
 
     'nvim-lua/plenary.nvim',
@@ -70,6 +71,8 @@ paq {
     'tommcdo/vim-exchange',
 
     'tpope/vim-abolish',
+    'tpope/vim-apathy',
+    'tpope/vim-characterize',
     'tpope/vim-dadbod',
     'tpope/vim-fugitive',
     'tpope/vim-repeat',

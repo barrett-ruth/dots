@@ -13,6 +13,7 @@ telescope.setup {
             },
         },
         prompt_title = '',
+        results_title = false,
         borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
         layout_config = {
             prompt_position = 'top',
@@ -36,10 +37,16 @@ telescope.setup {
             show_line = true,
         },
     },
+    extensions = {
+        http = {
+            open_url = 'chromium --new-window %s',
+        },
+    },
 }
 
 telescope.load_extension 'fzy_native'
 telescope.load_extension 'git_worktree'
+telescope.load_extension 'http'
 
 map { 'n', '<c-b>', builtin.buffers }
 map {
@@ -53,6 +60,11 @@ map {
 }
 map { 'n', '<c-g>', builtin.live_grep }
 
+map {
+    'n',
+    '<leader>tc',
+    require('telescope').extensions.http.list,
+}
 map {
     'n',
     '<leader>te',

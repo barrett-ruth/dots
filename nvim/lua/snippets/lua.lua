@@ -28,7 +28,7 @@ local extract_vars = function(args)
 end
 
 return {
-    s('pr', fmt('print({})', { i(1) })),
+    s('pr', fmt('vim.pretty_print({})', { i(1) })),
     s('af', fmt('function({}) {} end', { i(1), i(2) })),
     s('fun', fmt('function({})\n\t{}\nend', { i(1), i(2) })),
     s('if', fmt('if {} then\n\t{}\nend', { i(1), i(2) })),
