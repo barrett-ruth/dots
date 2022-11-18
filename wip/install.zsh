@@ -312,7 +312,7 @@ cd ..
 
 setup_pip() {
 python -m ensurepip
-pip3 install black djlint flake8 isort jedi-language-server mypy virtualenv yamllint
+pip3 install black curlylint djlint flake8 isort jedi-language-server mypy virtualenv yamllint
 }
 
 

@@ -26,6 +26,9 @@ null_ls.setup {
         code_actions.shellcheck,
 
         -- Diagnostics
+        diagnostics.curlylint.with {
+            extra_filetypes = { 'html' },
+        },
         diagnostics.djlint.with {
             extra_filetypes = { 'html' },
         },

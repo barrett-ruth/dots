@@ -29,7 +29,12 @@ require('nvim-treesitter.configs').setup {
         'yaml',
     },
     indent = { enable = false },
-    highlight = { enable = true },
+    highlight = {
+        enable = true,
+        disable = function(_, bufnr)
+            return vim.fn.line('$', vim.fn.bufwinid(bufnr)) > 10000
+        end,
+    },
     textobjects = {
         move = {
             enable = true,
