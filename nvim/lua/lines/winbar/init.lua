@@ -22,5 +22,7 @@ return {
             end
         end
     end,
-    winbar = function() return ' ' .. format_components(components) end,
+    winbar = function()
+        return ' ' .. format_components(components)
+    end,
 }

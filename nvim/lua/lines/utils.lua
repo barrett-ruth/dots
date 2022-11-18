@@ -1,7 +1,9 @@
 local M = {}
 
 local vorfn = function(val_or_fn)
-    if type(val_or_fn) == 'function' then return val_or_fn() end
+    if type(val_or_fn) == 'function' then
+        return val_or_fn()
+    end
 
     return val_or_fn
 end

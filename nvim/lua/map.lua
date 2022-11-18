@@ -49,9 +49,21 @@ map { 'n', '<leader>is', '<cmd>setl spell!<cr>' }
 map { 'n', '<leader>iw', '<cmd>setl wrap!<cr>' }
 
 map({ '', '<leader>y', '"+y' }, { silent = false })
-map { '', '<leader>Y', function() vim.fn.setreg('+', vim.fn.getreg '"') end }
+map {
+    '',
+    '<leader>Y',
+    function()
+        vim.fn.setreg('+', vim.fn.getreg '"')
+    end,
+}
 map({ 'n', '<leader>q', cmd.q }, { silent = false })
-map { 'n', '<leader>Q', function() vim.cmd 'qall!' end }
+map {
+    'n',
+    '<leader>Q',
+    function()
+        vim.cmd 'qall!'
+    end,
+}
 map {
     'n',
     '<leader>w',

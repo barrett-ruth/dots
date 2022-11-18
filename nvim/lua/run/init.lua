@@ -9,7 +9,9 @@ local M = {}
 local run = function()
     local extension = fn.expand '%:e'
 
-    if not commands[extension] then return end
+    if not commands[extension] then
+        return
+    end
 
     local filename = fn.expand '%'
     local command = commands[extension]
@@ -34,11 +36,15 @@ local run = function()
         'n',
         '<c-c>',
         function()
-            if not cache[bufnr] then return end
+            if not cache[bufnr] then
+                return
+            end
 
             local id = cache[bufnr].job_id
 
-            if not id then return end
+            if not id then
+                return
+            end
 
             fn.jobstop(id)
             cache[bufnr].job_id = nil
@@ -60,7 +66,9 @@ local run = function()
         pattern = '<buffer>',
         callback = function()
             local scratch_bufnr
-            if cache[bufnr] then scratch_bufnr = cache[bufnr].bufnr end
+            if cache[bufnr] then
+                scratch_bufnr = cache[bufnr].bufnr
+            end
 
             if not scratch_bufnr then
                 scratch_bufnr = api.nvim_create_buf(false, true)

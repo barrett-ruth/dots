@@ -1,7 +1,9 @@
 local function class_assign_args(args)
     local arg = args[1][1]
 
-    if arg:len() == 0 then return sn(nil, { t { '', '\t\t' } }) end
+    if arg:len() == 0 then
+        return sn(nil, { t { '', '\t\t' } })
+    end
 
     local assign_args = {}
     for e in arg:gmatch ' ?([^,]*): ?' do

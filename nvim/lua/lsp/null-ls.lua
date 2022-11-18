@@ -27,7 +27,7 @@ null_ls.setup {
 
         -- Diagnostics
         diagnostics.djlint.with {
-            extra_filetypes = { 'html' }
+            extra_filetypes = { 'html' },
         },
         diagnostics.eslint_d.with {
             condition = function(utils)
@@ -61,10 +61,14 @@ null_ls.setup {
 
         -- Formatting
         formatting.autopep8.with {
-            condition = function(_) return project_contains_source('autopep8', false) end,
+            condition = function(_)
+                return project_contains_source('autopep8', false)
+            end,
         },
         formatting.black.with {
-            condition = function(_) return project_contains_source('black', true) end,
+            condition = function(_)
+                return project_contains_source('black', true)
+            end,
             extra_args = {
                 '--skip-string-normalization',
                 '--fast',
@@ -72,7 +76,9 @@ null_ls.setup {
             },
         },
         formatting.isort.with {
-            condition = function(_) return project_contains_source('isort', true) end,
+            condition = function(_)
+                return project_contains_source('isort', true)
+            end,
         },
 
         formatting.clang_format.with {

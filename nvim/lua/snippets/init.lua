@@ -58,7 +58,9 @@ map {
     'i',
     '<c-s>',
     function()
-        if ls.expandable() then ls.expand() end
+        if ls.expandable() then
+            ls.expand()
+        end
     end,
 }
 map {

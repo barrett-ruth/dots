@@ -13,7 +13,9 @@ au('BufEnter', {
     callback = function()
         vim.cmd 'setl formatoptions-=cro spelloptions=camel,noplainbuffer'
 
-        if vim.bo.filetype == '' then return end
+        if vim.bo.filetype == '' then
+            return
+        end
 
         require('lines.winbar').set_unfocused_winbars()
 

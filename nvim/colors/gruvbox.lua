@@ -2,11 +2,15 @@ local g = vim.g
 
 vim.o.termguicolors = true
 
-if g.colors_name then vim.cmd.hi 'clear' end
+if g.colors_name then
+    vim.cmd.hi 'clear'
+end
 
 g.colors_name = 'gruvbox'
 
-if vim.fn.exists 'syntax_on' then vim.cmd.syntax 'reset' end
+if vim.fn.exists 'syntax_on' then
+    vim.cmd.syntax 'reset'
+end
 
 local gruvbox = require 'gruvbox'
 local cs, hi, link = gruvbox.cs, gruvbox.hi, gruvbox.link

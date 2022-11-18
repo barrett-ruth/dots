@@ -19,6 +19,6 @@ require('dial.config').augends:register_group {
         augend.integer.alias.decimal_int,
         augend.integer.alias.hex,
         augend.integer.alias.octal,
-        augend.semver.alias.semver
+        augend.semver.alias.semver,
     },
 }

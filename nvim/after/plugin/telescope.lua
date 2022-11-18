@@ -55,7 +55,9 @@ map {
     function()
         local ok = pcall(builtin.git_files)
 
-        if not ok then pcall(builtin.find_files) end
+        if not ok then
+            pcall(builtin.find_files)
+        end
     end,
 }
 map { 'n', '<c-g>', builtin.live_grep }
@@ -68,17 +70,23 @@ map {
 map {
     'n',
     '<leader>te',
-    function() builtin.find_files { cwd = vim.env.XDG_CONFIG_HOME } end,
+    function()
+        builtin.find_files { cwd = vim.env.XDG_CONFIG_HOME }
+    end,
 }
 map {
     'n',
     '<leader>tf',
-    function() builtin.find_files { cwd = vim.fn.expand '%:h' } end,
+    function()
+        builtin.find_files { cwd = vim.fn.expand '%:h' }
+    end,
 }
 map {
     'n',
     '<leader>tg',
-    function() builtin.live_grep { cwd = vim.fn.expand '%:h' } end,
+    function()
+        builtin.live_grep { cwd = vim.fn.expand '%:h' }
+    end,
 }
 map { 'n', '<leader>th', builtin.help_tags }
 map { 'n', '<leader>tl', builtin.loclist }
@@ -88,5 +96,7 @@ map { 'n', '<leader>tr', builtin.resume }
 map {
     'n',
     '<leader>ts',
-    function() builtin.find_files { cwd = vim.env.SCRIPTS } end,
+    function()
+        builtin.find_files { cwd = vim.env.SCRIPTS }
+    end,
 }

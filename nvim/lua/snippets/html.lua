@@ -1,5 +1,7 @@
 local word = function(i)
-    return f(function(name) return vim.split(name[1][1], ' ')[1] end, { i })
+    return f(function(name)
+        return vim.split(name[1][1], ' ')[1]
+    end, { i })
 end
 
 return {

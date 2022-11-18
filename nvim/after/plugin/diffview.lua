@@ -3,11 +3,11 @@ require('diffview').setup {
     use_icons = false,
     icons = {
         folder_closed = '',
-        folder_open = ''
+        folder_open = '',
     },
     signs = {
         fold_closed = '',
         fold_open = '',
-        done = ''
-    }
+        done = '',
+    },
 }

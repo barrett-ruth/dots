@@ -9,7 +9,9 @@ paq {
 
     {
         'iamcco/markdown-preview.nvim',
-        run = function() vim.fn['mkdp#util#install']() end,
+        run = function()
+            vim.fn['mkdp#util#install']()
+        end,
     },
 
     'davidsierradz/cmp-conventionalcommits',
@@ -57,7 +59,9 @@ paq {
     'nvim-lua/plenary.nvim',
     {
         'nvim-treesitter/nvim-treesitter',
-        run = function() require('nvim-treesitter.install').update { with_sync = true } end,
+        run = function()
+            require('nvim-treesitter.install').update { with_sync = true }
+        end,
     },
     'nvim-treesitter/nvim-treesitter-context',
     'nvim-treesitter/nvim-treesitter-textobjects',

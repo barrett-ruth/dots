@@ -55,7 +55,9 @@ local rename = function()
 
             vim.lsp.buf.rename(new_name)
 
-            if api.nvim_get_mode() == 'i' then api.nvim_input '<esc>' end
+            if api.nvim_get_mode() == 'i' then
+                api.nvim_input '<esc>'
+            end
         end,
     }, { buffer = bufnr })
 end
@@ -97,9 +99,13 @@ M.on_attach = function(client, _)
 
     bmap { 'n', '\\f', diagnostic.open_float }
 
-    if server_capabilities.hoverProvider then bmap { 'n', '\\h', buf.hover } end
+    if server_capabilities.hoverProvider then
+        bmap { 'n', '\\h', buf.hover }
+    end
 
-    if server_capabilities.renameProvider then bmap { 'n', '\\r', rename } end
+    if server_capabilities.renameProvider then
+        bmap { 'n', '\\r', rename }
+    end
 
     if server_capabilities.referencesProvider then
         bmap { 'n', '\\R', builtin.lsp_references }
@@ -129,12 +135,16 @@ M.on_attach = function(client, _)
         bmap {
             'n',
             '\\sc',
-            function() builtin.lsp_document_symbols { symbols = 'Class' } end,
+            function()
+                builtin.lsp_document_symbols { symbols = 'Class' }
+            end,
         }
         bmap {
             'n',
             '\\sf',
-            function() builtin.lsp_document_symbols { symbols = 'Function' } end,
+            function()
+                builtin.lsp_document_symbols { symbols = 'Function' }
+            end,
         }
     end
 

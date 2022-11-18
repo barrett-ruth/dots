@@ -10,7 +10,9 @@ local search = {
     end,
     condition = function()
         local status, searchcount = pcall(fn.searchcount)
-        if not status then return false end
+        if not status then
+            return false
+        end
 
         return searchcount.total > 0
     end,
@@ -21,7 +23,9 @@ local file = {
     value = function()
         local file = fn.expand '%:f'
 
-        if file:find(vim.env.HOME) then file = fn.expand '%:~' end
+        if file:find(vim.env.HOME) then
+            file = fn.expand '%:~'
+        end
 
         return file
     end,
@@ -29,8 +33,12 @@ local file = {
 }
 
 local git = {
-    value = function() return vim.b.gitsigns_head end,
-    condition = function() return not utils.empty(vim.b.gitsigns_head) end,
+    value = function()
+        return vim.b.gitsigns_head
+    end,
+    condition = function()
+        return not utils.empty(vim.b.gitsigns_head)
+    end,
     highlight = 'Orange',
 }
 
@@ -43,7 +51,9 @@ local filetype = {
     value = function()
         local ft = vim.bo.filetype
 
-        if utils.empty(ft) then ft = vim.bo.buftype end
+        if utils.empty(ft) then
+            ft = vim.bo.buftype
+        end
 
         return ft
     end,
@@ -55,7 +65,9 @@ local filetype = {
 }
 
 local fileinfo = {
-    value = function() return ('%s[%s]'):format(vim.bo.fileencoding, vim.bo.fileformat) end,
+    value = function()
+        return ('%s[%s]'):format(vim.bo.fileencoding, vim.bo.fileformat)
+    end,
     highlight = 'Green',
 }
 
