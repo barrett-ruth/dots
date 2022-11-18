@@ -1,5 +1,1 @@
-require('Comment').setup {
-    toggler = {
-        line = 'gcl',
-    },
-}
+require('Comment').setup()

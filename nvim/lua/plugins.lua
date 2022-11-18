@@ -24,7 +24,6 @@ paq {
     'echasnovski/mini.align',
     'echasnovski/mini.bufremove',
     'echasnovski/mini.cursorword',
-    'echasnovski/mini.pairs',
 
     'elihunter173/dirbuf.nvim',
 

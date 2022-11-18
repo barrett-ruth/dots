@@ -55,7 +55,7 @@ local rename = function()
 
             vim.lsp.buf.rename(new_name)
 
-            if vim.fn.mode() == 'i' then api.nvim_input '<esc>e' end
+            if api.nvim_get_mode() == 'i' then api.nvim_input '<esc>' end
         end,
     }, { buffer = bufnr })
 end

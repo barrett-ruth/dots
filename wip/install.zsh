@@ -50,7 +50,7 @@ run 'pacstrap -K /mnt base linux-lts linux-firmware linux-lts-headers intel-ucod
     xorg-server xorg-setxkbmap xorg-xinit xorg-xmodmap xorg-xrandr xorg-xrdb xorg-xset \
     libxft libxinerama
     dash exa feh harfbuzz man-db man-pages postgresql tmux yarn \
-    shfmt lua stylua tidy tree-sitter lua-language-server \
+    selene shfmt lua stylua tidy tree-sitter lua-language-server \
     imagemagick \
     jq mpv pulseaudio rsync socat transmission-cli'
 
@@ -312,7 +312,7 @@ cd ..
 
 setup_pip() {
 python -m ensurepip
-pip3 install black curlylint flake8 isort jedi-language-server mypy virtualenv yamllint
+pip3 install black djlint flake8 isort jedi-language-server mypy virtualenv yamllint
 }
 
 

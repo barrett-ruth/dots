@@ -179,6 +179,7 @@ hi('@text.reference', { fg = cs.blue })
 hi('@text.strong', { bold = true })
 hi('@text.uri', { fg = cs.blue })
 hi('@text.warning', { fg = cs.yellow, bold = true })
+link('@text.warning', 'Todo')
 
 -- booleans
 hi('Boolean', { fg = cs.cyan })

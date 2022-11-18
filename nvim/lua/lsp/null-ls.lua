@@ -26,8 +26,8 @@ null_ls.setup {
         code_actions.shellcheck,
 
         -- Diagnostics
-        diagnostics.curlylint.with {
-            extra_filetypes = { 'html', 'htmldjango' },
+        diagnostics.djlint.with {
+            extra_filetypes = { 'html' }
         },
         diagnostics.eslint_d.with {
             condition = function(utils)
@@ -54,20 +54,17 @@ null_ls.setup {
             diagnostics_format = '#{m}',
         },
         diagnostics.mypy,
+        diagnostics.selene,
         diagnostics.shellcheck,
         diagnostics.tsc,
         diagnostics.yamllint,
 
         -- Formatting
         formatting.autopep8.with {
-            condition = function(_)
-                return project_contains_source('autopep8', false)
-            end,
+            condition = function(_) return project_contains_source('autopep8', false) end,
         },
         formatting.black.with {
-            condition = function(_)
-                return project_contains_source('black', true)
-            end,
+            condition = function(_) return project_contains_source('black', true) end,
             extra_args = {
                 '--skip-string-normalization',
                 '--fast',
@@ -75,9 +72,7 @@ null_ls.setup {
             },
         },
         formatting.isort.with {
-            condition = function(_)
-                return project_contains_source('isort', true)
-            end,
+            condition = function(_) return project_contains_source('isort', true) end,
         },
 
         formatting.clang_format.with {
