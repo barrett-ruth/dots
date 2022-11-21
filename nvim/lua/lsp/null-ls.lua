@@ -87,12 +87,14 @@ null_ls.setup {
         formatting.clang_format.with {
             filetypes = { 'c', 'cpp' },
         },
+        formatting.djlint.with {
+            extra_args = { '--indent', '2' }
+        },
         formatting.prettier.with {
             filetypes = {
                 'css',
                 'graphql',
                 'html',
-                'htmldjango',
                 'javascript',
                 'javascriptreact',
                 'json',

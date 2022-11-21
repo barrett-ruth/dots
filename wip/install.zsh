@@ -306,7 +306,7 @@ cd ..
 #}
 # chrome://settings/searchEngines {
 #    Arch Wikipedia, Github, ZLib site searches
-# extensions: wikiwand, ublockorigin, react devtools, vimium c, clear new tab (background rgb(69, 87, 96, 1)), google translate
+# extensions: wikiwand, ublockorigin, react devtools, vimium c, clear new tab (background rgb(69, 87, 96, 1)), google translate, numbered-tabs
 #}
 
 

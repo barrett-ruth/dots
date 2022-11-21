@@ -2,7 +2,6 @@ local M = {}
 
 local format = function()
     vim.lsp.buf.format {
-        async = true,
         filter = function(client)
             return not vim.tbl_contains({
                 'clangd', -- clang-format
@@ -73,8 +72,8 @@ M.on_attach = function(client, _)
             'n',
             '<leader>w',
             function()
-                vim.cmd.w()
                 format()
+                vim.cmd.w()
             end,
         }
     end
