@@ -43,6 +43,7 @@ for _, color in ipairs {
     'Cyan',
     'Blue',
     'Purple',
+    'Grey',
     'White',
     'Black',
 } do

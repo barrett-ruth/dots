@@ -21,6 +21,7 @@ __shrink() {
     else
         echo '%c' && exit
     fi
+
     for dir in $tree; do
         [[ $dir == $base ]] && res+=/$dir && break
         res+=/$dir[1]
@@ -38,12 +39,16 @@ __set_git() {
       is_git=false
       return
   fi
+
   is_git=true
+
   setopt +o nomatch
+
   local sb=(${(@f)"$(git status -sb)"}) up_down us
   (( ${#sb[@]} > 1 )) && local dirty=*
   sb="${sb[1]}"
   local br="${${sb%%.*}##* }"
+
   if [[ -z "${sb##*...*}" ]]; then
     local usi="${sb##*.}"
     local usr="${usi%%/*}"
@@ -56,6 +61,7 @@ __set_git() {
   else
       br="${sb##* }"
   fi
+
   PS1+="%f$dirty%F{green}$br$us%f$up_down "
 }
 

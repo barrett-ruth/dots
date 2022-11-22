@@ -16,20 +16,18 @@ local search = {
 
         return searchcount.total > 0
     end,
-    highlight = 'White',
 }
 
 local file = {
     value = function()
-        local file = fn.expand '%:f'
+        local fname = fn.expand '%:f'
 
-        if file:find(vim.env.HOME) then
-            file = fn.expand '%:~'
+        if fname:find(vim.env.HOME) then
+            fname = fn.expand '%:~'
         end
 
-        return file
+        return fname
     end,
-    highlight = 'Yellow',
 }
 
 local git = {
@@ -39,12 +37,10 @@ local git = {
     condition = function()
         return not utils.empty(vim.b.gitsigns_head)
     end,
-    highlight = 'Orange',
 }
 
 local line = {
     value = '%l:%L',
-    highlight = 'Blue',
 }
 
 local filetype = {
@@ -61,14 +57,12 @@ local filetype = {
         return not utils.empty(vim.bo.filetype)
             or not utils.empty(vim.bo.buftype)
     end,
-    highlight = 'Purple',
 }
 
 local fileinfo = {
     value = function()
         return ('%s[%s]'):format(vim.bo.fileencoding, vim.bo.fileformat)
     end,
-    highlight = 'Green',
 }
 
 return {

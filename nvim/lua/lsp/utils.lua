@@ -110,10 +110,6 @@ M.on_attach = function(client, _)
         bmap { 'n', '\\R', builtin.lsp_references }
     end
 
-    if server_capabilities.signatureHelpProvider then
-        bmap { 'i', '<c-h>', buf.signature_help }
-    end
-
     if server_capabilities.documentSymbolProvider then
         bmap {
             'n',
@@ -169,6 +165,7 @@ M.prepare_lsp_settings = function(settings)
     default_settings.capabilities.offsetEncoding = { 'utf-16' }
     default_settings.capabilities.textDocument.completion.completionItem.snippetSupport =
         false
+
     default_settings.flags = { debounce_text_changes = 0 }
     default_settings.on_attach = M.on_attach
 

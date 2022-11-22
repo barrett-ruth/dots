@@ -4,6 +4,17 @@ vim.g.completeopt = 'menuone,noinsert,noselect'
 local cmp = require 'cmp'
 local mapping = cmp.mapping
 
+local kinds = {
+    Class = 'cls',
+    Field = 'field',
+    Function = 'fn',
+    Keyword = 'key',
+    Method = 'meth',
+    Property = 'prop',
+    Text = 'txt',
+    Variable = 'var',
+}
+
 cmp.setup {
     snippet = {
         expand = function(args)
@@ -22,7 +33,7 @@ cmp.setup {
     },
     formatting = {
         format = function(_, vim_item)
-            vim_item.kind = ''
+            vim_item.kind = kinds[vim_item.kind] or vim_item.kind
 
             if vim_item.abbr:sub(-1, -1) == '~' then
                 vim_item.abbr = vim_item.abbr:sub(0, -2)

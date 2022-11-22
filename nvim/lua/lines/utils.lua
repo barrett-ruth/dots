@@ -9,7 +9,7 @@ local vorfn = function(val_or_fn)
 end
 
 local format_component = function(component)
-    return ('%%#%s#%s'):format(component.highlight, vorfn(component.value))
+    return '%#Grey#' .. vorfn(component.value)
 end
 
 M.format_components = function(components)

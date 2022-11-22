@@ -4,13 +4,12 @@ local path = {
         local shrunk = expanded
 
         if vim.startswith(expanded, vim.env.HOME) then
-            local path = require 'plenary.path'
-            shrunk = path:new(vim.fn.expand '%:~'):shorten()
+            local fpath = require 'plenary.path'
+            shrunk = fpath:new(vim.fn.expand '%:~'):shorten()
         end
 
         return shrunk
     end,
-    highlight = 'Yellow',
 }
 
 return {
