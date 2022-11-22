@@ -317,7 +317,7 @@ pip3 install black curlylint djlint flake8 isort jedi-language-server mypy virtu
 
 
 setup_yarn() {
-yarn --use-yarnrc ~/.config/yarn/config global add prettier @tailwindcss/language-server eslint_d neovim prettier pyright typescript typescript-language-server ts-node @types/node vim-language-server vscode-langservers-extracted sql-formatter markdownlint markdownlint-cli
+yarn --use-yarnrc ~/.config/yarn/config global add prettier @tailwindcss/language-server eslint_d neovim prettier pyright typescript typescript-language-server ts-node @types/node vim-language-server vscode-langservers-extracted sql-formatter markdownlint markdownlint-cli cssmodules-language-server
 rm "$HOME/.yarnrc"
 }
 
