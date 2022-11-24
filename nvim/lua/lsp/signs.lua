@@ -37,7 +37,6 @@ vim.diagnostic.config {
     virtual_text = false,
     float = {
         header = '',
-        prefix = '',
         border = 'single',
         format = function(diagnostic)
             local code = diagnostic.code
@@ -46,13 +45,13 @@ vim.diagnostic.config {
             local source = sources[diagnostic.source] or diagnostic.source
 
             if require('utils').empty(code) then
-                return ('> %s (%s)'):format(message, source)
+                return ('%s (%s)'):format(message, source)
             else
                 if source == 'pyright' then
                     code = code:gsub('report', ''):gsub('^%u', string.lower, 1)
                 end
 
-                return ('> %s [%s] (%s)'):format(message, code, source)
+                return ('%s [%s] (%s)'):format(message, code, source)
             end
         end,
     },

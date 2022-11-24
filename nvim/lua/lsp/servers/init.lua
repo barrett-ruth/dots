@@ -1,5 +1,6 @@
 local servers = {
     'clangd',
+    'cssmodules_ls',
     'cssls',
     'html',
     'jedi_language_server',

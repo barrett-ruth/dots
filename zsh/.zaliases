@@ -19,14 +19,11 @@ alias lss='less --use-color --color=d+b --color=P+c --color=u+g'
 alias g='git'
 alias nv='nvim'
 alias pe='printenv'
+alias pm='pacman'
 alias rs="rsync -e 'ssh -F $XDG_CONFIG_HOME/ssh/config'"
 alias ssh="ssh -F $XDG_CONFIG_HOME/ssh/config"
 alias tcli='transmission-cli'
 alias tdae="transmission-daemon --logfile $XDG_STATE_HOME/transmission-daemon.log &"
-
-# Pacman
-alias pm='pacman'
-alias pmq='pacman -Q'
 
 # Yarn
 wool() {

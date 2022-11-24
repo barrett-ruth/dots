@@ -22,6 +22,7 @@ gitsigns.setup {
         bmap { 'n', '<leader>gh', builtin.git_bcommits }
 
         local git_worktree = require('telescope').extensions.git_worktree
+
         bmap { 'n', '<leader>gw', git_worktree.git_worktrees }
         bmap { 'n', '<leader>gW', git_worktree.create_git_worktree }
     end,
@@ -31,14 +32,10 @@ gitsigns.setup {
     update_debounce = 0,
 }
 
-local gitsigns_signs = {
-    Add = { text = '│' },
-    Change = { text = '│' },
-    Changedelete = { text = '~' },
-    Delete = { text = '_' },
-    Topdelete = { text = '‾' },
-}
+local fn = vim.fn
 
-for name, v in pairs(gitsigns_signs) do
-    vim.fn.sign_define('GitSigns' .. name, { text = v.text })
-end
+fn.sign_define('GitSignsAdd', { text = '│' })
+fn.sign_define('GitSignsChange', { text = '│' })
+fn.sign_define('GitSignsChangedelete', { text = '~' })
+fn.sign_define('GitSignsDelete', { text = '_' })
+fn.sign_define('GitSignsTopdelete', { text = '‾' })

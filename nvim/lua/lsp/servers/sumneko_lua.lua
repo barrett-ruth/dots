@@ -5,13 +5,9 @@ return {
         Lua = {
             completion = { keywordSnippet = 'Disable' },
             diagnostics = { globals = { 'vim' } },
-            runtime = {
-                version = 'LuaJIT',
-            },
+            runtime = { version = 'LuaJIT', },
             telemetry = { enable = false },
-            workspace = {
-                checkThirdParty = false,
-            },
+            workspace = { checkThirdParty = false, },
         },
     },
 }

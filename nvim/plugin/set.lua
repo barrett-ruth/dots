@@ -37,7 +37,7 @@ o.pumheight = 10
 
 o.shiftwidth = 4
 
-opt.shortmess:append 'acCIsS'
+opt.shortmess:append 'acCIs'
 
 o.showmode = false
 
@@ -55,8 +55,6 @@ o.undofile = true
 
 o.updatetime = 50
 
-o.wrap = false
-
 g.wildignore = {
     'undo/',
     '__pycache__/',
@@ -73,3 +71,5 @@ g.wildignore = {
     '*.orig',
     '*.rej',
 }
+
+o.wrap = false

@@ -29,6 +29,7 @@ null_ls.setup {
         diagnostics.curlylint.with {
             extra_filetypes = { 'html' },
         },
+        diagnostics.dotenv_linter,
         diagnostics.djlint.with {
             extra_filetypes = { 'html' },
         },
@@ -78,6 +79,7 @@ null_ls.setup {
                 '--line-length=79',
             },
         },
+        formatting.cbfmt,
         formatting.isort.with {
             condition = function(_)
                 return project_contains_source('isort', true)
@@ -88,7 +90,7 @@ null_ls.setup {
             filetypes = { 'c', 'cpp' },
         },
         formatting.djlint.with {
-            extra_args = { '--indent', '2' }
+            extra_args = { '--indent', '2' },
         },
         formatting.prettier.with {
             filetypes = {

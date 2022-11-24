@@ -149,13 +149,6 @@ M.on_attach = function(client, _)
 
     bmap { 'n', ']\\', diagnostic.goto_next }
     bmap { 'n', '[\\', diagnostic.goto_prev }
-
-    bmap { 'n', '\\li', '<cmd>LspInfo<cr>' }
-    bmap { 'n', '\\lI', '<cmd>NullLsInfo<cr>' }
-    bmap { 'n', '\\ll', '<cmd>LspLog<cr>' }
-    bmap { 'n', '\\lL', '<cmd>NullLsLog<cr>' }
-    bmap { 'n', '\\lr', '<cmd>LspRestart<cr>' }
-    bmap { 'n', '\\lR', '<cmd>NullLsRestart<cr>' }
 end
 
 M.prepare_lsp_settings = function(settings)

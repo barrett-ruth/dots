@@ -4,6 +4,11 @@ local actions = require 'telescope.actions'
 
 telescope.setup {
     defaults = {
+        borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
+        hidden = false,
+        layout_config = {
+            prompt_position = 'top',
+        },
         mappings = {
             i = {
                 ['<c-b>'] = actions.results_scrolling_up,
@@ -12,13 +17,9 @@ telescope.setup {
                 ['<c-q>'] = actions.smart_send_to_qflist,
             },
         },
+        preview = false,
         prompt_title = '',
         results_title = false,
-        borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
-        layout_config = {
-            prompt_position = 'top',
-        },
-        preview = false,
         scroll_strategy = 'limit',
         sorting_strategy = 'ascending',
     },
@@ -31,7 +32,7 @@ telescope.setup {
             sort_mru = true,
         },
         git_files = {
-            show_untracked = true,
+            show_untracked = true
         },
         lsp_document_symbols = {
             show_line = true,
@@ -49,17 +50,7 @@ telescope.load_extension 'git_worktree'
 telescope.load_extension 'http'
 
 map { 'n', '<c-b>', builtin.buffers }
-map {
-    'n',
-    '<c-f>',
-    function()
-        local ok = pcall(builtin.git_files)
-
-        if not ok then
-            pcall(builtin.find_files)
-        end
-    end,
-}
+map { 'n', '<c-f>', builtin.find_files }
 map { 'n', '<c-g>', builtin.live_grep }
 
 map {

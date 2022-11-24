@@ -50,7 +50,7 @@ run 'pacstrap -K /mnt base linux-lts linux-firmware linux-lts-headers intel-ucod
     xorg-server xorg-setxkbmap xorg-xinit xorg-xmodmap xorg-xrandr xorg-xrdb xorg-xset \
     libxft libxinerama
     dash exa feh harfbuzz man-db man-pages postgresql tmux yarn \
-    selene shfmt lua stylua tidy tree-sitter lua-language-server \
+    selene shfmt lua stylua tidy tree-sitter lua-language-server rustup \
     imagemagick \
     jq mpv pulseaudio rsync socat transmission-cli'
 
@@ -94,6 +94,12 @@ run 'passwd'
 run "useradd -m $1"
 run "usermod -aG wheel,storage,power $1"
 run "passwd $1"
+}
+
+
+setup_rust() {
+run 'rustup install stable'
+run 'cargo install cbfmt dotenv-linter'
 }
 
 
@@ -176,6 +182,8 @@ run 'systemctl enable reflector.timer'
 run 'systemctl enable iwd'
 
 run 'mv dots/misc/zshenv /etc/zsh'
+
+setup_rust
 
 setup_grub
 

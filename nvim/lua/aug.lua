@@ -3,29 +3,9 @@ local au = api.nvim_create_autocmd
 
 local aug = api.nvim_create_augroup('augs', {})
 
-au('FileType', {
-    pattern = 'dirbuf',
-    command = [[setl winbar=%{%v:lua.require('lines.winbar').winbar()%}]],
-})
-
 au('BufEnter', {
     pattern = '*',
-    callback = function()
-        vim.cmd 'setl formatoptions-=cro spelloptions=camel,noplainbuffer'
-
-        if vim.bo.filetype == '' then
-            return
-        end
-
-        require('lines.winbar').set_unfocused_winbars()
-
-        vim.opt_local.winbar = nil
-    end,
-    group = aug,
-})
-
-au('ColorScheme', {
-    command = [[se statusline=%{%v:lua.require('lines.statusline').statusline()%}]],
+    command = 'setl formatoptions-=cro spelloptions=camel,noplainbuffer',
     group = aug,
 })
 

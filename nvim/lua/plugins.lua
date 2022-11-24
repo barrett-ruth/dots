@@ -25,7 +25,6 @@ paq {
     'echasnovski/mini.ai',
     'echasnovski/mini.align',
     'echasnovski/mini.bufremove',
-    'echasnovski/mini.cursorword',
 
     'elihunter173/dirbuf.nvim',
 
@@ -85,9 +84,3 @@ paq {
     'ThePrimeagen/harpoon',
     'ThePrimeagen/git-worktree.nvim',
 }
-
-map { 'n', '<leader>Pi', paq.install }
-map { 'n', '<leader>Pc', paq.clean }
-map { 'n', '<leader>Pl', paq.list }
-map { 'n', '<leader>PL', paq.log_open }
-map { 'n', '<leader>Pu', paq.update }

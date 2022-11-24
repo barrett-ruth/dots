@@ -38,40 +38,17 @@ map({ 'x', ':', ';' }, { silent = false })
 map({ 'x', ';', ':' }, { silent = false })
 
 map { 'n', 'J', 'mzJ`z' }
-map { 'x', 'J', [[:m '>+1<cr>gv=gv]] }
-map { 'x', 'K', [[:m '<-2<cr>gv=gv]] }
 
-map { 'n', '<leader><cr>', cmd.source }
-map { 'n', '<leader>-', 'S<esc>' }
-
-map { 'n', '<leader>ic', '<cmd>let &ch = (&ch + 1) % 2<cr>' }
-map { 'n', '<leader>is', '<cmd>setl spell!<cr>' }
-map { 'n', '<leader>iw', '<cmd>setl wrap!<cr>' }
-
-map({ '', '<leader>y', '"+y' }, { silent = false })
 map {
-    '',
+    'n',
     '<leader>Y',
     function()
         vim.fn.setreg('+', vim.fn.getreg '"')
     end,
 }
-map({ 'n', '<leader>q', cmd.q }, { silent = false })
-map {
-    'n',
-    '<leader>Q',
-    function()
-        vim.cmd 'qall!'
-    end,
-}
-map {
-    'n',
-    '<leader>w',
-    cmd.w,
-    { silent = false },
-}
-map { 'n', '<leader>z', 'ZZ' }
-map { 'n', '<leader>Z', cmd.wqall }
+map { 'n', '<leader>w', cmd.w }
+map { 'n', '<leader><cr>', cmd.source }
+map { 'n', '<leader>-', 'S<esc>' }
 
 map { 'n', ']b', cmd.bnext }
 map { 'n', '[b', cmd.bprev }
