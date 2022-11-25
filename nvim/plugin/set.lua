@@ -37,7 +37,7 @@ o.pumheight = 10
 
 o.shiftwidth = 4
 
-opt.shortmess:append 'acCIs'
+opt.shortmess:append 'acCIsS'
 
 o.showmode = false
 

@@ -28,6 +28,8 @@ au('InsertLeave', {
 })
 
 au('TextYankPost', {
-    command = [[lua vim.highlight.on_yank { higroup = 'RedrawDebugNormal', timeout = '700' }]],
+    callback = function()
+        vim.highlight.on_yank { higroup = 'RedrawDebugNormal', timeout = '700' }
+    end,
     group = aug,
 })

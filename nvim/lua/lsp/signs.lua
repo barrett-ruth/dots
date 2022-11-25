@@ -1,16 +1,9 @@
-local diagnostic_signs = {
-    Error = { text = '>' },
-    Warn = { text = '—' },
-    Hint = { text = '*' },
-    Info = { text = ':' },
-}
+local fn = vim.fn
 
-for name, v in pairs(diagnostic_signs) do
-    vim.fn.sign_define(
-        'DiagnosticSign' .. name,
-        { text = v.text, texthl = 'Diagnostic' .. name }
-    )
-end
+fn.sign_define('DiagnosticError', { text = '>', texthl = 'DiagnosticError' })
+fn.sign_define('DiagnosticWarn', { text = '—', texthl = 'DiagnosticWarn' })
+fn.sign_define('DiagnosticHint', { text = '*', texthl = 'DiagnosticHint' })
+fn.sign_define('DiagnosticInfo', { text = ':', texthl = 'DiagnosticInfo' })
 
 local lsp = vim.lsp
 local handlers = lsp.handlers
