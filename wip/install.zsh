@@ -50,7 +50,7 @@ run 'pacstrap -K /mnt base linux-lts linux-firmware linux-lts-headers intel-ucod
     xorg-server xorg-setxkbmap xorg-xinit xorg-xmodmap xorg-xrandr xorg-xrdb xorg-xset \
     libxft libxinerama
     dash exa feh harfbuzz man-db man-pages postgresql tmux yarn \
-    selene shfmt lua stylua tidy tree-sitter lua-language-server rust-analyzer rustup \
+    selene shfmt lua stylua tidy tree-sitter lua-language-server rustup \
     imagemagick \
     jq mpv pulseaudio rsync socat transmission-cli'
 
@@ -99,6 +99,7 @@ run "passwd $1"
 
 setup_rust() {
 run 'rustup install stable'
+run 'rusutp component add rust-analyzer'
 run 'cargo install cbfmt dotenv-linter'
 }
 

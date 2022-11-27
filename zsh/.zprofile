@@ -55,7 +55,8 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 [[ "$PATH" == *"$HOME/.local/bin"* ]] || export PATH="$PATH:$HOME/.local/bin"
 export SCRIPTS="$HOME/.local/bin/scripts"
 [[ "$PATH" == *"$SCRIPTS"* ]] || export PATH="$PATH:$SCRIPTS"
-[[ "$PATH" == *"$XDG_DATA_HOME"/cargo/bin* ]] || export PATH="$PATH:$XDG_DATA_HOME/cargo/bin"
+[[ "$PATH" == *"$CARGO_HOME"/bin* ]] || export PATH="$PATH:$CARGO_HOME/bin"
+[[ "$PATH" == *"$RUSTUP_HOME"/bin* ]] || export PATH="$PATH:$RUSTUP_HOME/toolchains/stable-x86_64-unknown-linux-gnu/bin"
 
 # FZF
 export FZF_COMPLETION_TRIGGER=\;
