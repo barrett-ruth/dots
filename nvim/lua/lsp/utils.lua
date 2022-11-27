@@ -28,7 +28,7 @@ local rename = function()
     local bufnr = api.nvim_create_buf(false, true)
     local win = api.nvim_open_win(bufnr, true, {
         style = 'minimal',
-        border = 'single',
+        border = 'rounded',
         relative = 'cursor',
         row = 1,
         col = -1,
@@ -85,8 +85,6 @@ M.on_attach = function(client, _)
     if server_capabilities.definitionProvider then
         bmap { 'n', '\\d', builtin.lsp_definitions }
     end
-
-    bmap { 'n', '\\e', builtin.diagnostics }
 
     if server_capabilities.declarationProvider then
         bmap { 'n', '\\D', buf.declaration }
@@ -147,6 +145,8 @@ M.on_attach = function(client, _)
         bmap { 'n', '\\t', builtin.lsp_type_definitions }
     end
 
+    bmap { 'n', '\\w', builtin.diagnostics }
+
     bmap { 'n', ']\\', diagnostic.goto_next }
     bmap { 'n', '[\\', diagnostic.goto_prev }
 end
@@ -162,7 +162,7 @@ M.prepare_lsp_settings = function(settings)
     default_settings.flags = { debounce_text_changes = 0 }
     default_settings.on_attach = M.on_attach
 
-    return vim.tbl_extend('force', default_settings, settings)
+    return vim.tbl_extend('force', default_settings, settings or {})
 end
 
 return M

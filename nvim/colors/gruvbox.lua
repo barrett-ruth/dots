@@ -111,9 +111,6 @@ hi('CmpItemAbbrMatchFuzzy', { fg = cs.green })
 -- dirbuf.nvim
 hi('Directory', { fg = cs.light_blue })
 
--- vim-highlighturl
-hi('HighlightUrl', { fg = cs.blue, italic = true })
-
 -- telescope
 link('Green', 'TelescopeMatching')
 

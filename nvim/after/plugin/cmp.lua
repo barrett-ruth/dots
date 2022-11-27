@@ -23,12 +23,12 @@ cmp.setup {
     },
     window = {
         completion = {
-            border = 'single',
+            border = 'rounded',
             scrollbar = false,
             winhighlight = 'Normal:None,FloatBorder:None,CursorLine:Visual',
         },
         documentation = {
-            border = 'single',
+            border = 'rounded',
         },
     },
     formatting = {
@@ -73,6 +73,11 @@ cmp.setup.filetype('gitcommit', {
 
 require('cmp_git').setup {
     github = {
+        issues = {
+            state = 'all',
+        },
+    },
+    gitlab = {
         issues = {
             state = 'all',
         },

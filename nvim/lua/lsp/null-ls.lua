@@ -29,7 +29,6 @@ null_ls.setup {
         diagnostics.curlylint.with {
             extra_filetypes = { 'html' },
         },
-        diagnostics.dotenv_linter,
         diagnostics.djlint.with {
             extra_filetypes = { 'html' },
         },

@@ -2,6 +2,10 @@ require('treesitter-context').setup {
     max_lines = 1,
 }
 
+require('treesj').setup {
+    use_default_keymaps = false
+}
+
 require('nvim-treesitter.configs').setup {
     ensure_installed = {
         'c',
@@ -22,6 +26,7 @@ require('nvim-treesitter.configs').setup {
         'markdown_inline',
         'python',
         'query',
+        'rust',
         'sql',
         'tsx',
         'typescript',

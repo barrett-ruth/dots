@@ -4,7 +4,6 @@ local actions = require 'telescope.actions'
 
 telescope.setup {
     defaults = {
-        borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
         hidden = false,
         layout_config = {
             prompt_position = 'top',
@@ -31,12 +30,16 @@ telescope.setup {
             },
             sort_mru = true,
         },
-        git_files = {
-            show_untracked = true
-        },
-        lsp_document_symbols = {
-            show_line = true,
-        },
+        git_files = { show_untracked = true },
+        help_tags = { preview = true },
+        diagnostics = { preview = true },
+        lsp_definitions = { preview = true },
+        lsp_document_symbols = { show_line = true, },
+        lsp_implementations = { preview = true },
+        lsp_references = { preview = true },
+        lsp_type_definitions = { preview = true },
+        loclist = { preview = true },
+        quickfix = { preview = true }
     },
     extensions = {
         http = {

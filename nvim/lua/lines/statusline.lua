@@ -43,7 +43,7 @@ local fileinfo = {
     end,
 }
 
-return {
+local statusline = {
     left = {
         [1] = git,
         [2] = file,
@@ -53,4 +53,15 @@ return {
         [2] = filetype,
         [3] = fileinfo,
     },
+}
+
+local format_components = require('lines.utils').format_components
+
+return {
+    statusline = function()
+        return ('%s%%=%s'):format(
+            format_components(statusline.left),
+            format_components(statusline.right)
+        )
+    end,
 }

@@ -4,6 +4,12 @@ local M = {}
 
 M.commands = {
     py = (vim.env.VIRTUAL_ENV or '/usr') .. '/bin/python',
+    rs = {
+        build = 'rustc -o a.exe',
+        run = './a.exe',
+        clean = 'test -f a.exe && rm a.exe',
+        kill = 'rm a.exe && killall a.exe'
+    },
     sh = 'sh',
     cpp = {
         build = 'g++ -Wall -Wextra -Wshadow -Wconversion -Wdouble-promotion -Wundef',
@@ -56,6 +62,10 @@ M.on_exit = function(exit_code, scratch_bufnr, start_time)
     end
 
     local msg = exit_code_messages[exit_code] or 'ERROR'
+
+    if not api.nvim_buf_is_valid(scratch_bufnr) then
+        return
+    end
 
     api.nvim_buf_set_lines(scratch_bufnr, -1, -1, false, {
         ('[%s] exited with code=%s in %s%s'):format(

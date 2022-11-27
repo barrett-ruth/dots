@@ -1,5 +1,5 @@
 return {
-    on_attach = function(client, bufnr)
+    on_attach = function(client, _)
         -- Disable providers meant for pyright
         client.server_capabilities.definitionProvider = false
         client.server_capabilities.documentSymbolProvider = false
@@ -7,6 +7,6 @@ return {
         client.server_capabilities.typeDefinitionProvider = false
         client.server_capabilities.workspaceSymbolProvider = false
 
-        require('lsp.utils').on_attach(client, bufnr)
+        require('lsp.utils').on_attach(client, _)
     end,
 }

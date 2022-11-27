@@ -5,8 +5,6 @@ paq {
 
     'andymass/vim-matchup',
 
-    'AndrewRadev/splitjoin.vim',
-
     {
         'iamcco/markdown-preview.nvim',
         run = function()
@@ -32,6 +30,7 @@ paq {
     'kristijanhusak/vim-dadbod-ui',
     'nanotee/sqls.nvim',
     'neovim/nvim-lspconfig',
+    'simrat39/rust-tools.nvim',
 
     'jose-elias-alvarez/null-ls.nvim',
     'jose-elias-alvarez/typescript.nvim',
@@ -83,4 +82,6 @@ paq {
 
     'ThePrimeagen/harpoon',
     'ThePrimeagen/git-worktree.nvim',
+
+    'Wansmer/treesj',
 }

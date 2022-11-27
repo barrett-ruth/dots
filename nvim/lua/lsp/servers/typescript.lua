@@ -1,6 +1,6 @@
 return {
-    on_attach = function(client, bufnr)
-        require('lsp.utils').on_attach(client, bufnr)
+    on_attach = function(client, _)
+        require('lsp.utils').on_attach(client, _)
 
         bmap { 'n', '\\Tf', '<cmd>TypescriptFixAll<cr>' }
         bmap { 'n', '\\Ti', '<cmd>TypescriptAddMissingImports<cr>' }

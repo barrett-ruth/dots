@@ -27,7 +27,7 @@ gitsigns.setup {
         bmap { 'n', '<leader>gW', git_worktree.create_git_worktree }
     end,
     preview_config = {
-        border = 'single',
+        border = 'rounded',
     },
     update_debounce = 0,
 }
