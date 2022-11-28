@@ -3,7 +3,7 @@ local function snipopts(trig)
 end
 
 local inline = function(lr)
-    return s(snipopts(lr[1]), { t(lr[1]), i(1), t(lr[2]) })
+    return s(snipopts(lr[2]), { t(lr[1]), i(1), t(lr[2]) })
 end
 
 local newline = function(lr)
@@ -11,17 +11,11 @@ local newline = function(lr)
 end
 
 return {
-    newline { '[[', ']],' },
     newline { '[', '],' },
     newline { '{', '},' },
     newline { '(', '),' },
 
-    newline { '[[', ']]' },
-    newline { '[', ']' },
-    newline { '{', '}' },
-    newline { '(', ')' },
-
     inline { '[ ', ' ]' },
     inline { '{ ', ' }' },
-    inline { '({ ', ' })' },
+    inline { '( ', ' )' },
 }

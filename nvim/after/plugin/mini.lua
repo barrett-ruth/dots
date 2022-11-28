@@ -1,4 +1,5 @@
 require('mini.align').setup()
+require('mini.pairs').setup {}
 
 local fn = vim.fn
 

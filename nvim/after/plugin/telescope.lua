@@ -34,7 +34,7 @@ telescope.setup {
         help_tags = { preview = true },
         diagnostics = { preview = true },
         lsp_definitions = { preview = true },
-        lsp_document_symbols = { show_line = true, },
+        lsp_document_symbols = { preview = true, show_line = true, },
         lsp_implementations = { preview = true },
         lsp_references = { preview = true },
         lsp_type_definitions = { preview = true },
