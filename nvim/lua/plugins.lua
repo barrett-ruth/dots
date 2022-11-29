@@ -25,8 +25,6 @@ paq {
     'echasnovski/mini.bufremove',
     'echasnovski/mini.pairs',
 
-    'elihunter173/dirbuf.nvim',
-
     'folke/neodev.nvim',
     'kristijanhusak/vim-dadbod-ui',
     'nanotee/sqls.nvim',
@@ -35,6 +33,8 @@ paq {
 
     'jose-elias-alvarez/null-ls.nvim',
     'jose-elias-alvarez/typescript.nvim',
+
+    'JoosepAlviste/nvim-ts-context-commentstring',
 
     'Julian/vim-textobj-variable-segment',
     'kana/vim-textobj-indent',
@@ -65,6 +65,8 @@ paq {
     'nvim-treesitter/nvim-treesitter-context',
     'nvim-treesitter/nvim-treesitter-textobjects',
     'nvim-treesitter/playground',
+
+    'nvim-tree/nvim-tree.lua',
 
     'NvChad/nvim-colorizer.lua',
 

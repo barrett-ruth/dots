@@ -118,6 +118,18 @@ link('Green', 'TelescopeMatching')
 link('Visual', 'MiniCursorword')
 hi('MiniCursorwordCurrent', { bg = cs.bg })
 
+-- nvim-tree [:
+hi('NvimTreeIndentMarker', { fg = cs.grey })
+hi('Directory', { fg = cs.light_blue })
+link('Directory', 'NvimTreeFolderName')
+hi('NvimTreeRootFolder', { fg = cs.cyan })
+hi(
+    'NvimTreeSpecialFile',
+    { bold = true, fg = cs.light_yellow, underline = true }
+)
+hi('NvimTreeExecFile', { bold = true, fg = cs.light_green })
+-- :]
+
 -- lsp/diagnostics
 hi('LspSignatureActiveParameter', { italic = true, underline = true })
 hi('DiagnosticError', { fg = cs.red })

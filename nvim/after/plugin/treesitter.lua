@@ -3,7 +3,7 @@ require('treesitter-context').setup {
 }
 
 require('treesj').setup {
-    use_default_keymaps = false
+    use_default_keymaps = false,
 }
 
 require('nvim-treesitter.configs').setup {
@@ -39,6 +39,10 @@ require('nvim-treesitter.configs').setup {
         disable = function(_, bufnr)
             return vim.fn.line('$', vim.fn.bufwinid(bufnr)) > 10000
         end,
+    },
+    context_commentstring = {
+        enable = true,
+        enable_autocmd = false,
     },
     textobjects = {
         move = {

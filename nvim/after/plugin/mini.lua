@@ -1,6 +1,13 @@
 require('mini.align').setup()
 require('mini.pairs').setup {}
 
+local bufremove = require 'mini.bufremove'
+
+bufremove.setup {}
+
+map { 'n', '<leader>bd', bufremove.delete }
+map { 'n', '<leader>bw', bufremove.wipeout }
+
 local fn = vim.fn
 
 require('mini.ai').setup {
