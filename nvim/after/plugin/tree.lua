@@ -61,6 +61,7 @@ require('nvim-tree').setup {
         indent_markers = {
             enable = true,
         },
+        root_folder_label = ":~:s?$?/?"
     },
 }
 

@@ -1,5 +1,5 @@
 return {
-    standalone = fals,
+    standalone = false,
     settings = {
         ['rust-analyzer'] = {
             checkOnSave = {

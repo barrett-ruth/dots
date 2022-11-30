@@ -25,6 +25,7 @@ paq {
     'echasnovski/mini.bufremove',
     'echasnovski/mini.pairs',
 
+    'b0o/SchemaStore.nvim',
     'folke/neodev.nvim',
     'kristijanhusak/vim-dadbod-ui',
     'nanotee/sqls.nvim',
