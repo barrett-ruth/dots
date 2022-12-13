@@ -10,7 +10,7 @@ ls.config.set_config {
         [types.choiceNode] = {
             active = {
                 virt_text = {
-                    { ' <- ', 'CursorLine' },
+                    { ' <- ', 'Normal' },
                 },
             },
         },

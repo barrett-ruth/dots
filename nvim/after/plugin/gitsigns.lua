@@ -1,6 +1,6 @@
 local status, gitsigns = pcall(require, 'gitsigns')
 
-if not status then
+if not status or not vim.tbl_contains({ '', 'utf-8' }, vim.bo.fenc) then
     return
 end
 

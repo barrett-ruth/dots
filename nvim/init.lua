@@ -1,6 +1,6 @@
 vim.g.mapleader = ' '
 
-require 'impatient'
+ require 'impatient'
 
 require 'map'
 require 'aug'

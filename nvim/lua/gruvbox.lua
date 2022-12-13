@@ -1,5 +1,4 @@
 return {
-    setup = function() vim.cmd.colorscheme 'gruvbox' end,
     cs = {
         bg = '#282828',
         black = '#5a524c',
@@ -19,8 +18,8 @@ return {
         light_white = '#e2d3ba',
         orange = '#e78a4e',
         grey = '#928374',
-        light_grey = '#32302f',
-        dark_grey = '#45403d',
+        light_grey = '#45403d',
+        dark_grey = '#32302f',
         hi = '#a89984',
     },
     hi = function(group, highlights)
@@ -32,5 +31,7 @@ return {
         end
         vim.api.nvim_set_hl(0, group, highlights)
     end,
-    link = function(from, to) vim.api.nvim_set_hl(0, to, { link = from }) end,
+    link = function(from, to)
+        vim.api.nvim_set_hl(0, to, { link = from })
+    end,
 }

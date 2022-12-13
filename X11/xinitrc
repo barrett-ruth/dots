@@ -9,11 +9,11 @@ fi
 smon
 sxs
 (
-    sbg ~/img/wp/one/lilies.jpg
+    sbg ~/img/wp/one/irises.jpg
     skb
 ) &
 sclip &
-mux &
+(st -e mux) &
 while true; do
     dwmb &
     dwm

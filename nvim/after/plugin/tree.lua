@@ -30,9 +30,8 @@ require('nvim-tree').setup {
             list = {
                 { key = 'a', action = 'create' },
                 { key = 'b', action = 'dir_up' },
-                { key = 'c', action = 'close_node' },
+                { key = 'c', action = 'cd' },
                 { key = 'd', action = 'remove' },
-                { key = 'g', action = 'cd' },
                 { key = 'm', action = 'rename' },
                 { key = 'p', action = 'paste' },
                 { key = 'r', action = 'rename' },
@@ -40,8 +39,9 @@ require('nvim-tree').setup {
                 { key = 'u', action = 'parent_node' },
                 { key = 'x', action = 'split' },
                 { key = 'y', action = 'copy' },
-                { key = '<cr>', action = 'edit' },
                 { key = '?', action = 'toggle_help' },
+                { key = '<bs>', action = 'close_node' },
+                { key = '<cr>', action = 'edit' },
             },
         },
         number = true,
@@ -68,7 +68,7 @@ require('nvim-tree').setup {
 map { 'n', '-', '<cmd>NvimTreeToggle .<cr>' }
 map {
     'n',
-    '<leader>e',
+    '<leader>n',
     function()
         vim.cmd('NvimTreeToggle ' .. vim.fn.expand '%:h')
     end,

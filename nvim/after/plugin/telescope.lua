@@ -26,7 +26,9 @@ telescope.setup {
         buffers = {
             ignore_current_buffer = true,
             mappings = {
-                i = { ['<c-d>'] = actions.delete_buffer },
+                i = {
+                    ['<c-d>'] = actions.delete_buffer,
+                },
             },
             sort_mru = true,
         },
@@ -34,12 +36,12 @@ telescope.setup {
         help_tags = { preview = true },
         diagnostics = { preview = true },
         lsp_definitions = { preview = true },
-        lsp_document_symbols = { preview = true, show_line = true, },
+        lsp_document_symbols = { preview = true, show_line = true },
         lsp_implementations = { preview = true },
         lsp_references = { preview = true },
         lsp_type_definitions = { preview = true },
         loclist = { preview = true },
-        quickfix = { preview = true }
+        quickfix = { preview = true },
     },
     extensions = {
         http = {

@@ -68,14 +68,11 @@ M.on_attach = function(client, _)
     require('cmp').setup.buffer { enabled = false }
 
     if server_capabilities.documentFormattingProvider then
-        bmap {
-            'n',
-            '<leader>w',
-            function()
-                format()
-                vim.cmd.w()
-            end,
-        }
+        api.nvim_create_autocmd('BufWritePost', {
+            pattern = '<buffer>',
+            callback = format,
+            group = api.nvim_create_augroup('lsp', {})
+        })
     end
 
     if server_capabilities.codeActionProvider then
@@ -147,8 +144,20 @@ M.on_attach = function(client, _)
 
     bmap { 'n', '\\w', builtin.diagnostics }
 
-    bmap { 'n', ']\\', diagnostic.goto_next }
-    bmap { 'n', '[\\', diagnostic.goto_prev }
+    bmap {
+        'n',
+        ']\\',
+        function()
+            diagnostic.goto_next { wrap = true }
+        end,
+    }
+    bmap {
+        'n',
+        '[\\',
+        function()
+            diagnostic.goto_prev { wrap = true }
+        end,
+    }
 end
 
 M.prepare_lsp_settings = function(settings)

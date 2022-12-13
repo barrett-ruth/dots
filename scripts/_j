@@ -5,6 +5,7 @@ case "$1" in
     '') cd ~;;
     cp) cd ~/dev/competitive-programming;;
     dl) cd ~/dl;;
+    site) cd ~/dev/barrett-ruth.github.io;;
     scr) cd "$SCRIPTS";;
     dev) cd ~/dev;;
     dmenu) cd ~/dev/sl/dmenu;;

@@ -41,8 +41,5 @@ vim.diagnostic.config {
             return ('%s (%s)'):format(diagnostic.message, sources[diagnostic.source] or diagnostic.source)
         end,
         header = '',
-        prefix = function(_, i, _)
-            return (' %s. '):format(i)
-        end
     },
 }

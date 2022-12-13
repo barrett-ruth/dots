@@ -61,9 +61,9 @@ hi('WarningMsg', { bold = true, fg = cs.yellow })
 
 -- line numbers
 hi('LineNr', { fg = cs.black })
-hi('CursorLineNr', { none = true, fg = cs.grey })
-hi('CursorLine', { bg = cs.light_grey })
-hi('ColorColumn', { bg = cs.light_grey })
+hi('CursorLine', { none = true })
+hi('CursorLineNr', { fg = cs.hi })
+hi('ColorColumn', { bg = cs.dark_grey })
 
 -- folds/Columns
 hi('SignColumn', { bg = cs.bg })
@@ -82,10 +82,10 @@ hi('helpCommand', { fg = cs.cyan })
 hi('SpecialKey', { fg = cs.black })
 
 hi('VertSplit', { fg = cs.black })
-hi('MatchParen', { bg = cs.dark_grey })
+hi('MatchParen', { bg = cs.light_grey })
 
 hi('NormalFloat', { bg = 'NONE' })
-hi('Visual', { bg = cs.dark_grey })
+hi('Visual', { bg = cs.light_grey })
 hi('Whitespace', { fg = cs.black })
 
 hi('Search', { fg = 'NONE', bg = 'NONE', reverse = true })
@@ -99,9 +99,9 @@ hi('Statusline', { none = true })
 hi('Identifier', { fg = cs.blue })
 
 -- pmenu
-hi('Pmenu', { bg = cs.dark_grey })
-hi('PmenuSel', { fg = cs.dark_grey, bg = cs.hi })
-hi('PmenuSbar', { bg = cs.dark_grey })
+hi('Pmenu', { bg = cs.light_grey })
+hi('PmenuSel', { fg = cs.light_grey, bg = cs.hi })
+hi('PmenuSbar', { bg = cs.light_grey })
 hi('PmenuThumb', { bg = cs.hi })
 
 -- nvim-cmp

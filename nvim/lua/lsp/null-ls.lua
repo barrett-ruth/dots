@@ -52,6 +52,9 @@ null_ls.setup {
                 end
             end,
         },
+        diagnostics.dotenv_linter.with {
+            extra_args = { '--not-check-updates' }
+        },
         diagnostics.hadolint,
         diagnostics.markdownlint.with {
             diagnostics_format = '#{m}',

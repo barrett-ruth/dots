@@ -26,6 +26,7 @@ require('nvim-treesitter.configs').setup {
         'markdown_inline',
         'python',
         'query',
+        'regex',
         'rust',
         'sql',
         'tsx',
@@ -36,8 +37,8 @@ require('nvim-treesitter.configs').setup {
     indent = { enable = false },
     highlight = {
         enable = true,
-        disable = function(_, bufnr)
-            return vim.fn.line('$', vim.fn.bufwinid(bufnr)) > 10000
+        disable = function(_)
+                return vim.fn.getfsize(vim.fn.expand '%') / 10e5 > 20
         end,
     },
     context_commentstring = {
