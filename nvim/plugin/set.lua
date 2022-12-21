@@ -2,7 +2,7 @@ local env, g, o, opt = vim.env, vim.g, vim.o, vim.opt
 
 o.autowrite = true
 
-o.cursorline = true
+o.breakindent = true
 
 opt.diffopt:append 'linematch:60'
 
@@ -56,8 +56,6 @@ o.undodir = env.XDG_DATA_HOME .. '/nvim/undo'
 o.undofile = true
 
 o.updatetime = 50
-
-o.virtualedit = 'all'
 
 g.wildignore = {
     'undo/',

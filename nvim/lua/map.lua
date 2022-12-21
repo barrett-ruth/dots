@@ -46,8 +46,6 @@ map {
         vim.fn.setreg('+', vim.fn.getreg '"')
     end,
 }
-map { 'n', '<leader><cr>', cmd.source }
-map { 'n', '<leader>-', 'S<esc>' }
 
 map { 'n', ']b', cmd.bnext }
 map { 'n', '[b', cmd.bprev }

@@ -1,23 +1,5 @@
 local M = {}
 
-local format = function()
-    vim.lsp.buf.format {
-        filter = function(client)
-            return not vim.tbl_contains({
-                'clangd', -- clang-format
-                'cssls', -- prettierd
-                'html', -- prettierd
-                'jedi_language_server', -- black/autopep8
-                'jsonls', -- prettierd
-                'pyright', -- black/autopep8
-                'sqls', -- sql-formatter
-                'sumneko_lua', -- stylua
-                'tsserver', -- prettierd
-            }, client.name)
-        end,
-    }
-end
-
 local api = vim.api
 
 local builtin = require 'telescope.builtin'
@@ -61,6 +43,24 @@ local rename = function()
     }, { buffer = bufnr })
 end
 
+local format = function()
+    vim.lsp.buf.format {
+        filter = function(client)
+            return not vim.tbl_contains({
+                'clangd', -- clang-format
+                'cssls', -- prettier
+                'html', -- prettier
+                'jedi_language_server', -- black/autopep8
+                'jsonls', -- prettier
+                'pyright', -- black/autopep8
+                'sqls', -- sql-formatter
+                'sumneko_lua', -- stylua
+                'tsserver', -- prettier
+            }, client.name)
+        end,
+    }
+end
+
 M.on_attach = function(client, _)
     local server_capabilities = client.server_capabilities
     local diagnostic, buf = vim.diagnostic, vim.lsp.buf
@@ -71,7 +71,7 @@ M.on_attach = function(client, _)
         api.nvim_create_autocmd('BufWritePost', {
             pattern = '<buffer>',
             callback = format,
-            group = api.nvim_create_augroup('lsp', {})
+            group = api.nvim_create_augroup('format', { clear = false }),
         })
     end
 

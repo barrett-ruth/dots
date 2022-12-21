@@ -7,7 +7,7 @@ return {
             pattern = '*',
             callback = function()
                 if
-                    vim.tbl_contains({ '', 'fugitive', 'gitcommit', 'checkhealth', 'TelescopeResults' }, vim.bo.ft)
+                    vim.tbl_contains({ '', 'checkhealth', 'fugitive', 'gitcommit', 'harpoon', 'TelescopeResults' }, vim.bo.ft)
                 then
                     return
                 end

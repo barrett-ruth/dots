@@ -53,8 +53,8 @@ paq {
     'numToStr/Comment.nvim',
 
     'nvim-telescope/telescope.nvim',
-    'barrett-ruth/telescope-http.nvim',
     'nvim-telescope/telescope-fzy-native.nvim',
+    'barrett-ruth/telescope-http.nvim',
 
     'nvim-lua/plenary.nvim',
     {
