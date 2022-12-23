@@ -37,5 +37,5 @@ local fn = vim.fn
 fn.sign_define('GitSignsAdd', { text = '│' })
 fn.sign_define('GitSignsChange', { text = '│' })
 fn.sign_define('GitSignsChangedelete', { text = '~' })
-fn.sign_define('GitSignsDelete', { text = '_' })
+fn.sign_define('GitSignsDelete', { text = '＿' })
 fn.sign_define('GitSignsTopdelete', { text = '‾' })

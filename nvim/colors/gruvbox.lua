@@ -264,7 +264,6 @@ hi('@field', { fg = cs.white })
 
 -- misc
 hi('@constructor', { fg = cs.cyan })
-hi('@declaration', { fg = cs.orange })
 hi('@namespace', { fg = cs.cyan })
 hi('StorageClass', { fg = cs.cyan })
 

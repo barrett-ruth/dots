@@ -38,7 +38,10 @@ vim.diagnostic.config {
     float = {
         border = 'rounded',
         format = function(diagnostic)
-            return ('%s (%s)'):format(diagnostic.message, sources[diagnostic.source] or diagnostic.source)
+            return ('%s (%s)'):format(
+                diagnostic.message,
+                sources[diagnostic.source] or diagnostic.source
+            )
         end,
         header = '',
     },

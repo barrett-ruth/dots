@@ -38,7 +38,7 @@ require('nvim-treesitter.configs').setup {
     highlight = {
         enable = true,
         disable = function(_)
-                return vim.fn.getfsize(vim.fn.expand '%') / 10e5 > 20
+            return vim.fn.getfsize(vim.fn.expand '%') / 10e5 > 20
         end,
     },
     context_commentstring = {
@@ -105,4 +105,4 @@ require('nvim-treesitter.configs').setup {
     },
 }
 
-map { 'n', '<leader>H', '<cmd>TSHighlightCapturesUnderCursor<cr>' }
+map { 'n', '<leader>i', '<cmd>Inspect<cr>' }

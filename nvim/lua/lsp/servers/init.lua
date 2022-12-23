@@ -36,5 +36,5 @@ require('rust-tools').setup {
             auto = false,
         },
     },
-    server = prepare_lsp_settings(require 'lsp.servers.rust_analyzer')
+    server = prepare_lsp_settings(require 'lsp.servers.rust_analyzer'),
 }
