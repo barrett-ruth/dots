@@ -8,7 +8,7 @@ M.commands = {
         build = 'rustc -o a.exe',
         run = './a.exe',
         clean = 'test -f a.exe && rm a.exe',
-        kill = 'rm a.exe && killall a.exe'
+        kill = 'rm a.exe && killall a.exe',
     },
     sh = 'sh',
     cpp = {
@@ -20,14 +20,14 @@ M.commands = {
 }
 M.commands.cc = M.commands.cpp
 
-M.show_scratch_buffer = function(scratch_bufnr)
+function M.show_scratch_buffer(scratch_bufnr)
     vim.cmd('vert sbuffer ' .. scratch_bufnr)
     api.nvim_win_set_option(fn.bufwinid(scratch_bufnr), 'number', false)
     api.nvim_win_set_option(fn.bufwinid(scratch_bufnr), 'relativenumber', false)
     api.nvim_win_set_option(fn.bufwinid(scratch_bufnr), 'signcolumn', 'yes')
 end
 
-M.get_job_info = function(command, filename)
+function M.get_job_info(command, filename)
     local header, jobcmd = '', ''
 
     if command.build then
@@ -53,7 +53,7 @@ local exit_code_messages = {
     [143] = 'SIGKILL',
 }
 
-M.on_exit = function(exit_code, scratch_bufnr, start_time)
+function M.on_exit(exit_code, scratch_bufnr, start_time)
     local end_time = fn.reltime(start_time)
     local total_time, units = tonumber(vim.trim(fn.reltimestr(end_time))), 's'
 

@@ -13,6 +13,6 @@ require('Comment').setup {
 }
 require('lines').setup()
 require('run').setup()
-require('import-cost').setup()
+-- require('import-cost').setup()
 
 vim.cmd.colorscheme 'gruvbox'

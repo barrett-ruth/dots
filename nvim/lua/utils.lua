@@ -1,10 +1,10 @@
 local M = {}
 
-M.empty = function(s)
+function M.empty(s)
     return s == '' or s == nil
 end
 
-M.rfind = function(str, char)
+function M.rfind(str, char)
     local revpos = str:reverse():find(char)
 
     if revpos == nil then

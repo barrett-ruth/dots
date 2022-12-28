@@ -6,6 +6,8 @@ local mapping = cmp.mapping
 
 local kinds = {
     Class = 'cls',
+    Constant = 'const',
+    Enum = 'enum',
     Field = 'field',
     Function = 'fn',
     Keyword = 'key',
@@ -84,20 +86,18 @@ require('cmp_git').setup {
     },
 }
 
-local cmp_enabled = false
-
+local cmp_enabled = true
 map {
     'i',
     '<c-space>',
     function()
         if cmp_enabled then
-            require('cmp').setup.buffer { enabled = false }
             cmp.abort()
         else
-            require('cmp').setup.buffer { enabled = true }
             cmp.complete()
         end
 
+        require('cmp').setup.buffer { enabled = not cmp_enabled }
         cmp_enabled = not cmp_enabled
     end,
 }

@@ -185,12 +185,12 @@ hi('Comment', { italic = true, fg = cs.grey })
 link('Comment', '@comment')
 
 -- text
-hi('@todo', { fg = cs.purple, bold = true })
 hi('Title', { bold = true, fg = cs.orange })
 link('Title', '@text.title')
 hi('@text.emphasis', { italic = true })
 hi('@text.reference', { fg = cs.blue })
 hi('@text.strong', { bold = true })
+hi('@text.todo', { fg = cs.purple, bold = true })
 hi('@text.uri', { fg = cs.blue })
 hi('@text.warning', { fg = cs.yellow, bold = true })
 link('@text.warning', 'Todo')

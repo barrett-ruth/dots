@@ -1,6 +1,6 @@
 local utils = require 'utils'
 
-local extract_vars = function(args)
+local function extract_vars(args)
     local vars = {}
 
     for _, e in ipairs(vim.split(args[1][1], ', ', { trimempty = true })) do

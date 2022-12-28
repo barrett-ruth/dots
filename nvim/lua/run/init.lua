@@ -82,7 +82,7 @@ local run = function()
 
             api.nvim_buf_set_lines(scratch_bufnr, 0, -1, false, { header, '' })
 
-            local output_data = function(_, data)
+            local function output_data(_, data)
                 api.nvim_buf_set_lines(scratch_bufnr, -1, -1, false, data)
             end
 

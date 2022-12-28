@@ -1,4 +1,4 @@
-local word = function(i)
+local function word(i)
     return f(function(name)
         return vim.split(name[1][1], ' ')[1]
     end, { i })

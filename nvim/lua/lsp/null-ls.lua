@@ -8,7 +8,7 @@ local builtins = null_ls.builtins
 local code_actions, diagnostics, formatting =
     builtins.code_actions, builtins.diagnostics, builtins.formatting
 
-local project_contains_source = function(name, default)
+local function project_contains_source(name, default)
     local project = fn.fnamemodify(fn.getcwd(), ':t')
 
     if projects[project] then
@@ -53,7 +53,7 @@ null_ls.setup {
             end,
         },
         diagnostics.dotenv_linter.with {
-            extra_args = { '--not-check-updates' }
+            extra_args = { '--not-check-updates' },
         },
         diagnostics.hadolint,
         diagnostics.markdownlint.with {

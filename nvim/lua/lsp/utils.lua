@@ -4,7 +4,7 @@ local api = vim.api
 
 local builtin = require 'telescope.builtin'
 
-local rename = function()
+local function rename()
     local old_name = vim.fn.expand '<cword>'
 
     local bufnr = api.nvim_create_buf(false, true)
@@ -43,7 +43,7 @@ local rename = function()
     }, { buffer = bufnr })
 end
 
-local format = function()
+local function format()
     vim.lsp.buf.format {
         filter = function(client)
             return not vim.tbl_contains({
@@ -61,11 +61,9 @@ local format = function()
     }
 end
 
-M.on_attach = function(client, _)
+function M.on_attach(client, _)
     local server_capabilities = client.server_capabilities
     local diagnostic, buf = vim.diagnostic, vim.lsp.buf
-
-    require('cmp').setup.buffer { enabled = false }
 
     if server_capabilities.documentFormattingProvider then
         api.nvim_create_autocmd('BufWritePost', {
@@ -138,6 +136,10 @@ M.on_attach = function(client, _)
         }
     end
 
+    if server_capabilities.signatureHelpProvider then
+        bmap { 'i', '<c-a>', buf.signature_help }
+    end
+
     if server_capabilities.typeDefinitionProvider then
         bmap { 'n', '\\t', builtin.lsp_type_definitions }
     end
@@ -160,7 +162,7 @@ M.on_attach = function(client, _)
     }
 end
 
-M.prepare_lsp_settings = function(settings)
+function M.prepare_lsp_settings(settings)
     local default_settings = {}
 
     default_settings.capabilities = vim.lsp.protocol.make_client_capabilities()

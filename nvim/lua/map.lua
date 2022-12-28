@@ -1,4 +1,4 @@
-_G.map = function(mapping, opts)
+function _G.map(mapping, opts)
     vim.keymap.set(
         mapping[1],
         mapping[2],
@@ -7,7 +7,7 @@ _G.map = function(mapping, opts)
     )
 end
 
-_G.bmap = function(mapping, opts)
+function _G.bmap(mapping, opts)
     map(mapping, vim.tbl_extend('keep', opts or {}, { buffer = 0 }))
 end
 
@@ -43,7 +43,7 @@ map {
     'n',
     '<leader>Y',
     function()
-        vim.fn.setreg('+', vim.fn.getreg '"')
+        vim.fn.setreg('+', vim.fn.getreg '0')
     end,
 }
 

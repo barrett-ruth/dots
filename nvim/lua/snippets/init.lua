@@ -59,7 +59,7 @@ map {
     '<c-s>',
     function()
         if ls.expandable() then
-            ls.expand()
+            ls.expand {}
         end
     end,
 }
@@ -87,4 +87,5 @@ map {
         end
     end,
 }
+-- restore digraph mapping
 map { 'i', '<c-d>', '<c-k>' }

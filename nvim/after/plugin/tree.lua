@@ -35,6 +35,7 @@ require('nvim-tree').setup {
                 { key = 'm', action = 'rename' },
                 { key = 'p', action = 'paste' },
                 { key = 'r', action = 'rename' },
+                { key = 'R', action = 'full_rename' },
                 { key = 't', action = 'toggle_dotfiles' },
                 { key = 'u', action = 'parent_node' },
                 { key = 'x', action = 'split' },
@@ -65,11 +66,11 @@ require('nvim-tree').setup {
     },
 }
 
-map { 'n', '-', '<cmd>NvimTreeToggle .<cr>' }
+map { 'n', '-', '<cmd>NvimTreeFindFileToggle .<cr>' }
 map {
     'n',
     '<leader>n',
     function()
-        vim.cmd('NvimTreeToggle ' .. vim.fn.expand '%:h')
+        vim.cmd('NvimTreeFindFileToggle ' .. vim.fn.expand '%:h')
     end,
 }
