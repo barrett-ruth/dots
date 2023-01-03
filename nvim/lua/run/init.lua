@@ -18,7 +18,7 @@ local run = function()
 
     local header, jobcmd = utils.get_job_info(command, filename)
 
-    local bufnr = fn.bufnr()
+    local bufnr = api.nvim_get_current_buf()
 
     bmap {
         'n',

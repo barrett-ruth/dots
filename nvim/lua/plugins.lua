@@ -5,6 +5,8 @@ paq {
 
     'andymass/vim-matchup',
 
+    'barrett-ruth/import-cost.nvim',
+
     {
         'iamcco/markdown-preview.nvim',
         run = function()

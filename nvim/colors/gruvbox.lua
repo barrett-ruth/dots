@@ -63,9 +63,9 @@ hi('WarningMsg', { bold = true, fg = cs.yellow })
 hi('LineNr', { fg = cs.black })
 hi('CursorLine', { none = true })
 hi('CursorLineNr', { fg = cs.hi })
-hi('ColorColumn', { bg = cs.dark_grey })
 
--- folds/Columns
+-- folds/columns
+hi('ColorColumn', { bg = cs.dark_grey })
 hi('SignColumn', { bg = cs.bg })
 hi('FoldColumn', { bg = cs.bg })
 hi('Folded', { fg = cs.grey })
@@ -79,8 +79,8 @@ hi('HealthError', { fg = cs.red })
 hi('helpNote', { bold = true, fg = cs.purple })
 hi('helpExample', { none = true, fg = cs.green })
 hi('helpCommand', { fg = cs.cyan })
-hi('SpecialKey', { fg = cs.black })
 
+hi('SpecialKey', { fg = cs.black })
 hi('VertSplit', { fg = cs.black })
 hi('MatchParen', { bg = cs.light_grey })
 
@@ -90,7 +90,7 @@ hi('Whitespace', { fg = cs.black })
 
 hi('Search', { fg = 'NONE', bg = 'NONE', reverse = true })
 link('Search', 'IncSearch')
-
+hi('Conceal', { fg = cs.hi, bg = 'NONE' })
 hi('Error', { fg = cs.red })
 hi('Question', { none = true, fg = cs.yellow })
 hi('Special', { fg = cs.yellow })

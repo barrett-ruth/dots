@@ -30,8 +30,8 @@ end
 
 return {
     s('pr', fmt('vim.pretty_print({})', { i(1) })),
-    s('af', fmt('function({}) {} end', { i(1), i(2) })),
-    s('fun', fmt('function({})\n\t{}\nend', { i(1), i(2) })),
+    s('afun', fmt('function({})\n\t{}\nend', { i(1), i(2) })),
+    s('fun', fmt('function {}({})\n\t{}\nend', { i(1), i(2), i(3) })),
     s('if', fmt('if {} then\n\t{}\nend', { i(1), i(2) })),
     s('for', fmt('for {} in {} do\n\t{}\nend', { i(1), i(2), i(3) })),
     s(
@@ -40,5 +40,9 @@ return {
             f(extract_vars, { 1 }),
             i(1),
         })
+    ),
+    s(
+        'M',
+        fmt('local {} = {{}}\n\n{}\n\nreturn {}', { i(1, 'M'), i(2), rep(1) })
     ),
 }

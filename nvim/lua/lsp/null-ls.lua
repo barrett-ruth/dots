@@ -11,7 +11,7 @@ local code_actions, diagnostics, formatting =
 local function project_contains_source(name, default)
     local project = fn.fnamemodify(fn.getcwd(), ':t')
 
-    if projects[project] then
+    if projects[project] and projects[project].lsp_sources then
         return vim.tbl_contains(projects[project].lsp_sources, name)
     end
 

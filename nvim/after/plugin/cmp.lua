@@ -13,7 +13,6 @@ local kinds = {
     Keyword = 'key',
     Method = 'meth',
     Property = 'prop',
-    Text = 'txt',
     Variable = 'var',
 }
 
@@ -47,7 +46,14 @@ cmp.setup {
         end,
     },
     sources = cmp.config.sources {
-        { name = 'nvim_lsp' },
+        {
+            name = 'nvim_lsp',
+            entry_filter = function(entry, _)
+
+                return cmp.lsp.CompletionItemKind[entry:get_kind()] ~= 'Text'
+                    and cmp.lsp.CompletionItemKind[entry:get_kind()] ~= 'Snippet'
+            end,
+        },
         { name = 'path' },
     },
     mapping = mapping {
@@ -84,20 +90,4 @@ require('cmp_git').setup {
             state = 'all',
         },
     },
-}
-
-local cmp_enabled = true
-map {
-    'i',
-    '<c-space>',
-    function()
-        if cmp_enabled then
-            cmp.abort()
-        else
-            cmp.complete()
-        end
-
-        require('cmp').setup.buffer { enabled = not cmp_enabled }
-        cmp_enabled = not cmp_enabled
-    end,
 }

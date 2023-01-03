@@ -1,8 +1,4 @@
-local status, gitsigns = pcall(require, 'gitsigns')
-
-if not status or not vim.tbl_contains({ '', 'utf-8' }, vim.bo.fenc) then
-    return
-end
+local gitsigns = require 'gitsigns'
 
 local builtin = require 'telescope.builtin'
 
@@ -13,6 +9,7 @@ gitsigns.setup {
     on_attach = function(_)
         bmap { 'n', '<leader>gp', gitsigns.preview_hunk }
         bmap { 'n', '<leader>gs', gitsigns.stage_hunk }
+        bmap { 'n', '<leader>gu', gitsigns.undo_stage_hunk }
 
         bmap { 'n', '[g', gitsigns.prev_hunk }
         bmap { 'n', ']g', gitsigns.next_hunk }

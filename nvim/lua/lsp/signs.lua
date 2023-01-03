@@ -16,7 +16,6 @@ local handlers = lsp.handlers
 
 handlers['textDocument/hover'] = lsp.with(handlers.hover, {
     border = 'rounded',
-    focusable = false,
 })
 
 handlers['textDocument/signatureHelp'] = lsp.with(handlers.signature_help, {

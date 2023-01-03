@@ -35,10 +35,6 @@ local function rename()
             end
 
             vim.lsp.buf.rename(new_name)
-
-            if api.nvim_get_mode() == 'i' then
-                api.nvim_input '<esc>'
-            end
         end,
     }, { buffer = bufnr })
 end
@@ -76,32 +72,46 @@ function M.on_attach(client, _)
     if server_capabilities.codeActionProvider then
         bmap { 'n', '\\c', buf.code_action }
     end
-
-    if server_capabilities.definitionProvider then
-        bmap { 'n', '\\d', builtin.lsp_definitions }
-    end
-
-    if server_capabilities.declarationProvider then
-        bmap { 'n', '\\D', buf.declaration }
-    end
-
-    if server_capabilities.implementationProvider then
-        bmap { 'n', '\\i', builtin.lsp_implementations }
-    end
-
+    bmap { 'n', '\\d', builtin.diagnostics }
     bmap { 'n', '\\f', diagnostic.open_float }
-
-    if server_capabilities.hoverProvider then
-        bmap { 'n', '\\h', buf.hover }
-    end
-
     if server_capabilities.renameProvider then
         bmap { 'n', '\\r', rename }
     end
 
-    if server_capabilities.referencesProvider then
-        bmap { 'n', '\\R', builtin.lsp_references }
+    if server_capabilities.hoverProvider then
+        bmap { 'n', 'K', buf.hover }
     end
+
+    if server_capabilities.definitionProvider then
+        bmap { 'n', 'gd', builtin.lsp_definitions }
+    end
+    if server_capabilities.declarationProvider then
+        bmap { 'n', 'gD', buf.declaration }
+    end
+    if server_capabilities.implementationProvider then
+        bmap { 'n', 'gi', builtin.lsp_implementations }
+    end
+    if server_capabilities.referencesProvider then
+        bmap { 'n', 'gr', builtin.lsp_references }
+    end
+    if server_capabilities.typeDefinitionProvider then
+        bmap { 'n', 'gt', builtin.lsp_type_definitions }
+    end
+
+    bmap {
+        'n',
+        ']\\',
+        function()
+            diagnostic.goto_next { wrap = true }
+        end,
+    }
+    bmap {
+        'n',
+        '[\\',
+        function()
+            diagnostic.goto_prev { wrap = true }
+        end,
+    }
 
     if server_capabilities.documentSymbolProvider then
         bmap {
@@ -137,29 +147,8 @@ function M.on_attach(client, _)
     end
 
     if server_capabilities.signatureHelpProvider then
-        bmap { 'i', '<c-a>', buf.signature_help }
+        bmap { 'i', '<c-space>', buf.signature_help }
     end
-
-    if server_capabilities.typeDefinitionProvider then
-        bmap { 'n', '\\t', builtin.lsp_type_definitions }
-    end
-
-    bmap { 'n', '\\w', builtin.diagnostics }
-
-    bmap {
-        'n',
-        ']\\',
-        function()
-            diagnostic.goto_next { wrap = true }
-        end,
-    }
-    bmap {
-        'n',
-        '[\\',
-        function()
-            diagnostic.goto_prev { wrap = true }
-        end,
-    }
 end
 
 function M.prepare_lsp_settings(settings)

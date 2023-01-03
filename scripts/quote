@@ -1,5 +1,6 @@
 #!/bin/sh
 
 echo 'Do you see to listen or seek to understand? -- Sikh Granthi, Gurudwara Bangla Sahib
-The happiness of your life depends on the quality of your thoughts. -- Marcus Aurelius, Meditations' \
+The happiness of your life depends on the quality of your thoughts. -- Marcus Aurelius, Meditations
+To what end? -- Barrett Ruth' \
     | shuf -n 1
