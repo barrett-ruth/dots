@@ -1,6 +1,4 @@
-local paq = require 'paq'
-
-paq {
+require 'paq' {
     'savq/paq-nvim',
 
     'andymass/vim-matchup',
@@ -81,7 +79,6 @@ paq {
     'tpope/vim-dadbod',
     'tpope/vim-fugitive',
     'tpope/vim-repeat',
-    'tpope/vim-sleuth',
     'tpope/vim-surround',
 
     'ThePrimeagen/harpoon',
