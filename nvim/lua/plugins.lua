@@ -31,7 +31,6 @@ paq {
     'kristijanhusak/vim-dadbod-ui',
     'nanotee/sqls.nvim',
     'neovim/nvim-lspconfig',
-    'simrat39/rust-tools.nvim',
 
     'jose-elias-alvarez/null-ls.nvim',
     'jose-elias-alvarez/typescript.nvim',

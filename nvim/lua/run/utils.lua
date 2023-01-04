@@ -5,7 +5,6 @@ local M = {}
 M.commands = {
     py = (vim.env.VIRTUAL_ENV or '/usr') .. '/bin/python',
     rs = {
-        build = 'rustc -o a.exe',
         run = './a.exe',
         clean = 'test -f a.exe && rm a.exe',
         kill = 'rm a.exe && killall a.exe',

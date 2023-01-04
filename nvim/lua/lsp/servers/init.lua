@@ -29,12 +29,3 @@ end
 require('typescript').setup {
     server = prepare_lsp_settings(require 'lsp.servers.typescript'),
 }
-
-require('rust-tools').setup {
-    tools = {
-        inlay_hints = {
-            auto = false,
-        },
-    },
-    server = prepare_lsp_settings(require 'lsp.servers.rust_analyzer'),
-}
