@@ -4,7 +4,7 @@ cfg="$HOME/dev/dots"
 
 cd "$cfg" || exit
 
-rmb .git installation misc wip ssh transmission transmission-daemon .
+rmb .git installation misc wip ssh transmission transmission-daemon readme.md .
 
 cp /etc/pacman.conf misc
 cp /etc/default/grub misc
@@ -21,6 +21,7 @@ done
 cp "$XDG_DATA_HOME/nvim/spell/spell.encoding.add" nvim
 
 rmb config yarn
+yarn global list | rg --no-config -o '".*"' | sed 's/"//g' >yarn/pkg
 rm -rf nvim/undo
 rmb .zshrc .zprofile .zaliases zsh
 rmb tmux.conf tmux

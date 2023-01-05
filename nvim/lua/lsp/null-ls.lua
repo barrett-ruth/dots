@@ -94,7 +94,7 @@ null_ls.setup {
         formatting.djlint.with {
             extra_args = { '--indent', '2' },
         },
-        formatting.prettier.with {
+        formatting.prettierd.with {
             filetypes = {
                 'css',
                 'graphql',

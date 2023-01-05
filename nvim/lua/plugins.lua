@@ -1,16 +1,20 @@
-require 'paq' {
+local paq = require 'paq'
+paq.setup {
+    url_format = 'git@github.com:%s.git',
+}
+
+paq {
     'savq/paq-nvim',
 
     'andymass/vim-matchup',
 
     'barrett-ruth/import-cost.nvim',
 
-    {
-        'iamcco/markdown-preview.nvim',
-        run = function()
-            vim.fn['mkdp#util#install']()
-        end,
-    },
+    'b0o/SchemaStore.nvim',
+    'folke/neodev.nvim',
+    'kristijanhusak/vim-dadbod-ui',
+    'nanotee/sqls.nvim',
+    'neovim/nvim-lspconfig',
 
     'davidsierradz/cmp-conventionalcommits',
     'hrsh7th/nvim-cmp',
@@ -24,11 +28,7 @@ require 'paq' {
     'echasnovski/mini.bufremove',
     'echasnovski/mini.pairs',
 
-    'b0o/SchemaStore.nvim',
-    'folke/neodev.nvim',
-    'kristijanhusak/vim-dadbod-ui',
-    'nanotee/sqls.nvim',
-    'neovim/nvim-lspconfig',
+    'iamcco/markdown-preview.nvim',
 
     'jose-elias-alvarez/null-ls.nvim',
     'jose-elias-alvarez/typescript.nvim',
