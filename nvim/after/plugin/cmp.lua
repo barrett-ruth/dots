@@ -17,6 +17,7 @@ local kinds = {
 }
 
 cmp.setup {
+    completion = { autocomplete = false },
     snippet = {
         expand = function(args)
             require('luasnip').lsp_expand(args.body)
@@ -49,19 +50,25 @@ cmp.setup {
         {
             name = 'nvim_lsp',
             entry_filter = function(entry, _)
-
                 return cmp.lsp.CompletionItemKind[entry:get_kind()] ~= 'Text'
-                    and cmp.lsp.CompletionItemKind[entry:get_kind()] ~= 'Snippet'
+                    and cmp.lsp.CompletionItemKind[entry:get_kind()]
+                        ~= 'Snippet'
             end,
         },
         { name = 'path' },
     },
-    mapping = mapping {
+    mapping = {
         ['<c-y>'] = mapping.confirm(),
         ['<c-b>'] = mapping.scroll_docs(-4),
         ['<c-f>'] = mapping.scroll_docs(4),
         ['<c-e>'] = mapping.abort(),
-        ['<c-n>'] = mapping.select_next_item(),
+        ['<c-n>'] = function(_)
+            if cmp.visible() then
+                cmp.select_next_item()
+            else
+                cmp.complete()
+            end
+        end,
         ['<c-p>'] = mapping.select_prev_item(),
     },
 }

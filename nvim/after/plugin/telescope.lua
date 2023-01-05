@@ -58,11 +58,7 @@ map { 'n', '<c-b>', builtin.buffers }
 map { 'n', '<c-f>', builtin.find_files }
 map { 'n', '<c-g>', builtin.live_grep }
 
-map {
-    'n',
-    '<leader>tc',
-    require('telescope').extensions.http.list,
-}
+map { 'n', '<leader>tc', builtin.command_history }
 map {
     'n',
     '<leader>te',
@@ -85,6 +81,7 @@ map {
     end,
 }
 map { 'n', '<leader>th', builtin.help_tags }
+map { 'n', '<leader>tH', telescope.extensions.http.list }
 map { 'n', '<leader>tl', builtin.loclist }
 map { 'n', '<leader>tm', builtin.man_pages }
 map { 'n', '<leader>tq', builtin.quickfix }
