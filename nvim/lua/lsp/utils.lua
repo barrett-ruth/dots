@@ -55,6 +55,7 @@ local function format()
             }, client.name)
         end,
     }
+    vim.cmd.w()
 end
 
 function M.on_attach(client, _)
