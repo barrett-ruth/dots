@@ -58,6 +58,7 @@ map { 'n', '<c-b>', builtin.buffers }
 map { 'n', '<c-f>', builtin.find_files }
 map { 'n', '<c-g>', builtin.live_grep }
 
+map { 'n', '<leader>tb', builtin.builtin }
 map { 'n', '<leader>tc', builtin.command_history }
 map {
     'n',

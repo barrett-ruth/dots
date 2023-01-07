@@ -69,8 +69,6 @@ paq {
 
     'NvChad/nvim-colorizer.lua',
 
-    'sindrets/diffview.nvim',
-
     'tommcdo/vim-exchange',
 
     'tpope/vim-abolish',

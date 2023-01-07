@@ -29,9 +29,7 @@ null_ls.setup {
         diagnostics.curlylint.with {
             extra_filetypes = { 'html' },
         },
-        diagnostics.djlint.with {
-            extra_filetypes = { 'html' },
-        },
+        diagnostics.djlint,
         diagnostics.eslint_d.with {
             condition = function(utils)
                 return utils.root_has_file {

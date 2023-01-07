@@ -5,8 +5,8 @@ local function word(i)
 end
 
 return {
-    s('</', fmt('<{} />', { i(1) })),
-    s('<', fmt('<{}>{}</{}>', { i(1), i(2), word(1) })),
+    s('< ', fmt('<{} />', { i(1) })),
+    s('</', fmt('<{}>{}</{}>', { i(1), i(2), word(1) })),
     s('<>', fmt('<{}>\n\t{}\n</{}>', { i(1), i(2), word(1) })),
     s(
         'bp',
@@ -20,9 +20,13 @@ return {
                     <meta name="viewport" content="width=device-width, initial-scale=1" />
                     <title>{}</title>
                   </head>
+
+                  <body>
+                    {}
+                  </body>
                 </html>
             ]],
-            { i(1) }
+            { i(1), i(2) }
         )
     ),
 }
