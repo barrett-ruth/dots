@@ -21,7 +21,7 @@ done
 cp "$XDG_DATA_HOME/nvim/spell/spell.encoding.add" nvim
 
 rmb config yarn
-yarn global list | rg --no-config -o '".*"' | sed 's/"//g' >yarn/pkg
+yarn global list 2>/dev/null | rg --no-config -o '".*"' | sed 's/"//g' >yarn/pkg
 rm -rf nvim/undo
 rmb .zshrc .zprofile .zaliases zsh
 rmb tmux.conf tmux
