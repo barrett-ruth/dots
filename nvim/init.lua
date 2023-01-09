@@ -14,5 +14,6 @@ require('Comment').setup {
 require('lines').setup()
 require('run').setup()
 require('import-cost').setup()
+require('live-server').setup()
 
 vim.cmd.colorscheme 'gruvbox'

@@ -4,11 +4,11 @@ paq.setup {
 }
 
 paq {
-    'savq/paq-nvim',
+    'barrett-ruth/paq-nvim',
+    'barrett-ruth/live-server.nvim',
+    'barrett-ruth/import-cost.nvim',
 
     'andymass/vim-matchup',
-
-    'barrett-ruth/import-cost.nvim',
 
     'b0o/SchemaStore.nvim',
     'folke/neodev.nvim',

@@ -37,8 +37,8 @@ require('nvim-treesitter.configs').setup {
     indent = { enable = false },
     highlight = {
         enable = true,
-        disable = function(_)
-            return vim.fn.getfsize(vim.fn.expand '%') / 10e5 > 20
+        disable = function(_, bufnr)
+            return vim.api.nvim_buf_line_count(bufnr) > 10e3
         end,
     },
     context_commentstring = {
