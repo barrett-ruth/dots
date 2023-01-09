@@ -55,7 +55,6 @@ local function format()
             }, client.name)
         end,
     }
-    vim.cmd.w()
 end
 
 function M.on_attach(client, _)
@@ -63,7 +62,7 @@ function M.on_attach(client, _)
     local diagnostic, buf = vim.diagnostic, vim.lsp.buf
 
     if server_capabilities.documentFormattingProvider then
-        api.nvim_create_autocmd('BufWritePost', {
+        api.nvim_create_autocmd('BufWritePre', {
             pattern = '<buffer>',
             callback = format,
             group = api.nvim_create_augroup('format', { clear = false }),

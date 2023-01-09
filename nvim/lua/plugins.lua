@@ -4,11 +4,11 @@ paq.setup {
 }
 
 paq {
+    'andymass/vim-matchup',
+
     'barrett-ruth/paq-nvim',
     'barrett-ruth/live-server.nvim',
     'barrett-ruth/import-cost.nvim',
-
-    'andymass/vim-matchup',
 
     'b0o/SchemaStore.nvim',
     'folke/neodev.nvim',
@@ -28,7 +28,7 @@ paq {
     'echasnovski/mini.bufremove',
     'echasnovski/mini.pairs',
 
-    'iamcco/markdown-preview.nvim',
+    { 'iamcco/markdown-preview.nvim', run = 'yarn --cwd app install' },
 
     'jose-elias-alvarez/null-ls.nvim',
     'jose-elias-alvarez/typescript.nvim',
@@ -58,7 +58,7 @@ paq {
     {
         'nvim-treesitter/nvim-treesitter',
         run = function()
-            require('nvim-treesitter.install').update { with_sync = true }
+            vim.cmd.TSUpdateSync()
         end,
     },
     'nvim-treesitter/nvim-treesitter-context',
