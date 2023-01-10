@@ -154,7 +154,8 @@ end
 function M.prepare_lsp_settings(settings)
     local default_settings = {}
 
-    default_settings.capabilities = vim.lsp.protocol.make_client_capabilities()
+    default_settings.capabilities =
+        require('cmp_nvim_lsp').default_capabilities()
     default_settings.capabilities.offsetEncoding = { 'utf-16' }
     default_settings.capabilities.textDocument.completion.completionItem.snippetSupport =
         false

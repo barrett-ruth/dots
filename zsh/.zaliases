@@ -32,6 +32,7 @@ wool() {
 }
 
 # Misc
+mkcd() { mkdir -p "$@"; cd "$@"; }
 alias psa='ps aux'
 gcl() { . _gcl "$@"; }
 j() { . _j "$@"; }
