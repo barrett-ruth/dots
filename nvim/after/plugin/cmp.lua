@@ -12,7 +12,9 @@ local kinds = {
     Function = 'fn',
     Keyword = 'key',
     Method = 'meth',
+    Module = 'mod',
     Property = 'prop',
+    Value = 'val',
     Variable = 'var',
 }
 
@@ -37,11 +39,7 @@ cmp.setup {
         format = function(_, vim_item)
             vim_item.kind = kinds[vim_item.kind] or vim_item.kind
 
-            if vim_item.abbr:sub(-1, -1) == '~' then
-                vim_item.abbr = vim_item.abbr:sub(0, -2)
-            end
-
-            vim_item.abbr = vim_item.abbr:gsub('•', '')
+            vim_item.abbr = vim_item.abbr:gsub('•', ''):gsub('~', '')
 
             return vim_item
         end,
