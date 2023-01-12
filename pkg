@@ -82,6 +82,7 @@ gdk-pixbuf2 2.42.10-2
 gettext 0.21.1-2
 giflib 5.2.1-2
 git 2.39.0-1
+github-cli 2.21.2-1
 glib-networking 1:2.74.0-1
 glib2 2.74.4-1
 glibc 2.36-6
@@ -285,6 +286,7 @@ lua-language-server 3.6.4-1
 luajit 2.1.0.beta3.r467.gd0e88930-1
 lz4 1:1.9.4-1
 lzo 2.10-4
+mailcap 2.1.53-1
 make 4.4-1
 man-db 2.11.2-1
 man-pages 6.02-1

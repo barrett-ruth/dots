@@ -7,8 +7,10 @@ paq {
     'andymass/vim-matchup',
 
     'barrett-ruth/paq-nvim',
-    'barrett-ruth/live-server.nvim',
-    'barrett-ruth/import-cost.nvim',
+
+    { 'barrett-ruth/emmet.nvim', run = 'sh install.sh yarn' },
+    { 'barrett-ruth/import-cost.nvim', run = 'sh install.sh yarn' },
+    { 'barrett-ruth/live-server.nvim', run = 'yarn global add live-server' },
 
     'b0o/SchemaStore.nvim',
     'folke/neodev.nvim',

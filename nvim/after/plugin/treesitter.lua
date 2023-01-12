@@ -1,5 +1,5 @@
 require('treesitter-context').setup {
-    max_lines = 1,
+    max_lines = 2,
 }
 
 require('treesj').setup {

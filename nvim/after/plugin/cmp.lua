@@ -48,9 +48,10 @@ cmp.setup {
         {
             name = 'nvim_lsp',
             entry_filter = function(entry, _)
-                return cmp.lsp.CompletionItemKind[entry:get_kind()] ~= 'Text'
-                    and cmp.lsp.CompletionItemKind[entry:get_kind()]
-                        ~= 'Snippet'
+                return not vim.tbl_contains(
+                    { 'Text', 'Snippet' },
+                    cmp.lsp.CompletionItemKind[entry:get_kind()]
+                )
             end,
         },
         { name = 'path' },
@@ -61,10 +62,10 @@ cmp.setup {
         ['<c-f>'] = mapping.scroll_docs(4),
         ['<c-e>'] = mapping.abort(),
         ['<c-n>'] = function(_)
-            if cmp.visible() then
-                cmp.select_next_item()
-            else
+            if not cmp.visible() then
                 cmp.complete()
+            else
+                cmp.select_next_item()
             end
         end,
         ['<c-p>'] = mapping.select_prev_item(),

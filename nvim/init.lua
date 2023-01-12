@@ -15,5 +15,6 @@ require('lines').setup()
 require('run').setup()
 require('import-cost').setup()
 require('live-server').setup()
+require('emmet').setup { keymap = '<c-e>' }
 
 vim.cmd.colorscheme 'gruvbox'

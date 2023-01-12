@@ -16,6 +16,7 @@ alias la='ll -R'
 alias lss='less --use-color --color=d+b --color=P+c --color=u+g'
 
 # Basic programs
+alias dk='docker'
 alias g='git'
 alias nv='nvim'
 alias pe='printenv'
