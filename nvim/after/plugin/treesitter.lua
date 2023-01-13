@@ -34,6 +34,15 @@ require('nvim-treesitter.configs').setup {
         'vim',
         'yaml',
     },
+    autotag = {
+        enable = true,
+        filetypes = {
+            'html',
+            'htmldjango',
+            'javascriptreact',
+            'typescriptreaact',
+        },
+    },
     indent = { enable = false },
     highlight = {
         enable = true,

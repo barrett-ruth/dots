@@ -1,5 +1,4 @@
 return {
-    s('fc', fmt('({}) => (\n\t{}\n)', { i(1), i(2) })),
     s('ue', fmt('useEffect(() => {{\n\t{}\n}}{})', { i(1), i(2) })),
     s('um', fmt('useMemo(() => {})', { i(1) })),
     s('ur', fmt('useRef({})', { i(1) })),

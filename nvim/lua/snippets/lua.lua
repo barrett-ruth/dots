@@ -1,4 +1,4 @@
-local utils = require 'utils'
+local rfind = require('utils').rfind
 
 local function extract_vars(args)
     local vars = {}
@@ -8,14 +8,11 @@ local function extract_vars(args)
             local var = e
 
             if var:match '%.' then
-                var = var:sub(utils.rfind(var, '%.'))
+                var = var:sub(rfind(var, '%.') + 1)
 
-                if var:match "'" then
-                    var = var:sub(1, utils.rfind(var, "'") - 1)
-                end
-
-                if var:match '%.' then
-                    var = var:sub(2)
+                local idx = rfind(var, "'")
+                if idx then
+                    var = var:sub(1, idx - 1)
                 end
             else
                 var = var:match "'([^)]+)'"

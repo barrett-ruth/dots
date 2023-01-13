@@ -1,9 +1,3 @@
-local function word(i)
-    return f(function(name)
-        return vim.split(name[1][1], ' ')[1]
-    end, { i })
-end
-
 local function subtag()
     return sn(
         nil,
@@ -25,9 +19,6 @@ local function list(tag)
 end
 
 return {
-    s('< ', fmt('<{} />', { i(1) })),
-    s('</', fmt('<{}>{}</{}>', { i(1), i(2), word(1) })),
-    s('<>', fmt('<{}>\n\t{}\n</{}>', { i(1), i(2), word(1) })),
     s({ trig = '%.(.*)', regTrig = true }, {
         t '<div class="',
         f(function(_, snip)

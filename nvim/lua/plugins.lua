@@ -84,6 +84,7 @@ paq {
     'ThePrimeagen/git-worktree.nvim',
 
     'windwp/nvim-autopairs',
+    'windwp/nvim-ts-autotag',
 
     'Wansmer/treesj',
 }
