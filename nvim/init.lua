@@ -16,5 +16,6 @@ require('run').setup()
 require('import-cost').setup()
 require('live-server').setup()
 require('emmet').setup { keymap = '<c-e>' }
+require('nvim-autopairs').setup {}
 
 vim.cmd.colorscheme 'gruvbox'

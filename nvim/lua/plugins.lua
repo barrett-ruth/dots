@@ -28,7 +28,6 @@ paq {
     'echasnovski/mini.ai',
     'echasnovski/mini.align',
     'echasnovski/mini.bufremove',
-    'echasnovski/mini.pairs',
 
     { 'iamcco/markdown-preview.nvim', run = 'yarn --cwd app install' },
 
@@ -83,6 +82,8 @@ paq {
 
     'ThePrimeagen/harpoon',
     'ThePrimeagen/git-worktree.nvim',
+
+    'windwp/nvim-autopairs',
 
     'Wansmer/treesj',
 }

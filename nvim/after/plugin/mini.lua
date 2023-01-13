@@ -1,5 +1,4 @@
 require('mini.align').setup()
-require('mini.pairs').setup {}
 
 local bufremove = require 'mini.bufremove'
 
