@@ -1,7 +1,5 @@
 local g = vim.g
 
-vim.o.termguicolors = true
-
 if g.colors_name then
     vim.cmd.hi 'clear'
 end
@@ -12,8 +10,8 @@ if vim.fn.exists 'syntax_on' then
     vim.cmd.syntax 'reset'
 end
 
-local gruvbox = require 'gruvbox'
-local cs, hi, link = gruvbox.cs, gruvbox.hi, gruvbox.link
+local colors = require 'colors'
+local hi, link, cs = colors.hi, colors.link, colors[g.colors_name]
 
 g.terminal_ansi_colors = {
     cs.black,

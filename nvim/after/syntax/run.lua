@@ -4,8 +4,8 @@ vim.cmd [[
     syn match RunKilled /\V[SIGKILL]\v( exited with code=[^0])@=/
 ]]
 
-local gruvbox = require 'gruvbox'
-local cs, hi = gruvbox.cs, gruvbox.hi
+local colors = require 'colors'
+local hi, cs = colors.hi, colors[vim.g.colors_name]
 
 hi('RunDone', { fg = cs.green })
 hi('RunFail', { fg = cs.red })

@@ -151,19 +151,24 @@ function M.on_attach(client, _)
     end
 end
 
-function M.prepare_lsp_settings(settings)
-    local default_settings = {}
+function M.prepare_lsp_settings(user_settings)
+    local settings = {}
 
-    default_settings.capabilities =
-        require('cmp_nvim_lsp').default_capabilities()
-    default_settings.capabilities.offsetEncoding = { 'utf-16' }
-    default_settings.capabilities.textDocument.completion.completionItem.snippetSupport =
+    settings.capabilities = require('cmp_nvim_lsp').default_capabilities()
+    settings.capabilities.offsetEncoding = { 'utf-16' }
+    settings.capabilities.textDocument.completion.completionItem.snippetSupport =
         false
 
-    default_settings.flags = { debounce_text_changes = 0 }
-    default_settings.on_attach = M.on_attach
+    settings.flags = { debounce_text_changes = 0 }
 
-    return vim.tbl_extend('force', default_settings, settings or {})
+    settings = vim.tbl_extend('force', settings, user_settings or {})
+
+    settings.on_attach = function(...)
+        pcall(user_settings.on_attach, ...)
+        M.on_attach(...)
+    end
+
+    return settings
 end
 
 return M

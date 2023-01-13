@@ -39,7 +39,8 @@ cmp.setup {
         format = function(_, vim_item)
             vim_item.kind = kinds[vim_item.kind] or vim_item.kind
 
-            vim_item.abbr = vim_item.abbr:gsub('•', ''):gsub('~', '')
+            vim_item.abbr =
+                vim_item.abbr:gsub('•', ''):gsub('~', ''):gsub('^ ', '')
 
             return vim_item
         end,

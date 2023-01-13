@@ -6,7 +6,7 @@ gitsigns.setup {
     attach_to_untracked = false,
     current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
     current_line_blame_opts = { delay = 0 },
-    on_attach = function(_)
+    on_attach = function()
         bmap { 'n', '<leader>gp', gitsigns.preview_hunk }
         bmap { 'n', '<leader>gs', gitsigns.stage_hunk }
         bmap { 'n', '<leader>gu', gitsigns.undo_stage_hunk }

@@ -6,7 +6,5 @@ return {
         client.server_capabilities.referencesProvider = false
         client.server_capabilities.typeDefinitionProvider = false
         client.server_capabilities.workspaceSymbolProvider = false
-
-        require('lsp.utils').on_attach(client, _)
     end,
 }

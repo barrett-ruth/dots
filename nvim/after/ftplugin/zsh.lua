@@ -1,3 +1,3 @@
-local gruvbox = require 'gruvbox'
+local link = require('colors').link
 
-gruvbox.link('@function', 'zshFunction')
+link('@function', 'zshFunction')

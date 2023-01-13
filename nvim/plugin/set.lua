@@ -22,7 +22,7 @@ opt.iskeyword:append '-'
 o.laststatus = 3
 
 o.list = true
-o.listchars = 'trail:·'
+o.listchars = 'trail:·,tab:··'
 
 o.modeline = false
 
@@ -51,6 +51,8 @@ o.splitbelow = true
 o.splitright = true
 
 o.swapfile = false
+
+o.termguicolors = true
 
 o.undodir = env.XDG_DATA_HOME .. '/nvim/undo'
 o.undofile = true

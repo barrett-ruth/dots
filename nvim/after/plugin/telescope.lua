@@ -60,6 +60,7 @@ map { 'n', '<c-g>', builtin.live_grep }
 
 map { 'n', '<leader>tb', builtin.builtin }
 map { 'n', '<leader>tc', builtin.command_history }
+map { 'n', '<leader>tC', telescope.extensions.http.list }
 map {
     'n',
     '<leader>te',
@@ -82,7 +83,6 @@ map {
     end,
 }
 map { 'n', '<leader>th', builtin.help_tags }
-map { 'n', '<leader>tH', telescope.extensions.http.list }
 map { 'n', '<leader>tl', builtin.loclist }
 map { 'n', '<leader>tm', builtin.man_pages }
 map { 'n', '<leader>tq', builtin.quickfix }

@@ -1,7 +1,5 @@
 return {
-    on_attach = function(client, _)
-        require('lsp.utils').on_attach(client, _)
-
+    on_attach = function()
         bmap { 'n', '\\Tf', '<cmd>TypescriptFixAll<cr>' }
         bmap { 'n', '\\Ti', '<cmd>TypescriptAddMissingImports<cr>' }
         bmap { 'n', '\\To', '<cmd>TypescriptOrganizeImports<cr>' }
