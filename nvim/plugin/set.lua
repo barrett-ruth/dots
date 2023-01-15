@@ -12,10 +12,12 @@ o.expandtab = true
 
 opt.fillchars = { fold = ' ', eob = ' ', vert = '│', diff = '╱' }
 
-o.foldcolumn = '0'
-o.foldtext =
-    [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g'). '  [' . (v:foldend - v:foldstart + 1) . ']']]
+o.foldenable = false
+o.foldexpr = 'nvim_treesitter#foldexpr()'
+o.foldmethod = 'expr'
+o.foldminlines = 10
 o.foldnestmax = 2
+o.foldtext = 'getline(v:foldstart)'
 
 o.hlsearch = false
 
@@ -47,7 +49,7 @@ o.showmode = false
 
 o.showtabline = 0
 
-o.signcolumn = 'yes'
+o.signcolumn = 'no'
 
 o.spellfile = env.XDG_DATA_HOME .. '/nvim/spell/spell.encoding.add'
 

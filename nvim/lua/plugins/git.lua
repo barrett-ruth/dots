@@ -14,6 +14,8 @@ return {
                 current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
                 current_line_blame_opts = { delay = 0 },
                 on_attach = function()
+                    vim.o.signcolumn = 'yes'
+
                     bmap { 'n', '<leader>f2', '<cmd>diffget //2<cr>' }
                     bmap { 'n', '<leader>f3', '<cmd>diffget //3<cr>' }
 

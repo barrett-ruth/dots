@@ -7,7 +7,14 @@ return {
             pattern = '*',
             callback = function()
                 if
-                    vim.tbl_contains({ '', 'checkhealth', 'fugitive', 'gitcommit', 'harpoon', 'TelescopeResults' }, vim.bo.ft)
+                    vim.tbl_contains({
+                        '',
+                        'checkhealth',
+                        'fugitive',
+                        'gitcommit',
+                        'harpoon',
+                        'TelescopeResults',
+                    }, vim.bo.ft)
                 then
                     return
                 end
@@ -16,6 +23,7 @@ return {
             end,
             group = vim.api.nvim_create_augroup('winbar', {}),
         })
-        vim.o.statusline = [[%{%v:lua.require('lines.statusline').statusline()%}]]
-    end
+        vim.o.statusline =
+            [[%{%v:lua.require('lines.statusline').statusline()%}]]
+    end,
 }

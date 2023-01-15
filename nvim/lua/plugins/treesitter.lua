@@ -20,6 +20,7 @@ return {
                         'typescriptreaact',
                     },
                 },
+                fold = { enable = true },
                 indent = { enable = false },
                 highlight = {
                     enable = true,

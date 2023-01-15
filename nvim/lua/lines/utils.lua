@@ -1,6 +1,6 @@
 local M = {}
 
-local vorfn = function(val_or_fn)
+local function vorfn(val_or_fn)
     if type(val_or_fn) == 'function' then
         return val_or_fn()
     end
@@ -8,11 +8,11 @@ local vorfn = function(val_or_fn)
     return val_or_fn
 end
 
-local format_component = function(component)
+local function format_component(component)
     return '%#Grey#' .. vorfn(component.value)
 end
 
-M.format_components = function(components)
+function M.format_components(components)
     local side = {}
 
     for i = 1, #components do
