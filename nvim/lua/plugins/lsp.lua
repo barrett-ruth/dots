@@ -1,8 +1,12 @@
 local prepare_lsp_settings = require('lsp.utils').prepare_lsp_settings
 
 return {
-    'b0o/SchemaStore.nvim',
-    'folke/neodev.nvim',
+    {
+        'b0o/SchemaStore.nvim',
+        ft = { 'json', 'jsonc' },
+        lazy = true,
+    },
+    { 'folke/neodev.nvim', ft = 'lua', lazy = true },
     {
         'jose-elias-alvarez/null-ls.nvim',
         config = function()
@@ -16,6 +20,13 @@ return {
                 server = prepare_lsp_settings(require 'lsp.servers.typescript'),
             }
         end,
+        ft = {
+            'javascript',
+            'javascriptreact',
+            'typescript',
+            'typescriptreact',
+        },
+        lazy = true,
     },
     'kristijanhusak/vim-dadbod-ui',
     'nanotee/sqls.nvim',

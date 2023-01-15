@@ -44,7 +44,6 @@
   "vim-dadbod-ui": { "branch": "master", "commit": "f4ead480930a37dd2b0cf917a8c387ed36c2d86a" },
   "vim-exchange": { "branch": "master", "commit": "784d63083ad7d613aa96f00021cd0dfb126a781a" },
   "vim-fugitive": { "branch": "master", "commit": "9c5f675db54139c18ed4a1a18989ea2da37d6cae" },
-  "vim-matchup": { "branch": "master", "commit": "db5120dd9887c988de7cd973ddb951e465d413e5" },
   "vim-repeat": { "branch": "master", "commit": "24afe922e6a05891756ecf331f39a1f6743d3d5a" },
   "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" },
   "vim-textobj-keyvalue": { "branch": "master", "commit": "77bdefa7a737274a44fbdbd4eefa269dab9cf3bb" },

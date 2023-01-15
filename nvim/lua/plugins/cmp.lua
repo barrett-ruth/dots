@@ -93,13 +93,17 @@ return {
             })
         end,
         dependencies = {
-            'davidsierradz/cmp-conventionalcommits',
             'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-path',
             'kristijanhusak/vim-dadbod-completion',
-            'petertriho/cmp-git',
         },
         event = 'InsertEnter',
+        lazy = true,
+    },
+    {
+        'davidsierradz/cmp-conventionalcommits',
+        event = 'InsertEnter',
+        ft = 'gitcommit',
         lazy = true,
     },
     {
@@ -116,5 +120,8 @@ return {
                 },
             },
         },
+        event = 'InsertEnter',
+        ft = 'gitcommit',
+        lazy = true,
     },
 }

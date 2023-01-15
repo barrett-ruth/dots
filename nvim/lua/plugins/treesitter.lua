@@ -7,9 +7,7 @@ return {
             'JoosepAlviste/nvim-ts-context-commentstring',
             'nvim-treesitter/nvim-treesitter-context',
             'nvim-treesitter/nvim-treesitter-textobjects',
-            'nvim-treesitter/playground',
             'windwp/nvim-ts-autotag',
-            'Wansmer/treesj',
         },
         config = function()
             require('nvim-treesitter.configs').setup {
@@ -118,11 +116,17 @@ return {
         end,
     },
     {
+        'nvim-treesitter/playground',
+        cmd = 'TSPlaygroundToggle',
+        lazy = true,
+    },
+    {
         'Wansmer/treesj',
         keys = {
             { 'gJ', '<cmd>TSJJoin<cr>' },
             { 'gS', '<cmd>TSJSplit<cr>' },
         },
+        lazy = true,
         opts = {
             use_default_keymaps = false,
         },

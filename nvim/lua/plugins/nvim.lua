@@ -19,10 +19,8 @@ return {
         config = true,
         ft = { 'css', 'html', 'javascript' },
         keys = {
-            '<leader>ls',
-            '<cmd>LiveServerStart<cr>',
-            '<leader>lS',
-            '<cmd>LiveServerStop',
+            { '<leader>ls', '<cmd>LiveServerStart<cr>' },
+            { '<leader>lS', '<cmd>LiveServerStop' },
         },
         lazy = true,
     },
@@ -71,9 +69,6 @@ return {
     },
     {
         'numToStr/Comment.nvim',
-        dependencies = {
-            'JoosepAlviste/nvim-ts-context-commentstring',
-        },
         config = function()
             require('Comment').setup {
                 pre_hook = require(
@@ -81,6 +76,9 @@ return {
                 ).create_pre_hook(),
             }
         end,
+        dependencies = {
+            'JoosepAlviste/nvim-ts-context-commentstring',
+        },
     },
     {
         'NvChad/nvim-colorizer.lua',

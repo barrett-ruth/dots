@@ -1,5 +1,9 @@
 return {
     {
+        'ThePrimeagen/git-worktree.nvim',
+        lazy = true,
+    },
+    {
         'lewis6991/gitsigns.nvim',
         config = function()
             local gitsigns = require 'gitsigns'
@@ -57,17 +61,7 @@ return {
                 },
                 update_debounce = 0,
             }
-
-            vim.fn.sign_define('GitSignsAddNr', { text = '│' })
-            vim.fn.sign_define('GitSignsChangeNr', { text = '│' })
-            vim.fn.sign_define('GitSignsChangedeleteNr', { text = '~' })
-            vim.fn.sign_define('GitSignsDeleteNr', { text = '＿' })
-            vim.fn.sign_define('GitSignsTopdeleteNr', { text = '‾' })
         end,
-        dependencies = {
-            'nvim-telescope/telescope.nvim',
-            'ThePrimeagen/git-worktree.nvim',
-        },
     },
     'tpope/vim-fugitive',
 }

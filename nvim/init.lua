@@ -2,18 +2,7 @@ require 'let'
 require 'map'
 require 'aug'
 
-local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
-
-if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system {
-        'git',
-        'clone',
-        'git@github.com:folke/lazy.nvim.git',
-        lazypath,
-    }
-end
-
-vim.opt.rtp:prepend(lazypath)
+vim.opt.rtp:prepend(vim.fn.stdpath 'data' .. '/lazy/lazy.nvim')
 
 require('lazy').setup('plugins', {
     git = {
