@@ -3,10 +3,8 @@ local path = {
         local expanded = vim.fn.expand '%:p'
         local shrunk = expanded
 
-        if vim.startswith(expanded, vim.env.HOME) then
-            local fpath = require 'plenary.path'
-            shrunk = fpath:new(vim.fn.expand '%:~'):shorten()
-        end
+        local fpath = require 'plenary.path'
+        shrunk = fpath:new(vim.fn.expand '%:~'):shorten()
 
         return shrunk
     end,

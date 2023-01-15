@@ -4,7 +4,6 @@ return {
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdateSync',
         dependencies = {
-            'JoosepAlviste/nvim-ts-context-commentstring',
             'nvim-treesitter/nvim-treesitter-context',
             'nvim-treesitter/nvim-treesitter-textobjects',
             'windwp/nvim-ts-autotag',

@@ -1,11 +1,5 @@
 return {
     {
-        'echasnovski/mini.align',
-        config = function()
-            require('mini.align').setup()
-        end,
-    },
-    {
         'echasnovski/mini.bufremove',
         config = function()
             local bufremove = require 'mini.bufremove'

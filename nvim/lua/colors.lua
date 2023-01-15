@@ -18,7 +18,7 @@ return {
         light_white = '#e2d3ba',
         orange = '#e78a4e',
         grey = '#928374',
-        light_grey = '#45403d',
+        med_grey = '#45403d',
         dark_grey = '#32302f',
         hi = '#a89984',
     },

@@ -10,8 +10,6 @@ return {
 
             gitsigns.setup {
                 attach_to_untracked = false,
-                numhl = true,
-                signcolumn = false,
                 current_line_blame = true,
                 current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
                 current_line_blame_opts = { delay = 0 },
@@ -27,20 +25,14 @@ return {
                         'n',
                         '[g',
                         function()
-                            gitsigns.prev_hunk {
-                                navigation_message = false,
-                                preview = true,
-                            }
+                            gitsigns.prev_hunk { preview = true }
                         end,
                     }
                     bmap {
                         'n',
                         ']g',
                         function()
-                            gitsigns.next_hunk {
-                                navigation_message = false,
-                                preview = true,
-                            }
+                            gitsigns.next_hunk { preview = true }
                         end,
                     }
 
@@ -58,6 +50,13 @@ return {
                 end,
                 preview_config = {
                     border = 'rounded',
+                },
+                signs = {
+                    add = { text = '│' },
+                    change = { text = '│' },
+                    changedelete = { text = '~' },
+                    delete = { text = '＿' },
+                    topdelete = { text = '‾' },
                 },
                 update_debounce = 0,
             }

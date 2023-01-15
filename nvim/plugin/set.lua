@@ -4,6 +4,8 @@ o.autowrite = true
 
 o.breakindent = true
 
+o.cursorline = true
+
 opt.diffopt:append 'linematch:60'
 
 o.expandtab = true
@@ -45,10 +47,14 @@ o.showmode = false
 
 o.showtabline = 0
 
+o.signcolumn = 'yes'
+
 o.spellfile = env.XDG_DATA_HOME .. '/nvim/spell/spell.encoding.add'
 
 o.splitbelow = true
 o.splitright = true
+
+o.statuscolumn = '%s%=%{v:relnum?v:relnum:v:lnum} '
 
 o.swapfile = false
 
