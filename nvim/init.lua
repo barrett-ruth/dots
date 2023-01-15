@@ -1,21 +1,33 @@
-vim.g.mapleader = ' '
-
-require 'impatient'
-
+require 'let'
 require 'map'
 require 'aug'
-require 'plugins'
-require 'snippets'
-require 'lsp'
 
-require('Comment').setup {
-    pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
-}
+local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system {
+        'git',
+        'clone',
+        'git@github.com:folke/lazy.nvim.git',
+        lazypath,
+    }
+end
+
+vim.opt.rtp:prepend(lazypath)
+
+require('lazy').setup('plugins', {
+    git = {
+        url_format = 'git@github.com:%s.git',
+    },
+    install = {
+        colorscheme = { 'gruvbox' },
+    },
+    ui = {
+        border = 'rounded',
+    },
+})
+
 require('lines').setup()
 require('run').setup()
-require('import-cost').setup()
-require('live-server').setup()
-require('emmet').setup { keymap = '<c-e>' }
-require('nvim-autopairs').setup {}
 
 vim.cmd.colorscheme 'gruvbox'

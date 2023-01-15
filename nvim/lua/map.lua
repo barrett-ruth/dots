@@ -11,8 +11,6 @@ function _G.bmap(mapping, opts)
     map(mapping, vim.tbl_extend('keep', opts or {}, { buffer = 0 }))
 end
 
-local cmd = vim.cmd
-
 map {
     'n',
     'gx',
@@ -46,6 +44,8 @@ map {
         vim.fn.setreg('+', vim.fn.getreg '0')
     end,
 }
+
+local cmd = vim.cmd
 
 map { 'n', ']b', cmd.bnext }
 map { 'n', '[b', cmd.bprev }

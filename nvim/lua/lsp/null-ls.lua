@@ -1,7 +1,5 @@
-local fn = vim.fn
-
 local on_attach = require('lsp.utils').on_attach
-local projects = require 'projects'
+local projects = require 'lsp.projects'
 
 local null_ls = require 'null-ls'
 local builtins = null_ls.builtins
@@ -9,7 +7,7 @@ local code_actions, diagnostics, formatting =
     builtins.code_actions, builtins.diagnostics, builtins.formatting
 
 local function project_contains_source(name, default)
-    local project = fn.fnamemodify(fn.getcwd(), ':t')
+    local project = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
 
     if projects[project] and projects[project].lsp_sources then
         return vim.tbl_contains(projects[project].lsp_sources, name)
@@ -111,12 +109,6 @@ null_ls.setup {
         },
         formatting.sql_formatter,
         formatting.stylua,
-    },
-    diagnostic_config = {
-        signs = false,
-        severity_sort = true,
-        update_in_insert = false,
-        virtual_text = false,
     },
     on_attach = on_attach,
     debounce = 0,

@@ -1,24 +1,27 @@
-local fn = vim.fn
+local handlers = vim.lsp.handlers
 
-fn.sign_define(
+vim.fn.sign_define(
     'DiagnosticSignError',
     { text = '>', texthl = 'DiagnosticError' }
 )
-fn.sign_define(
+vim.fn.sign_define(
     'DiagnosticSignWarn',
     { text = '—', texthl = 'DiagnosticWarn' }
 )
-fn.sign_define('DiagnosticSignHint', { text = '*', texthl = 'DiagnosticHint' })
-fn.sign_define('DiagnosticSignInfo', { text = ':', texthl = 'DiagnosticInfo' })
+vim.fn.sign_define(
+    'DiagnosticSignHint',
+    { text = '*', texthl = 'DiagnosticHint' }
+)
+vim.fn.sign_define(
+    'DiagnosticSignInfo',
+    { text = ':', texthl = 'DiagnosticInfo' }
+)
 
-local lsp = vim.lsp
-local handlers = lsp.handlers
-
-handlers['textDocument/hover'] = lsp.with(handlers.hover, {
+handlers['textDocument/hover'] = vim.lsp.with(handlers.hover, {
     border = 'rounded',
 })
 
-handlers['textDocument/signatureHelp'] = lsp.with(handlers.signature_help, {
+handlers['textDocument/signatureHelp'] = vim.lsp.with(handlers.signature_help, {
     border = 'rounded',
     focusable = false,
 })

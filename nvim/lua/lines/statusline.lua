@@ -1,10 +1,8 @@
-local fn = vim.fn
-
 local utils = require 'utils'
 
 local file = {
     value = function()
-        return fn.expand '%:~:.'
+        return vim.fn.expand '%:~:.'
     end,
 }
 

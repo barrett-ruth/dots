@@ -8,12 +8,6 @@ au('BufEnter', {
     group = aug,
 })
 
-au('BufWritePost', {
-    pattern = vim.env.XDG_CONFIG_HOME .. '/nvim/lua/plugins.lua',
-    command = 'so|PaqClean|PaqUpdate|PaqInstall',
-    group = aug,
-})
-
 au('InsertLeave', {
     callback = function()
         local ls = require 'luasnip'

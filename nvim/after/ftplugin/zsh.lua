@@ -1,3 +1,1 @@
-local link = require('colors').link
-
-link('@function', 'zshFunction')
+require('colors').link('@function', 'zshFunction')

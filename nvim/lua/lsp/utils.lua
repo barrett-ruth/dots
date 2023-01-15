@@ -2,8 +2,6 @@ local M = {}
 
 local api = vim.api
 
-local builtin = require 'telescope.builtin'
-
 local function rename()
     local old_name = vim.fn.expand '<cword>'
 
@@ -72,6 +70,9 @@ function M.on_attach(client, _)
     if server_capabilities.codeActionProvider then
         bmap { 'n', '\\c', buf.code_action }
     end
+
+    local builtin = require 'telescope.builtin'
+
     bmap { 'n', '\\d', builtin.diagnostics }
     bmap { 'n', '\\f', diagnostic.open_float }
     if server_capabilities.renameProvider then
@@ -161,10 +162,13 @@ function M.prepare_lsp_settings(user_settings)
 
     settings.flags = { debounce_text_changes = 0 }
 
-    settings = vim.tbl_extend('force', settings, user_settings or {})
+    settings = vim.tbl_extend('force', settings, user_settings)
 
     settings.on_attach = function(...)
-        pcall(user_settings.on_attach, ...)
+        if user_settings.on_attach then
+            user_settings.on_attach(...)
+        end
+
         M.on_attach(...)
     end
 

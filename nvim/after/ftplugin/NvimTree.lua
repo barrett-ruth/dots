@@ -1,8 +1,4 @@
-bmap {
-    'n',
-    'q',
-    vim.cmd.bw,
-}
+bmap { 'n', 'q', vim.cmd.bw }
 bmap {
     'n',
     'v',

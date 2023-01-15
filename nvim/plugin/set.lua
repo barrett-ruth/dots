@@ -1,4 +1,4 @@
-local env, g, o, opt = vim.env, vim.g, vim.o, vim.opt
+local env, o, opt = vim.env, vim.o, vim.opt
 
 o.autowrite = true
 
@@ -58,22 +58,4 @@ o.undodir = env.XDG_DATA_HOME .. '/nvim/undo'
 o.undofile = true
 
 o.updatetime = 50
-
-g.wildignore = {
-    'undo/',
-    '__pycache__/',
-    'build/',
-    'node_modules/',
-    'venv/',
-    'cache/',
-    '.git/',
-    '.github/',
-    '.mypy_cache/',
-    '*.exe',
-    '.null-ls*',
-    '*.o',
-    '*.orig',
-    '*.rej',
-}
-
 o.wrap = false
