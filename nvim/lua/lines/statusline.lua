@@ -15,6 +15,37 @@ local git = {
     end,
 }
 
+local macro = {
+    value = function()
+        return '[' .. vim.fn.reg_recording() .. ']'
+    end,
+    condition = function()
+        return not utils.empty(vim.fn.reg_recording())
+    end,
+}
+
+local search = {
+    value = function()
+        local count = vim.fn.searchcount { maxcount = 999 }
+
+        return string.format(
+            '%s [%s/%d]',
+            vim.fn.getreg '/',
+            count.current,
+            count.total
+        )
+    end,
+    condition = function()
+        local status, searchcount = pcall(vim.fn.searchcount)
+
+        if not status then
+            return false
+        end
+
+        return searchcount.total > 0
+    end,
+}
+
 local line = {
     value = '%l:%L',
 }
@@ -47,9 +78,11 @@ local statusline = {
         [2] = file,
     },
     right = {
-        [1] = line,
-        [2] = filetype,
-        [3] = fileinfo,
+        [1] = macro,
+        [2] = search,
+        [3] = line,
+        [4] = filetype,
+        [5] = fileinfo,
     },
 }
 
