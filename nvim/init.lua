@@ -20,6 +20,7 @@ require('lazy').setup('plugins', {
     install = {
         colorscheme = { 'gruvbox' },
     },
+    lockfile = vim.fn.stdpath 'data' .. '/lazy-lock.json',
     ui = {
         border = 'rounded',
     },
