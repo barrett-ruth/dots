@@ -1,5 +1,5 @@
 return {
-    'nvim-lua/plenary.nvim',
+    { 'nvim-lua/plenary.nvim', lazy = true },
     {
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdateSync',

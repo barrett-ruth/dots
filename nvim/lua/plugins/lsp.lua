@@ -29,7 +29,7 @@ return {
         lazy = true,
     },
     'kristijanhusak/vim-dadbod-ui',
-    'nanotee/sqls.nvim',
+    { 'nanotee/sqls.nvim', ft = { 'mysql', 'sql' }, lazy = true },
     {
         'neovim/nvim-lspconfig',
         config = function()
