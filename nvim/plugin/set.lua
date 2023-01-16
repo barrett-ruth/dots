@@ -29,9 +29,11 @@ o.laststatus = 3
 o.list = true
 o.listchars = 'trail:·,tab:··'
 
+opt.matchpairs:append '<:>'
+
 o.modeline = false
 
-opt.matchpairs:append '<:>'
+o.mouse = ''
 
 o.number = true
 o.relativenumber = true
