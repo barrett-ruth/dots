@@ -58,7 +58,7 @@ return {
                         )
                     end
                 end,
-                group = vim.api.nvim_create_augroup('Ufo', {}),
+                group = vim.api.nvim_create_augroup('AUfo', {}),
             })
         end,
         dependencies = {

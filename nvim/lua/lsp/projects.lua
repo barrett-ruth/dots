@@ -1,6 +1,6 @@
 local M = {}
 
-local aug = vim.api.nvim_create_augroup('projects', {})
+local aug = vim.api.nvim_create_augroup('AProjects', {})
 
 M.projects = {
     theCourseForum2 = {

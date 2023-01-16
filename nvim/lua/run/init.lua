@@ -109,7 +109,7 @@ local run = function()
 end
 
 M.setup = function()
-    aug = api.nvim_create_augroup('Run', {})
+    aug = api.nvim_create_augroup('ARun', {})
     -- [bufnr] -> { bufnr: scratch_bufnr, job_id: job_id }
     cache = {}
     map { 'n', '<leader>r', run }

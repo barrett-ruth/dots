@@ -65,7 +65,7 @@ function M.on_attach(client, bufnr)
         api.nvim_create_autocmd('BufWritePre', {
             pattern = '<buffer>',
             callback = format,
-            group = api.nvim_create_augroup('format', { clear = false }),
+            group = api.nvim_create_augroup('AFormat', { clear = false }),
         })
     end
 

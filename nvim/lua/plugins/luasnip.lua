@@ -49,7 +49,7 @@ return {
                     ls.unlink_current()
                 end
             end,
-            group = vim.api.nvim_create_augroup('Luasnip', {}),
+            group = vim.api.nvim_create_augroup('ALuasnip', {}),
         })
 
         map {

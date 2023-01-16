@@ -21,7 +21,7 @@ return {
 
                 vim.opt_local.winbar = format_components(winbar)
             end,
-            group = vim.api.nvim_create_augroup('winbar', {}),
+            group = vim.api.nvim_create_augroup('AWinbar', {}),
         })
 
         vim.o.statusline =
