@@ -42,11 +42,28 @@ return {
     },
     {
         'kevinhwang91/nvim-ufo',
+        config = function(_, opts)
+            vim.o.foldlevel = 99
+
+            require('ufo').setup(opts)
+
+            vim.api.nvim_create_autocmd('BufRead', {
+                callback = function(kopts)
+                    if not vim.treesitter.highlighter.active[kopts.buf] then
+                        require('ufo').detach(kopts.buf)
+                        vim.api.nvim_win_set_option(
+                            vim.fn.bufwinid(kopts.buf),
+                            'foldcolumn',
+                            '0'
+                        )
+                    end
+                end,
+                group = vim.api.nvim_create_augroup('Ufo', {}),
+            })
+        end,
         dependencies = {
             'kevinhwang91/promise-async',
         },
-        event = 'BufRead',
-        lazy = true,
         opts = {
             open_fold_hl_timeout = 0,
             fold_virt_text_handler = function(virtText, _, _, width)

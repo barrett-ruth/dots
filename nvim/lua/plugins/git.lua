@@ -57,9 +57,6 @@ return {
                 update_debounce = 0,
             }
         end,
-        dependencies = {
-            'ThePrimeagen/git-worktree.nvim',
-        },
     },
     'tpope/vim-fugitive',
 }

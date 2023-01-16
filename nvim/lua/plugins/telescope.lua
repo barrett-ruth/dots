@@ -105,6 +105,7 @@ return {
         end,
         dependencies = {
             'nvim-telescope/telescope-fzy-native.nvim',
+            'ThePrimeagen/git-worktree.nvim',
         },
     },
     {

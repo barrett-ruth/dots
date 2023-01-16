@@ -8,24 +8,6 @@ au('BufEnter', {
     group = aug,
 })
 
-au('InsertLeave', {
-    callback = function()
-        local ls = require 'luasnip'
-
-        if
-            (
-                (vim.v.event.old_mode == 's' and vim.v.event.new_mode == 'n')
-                or vim.v.event.old_mode == 'i'
-            )
-            and ls.session.current_nodes[vim.api.nvim_get_current_buf()]
-            and not ls.session.jump_active
-        then
-            ls.unlink_current()
-        end
-    end,
-    group = aug,
-})
-
 au('TextYankPost', {
     callback = function()
         vim.highlight.on_yank { higroup = 'RedrawDebugNormal', timeout = '700' }

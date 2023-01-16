@@ -102,13 +102,11 @@ return {
     },
     {
         'davidsierradz/cmp-conventionalcommits',
-        event = 'InsertEnter',
         ft = 'gitcommit',
         lazy = true,
     },
     {
         'petertriho/cmp-git',
-        event = 'InsertEnter',
         ft = 'gitcommit',
         lazy = true,
         opts = {

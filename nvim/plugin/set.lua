@@ -20,8 +20,6 @@ opt.fillchars = {
     diff = '╱',
 }
 
-o.foldlevel = 99
-
 o.hlsearch = false
 
 opt.iskeyword:append '-'
