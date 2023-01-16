@@ -48,7 +48,6 @@ return {
                 'sqls',
                 'sumneko_lua',
                 'tailwindcss',
-                'vimls',
             } do
                 local status, settings =
                     pcall(require, 'lsp.servers.' .. server)

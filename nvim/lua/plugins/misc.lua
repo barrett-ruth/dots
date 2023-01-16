@@ -97,7 +97,18 @@ return {
     },
     {
         'nvim-tree/nvim-tree.lua',
-        config = {
+        keys = {
+            { '-', '<cmd>NvimTreeFindFileToggle .<cr>' },
+            {
+                '<leader>n',
+                function()
+                    vim.cmd('NvimTreeFindFileToggle ' .. vim.fn.expand '%:h')
+                end,
+            },
+        },
+        ft = 'NvimTree',
+        lazy = false,
+        opts = {
             filters = {
                 custom = (function()
                     local ignore = {}
@@ -165,15 +176,6 @@ return {
                     enable = true,
                 },
                 root_folder_label = ':~:s?$?/?',
-            },
-        },
-        keys = {
-            { '-', '<cmd>NvimTreeFindFileToggle .<cr>' },
-            {
-                '<leader>n',
-                function()
-                    vim.cmd('NvimTreeFindFileToggle ' .. vim.fn.expand '%:h')
-                end,
             },
         },
     },

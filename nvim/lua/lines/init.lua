@@ -23,7 +23,10 @@ return {
             end,
             group = vim.api.nvim_create_augroup('winbar', {}),
         })
+
         vim.o.statusline =
             [[%{%v:lua.require('lines.statusline').statusline()%}]]
+        vim.o.statuscolumn =
+            [[%{%v:lua.require('lines.statuscolumn').statuscolumn()%}]]
     end,
 }

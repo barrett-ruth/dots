@@ -20,8 +20,6 @@ return {
                         'typescriptreaact',
                     },
                 },
-                fold = { enable = true },
-                indent = { enable = false },
                 highlight = {
                     enable = true,
                     disable = function(_, bufnr)

@@ -108,6 +108,9 @@ return {
     },
     {
         'petertriho/cmp-git',
+        event = 'InsertEnter',
+        ft = 'gitcommit',
+        lazy = true,
         opts = {
             github = {
                 issues = {
@@ -120,8 +123,5 @@ return {
                 },
             },
         },
-        event = 'InsertEnter',
-        ft = 'gitcommit',
-        lazy = true,
     },
 }

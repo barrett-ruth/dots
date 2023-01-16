@@ -65,8 +65,8 @@ hi('CursorLineNr', { fg = cs.grey })
 -- folds/columns
 hi('ColorColumn', { bg = cs.dark_grey })
 hi('SignColumn', { bg = cs.bg })
-hi('FoldColumn', { bg = cs.bg })
-hi('Folded', { fg = cs.grey })
+hi('FoldColumn', { fg = cs.grey })
+hi('Folded', { none = true })
 
 -- health
 hi('HealthSuccess', { fg = cs.green })

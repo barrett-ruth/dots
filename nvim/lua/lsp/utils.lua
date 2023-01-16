@@ -55,7 +55,9 @@ local function format()
     }
 end
 
-function M.on_attach(client, _)
+function M.on_attach(client, bufnr)
+    vim.api.nvim_win_set_option(vim.fn.bufwinid(bufnr), 'foldcolumn', '1')
+
     local server_capabilities = client.server_capabilities
     local diagnostic, buf = vim.diagnostic, vim.lsp.buf
 
@@ -159,6 +161,10 @@ function M.prepare_lsp_settings(user_settings)
     settings.capabilities.offsetEncoding = { 'utf-16' }
     settings.capabilities.textDocument.completion.completionItem.snippetSupport =
         false
+    settings.capabilities.textDocument.foldingRange = {
+        dynamicRegistration = false,
+        lineFoldingOnly = true,
+    }
 
     settings.flags = { debounce_text_changes = 0 }
 

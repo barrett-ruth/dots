@@ -1,3 +1,5 @@
+local fn = vim.fn
+
 return {
     {
         'barrett-ruth/emmet.nvim',
@@ -37,6 +39,41 @@ return {
             { '<leader>m', '<cmd>MarkdownPreviewToggle<cr>' },
         },
         lazy = true,
+    },
+    {
+        'kevinhwang91/nvim-ufo',
+        config = function(opts)
+            vim.o.foldlevel = 99
+
+            require('ufo').setup(opts)
+        end,
+        dependencies = {
+            'kevinhwang91/promise-async',
+        },
+        event = 'BufRead',
+        lazy = true,
+        opts = {
+            open_fold_hl_timeout = 0,
+            fold_virt_text_handler = function(virtText, _, _, width)
+                local newVirtText = {}
+                local targetWidth = width
+                local curWidth = 0
+
+                for _, chunk in ipairs(virtText) do
+                    local chunkText = chunk[1]
+                    local chunkWidth = fn.strdisplaywidth(chunkText)
+
+                    if targetWidth > curWidth + chunkWidth then
+                        table.insert(newVirtText, chunk)
+                    else
+                        break
+                    end
+                    curWidth = curWidth + chunkWidth
+                end
+
+                return newVirtText
+            end,
+        },
     },
     {
         'monaqa/dial.nvim',
@@ -82,7 +119,9 @@ return {
     },
     {
         'NvChad/nvim-colorizer.lua',
-        config = {
+        ft = vim.g.markdown_fenced_languages,
+        lazy = true,
+        opts = {
             filetypes = vim.g.markdown_fenced_languages,
             user_default_options = {
                 RRGGBBAA = true,
@@ -94,8 +133,6 @@ return {
                 mode = 'foreground',
             },
         },
-        ft = vim.g.markdown_fenced_languages,
-        lazy = true,
     },
     {
         'windwp/nvim-autopairs',

@@ -1,9 +1,5 @@
 return {
     {
-        'ThePrimeagen/git-worktree.nvim',
-        lazy = true,
-    },
-    {
         'lewis6991/gitsigns.nvim',
         config = function()
             local gitsigns = require 'gitsigns'
@@ -11,7 +7,7 @@ return {
             gitsigns.setup {
                 attach_to_untracked = false,
                 current_line_blame = true,
-                current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
+                current_line_blame_formatter = '    > <author>, <author_time:%Y-%m-%d> - <summary>',
                 current_line_blame_opts = { delay = 0 },
                 on_attach = function()
                     vim.o.signcolumn = 'yes'
@@ -63,6 +59,9 @@ return {
                 update_debounce = 0,
             }
         end,
+        dependencies = {
+            'ThePrimeagen/git-worktree.nvim',
+        },
     },
     'tpope/vim-fugitive',
 }
