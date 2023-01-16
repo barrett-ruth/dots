@@ -2,4 +2,4 @@
 
 My personal dotfiles.
 
-![dotfiles](https://user-images.githubusercontent.com/62671086/210636869-df31de5f-838e-4e74-92cb-797da60398e8.png)
+![dotfiles](https://user-images.githubusercontent.com/62671086/212609516-50d52cef-478e-4b17-afb0-cd166ac43014.png)
