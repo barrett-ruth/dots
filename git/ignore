@@ -8,7 +8,6 @@ cache/
 .github/
 .mypy_cache/
 *.exe
-.null-ls*
 *.o
 *.orig
 *.rej

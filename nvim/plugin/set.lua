@@ -4,6 +4,8 @@ o.autowrite = true
 
 o.breakindent = true
 
+o.cmdheight = 0
+
 o.cursorline = true
 
 opt.diffopt:append 'linematch:60'
