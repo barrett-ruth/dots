@@ -42,11 +42,6 @@ return {
     },
     {
         'kevinhwang91/nvim-ufo',
-        config = function(opts)
-            vim.o.foldlevel = 99
-
-            require('ufo').setup(opts)
-        end,
         dependencies = {
             'kevinhwang91/promise-async',
         },
