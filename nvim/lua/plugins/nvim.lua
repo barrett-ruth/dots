@@ -83,6 +83,8 @@ return {
                     curWidth = curWidth + chunkWidth
                 end
 
+                table.insert(newVirtText, { ' ... ', 'FoldColumn' })
+
                 return newVirtText
             end,
         },
