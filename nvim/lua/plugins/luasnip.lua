@@ -33,25 +33,6 @@ return {
             paths = '~/.config/nvim/lua/snippets',
         }
 
-        vim.api.nvim_create_autocmd('InsertLeave', {
-            callback = function()
-                if
-                    (
-                        (
-                            vim.v.event.old_mode == 's'
-                            and vim.v.event.new_mode == 'n'
-                        )
-                        or vim.v.event.old_mode == 'i'
-                    )
-                    and ls.session.current_nodes[vim.api.nvim_get_current_buf()]
-                    and not ls.session.jump_active
-                then
-                    ls.unlink_current()
-                end
-            end,
-            group = vim.api.nvim_create_augroup('ALuasnip', {}),
-        })
-
         map {
             { 'i', 's' },
             '<c-h>',

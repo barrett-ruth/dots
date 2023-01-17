@@ -2,6 +2,7 @@
 @tailwindcss/language-server@0.0.9
 cssmodules-language-server@1.2.1
 eslint_d@12.2.1
+gulp-cli@2.3.0
 live-server@1.2.2
 markdownlint-cli@0.32.2
 neovim@4.10.1
