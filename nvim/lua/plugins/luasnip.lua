@@ -94,5 +94,4 @@ return {
         map { 'i', '<c-d>', '<c-k>' }
     end,
     event = 'InsertEnter',
-    lazy = true,
 }

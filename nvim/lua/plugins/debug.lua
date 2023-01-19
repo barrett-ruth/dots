@@ -1,7 +1,6 @@
 return {
     {
         'mfussenegger/nvim-dap',
-        -- TODO: extract config to debug/map.lua
         config = function()
             local dap = require 'dap'
 
@@ -29,7 +28,6 @@ return {
                     },
                     { '<leader>dn', require('debug.node').setup },
                 },
-                lazy = true,
                 opts = {
                     icons = {
                         expanded = 'v',

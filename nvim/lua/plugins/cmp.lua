@@ -98,17 +98,14 @@ return {
             'kristijanhusak/vim-dadbod-completion',
         },
         event = 'InsertEnter',
-        lazy = true,
     },
     {
         'davidsierradz/cmp-conventionalcommits',
         ft = 'gitcommit',
-        lazy = true,
     },
     {
         'petertriho/cmp-git',
         ft = 'gitcommit',
-        lazy = true,
         opts = {
             github = {
                 issues = {

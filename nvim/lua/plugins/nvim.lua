@@ -5,7 +5,6 @@ return {
         'barrett-ruth/emmet.nvim',
         build = 'sh install.sh yarn',
         ft = { 'html', 'htmldjango', 'javascriptreact', 'typescriptreact' },
-        lazy = true,
         opts = { keymap = '<c-e>' },
     },
     {
@@ -13,7 +12,6 @@ return {
         build = 'sh install.sh yarn',
         config = true,
         ft = { 'javascript', 'javascripreact', 'typescript', 'typescriptreact' },
-        lazy = true,
     },
     {
         'barrett-ruth/live-server.nvim',
@@ -24,7 +22,6 @@ return {
             { '<leader>ls', '<cmd>LiveServerStart<cr>' },
             { '<leader>lS', '<cmd>LiveServerStop' },
         },
-        lazy = true,
     },
     {
         'iamcco/markdown-preview.nvim',
@@ -38,7 +35,6 @@ return {
         keys = {
             { '<leader>m', '<cmd>MarkdownPreviewToggle<cr>' },
         },
-        lazy = true,
     },
     {
         'kevinhwang91/nvim-ufo',
@@ -131,12 +127,10 @@ return {
             'JoosepAlviste/nvim-ts-context-commentstring',
         },
         event = 'VeryLazy',
-        lazy = true,
     },
     {
         'NvChad/nvim-colorizer.lua',
         ft = vim.g.markdown_fenced_languages,
-        lazy = true,
         opts = {
             filetypes = vim.g.markdown_fenced_languages,
             user_default_options = {

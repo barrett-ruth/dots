@@ -1,13 +1,10 @@
 return {
     {
         'nvim-telescope/telescope.nvim',
-        config = function()
-            local actions, builtin, telescope =
-                require 'telescope.actions',
-                require 'telescope.builtin',
-                require 'telescope'
+        opts = function()
+            local actions = require 'telescope.actions'
 
-            telescope.setup {
+            return {
                 defaults = {
                     file_ignore_patterns = vim.g.wildignore,
                     hidden = false,
@@ -58,6 +55,11 @@ return {
                     },
                 },
             }
+        end,
+        config = function(_, opts)
+            local builtin, telescope =
+                require 'telescope.builtin', require 'telescope'
+            telescope.setup(opts)
 
             telescope.load_extension 'fzy_native'
             telescope.load_extension 'git_worktree'
@@ -118,6 +120,5 @@ return {
                 end,
             },
         },
-        lazy = true,
     },
 }

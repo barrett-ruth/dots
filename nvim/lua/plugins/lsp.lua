@@ -4,9 +4,8 @@ return {
     {
         'b0o/SchemaStore.nvim',
         ft = { 'json', 'jsonc' },
-        lazy = true,
     },
-    { 'folke/neodev.nvim', ft = 'lua', lazy = true },
+    { 'folke/neodev.nvim', ft = 'lua' },
     {
         'jose-elias-alvarez/null-ls.nvim',
         config = function()
@@ -26,10 +25,9 @@ return {
             'typescript',
             'typescriptreact',
         },
-        lazy = true,
     },
     'kristijanhusak/vim-dadbod-ui',
-    { 'nanotee/sqls.nvim', ft = { 'mysql', 'sql' }, lazy = true },
+    { 'nanotee/sqls.nvim', ft = { 'mysql', 'sql' } },
     {
         'neovim/nvim-lspconfig',
         config = function()
