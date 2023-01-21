@@ -11,6 +11,7 @@ return {
         config = function()
             require 'lsp.null-ls'
         end,
+        event = 'BufReadPre'
     },
     {
         'jose-elias-alvarez/typescript.nvim',

@@ -57,6 +57,7 @@ return {
                 update_debounce = 0,
             }
         end,
+        event = 'BufReadPre',
     },
     'tpope/vim-fugitive',
 }

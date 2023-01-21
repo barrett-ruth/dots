@@ -130,6 +130,7 @@ return {
     },
     {
         'NvChad/nvim-colorizer.lua',
+        event = 'BufReadPre',
         ft = vim.g.markdown_fenced_languages,
         opts = {
             filetypes = vim.g.markdown_fenced_languages,
@@ -147,5 +148,6 @@ return {
     {
         'windwp/nvim-autopairs',
         config = true,
+        event = 'InsertEnter',
     },
 }

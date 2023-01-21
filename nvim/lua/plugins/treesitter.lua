@@ -8,6 +8,12 @@ return {
         end,
         dependencies = {
             {
+                'andymass/vim-matchup',
+                config = function()
+                    vim.g.matchup_matchparen_offscreen = {}
+                end,
+            },
+            {
                 'nvim-treesitter/nvim-treesitter-context',
                 opts = {
                     max_lines = 2,
@@ -49,6 +55,9 @@ return {
                 end,
             },
             context_commentstring = {
+                enable = true,
+            },
+            matchup = {
                 enable = true,
             },
             textobjects = {

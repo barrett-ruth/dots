@@ -109,6 +109,7 @@ return {
             'nvim-telescope/telescope-fzy-native.nvim',
             'ThePrimeagen/git-worktree.nvim',
         },
+        event = 'BufReadPre',
     },
     {
         'barrett-ruth/telescope-http.nvim',
