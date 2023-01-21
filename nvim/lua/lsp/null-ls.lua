@@ -22,7 +22,6 @@ null_ls.setup {
         code_actions.eslint_d,
         code_actions.gitrebase,
         code_actions.shellcheck,
-
         -- Diagnostics
         diagnostics.curlylint.with {
             extra_filetypes = { 'html' },
@@ -50,6 +49,7 @@ null_ls.setup {
         },
         diagnostics.dotenv_linter.with {
             extra_args = { '--not-check-updates' },
+            extra_filetypes = { 'env' },
         },
         diagnostics.hadolint,
         diagnostics.markdownlint.with {

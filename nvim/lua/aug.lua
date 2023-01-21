@@ -8,6 +8,12 @@ au('BufEnter', {
     group = aug,
 })
 
+au('BufEnter', {
+    pattern = '*.env*',
+    command = 'setl ft=env',
+    group = aug,
+})
+
 au('TextYankPost', {
     callback = function()
         vim.highlight.on_yank { higroup = 'RedrawDebugNormal', timeout = '700' }
