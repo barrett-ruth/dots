@@ -6,8 +6,8 @@
   "cmp-git": { "branch": "main", "commit": "6bcb61c0a5ec2e0d522ece7c8fb3e009f1c79261" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "59224771f91b86d1de12570b4070fe4ad7cd1eeb" },
   "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
+  "colorful-winsep.nvim": { "branch": "main", "commit": "956d65c9a31ce81b7873bef1682c72eb00d9affb" },
   "dial.nvim": { "branch": "master", "commit": "dbcfd4510d31884d444ec33a4453d0f06ad4a5eb" },
-  "emmet.nvim": { "branch": "main", "commit": "1d09186d04a29506535b1bd4685ce28f3f4f2585" },
   "git-worktree.nvim": { "branch": "master", "commit": "d7f4e2584e81670154f07ca9fa5dd791d9c1b458" },
   "gitsigns.nvim": { "branch": "main", "commit": "7b37bd5c2dd4d7abc86f2af096af79120608eeca" },
   "harpoon": { "branch": "master", "commit": "21d0d1bfa3000e4384740bfaefa0ebc51c773786" },
@@ -51,7 +51,6 @@
   "vim-matchup": { "branch": "master", "commit": "959e0e79ea240cdee29efbdd0d2e2e718931ccec" },
   "vim-repeat": { "branch": "master", "commit": "24afe922e6a05891756ecf331f39a1f6743d3d5a" },
   "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" },
-  "vim-textobj-keyvalue": { "branch": "master", "commit": "77bdefa7a737274a44fbdbd4eefa269dab9cf3bb" },
   "vim-textobj-user": { "branch": "master", "commit": "41a675ddbeefd6a93664a4dc52f302fe3086a933" },
   "vim-textobj-variable-segment": { "branch": "main", "commit": "51c323dca5c44f7a8e5a689b9156ef818d02188e" },
   "vim-textobj-xmlattr": { "branch": "master", "commit": "694a297f1d75fd527e87da9769f3c6519a87ebb1" }

@@ -40,6 +40,7 @@ return {
                 'cssmodules_ls',
                 'cssls',
                 'html',
+                'emmet_ls',
                 'jedi_language_server',
                 'jsonls',
                 'pyright',

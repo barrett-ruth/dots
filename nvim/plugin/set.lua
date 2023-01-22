@@ -33,8 +33,6 @@ opt.matchpairs:append '<:>'
 
 o.modeline = false
 
-o.mouse = ''
-
 o.number = true
 o.relativenumber = true
 

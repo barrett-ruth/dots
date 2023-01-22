@@ -16,7 +16,6 @@ return {
         end,
         dependencies = {
             'Julian/vim-textobj-variable-segment',
-            'vimtaku/vim-textobj-keyvalue',
             'whatyouhide/vim-textobj-xmlattr',
         },
     },

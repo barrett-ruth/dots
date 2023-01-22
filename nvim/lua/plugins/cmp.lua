@@ -8,6 +8,7 @@ local kinds = {
     Method = 'meth',
     Module = 'mod',
     Property = 'prop',
+    Snippet = 'snip',
     Value = 'val',
     Variable = 'var',
 }
@@ -55,10 +56,8 @@ return {
                     {
                         name = 'nvim_lsp',
                         entry_filter = function(entry, _)
-                            return not vim.tbl_contains(
-                                { 'Text', 'Snippet' },
-                                cmp.lsp.CompletionItemKind[entry:get_kind()]
-                            )
+                            return 'Text'
+                                ~= cmp.lsp.CompletionItemKind[entry:get_kind()]
                         end,
                     },
                     { name = 'path' },
@@ -67,7 +66,11 @@ return {
                     ['<c-y>'] = mapping.confirm(),
                     ['<c-b>'] = mapping.scroll_docs(-4),
                     ['<c-f>'] = mapping.scroll_docs(4),
-                    ['<c-e>'] = mapping.abort(),
+                    ['<c-e>'] = function()
+                        cmp.complete()
+                        cmp.select_next_item()
+                        cmp.confirm()
+                    end,
                     ['<c-n>'] = function(_)
                         if not cmp.visible() then
                             cmp.complete()
@@ -76,6 +79,7 @@ return {
                         end
                     end,
                     ['<c-p>'] = mapping.select_prev_item(),
+                    ['<c-x>'] = mapping.abort(),
                 },
             }
 

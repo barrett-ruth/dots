@@ -2,12 +2,6 @@ local fn = vim.fn
 
 return {
     {
-        'barrett-ruth/emmet.nvim',
-        build = 'sh install.sh yarn',
-        ft = { 'html', 'htmldjango', 'javascriptreact', 'typescriptreact' },
-        opts = { keymap = '<c-e>' },
-    },
-    {
         'barrett-ruth/import-cost.nvim',
         build = 'sh install.sh yarn',
         config = true,
@@ -149,5 +143,22 @@ return {
         'windwp/nvim-autopairs',
         config = true,
         event = 'InsertEnter',
+    },
+    {
+        'nvim-zh/colorful-winsep.nvim',
+        opts = {
+            highlight = {
+                bg = '#282828',
+                fg = '#d4be98',
+            },
+            symbols = {
+                '─',
+                '│',
+                '│',
+                '│',
+                '│',
+                '│',
+            },
+        },
     },
 }

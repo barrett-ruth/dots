@@ -1,29 +1,5 @@
-local winbar = require 'lines.winbar'
-local format_components = require('lines.utils').format_components
-
 return {
     setup = function()
-        vim.api.nvim_create_autocmd('FileType', {
-            pattern = '*',
-            callback = function()
-                if
-                    vim.tbl_contains({
-                        '',
-                        'checkhealth',
-                        'fugitive',
-                        'gitcommit',
-                        'harpoon',
-                        'TelescopeResults',
-                    }, vim.bo.ft)
-                then
-                    return
-                end
-
-                vim.opt_local.winbar = format_components(winbar)
-            end,
-            group = vim.api.nvim_create_augroup('AWinbar', {}),
-        })
-
         vim.o.statusline =
             [[%{%v:lua.require('lines.statusline').statusline()%}]]
         vim.o.statuscolumn =
