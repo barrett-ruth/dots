@@ -44,6 +44,7 @@ local function format()
                 'clangd', -- clang-format
                 'cssls', -- prettier
                 'html', -- prettier
+                'jdt.ls', -- google-java-format
                 'jedi_language_server', -- black/autopep8
                 'jsonls', -- prettier
                 'pyright', -- black/autopep8

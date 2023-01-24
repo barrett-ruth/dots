@@ -49,6 +49,11 @@ return {
                             :gsub('~', '')
                             :gsub('^ ', '')
 
+                        if vim_item.abbr:find ' - java' then
+                            vim_item.abbr = vim_item.abbr:gsub('- java', '[', 1)
+                                .. ']'
+                        end
+
                         return vim_item
                     end,
                 },

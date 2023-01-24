@@ -27,6 +27,9 @@ return {
         },
     },
     'kristijanhusak/vim-dadbod-ui',
+    {
+        'mfussenegger/nvim-jdtls',
+    },
     { 'nanotee/sqls.nvim', ft = { 'mysql', 'sql' } },
     {
         'neovim/nvim-lspconfig',
