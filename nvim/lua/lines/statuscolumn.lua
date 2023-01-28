@@ -1,5 +1,5 @@
 local fold =
-    '%#FoldColumn#%{foldlevel(v:lnum)>foldlevel(v:lnum-1)?(foldclosed(v:lnum)==-1?"v ":"> "):" "}'
+    '%#FoldColumn#%{foldlevel(v:lnum)>foldlevel(v:lnum-1)?(foldclosed(v:lnum)==-1?"v":">"):""}'
 
 return {
     num = function()
@@ -10,7 +10,6 @@ return {
         return '%#LineNr#' .. vim.v.relnum
     end,
     statuscolumn = function()
-        return
-            fold .. '%s%=' .. '%{%v:lua.require("lines.statuscolumn").num()%} '
+        return fold .. '%s%=%{%v:lua.require("lines.statuscolumn").num()%} '
     end,
 }

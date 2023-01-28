@@ -49,11 +49,6 @@ return {
                     loclist = { preview = true },
                     quickfix = { preview = true },
                 },
-                extensions = {
-                    http = {
-                        open_url = 'chromium --new-window %s',
-                    },
-                },
             }
         end,
         config = function(_, opts)
@@ -63,7 +58,6 @@ return {
 
             telescope.load_extension 'fzy_native'
             telescope.load_extension 'git_worktree'
-            telescope.load_extension 'http'
 
             map { 'n', '<c-b>', builtin.buffers }
             map { 'n', '<c-f>', builtin.find_files }
@@ -108,18 +102,6 @@ return {
         dependencies = {
             'nvim-telescope/telescope-fzy-native.nvim',
             'ThePrimeagen/git-worktree.nvim',
-        },
-        event = 'BufReadPre',
-    },
-    {
-        'barrett-ruth/telescope-http.nvim',
-        keys = {
-            {
-                '<leader>tC',
-                function()
-                    require('telescope').extensions.http.list()
-                end,
-            },
         },
     },
 }

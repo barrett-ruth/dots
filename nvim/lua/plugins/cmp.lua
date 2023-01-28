@@ -1,18 +1,3 @@
-local kinds = {
-    Class = 'cls',
-    Constant = 'const',
-    Enum = 'enum',
-    Field = 'field',
-    Function = 'fn',
-    Keyword = 'key',
-    Method = 'meth',
-    Module = 'mod',
-    Property = 'prop',
-    Snippet = 'snip',
-    Value = 'val',
-    Variable = 'var',
-}
-
 return {
     {
         'hrsh7th/nvim-cmp',
@@ -42,29 +27,16 @@ return {
                 },
                 formatting = {
                     format = function(_, vim_item)
-                        vim_item.kind = kinds[vim_item.kind] or vim_item.kind
-
                         vim_item.abbr = vim_item.abbr
                             :gsub('•', '')
                             :gsub('~', '')
                             :gsub('^ ', '')
 
-                        if vim_item.abbr:find ' - java' then
-                            vim_item.abbr = vim_item.abbr:gsub('- java', '[', 1)
-                                .. ']'
-                        end
-
                         return vim_item
                     end,
                 },
                 sources = cmp.config.sources {
-                    {
-                        name = 'nvim_lsp',
-                        entry_filter = function(entry, _)
-                            return 'Text'
-                                ~= cmp.lsp.CompletionItemKind[entry:get_kind()]
-                        end,
-                    },
+                    { name = 'nvim_lsp' },
                     { name = 'path' },
                 },
                 mapping = {
@@ -88,12 +60,6 @@ return {
                 },
             }
 
-            cmp.setup.filetype({ 'mysql', 'plsql', 'sql' }, {
-                sources = cmp.config.sources {
-                    { name = 'vim-dadbod-completion' },
-                },
-            })
-
             cmp.setup.filetype('gitcommit', {
                 sources = cmp.config.sources {
                     { name = 'git' },
@@ -104,7 +70,6 @@ return {
         dependencies = {
             'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-path',
-            'kristijanhusak/vim-dadbod-completion',
         },
         event = 'InsertEnter',
     },

@@ -6,7 +6,6 @@ return {
 
             gitsigns.setup {
                 attach_to_untracked = false,
-                current_line_blame_opts = { delay = 0 },
                 on_attach = function()
                     vim.o.signcolumn = 'yes'
 

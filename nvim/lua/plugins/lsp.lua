@@ -26,8 +26,6 @@ return {
             'typescriptreact',
         },
     },
-    'kristijanhusak/vim-dadbod-ui',
-    { 'nanotee/sqls.nvim', ft = { 'mysql', 'sql' } },
     {
         'neovim/nvim-lspconfig',
         config = function()
@@ -58,26 +56,5 @@ return {
                 lspconfig[server].setup(prepare_lsp_settings(settings))
             end
         end,
-    },
-    {
-        'tpope/vim-dadbod',
-        config = function()
-            vim.g.db_ui_save_location = vim.env.XDG_DATA_HOME .. '/nvim/db_ui'
-            vim.g.db_ui_show_help = 0
-            vim.g.db_ui_icons = {
-                expanded = 'v',
-                collapsed = '>',
-                saved_query = '*',
-                new_query = '+',
-                tables = '~',
-                buffers = '>>',
-                connection_ok = '✓',
-                connection_error = '✕',
-            }
-        end,
-        keys = {
-            { '<leader>db', ':DB ', { silent = false } },
-            { '<leader>du', '<cmd>DBUIToggle<cr>' },
-        },
     },
 }

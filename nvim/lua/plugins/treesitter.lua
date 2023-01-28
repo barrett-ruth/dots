@@ -13,32 +13,43 @@ return {
                     vim.g.matchup_matchparen_offscreen = {}
                 end,
             },
-            {
-                'nvim-treesitter/nvim-treesitter-context',
-                opts = {
-                    max_lines = 2,
-                    patterns = {
-                        default = {
-                            'class',
-                            'function',
-                            'method',
-                            'switch',
-                            'case',
-                            'interface',
-                            'struct',
-                            'enum',
-                        },
-                    },
-                },
-                config = function(_, opts)
-                    require('treesitter-context').setup(opts)
-                end,
-            },
             'nvim-treesitter/nvim-treesitter-textobjects',
             'windwp/nvim-ts-autotag',
         },
         opts = {
-            ensure_installed = 'all',
+            ensure_installed = {
+                'bash',
+                'c',
+                'cmake',
+                'cpp',
+                'dockerfile',
+                'git_rebase',
+                'gitattributes',
+                'gitignore',
+                'go',
+                'graphql',
+                'help',
+                'html',
+                'htmldjango',
+                'http',
+                'java',
+                'javascript',
+                'jq',
+                'json',
+                'json5',
+                'lua',
+                'make',
+                'markdown',
+                'markdown_inline',
+                'python',
+                'regex',
+                'rust',
+                'sql',
+                'tsx',
+                'typescript',
+                'vim',
+                'yaml',
+            },
             autotag = {
                 enable = true,
                 filetypes = {
@@ -50,9 +61,6 @@ return {
             },
             highlight = {
                 enable = true,
-                disable = function(_, bufnr)
-                    return vim.api.nvim_buf_line_count(bufnr) > 10e3
-                end,
             },
             context_commentstring = {
                 enable = true,
@@ -70,7 +78,6 @@ return {
                         ['[s'] = '@class.outer',
                         ['[f'] = '@function.outer',
                         ['[i'] = '@conditional.outer',
-                        ['[/'] = '@comment.outer',
                     },
                     goto_previous_end = {
                         ['[A'] = '@parameter.inner',
@@ -85,7 +92,6 @@ return {
                         [']s'] = '@class.outer',
                         [']f'] = '@function.outer',
                         [']i'] = '@conditional.outer',
-                        [']/'] = '@comment.outer',
                     },
                     goto_next_end = {
                         [']A'] = '@parameter.inner',
@@ -113,8 +119,6 @@ return {
                         iL = '@loop.inner',
                         as = '@class.outer',
                         is = '@class.inner',
-                        ['a/'] = '@comment.outer',
-                        ['i/'] = '@comment.inner',
                     },
                 },
             },

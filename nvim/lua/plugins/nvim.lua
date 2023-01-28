@@ -8,16 +8,6 @@ return {
         ft = { 'javascript', 'javascripreact', 'typescript', 'typescriptreact' },
     },
     {
-        'barrett-ruth/live-server.nvim',
-        build = 'yarn global add live-server',
-        config = true,
-        ft = { 'css', 'html', 'javascript' },
-        keys = {
-            { '<leader>ls', '<cmd>LiveServerStart<cr>' },
-            { '<leader>lS', '<cmd>LiveServerStop' },
-        },
-    },
-    {
         'iamcco/markdown-preview.nvim',
         build = 'yarn --cwd app install',
         config = function()
@@ -90,22 +80,6 @@ return {
             map { 'x', '<c-x>', dial_map.dec_visual() }
             map { 'x', 'g<c-a>', dial_map.inc_gvisual() }
             map { 'x', 'g<c-x>', dial_map.dec_gvisual() }
-
-            local augend = require 'dial.augend'
-
-            require('dial.config').augends:register_group {
-                default = {
-                    augend.constant.alias.alpha,
-                    augend.constant.alias.Alpha,
-                    augend.integer.alias.binary,
-                    augend.constant.alias.bool,
-                    augend.date.alias['%d/%m/%Y'],
-                    augend.integer.alias.decimal_int,
-                    augend.integer.alias.hex,
-                    augend.integer.alias.octal,
-                    augend.semver.alias.semver,
-                },
-            }
         end,
     },
     {
