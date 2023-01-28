@@ -28,7 +28,6 @@ handlers['textDocument/signatureHelp'] = vim.lsp.with(handlers.signature_help, {
 
 local sources = {
     Pyright = 'pyright',
-    Java = 'jdt',
     ['Lua Diagnostics.'] = 'sumneko',
     ['Lua Syntax Check.'] = 'sumneko',
 }

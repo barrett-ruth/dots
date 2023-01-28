@@ -16,7 +16,6 @@ M.commands = {
         clean = 'test -f a.out && rm a.out',
         kill = 'rm a.out && killall a.out',
     },
-    java = 'java',
 }
 M.commands.cc = M.commands.cpp
 

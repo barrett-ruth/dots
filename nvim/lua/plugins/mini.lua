@@ -15,6 +15,7 @@ return {
         config = function()
             require('mini.ai').setup {
                 custom_textobjects = {
+                    s = { { '%f[%w]()%w+()_', '%f[%u]()()%w*[%l%d]()()%u' } },
                     e = function(ai_type)
                         local n_lines = vim.fn.line '$'
                         local start_line, end_line = 1, n_lines

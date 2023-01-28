@@ -78,7 +78,6 @@ null_ls.setup {
             },
         },
         formatting.cbfmt,
-        formatting.google_java_format,
         formatting.isort.with {
             condition = function(_)
                 return project_contains_source('isort', true)

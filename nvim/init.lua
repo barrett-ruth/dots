@@ -14,6 +14,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup('plugins', {
+    checker = {
+        notify = false,
+    },
     git = {
         url_format = 'git@github.com:%s.git',
     },
