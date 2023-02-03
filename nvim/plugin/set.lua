@@ -20,8 +20,6 @@ opt.fillchars = {
     diff = '╱',
 }
 
-o.hlsearch = false
-
 opt.iskeyword:append '-'
 
 o.laststatus = 3
@@ -51,6 +49,8 @@ o.showtabline = 0
 o.signcolumn = 'no'
 
 o.spellfile = vim.env.XDG_DATA_HOME .. '/nvim/spell/spell.encoding.add'
+
+o.splitkeep = 'screen'
 
 o.splitbelow = true
 o.splitright = true

@@ -8,15 +8,28 @@ au('BufEnter', {
     group = aug,
 })
 
+au('VimResized', {
+    command = 'wincmd =',
+    group = aug,
+})
+
+au('ModeChanged', {
+    command = 'let &hlsearch = index(["?", "/"], getcmdtype()) > -1',
+    group = aug,
+})
+
+au('BufReadPost', {
+    command = 'norm g`"',
+    group = aug,
+})
+
 au('BufEnter', {
     pattern = '*.env*',
-    command = 'setl ft=env',
+    command = 'se ft=env',
     group = aug,
 })
 
 au('TextYankPost', {
-    callback = function()
-        vim.highlight.on_yank { higroup = 'RedrawDebugNormal', timeout = '700' }
-    end,
+    command = 'lua vim.highlight.on_yank { higroup = "RedrawDebugNormal", timeout = "300" }',
     group = aug,
 })

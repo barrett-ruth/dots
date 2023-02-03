@@ -87,6 +87,7 @@ return {
                 end,
             }
             map { 'n', '<leader>th', builtin.help_tags }
+            map { 'n', '<leader>tH', builtin.highlights }
             map { 'n', '<leader>tl', builtin.loclist }
             map { 'n', '<leader>tm', builtin.man_pages }
             map { 'n', '<leader>tq', builtin.quickfix }

@@ -22,6 +22,8 @@ return {
                 'c',
                 'cmake',
                 'cpp',
+                'css',
+                'diff',
                 'dockerfile',
                 'git_rebase',
                 'gitattributes',
@@ -61,6 +63,10 @@ return {
             },
             highlight = {
                 enable = true,
+            },
+            indent = {
+                enable = true,
+                disable = { 'python' },
             },
             context_commentstring = {
                 enable = true,

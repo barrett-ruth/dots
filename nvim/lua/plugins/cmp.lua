@@ -51,6 +51,7 @@ return {
                     ['<c-n>'] = function(_)
                         if not cmp.visible() then
                             cmp.complete()
+                            cmp.select_next_item()
                         else
                             cmp.select_next_item()
                         end

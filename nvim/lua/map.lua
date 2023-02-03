@@ -63,3 +63,6 @@ map { 'n', ']z', 'zj' }
 map { 'n', ']Z', ']z' }
 map { 'n', '[z', 'zk[z' }
 map { 'n', '[Z', '[z' }
+
+map { 'x', 'p', '"_dp' }
+map { 'x', 'P', '"_dP' }
