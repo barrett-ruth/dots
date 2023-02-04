@@ -56,9 +56,18 @@ local function format()
 end
 
 function M.on_attach(client, bufnr)
-    vim.api.nvim_win_set_option(vim.fn.bufwinid(bufnr), 'foldcolumn', '1')
+    if pcall(require, 'ufo') then
+        vim.api.nvim_win_set_option(vim.fn.bufwinid(bufnr), 'foldcolumn', '1')
+    end
 
+    local ok, navic = pcall(require, 'nvim-navic')
     local server_capabilities = client.server_capabilities
+
+    if ok and server_capabilities.documentSymbolProvider then
+        navic.attach(client, bufnr)
+        vim.opt_local.winbar = [[%{%v:lua.require('lines.winbar').winbar()%}]]
+    end
+
     local diagnostic, buf = vim.diagnostic, vim.lsp.buf
 
     if server_capabilities.documentFormattingProvider then

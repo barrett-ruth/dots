@@ -102,6 +102,9 @@ hi('PmenuSel', { fg = cs.med_grey, bg = cs.hi })
 hi('PmenuSbar', { bg = cs.med_grey })
 hi('PmenuThumb', { bg = cs.hi })
 
+-- winbar
+hi('WinBar', { fg = cs.grey, none = true })
+
 -- nvim-cmp
 hi('CmpItemAbbrMatch', { fg = cs.green })
 hi('CmpItemAbbrMatchFuzzy', { fg = cs.green })
