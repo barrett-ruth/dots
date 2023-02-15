@@ -43,7 +43,7 @@ return {
                 'jsonls',
                 'pyright',
                 'sqls',
-                'sumneko_lua',
+                'lua_ls',
                 'tailwindcss',
             } do
                 local status, settings =
@@ -57,6 +57,12 @@ return {
             end
         end,
         dependencies = {
+            {
+                'smjonas/inc-rename.nvim',
+                opts = {
+                    hl_group = 'Normal',
+                },
+            },
             {
                 'SmiteshP/nvim-navic',
                 opts = {

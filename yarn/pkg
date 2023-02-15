@@ -7,10 +7,10 @@ gulp-cli@2.3.0
 live-server@1.2.2
 markdownlint-cli@0.32.2
 neovim@4.10.1
-prettier@2.8.3
-pyright@1.1.290
+prettier@2.8.4
+pyright@1.1.293
 sql-formatter@11.0.2
 ts-node@10.9.1
-typescript@4.9.4
+typescript@4.9.5
 typescript-language-server@2.3.0
-vscode-langservers-extracted@4.5.0
+vscode-langservers-extracted@4.6.0

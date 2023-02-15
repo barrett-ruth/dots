@@ -2,41 +2,6 @@ local M = {}
 
 local api = vim.api
 
-local function rename()
-    local old_name = vim.fn.expand '<cword>'
-
-    local bufnr = api.nvim_create_buf(false, true)
-    local win = api.nvim_open_win(bufnr, true, {
-        style = 'minimal',
-        border = 'rounded',
-        relative = 'cursor',
-        row = 1,
-        col = -1,
-        width = math.floor(old_name:len() > 20 and old_name:len() * 1.5 or 20),
-        height = 1,
-    })
-
-    api.nvim_buf_set_lines(bufnr, 0, -1, true, { old_name })
-
-    bmap({ 'i', '<c-c>', vim.cmd.q }, { buffer = bufnr })
-    bmap({ 'n', 'q', vim.cmd.q }, { buffer = bufnr })
-    bmap({
-        { 'i', 'n' },
-        '<cr>',
-        function()
-            local new_name = vim.trim(vim.fn.getline '.')
-
-            api.nvim_win_close(win, true)
-
-            if require('utils').empty(new_name) or new_name == old_name then
-                return
-            end
-
-            vim.lsp.buf.rename(new_name)
-        end,
-    }, { buffer = bufnr })
-end
-
 local function format()
     vim.lsp.buf.format {
         filter = function(client)
@@ -48,7 +13,7 @@ local function format()
                 'jsonls', -- prettier
                 'pyright', -- black/autopep8
                 'sqls', -- sql-formatter
-                'sumneko_lua', -- stylua
+                'lua_ls', -- stylua
                 'tsserver', -- prettier
             }, client.name)
         end,
@@ -87,7 +52,7 @@ function M.on_attach(client, bufnr)
     bmap { 'n', '\\d', builtin.diagnostics }
     bmap { 'n', '\\f', diagnostic.open_float }
     if server_capabilities.renameProvider then
-        bmap { 'n', '\\r', rename }
+        map { 'n', '\\r', ':IncRename ' }
     end
 
     if server_capabilities.hoverProvider then
