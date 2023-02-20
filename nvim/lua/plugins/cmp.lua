@@ -1,3 +1,18 @@
+local kinds = {
+    Class = 'cls',
+    Constant = 'const',
+    Enum = 'enum',
+    Field = 'field',
+    Function = 'fn',
+    Keyword = 'key',
+    Method = 'meth',
+    Module = 'mod',
+    Property = 'prop',
+    Snippet = 'snip',
+    Value = 'val',
+    Variable = 'var',
+}
+
 return {
     {
         'hrsh7th/nvim-cmp',
@@ -26,13 +41,17 @@ return {
                     },
                 },
                 formatting = {
-                    format = function(_, vim_item)
-                        vim_item.abbr = vim_item.abbr
+                    format = function(_, item)
+                        item.kind = kinds[item.kind] or item.kind
+                        item.abbr = item.abbr
                             :gsub('•', '')
                             :gsub('~', '')
                             :gsub('^ ', '')
 
-                        return vim_item
+                        return require('tailwindcss-colorizer-cmp').formatter(
+                            _,
+                            item
+                        )
                     end,
                 },
                 sources = cmp.config.sources {
@@ -71,6 +90,10 @@ return {
         dependencies = {
             'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-path',
+            {
+                'roobert/tailwindcss-colorizer-cmp.nvim',
+                config = true,
+            },
         },
         event = 'InsertEnter',
     },

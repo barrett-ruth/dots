@@ -60,7 +60,7 @@ return {
             {
                 'smjonas/inc-rename.nvim',
                 opts = {
-                    hl_group = 'Normal',
+                    hl_group = 'Visual',
                 },
             },
             {
