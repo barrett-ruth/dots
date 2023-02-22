@@ -45,19 +45,8 @@ map {
     end,
 }
 
-local cmd = vim.cmd
-
-map { 'n', ']b', cmd.bnext }
-map { 'n', '[b', cmd.bprev }
-
-map { 'n', ']l', cmd.lnext }
-map { 'n', '[l', cmd.lprev }
-
 map { 'n', '[o', '@="m`O\\eg``"<cr>' }
 map { 'n', ']o', '@="m`o\\eg``"<cr>' }
-
-map { 'n', ']q', cmd.cnext }
-map { 'n', '[q', cmd.cprev }
 
 map { 'n', ']z', 'zj' }
 map { 'n', ']Z', ']z' }

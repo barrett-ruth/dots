@@ -1,5 +1,13 @@
 return {
     {
+        'echasnovski/mini.bracketed',
+        config = function()
+            require('mini.bracketed').setup {
+                comment = { suffix = '/' },
+            }
+        end,
+    },
+    {
         'echasnovski/mini.bufremove',
         config = function()
             local bufremove = require 'mini.bufremove'
