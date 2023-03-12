@@ -4,6 +4,7 @@ return {
         config = function()
             require('mini.bracketed').setup {
                 comment = { suffix = '/' },
+                oldfile = { suffix = '' },
             }
         end,
     },
@@ -47,6 +48,12 @@ return {
                     end,
                 },
             }
+        end,
+    },
+    {
+        'echasnovski/mini.splitjoin',
+        config = function()
+            require('mini.splitjoin').setup()
         end,
     },
 }

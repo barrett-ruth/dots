@@ -1,5 +1,3 @@
-local fn = vim.fn
-
 return {
     {
         'barrett-ruth/import-cost.nvim',
@@ -18,55 +16,6 @@ return {
         ft = 'markdown',
         keys = {
             { '<leader>m', '<cmd>MarkdownPreviewToggle<cr>' },
-        },
-    },
-    {
-        'kevinhwang91/nvim-ufo',
-        config = function(_, opts)
-            vim.o.foldlevel = 99
-
-            require('ufo').setup(opts)
-
-            vim.api.nvim_create_autocmd('BufRead', {
-                callback = function(kopts)
-                    if not vim.treesitter.highlighter.active[kopts.buf] then
-                        require('ufo').detach(kopts.buf)
-                        vim.api.nvim_win_set_option(
-                            vim.fn.bufwinid(kopts.buf),
-                            'foldcolumn',
-                            '0'
-                        )
-                    end
-                end,
-                group = vim.api.nvim_create_augroup('AUfo', {}),
-            })
-        end,
-        dependencies = {
-            'kevinhwang91/promise-async',
-        },
-        opts = {
-            open_fold_hl_timeout = 0,
-            fold_virt_text_handler = function(virtText, _, _, width)
-                local newVirtText = {}
-                local targetWidth = width
-                local curWidth = 0
-
-                for _, chunk in ipairs(virtText) do
-                    local chunkText = chunk[1]
-                    local chunkWidth = fn.strdisplaywidth(chunkText)
-
-                    if targetWidth > curWidth + chunkWidth then
-                        table.insert(newVirtText, chunk)
-                    else
-                        break
-                    end
-                    curWidth = curWidth + chunkWidth
-                end
-
-                table.insert(newVirtText, { ' ... ', 'FoldColumn' })
-
-                return newVirtText
-            end,
         },
     },
     {
@@ -97,6 +46,87 @@ return {
         event = 'VeryLazy',
     },
     {
+        'nvim-tree/nvim-tree.lua',
+        config = function(_, opts)
+            local ignore = {}
+
+            for _, v in ipairs(vim.g.wildignore) do
+                if v:sub(-1) == '/' then
+                    table.insert(ignore, '^' .. v:sub(1, -2) .. '$')
+                else
+                    table.insert(ignore, v)
+                end
+            end
+
+            opts = vim.tbl_extend('keep', opts, {
+                filters = {
+                    custom = ignore,
+                    dotfiles = true,
+                },
+            })
+
+            require('nvim-tree').setup(opts)
+        end,
+        keys = {
+            { '-', '<cmd>NvimTreeToggle .<cr>' },
+            {
+                '<c-n>',
+                function()
+                    vim.cmd('NvimTreeToggle ' .. vim.fn.expand '%:h')
+                end,
+            },
+        },
+        opts = {
+            actions = {
+                change_dir = {
+                    enable = false,
+                },
+                open_file = {
+                    quit_on_open = true,
+                    window_picker = { enable = false },
+                },
+            },
+            view = {
+                signcolumn = 'no',
+                mappings = {
+                    custom_only = true,
+                    list = {
+                        { key = 'a', action = 'create' },
+                        { key = 'b', action = 'dir_up' },
+                        { key = 'c', action = 'close_node' },
+                        { key = 'd', action = 'remove' },
+                        { key = 'g', action = 'cd' },
+                        { key = 'm', action = 'rename' },
+                        { key = 'p', action = 'paste' },
+                        { key = 'q', action = 'close' },
+                        { key = 'r', action = 'rename' },
+                        { key = 't', action = 'toggle_dotfiles' },
+                        { key = 'u', action = 'parent_node' },
+                        { key = 'x', action = 'split' },
+                        { key = 'y', action = 'copy' },
+                        { key = '<cr>', action = 'edit' },
+                        { key = '?', action = 'toggle_help' },
+                    },
+                },
+                number = true,
+                relativenumber = true,
+            },
+            renderer = {
+                add_trailing = true,
+                icons = {
+                    symlink_arrow = ' -> ',
+                    show = {
+                        git = false,
+                        folder = false,
+                        folder_arrow = false,
+                        file = false,
+                    },
+                },
+                root_folder_label = ':~:s?$?/',
+            },
+        },
+    },
+    {
         'NvChad/nvim-colorizer.lua',
         event = 'BufReadPre',
         ft = vim.g.markdown_fenced_languages,
@@ -117,22 +147,5 @@ return {
         'windwp/nvim-autopairs',
         config = true,
         event = 'InsertEnter',
-    },
-    {
-        'nvim-zh/colorful-winsep.nvim',
-        opts = {
-            highlight = {
-                bg = '#282828',
-                fg = '#d4be98',
-            },
-            symbols = {
-                '─',
-                '│',
-                '│',
-                '│',
-                '│',
-                '│',
-            },
-        },
     },
 }

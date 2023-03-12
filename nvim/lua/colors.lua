@@ -22,6 +22,21 @@ return {
         dark_grey = '#32302f',
         hi = '#a89984',
     },
+    lite = {
+        black = '#000000',
+        red = '#FF0000',
+        light_red = '#CF5B56',
+        green = '#067D17',
+        yellow = '#9E880D',
+        blue = '#0033B3',
+        light_blue = '#1750EB',
+        purple = '#871094',
+        light_purple = '#94558D',
+        cyan = '#00627A',
+        white = '#FFFFFF',
+        grey = '#8C8C8C',
+        hi = '#F5F8FE',
+    },
     hi = function(group, highlights)
         if highlights.none then
             highlights.none = nil

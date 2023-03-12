@@ -45,6 +45,7 @@ map {
     end,
 }
 
+-- TODO: override mini.bracketed
 map { 'n', '[o', '@="m`O\\eg``"<cr>' }
 map { 'n', ']o', '@="m`o\\eg``"<cr>' }
 

@@ -5,4 +5,4 @@
 --no-heading
 --smart-case
 --follow
---ignore-file=/home/beirut/.config/git/ignore
+--ignore-file=/Users/barrett/.config/git/ignore

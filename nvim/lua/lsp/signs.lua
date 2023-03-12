@@ -18,11 +18,11 @@ vim.fn.sign_define(
 )
 
 handlers['textDocument/hover'] = vim.lsp.with(handlers.hover, {
-    border = 'rounded',
+    border = 'single',
 })
 
 handlers['textDocument/signatureHelp'] = vim.lsp.with(handlers.signature_help, {
-    border = 'rounded',
+    border = 'single',
     focusable = false,
 })
 
@@ -38,7 +38,7 @@ vim.diagnostic.config {
     update_in_insert = false,
     virtual_text = false,
     float = {
-        border = 'rounded',
+        border = 'single',
         format = function(diagnostic)
             return ('%s (%s)'):format(
                 diagnostic.message,

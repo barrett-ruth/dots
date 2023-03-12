@@ -10,8 +10,8 @@ attach_or_restore() {
 
 case "$1" in
 bar)
-    bar="$(tmux ls -F '#S' | nl -w1 -v0 -s ':' | paste -sd '|' | sed "s/|/#[fg=white] │ #[fg=#928374]/g;s/$2/$2*/")"
-    echo "#[fg=#928374]$bar"
+    bar="$(tmux ls -F '#S' | nl -w1 -v0 -s ':' | paste -sd ' ' - | sed "s/$2/$2*/")"
+    echo "$bar"
     ;;
 git)
     tmux neww -c '#{pane_current_path}' -n git 'nvim -c "Git|only"'

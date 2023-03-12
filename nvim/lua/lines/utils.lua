@@ -8,10 +8,6 @@ local function vorfn(val_or_fn)
     return val_or_fn
 end
 
-local function format_component(component)
-    return '%#Grey#' .. vorfn(component.value)
-end
-
 function M.format_components(components)
     local side = {}
 
@@ -19,11 +15,11 @@ function M.format_components(components)
         local component = components[i]
 
         if vorfn(component.condition) ~= false then
-            table.insert(side, format_component(component))
+            table.insert(side, vorfn(component.value))
         end
     end
 
-    return ' ' .. table.concat(side, '%#Normal# │ ') .. ' '
+    return ' ' .. table.concat(side, '%#Normal# ') .. ' '
 end
 
 return M

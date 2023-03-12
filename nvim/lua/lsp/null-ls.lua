@@ -18,11 +18,10 @@ end
 
 null_ls.setup {
     sources = {
-        -- Code Actions
         code_actions.eslint_d,
         code_actions.gitrebase,
         code_actions.shellcheck,
-        -- Diagnostics
+
         diagnostics.curlylint.with {
             extra_filetypes = { 'html' },
         },
@@ -61,7 +60,6 @@ null_ls.setup {
         diagnostics.tsc,
         diagnostics.yamllint,
 
-        -- Formatting
         formatting.autopep8.with {
             condition = function(_)
                 return project_contains_source('autopep8', false)

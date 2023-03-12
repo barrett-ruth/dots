@@ -21,16 +21,8 @@ require('lazy').setup('plugins', {
     git = {
         url_format = 'git@github.com:%s.git',
     },
-    install = {
-        colorscheme = { 'gruvbox' },
-    },
-    lockfile = vim.fn.stdpath 'data' .. '/lazy-lock.json',
-    ui = {
-        border = 'rounded',
-    },
+    lockfile = vim.fn.stdpath 'data' .. 'lazy-lock.json',
 })
 
 require('lines').setup()
-require('run').setup()
-
-vim.cmd.colorscheme 'gruvbox'
+vim.cmd.colorscheme 'lite'

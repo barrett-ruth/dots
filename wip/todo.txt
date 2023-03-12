@@ -1,3 +1,0 @@
-setting up light automatically
-make sure postgres su works
-make sure sioyek is correct install

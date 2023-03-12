@@ -1,5 +1,0 @@
-#!/bin/sh
-
-[ "$1" = up ] && cmd=A || cmd=U
-
-eval "light -s sysfs/backlight/intel_backlight -$cmd 10"

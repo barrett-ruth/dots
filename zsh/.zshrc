@@ -8,7 +8,7 @@ __set_code() {
 }
 
 __set_ssh() {
-    [[ "$SSH_CONNECTION" ]] && PS1+=" %F{095}%n%F{058}@%F{243}%m"
+    [[ "$SSH_CONNECTION" ]] && PS1+=" %m"
 }
 
 __shrink() {
@@ -31,7 +31,7 @@ __shrink() {
 }
 
 __set_dir() {
-    PS1+=" %F{cyan}$(__shrink) "
+    PS1+=" %F{blue}$(__shrink)%f "
 }
 
 __set_git() {
@@ -52,7 +52,7 @@ __set_git() {
   if [[ -z "${sb##*...*}" ]]; then
     local usi="${sb##*.}"
     local usr="${usi%%/*}"
-    [[ -n "$usr" ]] && us="%f→%F{blue}$usr"
+    [[ -n "$usr" ]] && us="→$usr"
     [[ -n "${sb##*ahead*}" ]] || up_down+=↑
     [[ -n "${sb##*behind*}" ]] || up_down+=↓
     [ "${#up_down}" = 2 ] && up_down=↑↓
@@ -62,14 +62,13 @@ __set_git() {
       br="${sb##* }"
   fi
 
-  PS1+="%f$dirty%F{green}$br$us%f$up_down "
+  PS1+="$dirty$br$us$up_down "
 }
 
 __set_venv() {
     ! test -x venv/bin/python || . venv/bin/activate
     [[ -z "$VIRTUAL_ENV" ]] && return
     PS1+='%F{yellow}venv'
-    [[ "$(dirname "$VIRTUAL_ENV")" == "$PWD" ]] || PS1+='!'
     PS1+='%f '
 }
 
@@ -90,5 +89,4 @@ precmd() {
     __set_git
     __set_venv
     __set_beam_cursor
-    PS1+='%f'
 }

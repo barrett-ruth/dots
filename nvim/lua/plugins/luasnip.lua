@@ -90,6 +90,7 @@ return {
                 end
             end,
         }
+
         -- restore digraph mapping
         map { 'i', '<c-d>', '<c-k>' }
     end,

@@ -73,6 +73,7 @@ return {
             },
             matchup = {
                 enable = true,
+                disable_virtual_text = true,
             },
             textobjects = {
                 move = {
@@ -136,15 +137,5 @@ return {
     {
         'nvim-treesitter/playground',
         cmd = 'TSPlaygroundToggle',
-    },
-    {
-        'Wansmer/treesj',
-        keys = {
-            { 'gJ', '<cmd>TSJJoin<cr>' },
-            { 'gS', '<cmd>TSJSplit<cr>' },
-        },
-        opts = {
-            use_default_keymaps = false,
-        },
     },
 }

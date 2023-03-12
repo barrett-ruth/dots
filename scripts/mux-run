@@ -3,15 +3,12 @@
 proj="$PWD"
 
 case "$(basename "$proj")" in
-dmenu | dwm | st)
-    cmd='make clean install && make clean'
-    ;;
-dwmb)
-    cmd='make clean install && make clean && killall dwmb && dwmb &'
-    ;;
 theCourseForum2)
     # docker compose up --build
     cmd='docker compose up'
+    ;;
+certd-backend)
+    cmd='python main.py'
     ;;
 *)
     echo "Project '$proj' unknown."

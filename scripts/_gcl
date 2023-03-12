@@ -3,11 +3,7 @@
 cmd='git clone'
 
 if [ "$2" ]; then
-    if [ "$1" = '--aur' ]; then
-        cmd="$cmd https://aur.archlinux.org/$2"
-    else
-        cmd="$cmd git@github.com:$1/$2"
-    fi
+    cmd="$cmd git@github.com:$1/$2"
     dir="$2"
     shift
     shift

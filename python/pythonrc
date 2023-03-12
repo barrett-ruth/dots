@@ -9,6 +9,8 @@ try:
 except OSError:
     pass
 
+x: int = 4
+
 
 def write_history():
     try:
