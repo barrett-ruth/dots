@@ -3,9 +3,9 @@
 case "$1" in
     -) cd - >/dev/null && return;;
     '') cd ~;;
-    certd) cd ~/dev/certd;;
+    certd) cd ~/dev/certd-backend;;
     cp) cd ~/dev/competitive-programming;;
-    dl) cd ~/dl;;
+    dl) cd ~/Downloads;;
     site) cd ~/dev/barrett-ruth.github.io;;
     scr) cd "$SCRIPTS";;
     dev) cd ~/dev;;

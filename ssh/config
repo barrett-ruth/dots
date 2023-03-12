@@ -1,3 +1,0 @@
-Host github.com
-	AddKeysToAgent yes
-        IdentityFile ~/.config/ssh/id_ed25519

@@ -1,2 +1,2 @@
 db setup
-fix up config scripts
+sync last of windows laptop files
