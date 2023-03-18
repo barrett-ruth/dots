@@ -20,13 +20,26 @@
           {
             "manipulators": [
               {
-                "description": "Open finder with command + e",
                 "type": "basic",
                 "from": {
                   "modifiers": {
-                    "mandatory": ["left_gui"]
+                    "mandatory": ["left_gui", "left_shift"]
                   },
-                  "key_code": "e"
+                  "key_code": "m"
+                },
+                "to": [
+                  {
+                    "shell_command": "open -a mail"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "modifiers": {
+                    "mandatory": ["left_gui", "left_shift"]
+                  },
+                  "key_code": "f"
                 },
                 "to": [
                   {
@@ -39,7 +52,7 @@
                 "type": "basic",
                 "from": {
                   "modifiers": {
-                    "mandatory": ["left_gui"]
+                    "mandatory": ["left_gui", "left_shift"]
                   },
                   "key_code": "s"
                 },
@@ -50,11 +63,10 @@
                 ]
               },
               {
-                "description": "Open kitty with command + k",
                 "type": "basic",
                 "from": {
                   "modifiers": {
-                    "mandatory": ["left_gui"]
+                    "mandatory": ["left_gui", "left_shift"]
                   },
                   "key_code": "k"
                 },
@@ -65,7 +77,6 @@
                 ]
               },
               {
-                "description": "Map right command to control + t",
                 "type": "basic",
                 "from": {
                   "key_code": "right_gui"

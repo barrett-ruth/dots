@@ -1,3 +1,4 @@
+autoraise
 brotli
 c-ares
 ca-certificates
@@ -62,6 +63,7 @@ xz
 yarn
 zsh-syntax-highlighting
 zstd
+basictex
 discord
 jetbrains-toolbox
 karabiner-elements
@@ -70,3 +72,4 @@ notion
 pgadmin4
 rectangle
 sioyek
+zoom

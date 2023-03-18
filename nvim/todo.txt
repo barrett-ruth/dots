@@ -1,2 +1,2 @@
 db setup
-sync last of windows laptop files
+fixing shortcuts - don't do <d-s-thing>

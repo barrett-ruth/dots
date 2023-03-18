@@ -34,13 +34,11 @@ export SAVEHIST=2000
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
 
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
-export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export GOPATH="$XDG_DATA_HOME"/go
 export GNUPGHOME="$XDG_CONFIG_HOME"/gnupg
 export LESSHISTFILE="$XDG_STATE_HOME"/lesshst
 export MYPY_CACHE_DIR="$XDG_CACHE_HOME"/mypy
 export NODE_REPL_HISTORY="$XDG_STATE_HOME"/node_repl_history
-export PSQL_HISTORY="$XDG_STATE_HOME"/psql_history
 export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/pythonrc
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME"/rg/config
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup

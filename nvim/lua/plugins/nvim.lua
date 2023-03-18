@@ -87,6 +87,7 @@ return {
                 },
             },
             view = {
+                side = 'right',
                 signcolumn = 'no',
                 mappings = {
                     custom_only = true,
