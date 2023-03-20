@@ -1,4 +1,5 @@
 return {
+    'ellisonleao/gruvbox.nvim',
     {
         'barrett-ruth/import-cost.nvim',
         build = 'sh install.sh yarn',
