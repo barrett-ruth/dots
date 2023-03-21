@@ -35,12 +35,7 @@ __set_dir() {
 }
 
 __set_git() {
-  if [[ ! -d .git ]]; then
-      is_git=false
-      return
-  fi
-
-  is_git=true
+  [[ ! -d .git ]] && return
 
   setopt +o nomatch
 
@@ -50,26 +45,25 @@ __set_git() {
   local br="${${sb%%.*}##* }"
 
   if [[ -z "${sb##*...*}" ]]; then
-    local usi="${sb##*.}"
-    local usr="${usi%%/*}"
-    [[ -n "$usr" ]] && us="→$usr"
-    [[ -n "${sb##*ahead*}" ]] || up_down+=↑
-    [[ -n "${sb##*behind*}" ]] || up_down+=↓
-    [ "${#up_down}" = 2 ] && up_down=↑↓
-  elif [[ -z "${sb##*HEAD*}" ]]; then
+  #   local usi="${sb##*.}"
+  #   local usr="${usi%%/*}"
+  #   [[ -n "$usr" ]] && us="→$usr"
+  #   [[ -n "${sb##*ahead*}" ]] || up_down+=↑
+  #   [[ -n "${sb##*behind*}" ]] || up_down+=↓
+  #   [ "${#up_down}" = 2 ] && up_down=↑↓
+  ;elif [[ -z "${sb##*HEAD*}" ]]; then
       br=HEAD
   else
       br="${sb##* }"
   fi
 
-  PS1+="$dirty$br$us$up_down "
+  PS1+="%F{cyan}git:($br$dirty$us$up_down) "
 }
 
 __set_venv() {
     ! test -x venv/bin/python || . venv/bin/activate
     [[ -z "$VIRTUAL_ENV" ]] && return
-    PS1+='%F{yellow}venv'
-    PS1+='%f '
+    PS1+='%F{yellow}venv%f '
 }
 
 __set_beam_cursor() { echo -ne '\e[5 q'; }

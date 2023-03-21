@@ -14,10 +14,8 @@ bar)
     echo "$bar"
     ;;
 git)
+    [ "$(tmux lsw -F '#W' | rg 'git')" ] && tmux killw -t 'git'
     tmux neww -c '#{pane_current_path}' -n git 'nvim -c "Git|only"'
-    ;;
-diff)
-    tmux neww -c '#{pane_current_path}' -n diff 'nvim -c DiffviewOpen'
     ;;
 run)
     [ "$(tmux lsw -F '#W' | rg run)" ] && tmux killw -t run

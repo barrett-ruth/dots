@@ -57,7 +57,7 @@ export FZF_COMPLETION_TRIGGER=\;
 export FZF_ALT_C_COMMAND='fd --type directory --strip-cwd-prefix'
 export FZF_CTRL_R_OPTS='--reverse'
 export FZF_CTRL_T_COMMAND='fd --type file --strip-cwd-prefix'
-export FZF_DEFAULT_OPTS='--bind=ctrl-a:select-all --bind=ctrl-f:half-page-down --bind=ctrl-b:half-page-up --no-scrollbar --no-info --no-bold --color=light'
+export FZF_DEFAULT_OPTS='--bind=ctrl-a:select-all --bind=ctrl-f:half-page-down --bind=ctrl-b:half-page-up --no-scrollbar --no-info --no-bold --color=light --color=bg+:#3c3836,bg:#282828,spinner:#8ec07c,hl:#83a598 --color=fg:#bdae93,header:#83a598,info:#fabd2f,pointer:#8ec07c --color=marker:#8ec07c,fg+:#ebdbb2,prompt:#fabd2f,hl+:#83a598'
 export FZF_TMUX=1
 
 . "$ZDOTDIR/.zaliases"

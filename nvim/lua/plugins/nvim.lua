@@ -1,5 +1,22 @@
 return {
-    'ellisonleao/gruvbox.nvim',
+    {
+        'ellisonleao/gruvbox.nvim',
+        opts = {
+            italic = {
+                strings = false,
+                comments = false,
+                operators = false,
+                folds = false,
+            },
+        },
+        config = function(_, opts)
+            require('gruvbox').setup(opts)
+            vim.cmd.colorscheme 'gruvbox'
+            vim.cmd.hi 'clear Statusline'
+            vim.cmd.hi 'clear CursorLineNr'
+            vim.cmd.hi 'link CursorLineNr LineNr'
+        end,
+    },
     {
         'barrett-ruth/import-cost.nvim',
         build = 'sh install.sh yarn',
