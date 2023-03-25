@@ -1,6 +1,5 @@
-db setup
 fix git-worktree.nvim
-better handling of bd (get plugin back)
-fix zsh prompt (jdh)
-vim dadbod
-asb
+yabai/amethyst
+navic to statusbar/winbar (probably former)
+harvard classes
+forge classes

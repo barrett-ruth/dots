@@ -57,6 +57,14 @@ null_ls.setup {
         diagnostics.mypy,
         diagnostics.selene,
         diagnostics.shellcheck,
+        diagnostics.sqlfluff.with {
+            extra_args = {
+                '--dialect',
+                'postgres',
+                '--exclude-rules',
+                'LT02,LT05',
+            },
+        },
         diagnostics.tsc,
         diagnostics.yamllint,
 

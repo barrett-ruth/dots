@@ -20,8 +20,12 @@ local function format()
     }
 end
 
-function M.on_attach(client)
+function M.on_attach(client, bufnr)
     local server_capabilities = client.server_capabilities
+
+    if server_capabilities.documentSymbolProvider then
+        require('nvim-navic').attach(client, bufnr)
+    end
 
     local diagnostic, buf = vim.diagnostic, vim.lsp.buf
 

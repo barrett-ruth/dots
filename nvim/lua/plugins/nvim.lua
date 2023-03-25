@@ -11,10 +11,27 @@ return {
         },
         config = function(_, opts)
             require('gruvbox').setup(opts)
-            vim.cmd.colorscheme 'gruvbox'
-            vim.cmd.hi 'clear Statusline'
-            vim.cmd.hi 'clear CursorLineNr'
-            vim.cmd.hi 'link CursorLineNr LineNr'
+            vim.cmd [[
+                colorscheme gruvbox
+                hi clear Statusline
+                hi clear CursorLineNr
+                hi link CursorLineNr LineNr
+                hi @punctuation.bracket guifg=#ebdbb2
+                hi @constructor.lua guifg=#ebdbb2
+                hi @punctuation.delimiter guifg=#928374
+            ]]
+            for _, e in ipairs {
+                'SignColumn',
+                'GruvboxRedSign',
+                'GruvboxYellowSign',
+                'GruvboxAquaSign',
+                'GruvboxBlueSign',
+                'GruvboxOrangeSign',
+                'GruvboxPurpleSign',
+                'GruvboxGreenSign',
+            } do
+                vim.cmd.hi(e .. ' guibg=#282828')
+            end
         end,
     },
     {
@@ -105,7 +122,6 @@ return {
                 },
             },
             view = {
-                side = 'right',
                 signcolumn = 'no',
                 mappings = {
                     custom_only = true,

@@ -6,6 +6,21 @@ local file = {
     end,
 }
 
+local nvim_navic = require 'nvim-navic'
+
+local navic = {
+    value = function()
+        local bufnr = vim.api.nvim_get_current_buf()
+
+        return (
+            nvim_navic.is_available(bufnr)
+            and not utils.empty(nvim_navic.get_location())
+        )
+                and nvim_navic.get_location():sub(2)
+            or ''
+    end,
+}
+
 local git = {
     value = function()
         return vim.b.gitsigns_head
@@ -63,6 +78,7 @@ local statusline = {
     left = {
         [1] = git,
         [2] = file,
+        [3] = navic,
     },
     right = {
         [1] = search,
