@@ -1,40 +1,5 @@
 return {
     {
-        'ellisonleao/gruvbox.nvim',
-        opts = {
-            italic = {
-                strings = false,
-                comments = false,
-                operators = false,
-                folds = false,
-            },
-        },
-        config = function(_, opts)
-            require('gruvbox').setup(opts)
-            vim.cmd [[
-                colorscheme gruvbox
-                hi clear Statusline
-                hi clear CursorLineNr
-                hi link CursorLineNr LineNr
-                hi @punctuation.bracket guifg=#ebdbb2
-                hi @constructor.lua guifg=#ebdbb2
-                hi @punctuation.delimiter guifg=#928374
-            ]]
-            for _, e in ipairs {
-                'SignColumn',
-                'GruvboxRedSign',
-                'GruvboxYellowSign',
-                'GruvboxAquaSign',
-                'GruvboxBlueSign',
-                'GruvboxOrangeSign',
-                'GruvboxPurpleSign',
-                'GruvboxGreenSign',
-            } do
-                vim.cmd.hi(e .. ' guibg=#282828')
-            end
-        end,
-    },
-    {
         'barrett-ruth/import-cost.nvim',
         build = 'sh install.sh yarn',
         config = true,

@@ -1,5 +1,5 @@
 fix git-worktree.nvim
 yabai/amethyst
-navic to statusbar/winbar (probably former)
 harvard classes
 forge classes
+swap back to gruvbox material (EVERYTHING)

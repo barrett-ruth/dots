@@ -19,7 +19,7 @@ function M.format_components(components)
         end
     end
 
-    return ' ' .. table.concat(side, '%#Normal# ') .. ' '
+    return '%#Normal# ' .. table.concat(side, '%#Normal# ') .. ' '
 end
 
 return M

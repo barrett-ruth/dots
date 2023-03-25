@@ -23,6 +23,8 @@ end
 function M.on_attach(client, bufnr)
     local server_capabilities = client.server_capabilities
 
+    server_capabilities.semanticTokensProvider = nil
+
     if server_capabilities.documentSymbolProvider then
         require('nvim-navic').attach(client, bufnr)
     end
