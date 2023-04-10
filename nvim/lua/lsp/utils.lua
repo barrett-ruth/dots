@@ -10,7 +10,6 @@ local function format()
                 'jedi_language_server', -- black/autopep8
                 'jsonls', -- prettier
                 'pyright', -- black/autopep8
-                'sqlls', -- sql-formatter
                 'lua_ls', -- stylua
                 'tsserver', -- prettier
             }, client.name)

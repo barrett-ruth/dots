@@ -42,7 +42,6 @@ return {
                 'jedi_language_server',
                 'jsonls',
                 'pyright',
-                'sqlls',
                 'lua_ls',
                 'tailwindcss',
             } do
