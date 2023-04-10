@@ -1,5 +1,0 @@
-fix git-worktree.nvim
-yabai/amethyst
-harvard classes
-forge classes
-swap back to gruvbox material (EVERYTHING)

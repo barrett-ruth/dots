@@ -12,28 +12,28 @@ return {
 
         map {
             'n',
-            '<leader>hh',
+            '<c-h>',
             function()
                 ui.nav_file(1)
             end,
         }
         map {
             'n',
-            '<leader>hj',
+            '<c-j>',
             function()
                 ui.nav_file(2)
             end,
         }
         map {
             'n',
-            '<leader>hk',
+            '<c-k>',
             function()
                 ui.nav_file(3)
             end,
         }
         map {
             'n',
-            '<leader>hl',
+            '<c-l>',
             function()
                 ui.nav_file(4)
             end,

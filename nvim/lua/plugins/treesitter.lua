@@ -5,6 +5,7 @@ return {
         build = ':TSUpdateSync',
         config = function(_, opts)
             require('nvim-treesitter.configs').setup(opts)
+            map { 'n', '<leader>i', '<cmd>Inspect<cr>' }
         end,
         dependencies = {
             {
@@ -129,9 +130,6 @@ return {
                     },
                 },
             },
-        },
-        keys = {
-            { '<leader>i', '<cmd>Inspect<cr>' },
         },
     },
     {

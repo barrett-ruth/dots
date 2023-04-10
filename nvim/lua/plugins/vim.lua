@@ -10,7 +10,14 @@ return {
         'sainnhe/gruvbox-material',
         config = function()
             vim.g.gruvbox_material_better_performance = 1
-            vim.cmd.colorschem 'gruvbox-material'
+
+            vim.cmd [[
+                colorscheme gruvbox-material
+                for e in ['NormalFloat', 'HintFloat', 'InfoFloat', 'ErrorFloat', 'WarningFloat', 'FloatBorder']
+                    exe 'hi ' . e . ' guibg=#282828'
+                endfo
+                hi @field.lua guifg=#d4be98
+            ]]
         end,
     },
     'tpope/vim-abolish',

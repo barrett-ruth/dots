@@ -7,8 +7,8 @@ return {
             on_attach = function()
                 vim.o.signcolumn = 'yes'
 
-                bmap { 'n', '<leader>f2', '<cmd>diffget //2<cr>' }
-                bmap { 'n', '<leader>f3', '<cmd>diffget //3<cr>' }
+                bmap { 'n', '<leader>ga', '<cmd>diffget //2<cr>' }
+                bmap { 'n', '<leader>gf', '<cmd>diffget //3<cr>' }
 
                 local gitsigns = require 'gitsigns'
 

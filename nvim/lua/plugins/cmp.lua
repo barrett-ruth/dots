@@ -53,12 +53,15 @@ return {
             local mapping = cmp.mapping
 
             opts = vim.tbl_extend('keep', opts, {
+                confirmation = {
+                    completopt = '',
+                },
                 sources = cmp.config.sources {
                     { name = 'nvim_lsp' },
                     { name = 'path' },
                 },
                 mapping = {
-                    ['<c-y>'] = mapping.confirm(),
+                    ['<c-y>'] = mapping.confirm { select = true },
                     ['<c-b>'] = mapping.scroll_docs(-4),
                     ['<c-f>'] = mapping.scroll_docs(4),
                     ['<c-e>'] = function()
