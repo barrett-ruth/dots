@@ -25,11 +25,53 @@
                   "modifiers": {
                     "mandatory": "right_option"
                   },
+                  "key_code": "p"
+                },
+                "to": [
+                  {
+                    "shell_command": "open -a pgAdmin\\ 4"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "modifiers": {
+                    "mandatory": "right_option"
+                  },
+                  "key_code": "x"
+                },
+                "to": [
+                  {
+                    "shell_command": "open -a Microsoft\\ Excel"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "modifiers": {
+                    "mandatory": "right_option"
+                  },
                   "key_code": "c"
                 },
                 "to": [
                   {
                     "shell_command": "open -a Google\\ Chrome"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "modifiers": {
+                    "mandatory": "right_option"
+                  },
+                  "key_code": "d"
+                },
+                "to": [
+                  {
+                    "shell_command": "open -a discord"
                   }
                 ]
               },
