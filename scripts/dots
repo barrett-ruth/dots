@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cfg="$HOME/dev/dots"
+cfg="$HOME/Desktop/dots"
 
 cd "$cfg" || exit
 
@@ -37,6 +37,7 @@ mac() {
 
     test -f "$XDG_DATA_HOME/nvim/lazy-lock.json" && cp "$XDG_DATA_HOME/nvim/lazy-lock.json" nvim
 
+    test -f nvim/todo.txt && rm nvim/todo.txt
     cp "$XDG_DATA_HOME/nvim/spell/spell.encoding.add" nvim
 
     mkdir tmux

@@ -3,14 +3,14 @@
 case "$1" in
     -) cd - >/dev/null && return;;
     '') cd ~;;
-    certd) cd ~/dev/certd-backend;;
-    cp) cd ~/dev/competitive-programming;;
+    certd) cd ~/Desktop/certd-backend;;
+    cp) cd ~/Desktop/competitive-programming;;
     dl) cd ~/Downloads;;
-    site) cd ~/dev/barrett-ruth.github.io;;
+    site) cd ~/Desktop/barrett-ruth.github.io;;
     scr) cd "$SCRIPTS";;
-    dev) cd ~/dev;;
-    dots) cd ~/dev/dots;;
-    tcf) cd ~/dev/theCourseForum2;;
+    desk) cd ~/Desktop;;
+    dots) cd ~/Desktop/dots;;
+    tcf) cd ~/Desktop/theCourseForum2;;
     tm) cd ~/.config/tmux;;
     nv) cd ~/.config/nvim;;
     zsh) cd ~/.config/zsh;;
