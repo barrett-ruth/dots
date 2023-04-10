@@ -1,7 +1,5 @@
 local M = {}
 
-local api = vim.api
-
 local function format()
     vim.lsp.buf.format {
         filter = function(client)
@@ -12,7 +10,7 @@ local function format()
                 'jedi_language_server', -- black/autopep8
                 'jsonls', -- prettier
                 'pyright', -- black/autopep8
-                'sqls', -- sql-formatter
+                'sqlls', -- sql-formatter
                 'lua_ls', -- stylua
                 'tsserver', -- prettier
             }, client.name)
@@ -30,10 +28,10 @@ function M.on_attach(client, bufnr)
     local diagnostic, buf = vim.diagnostic, vim.lsp.buf
 
     if server_capabilities.documentFormattingProvider then
-        api.nvim_create_autocmd('BufWritePre', {
+        vim.api.nvim_create_autocmd('BufWritePost', {
             pattern = '<buffer>',
             callback = format,
-            group = api.nvim_create_augroup('AFormat', { clear = false }),
+            group = vim.api.nvim_create_augroup('AFormat', { clear = false }),
         })
     end
 

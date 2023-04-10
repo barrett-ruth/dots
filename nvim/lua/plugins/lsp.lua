@@ -42,7 +42,7 @@ return {
                 'jedi_language_server',
                 'jsonls',
                 'pyright',
-                'sqls',
+                'sqlls',
                 'lua_ls',
                 'tailwindcss',
             } do
@@ -63,7 +63,6 @@ return {
                     hl_group = 'Visual',
                 },
             },
-            'nanotee/sqls.nvim',
             {
                 'SmiteshP/nvim-navic',
                 config = function(_, opts)

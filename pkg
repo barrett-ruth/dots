@@ -1,4 +1,3 @@
-autoraise
 brotli
 c-ares
 ca-certificates
@@ -11,7 +10,6 @@ gcc
 gettext
 gh
 gmp
-go
 hadolint
 icu4c
 isl
