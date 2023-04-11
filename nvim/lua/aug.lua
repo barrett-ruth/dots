@@ -25,7 +25,6 @@ au('VimResized', {
 
 au('VimEnter', {
     callback = function(opts)
-        vim.pretty_print(opts.file)
         if vim.fn.isdirectory(opts.file) == 1 then
             require('nvim-tree.api').tree.open()
         end
@@ -40,12 +39,6 @@ au('ModeChanged', {
 
 au('BufReadPost', {
     command = 'sil! norm g`"',
-    group = aug,
-})
-
-au('BufEnter', {
-    pattern = '*.env*',
-    command = 'se ft=env',
     group = aug,
 })
 

@@ -27,7 +27,7 @@ function M.on_attach(client, bufnr)
     local diagnostic, buf = vim.diagnostic, vim.lsp.buf
 
     if server_capabilities.documentFormattingProvider then
-        vim.api.nvim_create_autocmd('BufWritePost', {
+        vim.api.nvim_create_autocmd('BufWrite', {
             pattern = '<buffer>',
             callback = format,
             group = vim.api.nvim_create_augroup('AFormat', { clear = false }),

@@ -46,17 +46,18 @@ null_ls.setup {
                 end
             end,
         },
-        diagnostics.dotenv_linter.with {
-            extra_args = { '--not-check-updates' },
-            extra_filetypes = { 'env' },
-        },
+        diagnostics.dotenv_linter,
         diagnostics.hadolint,
         diagnostics.markdownlint.with {
             diagnostics_format = '#{m}',
         },
         diagnostics.mypy,
         diagnostics.selene,
-        diagnostics.shellcheck,
+        diagnostics.shellcheck.with {
+            runtime_condition = function(_)
+                return not vim.fn.bufname():match '.env.*'
+            end,
+        },
         diagnostics.sqlfluff.with {
             extra_args = {
                 '--dialect',

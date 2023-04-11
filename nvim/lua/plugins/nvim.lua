@@ -19,6 +19,14 @@ return {
         },
     },
     {
+        'laytan/cloak.nvim',
+        config = true,
+        keys = {
+            { '<leader>c', '<cmd>CloakToggle<cr>' },
+        },
+        lazy = false,
+    },
+    {
         'monaqa/dial.nvim',
         config = function()
             local dial_map = require 'dial.map'

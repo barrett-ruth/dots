@@ -31,7 +31,6 @@ return {
                 'gitignore',
                 'go',
                 'graphql',
-                'help',
                 'html',
                 'htmldjango',
                 'http',
@@ -51,6 +50,7 @@ return {
                 'tsx',
                 'typescript',
                 'vim',
+                'vimdoc',
                 'yaml',
             },
             autotag = {
