@@ -20,8 +20,6 @@ alias dv='deactivate'
 alias g='git'
 alias nv='nvim'
 alias pe='printenv'
-alias rs="rsync -e 'ssh -F $XDG_CONFIG_HOME/ssh/config'"
-alias ssh="ssh -F $XDG_CONFIG_HOME/ssh/config"
 
 # Yarn
 wool() {

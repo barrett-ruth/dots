@@ -1,6 +1,8 @@
 return {
     num = function()
-        if vim.v.relnum == 0 then
+        if vim.v.virtnum < 0 then
+            return ''
+        elseif vim.v.relnum == 0 then
             return '%#CursorLineNr#' .. vim.v.lnum
         end
 

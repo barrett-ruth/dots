@@ -13,6 +13,10 @@ return {
         end,
     },
     {
+        'barrett-ruth/lsp-lens.nvim',
+        config = true,
+    },
+    {
         'jose-elias-alvarez/typescript.nvim',
         config = function()
             require('typescript').setup {
