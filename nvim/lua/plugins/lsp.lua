@@ -13,7 +13,7 @@ return {
         end,
     },
     {
-        'barrett-ruth/lsp-lens.nvim',
+        'VidocqH/lsp-lens.nvim',
         config = true,
     },
     {

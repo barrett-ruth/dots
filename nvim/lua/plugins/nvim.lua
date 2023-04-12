@@ -29,16 +29,15 @@ return {
     {
         'monaqa/dial.nvim',
         config = function()
-            local dial_map = require 'dial.map'
-
-            map { 'n', '<c-a>', dial_map.inc_normal }
-            map { 'n', '<c-x>', dial_map.dec_normal }
-            map { 'n', 'g<c-a>', dial_map.inc_gnormal }
-            map { 'n', 'g<c-x>', dial_map.dec_gnormal }
-            map { 'v', '<c-a>', dial_map.inc_visual }
-            map { 'v', '<C-x>', dial_map.dec_visual }
-            map { 'v', 'g<C-a>', dial_map.inc_gvisual }
-            map { 'v', 'g<C-x>', dial_map.dec_gvisual }
+            local dial = require 'dial.map'
+            map { 'n', '<c-a>', dial.inc_normal() }
+            map { 'n', '<c-x>', dial.dec_normal() }
+            map { 'n', 'g<c-a>', dial.inc_gnormal() }
+            map { 'n', 'g<c-x>', dial.dec_gnormal() }
+            map { 'x', '<c-a>', dial.inc_visual() }
+            map { 'x', '<c-x>', dial.dec_visual() }
+            map { 'x', 'g<c-a>', dial.inc_gvisual() }
+            map { 'x', 'g<c-x>', dial.dec_gvisual() }
         end,
     },
     {
