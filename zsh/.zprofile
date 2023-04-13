@@ -20,7 +20,7 @@ setopt auto_cd incappendhistory extendedhistory histignorealldups
 eval "$(/opt/homebrew/bin/brew shellenv)"
 . /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-export BROWSER='chrome'
+export BROWSER='chromium'
 export EDITOR='nvim'
 export MANPAGER='nvim +Man!'
 
