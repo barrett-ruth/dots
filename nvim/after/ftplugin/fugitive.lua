@@ -1,1 +1,1 @@
-map { 'n', 'gP', '<cmd>Git push<cr>' }
+bmap { 'n', 'gP', '<cmd>Git push<cr>' }

@@ -2,6 +2,7 @@ local M = {}
 
 local function format()
     vim.lsp.buf.format {
+        timeout = 2000,
         filter = function(client)
             return not vim.tbl_contains({
                 'clangd', -- clang-format
@@ -27,11 +28,14 @@ function M.on_attach(client, bufnr)
     local diagnostic, buf = vim.diagnostic, vim.lsp.buf
 
     if server_capabilities.documentFormattingProvider then
-        vim.api.nvim_create_autocmd('BufWrite', {
-            pattern = '<buffer>',
-            callback = format,
-            group = vim.api.nvim_create_augroup('AFormat', { clear = false }),
-        })
+        bmap({
+            'n',
+            '<leader>w',
+            function()
+                format()
+                vim.cmd.w()
+            end,
+        }, { buffer = bufnr, silent = false })
     end
 
     local fzf = require 'fzf-lua'

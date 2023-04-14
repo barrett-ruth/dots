@@ -19,6 +19,21 @@ return {
         },
     },
     {
+        'elihunter173/dirbuf.nvim',
+        opts = {
+            sort_order = 'directories_first',
+        },
+        config = function(_, opts)
+            require('dirbuf').setup(opts)
+            map { 'n', '-', '<cmd>e .<cr>' }
+            map {
+                'n',
+                '_',
+                '<cmd>e %:h<cr>',
+            }
+        end,
+    },
+    {
         'laytan/cloak.nvim',
         config = true,
         keys = {
@@ -53,87 +68,6 @@ return {
             'JoosepAlviste/nvim-ts-context-commentstring',
         },
         event = 'VeryLazy',
-    },
-    {
-        'nvim-tree/nvim-tree.lua',
-        config = function(_, opts)
-            local ignore = {}
-
-            for _, v in ipairs(vim.g.wildignore) do
-                if v:sub(-1) == '/' then
-                    table.insert(ignore, '^' .. v:sub(1, -2) .. '$')
-                else
-                    table.insert(ignore, v)
-                end
-            end
-
-            opts = vim.tbl_extend('keep', opts, {
-                filters = {
-                    custom = ignore,
-                    dotfiles = true,
-                },
-            })
-
-            require('nvim-tree').setup(opts)
-        end,
-        keys = {
-            { '-', '<cmd>NvimTreeToggle .<cr>' },
-            {
-                '<c-n>',
-                function()
-                    vim.cmd('NvimTreeToggle ' .. vim.fn.expand '%:h')
-                end,
-            },
-        },
-        opts = {
-            actions = {
-                change_dir = {
-                    enable = false,
-                },
-                open_file = {
-                    quit_on_open = true,
-                    window_picker = { enable = false },
-                },
-            },
-            view = {
-                signcolumn = 'no',
-                mappings = {
-                    custom_only = true,
-                    list = {
-                        { key = 'a', action = 'create' },
-                        { key = 'b', action = 'dir_up' },
-                        { key = 'c', action = 'close_node' },
-                        { key = 'd', action = 'remove' },
-                        { key = 'g', action = 'cd' },
-                        { key = 'm', action = 'rename' },
-                        { key = 'p', action = 'paste' },
-                        { key = 'q', action = 'close' },
-                        { key = 'r', action = 'rename' },
-                        { key = 't', action = 'toggle_dotfiles' },
-                        { key = 'u', action = 'parent_node' },
-                        { key = 'x', action = 'split' },
-                        { key = 'y', action = 'copy' },
-                        { key = '<cr>', action = 'edit' },
-                        { key = '?', action = 'toggle_help' },
-                    },
-                },
-                number = true,
-                relativenumber = true,
-            },
-            renderer = {
-                add_trailing = true,
-                icons = {
-                    symlink_arrow = ' -> ',
-                    show = {
-                        git = false,
-                        folder = false,
-                        folder_arrow = false,
-                        file = false,
-                    },
-                },
-                root_folder_label = ':~:s?$?/',
-            },
-        },
     },
     {
         'NvChad/nvim-colorizer.lua',

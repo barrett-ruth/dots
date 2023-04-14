@@ -23,15 +23,6 @@ au('VimResized', {
     group = aug,
 })
 
-au('VimEnter', {
-    callback = function(opts)
-        if vim.fn.isdirectory(opts.file) == 1 then
-            require('nvim-tree.api').tree.open()
-        end
-    end,
-    group = aug,
-})
-
 au('ModeChanged', {
     command = 'let &hlsearch = index(["?", "/"], getcmdtype()) > -1',
     group = aug,
