@@ -6,20 +6,6 @@ return {
             map { 'n', '<leader>D', '<cmd>DBUIToggle<cr>' }
         end,
     },
-    {
-        'sainnhe/gruvbox-material',
-        config = function()
-            vim.g.gruvbox_material_better_performance = 1
-
-            vim.cmd [[
-                colorscheme gruvbox-material
-                for e in ['NormalFloat', 'HintFloat', 'InfoFloat', 'ErrorFloat', 'WarningFloat', 'FloatBorder']
-                    exe 'hi ' . e . ' guibg=#282828'
-                endfo
-                hi @field.lua guifg=#d4be98
-            ]]
-        end,
-    },
     'tpope/vim-abolish',
     {
         'tpope/vim-dadbod',

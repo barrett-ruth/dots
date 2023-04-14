@@ -42,7 +42,7 @@ function M.on_attach(client, bufnr)
     bmap { 'n', 'K', buf.hover }
     bmap { 'n', 'gd', fzf.lsp_definitions }
     bmap { 'n', 'gD', buf.declaration }
-    bmap { 'n', 'gi', fzf.lsp_implementations }
+    bmap { 'n', 'gI', fzf.lsp_implementations }
     bmap({
         'n',
         'gr',

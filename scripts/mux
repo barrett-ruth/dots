@@ -10,7 +10,7 @@ attach_or_restore() {
 
 case "$1" in
 bar)
-    bar="$(tmux ls -F '#S' | nl -w1 -v0 -s ':' | paste -sd ' ' - | sed "s/$2/$2*/")"
+    bar="$(tmux ls -F '#S' | nl -w1 -v0 -s ':' | paste -sd '-' - | sed "s/$2/$2*/;s/-/  /g")"
     echo "$bar"
     ;;
 git)
