@@ -2,7 +2,6 @@ local M = {}
 
 local function format()
     vim.lsp.buf.format {
-        timeout = 2000,
         filter = function(client)
             return not vim.tbl_contains({
                 'clangd', -- clang-format
@@ -47,13 +46,7 @@ function M.on_attach(client, bufnr)
     bmap { 'n', 'gd', fzf.lsp_definitions }
     bmap { 'n', 'gD', buf.declaration }
     bmap { 'n', 'gI', fzf.lsp_implementations }
-    bmap({
-        'n',
-        'gr',
-        function()
-            return ':IncRename ' .. vim.fn.expand '<cword>'
-        end,
-    }, { expr = true })
+    bmap { 'n', 'gr', buf.rename }
     bmap { 'n', 'gR', fzf.lsp_references }
     bmap { 'n', 'gt', fzf.lsp_typedefs }
 

@@ -57,7 +57,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "open -a Chromium"
+                    "shell_command": "open -a Google\\ Chrome"
                   }
                 ]
               },

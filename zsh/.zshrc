@@ -57,7 +57,7 @@ __set_git() {
       br="${sb##* }"
   fi
 
-  PS1+="%F{cyan}git:($dirty$br$us$up_down) "
+  PS1+="%F{cyan}$dirty$br$us$up_down "
 }
 
 __set_venv() {
