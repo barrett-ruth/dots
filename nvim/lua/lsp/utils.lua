@@ -46,7 +46,7 @@ function M.on_attach(client, bufnr)
     bmap { 'n', 'gd', fzf.lsp_definitions }
     bmap { 'n', 'gD', buf.declaration }
     bmap { 'n', 'gI', fzf.lsp_implementations }
-    bmap { 'n', 'gr', buf.rename }
+    bmap { 'n', 'gr', require('lsp.rename').rename }
     bmap { 'n', 'gR', fzf.lsp_references }
     bmap { 'n', 'gt', fzf.lsp_typedefs }
 

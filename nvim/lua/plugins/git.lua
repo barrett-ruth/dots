@@ -47,11 +47,4 @@ return {
             update_debounce = 0,
         },
     },
-    { 'tpope/vim-fugitive', cmd = 'Git' },
-    {
-        'ThePrimeagen/git-worktree.nvim',
-        config = function()
-            map { 'n', '<leader>gw', require('worktree').git_worktrees }
-        end,
-    },
 }

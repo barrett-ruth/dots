@@ -6,7 +6,6 @@ return {
             map { 'n', '<leader>D', '<cmd>DBUIToggle<cr>' }
         end,
     },
-    'sainnhe/gruvbox-material',
     'tpope/vim-abolish',
     {
         'tpope/vim-dadbod',

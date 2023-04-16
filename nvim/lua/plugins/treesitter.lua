@@ -1,5 +1,5 @@
 return {
-    { 'nvim-lua/plenary.nvim' },
+    'nvim-lua/plenary.nvim',
     {
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdateSync',
@@ -8,12 +8,6 @@ return {
             map { 'n', '<leader>i', '<cmd>Inspect<cr>' }
         end,
         dependencies = {
-            {
-                'andymass/vim-matchup',
-                config = function()
-                    vim.g.matchup_matchparen_offscreen = {}
-                end,
-            },
             'nvim-treesitter/nvim-treesitter-textobjects',
             'windwp/nvim-ts-autotag',
         },
@@ -72,10 +66,6 @@ return {
             },
             context_commentstring = {
                 enable = true,
-            },
-            matchup = {
-                enable = true,
-                disable_virtual_text = true,
             },
             textobjects = {
                 move = {
