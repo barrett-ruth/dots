@@ -46,6 +46,7 @@ hi('Black', { fg = cs.black })
 
 -- basic ui
 hi('Normal', { fg = cs.white, bg = cs.bg })
+hi('NonText', { fg = cs.black })
 
 -- messages
 hi('ErrorMsg', { bold = true, underline = true, fg = cs.red, bg = 'NONE' })
@@ -143,6 +144,7 @@ hi('diffIndexLine', { fg = cs.purple })
 hi('GitSignsAdd', { fg = cs.green })
 hi('GitSignsChange', { fg = cs.blue })
 hi('GitSignsDelete', { fg = cs.red })
+hi('GitSignsCurrentLineBlame', { italic = true, fg = cs.grey })
 
 -- spelling
 hi('SpellBad', { underline = true, special = cs.red })

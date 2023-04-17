@@ -41,4 +41,7 @@ require('lazy').setup('plugins', {
 })
 
 require('lines').setup()
+require('projects').setup()
+require('run').setup()
+
 vim.cmd.colorscheme 'gruvbox'

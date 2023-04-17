@@ -11,6 +11,8 @@ gettext
 gh
 gmp
 hadolint
+heroku
+heroku-node
 icu4c
 isl
 jq

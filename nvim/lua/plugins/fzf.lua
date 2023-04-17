@@ -58,7 +58,7 @@ return {
             'n',
             '<leader>fe',
             function()
-                fzf.files { cwd = vim.env.XDG_CONFIG_HOME }
+                fzf.files { fd_opts = ('--hidden %s'):format(fd_opts), cwd = vim.env.XDG_CONFIG_HOME }
             end,
         }
         map {

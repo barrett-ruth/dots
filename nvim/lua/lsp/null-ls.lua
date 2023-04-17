@@ -1,5 +1,5 @@
 local on_attach = require('lsp.utils').on_attach
-local projects = require 'lsp.projects'
+local projects = require 'projects'
 
 local null_ls = require 'null-ls'
 local builtins = null_ls.builtins

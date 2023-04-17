@@ -4,6 +4,8 @@ return {
         event = 'BufReadPre',
         opts = {
             attach_to_untracked = false,
+            current_line_blame = false,
+            current_line_blame_formatter = '    <author>, <author_time:%d/%m/%Y> - <summary>',
             on_attach = function()
                 vim.o.signcolumn = 'yes'
 
@@ -15,6 +17,7 @@ return {
                 bmap { 'n', '<leader>gp', gitsigns.preview_hunk }
                 bmap { 'n', '<leader>gs', gitsigns.stage_hunk }
                 bmap { 'n', '<leader>gu', gitsigns.undo_stage_hunk }
+                bmap { 'n', '<leader>gB', gitsigns.toggle_current_line_blame }
 
                 bmap {
                     'n',
@@ -36,6 +39,8 @@ return {
                 bmap { 'n', '<leader>gb', fzf.git_branches }
                 bmap { 'n', '<leader>gc', fzf.git_commits }
                 bmap { 'n', '<leader>gh', fzf.git_bcommits }
+
+                require('projects').setup(true)
             end,
             signs = {
                 add = { text = '│' },
