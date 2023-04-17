@@ -1,12 +1,5 @@
 #!/usr/bin/env zsh
 
-# Make doas respect aliases
-mn() {
-    page="$(ls -la "$(which "$1")" 2>/dev/null)"
-    [[ -n "$page" ]] && page="${page##*/}" || page="$1"
-    man "$page"
-}
-
 # Color aliases
 alias ls='exa'
 alias l='ls --color=auto --group-directories-first'

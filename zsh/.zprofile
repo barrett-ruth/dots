@@ -70,6 +70,7 @@ fzf-config-widget() {
 zle -N fzf-config-widget
 
 bindkey -v
+bindkey -r '^R'
 bindkey '^E' fzf-config-widget
 bindkey '^F' fzf-file-widget
 bindkey '^G' fzf-cd-widget
