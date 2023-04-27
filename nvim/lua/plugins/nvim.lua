@@ -35,7 +35,9 @@ return {
     },
     {
         'laytan/cloak.nvim',
-        config = true,
+        opts = {
+            cloak_length = 10,
+        },
         keys = {
             { '<leader>c', '<cmd>CloakToggle<cr>' },
         },
@@ -87,8 +89,8 @@ return {
         },
     },
     {
-        'windwp/nvim-autopairs',
+        'phaazon/hop.nvim',
         config = true,
-        event = 'InsertEnter',
+        keys = { { '<leader>h', '<cmd>HopChar2<cr>' } },
     },
 }

@@ -146,6 +146,9 @@ hi('GitSignsChange', { fg = cs.blue })
 hi('GitSignsDelete', { fg = cs.red })
 hi('GitSignsCurrentLineBlame', { italic = true, fg = cs.grey })
 
+-- git
+hi('gitCommitSummary', { fg = cs.white })
+
 -- spelling
 hi('SpellBad', { underline = true, special = cs.red })
 hi('SpellRare', { underline = true, special = cs.purple })
@@ -207,6 +210,8 @@ link('@macro', '@function.macro')
 hi('PreProc', { fg = cs.purple })
 link('PreProc', '@preproc')
 
+hi('@attribute', { fg = cs.purple })
+
 -- keywords
 hi('Keyword', { fg = cs.red })
 link('Keyword', '@keyword')
@@ -249,3 +254,9 @@ hi('@enum', { fg = cs.purple })
 
 hi('@tag', { fg = cs.orange })
 hi('@tag.delimiter', { fg = cs.green })
+
+-- semantic tokens
+link('@variable', '@lsp.type.variable')
+link('@parameter', '@lsp.type.parameter')
+link('@field', '@lsp.type.property')
+hi('@lsp.type.comment', { none = true })

@@ -24,6 +24,16 @@ return {
             actions = {
                 files = {
                     ['default'] = actions.file_edit,
+                    ['ctrl-h'] = {
+                        function(_, args)
+                            if args.cmd:find '--hidden' then
+                                args.cmd = args.cmd:gsub('--hidden', '', 1)
+                            else
+                                args.cmd = args.cmd .. ' --hidden'
+                            end
+                            fzf.files(args)
+                        end,
+                    },
                     ['ctrl-l'] = send_to_ll,
                     ['ctrl-q'] = function(...)
                         actions.file_sel_to_qf(...)
@@ -49,16 +59,9 @@ return {
 
         map {
             'n',
-            '<leader>fa',
-            function()
-                fzf.files { fd_opts = ('--unrestricted %s'):format(fd_opts) }
-            end,
-        }
-        map {
-            'n',
             '<leader>fe',
             function()
-                fzf.files { fd_opts = ('--hidden %s'):format(fd_opts), cwd = vim.env.XDG_CONFIG_HOME }
+                fzf.files { cwd = vim.env.XDG_CONFIG_HOME }
             end,
         }
         map {

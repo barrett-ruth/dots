@@ -3,7 +3,7 @@
 case "$1" in
     -) cd - >/dev/null && return;;
     '') cd ~;;
-    certd) cd ~/Desktop/certd-backend;;
+    certd) cd ~/Desktop/certd;;
     cp) cd ~/Desktop/competitive-programming;;
     dl) cd ~/Downloads;;
     site) cd ~/Desktop/barrett-ruth.github.io;;

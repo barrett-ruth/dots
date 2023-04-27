@@ -7,7 +7,7 @@ theCourseForum2)
     # docker compose up --build
     cmd='docker compose up'
     ;;
-certd-backend)
+certd)
     cmd='python main.py'
     ;;
 *)

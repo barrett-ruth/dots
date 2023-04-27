@@ -3,10 +3,8 @@ return {
         -- Disable providers meant for pyright
         for _, provider in ipairs {
             'completion',
-            'definition',
             'documentSymbol',
             'rename',
-            'references',
             'typeDefinition',
             'workspaceSymbol',
         } do
