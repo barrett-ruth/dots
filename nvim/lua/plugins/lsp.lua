@@ -57,12 +57,6 @@ return {
         end,
         dependencies = {
             {
-                'smjonas/inc-rename.nvim',
-                opts = {
-                    hl_group = 'Visual',
-                },
-            },
-            {
                 'SmiteshP/nvim-navic',
                 config = function(_, opts)
                     require('nvim-navic').setup(opts)
