@@ -9,7 +9,6 @@ return {
         end,
         dependencies = {
             'nvim-treesitter/nvim-treesitter-textobjects',
-            'windwp/nvim-ts-autotag',
         },
         opts = {
             ensure_installed = {
@@ -48,21 +47,8 @@ return {
                 'vimdoc',
                 'yaml',
             },
-            autotag = {
-                enable = true,
-                filetypes = {
-                    'html',
-                    'htmldjango',
-                    'javascriptreact',
-                    'typescriptreaact',
-                },
-            },
             highlight = {
                 enable = true,
-            },
-            indent = {
-                enable = true,
-                disable = { 'python' },
             },
             context_commentstring = {
                 enable = true,

@@ -1,5 +1,5 @@
 local on_attach = require('lsp.utils').on_attach
-local projects = require 'projects'
+local projects = require('projects').projects
 
 local null_ls = require 'null-ls'
 local builtins = null_ls.builtins
@@ -13,7 +13,7 @@ local function project_contains_source(name, default)
         return vim.tbl_contains(projects[project].lsp_sources, name)
     end
 
-    return default
+    return default or false
 end
 
 null_ls.setup {
@@ -25,7 +25,6 @@ null_ls.setup {
         diagnostics.curlylint.with {
             extra_filetypes = { 'html' },
         },
-        diagnostics.djlint,
         diagnostics.eslint_d.with {
             condition = function(utils)
                 return utils.root_has_file {
@@ -40,6 +39,9 @@ null_ls.setup {
             end,
         },
         diagnostics.flake8.with {
+            condition = function(_)
+                return project_contains_source('flake8', true)
+            end,
             diagnostics_postprocess = function(diagnostic)
                 if diagnostic.severity == vim.diagnostic.severity.ERROR then
                     diagnostic.severity = vim.diagnostic.severity.WARN
@@ -94,8 +96,8 @@ null_ls.setup {
         formatting.clang_format.with {
             filetypes = { 'c', 'cpp' },
         },
-        formatting.djlint.with {
-            extra_args = { '--indent', '2' },
+        formatting.djhtml.with {
+            extra_args = { '--tabwidth', '2' }
         },
         formatting.prettierd.with {
             filetypes = {

@@ -4,7 +4,7 @@ return {
         config = function()
             require('mini.bracketed').setup {
                 comment = { suffix = '/' },
-                oldfile = { suffix = '' },
+                oldfile = { suffix = 'O' },
             }
         end,
     },

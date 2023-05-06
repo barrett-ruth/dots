@@ -11,6 +11,7 @@ return {
             delete_check_events = 'TextChanged,TextChangedI,InsertLeave',
             update_events = 'TextChanged,TextChangedI,InsertLeave',
             history = true,
+            enable_autosnippets = true,
             ext_opts = {
                 [types.choiceNode] = {
                     active = {

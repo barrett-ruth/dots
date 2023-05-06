@@ -57,6 +57,7 @@ return {
         map { 'n', '<c-f>', fzf.files }
         map { 'n', '<c-g>', fzf.live_grep_native }
 
+        map { 'n', '<leader>gb', fzf.git_branches }
         map {
             'n',
             '<leader>fe',

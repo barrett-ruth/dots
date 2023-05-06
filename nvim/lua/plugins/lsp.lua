@@ -1,10 +1,6 @@
 local prepare_lsp_settings = require('lsp.utils').prepare_lsp_settings
 
 return {
-    {
-        'b0o/SchemaStore.nvim',
-        ft = { 'json', 'jsonc' },
-    },
     { 'folke/neodev.nvim', ft = 'lua' },
     {
         'jose-elias-alvarez/null-ls.nvim',
@@ -38,7 +34,6 @@ return {
                 'cssmodules_ls',
                 'cssls',
                 'html',
-                'emmet_ls',
                 'jedi_language_server',
                 'jsonls',
                 'pyright',

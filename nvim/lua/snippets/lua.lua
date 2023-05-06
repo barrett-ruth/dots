@@ -38,8 +38,4 @@ return {
             i(1),
         })
     ),
-    s(
-        'M',
-        fmt('local {} = {{}}\n\n{}\n\nreturn {}', { i(1, 'M'), i(2), rep(1) })
-    ),
 }

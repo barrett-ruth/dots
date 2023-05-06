@@ -4,11 +4,14 @@ brotli
 c-ares
 ca-certificates
 cairo
+capstone
 cjson
 clang-format
 cmake
 dav1d
+djhtml
 docker
+docker-compose
 entr
 exa
 fd
@@ -53,15 +56,18 @@ libogg
 libpng
 librist
 libsamplerate
+libslirp
 libsndfile
 libsodium
 libsoxr
+libssh
 libssh2
 libtasn1
 libtermkey
 libtiff
 libunibreak
 libunistring
+libusb
 libuv
 libvidstab
 libvmaf
@@ -132,6 +138,7 @@ unbound
 unibilium
 utf8proc
 vapoursynth
+vde
 webp
 x264
 x265
@@ -153,4 +160,3 @@ kitty
 pgadmin4
 rectangle
 telegram
-zoom

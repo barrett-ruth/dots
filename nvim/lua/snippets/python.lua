@@ -24,12 +24,16 @@ return {
     s(
         'main',
         fmt(
-            "def main() -> None:\n\t{}\n\n\nif __name__ == '__main__':\n\tmain()",
+            [[
+                def main() -> None:
+                    {}
+
+                    if __name__ == '__main__':
+                        main()
+            ]],
             { i(1) }
         )
     ),
-    s('im', fmt([[from {} import {}]], { i(1), i(2) })),
-    s('def', fmt('def {}({}) -> {}:\n\t{}', { i(1), i(2), i(3), i(4) })),
     s('pr', fmt('print({})', { i(1) })),
     s(
         'class',

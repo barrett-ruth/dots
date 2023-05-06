@@ -6,19 +6,6 @@ return {
         ft = { 'javascript', 'javascripreact', 'typescript', 'typescriptreact' },
     },
     {
-        'iamcco/markdown-preview.nvim',
-        build = 'yarn --cwd app install',
-        config = function()
-            vim.g.mkdp_auto_close = 0
-            vim.g.mkdp_refresh_slow = 1
-            vim.g.mkdp_page_title = '${name}'
-        end,
-        ft = 'markdown',
-        keys = {
-            { '<leader>m', '<cmd>MarkdownPreviewToggle<cr>' },
-        },
-    },
-    {
         'elihunter173/dirbuf.nvim',
         opts = {
             sort_order = 'directories_first',
@@ -35,13 +22,11 @@ return {
     },
     {
         'laytan/cloak.nvim',
-        opts = {
-            cloak_length = 10,
-        },
+        config = true,
         keys = {
             { '<leader>c', '<cmd>CloakToggle<cr>' },
         },
-        lazy = false,
+        lazy = false
     },
     {
         'monaqa/dial.nvim',

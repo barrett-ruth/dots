@@ -20,7 +20,6 @@ return {
             typedef long long ll;
 
             #define all(x) (x).begin(), (x).end()
-            #define sz(x) (int)(x).size()
 
             #define eb emplace_back
             #define mp make_pair
@@ -48,6 +47,4 @@ return {
         )
     ),
     s('pr', fmt('std::cout << {}', { i(1) })),
-    s('s', fmt('std::{}', { i(1) })),
-    s('uns', t 'using namespace std;'),
 }

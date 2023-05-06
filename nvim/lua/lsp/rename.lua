@@ -11,7 +11,7 @@ return {
             relative = 'cursor',
             row = 1,
             col = 0,
-            width = math.max(15, math.floor(cword:len() * 1.5)),
+            width = math.max(15, math.floor(cword:len() * 1.75)),
             height = 1,
             style = 'minimal',
             border = 'single',
