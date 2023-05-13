@@ -1,16 +1,16 @@
 local g = vim.g
 
 if g.colors_name then
-    vim.cmd.hi 'clear'
+    vim.cmd.hi('clear')
 end
 
 g.colors_name = 'gruvbox'
 
-if vim.fn.exists 'syntax_on' then
-    vim.cmd.syntax 'reset'
+if vim.fn.exists('syntax_on') then
+    vim.cmd.syntax('reset')
 end
 
-local colors = require 'colors'
+local colors = require('colors')
 local hi, link, cs = colors.hi, colors.link, colors[g.colors_name]
 
 g.terminal_ansi_colors = {
@@ -123,7 +123,7 @@ hi('DiagnosticUnderlineWarn', { undercurl = true, special = cs.yellow })
 hi('DiagnosticUnderlineHint', { undercurl = true, special = cs.green })
 hi('DiagnosticUnderlineInfo', { undercurl = true, special = cs.blue })
 
-for _, v in ipairs { 'Error', 'Warn', 'Hint', 'Info' } do
+for _, v in ipairs({ 'Error', 'Warn', 'Hint', 'Info' }) do
     link('Diagnostic' .. v, 'DiagnosticFloating' .. v)
     link('Diagnostic' .. v, 'DiagnosticSign' .. v)
 end

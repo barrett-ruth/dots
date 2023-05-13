@@ -4,7 +4,7 @@ o.autowrite = true
 
 o.breakindent = true
 
-opt.diffopt:append 'linematch:60'
+opt.diffopt:append('linematch:60')
 
 o.expandtab = true
 
@@ -18,27 +18,27 @@ opt.fillchars = {
     diff = '╱',
 }
 
-opt.iskeyword:append '-'
+opt.iskeyword:append('-')
 
 o.laststatus = 3
 
 o.list = true
 o.listchars = 'trail:·,tab:··'
 
-opt.matchpairs:append '<:>'
+opt.matchpairs:append('<:>')
 
 o.modeline = false
 
 o.number = true
 o.relativenumber = true
 
-opt.path:append '**'
+opt.path:append('**')
 
 o.pumheight = 10
 
 o.shiftwidth = 4
 
-opt.shortmess:append 'acCIs'
+opt.shortmess:append('acCIs')
 
 o.showmode = false
 

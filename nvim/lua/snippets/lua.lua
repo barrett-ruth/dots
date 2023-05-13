@@ -7,7 +7,7 @@ local function extract_vars(args)
         if e:len() > 0 then
             local var = e
 
-            if var:match '%.' then
+            if var:match('%.') then
                 var = var:sub(rfind(var, '%.') + 1)
 
                 local idx = rfind(var, "'")
@@ -15,7 +15,7 @@ local function extract_vars(args)
                     var = var:sub(1, idx - 1)
                 end
             else
-                var = var:match "'([^)]+)'"
+                var = var:match("'([^)]+)'")
             end
 
             table.insert(vars, var)

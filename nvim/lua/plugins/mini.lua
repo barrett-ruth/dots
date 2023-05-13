@@ -2,30 +2,30 @@ return {
     {
         'echasnovski/mini.bracketed',
         config = function()
-            require('mini.bracketed').setup {
+            require('mini.bracketed').setup({
                 comment = { suffix = '/' },
-                oldfile = { suffix = 'O' },
-            }
+                oldfile = { suffix = ' ' },
+            })
         end,
     },
     {
         'echasnovski/mini.bufremove',
         config = function()
-            local bufremove = require 'mini.bufremove'
+            local bufremove = require('mini.bufremove')
 
-            bufremove.setup {}
+            bufremove.setup({})
 
-            map { 'n', '<leader>bd', bufremove.delete }
-            map { 'n', '<leader>bw', bufremove.wipeout }
+            map({ 'n', '<leader>bd', bufremove.delete })
+            map({ 'n', '<leader>bw', bufremove.wipeout })
         end,
     },
     {
         'echasnovski/mini.ai',
         config = function()
-            require('mini.ai').setup {
+            require('mini.ai').setup({
                 custom_textobjects = {
                     e = function(ai_type)
-                        local n_lines = vim.fn.line '$'
+                        local n_lines = vim.fn.line('$')
                         local start_line, end_line = 1, n_lines
 
                         if ai_type == 'i' then
@@ -47,7 +47,7 @@ return {
                         }
                     end,
                 },
-            }
+            })
         end,
     },
     {

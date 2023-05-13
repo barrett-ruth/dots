@@ -5,10 +5,11 @@ return {
         build = ':TSUpdateSync',
         config = function(_, opts)
             require('nvim-treesitter.configs').setup(opts)
-            map { 'n', '<leader>i', '<cmd>Inspect<cr>' }
+            map({ 'n', '<leader>i', '<cmd>Inspect<cr>' })
         end,
         dependencies = {
             'nvim-treesitter/nvim-treesitter-textobjects',
+            'windwp/nvim-ts-autotag'
         },
         opts = {
             ensure_installed = {
@@ -47,8 +48,15 @@ return {
                 'vimdoc',
                 'yaml',
             },
+            autotag = {
+                enable = true
+            },
             highlight = {
                 enable = true,
+            },
+            indent = {
+                enable = true,
+                disable = { 'python' },
             },
             context_commentstring = {
                 enable = true,

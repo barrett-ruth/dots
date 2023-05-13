@@ -3,10 +3,10 @@ local api = vim.api
 return {
     'L3MON4D3/LuaSnip',
     config = function()
-        local ls = require 'luasnip'
-        local types = require 'luasnip.util.types'
+        local ls = require('luasnip')
+        local types = require('luasnip.util.types')
 
-        ls.config.set_config {
+        ls.config.set_config({
             region_check_events = 'InsertEnter',
             delete_check_events = 'TextChanged,TextChangedI,InsertLeave',
             update_events = 'TextChanged,TextChangedI,InsertLeave',
@@ -21,7 +21,7 @@ return {
                     },
                 },
             },
-        }
+        })
 
         ls.filetype_extend('cpp', { 'c' })
         ls.filetype_extend('htmldjango', { 'html' })
@@ -30,11 +30,11 @@ return {
         ls.filetype_extend('typescriptreact', { 'javascriptreact' })
         ls.filetype_extend('zsh', { 'sh' })
 
-        require('luasnip.loaders.from_lua').lazy_load {
+        require('luasnip.loaders.from_lua').lazy_load({
             paths = '~/.config/nvim/lua/snippets',
-        }
+        })
 
-        map {
+        map({
             { 'i', 's' },
             '<c-h>',
             function()
@@ -45,8 +45,8 @@ return {
                     pcall(api.nvim_win_set_cursor, 0, { row, col - 1 })
                 end
             end,
-        }
-        map {
+        })
+        map({
             { 'i', 's' },
             '<c-l>',
             function()
@@ -57,17 +57,17 @@ return {
                     pcall(api.nvim_win_set_cursor, 0, { row, col + 1 })
                 end
             end,
-        }
-        map {
+        })
+        map({
             'i',
             '<c-s>',
             function()
                 if ls.expandable() then
-                    ls.expand {}
+                    ls.expand({})
                 end
             end,
-        }
-        map {
+        })
+        map({
             'i',
             '<c-j>',
             function()
@@ -78,8 +78,8 @@ return {
                     pcall(api.nvim_win_set_cursor, 0, { row + 1, col })
                 end
             end,
-        }
-        map {
+        })
+        map({
             'i',
             '<c-k>',
             function()
@@ -90,10 +90,10 @@ return {
                     pcall(api.nvim_win_set_cursor, 0, { row - 1, col })
                 end
             end,
-        }
+        })
 
         -- restore digraph mapping
-        map { 'i', '<c-d>', '<c-k>' }
+        map({ 'i', '<c-d>', '<c-k>' })
     end,
     event = 'InsertEnter',
 }

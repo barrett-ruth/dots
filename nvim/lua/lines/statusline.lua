@@ -1,12 +1,12 @@
-local utils = require 'utils'
+local utils = require('utils')
 
 local file = {
     value = function()
-        return vim.fn.expand '%:~:.'
+        return vim.fn.expand('%:~:.')
     end,
 }
 
-local nvim_navic = require 'nvim-navic'
+local nvim_navic = require('nvim-navic')
 
 local navic = {
     value = function()
@@ -32,11 +32,11 @@ local git = {
 
 local search = {
     value = function()
-        local count = vim.fn.searchcount { maxcount = 999 }
+        local count = vim.fn.searchcount({ maxcount = 999 })
 
         return string.format(
             '%s [%s/%d]',
-            vim.fn.getreg '/',
+            vim.fn.getreg('/'),
             count.current,
             count.total
         )

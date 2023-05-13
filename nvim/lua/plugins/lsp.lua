@@ -1,19 +1,28 @@
 local prepare_lsp_settings = require('lsp.utils').prepare_lsp_settings
 
 return {
+    {
+        'dmmulroy/tsc.nvim',
+        opts = {
+            auto_open_qflist = false,
+            enable_progress_notifications = false,
+        },
+    },
     { 'folke/neodev.nvim', ft = 'lua' },
     {
         'jose-elias-alvarez/null-ls.nvim',
         config = function()
-            require 'lsp.null-ls'
+            require('lsp.null-ls')
         end,
     },
     {
         'jose-elias-alvarez/typescript.nvim',
         config = function()
-            require('typescript').setup {
-                server = prepare_lsp_settings(require 'lsp.servers.typescript'),
-            }
+            require('typescript').setup({
+                server = prepare_lsp_settings(
+                    require('lsp.servers.typescript')
+                ),
+            })
         end,
         ft = {
             'javascript',
@@ -25,11 +34,11 @@ return {
     {
         'neovim/nvim-lspconfig',
         config = function()
-            require 'lsp.signs'
+            require('lsp.signs')
 
-            local lspconfig = require 'lspconfig'
+            local lspconfig = require('lspconfig')
 
-            for _, server in ipairs {
+            for _, server in ipairs({
                 'clangd',
                 'cssmodules_ls',
                 'cssls',
@@ -39,7 +48,7 @@ return {
                 'pyright',
                 'lua_ls',
                 'tailwindcss',
-            } do
+            }) do
                 local status, settings =
                     pcall(require, 'lsp.servers.' .. server)
 

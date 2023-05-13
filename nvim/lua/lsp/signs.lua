@@ -32,7 +32,7 @@ local sources = {
     ['Lua Syntax Check.'] = 'lua',
 }
 
-vim.diagnostic.config {
+vim.diagnostic.config({
     signs = false,
     severity_sort = true,
     update_in_insert = false,
@@ -47,4 +47,4 @@ vim.diagnostic.config {
         end,
         header = '',
     },
-}
+})

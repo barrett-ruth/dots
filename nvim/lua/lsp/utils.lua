@@ -1,7 +1,7 @@
 local M = {}
 
 local function format()
-    vim.lsp.buf.format {
+    vim.lsp.buf.format({
         filter = function(client)
             return not vim.tbl_contains({
                 'clangd', -- clang-format
@@ -14,7 +14,7 @@ local function format()
                 'tsserver', -- prettier
             }, client.name)
         end,
-    }
+    })
 end
 
 function M.on_attach(client, bufnr)
@@ -37,27 +37,27 @@ function M.on_attach(client, bufnr)
         }, { buffer = bufnr, silent = false })
     end
 
-    local fzf = require 'fzf-lua'
+    local fzf = require('fzf-lua')
 
-    bmap { 'n', '\\c', buf.code_action }
-    bmap { 'n', '\\d', fzf.lsp_workspace_diagnostics }
-    bmap { 'n', '\\f', diagnostic.open_float }
-    bmap { 'n', 'K', buf.hover }
-    bmap { 'n', 'gd', fzf.lsp_definitions }
-    bmap { 'n', 'gD', buf.declaration }
-    bmap { 'n', 'gI', fzf.lsp_implementations }
-    bmap { 'n', 'gr', require('lsp.rename').rename }
-    bmap { 'n', 'gR', fzf.lsp_references }
-    bmap { 'n', 'gt', fzf.lsp_typedefs }
+    bmap({ 'n', '\\c', buf.code_action })
+    bmap({ 'n', '\\d', fzf.lsp_workspace_diagnostics })
+    bmap({ 'n', '\\f', diagnostic.open_float })
+    bmap({ 'n', 'K', buf.hover })
+    bmap({ 'n', 'gd', fzf.lsp_definitions })
+    bmap({ 'n', 'gD', buf.declaration })
+    bmap({ 'n', 'gI', fzf.lsp_implementations })
+    bmap({ 'n', 'gr', require('lsp.rename').rename })
+    bmap({ 'n', 'gR', fzf.lsp_references })
+    bmap({ 'n', 'gt', fzf.lsp_typedefs })
 
-    bmap { 'n', ']\\', diagnostic.goto_next }
-    bmap { 'n', '[\\', diagnostic.goto_prev }
+    bmap({ 'n', ']\\', diagnostic.goto_next })
+    bmap({ 'n', '[\\', diagnostic.goto_prev })
 
-    bmap {
+    bmap({
         'n',
         '\\sa',
         function()
-            fzf.lsp_document_symbols {
+            fzf.lsp_document_symbols({
                 ignore_symbols = {
                     'array',
                     'constant',
@@ -66,31 +66,31 @@ function M.on_attach(client, bufnr)
                     'string',
                     'variable',
                 },
-            }
+            })
         end,
-    }
-    bmap {
+    })
+    bmap({
         'n',
         '\\sc',
         function()
-            fzf.lsp_document_symbols { symbols = { 'Class' } }
+            fzf.lsp_document_symbols({ symbols = { 'Class' } })
         end,
-    }
-    bmap {
+    })
+    bmap({
         'n',
         '\\sf',
         function()
-            fzf.lsp_document_symbols { symbols = { 'Function' } }
+            fzf.lsp_document_symbols({ symbols = { 'Function' } })
         end,
-    }
+    })
 
-    bmap { 'i', '<c-space>', buf.signature_help }
+    bmap({ 'i', '<c-space>', buf.signature_help })
 end
 
 function M.prepare_lsp_settings(user_settings)
     local settings = {}
 
-    settings.capabilities = vim.lsp.protocol.make_client_capabilities()
+    settings.capabilities = require('cmp_nvim_lsp').default_capabilities()
     settings.capabilities.offsetEncoding = { 'utf-16' }
     settings.capabilities.textDocument.completion.completionItem.snippetSupport =
         false

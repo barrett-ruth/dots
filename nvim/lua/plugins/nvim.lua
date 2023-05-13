@@ -12,12 +12,12 @@ return {
         },
         config = function(_, opts)
             require('dirbuf').setup(opts)
-            map { 'n', '-', '<cmd>e .<cr>' }
-            map {
+            map({ 'n', '-', '<cmd>e .<cr>' })
+            map({
                 'n',
                 '_',
                 '<cmd>e %:h<cr>',
-            }
+            })
         end,
     },
     {
@@ -26,30 +26,30 @@ return {
         keys = {
             { '<leader>c', '<cmd>CloakToggle<cr>' },
         },
-        lazy = false
+        lazy = false,
     },
     {
         'monaqa/dial.nvim',
         config = function()
-            local dial = require 'dial.map'
-            map { 'n', '<c-a>', dial.inc_normal() }
-            map { 'n', '<c-x>', dial.dec_normal() }
-            map { 'n', 'g<c-a>', dial.inc_gnormal() }
-            map { 'n', 'g<c-x>', dial.dec_gnormal() }
-            map { 'x', '<c-a>', dial.inc_visual() }
-            map { 'x', '<c-x>', dial.dec_visual() }
-            map { 'x', 'g<c-a>', dial.inc_gvisual() }
-            map { 'x', 'g<c-x>', dial.dec_gvisual() }
+            local dial = require('dial.map')
+            map({ 'n', '<c-a>', dial.inc_normal() })
+            map({ 'n', '<c-x>', dial.dec_normal() })
+            map({ 'n', 'g<c-a>', dial.inc_gnormal() })
+            map({ 'n', 'g<c-x>', dial.dec_gnormal() })
+            map({ 'x', '<c-a>', dial.inc_visual() })
+            map({ 'x', '<c-x>', dial.dec_visual() })
+            map({ 'x', 'g<c-a>', dial.inc_gvisual() })
+            map({ 'x', 'g<c-x>', dial.dec_gvisual() })
         end,
     },
     {
         'numToStr/Comment.nvim',
         config = function()
-            require('Comment').setup {
+            require('Comment').setup({
                 pre_hook = require(
                     'ts_context_commentstring.integrations.comment_nvim'
                 ).create_pre_hook(),
-            }
+            })
         end,
         dependencies = {
             'JoosepAlviste/nvim-ts-context-commentstring',
@@ -78,4 +78,5 @@ return {
         config = true,
         keys = { { '<leader>h', '<cmd>HopChar2<cr>' } },
     },
+    { 'windwp/nvim-autopairs', config = true },
 }

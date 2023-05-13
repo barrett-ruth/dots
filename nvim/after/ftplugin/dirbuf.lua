@@ -1,1 +1,1 @@
-bmap { 'n', 'q', require('mini.bufremove').delete }
+bmap({ 'n', 'q', require('mini.bufremove').delete })

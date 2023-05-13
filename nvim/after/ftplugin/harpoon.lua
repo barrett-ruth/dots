@@ -1,4 +1,4 @@
-bmap {
+bmap({
     'n',
     'v',
     function()
@@ -8,4 +8,4 @@ bmap {
 
         vim.cmd.vs(path)
     end,
-}
+})

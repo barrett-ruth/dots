@@ -2,17 +2,17 @@ local function assign_args(args)
     local arg = args[1][1]
 
     if #arg == 0 then
-        return sn(nil, { t { '', '\t\t' } })
+        return sn(nil, { t({ '', '\t\t' }) })
     end
 
     local assign_args = {}
 
-    for e in arg:gmatch ' ?([^,]*)' do
-        if e:len() > 0 and not e:match ']' then
+    for e in arg:gmatch(' ?([^,]*)') do
+        if e:len() > 0 and not e:match(']') then
             local var = e:gsub(':.*', '')
             table.insert(
                 assign_args,
-                t { '', ('\t\tself.%s = %s'):format(var, var) }
+                t({ '', ('\t\tself.%s = %s'):format(var, var) })
             )
         end
     end

@@ -1,10 +1,10 @@
-local fd_opts = vim.env.FZF_CTRL_T_COMMAND:match ' (.*)'
+local fd_opts = vim.env.FZF_CTRL_T_COMMAND:match(' (.*)')
 
 local send_to_ll = function(selected, opts)
     local ll = {}
     for i = 1, #selected do
         local file = require('fzf-lua.path').entry_to_file(selected[i], opts)
-        local text = selected[i]:match ':%d+:%d?%d?%d?%d?:?(.*)$'
+        local text = selected[i]:match(':%d+:%d?%d?%d?%d?:?(.*)$')
         table.insert(ll, {
             filename = file.path,
             lnum = file.line,
@@ -19,14 +19,14 @@ end
 return {
     'ibhagwan/fzf-lua',
     config = function(_, opts)
-        local actions, fzf = require 'fzf-lua.actions', require 'fzf-lua'
+        local actions, fzf = require('fzf-lua.actions'), require('fzf-lua')
         opts = vim.tbl_extend('keep', opts, {
             actions = {
                 files = {
                     ['default'] = actions.file_edit,
                     ['ctrl-h'] = {
                         function(_, args)
-                            if args.cmd:find '--hidden' then
+                            if args.cmd:find('--hidden') then
                                 args.cmd = args.cmd:gsub('--hidden', '', 1)
                             else
                                 args.cmd = args.cmd .. ' --hidden'
@@ -53,43 +53,43 @@ return {
 
         fzf.setup(opts)
 
-        map { 'n', '<c-b>', fzf.buffers }
-        map { 'n', '<c-f>', fzf.files }
-        map { 'n', '<c-g>', fzf.live_grep_native }
+        map({ 'n', '<c-b>', fzf.buffers })
+        map({ 'n', '<c-f>', fzf.files })
+        map({ 'n', '<c-g>', fzf.live_grep_native })
 
-        map { 'n', '<leader>gb', fzf.git_branches }
-        map {
+        map({ 'n', '<leader>gb', fzf.git_branches })
+        map({
             'n',
             '<leader>fe',
             function()
-                fzf.files { cwd = vim.env.XDG_CONFIG_HOME }
+                fzf.files({ cwd = vim.env.XDG_CONFIG_HOME })
             end,
-        }
-        map {
+        })
+        map({
             'n',
             '<leader>ff',
             function()
-                fzf.files { cwd = vim.fn.expand '%:h' }
+                fzf.files({ cwd = vim.fn.expand('%:h') })
             end,
-        }
-        map {
+        })
+        map({
             'n',
             '<leader>fg',
             function()
-                fzf.live_grep_native { cwd = vim.fn.expand '%:h' }
+                fzf.live_grep_native({ cwd = vim.fn.expand('%:h') })
             end,
-        }
-        map { 'n', '<leader>fh', fzf.help_tags }
-        map { 'n', '<leader>fH', fzf.highlights }
-        map { 'n', '<leader>fm', fzf.man_pages }
-        map { 'n', '<leader>fr', fzf.resume }
-        map {
+        })
+        map({ 'n', '<leader>fh', fzf.help_tags })
+        map({ 'n', '<leader>fH', fzf.highlights })
+        map({ 'n', '<leader>fm', fzf.man_pages })
+        map({ 'n', '<leader>fr', fzf.resume })
+        map({
             'n',
             '<leader>fs',
             function()
-                fzf.files { cwd = vim.env.SCRIPTS }
+                fzf.files({ cwd = vim.env.SCRIPTS })
             end,
-        }
+        })
     end,
     opts = {
         debug = true,
