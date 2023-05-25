@@ -1,42 +1,17 @@
 return {
     'ThePrimeagen/harpoon',
-    config = function()
-        local mark, ui = require('harpoon.mark'), require('harpoon.ui')
-
-        map({ 'n', '<leader>ha', mark.add_file })
-        map({ 'n', '<leader>hd', mark.rm_file })
-
-        map({ 'n', '<leader>hq', ui.toggle_quick_menu })
-        map({ 'n', '<leader>hn', ui.nav_next })
-        map({ 'n', '<leader>hp', ui.nav_prev })
-
-        map({
-            'n',
-            '<c-h>',
-            function()
-                ui.nav_file(1)
-            end,
-        })
-        map({
-            'n',
-            '<c-j>',
-            function()
-                ui.nav_file(2)
-            end,
-        })
-        map({
-            'n',
-            '<c-k>',
-            function()
-                ui.nav_file(3)
-            end,
-        })
-        map({
-            'n',
-            '<c-l>',
-            function()
-                ui.nav_file(4)
-            end,
-        })
-    end,
+    keys = {
+        { '<leader>ha', '<cmd>lua require("harpoon.mark").add_file()<cr>' },
+        { '<leader>hd', '<cmd>lua require("harpoon.mark").rm_file()<cr>' },
+        {
+            '<leader>hq',
+            '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>',
+        },
+        { '<leader>hn', '<cmd>lua require("harpoon.ui").nav_next()<cr>' },
+        { '<leader>hp', '<cmd>lua require("harpoon.ui").nav_prev()<cr>' },
+        { '<c-h>', '<cmd>lua require("harpoon.ui").nav_file(1)<cr>' },
+        { '<c-j>', '<cmd>lua require("harpoon.ui").nav_file(2)<cr>' },
+        { '<c-k>', '<cmd>lua require("harpoon.ui").nav_file(3)<cr>' },
+        { '<c-l>', '<cmd>lua require("harpoon.ui").nav_file(4)<cr>' },
+    },
 }

@@ -25,7 +25,7 @@ require('lazy').setup('plugins', {
     lockfile = vim.fn.stdpath('data') .. 'lazy-lock.json',
     performance = {
         rtp = {
-            disable_plugins = {
+            disabled_plugins = {
                 'getscriptPlugin',
                 'gzip',
                 'logiPat',

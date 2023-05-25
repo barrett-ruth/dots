@@ -1,36 +1,7 @@
-local g = vim.g
-
-if g.colors_name then
-    vim.cmd.hi('clear')
-end
-
-g.colors_name = 'gruvbox'
-
-if vim.fn.exists('syntax_on') then
-    vim.cmd.syntax('reset')
-end
-
 local colors = require('colors')
-local hi, link, cs = colors.hi, colors.link, colors[g.colors_name]
+colors.setup('gruvbox')
 
-g.terminal_ansi_colors = {
-    cs.black,
-    cs.red,
-    cs.green,
-    cs.yellow,
-    cs.blue,
-    cs.purple,
-    cs.cyan,
-    cs.white,
-    cs.black,
-    cs.red,
-    cs.green,
-    cs.yellow,
-    cs.blue,
-    cs.purple,
-    cs.cyan,
-    cs.white,
-}
+local hi, link, cs = colors.hi, colors.link, colors[vim.g.colors_name]
 
 -- basic colors
 hi('Red', { fg = cs.red })

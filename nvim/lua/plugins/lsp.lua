@@ -3,12 +3,18 @@ local prepare_lsp_settings = require('lsp.utils').prepare_lsp_settings
 return {
     {
         'dmmulroy/tsc.nvim',
+        ft = {
+            'javascript',
+            'javascriptreact',
+            'typescript',
+            'typescriptreact',
+        },
         opts = {
             auto_open_qflist = false,
             enable_progress_notifications = false,
         },
     },
-    { 'folke/neodev.nvim', ft = 'lua' },
+    'folke/neodev.nvim',
     {
         'jose-elias-alvarez/null-ls.nvim',
         config = function()

@@ -6,19 +6,18 @@ return {
         ft = { 'javascript', 'javascripreact', 'typescript', 'typescriptreact' },
     },
     {
-        'elihunter173/dirbuf.nvim',
-        opts = {
-            sort_order = 'directories_first',
+        'stevearc/oil.nvim',
+        keys = {
+            { '-', '<cmd>e .<cr>' },
+            { '_', '<cmd>Oil<cr>' },
         },
-        config = function(_, opts)
-            require('dirbuf').setup(opts)
-            map({ 'n', '-', '<cmd>e .<cr>' })
-            map({
-                'n',
-                '_',
-                '<cmd>e %:h<cr>',
-            })
-        end,
+        opts = {
+            skip_confirm_for_simple_edits = true,
+            prompt_save_on_select_new_entry = false,
+            float = {
+                border = 'single',
+            },
+        },
     },
     {
         'laytan/cloak.nvim',
@@ -26,21 +25,48 @@ return {
         keys = {
             { '<leader>c', '<cmd>CloakToggle<cr>' },
         },
-        lazy = false,
+        ft = { 'sh' },
     },
     {
         'monaqa/dial.nvim',
-        config = function()
-            local dial = require('dial.map')
-            map({ 'n', '<c-a>', dial.inc_normal() })
-            map({ 'n', '<c-x>', dial.dec_normal() })
-            map({ 'n', 'g<c-a>', dial.inc_gnormal() })
-            map({ 'n', 'g<c-x>', dial.dec_gnormal() })
-            map({ 'x', '<c-a>', dial.inc_visual() })
-            map({ 'x', '<c-x>', dial.dec_visual() })
-            map({ 'x', 'g<c-a>', dial.inc_gvisual() })
-            map({ 'x', 'g<c-x>', dial.dec_gvisual() })
-        end,
+        keys = {
+            {
+                '<c-a>',
+                '<cmd>lua require("dial.map").manipulate("increment", "normal")<cr>',
+            },
+            {
+                '<c-x>',
+                '<cmd>lua require("dial.map").manipulate("decrement", "normal")<cr>',
+            },
+            {
+                'g<c-a>',
+                '<cmd>lua require("dial.map").manipulate("increment", "gnormal")<cr>',
+            },
+            {
+                'g<c-x>',
+                '<cmd>lua require("dial.map").manipulate("decrement", "gnormal")<cr>',
+            },
+            {
+                '<c-a>',
+                '<cmd>lua require("dial.map").manipulate("increment", "visual")<cr>',
+                mode = 'x',
+            },
+            {
+                '<c-x>',
+                '<cmd>lua require("dial.map").manipulate("decrement", "visual")<cr>',
+                mode = 'x',
+            },
+            {
+                'g<c-a>',
+                '<cmd>lua require("dial.map").manipulate("increment", "gvisual")<cr>',
+                mode = 'x',
+            },
+            {
+                'g<c-x>',
+                '<cmd>lua require("dial.map").manipulate("decrement", "gvisual")<cr>',
+                mode = 'x',
+            },
+        },
     },
     {
         'numToStr/Comment.nvim',
@@ -58,7 +84,6 @@ return {
     },
     {
         'NvChad/nvim-colorizer.lua',
-        event = 'BufReadPre',
         ft = vim.g.markdown_fenced_languages,
         opts = {
             filetypes = vim.g.markdown_fenced_languages,
@@ -78,5 +103,5 @@ return {
         config = true,
         keys = { { '<leader>h', '<cmd>HopChar2<cr>' } },
     },
-    { 'windwp/nvim-autopairs', config = true },
+    { 'windwp/nvim-autopairs', config = true, event = 'InsertEnter' },
 }

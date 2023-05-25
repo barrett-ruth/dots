@@ -7,6 +7,9 @@ theCourseForum2)
     # docker compose up --build
     cmd='docker compose up'
     ;;
+gitmap)
+    cmd='python -m flask run --debug';
+    ;;
 certd)
     cmd='python main.py'
     ;;

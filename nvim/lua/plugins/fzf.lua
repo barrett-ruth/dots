@@ -52,45 +52,21 @@ return {
         })
 
         fzf.setup(opts)
-
-        map({ 'n', '<c-b>', fzf.buffers })
-        map({ 'n', '<c-f>', fzf.files })
-        map({ 'n', '<c-g>', fzf.live_grep_native })
-
-        map({ 'n', '<leader>gb', fzf.git_branches })
-        map({
-            'n',
-            '<leader>fe',
-            function()
-                fzf.files({ cwd = vim.env.XDG_CONFIG_HOME })
-            end,
-        })
-        map({
-            'n',
-            '<leader>ff',
-            function()
-                fzf.files({ cwd = vim.fn.expand('%:h') })
-            end,
-        })
-        map({
-            'n',
-            '<leader>fg',
-            function()
-                fzf.live_grep_native({ cwd = vim.fn.expand('%:h') })
-            end,
-        })
-        map({ 'n', '<leader>fh', fzf.help_tags })
-        map({ 'n', '<leader>fH', fzf.highlights })
-        map({ 'n', '<leader>fm', fzf.man_pages })
-        map({ 'n', '<leader>fr', fzf.resume })
-        map({
-            'n',
-            '<leader>fs',
-            function()
-                fzf.files({ cwd = vim.env.SCRIPTS })
-            end,
-        })
     end,
+    keys = {
+        { '<c-b>', '<cmd>FzfLua buffers<cr>' },
+        { '<c-f>', '<cmd>FzfLua files<cr>' },
+        { '<c-g>', '<cmd>FzfLua live_grep_native<cr>' },
+        { '<leader>gb', '<cmd>FzfLua git_branches<cr>' },
+        { '<leader>fh', '<cmd>FzfLua help_tags<cr>' },
+        { '<leader>fH', '<cmd>FzfLua highlights<cr>' },
+        { '<leader>fm', '<cmd>FzfLua man_pages<cr>' },
+        { '<leader>fr', '<cmd>FzfLua resume<cr>' },
+        { '<leader>fe', '<cmd>FzfLua files cwd=~/.config<cr>' },
+        { '<leader>ff', '<cmd>FzfLua files cwd=%:h<cr>' },
+        { '<leader>fg', '<cmd>FzfLua live_grep_native cwd=%:h<cr>' },
+        { '<leader>fs', '<cmd>FzfLua files cwd=~/.local/bin/scripts<cr>' },
+    },
     opts = {
         debug = true,
         global_resume = true,

@@ -68,7 +68,9 @@ return {
                     ['<c-b>'] = mapping.scroll_docs(-4),
                     ['<c-f>'] = mapping.scroll_docs(4),
                     ['<c-n>'] = function()
-                        cmp.complete()
+                        if not cmp.visible() then
+                            cmp.complete()
+                        end
                         cmp.select_next_item()
                     end,
                     ['<c-p>'] = mapping.select_prev_item(),

@@ -7,17 +7,20 @@ return {
                 oldfile = { suffix = ' ' },
             })
         end,
+        event = 'VeryLazy',
     },
     {
         'echasnovski/mini.bufremove',
         config = function()
-            local bufremove = require('mini.bufremove')
-
-            bufremove.setup({})
-
-            map({ 'n', '<leader>bd', bufremove.delete })
-            map({ 'n', '<leader>bw', bufremove.wipeout })
+            require('mini.bufremove').setup()
         end,
+        keys = {
+            { '<leader>bd', '<cmd>lua require("mini.bufremove").delete()<cr>' },
+            {
+                '<leader>bw',
+                '<cmd>lua require("mini.bufremove").wipeout()<cr>',
+            },
+        },
     },
     {
         'echasnovski/mini.ai',
@@ -49,11 +52,13 @@ return {
                 },
             })
         end,
+        event = 'InsertEnter',
     },
     {
         'echasnovski/mini.splitjoin',
         config = function()
             require('mini.splitjoin').setup()
         end,
+        event = 'VeryLazy'
     },
 }

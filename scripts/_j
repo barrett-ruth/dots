@@ -4,7 +4,7 @@ case "$1" in
     -) cd - >/dev/null && return;;
     '') cd ~;;
     certd) cd ~/Desktop/certd;;
-    cp) cd ~/Desktop/competitive-programming;;
+    ip) cd ~/Desktop/interview-prep;;
     dl) cd ~/Downloads;;
     site) cd ~/Desktop/barrett-ruth.github.io;;
     scr) cd "$SCRIPTS";;

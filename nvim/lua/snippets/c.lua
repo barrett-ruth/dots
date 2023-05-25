@@ -5,14 +5,14 @@ return {
         'main',
         fmt(
             [[
-        #include <stdio.h>
+                #include <stdio.h>
 
-        int main() {{
-            {}
+                int main() {{
+                    {}
 
-            return 0;
-        }}
-    ]],
+                    return 0;
+                }}
+            ]],
             { i(1) }
         )
     ),

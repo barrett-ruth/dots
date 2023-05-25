@@ -22,20 +22,41 @@ return {
         dark_grey = '#32302f',
         hi = '#a89984',
     },
+    setup = function(colors_name)
+        if vim.g.colors_name then
+            vim.cmd.hi('clear')
+        end
+
+        if vim.fn.exists('syntax_one') then
+            vim.cmd.syntax('reset')
+        end
+
+        vim.g.colors_name = colors_name
+
+        local cs = require('colors')[colors_name]
+
+        vim.g.terminal_ansi_colors = {
+            cs.black,
+            cs.red,
+            cs.green,
+            cs.yellow,
+            cs.blue,
+            cs.purple,
+            cs.cyan,
+            cs.white,
+            cs.black,
+            cs.red,
+            cs.green,
+            cs.yellow,
+            cs.blue,
+            cs.purple,
+            cs.cyan,
+            cs.white,
+        }
+    end,
     lite = {
         black = '#000000',
-        red = '#FF0000',
-        light_red = '#CF5B56',
-        green = '#067D17',
-        yellow = '#9E880D',
-        blue = '#0033B3',
-        light_blue = '#1750EB',
-        purple = '#871094',
-        light_purple = '#94558D',
-        cyan = '#00627A',
         white = '#FFFFFF',
-        grey = '#8C8C8C',
-        hi = '#F5F8FE',
     },
     hi = function(group, highlights)
         if highlights.none then

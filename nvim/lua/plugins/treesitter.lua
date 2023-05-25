@@ -1,15 +1,16 @@
 return {
-    'nvim-lua/plenary.nvim',
     {
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdateSync',
         config = function(_, opts)
             require('nvim-treesitter.configs').setup(opts)
-            map({ 'n', '<leader>i', '<cmd>Inspect<cr>' })
         end,
         dependencies = {
+            'nvim-lua/plenary.nvim',
             'nvim-treesitter/nvim-treesitter-textobjects',
-            'windwp/nvim-ts-autotag'
+        },
+        keys = {
+            { '<leader>i', '<cmd>Inspect<cr>' },
         },
         opts = {
             ensure_installed = {
@@ -47,9 +48,6 @@ return {
                 'vim',
                 'vimdoc',
                 'yaml',
-            },
-            autotag = {
-                enable = true
             },
             highlight = {
                 enable = true,
@@ -116,5 +114,18 @@ return {
     {
         'nvim-treesitter/playground',
         cmd = 'TSPlaygroundToggle',
+    },
+    {
+        'windwp/nvim-ts-autotag',
+        config = true,
+        ft = {
+            'html',
+            'htmldjango',
+            'javascript',
+            'javascriptreact',
+            'typescript',
+            'typescriptreact',
+            'xml',
+        },
     },
 }
