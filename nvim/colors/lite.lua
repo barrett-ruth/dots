@@ -66,15 +66,21 @@ hi('@lsp.type.macro', { fg = cs.purple })
 hi('@lsp.type.namespace', { fg = cs.purple })
 
 hi('LspSignatureActiveParameter', { underline = true })
-hi('DiagnosticError', { fg = cs.red, underline = true })
-hi('DiagnosticWarn', { fg = cs.yellow, underline = true })
-hi('DiagnosticHint', { fg = cs.green, underline = true })
-hi('DiagnosticInfo', { fg = cs.blue, underline = true })
+
+hi('DiagnosticError', { fg = cs.red })
+hi('DiagnosticWarn', { fg = cs.yellow })
+hi('DiagnosticHint', { fg = cs.green })
+hi('DiagnosticInfo', { fg = cs.blue })
+hi('DiagnosticUnderlineError', { undercurl = true, special = cs.red })
+hi('DiagnosticUnderlineWarn', { undercurl = true, special = cs.yellow })
+hi('DiagnosticUnderlineHint', { undercurl = true, special = cs.green })
+hi('DiagnosticUnderlineInfo', { undercurl = true, special = cs.blue })
 for _, v in ipairs({ 'Error', 'Warn', 'Hint', 'Info' }) do
     link('Diagnostic' .. v, 'DiagnosticFloating' .. v)
     link('Diagnostic' .. v, 'DiagnosticSign' .. v)
-    link('Diagnostic' .. v, 'DiagnosticUnderline' .. v)
 end
+
+hi('FzfLuaBorder', { fg = cs.light_grey, bg = cs.light_grey })
 
 hi('CmpItemAbbrMatch', { fg = cs.purple })
 hi('CmpItemAbbrMatchFuzzy', { fg = cs.purple })
