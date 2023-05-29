@@ -62,7 +62,15 @@ return {
         { '<leader>fH', '<cmd>FzfLua highlights<cr>' },
         { '<leader>fm', '<cmd>FzfLua man_pages<cr>' },
         { '<leader>fr', '<cmd>FzfLua resume<cr>' },
-        { '<leader>fe', '<cmd>FzfLua files cwd=~/.config<cr>' },
+        {
+            '<leader>fe',
+            function()
+                require('fzf-lua').files({
+                    cwd = '~/.config',
+                    fd_opts = fd_opts .. ' --hidden',
+                })
+            end,
+        },
         { '<leader>ff', '<cmd>FzfLua files cwd=%:h<cr>' },
         { '<leader>fg', '<cmd>FzfLua live_grep_native cwd=%:h<cr>' },
         { '<leader>fs', '<cmd>FzfLua files cwd=~/.local/bin/scripts<cr>' },
