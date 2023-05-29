@@ -56,11 +56,22 @@ export SCRIPTS="$HOME/.local/bin/scripts"
 [[ "$PATH" == *"$HOME/Library/Application Support/JetBrains/Toolbox/scripts"* ]] || export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
 [[ "$PATH" == *"/opt/homebrew/opt/postgresql@15/bin"* ]] || export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 
+export THEME=lite # gruvbox
+
 export FZF_COMPLETION_TRIGGER=\;
 export FZF_ALT_C_COMMAND='fd --type directory --strip-cwd-prefix'
 export FZF_CTRL_R_OPTS='--reverse'
 export FZF_CTRL_T_COMMAND='fd --type file --strip-cwd-prefix'
-export FZF_DEFAULT_OPTS='--bind=ctrl-a:select-all --bind=ctrl-f:half-page-down --bind=ctrl-b:half-page-up --no-scrollbar --no-info --no-bold --color=bg+:#32302f,bg:#292828,spinner:#89b482,hl:#7daea3 --color=fg:#bdae93,header:#7daea3,info:#d8a657,pointer:#89b482 --color=marker:#89b482,fg+:#ebdbb2,prompt:#d8a657,hl+:#7daea3'
+FZF_DEFAULT_OPTS='--bind=ctrl-a:select-all --bind=ctrl-f:half-page-down --bind=ctrl-b:half-page-up --no-scrollbar --no-info --no-bold'
+if [[ "$THEME" == 'lite' ]]; then
+    export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --color=bg+:#CEE1F8,bg:#FFFFFF,spinner:#8250DF,hl:#8250DF \
+--color=fg:#000000,header:#8250DF,info:#9A6700,pointer:#8250DF \
+--color=marker:#1A7F37,fg+:#000000,prompt:#9A6700,pointer:#1A7F37,hl+:#8250DF"
+elif [[ "$THEME" == 'gruvbox' ]]; then
+    export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --color=bg+:#32302f,bg:#282828,spinner:#d3869b,hl:#7daea3 \
+--color=fg:#bdae93,header:#7daea3,info:#d8a657,pointer:#d3869b \
+--color=marker:#d3869b,fg+:#ebdbb2,prompt:#d8a657,hl+:#7daea3"
+fi
 export FZF_TMUX=1
 
 . "$ZDOTDIR/.zaliases"

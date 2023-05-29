@@ -55,7 +55,7 @@ return {
     end,
     keys = {
         { '<c-b>', '<cmd>FzfLua buffers<cr>' },
-        { '<c-f>', '<cmd>FzfLua files<cr>' },
+        { '<c-f>', '<cmd>FzfLua files cwd_prompt=false<cr>' },
         { '<c-g>', '<cmd>FzfLua live_grep_native<cr>' },
         { '<leader>gb', '<cmd>FzfLua git_branches<cr>' },
         { '<leader>fh', '<cmd>FzfLua help_tags<cr>' },

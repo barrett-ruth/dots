@@ -6,7 +6,7 @@ return {
             require('nvim-treesitter.configs').setup(opts)
         end,
         dependencies = {
-            'nvim-lua/plenary.nvim',
+            { 'nvim-lua/plenary.nvim', event = 'VeryLazy' },
             'nvim-treesitter/nvim-treesitter-textobjects',
         },
         keys = {

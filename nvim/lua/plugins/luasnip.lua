@@ -30,11 +30,10 @@ return {
         require('luasnip.loaders.from_lua').lazy_load({
             paths = '~/.config/nvim/lua/snippets',
         })
-
-        -- restore digraph mapping
-        map({ 'i', '<c-d>', '<c-k>' })
     end,
     keys = {
+        -- restore digraph mapping
+        { '<c-d>', '<c-k>', mode = 'i' },
         {
             '<c-s>',
             '<cmd>lua require("luasnip").expand()<cr>',

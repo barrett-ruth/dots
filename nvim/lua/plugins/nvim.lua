@@ -98,6 +98,7 @@ return {
             },
         },
     },
+    'projekt0n/github-nvim-theme',
     {
         'phaazon/hop.nvim',
         config = true,

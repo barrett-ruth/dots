@@ -1,3 +1,17 @@
+local function hi(group, highlights)
+    if highlights.none then
+        highlights.none = nil
+        highlights.undercurl = false
+        highlights.italic = false
+        highlights.bold = false
+    end
+    vim.api.nvim_set_hl(0, group, highlights)
+end
+
+local function link(from, to)
+    vim.api.nvim_set_hl(0, to, { link = from })
+end
+
 return {
     gruvbox = {
         bg = '#282828',
@@ -22,6 +36,20 @@ return {
         dark_grey = '#32302f',
         hi = '#a89984',
     },
+    lite = {
+        white = '#FFFFFF',
+        red = '#CF222E',
+        orange = '#E16F24',
+        yellow = '#9A6700',
+        green = '#1A7F37',
+        cyan = '#CEE1F8',
+        blue = '#0550AE',
+        dark_blue = '#033D8B',
+        purple = '#8250DF',
+        light_grey = '#F6F8FA',
+        grey = '#6E7781',
+        black = '#1F2328',
+    },
     setup = function(colors_name)
         if vim.g.colors_name then
             vim.cmd.hi('clear')
@@ -32,42 +60,17 @@ return {
         end
 
         vim.g.colors_name = colors_name
-
-        local cs = require('colors')[colors_name]
-
-        vim.g.terminal_ansi_colors = {
-            cs.black,
-            cs.red,
-            cs.green,
-            cs.yellow,
-            cs.blue,
-            cs.purple,
-            cs.cyan,
-            cs.white,
-            cs.black,
-            cs.red,
-            cs.green,
-            cs.yellow,
-            cs.blue,
-            cs.purple,
-            cs.cyan,
-            cs.white,
-        }
     end,
-    lite = {
-        black = '#000000',
-        white = '#FFFFFF',
-    },
-    hi = function(group, highlights)
-        if highlights.none then
-            highlights.none = nil
-            highlights.undercurl = false
-            highlights.italic = false
-            highlights.bold = false
+    hi = hi,
+    tshi = function(group, highlights, links)
+        hi(group, highlights)
+
+        local tsgroup = '@' .. group:gsub('^%L', string.lower)
+        link(group, tsgroup)
+
+        for _, to in ipairs(links or {}) do
+            link(group, to)
         end
-        vim.api.nvim_set_hl(0, group, highlights)
     end,
-    link = function(from, to)
-        vim.api.nvim_set_hl(0, to, { link = from })
-    end,
+    link = link,
 }

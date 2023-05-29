@@ -53,34 +53,19 @@ function M.on_attach(client, bufnr)
     bmap({ 'n', ']\\', diagnostic.goto_next })
     bmap({ 'n', '[\\', diagnostic.goto_prev })
 
+    bmap({ 'n', '\\sa', fzf.lsp_document_symbols })
     bmap({
         'n',
-        '\\sa',
+        '\\sf',
         function()
-            fzf.lsp_document_symbols({
-                ignore_symbols = {
-                    'array',
-                    'constant',
-                    'enummember',
-                    'field',
-                    'string',
-                    'variable',
-                },
-            })
+            fzf.lsp_document_symbols({ regex_filter = 'Function.*' })
         end,
     })
     bmap({
         'n',
         '\\sc',
         function()
-            fzf.lsp_document_symbols({ symbols = { 'Class' } })
-        end,
-    })
-    bmap({
-        'n',
-        '\\sf',
-        function()
-            fzf.lsp_document_symbols({ symbols = { 'Function' } })
+            fzf.lsp_document_symbols({ regex_filter = 'Class.*' })
         end,
     })
 

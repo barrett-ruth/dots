@@ -90,10 +90,7 @@ return {
         dependencies = {
             'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-path',
-            {
-                'roobert/tailwindcss-colorizer-cmp.nvim',
-                config = true,
-            },
+            'roobert/tailwindcss-colorizer-cmp.nvim',
         },
         event = 'InsertEnter',
     },

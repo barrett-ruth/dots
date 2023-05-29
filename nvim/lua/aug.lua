@@ -8,16 +8,6 @@ au('BufEnter', {
     group = aug,
 })
 
-au({ 'WinEnter', 'BufWinEnter' }, {
-    command = 'se cursorline',
-    group = aug,
-})
-
-au('WinLeave', {
-    command = 'se nocursorline',
-    group = aug,
-})
-
 au('VimResized', {
     command = 'wincmd =',
     group = aug,

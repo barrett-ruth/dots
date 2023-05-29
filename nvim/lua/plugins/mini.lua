@@ -52,7 +52,7 @@ return {
                 },
             })
         end,
-        event = 'InsertEnter',
+        event = 'VeryLazy',
     },
     {
         'echasnovski/mini.splitjoin',
