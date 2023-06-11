@@ -37,21 +37,26 @@ return {
         hi = '#a89984',
     },
     lite = {
-        white = '#FFFFFF',
-        red = '#CF222E',
+        white = '#f7f7f7',
+        red = '#aa3731',
+        light_red = '#f05050',
         orange = '#E16F24',
-        yellow = '#9A6700',
-        green = '#1A7F37',
-        light_cyan = '#CEE1F8',
-        cyan = '#89D1EC',
-        blue = '#0550AE',
-        dark_blue = '#033D8B',
-        purple = '#8250DF',
-        light_grey = '#F6F8FA',
-        grey = '#6E7781',
-        black = '#1F2328',
+        yellow = '#cb9000',
+        light_yellow = '#ffbc5d',
+        green = '#448c27',
+        light_green = '#60cb00',
+        cyan = '#0083b2',
+        light_cyan = '#00aacb',
+        blue = '#325cc0',
+        light_blue = '#007acc',
+        purple = '#7a3e9d',
+        light_purple = '#e64ce6',
+        light_grey = '#c7c7c7',
+        med_grey = '#e7e7e7',
+        grey = '#777777',
+        black = '#000000',
     },
-    setup = function(colors_name)
+    setup = function(colors_name, background)
         if vim.g.colors_name then
             vim.cmd.hi('clear')
         end
@@ -61,6 +66,7 @@ return {
         end
 
         vim.g.colors_name = colors_name
+        vim.o.background = background
     end,
     hi = hi,
     tshi = function(group, highlights, links)

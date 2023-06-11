@@ -1,68 +1,78 @@
 local colors = require('colors')
-colors.setup('lite')
+colors.setup('lite', 'light')
 
 local hi, link, tshi, cs =
     colors.hi, colors.link, colors.tshi, colors[vim.g.colors_name]
 
-hi('CursorLineNr', { fg = cs.black })
+hi('CursorLineNr', { fg = cs.blue })
 hi('Error', { fg = cs.red })
 hi('Identifier', { fg = cs.black })
-hi('LineNr', { fg = cs.black })
-hi('MatchParen', { bg = cs.grey })
+hi('LineNr', { fg = '#7d7c7c' })
+hi('MatchParen', { reverse = true })
 hi('NonText', { fg = cs.black })
 hi('Normal', { fg = cs.black, bg = cs.white })
-hi('NormalFloat', { none = true })
-hi('Pmenu', { bg = cs.light_grey })
-hi('PmenuSel', { bg = cs.light_cyan })
-hi('PmenuSBar', { bg = cs.light_grey })
-hi('PmenuThumb', { bg = cs.light_cyan })
+
+hi('NormalFloat', { fg = cs.black, bg = cs.white })
+link('NormalFloat', 'LspInfoBorder')
+link('NormalFloat', 'NullLsInfoBorder')
+link('NormalFloat', 'FzfLuaBorder')
+link('NormalFloat', 'FloatBorder')
+
+hi('Pmenu', { fg = cs.black, bg = cs.med_grey })
+hi('PmenuSel', { bg = cs.light_grey })
+hi('PmenuSBar', { bg = cs.med_grey })
+hi('PmenuThumb', { bg = cs.light_grey })
 hi('Search', { fg = 'NONE', bg = 'NONE', reverse = true })
 link('Search', 'IncSearch')
-hi('Special', { fg = cs.blue })
-hi('SpecialKey', { fg = cs.black })
-hi('Statement', { fg = cs.red })
+hi('Special', { fg = cs.yellow })
+hi('SpecialKey', { fg = cs.cyan })
+hi('Visual', { bg = '#bfdbfe' })
 
-tshi('Boolean', { fg = cs.blue })
-tshi('Comment', { fg = cs.grey })
-tshi('Constant', { fg = cs.black })
-hi('@conditional.ternary', { fg = cs.black })
-hi('@constant.builtin', { fg = cs.blue })
-hi('@constructor', { fg = cs.blue })
-tshi('Define', { fg = cs.red })
-hi('@field', { fg = cs.black })
-tshi('Function', { fg = cs.purple })
-hi('@function.builtin', { fg = cs.blue })
-hi('@function.call', { fg = cs.blue })
-hi('@method.call', { fg = cs.blue })
-hi('@function.macro', { fg = cs.black })
-hi('@lsp.type.function', { none = true })
-hi('@lsp.type.method', { none = true })
-tshi('Include', { fg = cs.red })
-tshi('Number', { fg = cs.blue })
-tshi('Operator', { fg = cs.black }, { '@keyword.operator' })
-hi('@parameter', { fg = cs.black })
-tshi('PreProc', { fg = cs.red })
-hi('@property', { fg = cs.black })
-hi('@punctuation', { fg = cs.black })
-tshi('String', { fg = cs.dark_blue }, { '@string.escape' })
-tshi('Tag', { fg = cs.green })
+tshi('Boolean', { fg = cs.purple })
+
+tshi('Comment', { fg = cs.red })
+
+tshi('Conceal', { fg = cs.black })
+
+tshi('Constant', { fg = cs.purple }, { '@constant.builtin' })
+tshi('Conditional', { fg = cs.black }, { '@conditional.ternary' })
+
+tshi(
+    'Function',
+    { fg = cs.blue },
+    { '@function.builtin', '@function.call', '@method.call' }
+)
+
+tshi('Include', { fg = cs.black })
+
+tshi('Keyword', { fg = cs.black })
+
+tshi('Label', { fg = cs.green })
+
+tshi('Number', { fg = cs.purple })
+
+tshi('Operator', { fg = cs.grey })
+
+tshi('PreProc', { fg = cs.black })
+
+hi('@punctuation', { fg = cs.grey })
+
+tshi('String', { fg = cs.green }, { '@string.escape' })
+
+tshi('Structure', { fg = cs.blue })
+
+tshi('Repeat', { fg = cs.black })
+
+tshi('Tag', { fg = cs.black })
+hi('@tag.delimiter', { fg = cs.grey })
+
 hi('@text.emphasis', { italic = true })
 hi('@text.strong', { bold = true })
-hi('@text.danger', { fg = cs.white, bg = cs.red, italic = true })
-hi('Todo', { fg = cs.white, bg = cs.grey, italic = true })
-link('Todo', '@text.todo')
-hi('@text.note', { fg = cs.white, bg = cs.blue, italic = true })
-hi('@text.warning', { fg = cs.white, bg = cs.yellow, italic = true })
-hi('@text.uri', { fg = cs.blue, italic = true, underline = true })
-hi('@text.reference', { fg = cs.blue, underline = true })
-tshi('Title', { bold = true, fg = cs.dark_blue })
-tshi('Type', { fg = cs.red }, { '@type.builtin' })
-hi('@variable', { fg = cs.black })
+hi('@text.uri', { fg = cs.green, underline = true })
 
-hi('@lsp.type.class', { fg = cs.black })
-hi('@lsp.type.comment', { none = true })
-hi('@lsp.type.macro', { fg = cs.purple })
-hi('@lsp.type.namespace', { fg = cs.purple })
+tshi('Title', { fg = cs.purple })
+
+tshi('Type', { fg = cs.black }, { '@type.builtin' })
 
 hi('LspSignatureActiveParameter', { underline = true })
 
@@ -79,9 +89,5 @@ for _, v in ipairs({ 'Error', 'Warn', 'Hint', 'Info' }) do
     link('Diagnostic' .. v, 'DiagnosticSign' .. v)
 end
 
-hi('LspInfoBorder', { fg = cs.light_grey, bg = cs.light_grey })
-hi('NullLsInfoBorder', { fg = cs.light_grey, bg = cs.light_grey })
-hi('FzfLuaBorder', { fg = cs.light_grey, bg = cs.light_grey })
-
-hi('CmpItemAbbrMatch', { fg = cs.purple })
-hi('CmpItemAbbrMatchFuzzy', { fg = cs.purple })
+hi('CmpItemAbbrMatch', { fg = cs.green, bold = true })
+hi('CmpItemAbbrMatchFuzzy', { fg = cs.green, bold = true })

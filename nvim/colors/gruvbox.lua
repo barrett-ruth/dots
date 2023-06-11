@@ -1,5 +1,5 @@
 local colors = require('colors')
-colors.setup('gruvbox')
+colors.setup('gruvbox', 'dark')
 
 local hi, link, cs = colors.hi, colors.link, colors[vim.g.colors_name]
 

@@ -63,15 +63,28 @@ export FZF_ALT_C_COMMAND='fd --type directory --strip-cwd-prefix'
 export FZF_CTRL_R_OPTS='--reverse'
 export FZF_CTRL_T_COMMAND='fd --type file --strip-cwd-prefix'
 FZF_DEFAULT_OPTS='--bind=ctrl-a:select-all --bind=ctrl-f:half-page-down --bind=ctrl-b:half-page-up --no-scrollbar --no-info --no-bold'
+
+# local bg purple blue yellow
 if [[ "$THEME" == 'lite' ]]; then
-    export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --color=bg+:#CEE1F8,fg:#000000,spinner:#1A7F37,hl:#1A7F37:bold \
---color=header:#1A7F37,info:#9A6700,pointer:#8250DF \
---color=marker:#8250DF,fg+:#000000,bg:#F6F8FA,prompt:#9A6700,pointer:#8250DF,hl+:#1A7F37:bold"
+    green='#448c27'
+    fg='#000000'
+    purple='#7a3e9d'
+    blue='#325cc0'
+    bg='#f7f7f7'
+    hi='#e7e7e7'
+    yellow='#cb9000'
 elif [[ "$THEME" == 'gruvbox' ]]; then
-    export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --color=bg+:#32302f,bg:#282828,spinner:#d3869b,hl:#7daea3 \
---color=fg:#bdae93,header:#7daea3,info:#d8a657,pointer:#d3869b \
---color=marker:#d3869b,fg+:#ebdbb2,prompt:#d8a657,hl+:#7daea3"
+    green='#a9b665'
+    fg='#5a524c'
+    purple='#d3869b'
+    blue='#7daea3'
+    bg='#282828'
+    hi='#32302f'
+    yellow='#d8a657'
 fi
+export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --color=bg+:$hi,bg:$bg,fg:$fg,spinner:$purple,hl:$green:bold \
+--color=header:$green,header:$yellow,pointer:$purple \
+--color=marker:$purple,fg+:$fg,prompt:$yellow,hl+:$green:bold"
 export FZF_TMUX=1
 
 . "$ZDOTDIR/.zaliases"
