@@ -81,6 +81,7 @@ libxdmcp
 libxext
 libxrender
 little-cms2
+lpeg
 lua
 lua-language-server
 luajit
@@ -118,6 +119,7 @@ readline
 ripgrep
 rsync
 rubberband
+ruff
 rustup-init
 sdl2
 selene

@@ -1,0 +1,24 @@
+#!/bin/sh
+
+[ "$1" ] || exit
+
+filename="$1"
+extension="${filename##*.}"
+
+case "$extension" in
+cpp | cc)
+    cmd="clang++ $filename && ./a.out"
+
+    datafile="${filename%%.*}.txt"
+    [ -f "$datafile" ] && cmd="$cmd < $datafile"
+
+    eval "$cmd"
+    test -f a.out && rm a.out
+    ;;
+sh)
+    sh "$filename"
+    ;;
+py)
+    python3 "$filename"
+    ;;
+esac

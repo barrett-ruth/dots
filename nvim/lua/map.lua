@@ -35,6 +35,10 @@ map({ 'n', ';', ':' }, { silent = false })
 map({ 'x', ':', ';' }, { silent = false })
 map({ 'x', ';', ':' }, { silent = false })
 
+map({ 'i', '<c-a>', '<esc>' })
+
+map({ 'n', '<leader>r', '<cmd>vsplit|terminal run %<cr><c-w>h' })
+
 map({ 'n', 'J', 'mzJ`z' })
 
 map({
@@ -47,11 +51,6 @@ map({
 
 map({ 'n', '[o', '@="m`O\\eg``"<cr>' })
 map({ 'n', ']o', '@="m`o\\eg``"<cr>' })
-
-map({ 'n', ']z', 'zj' })
-map({ 'n', ']Z', ']z' })
-map({ 'n', '[z', 'zk[z' })
-map({ 'n', '[Z', '[z' })
 
 map({ 'x', 'p', '"_dp' })
 map({ 'x', 'P', '"_dP' })

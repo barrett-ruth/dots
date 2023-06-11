@@ -54,6 +54,7 @@ null_ls.setup({
             diagnostics_format = '#{m}',
         }),
         diagnostics.mypy,
+        diagnostics.ruff,
         diagnostics.selene,
         diagnostics.shellcheck.with({
             runtime_condition = function(_)

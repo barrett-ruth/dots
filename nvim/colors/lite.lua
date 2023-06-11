@@ -19,9 +19,8 @@ hi('PmenuThumb', { bg = cs.light_cyan })
 hi('Search', { fg = 'NONE', bg = 'NONE', reverse = true })
 link('Search', 'IncSearch')
 hi('Special', { fg = cs.blue })
+hi('SpecialKey', { fg = cs.black })
 hi('Statement', { fg = cs.red })
-
--- TODO: class highighting (other semantic token fields? - check w/ other langs)
 
 tshi('Boolean', { fg = cs.blue })
 tshi('Comment', { fg = cs.grey })
@@ -80,6 +79,8 @@ for _, v in ipairs({ 'Error', 'Warn', 'Hint', 'Info' }) do
     link('Diagnostic' .. v, 'DiagnosticSign' .. v)
 end
 
+hi('LspInfoBorder', { fg = cs.light_grey, bg = cs.light_grey })
+hi('NullLsInfoBorder', { fg = cs.light_grey, bg = cs.light_grey })
 hi('FzfLuaBorder', { fg = cs.light_grey, bg = cs.light_grey })
 
 hi('CmpItemAbbrMatch', { fg = cs.purple })
