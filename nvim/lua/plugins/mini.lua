@@ -1,28 +1,5 @@
 return {
     {
-        'echasnovski/mini.bracketed',
-        config = function()
-            require('mini.bracketed').setup({
-                comment = { suffix = '/' },
-                oldfile = { suffix = ' ' },
-            })
-        end,
-        event = 'VeryLazy',
-    },
-    {
-        'echasnovski/mini.bufremove',
-        config = function()
-            require('mini.bufremove').setup()
-        end,
-        keys = {
-            { '<leader>bd', '<cmd>lua require("mini.bufremove").delete()<cr>' },
-            {
-                '<leader>bw',
-                '<cmd>lua require("mini.bufremove").wipeout()<cr>',
-            },
-        },
-    },
-    {
         'echasnovski/mini.ai',
         config = function()
             require('mini.ai').setup({
@@ -55,10 +32,33 @@ return {
         event = 'VeryLazy',
     },
     {
+        'echasnovski/mini.bracketed',
+        config = function()
+            require('mini.bracketed').setup({
+                comment = { suffix = '/' },
+                oldfile = { suffix = ' ' },
+            })
+        end,
+        event = 'VeryLazy',
+    },
+    {
+        'echasnovski/mini.bufremove',
+        config = function()
+            require('mini.bufremove').setup()
+        end,
+        keys = {
+            { '<leader>bd', '<cmd>lua require("mini.bufremove").delete()<cr>' },
+            {
+                '<leader>bw',
+                '<cmd>lua require("mini.bufremove").wipeout()<cr>',
+            },
+        },
+    },
+    {
         'echasnovski/mini.splitjoin',
         config = function()
             require('mini.splitjoin').setup()
         end,
-        event = 'VeryLazy'
+        event = 'VeryLazy',
     },
 }
