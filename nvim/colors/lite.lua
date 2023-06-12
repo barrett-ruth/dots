@@ -26,6 +26,7 @@ hi('Search', { fg = 'NONE', bg = 'NONE', reverse = true })
 link('Search', 'IncSearch')
 hi('Special', { fg = cs.yellow })
 hi('SpecialKey', { fg = cs.cyan })
+hi('Statement', { fg = cs.black })
 hi('Visual', { bg = '#bfdbfe' })
 
 tshi('Boolean', { fg = cs.purple })

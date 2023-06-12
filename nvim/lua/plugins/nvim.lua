@@ -99,7 +99,6 @@ return {
         },
     },
     'p00f/alabaster.nvim',
-    'p00f/cphelper.nvim',
     {
         'phaazon/hop.nvim',
         config = true,
