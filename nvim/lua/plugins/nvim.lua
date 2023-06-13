@@ -84,7 +84,6 @@ return {
     },
     {
         'NvChad/nvim-colorizer.lua',
-        ft = vim.g.markdown_fenced_languages,
         opts = {
             filetypes = vim.g.markdown_fenced_languages,
             user_default_options = {
@@ -99,6 +98,7 @@ return {
         },
     },
     'p00f/alabaster.nvim',
+    'Mofiqul/vscode.nvim',
     {
         'phaazon/hop.nvim',
         config = true,

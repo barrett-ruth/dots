@@ -35,7 +35,7 @@ map({ 'n', ';', ':' }, { silent = false })
 map({ 'x', ':', ';' }, { silent = false })
 map({ 'x', ';', ':' }, { silent = false })
 
-map({ 'i', '<c-a>', '<esc>' })
+map({ { 'i', 'c' }, '<c-a>', '<esc>' })
 
 map({ 'n', '<leader>r', '<cmd>vsplit|terminal run %<cr><c-w>h' })
 

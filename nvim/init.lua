@@ -43,4 +43,4 @@ require('lazy').setup('plugins', {
 require('lines').setup()
 require('projects').setup()
 
-vim.cmd.colorscheme('lite')
+vim.cmd.colorscheme('light')
