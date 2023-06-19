@@ -3,6 +3,7 @@
 case "$1" in
     -) cd - >/dev/null && return;;
     '') cd ~;;
+    atlas) cd ~/Desktop/atlas;;
     certd) cd ~/Desktop/certd;;
     ip) cd ~/Desktop/interview-prep;;
     dl) cd ~/Downloads;;

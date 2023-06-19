@@ -116,6 +116,7 @@ postgresql@15
 python@3.11
 rav1e
 readline
+redis
 ripgrep
 rsync
 rubberband
@@ -156,6 +157,7 @@ zsh-syntax-highlighting
 zstd
 basictex
 discord
+google-cloud-sdk
 jetbrains-toolbox
 karabiner-elements
 kitty

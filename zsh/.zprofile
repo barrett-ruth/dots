@@ -56,36 +56,22 @@ export SCRIPTS="$HOME/.local/bin/scripts"
 [[ "$PATH" == *"$HOME/Library/Application Support/JetBrains/Toolbox/scripts"* ]] || export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
 [[ "$PATH" == *"/opt/homebrew/opt/postgresql@15/bin"* ]] || export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 
-export THEME=lite # gruvbox
-
 export FZF_COMPLETION_TRIGGER=\;
 export FZF_ALT_C_COMMAND='fd --type directory --strip-cwd-prefix'
 export FZF_CTRL_R_OPTS='--reverse'
 export FZF_CTRL_T_COMMAND='fd --type file --strip-cwd-prefix'
-FZF_DEFAULT_OPTS='--bind=ctrl-a:select-all --bind=ctrl-f:half-page-down --bind=ctrl-b:half-page-up --no-scrollbar --no-info --no-bold'
+export FZF_TMUX=1
 
-# local bg purple blue yellow
-if [[ "$THEME" == 'lite' ]]; then
-    green='#448c27'
-    fg='#000000'
-    purple='#7a3e9d'
-    blue='#325cc0'
-    bg='#f7f7f7'
-    hi='#e7e7e7'
-    yellow='#cb9000'
-elif [[ "$THEME" == 'gruvbox' ]]; then
-    green='#a9b665'
-    fg='#5a524c'
-    purple='#d3869b'
-    blue='#7daea3'
-    bg='#282828'
-    hi='#32302f'
-    yellow='#d8a657'
-fi
+export THEME=dark
+[[ "$THEME" == 'lite' ]] && green='#448c27' fg='#000000' purple='#7a3e9d' blue='#325cc0' bg='#f7f7f7' hi='#e7e7e7' yellow='#cb9000'
+[[ "$THEME" == 'gruvbox' ]] && green='#a9b665' fg='#d4be98' purple='#d3869b' blue='#7daea3' bg='#282828' hi='#32302f' yellow='#d8a657'
+[[ "$THEME" == 'dark' ]] && green='#C3E88D' fg='#EEFFFF' purple='#B480D6' blue='#6E98EB' bg='#212121' hi='#2D2D2D' yellow='#FFCB7C'
+
+FZF_DEFAULT_OPTS='--bind=ctrl-a:select-all --bind=ctrl-f:half-page-down --bind=ctrl-b:half-page-up --no-scrollbar --no-info --no-bold'
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --color=bg+:$hi,bg:$bg,fg:$fg,spinner:$purple,hl:$green:bold \
 --color=header:$green,header:$yellow,pointer:$purple \
 --color=marker:$purple,fg+:$fg,prompt:$yellow,hl+:$green:bold"
-export FZF_TMUX=1
+unset fg bg hi yellow green blue purple
 
 . "$ZDOTDIR/.zaliases"
 . "$XDG_CONFIG_HOME/fzf/fzf.zsh"

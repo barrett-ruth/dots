@@ -29,7 +29,7 @@ return {
                 completion = {
                     border = 'single',
                     scrollbar = false,
-                    winhighlight = 'CursorLine:PmenuSel',
+                    winhighlight = 'CursorLine:Visual',
                 },
                 documentation = {
                     border = 'single',

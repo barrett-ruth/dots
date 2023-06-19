@@ -85,7 +85,13 @@ return {
     {
         'NvChad/nvim-colorizer.lua',
         opts = {
-            filetypes = vim.g.markdown_fenced_languages,
+            filetypes = {
+                'conf',
+                'sh',
+                'tmux',
+                'zsh',
+                unpack(vim.g.markdown_fenced_languages),
+            },
             user_default_options = {
                 RRGGBBAA = true,
                 AARRGGBB = true,
@@ -97,8 +103,13 @@ return {
             },
         },
     },
-    'p00f/alabaster.nvim',
-    'Mofiqul/vscode.nvim',
+    -- {
+    --     'marko-cerovac/material.nvim',
+    --     config = function()
+    --         vim.g.material_style = 'darker'
+    --         vim.cmd.colorscheme('material')
+    --     end,
+    -- },
     {
         'phaazon/hop.nvim',
         config = true,

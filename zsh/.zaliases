@@ -21,6 +21,11 @@ wool() {
 }
 
 # Misc
+theme() {
+    [[ "$1" ]] || return
+    sed -i '' "s|THEME=.*|THEME=$1|" ~/.config/zsh/.zprofile
+    sed -i '' "s|themes/.*.conf|themes/$1.conf|" ~/.config/kitty/kitty.conf
+}
 mkcd() { mkdir -p "$@"; cd "$@"; }
 alias psa='ps aux'
 gcl() { . _gcl "$@"; }

@@ -43,24 +43,48 @@ return {
         blue = '#0000FF',
         light_green = '#098658',
         green = '#008000',
-        red = '#C72E0F',
+        red = '#A31515',
         dark_red = '#800000',
         light_grey = '#E7E7E7',
         grey = '#929292',
-        black = '#000000'
+        black = '#000000',
+    },
+    dark = {
+        light_red = '#F07178',
+        red = '#DC6068',
+
+        light_orange = '#F78C6C',
+        orange = '#E2795B',
+
+        light_yellow = '#FFCB6C',
+        yellow = '#E6B455',
+
+        light_green = '#C3E88D',
+        green = '#ABCF76',
+
+        light_blue = '#82AAFF',
+        blue = '#6E98EB',
+
+        light_cyan = '#89DDFF',
+        cyan = '#71C6E7',
+
+        light_purple = '#C792EA',
+        purple = '#B480D6',
+
+        grey = '#8C8B8B',
+        med_grey = '#515151',
+        dark_grey = '#404040',
+        light_black = '#2D2D2D',
+
+        white = '#EEFFFF',
+        dark_white = '#B0BEC5',
+
+        bg = '#212121',
     },
     lite = {
         white = '#f8f7f7',
-        -- red = '#FF0000',
-        -- orange = '#C72E0F',
-        -- yellow = '#795E26',
-        -- green = '#008000',
-        -- blue = '#0000FF',
-        -- purple = '#AF00DB',
-        -- grey = '#808080',
-        -- black = '#000000'
         red = '#aa3731',
-        light_red = '#f05050',
+        light_red = '#F05050',
         orange = '#E16F24',
         yellow = '#cb9000',
         light_yellow = '#ffbc5d',
@@ -72,8 +96,8 @@ return {
         light_blue = '#007acc',
         purple = '#7a3e9d',
         light_purple = '#e64ce6',
-        light_grey = '#c7c7c7',
-        med_grey = '#e7e7e7',
+        light_grey = '#e7e7e7',
+        med_grey = '#c7c7c7',
         grey = '#777777',
         black = '#000000',
     },

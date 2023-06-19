@@ -118,14 +118,16 @@ return {
     {
         'windwp/nvim-ts-autotag',
         config = true,
-        ft = {
-            'html',
-            'htmldjango',
-            'javascript',
-            'javascriptreact',
-            'typescript',
-            'typescriptreact',
-            'xml',
+        opts = {
+            filetypes = {
+                'html',
+                'htmldjango',
+                'javascript',
+                'javascriptreact',
+                'typescript',
+                'typescriptreact',
+                'xml',
+            },
         },
     },
 }
