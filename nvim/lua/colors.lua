@@ -74,7 +74,6 @@ return {
         grey = '#8C8B8B',
         med_grey = '#515151',
         dark_grey = '#404040',
-        light_black = '#2D2D2D',
 
         white = '#EEFFFF',
         dark_white = '#B0BEC5',

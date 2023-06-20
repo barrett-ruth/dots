@@ -28,6 +28,22 @@ return {
         ft = { 'sh' },
     },
     {
+        'lewis6991/gitsigns.nvim',
+        config = function(_, opts)
+            vim.o.signcolumn = 'yes'
+            require('gitsigns').setup(opts)
+            bmap({ 'n', '<leader>gb', '<cmd>Gitsigns blame_line<cr>' })
+            bmap({ 'n', '[g', '<cmd>lua require("gitsigns").prev_hunk { preview = true }<cr>' })
+            bmap({ 'n', ']g', '<cmd>lua require("gitsigns").next_hunk { preview = true }<cr>' })
+        end,
+        opts = {
+            attach_to_untracked = false,
+            signs = {
+                delete = { text = '＿' },
+            },
+        },
+    },
+    {
         'monaqa/dial.nvim',
         keys = {
             {
@@ -103,13 +119,6 @@ return {
             },
         },
     },
-    -- {
-    --     'marko-cerovac/material.nvim',
-    --     config = function()
-    --         vim.g.material_style = 'darker'
-    --         vim.cmd.colorscheme('material')
-    --     end,
-    -- },
     {
         'phaazon/hop.nvim',
         config = true,

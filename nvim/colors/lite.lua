@@ -82,6 +82,7 @@ tshi('Title', { fg = cs.purple })
 tshi('Type', { fg = cs.blue }, { '@type.builtin' })
 
 hi('LspSignatureActiveParameter', { underline = true })
+
 hi('DiagnosticError', { fg = cs.red })
 hi('DiagnosticWarn', { fg = cs.yellow })
 hi('DiagnosticHint', { fg = cs.green })

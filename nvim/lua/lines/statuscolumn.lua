@@ -1,4 +1,5 @@
 return {
+    sign = function() end,
     num = function()
         if vim.v.virtnum < 0 then
             return ''

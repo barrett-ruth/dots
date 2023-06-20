@@ -16,7 +16,10 @@ hi('Search', { fg = 'NONE', bg = 'NONE', reverse = true })
 link('Search', 'IncSearch')
 hi('Special', { fg = cs.yellow })
 hi('SpecialKey', { fg = cs.cyan })
-hi('Visual', { bg = cs.light_black })
+hi('Statement', { fg = cs.purple })
+hi('Visual', { bg = cs.dark_grey })
+
+hi('SignColumn', { bg = cs.bg })
 
 hi('Pmenu', { bg = '#343434' })
 hi('PmenuSbar', { bg = '#343434' })
@@ -88,3 +91,16 @@ hi('CmpItemAbbrMatch', { fg = cs.green })
 hi('CmpItemAbbrMatchFuzzy', { fg = cs.green })
 
 hi('OilDir', { fg = cs.light_orange })
+
+-- gitsigns
+hi('GitSignsAdd', { fg = cs.light_green })
+hi('GitSignsChange', { fg = cs.light_blue })
+hi('GitSignsDelete', { fg = cs.light_red })
+hi('GitSignsCurrentLineBlame', { italic = true, fg = cs.grey })
+
+-- git
+hi('gitCommitSummary', { fg = cs.white })
+
+hi('DiffAdd', { fg = cs.bg, bg = cs.light_green })
+hi('DiffDelete', { fg = cs.bg, bg = cs.light_red })
+hi('DiffChange', { fg = cs.bg, bg = cs.light_blue })
