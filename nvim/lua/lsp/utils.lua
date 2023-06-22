@@ -24,7 +24,9 @@ function M.on_attach(client, bufnr)
         require('nvim-navic').attach(client, bufnr)
     end
 
-    local diagnostic, buf = vim.diagnostic, vim.lsp.buf
+    if server_capabilities.inlayHintProvider then
+        vim.lsp.buf.inlay_hint(bufnr, true)
+    end
 
     if server_capabilities.documentFormattingProvider then
         bmap({
@@ -37,6 +39,7 @@ function M.on_attach(client, bufnr)
         }, { buffer = bufnr, silent = false })
     end
 
+    local diagnostic, buf = vim.diagnostic, vim.lsp.buf
     local fzf = require('fzf-lua')
 
     bmap({ 'n', '\\c', buf.code_action })

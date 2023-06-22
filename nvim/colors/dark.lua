@@ -5,11 +5,12 @@ local hi, link, tshi, cs =
     colors.hi, colors.link, colors.tshi, colors[vim.g.colors_name]
 
 hi('CursorLineNr', { fg = cs.grey })
-hi('Error', { fg = cs.red })
+hi('Error', { fg = cs.red }, { 'ErrorMsg' })
 hi('Identifier', { fg = cs.black })
 hi('Keyword', { fg = cs.white })
 hi('LineNr', { fg = cs.med_grey })
-hi('MatchParen', { reverse = true })
+hi('MatchParen', { fg = cs.white, bg = cs.med_grey })
+hi('MoreMsg', { fg = cs.yellow })
 hi('Normal', { fg = cs.white, bg = cs.bg })
 hi('NonText', { fg = cs.black })
 hi('Search', { fg = 'NONE', bg = 'NONE', reverse = true })
@@ -23,15 +24,16 @@ hi('SignColumn', { bg = cs.bg })
 
 hi('Pmenu', { bg = '#343434' })
 hi('PmenuSbar', { bg = '#343434' })
-hi('PmenuSel', { bg = cs.med_grey })
-hi('PmenuThumb', { bg = cs.med_grey })
+hi('PmenuSel', { bg = cs.med_grey }, { 'PmenuThumb' })
 
-hi('NormalFloat', { fg = cs.white, bg = cs.black })
-link('NormalFloat', 'LspInfoBorder')
-link('NormalFloat', 'NullLsInfoBorder')
-link('NormalFloat', 'FzfLuaBorder')
-link('NormalFloat', 'FloatBorder')
+hi('NormalFloat', { fg = cs.white, bg = cs.black }, {
+    'LspInfoBorder',
+    'NullLsInfoBorder',
+    'FzfLuaBorder',
+    'FloatBorder',
+})
 
+hi('@attribute', { fg = cs.light_blue })
 tshi('Boolean', { fg = cs.light_orange })
 tshi('Comment', { fg = cs.grey })
 tshi('Conditional', { fg = cs.white }, { '@conditional.ternary' })
@@ -52,19 +54,26 @@ tshi('PreProc', { fg = cs.white })
 tshi('Repeat', { fg = cs.white })
 tshi('String', { fg = cs.green }, { '@string.escape' })
 tshi('Tag', { fg = cs.blue })
-hi('@tag.delimiter', { fg = cs.black })
-hi('@tag.attribute', { fg = cs.black })
-hi('@text.emphasis', { italic = true })
-hi('@text.strong', { bold = true })
-hi('@text.uri', { fg = cs.cyan, underline = true })
+hi('@tag.delimiter', { fg = cs.black }, { '@tag.attribute' })
 tshi('Title', { fg = cs.light_blue })
 tshi('Type', { fg = cs.purple }, { '@type.builtin' })
+
+hi('@text.emphasis', { italic = true })
+hi('@text.strong', { bold = true })
+hi('@text.underline', { underline = true })
+hi('@text.uri', { fg = cs.cyan, underline = true })
+
+hi('@text.danger', { fg = cs.light_red, bold = true })
+hi('@text.todo', { fg = cs.light_yellow, bold = true })
+hi('@text.warning', { fg = cs.light_purple, bold = true })
 
 hi('@lsp.type.comment', { none = true })
 hi('@lsp.type.class', { none = true })
 hi('@lsp.type.macro', { none = true })
 
+hi('LspInlayHint', { fg = cs.med_grey })
 hi('LspSignatureActiveParameter', { underline = true })
+
 hi('DiagnosticError', { fg = cs.red })
 hi('DiagnosticWarn', { fg = cs.yellow })
 hi('DiagnosticHint', { fg = cs.green })
@@ -78,19 +87,15 @@ for _, v in ipairs({ 'Error', 'Warn', 'Hint', 'Info' }) do
     link('Diagnostic' .. v, 'DiagnosticSign' .. v)
 end
 
-hi('SpellBad', { underline = true, special = cs.red })
-hi('SpellRare', { underline = true, special = cs.purple })
-hi('SpellCap', { underline = true, special = cs.blue })
-hi('SpellLocal', { underline = true, special = cs.cyan })
-link('SpellBad', '@spell.bad')
-link('SpellRare', '@spell.rare')
-link('SpellCap', '@spell.cap')
-link('SpellLocal', '@spell.local')
+hi('SpellBad', { underline = true, special = cs.red }, { '@spell.bad' })
+hi('SpellRare', { underline = true, special = cs.purple }, { '@spell.rare' })
+hi('SpellCap', { underline = true, special = cs.blue }, { '@spell.cap' })
+hi('SpellLocal', { underline = true, special = cs.cyan }, { '@spell.local' })
 
 hi('CmpItemAbbrMatch', { fg = cs.green })
 hi('CmpItemAbbrMatchFuzzy', { fg = cs.green })
 
-hi('OilDir', { fg = cs.light_orange })
+hi('Directory', { fg = cs.light_orange }, { 'OilDir' })
 
 -- gitsigns
 hi('GitSignsAdd', { fg = cs.light_green })
@@ -101,6 +106,6 @@ hi('GitSignsCurrentLineBlame', { italic = true, fg = cs.grey })
 -- git
 hi('gitCommitSummary', { fg = cs.white })
 
-hi('DiffAdd', { fg = cs.bg, bg = cs.light_green })
-hi('DiffDelete', { fg = cs.bg, bg = cs.light_red })
+hi('DiffAdd', { fg = cs.bg, bg = cs.light_green }, { '@text.diff.add' })
+hi('DiffDelete', { fg = cs.bg, bg = cs.light_red }, { '@text.diff.delete' })
 hi('DiffChange', { fg = cs.bg, bg = cs.light_blue })

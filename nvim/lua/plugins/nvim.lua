@@ -26,6 +26,7 @@ return {
             { '<leader>c', '<cmd>CloakToggle<cr>' },
         },
         ft = { 'sh' },
+        event = 'BufReadPost'
     },
     {
         'lewis6991/gitsigns.nvim',
@@ -33,8 +34,17 @@ return {
             vim.o.signcolumn = 'yes'
             require('gitsigns').setup(opts)
             bmap({ 'n', '<leader>gb', '<cmd>Gitsigns blame_line<cr>' })
-            bmap({ 'n', '[g', '<cmd>lua require("gitsigns").prev_hunk { preview = true }<cr>' })
-            bmap({ 'n', ']g', '<cmd>lua require("gitsigns").next_hunk { preview = true }<cr>' })
+            bmap({ 'n', '<leader>gp', '<cmd>Gitsigns preview_hunk<cr>' })
+            bmap({
+                'n',
+                '[g',
+                '<cmd>lua require("gitsigns").prev_hunk { preview = true }<cr>',
+            })
+            bmap({
+                'n',
+                ']g',
+                '<cmd>lua require("gitsigns").next_hunk { preview = true }<cr>',
+            })
         end,
         opts = {
             attach_to_untracked = false,

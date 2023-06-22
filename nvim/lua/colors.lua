@@ -1,4 +1,8 @@
-local function hi(group, highlights)
+local function link(from, to)
+    vim.api.nvim_set_hl(0, to, { link = from })
+end
+
+local function hi(group, highlights, links)
     if highlights.none then
         highlights.none = nil
         highlights.undercurl = false
@@ -6,10 +10,9 @@ local function hi(group, highlights)
         highlights.bold = false
     end
     vim.api.nvim_set_hl(0, group, highlights)
-end
-
-local function link(from, to)
-    vim.api.nvim_set_hl(0, to, { link = from })
+    for _, other in ipairs(links or {}) do
+        link(group, other)
+    end
 end
 
 return {
