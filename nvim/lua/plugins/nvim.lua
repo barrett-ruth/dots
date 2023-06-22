@@ -31,8 +31,8 @@ return {
     {
         'lewis6991/gitsigns.nvim',
         config = function(_, opts)
-            vim.o.signcolumn = 'yes'
             require('gitsigns').setup(opts)
+
             bmap({ 'n', '<leader>gb', '<cmd>Gitsigns blame_line<cr>' })
             bmap({ 'n', '<leader>gp', '<cmd>Gitsigns preview_hunk<cr>' })
             bmap({
@@ -47,6 +47,9 @@ return {
             })
         end,
         opts = {
+            on_attach = function()
+                vim.wo.signcolumn = 'yes'
+            end,
             attach_to_untracked = false,
             signs = {
                 delete = { text = '＿' },
@@ -128,11 +131,6 @@ return {
                 mode = 'foreground',
             },
         },
-    },
-    {
-        'phaazon/hop.nvim',
-        config = true,
-        keys = { { '<leader>h', '<cmd>HopChar2<cr>' } },
     },
     { 'windwp/nvim-autopairs', config = true, event = 'InsertEnter' },
 }
