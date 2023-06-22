@@ -44,3 +44,5 @@
     st = stash
     sw = switch
     wt = worktree
+[credential "https://source.developers.google.com"]
+    helper = gcloud.sh
