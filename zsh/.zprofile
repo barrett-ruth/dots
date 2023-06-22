@@ -20,7 +20,9 @@ setopt auto_cd incappendhistory extendedhistory histignorealldups
 eval "$(/opt/homebrew/bin/brew shellenv)"
 . /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-export BROWSER='/Applications/Google Chrome.app'
+local uname="$(uname -s)"
+[[ "$uname" == 'Darwin' ]] && BROWSER='/Applications/Google Chrome.app'
+[[ "$uname" == 'Linux' ]] && BROWSER='chromium'
 export EDITOR='nvim'
 export MANPAGER='nvim +Man!'
 
@@ -33,6 +35,7 @@ export HISTFILESIZE=2000
 export SAVEHIST=2000
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
 
+export BOTO_CONFIG="$XDG_CONFIG_HOME/boto"
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export GNUPGHOME="$XDG_CONFIG_HOME"/gnupg
@@ -65,7 +68,7 @@ export FZF_TMUX=1
 export THEME=dark
 [[ "$THEME" == 'lite' ]] && green='#448c27' fg='#000000' purple='#7a3e9d' blue='#325cc0' bg='#f7f7f7' hi='#e7e7e7' yellow='#cb9000'
 [[ "$THEME" == 'gruvbox' ]] && green='#a9b665' fg='#d4be98' purple='#d3869b' blue='#7daea3' bg='#282828' hi='#32302f' yellow='#d8a657'
-[[ "$THEME" == 'dark' ]] && green='#C3E88D' fg='#EEFFFF' purple='#B480D6' blue='#6E98EB' bg='#212121' hi='#2D2D2D' yellow='#FFCB7C'
+[[ "$THEME" == 'dark' ]] && green='#C3E88D' fg='#EEFFFF' purple='#B480D6' blue='#6E98EB' bg='#212121' hi='#2F2F2F' yellow='#FFCB7C'
 
 FZF_DEFAULT_OPTS='--bind=ctrl-a:select-all --bind=ctrl-f:half-page-down --bind=ctrl-b:half-page-up --no-scrollbar --no-info --no-bold'
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --color=bg+:$hi,bg:$bg,fg:$fg,spinner:$purple,hl:$green:bold \

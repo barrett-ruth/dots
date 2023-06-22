@@ -46,6 +46,7 @@ return {
                 '<cmd>lua require("gitsigns").next_hunk { preview = true }<cr>',
             })
         end,
+        event = 'VeryLazy',
         opts = {
             on_attach = function()
                 vim.wo.signcolumn = 'yes'

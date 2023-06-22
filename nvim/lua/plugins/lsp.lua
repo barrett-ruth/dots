@@ -22,6 +22,7 @@ return {
         end,
     },
     {
+        -- TODO: swap to pmizio/typescript-tools.nvim when mature
         'jose-elias-alvarez/typescript.nvim',
         config = function()
             require('typescript').setup({

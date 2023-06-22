@@ -81,6 +81,8 @@ return {
         white = '#EEFFFF',
         dark_white = '#B0BEC5',
 
+        light_black = '#1A1A1A',
+        med_black = '#2F2F2F',
         bg = '#212121',
     },
     lite = {

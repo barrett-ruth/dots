@@ -4,8 +4,10 @@ colors.setup('dark', 'dark')
 local hi, link, tshi, cs =
     colors.hi, colors.link, colors.tshi, colors[vim.g.colors_name]
 
+hi('Conceal', { fg = cs.med_grey, bg = cs.bg })
 hi('CursorLineNr', { fg = cs.grey })
 hi('Error', { fg = cs.red }, { 'ErrorMsg' })
+hi('Folded', { fg = cs.med_grey, bg = cs.light_black })
 hi('Identifier', { fg = cs.black })
 hi('Keyword', { fg = cs.white })
 hi('LineNr', { fg = cs.med_grey })
@@ -13,14 +15,14 @@ hi('MatchParen', { fg = cs.white, bg = cs.med_grey })
 hi('MoreMsg', { fg = cs.yellow })
 hi('Normal', { fg = cs.white, bg = cs.bg })
 hi('NonText', { fg = cs.black })
+hi('SignColumn', { bg = cs.bg })
 hi('Search', { fg = 'NONE', bg = 'NONE', reverse = true })
 link('Search', 'IncSearch')
 hi('Special', { fg = cs.yellow })
 hi('SpecialKey', { fg = cs.cyan })
 hi('Statement', { fg = cs.purple })
 hi('Visual', { bg = cs.dark_grey })
-
-hi('SignColumn', { bg = cs.bg })
+hi('WarningMsg', { fg = cs.yellow })
 
 hi('Pmenu', { bg = '#343434' })
 hi('PmenuSbar', { bg = '#343434' })
