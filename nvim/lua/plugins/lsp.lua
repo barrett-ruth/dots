@@ -11,6 +11,10 @@ return {
         },
         opts = {
             auto_open_qflist = false,
+            flags = {
+                build = true,
+                noEmit = true,
+            },
             enable_progress_notifications = false,
         },
     },
@@ -92,6 +96,10 @@ return {
                         Event = ' ',
                         Operator = ' ',
                         TypeParameter = ' ',
+                    },
+                    lsp = {
+                        auto_attach = true,
+                        preference = { 'pyright' },
                     },
                     separator = ' ->',
                 },

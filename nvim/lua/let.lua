@@ -19,11 +19,6 @@ g.markdown_fenced_languages = {
     'yaml',
 }
 
-g.ftplugin_sql_omni_key = '<c-z>'
-
-g.python3_host_prog = vim.env.XDG_CONFIG_HOME .. '/nvim/venv/bin/python'
-g.node_host_prog = vim.env.HOME .. '/.local/bin/neovim-node-host'
-
 g.wildignore = {
     'undo/',
     '__pycache__/',

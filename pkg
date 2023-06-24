@@ -125,6 +125,7 @@ ripgrep
 rsync
 rubberband
 ruff
+rustup-init
 sdl2
 selene
 shellcheck
