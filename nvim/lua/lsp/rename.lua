@@ -16,13 +16,15 @@ return {
             style = 'minimal',
             border = 'single',
         })
-        local fmt =
-            '<cmd>stopinsert<cr><cmd>lua require("lsp.rename")._rename(%d)<cr>'
+        local str = ('<cmd>stopinsert<cr><cmd>lua require("lsp.rename")._rename(%d)<cr>'):format(
+            winnr
+        )
 
         vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, { cword })
+
         bmap({ 'i', '<c-c>', vim.cmd.q })
         bmap({ 'n', 'q', vim.cmd.q })
-        bmap({ 'n', '<cr>', string.format(fmt, winnr) }, { buffer = bufnr })
-        bmap({ 'i', '<cr>', string.format(fmt, winnr) }, { buffer = bufnr })
+        bmap({ 'n', '<cr>', str }, { buffer = bufnr })
+        bmap({ 'i', '<cr>', str }, { buffer = bufnr })
     end,
 }

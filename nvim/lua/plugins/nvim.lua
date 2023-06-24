@@ -29,7 +29,7 @@ return {
             { '<leader>c', '<cmd>CloakToggle<cr>' },
         },
         ft = { 'sh' },
-        event = 'BufReadPost'
+        event = 'BufReadPost',
     },
     {
         'lewis6991/gitsigns.nvim',

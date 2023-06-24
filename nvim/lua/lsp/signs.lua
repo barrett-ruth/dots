@@ -9,24 +9,12 @@ handlers['textDocument/signatureHelp'] = vim.lsp.with(handlers.signature_help, {
     focusable = false,
 })
 
-local sources = {
-    Pyright = 'pyright',
-    ['Lua Diagnostics.'] = 'lua',
-    ['Lua Syntax Check.'] = 'lua',
-}
-
 vim.diagnostic.config({
-   signs = false,
-    severity_sort = true,
-    update_in_insert = false,
-    virtual_text = false,
+    signs = false,
     float = {
         border = 'single',
         format = function(diagnostic)
-            return ('%s (%s)'):format(
-                diagnostic.message,
-                sources[diagnostic.source] or diagnostic.source
-            )
+            return ('%s (%s)'):format(diagnostic.message, diagnostic.source)
         end,
         header = '',
     },
