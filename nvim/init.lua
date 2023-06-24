@@ -22,7 +22,7 @@ require('lazy').setup('plugins', {
     git = {
         url_format = 'git@github.com:%s.git',
     },
-    lockfile = vim.fn.stdpath('data') .. 'lazy-lock.json',
+    lockfile = vim.fn.stdpath('data') .. '/lazy-lock.json',
     performance = {
         rtp = {
             disabled_plugins = {

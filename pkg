@@ -79,6 +79,7 @@ libxcb
 libxdmcp
 libxext
 libxrender
+libyaml
 little-cms2
 lpeg
 lua
@@ -94,6 +95,7 @@ mpfr
 mpg123
 msgpack
 mujs
+mypy
 ncurses
 neovim
 nettle
@@ -112,7 +114,10 @@ pixman
 pkg-config
 popt
 postgresql@15
+pygments
+python-typing-extensions
 python@3.11
+pyyaml
 rav1e
 readline
 redis
@@ -120,13 +125,13 @@ ripgrep
 rsync
 rubberband
 ruff
-rustup-init
 sdl2
 selene
 shellcheck
 shfmt
 snappy
 speex
+sqlfluff
 sqlite
 srt
 stylua
@@ -148,6 +153,7 @@ xorgproto
 xvid
 xxhash
 xz
+yamllint
 yarn
 yt-dlp
 zeromq

@@ -1,0 +1,15 @@
+#!/bin/sh
+
+[ "$1" ] || exit 1
+
+last="$(eval "echo \$$(echo $#)")"
+
+[ -d "$last" ] && cd "$last" || exit 1
+
+args="$*"
+for e in .[!.]* *; do
+    case "$args" in
+    *"$e"*) continue ;;
+    esac
+    rm -rf "$e"
+done

@@ -22,21 +22,12 @@ return {
         end,
     },
     {
-        -- TODO: swap to pmizio/typescript-tools.nvim when mature
-        'jose-elias-alvarez/typescript.nvim',
+        'pmizio/typescript-tools.nvim',
         config = function()
-            require('typescript').setup({
-                server = prepare_lsp_settings(
-                    require('lsp.servers.typescript')
-                ),
-            })
+            require('typescript-tools').setup(
+                prepare_lsp_settings(require('lsp.servers.typescript'))
+            )
         end,
-        ft = {
-            'javascript',
-            'javascriptreact',
-            'typescript',
-            'typescriptreact',
-        },
     },
     {
         'neovim/nvim-lspconfig',

@@ -1,44 +1,6 @@
 local M = {}
 
-local function format()
-    vim.lsp.buf.format({
-        filter = function(client)
-            return not vim.tbl_contains({
-                'clangd', -- clang-format
-                'cssls', -- prettier
-                'html', -- prettier
-                'jedi_language_server', -- black/autopep8
-                'jsonls', -- prettier
-                'pyright', -- black/autopep8
-                'lua_ls', -- stylua
-                'tsserver', -- prettier
-            }, client.name)
-        end,
-    })
-end
-
-function M.on_attach(client, bufnr)
-    local server_capabilities = client.server_capabilities
-
-    if server_capabilities.documentSymbolProvider then
-        require('nvim-navic').attach(client, bufnr)
-    end
-
-    if server_capabilities.inlayHintProvider then
-        vim.lsp.buf.inlay_hint(bufnr, true)
-    end
-
-    if server_capabilities.documentFormattingProvider then
-        bmap({
-            'n',
-            '<leader>w',
-            function()
-                format()
-                vim.cmd.w()
-            end,
-        }, { buffer = bufnr, silent = false })
-    end
-
+function M.on_attach()
     local diagnostic, buf = vim.diagnostic, vim.lsp.buf
     local fzf = require('fzf-lua')
 
@@ -92,7 +54,7 @@ function M.prepare_lsp_settings(user_settings)
             user_settings.on_attach(...)
         end
 
-        M.on_attach(...)
+        M.on_attach()
     end
 
     return settings

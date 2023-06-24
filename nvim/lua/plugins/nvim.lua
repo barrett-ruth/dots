@@ -7,6 +7,9 @@ return {
     },
     {
         'stevearc/oil.nvim',
+        config = function(_, opts)
+            require('oil').setup(opts)
+        end,
         keys = {
             { '-', '<cmd>e .<cr>' },
             { '_', '<cmd>Oil<cr>' },
