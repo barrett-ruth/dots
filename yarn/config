@@ -1,2 +1,2 @@
-prefix /Users/barrett/.local/share/npm
-global-folder /Users/barrett/.local/share/npm/lib
+prefix /Users/barrett/.local
+global-folder /Users/barrett/.local/lib

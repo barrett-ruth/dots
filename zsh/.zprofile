@@ -33,7 +33,7 @@ export HISTFILESIZE=2000
 export SAVEHIST=2000
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
 
-export BOTO_CONFIG="$XDG_CONFIG_HOME/boto"
+export BOTO_CONFIG="$XDG_CONFIG_HOME"/boto/config
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export GNUPGHOME="$XDG_CONFIG_HOME"/gnupg
@@ -51,7 +51,6 @@ export SQLITE_HISTORY="$XDG_STATE_HOME"/sqlite_history
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 [[ "$PATH" == *"$HOME/.local/bin"* ]] || export PATH="$PATH:$HOME/.local/bin"
-[[ "$PATH" == *"$HOME/.local/share/npm/bin"* ]] || export PATH="$PATH:$HOME/.local/share/npm/bin"
 [[ "$PATH" == *"$SCRIPTS"* ]] || export PATH="$PATH:$SCRIPTS"
 [[ "$PATH" == *"$CARGO_HOME"/bin* ]] || export PATH="$PATH:$CARGO_HOME/bin"
 [[ "$PATH" == *"$HOME/Library/Application Support/JetBrains/Toolbox/scripts"* ]] || export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
@@ -64,8 +63,8 @@ export FZF_CTRL_T_COMMAND='fd --type file --strip-cwd-prefix'
 export FZF_TMUX=1
 
 export THEME=dark
-[[ "$THEME" == 'lite' ]] && green='#448c27' fg='#000000' purple='#7a3e9d' blue='#325cc0' bg='#f7f7f7' hi='#e7e7e7' yellow='#cb9000'
-[[ "$THEME" == 'gruvbox' ]] && green='#a9b665' fg='#d4be98' purple='#d3869b' blue='#7daea3' bg='#282828' hi='#32302f' yellow='#d8a657'
+[[ "$THEME" == 'lite' ]] && green='#448C27' fg='#000000' purple='#7A3E9D' blue='#325CC0' bg='#F7F7F7' hi='#E7E7E7' yellow='#CB9000'
+[[ "$THEME" == 'gruvbox' ]] && green='#A9B665' fg='#D4BE98' purple='#D3869B' blue='#7DAEA3' bg='#282828' hi='#32302F' yellow='#D8A657'
 [[ "$THEME" == 'dark' ]] && green='#C3E88D' fg='#EEFFFF' purple='#B480D6' blue='#6E98EB' bg='#212121' hi='#2F2F2F' yellow='#FFCB7C'
 
 FZF_DEFAULT_OPTS='--bind=ctrl-a:select-all --bind=ctrl-f:half-page-down --bind=ctrl-b:half-page-up --no-scrollbar --no-info --no-bold'

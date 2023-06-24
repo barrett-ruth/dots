@@ -21,34 +21,6 @@
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "p",
-                                    "modifiers": {
-                                        "mandatory": "right_option"
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "shell_command": "open -a pgAdmin\\ 4"
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "x",
-                                    "modifiers": {
-                                        "mandatory": "right_option"
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "shell_command": "open -a Microsoft\\ Excel"
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
                                     "key_code": "c",
                                     "modifiers": {
                                         "mandatory": "right_option"
@@ -57,20 +29,6 @@
                                 "to": [
                                     {
                                         "shell_command": "open -a Google\\ Chrome"
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "m",
-                                    "modifiers": {
-                                        "mandatory": "right_option"
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "shell_command": "open -a mail"
                                     }
                                 ],
                                 "type": "basic"
