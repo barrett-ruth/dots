@@ -16,8 +16,6 @@ linux() {
     done
     test -f "$XDG_DATA_HOME/nvim/lazy-lock.json" && cp "$XDG_DATA_HOME/nvim/lazy-lock.json" nvim
 
-    cp "$XDG_DATA_HOME/nvim/spell/spell.encoding.add" nvim
-
     rmb config yarn
     yarn global list 2>/dev/null | rg --no-config -o '".*"' | sed 's/"//g' >yarn/pkg
     rm -rf nvim/undo
@@ -38,7 +36,6 @@ mac() {
     test -f "$XDG_DATA_HOME/nvim/lazy-lock.json" && cp "$XDG_DATA_HOME/nvim/lazy-lock.json" nvim
 
     test -f nvim/todo.txt && rm nvim/todo.txt
-    cp "$XDG_DATA_HOME/nvim/spell/spell.encoding.add" nvim
 
     mkdir tmux
     cp "$XDG_CONFIG_HOME/tmux/tmux.conf" tmux
