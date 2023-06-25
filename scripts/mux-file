@@ -7,16 +7,17 @@ extension="${filename##*.}"
 
 case "$extension" in
 cpp | cc)
-    cmd="clang++ $filename && ./a.out"
-
-    datafile="${filename%%.*}.txt"
-    [ -f "$datafile" ] && cmd="$cmd < $datafile"
-
-    eval "$cmd"
+    clang++ "$filename" && ./a.out
     test -f a.out && rm a.out
     ;;
 sh)
     sh "$filename"
+    ;;
+ts)
+    ts-node "$filename"
+    ;;
+js)
+    node "$filename"
     ;;
 py)
     python3 "$filename"

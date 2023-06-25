@@ -37,7 +37,16 @@ map({ 'x', ';', ':' }, { silent = false })
 
 map({ { 'i', 'c' }, '<c-a>', '<esc>' })
 
-map({ 'n', '<leader>r', '<cmd>vsplit|terminal run %<cr><c-w>h' })
+map({
+    'n',
+    '<leader>r',
+    function()
+        vim.cmd([[
+            sil ![ "$(tmux lsw -F '\#W' | rg 'file')" ] && tmux send 'C-c'\; killw -t file
+            sil !tmux neww -c '\#{pane_current_path}' -n file 'nvim -c "terminal mux-file %"'
+        ]])
+    end,
+})
 
 map({ 'n', 'J', 'mzJ`z' })
 

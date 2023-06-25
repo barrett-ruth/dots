@@ -17,6 +17,7 @@ return {
             },
             enable_progress_notifications = false,
         },
+        keys = { { '<leader>t', '<cmd>TSC<cr>' } },
     },
     'folke/neodev.nvim',
     {

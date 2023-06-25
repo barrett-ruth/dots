@@ -80,14 +80,14 @@ hi('DiagnosticError', { fg = cs.red })
 hi('DiagnosticWarn', { fg = cs.yellow })
 hi('DiagnosticHint', { fg = cs.green })
 hi('DiagnosticInfo', { fg = cs.blue })
-hi('DiagnosticUnderlineError', { undercurl = true, special = cs.red })
-hi('DiagnosticUnderlineWarn', { undercurl = true, special = cs.yellow })
-hi('DiagnosticUnderlineHint', { undercurl = true, special = cs.green })
-hi('DiagnosticUnderlineInfo', { undercurl = true, special = cs.blue })
 for _, v in ipairs({ 'Error', 'Warn', 'Hint', 'Info' }) do
     link('Diagnostic' .. v, 'DiagnosticFloating' .. v)
     link('Diagnostic' .. v, 'DiagnosticSign' .. v)
 end
+hi('DiagnosticUnderlineError', { undercurl = true, special = cs.red })
+hi('DiagnosticUnderlineWarn', { undercurl = true, special = cs.yellow })
+hi('DiagnosticUnderlineHint', { undercurl = true, special = cs.green })
+hi('DiagnosticUnderlineInfo', { undercurl = true, special = cs.blue })
 
 hi('SpellBad', { underline = true, special = cs.red }, { '@spell.bad' })
 hi('SpellRare', { underline = true, special = cs.purple }, { '@spell.rare' })

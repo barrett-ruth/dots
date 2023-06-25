@@ -14,11 +14,11 @@ bar)
     echo "$bar"
     ;;
 git)
-    [ "$(tmux lsw -F '#W' | rg 'git')" ] && tmux killw -t 'git'
+    [ "$(tmux lsw -F '#W' | rg 'git')" ] && tmux send 'C-c'\; killw -t git
     tmux neww -c '#{pane_current_path}' -n git 'nvim -c "Git|only"'
     ;;
 run)
-    [ "$(tmux lsw -F '#W' | rg run)" ] && tmux killw -t run
+    [ "$(tmux lsw -F '#W' | rg run)" ] && tmux send 'C-c'\; killw -t run
 
     tmux neww -dc '#{pane_current_path}' -n run \; selectw -t run\; send 'C-l' 'mux-run' 'enter'
     ;;
