@@ -18,8 +18,13 @@ au('ModeChanged', {
     group = aug,
 })
 
+au('TermOpen', {
+    command = 'startinsert | setl nonumber norelativenumber statuscolumn=',
+    group = aug,
+})
+
 au('BufReadPost', {
-    command = 'sil! norm g`"',
+    command = 'sil! normal g`"',
     group = aug,
 })
 

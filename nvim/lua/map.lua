@@ -41,10 +41,7 @@ map({
     'n',
     '<leader>r',
     function()
-        vim.cmd([[
-            sil ![ "$(tmux lsw -F '\#W' | rg 'file')" ] && tmux send 'C-c'\; killw -t file
-            sil !tmux neww -c '\#{pane_current_path}' -n file 'nvim -c "terminal mux-file %"'
-        ]])
+        vim.cmd('sil !mux file %')
     end,
 })
 

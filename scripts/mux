@@ -13,6 +13,10 @@ bar)
     bar="$(tmux ls -F '#S' | nl -w1 -v0 -s ':' | paste -sd '-' - | sed "s/$2/$2*/;s/-/  /g")"
     echo "$bar"
     ;;
+file)
+    [ "$(tmux lsw -F '#W' | rg 'file')" ] && tmux send 'C-c'\; killw -t file
+    tmux neww -c '#{pane_current_path}' -n file "nvim -c 'terminal mux-file $2'"
+    ;;
 git)
     [ "$(tmux lsw -F '#W' | rg 'git')" ] && tmux send 'C-c'\; killw -t git
     tmux neww -c '#{pane_current_path}' -n git 'nvim -c "Git|only"'
