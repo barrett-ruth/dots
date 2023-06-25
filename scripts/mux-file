@@ -7,19 +7,21 @@ extension="${filename##*.}"
 
 case "$extension" in
 cpp | cc)
-    clang++ "$filename" && ./a.out
-    test -f a.out && rm a.out
+    cmd="clang++ $filename && ./a.out; test -f a.out && rm a.out"
     ;;
 sh)
-    sh "$filename"
+    cmd="sh $filename"
     ;;
 ts)
-    ts-node "$filename"
+    cmd="ts-node $filenamea"
     ;;
 js)
-    node "$filename"
+    cmd="node $filename"
     ;;
 py)
-    python3 "$filename"
+    cmd="python3 $filename"
     ;;
 esac
+
+echo " > $cmd" | sed "s|$HOME|~|g"
+eval "$cmd"
