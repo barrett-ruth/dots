@@ -1,7 +1,7 @@
 return {
-    'tommcdo/vim-exchange',
-    'tpope/vim-abolish',
-    'tpope/vim-fugitive',
-    'tpope/vim-repeat',
-    'tpope/vim-surround',
+    { 'tommcdo/vim-exchange', event = 'VeryLazy' },
+    { 'tpope/vim-abolish', event = 'VeryLazy' },
+    { 'tpope/vim-fugitive', event = 'VeryLazy' },
+    { 'tpope/vim-repeat', event = 'VeryLazy' },
+    { 'tpope/vim-surround', event = 'VeryLazy' },
 }

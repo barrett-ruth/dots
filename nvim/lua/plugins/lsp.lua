@@ -4,8 +4,6 @@ return {
     {
         'dmmulroy/tsc.nvim',
         ft = {
-            'javascript',
-            'javascriptreact',
             'typescript',
             'typescriptreact',
         },
@@ -19,7 +17,7 @@ return {
         },
         keys = { { '<leader>t', '<cmd>TSC<cr>' } },
     },
-    'folke/neodev.nvim',
+    { 'folke/neodev.nvim', ft = { 'lua' } },
     {
         'jose-elias-alvarez/null-ls.nvim',
         config = function()
@@ -33,6 +31,7 @@ return {
                 prepare_lsp_settings(require('lsp.servers.typescript'))
             )
         end,
+        ft = { 'typescript', 'typescriptreact' },
     },
     {
         'neovim/nvim-lspconfig',

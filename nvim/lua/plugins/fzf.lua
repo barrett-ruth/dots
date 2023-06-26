@@ -14,6 +14,7 @@ local send_to_ll = function(selected, opts)
     end
 
     vim.fn.setloclist(0, ll)
+    vim.cmd.lclose()
 end
 
 return {

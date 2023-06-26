@@ -68,10 +68,8 @@ local filetype = {
     end,
 }
 
-local fileinfo = {
-    value = function()
-        return ('%s[%s]'):format(vim.bo.fileencoding, vim.bo.fileformat)
-    end,
+local lineinfo = {
+    value = '%c:%l/%L',
 }
 
 local statusline = {
@@ -82,8 +80,8 @@ local statusline = {
     },
     right = {
         [1] = search,
-        [2] = filetype,
-        [3] = fileinfo,
+        [2] = lineinfo,
+        [3] = filetype,
     },
 }
 

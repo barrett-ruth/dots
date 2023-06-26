@@ -1,5 +1,19 @@
 return {
     {
+        'numToStr/Comment.nvim',
+        config = function()
+            require('Comment').setup({
+                pre_hook = require(
+                    'ts_context_commentstring.integrations.comment_nvim'
+                ).create_pre_hook(),
+            })
+        end,
+        dependencies = {
+            'JoosepAlviste/nvim-ts-context-commentstring',
+        },
+        event = 'VeryLazy',
+    },
+    {
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdateSync',
         config = function(_, opts)
@@ -112,12 +126,7 @@ return {
         },
     },
     {
-        'nvim-treesitter/playground',
-        cmd = 'TSPlaygroundToggle',
-    },
-    {
         'windwp/nvim-ts-autotag',
-        config = true,
         opts = {
             filetypes = {
                 'html',

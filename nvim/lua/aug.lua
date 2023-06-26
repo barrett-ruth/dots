@@ -60,7 +60,6 @@ au('LspAttach', {
                             }, c.name)
                         end,
                     })
-
                     vim.cmd.w()
                 end,
             }, { buffer = opts.buf, silent = false })

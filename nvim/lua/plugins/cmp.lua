@@ -96,11 +96,11 @@ return {
     },
     {
         'davidsierradz/cmp-conventionalcommits',
-        ft = 'gitcommit',
+        ft = { 'gitcommit' },
     },
     {
         'petertriho/cmp-git',
-        ft = 'gitcommit',
+        ft = { 'gitcommit' },
         opts = {
             github = {
                 issues = {

@@ -6,14 +6,21 @@ filename="$1"
 extension="${filename##*.}"
 
 case "$extension" in
+c)
+    cmd="clang $filename"
+    run='./a.out'
+    clean='test -f a.out && rm a.out'
+    ;;
 cpp | cc)
-    cmd="clang++ $filename && ./a.out; test -f a.out && rm a.out"
+    cmd="clang++ $filename"
+    run='./a.out'
+    clean='test -f a.out && rm a.out'
     ;;
 sh)
     cmd="sh $filename"
     ;;
 ts)
-    cmd="ts-node $filenamea"
+    cmd="ts-node $filename"
     ;;
 js)
     cmd="node $filename"
@@ -24,4 +31,7 @@ py)
 esac
 
 echo " > $cmd" | sed "s|$HOME|~|g"
+[ "$run" ] && cmd="$cmd && $run"
 eval "$cmd"
+
+[ "$clean" ] && eval "$clean"

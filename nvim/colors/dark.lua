@@ -65,9 +65,10 @@ hi('@text.strong', { bold = true })
 hi('@text.underline', { underline = true })
 hi('@text.uri', { fg = cs.cyan, underline = true })
 
-hi('@text.danger', { fg = cs.light_red, bold = true })
-hi('@text.todo', { fg = cs.light_yellow, bold = true })
-hi('@text.warning', { fg = cs.light_purple, bold = true })
+hi('@text.danger', { fg = cs.light_red, bold = true, italic = true })
+hi('@text.note', { fg = cs.light_green, bold = true, italic = true })
+hi('@text.todo', { fg = cs.light_yellow, bold = true, italic = true })
+hi('@text.warning', { fg = cs.light_purple, bold = true, italic = true })
 
 hi('@lsp.type.comment', { none = true })
 hi('@lsp.type.class', { none = true })

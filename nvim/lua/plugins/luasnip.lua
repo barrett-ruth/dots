@@ -25,7 +25,6 @@ return {
         ls.filetype_extend('javascriptreact', { 'javascript', 'html' })
         ls.filetype_extend('typescript', { 'javascript' })
         ls.filetype_extend('typescriptreact', { 'javascriptreact' })
-        ls.filetype_extend('zsh', { 'sh' })
 
         require('luasnip.loaders.from_lua').lazy_load({
             paths = '~/.config/nvim/lua/snippets',
