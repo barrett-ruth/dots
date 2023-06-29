@@ -28,11 +28,6 @@ au('BufReadPost', {
     group = aug,
 })
 
-au('TextYankPost', {
-    command = 'lua vim.highlight.on_yank { higroup = "RedrawDebugNormal", timeout = "300" }',
-    group = aug,
-})
-
 au('LspAttach', {
     callback = function(opts)
         local client = vim.lsp.get_client_by_id(opts.data.client_id)

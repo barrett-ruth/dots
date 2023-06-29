@@ -22,6 +22,27 @@ return {
         dependencies = {
             { 'nvim-lua/plenary.nvim', event = 'VeryLazy' },
             'nvim-treesitter/nvim-treesitter-textobjects',
+            {
+                'kevinhwang91/nvim-ufo',
+                init = function()
+                    vim.o.foldenable = true
+                    vim.o.foldlevel = 99
+                    vim.o.foldlevelstart = 99
+                    vim.o.foldminlines = 20
+                end,
+                dependencies = { 'kevinhwang91/promise-async' },
+                keys = {
+                    { 'zM', '<cmd>lua require("ufo").closeAllFolds()<cr>' },
+                    { 'zR', '<cmd>lua require("ufo").openAllFolds()<cr>' },
+                    { '[z', '<cmd>lua require("ufo").goPreviousClosedFold()<cr>' },
+                    { ']z', '<cmd>lua require("ufo").goNextClosedFold()<cr>' }
+                },
+                opts = {
+                    provider_selector = function()
+                        return { 'treesitter', 'indent' }
+                    end,
+                },
+            },
         },
         keys = {
             { '<leader>i', '<cmd>Inspect<cr>' },

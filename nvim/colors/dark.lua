@@ -7,6 +7,7 @@ local hi, link, tshi, cs =
 hi('Conceal', { fg = cs.med_grey, bg = cs.bg })
 hi('CursorLineNr', { fg = cs.grey })
 hi('Error', { fg = cs.red }, { 'ErrorMsg' })
+hi('FoldColumn', { fg = cs.grey, bg = cs.bg })
 hi('Folded', { fg = cs.med_grey, bg = cs.light_black })
 hi('Identifier', { fg = cs.black })
 hi('Keyword', { fg = cs.white })
@@ -112,3 +113,5 @@ hi('gitCommitSummary', { fg = cs.white })
 hi('DiffAdd', { fg = cs.bg, bg = cs.light_green }, { '@text.diff.add' })
 hi('DiffDelete', { fg = cs.bg, bg = cs.light_red }, { '@text.diff.delete' })
 hi('DiffChange', { fg = cs.bg, bg = cs.light_blue })
+
+hi('UfoFoldedEllipsis', { fg = cs.light_black })
