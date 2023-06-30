@@ -3,6 +3,9 @@ colors.setup('gruvbox', 'dark')
 
 local hi, link, cs = colors.hi, colors.link, colors[vim.g.colors_name]
 
+-- TODO: fix
+-- model after dark.lua, realism, and gruvbox-material
+
 -- basic ui
 hi('Normal', { fg = cs.white, bg = cs.bg })
 hi('NonText', { fg = cs.black })

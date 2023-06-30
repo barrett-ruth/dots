@@ -44,4 +44,4 @@ require('lines').setup()
 require('projects').setup()
 require('yank').setup()
 
-vim.cmd.colorscheme(vim.env.THEME)
+vim.cmd.colorscheme('gruvbox')

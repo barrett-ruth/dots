@@ -34,10 +34,14 @@ return {
                 keys = {
                     { 'zM', '<cmd>lua require("ufo").closeAllFolds()<cr>' },
                     { 'zR', '<cmd>lua require("ufo").openAllFolds()<cr>' },
-                    { '[z', '<cmd>lua require("ufo").goPreviousClosedFold()<cr>' },
-                    { ']z', '<cmd>lua require("ufo").goNextClosedFold()<cr>' }
+                    {
+                        '[z',
+                        '<cmd>lua require("ufo").goPreviousClosedFold()<cr>',
+                    },
+                    { ']z', '<cmd>lua require("ufo").goNextClosedFold()<cr>' },
                 },
                 opts = {
+                    open_fold_hl_timeout = 0,
                     provider_selector = function()
                         return { 'treesitter', 'indent' }
                     end,

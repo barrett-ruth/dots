@@ -19,6 +19,9 @@ setopt auto_cd incappendhistory extendedhistory histignorealldups
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 . /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[[ "$PATH" == *'/opt/homebrew/opt/llvm/bin'* ]] || export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+export LDFLAGS='-L/opt/homebrew/opt/llvm/lib'
+export CPPFLAGS='-I/opt/homebrew/opt/llvm/include'
 
 export BROWSER='/Applications/Google Chrome.app'
 export EDITOR='nvim'
@@ -55,20 +58,14 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 [[ "$PATH" == *"$CARGO_HOME"/bin* ]] || export PATH="$PATH:$CARGO_HOME/bin"
 [[ "$PATH" == *'/opt/homebrew/opt/postgresql@15/bin'* ]] || export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 
-[[ "$PATH" == *'/opt/homebrew/opt/llvm/bin'* ]] || export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-export LDFLAGS='-L/opt/homebrew/opt/llvm/lib'
-export CPPFLAGS='-I/opt/homebrew/opt/llvm/include'
-
 export FZF_COMPLETION_TRIGGER=\;
 export FZF_ALT_C_COMMAND='fd --type directory --strip-cwd-prefix'
 export FZF_CTRL_R_OPTS='--reverse'
 export FZF_CTRL_T_COMMAND='fd --type file --strip-cwd-prefix'
 export FZF_TMUX=1
 
-export THEME=dark
-[[ "$THEME" == 'lite' ]] && green='#448C27' fg='#000000' purple='#7A3E9D' blue='#325CC0' bg='#F7F7F7' hi='#E7E7E7' yellow='#CB9000'
-[[ "$THEME" == 'gruvbox' ]] && green='#A9B665' fg='#D4BE98' purple='#D3869B' blue='#7DAEA3' bg='#282828' hi='#32302F' yellow='#D8A657'
-[[ "$THEME" == 'dark' ]] && green='#C3E88D' fg='#EEFFFF' purple='#B480D6' blue='#6E98EB' bg='#212121' hi='#2F2F2F' yellow='#FFCB7C'
+# TODO: inline
+green='#A9B665' fg='#D4BE98' purple='#D3869B' blue='#7DAEA3' bg='#282828' hi='#32302F' yellow='#D8A657'
 
 FZF_DEFAULT_OPTS='--bind=ctrl-a:select-all --bind=ctrl-f:half-page-down --bind=ctrl-b:half-page-up --no-scrollbar --no-info --no-bold'
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --color=bg+:$hi,bg:$bg,fg:$fg,spinner:$purple,hl:$green:bold \

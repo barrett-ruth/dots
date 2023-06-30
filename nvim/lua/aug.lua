@@ -33,6 +33,13 @@ au('LspAttach', {
         local client = vim.lsp.get_client_by_id(opts.data.client_id)
 
         if client.server_capabilities.inlayHintProvider then
+            bmap({
+                'n',
+                '\\i',
+                function()
+                    vim.lsp.buf.inlay_hint(opts.buf)
+                end,
+            }, { buffer = opts.buf })
             vim.lsp.buf.inlay_hint(opts.buf, true)
         end
 

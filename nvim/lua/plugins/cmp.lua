@@ -1,18 +1,3 @@
-local kinds = {
-    Class = 'cls',
-    Constant = 'const',
-    Enum = 'enum',
-    Field = 'field',
-    Function = 'fn',
-    Keyword = 'key',
-    Method = 'meth',
-    Module = 'mod',
-    Property = 'prop',
-    Snippet = 'snip',
-    Value = 'val',
-    Variable = 'var',
-}
-
 return {
     {
         'hrsh7th/nvim-cmp',
@@ -37,10 +22,6 @@ return {
             },
             formatting = {
                 format = function(_, item)
-                    item.kind = kinds[item.kind] or item.kind
-                    item.abbr =
-                        item.abbr:gsub('•', ''):gsub('~', ''):gsub('^ ', '')
-
                     return require('tailwindcss-colorizer-cmp').formatter(
                         _,
                         item

@@ -4,4 +4,5 @@ return {
     { 'tpope/vim-fugitive', event = 'VeryLazy' },
     { 'tpope/vim-repeat', event = 'VeryLazy' },
     { 'tpope/vim-surround', event = 'VeryLazy' },
+    'sainnhe/gruvbox-material',
 }

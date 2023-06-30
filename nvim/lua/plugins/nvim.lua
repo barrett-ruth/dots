@@ -110,13 +110,6 @@ return {
     },
     {
         'NvChad/nvim-colorizer.lua',
-        ft = {
-            'conf',
-            'sh',
-            'tmux',
-            'zsh',
-            unpack(vim.g.markdown_fenced_languages),
-        },
         opts = {
             filetypes = {
                 'conf',
