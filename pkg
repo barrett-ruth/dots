@@ -81,6 +81,7 @@ libxext
 libxrender
 libyaml
 little-cms2
+llvm
 lpeg
 lua
 lua-language-server
@@ -130,6 +131,7 @@ sdl2
 selene
 shellcheck
 shfmt
+six
 snappy
 speex
 sqlfluff
@@ -157,6 +159,7 @@ xz
 yamllint
 yarn
 yt-dlp
+z3
 zeromq
 zimg
 zsh-syntax-highlighting
@@ -164,10 +167,8 @@ zstd
 basictex
 discord
 google-cloud-sdk
-jetbrains-toolbox
 karabiner-elements
 kitty
 notion
-pgadmin4
 rectangle
 telegram

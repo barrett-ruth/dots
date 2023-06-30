@@ -53,8 +53,11 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 [[ "$PATH" == *"$HOME/.local/bin"* ]] || export PATH="$PATH:$HOME/.local/bin"
 [[ "$PATH" == *"$SCRIPTS"* ]] || export PATH="$PATH:$SCRIPTS"
 [[ "$PATH" == *"$CARGO_HOME"/bin* ]] || export PATH="$PATH:$CARGO_HOME/bin"
-[[ "$PATH" == *"$HOME/Library/Application Support/JetBrains/Toolbox/scripts"* ]] || export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
-[[ "$PATH" == *"/opt/homebrew/opt/postgresql@15/bin"* ]] || export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+[[ "$PATH" == *'/opt/homebrew/opt/postgresql@15/bin'* ]] || export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+
+[[ "$PATH" == *'/opt/homebrew/opt/llvm/bin'* ]] || export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+export LDFLAGS='-L/opt/homebrew/opt/llvm/lib'
+export CPPFLAGS='-I/opt/homebrew/opt/llvm/include'
 
 export FZF_COMPLETION_TRIGGER=\;
 export FZF_ALT_C_COMMAND='fd --type directory --strip-cwd-prefix'

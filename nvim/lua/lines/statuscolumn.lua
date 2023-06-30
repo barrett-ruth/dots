@@ -20,7 +20,6 @@ return {
         return '%#FoldColumn#' .. text
     end,
     statuscolumn = function()
-        return '%{%v:lua.require("lines.statuscolumn").fold()%}'
-            .. '%s%=%{%v:lua.require("lines.statuscolumn").num()%} '
+        return '%{%v:lua.require("lines.statuscolumn").fold()%}%s%=%{%v:lua.require("lines.statuscolumn").num()%} '
     end,
 }

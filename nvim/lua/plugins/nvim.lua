@@ -1,5 +1,14 @@
 return {
     {
+        'axelvc/template-string.nvim',
+        config = function(_, opts)
+            require('template-string').setup(opts)
+        end,
+        opts = {
+            remove_template_string = true
+        }
+    },
+    {
         'barrett-ruth/import-cost.nvim',
         build = 'sh install.sh yarn',
         config = true,
@@ -14,6 +23,7 @@ return {
             { '-', '<cmd>e .<cr>' },
             { '_', '<cmd>Oil<cr>' },
         },
+        lazy = false,
         opts = {
             skip_confirm_for_simple_edits = true,
             prompt_save_on_select_new_entry = false,

@@ -41,6 +41,7 @@ return {
             local lspconfig = require('lspconfig')
 
             for _, server in ipairs({
+                'clangd',
                 'cssmodules_ls',
                 'cssls',
                 'html',
@@ -104,23 +105,6 @@ return {
                     separator = ' ->',
                 },
             },
-        },
-    },
-    {
-        'p00f/clangd_extensions.nvim',
-        config = function(_, opts)
-            require('clangd_extensions').setup(opts)
-        end,
-        opts = {
-            server = prepare_lsp_settings(require('lsp.servers.clangd')),
-        },
-        ft = {
-            'c',
-            'cpp',
-            'objc',
-            'objcpp',
-            'cuda',
-            'proto',
         },
     },
 }

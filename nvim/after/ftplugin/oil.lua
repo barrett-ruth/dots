@@ -3,7 +3,7 @@ bmap({
     'q',
     function()
         local ok, bufremove = pcall(require, 'mini.bufremove')
-        if ok then
+        if ok and not vim.fn.buflisted(0) then
             bufremove.delete()
         else
             vim.cmd.bw()
