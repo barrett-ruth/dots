@@ -64,14 +64,10 @@ export FZF_CTRL_R_OPTS='--reverse'
 export FZF_CTRL_T_COMMAND='fd --type file --strip-cwd-prefix'
 export FZF_TMUX=1
 
-# TODO: inline
-green='#A9B665' fg='#D4BE98' purple='#D3869B' blue='#7DAEA3' bg='#282828' hi='#32302F' yellow='#D8A657'
-
-FZF_DEFAULT_OPTS='--bind=ctrl-a:select-all --bind=ctrl-f:half-page-down --bind=ctrl-b:half-page-up --no-scrollbar --no-info --no-bold'
-export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --color=bg+:$hi,bg:$bg,fg:$fg,spinner:$purple,hl:$green:bold \
---color=header:$green,header:$yellow,pointer:$purple \
---color=marker:$purple,fg+:$fg,prompt:$yellow,hl+:$green:bold"
-unset fg bg hi yellow green blue purple
+export FZF_DEFAULT_OPTS="--bind=ctrl-a:select-all --bind=ctrl-f:half-page-down --bind=ctrl-b:half-page-up --no-scrollbar --no-info \
+--color=fg:#D4BE98,bg:#282828,hl:#A9B665,fg+:#D4BE98,bg+:#32302F,hl+:#89B482 \
+--color=spinner:#D8A657 --color=marker:#D8A657 --color=pointer:#7DAEA3 \
+--color=prompt:#E78A4E --color=info:#89B482 --color=border:#928374 --color=header:#928374"
 
 . "$ZDOTDIR/.zaliases"
 . "$XDG_CONFIG_HOME/fzf/fzf.zsh"

@@ -1,217 +1,124 @@
 local colors = require('colors')
 colors.setup('gruvbox', 'dark')
 
-local hi, link, cs = colors.hi, colors.link, colors[vim.g.colors_name]
+local hi, tshi, link, cs =
+    colors.hi, colors.tshi, colors.link, colors[vim.g.colors_name]
 
--- TODO: fix
--- model after dark.lua, realism, and gruvbox-material
+hi('Normal', { fg = cs.white, bg = cs.bg }, { 'Identifier', 'Special' })
+hi('NonText', { fg = cs.grey }, { 'SpecialKey' })
 
--- basic ui
-hi('Normal', { fg = cs.white, bg = cs.bg })
-hi('NonText', { fg = cs.black })
+hi('LineNr', { fg = cs.grey }, { 'SignColumn', 'FoldColumn' })
+hi('CursorLine', { bg = cs.dark_grey }, { 'ColorColumn' })
+hi('CursorLineNr', { fg = cs.light_black })
 
--- messages
-hi('ErrorMsg', { bold = true, underline = true, fg = cs.red, bg = 'NONE' })
-hi('MoreMsg', { bold = true, fg = cs.yellow })
-hi('WarningMsg', { bold = true, fg = cs.yellow })
-
--- line numbers
-hi('LineNr', { fg = cs.black })
-hi('CursorLine', { bg = cs.dark_grey })
-hi('CursorLineNr', { fg = cs.grey })
-
--- folds/columns
-hi('ColorColumn', { bg = cs.dark_grey })
-hi('SignColumn', { bg = cs.bg })
-
--- health
-hi('HealthSuccess', { fg = cs.green })
-hi('HealthWarning', { fg = cs.yellow })
-hi('HealthError', { fg = cs.red })
-
--- help
-hi('helpNote', { bold = true, fg = cs.purple })
-hi('helpExample', { none = true, fg = cs.green })
-
-hi('SpecialKey', { fg = cs.black })
-hi('VertSplit', { fg = cs.black })
+hi('Directory', { fg = cs.yellow })
+hi('ErrorMsg', { bold = true, underline = true, fg = cs.red })
+hi('MoreMsg', { bold = true, fg = cs.yellow }, { 'WarningMsg' })
 hi('MatchParen', { bg = cs.med_grey })
-
-hi('NormalFloat', { bg = 'NONE' })
+hi('NormalFloat', { bg = cs.bg }, {
+    'LspInfoBorder',
+    'FloatBorder',
+})
+hi('Search', { reverse = true }, { 'IncSearch' })
 hi('Visual', { bg = cs.med_grey })
-hi('Whitespace', { fg = cs.black })
+hi('Whitespace', { fg = cs.grey })
 
-hi('Search', { fg = 'NONE', bg = 'NONE', reverse = true })
-link('Search', 'IncSearch')
-hi('Conceal', { fg = cs.hi, bg = 'NONE' })
-hi('Error', { fg = cs.red })
-hi('Question', { none = true, fg = cs.yellow })
-hi('Statusline', { none = true })
-hi('Special', { fg = cs.yellow })
-hi('Statement', { italic = true, fg = cs.red })
-hi('Identifier', { fg = cs.blue })
+tshi('Boolean', { fg = cs.magenta }, { '@constant.builtin' })
+tshi('Comment', { fg = cs.light_black })
+tshi('Constant', { fg = cs.white })
+tshi('Define', { fg = cs.magenta })
+tshi('Function', { fg = cs.green }, { '@function.builtin', '@function.macro' })
+tshi('Include', { fg = cs.red })
+tshi('Keyword', { fg = cs.red }, { 'Statement' })
+tshi('Namespace', { fg = cs.yellow })
+tshi('Number', { fg = cs.magenta })
+tshi(
+    'Operator',
+    { fg = cs.orange },
+    { '@keyword.operator', '@conditional.ternary' }
+)
+hi('@punctuation.delimiter', { fg = cs.light_black })
+tshi('PreProc', { fg = cs.magenta })
+tshi('String', { fg = cs.yellow })
+hi('@string.escape', { fg = cs.green })
+tshi('Title', { bold = true, fg = cs.green })
 
--- pmenu
-hi('Pmenu', { bg = cs.med_grey })
-hi('PmenuSel', { fg = cs.med_grey, bg = cs.hi })
-hi('PmenuSbar', { bg = cs.med_grey })
-hi('PmenuThumb', { bg = cs.hi })
+hi('@tag', { fg = cs.orange })
+hi('@tag.attribute', { fg = cs.white })
+hi('@tag.delimiter', { fg = cs.white })
 
--- winbar
-hi('WinBar', { fg = cs.grey, none = true })
+tshi('Type', { fg = cs.yellow })
+hi('@type.qualifier', { fg = cs.orange }, { '@storageclass' })
+hi('@lsp.type.enum', { fg = cs.white }, { '@lsp.type.class' })
+hi('@lsp.type.comment', { none = true }, { '@lsp.type.macro' })
+
+hi('@text.emphasis', { italic = true })
+hi('@text.strong', { bold = true })
+hi('@text.underline', { underline = true })
+hi('@text.uri', { fg = cs.blue, underline = true })
+
+hi('@text.danger', { fg = cs.red, bold = true, italic = true })
+hi('@text.note', { fg = cs.green, bold = true, italic = true })
+hi('@text.todo', { fg = cs.yellow, bold = true, italic = true })
+hi('@text.warning', { fg = cs.orange, bold = true, italic = true })
+
+hi('Pmenu', { bg = cs.med_grey }, { 'PmenuSbar' })
+hi('PmenuSel', { fg = cs.med_grey, bg = cs.light_grey })
+hi('PmenuThumb', { bg = cs.light_grey })
+
+hi('LspInlayHint', { fg = cs.grey })
+hi('LspSignatureActiveParameter', { underline = true, italic = true })
+hi(
+    'DiagnosticError',
+    { fg = cs.red },
+    { 'DiagnosticFloatingError', 'DiagnosticSignError' }
+)
+hi(
+    'DiagnosticWarn',
+    { fg = cs.orange },
+    { 'DiagnosticFloatingWarn', 'DiagnosticSignWarn' }
+)
+hi(
+    'DiagnosticHint',
+    { fg = cs.green },
+    { 'DiagnosticFloatingHint', 'DiagnosticSignHint' }
+)
+hi(
+    'DiagnosticInfo',
+    { fg = cs.cyan },
+    { 'DiagnosticFloatingInfo', 'DiagnosticSignInfo' }
+)
+hi('DiagnosticUnderlineError', { undercurl = true, special = cs.red })
+hi('DiagnosticUnderlineWarn', { undercurl = true, special = cs.orange })
+hi('DiagnosticUnderlineHint', { undercurl = true, special = cs.green })
+hi('DiagnosticUnderlineInfo', { undercurl = true, special = cs.cyan })
+
+hi('SpellBad', { underline = true, special = cs.red }, { '@spell.bad' })
+hi('SpellRare', { underline = true, special = cs.magenta }, { '@spell.rare' })
+hi('SpellCap', { underline = true, special = cs.blue }, { '@spell.cap' })
+hi('SpellLocal', { underline = true, special = cs.cyan }, { '@spell.local' })
+
+hi('gitCommitSummary', { fg = cs.white })
+
+hi('@attribute.diff', { fg = cs.magenta })
+hi('DiffAdd', { fg = cs.green }, { '@text.diff.add' })
+hi('DiffDelete', { fg = cs.red }, { '@text.diff.delete' })
+hi('DiffChange', { fg = cs.blue })
+
+-- fzf-lua
+link('NormalFloat', 'FzfLuaBorder')
+
+-- null-ls
+link('NormalFloat', 'NullLsInfoBorder')
+
+-- gitsigns.nvim
+link('DiffAdd', 'GitSignsAdd')
+link('DiffChange', 'GitSignsChange')
+link('DiffDelete', 'GitSignsDelete')
+hi('GitSignsCurrentLineBlame', { italic = true, fg = cs.light_black })
 
 -- nvim-cmp
 hi('CmpItemAbbrMatch', { fg = cs.green })
-hi('CmpItemAbbrMatchFuzzy', { fg = cs.green })
 
--- dirbuf.nvim
-hi('Directory', { fg = cs.light_blue })
-
--- lsp/diagnostics
-hi('LspSignatureActiveParameter', { underline = true, italic = true })
-hi('DiagnosticError', { fg = cs.red })
-hi('DiagnosticWarn', { fg = cs.yellow })
-hi('DiagnosticHint', { fg = cs.green })
-hi('DiagnosticInfo', { fg = cs.blue })
-hi('DiagnosticUnderlineError', { undercurl = true, special = cs.red })
-hi('DiagnosticUnderlineWarn', { undercurl = true, special = cs.yellow })
-hi('DiagnosticUnderlineHint', { undercurl = true, special = cs.green })
-hi('DiagnosticUnderlineInfo', { undercurl = true, special = cs.blue })
-
-for _, v in ipairs({ 'Error', 'Warn', 'Hint', 'Info' }) do
-    link('Diagnostic' .. v, 'DiagnosticFloating' .. v)
-    link('Diagnostic' .. v, 'DiagnosticSign' .. v)
-end
-
--- diffs
-hi('DiffAdd', { fg = cs.green, reverse = true })
-hi('DiffChange', { fg = cs.blue, reverse = true })
-hi('DiffDelete', { fg = cs.red, reverse = true })
-hi('diffAdded', { fg = cs.green })
-hi('diffRemoved', { fg = cs.red })
-hi('diffFile', { fg = cs.cyan })
-hi('diffLine', { fg = cs.grey })
-hi('diffOldFile', { fg = cs.yellow })
-hi('diffNewFile', { fg = cs.orange })
-hi('diffIndexLine', { fg = cs.purple })
-
--- gitsigns
-hi('GitSignsAdd', { fg = cs.green })
-hi('GitSignsChange', { fg = cs.blue })
-hi('GitSignsDelete', { fg = cs.red })
-hi('GitSignsCurrentLineBlame', { italic = true, fg = cs.grey })
-
--- git
-hi('gitCommitSummary', { fg = cs.white })
-
--- spelling
-hi('SpellBad', { underline = true, special = cs.red })
-hi('SpellRare', { underline = true, special = cs.purple })
-hi('SpellCap', { underline = true, special = cs.blue })
-hi('SpellLocal', { underline = true, special = cs.cyan })
-link('SpellBad', '@spell.bad')
-link('SpellRare', '@spell.rare')
-link('SpellCap', '@spell.cap')
-link('SpellLocal', '@spell.local')
-
--- comments
-hi('Comment', { italic = true, fg = cs.grey })
-link('Comment', '@comment')
-
--- text
-hi('Title', { bold = true, fg = cs.orange })
-link('Title', '@text.title')
-hi('@text.emphasis', { italic = true })
-hi('@text.strong', { bold = true })
-hi('@text.danger', { fg = cs.yellow, bold = true })
-hi('@text.todo', { fg = cs.purple, bold = true })
-hi('@text.uri', { fg = cs.blue })
-hi('@text.reference', { fg = cs.blue })
-
--- booleans
-hi('Boolean', { fg = cs.purple })
-link('Boolean', '@boolean')
-
--- constants
-hi('Constant', { fg = cs.white })
-link('Constant', '@constant')
-hi('@constant.builtin', { italic = true, fg = cs.purple })
-
--- strings
-hi('String', { fg = cs.yellow })
-link('String', '@string')
-hi('@string.escape', { fg = cs.green })
-
--- operators
-hi('Operator', { fg = cs.orange })
-link('Operator', '@operator')
-link('Operator', '@keyword.operator')
-
--- types
-hi('Type', { fg = cs.yellow })
-link('Type', '@type')
-link('Type', '@type.builtin')
-hi('@type.qualifier', { fg = cs.orange })
-
--- functions
-hi('Function', { fg = cs.green })
-link('Function', '@function')
-link('Function', '@method')
-hi('@function.builtin', { fg = cs.green })
-
--- macros
-hi('@macro', { fg = cs.green })
-link('@macro', '@function.macro')
-hi('PreProc', { fg = cs.purple })
-link('PreProc', '@preproc')
-
-hi('@attribute', { fg = cs.purple })
-
--- keywords
-hi('Keyword', { fg = cs.red })
-link('Keyword', '@keyword')
-link('Keyword', '@keyword.function')
-hi('@conditional', { fg = cs.red })
-hi('@repeat', { fg = cs.red })
-
--- numbers
-hi('Number', { fg = cs.purple })
-link('Number', '@number')
-
--- variables
-hi('@parameter', { fg = cs.white })
-hi('@variable', { fg = cs.white })
-
--- includes
-hi('Include', { fg = cs.red })
-link('Include', '@include')
-
--- punctuation
-hi('@punctuation', { fg = cs.grey })
-link('@punctuation', '@punctuation.delimiter')
-hi('@punctuation.bracket', { fg = cs.white })
-hi('@punctuation.special', { fg = cs.green })
-
--- fields
-hi('@property', { fg = cs.white })
-hi('@field', { fg = cs.white })
-
--- misc
-hi('@constructor', { fg = cs.cyan })
-hi('@namespace', { fg = cs.cyan })
-
-hi('StorageClass', { fg = cs.cyan })
-link('StorageClass', '@storageclass')
-link('StorageClass', '@class')
-link('StorageClass', '@struct')
-
-hi('@enum', { fg = cs.purple })
-
-hi('@tag', { fg = cs.orange })
-hi('@tag.delimiter', { fg = cs.green })
-
--- semantic tokens
-link('@variable', '@lsp.type.variable')
-link('@parameter', '@lsp.type.parameter')
-link('@field', '@lsp.type.property')
-hi('@lsp.type.comment', { none = true })
+-- oil.nvim
+link('Directory', 'OilDir')

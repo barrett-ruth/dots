@@ -17,5 +17,6 @@ vim.diagnostic.config({
             return ('%s (%s)'):format(diagnostic.message, diagnostic.source)
         end,
         header = '',
+        prefix = ' ',
     },
 })
