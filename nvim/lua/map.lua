@@ -47,6 +47,7 @@ map({
 
 map({ 'n', 'J', 'mzJ`z' })
 
+map({ 'n', '<leader>w', vim.cmd.w })
 map({
     'n',
     '<leader>Y',

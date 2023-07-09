@@ -4,9 +4,16 @@ return {
         config = function(_, opts)
             require('template-string').setup(opts)
         end,
+        ft = {
+            'python',
+            'javascript',
+            'javascriptreact',
+            'typescript',
+            'typescriptreact',
+        },
         opts = {
-            remove_template_string = true
-        }
+            remove_template_string = true,
+        },
     },
     {
         'barrett-ruth/import-cost.nvim',
@@ -35,7 +42,7 @@ return {
     {
         'laytan/cloak.nvim',
         config = true,
-        event = 'BufReadPost',
+        ft = { 'sh' },
         keys = { { '<leader>c', '<cmd>CloakToggle<cr>' } },
     },
     {

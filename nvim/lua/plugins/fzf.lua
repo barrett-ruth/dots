@@ -100,6 +100,7 @@ return {
             },
         },
         winopts = {
+            border = 'single',
             preview = {
                 hidden = 'hidden',
             },

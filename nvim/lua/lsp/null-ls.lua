@@ -53,7 +53,11 @@ null_ls.setup({
         diagnostics.markdownlint.with({
             diagnostics_format = '#{m}',
         }),
-        diagnostics.mypy,
+        diagnostics.mypy.with({
+            runtime_condition = function(params)
+                return require('null-ls.utils').path.exists(params.bufname)
+            end,
+        }),
         diagnostics.ruff,
         diagnostics.selene,
         diagnostics.shellcheck.with({
@@ -96,11 +100,16 @@ null_ls.setup({
 
         formatting.clang_format.with({
             filetypes = { 'c', 'cpp' },
+            extra_args = { '--fallback-style=google' },
         }),
         formatting.djhtml.with({
             extra_args = { '--tabwidth', '2' },
         }),
         formatting.prettierd.with({
+            env = {
+                XDG_RUNTIME_DIR = vim.env.XDG_RUNTIME_DIR
+                    or (vim.env.XDG_DATA_HOME .. '/prettierd'),
+            },
             filetypes = {
                 'css',
                 'graphql',

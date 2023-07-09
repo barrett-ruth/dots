@@ -20,6 +20,7 @@ setopt auto_cd incappendhistory extendedhistory histignorealldups
 eval "$(/opt/homebrew/bin/brew shellenv)"
 . /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 [[ "$PATH" == *'/opt/homebrew/opt/llvm/bin'* ]] || export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export LDFLAGS='-L/opt/homebrew/opt/llvm/lib'
 export CPPFLAGS='-I/opt/homebrew/opt/llvm/include'
 
@@ -45,6 +46,7 @@ export LESSHISTFILE="$XDG_STATE_HOME"/lesshst
 export MYPY_CACHE_DIR="$XDG_CACHE_HOME"/mypy
 export npm_config_userconfig="$XDG_CONFIG_HOME"/npm/npmrc
 export NODE_REPL_HISTORY="$XDG_STATE_HOME"/node_repl_history
+export PRETTIERD_CONFIG_HOME="$XDG_STATE_HOME"/prettierd
 export PSQL_HISTORY="$XDG_STATE_HOME"/psql_history
 export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/pythonrc
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME"/rg/config

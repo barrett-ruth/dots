@@ -36,9 +36,8 @@ return {
                     { 'zR', '<cmd>lua require("ufo").openAllFolds()<cr>' },
                     {
                         '[z',
-                        '<cmd>lua require("ufo").goPreviousClosedFold()<cr>',
+                        '<cmd>lua require("ufo").goPreviousStartFold()<cr>',
                     },
-                    { ']z', '<cmd>lua require("ufo").goNextClosedFold()<cr>' },
                 },
                 opts = {
                     open_fold_hl_timeout = 0,
