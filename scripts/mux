@@ -10,8 +10,8 @@ attach_or_restore() {
 
 case "$1" in
 bar)
-    bar="$(tmux ls -F '#S' | nl -w1 -v0 -s ':' | paste -sd '-' - | sed "s/$2/$2*/;s/-/  /g")"
-    echo "$bar"
+    # bar="$(tmux ls -F '#S' | nl -w1 -v0 -s ':' | paste -sd '-' - | sed "s/$2/$2*/;s/-/  /g")"
+    # echo "$bar"
     ;;
 file | run)
     [ "$(tmux lsw -F '#W' | rg "$1")" ] && tmux send -t "$1" 'C-c' \; killw -t "$1"

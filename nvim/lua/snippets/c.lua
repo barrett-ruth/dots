@@ -7,10 +7,10 @@ return {
             [[
                 #include <stdio.h>
 
-                int main() {{
-                    {}
+                int main(void) {{
+                  {}
 
-                    return 0;
+                  return 0;
                 }}
             ]],
             { i(1) }

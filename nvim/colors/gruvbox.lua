@@ -103,10 +103,10 @@ hi('DiagnosticUnderlineHint', { undercurl = true, special = cs.magenta })
 hi('DiagnosticUnderlineOk', { undercurl = true, special = cs.green })
 hi('DiagnosticUnderlineInfo', { undercurl = true, special = cs.cyan })
 
-hi('SpellBad', { underline = true, special = cs.red }, { '@spell.bad' })
-hi('SpellRare', { underline = true, special = cs.magenta }, { '@spell.rare' })
-hi('SpellCap', { underline = true, special = cs.blue }, { '@spell.cap' })
-hi('SpellLocal', { underline = true, special = cs.cyan }, { '@spell.local' })
+hi('SpellBad', { underline = true, special = cs.red })
+hi('SpellRare', { underline = true, special = cs.magenta })
+hi('SpellCap', { underline = true, special = cs.blue })
+hi('SpellLocal', { underline = true, special = cs.cyan })
 
 hi('gitCommitSummary', { fg = cs.white })
 
@@ -117,6 +117,8 @@ hi('DiffChange', { fg = cs.blue })
 
 -- fzf-lua
 link('NormalFloat', 'FzfLuaBorder')
+hi('FzfLuaHeaderText', { fg = cs.red }, { 'FzfLuaBufFlagCur' })
+hi('FzfLuaBufFlagAlt', { fg = cs.cyan })
 
 -- null-ls
 link('NormalFloat', 'NullLsInfoBorder')
@@ -129,6 +131,9 @@ hi('GitSignsCurrentLineBlame', { italic = true, fg = cs.light_black })
 
 -- nvim-cmp
 hi('CmpItemAbbrMatch', { fg = cs.green })
+
+-- indent-blankline.nvim
+hi('IndentBlanklineChar', { fg = cs.med_grey })
 
 -- oil.nvim
 link('Directory', 'OilDir')

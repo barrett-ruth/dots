@@ -19,8 +19,6 @@ g.markdown_fenced_languages = {
     'yaml',
 }
 
-g.syntax_for_h = 1
-
 g.wildignore = {
     'undo/',
     '__pycache__/',

@@ -56,6 +56,11 @@ return {
                     end,
                     ['<c-p>'] = mapping.select_prev_item(),
                     ['<c-x>'] = mapping.abort(),
+                    ['<c-e>'] = function()
+                        cmp.complete()
+                        cmp.select_next_item()
+                        cmp.confirm()
+                    end,
                 },
             })
 

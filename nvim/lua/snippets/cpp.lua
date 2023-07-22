@@ -43,7 +43,7 @@ return {
               cin >> cases;
 
               while (cases--)
-                  solve();
+                solve();
             }}
         ]],
             { i(1) }

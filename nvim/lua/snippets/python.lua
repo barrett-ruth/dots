@@ -5,19 +5,19 @@ local function assign_args(args)
         return sn(nil, { t({ '', '\t\t' }) })
     end
 
-    local assign_args = {}
+    local out = {}
 
     for e in arg:gmatch(' ?([^,]*)') do
         if e:len() > 0 and not e:match(']') then
             local var = e:gsub(':.*', '')
             table.insert(
-                assign_args,
+                out,
                 t({ '', ('\t\tself.%s = %s'):format(var, var) })
             )
         end
     end
 
-    return sn(nil, assign_args)
+    return sn(nil, out)
 end
 
 return {
@@ -28,8 +28,9 @@ return {
                 def main() -> None:
                     {}
 
-                    if __name__ == '__main__':
-                        main()
+
+                if __name__ == '__main__':
+                    main()
             ]],
             { i(1) }
         )

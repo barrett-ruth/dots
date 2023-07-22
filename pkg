@@ -11,6 +11,7 @@ cmake
 dav1d
 djhtml
 docker
+docker-completion
 docker-compose
 exa
 fd

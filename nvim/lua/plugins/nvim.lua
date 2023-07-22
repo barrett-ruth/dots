@@ -4,13 +4,6 @@ return {
         config = function(_, opts)
             require('template-string').setup(opts)
         end,
-        ft = {
-            'python',
-            'javascript',
-            'javascriptreact',
-            'typescript',
-            'typescriptreact',
-        },
         opts = {
             remove_template_string = true,
         },
@@ -23,14 +16,10 @@ return {
     },
     {
         'stevearc/oil.nvim',
-        config = function(_, opts)
-            require('oil').setup(opts)
-        end,
         keys = {
             { '-', '<cmd>e .<cr>' },
             { '_', '<cmd>Oil<cr>' },
         },
-        lazy = false,
         opts = {
             skip_confirm_for_simple_edits = true,
             prompt_save_on_select_new_entry = false,
@@ -50,14 +39,14 @@ return {
         config = function(_, opts)
             require('gitsigns').setup(opts)
 
-            bmap({ 'n', '<leader>gb', '<cmd>Gitsigns blame_line<cr>' })
-            bmap({ 'n', '<leader>gp', '<cmd>Gitsigns preview_hunk<cr>' })
-            bmap({
+            map({ 'n', '<leader>gb', '<cmd>Gitsigns blame_line<cr>' })
+            map({ 'n', '<leader>gp', '<cmd>Gitsigns preview_hunk<cr>' })
+            map({
                 'n',
                 '[g',
                 '<cmd>lua require("gitsigns").prev_hunk { preview = true }<cr>',
             })
-            bmap({
+            map({
                 'n',
                 ']g',
                 '<cmd>lua require("gitsigns").next_hunk { preview = true }<cr>',

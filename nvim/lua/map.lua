@@ -51,9 +51,7 @@ map({ 'n', '<leader>w', vim.cmd.w })
 map({
     'n',
     '<leader>Y',
-    function()
-        vim.fn.setreg('+', vim.fn.getreg('0'))
-    end,
+    '<cmd>call setreg("+", getreg("0"))<cr>'
 })
 
 map({ 'n', '[o', '@="m`O\\eg``"<cr>' })

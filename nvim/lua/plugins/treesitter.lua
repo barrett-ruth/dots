@@ -1,17 +1,50 @@
+local ts_langs = {
+    'bash',
+    'c',
+    'cmake',
+    'comment',
+    'cpp',
+    'css',
+    'diff',
+    'dockerfile',
+    'git_rebase',
+    'gitattributes',
+    'gitignore',
+    'go',
+    'graphql',
+    'html',
+    'htmldjango',
+    'http',
+    'java',
+    'javascript',
+    'jq',
+    'json',
+    'json5',
+    'lua',
+    'make',
+    'markdown',
+    'markdown_inline',
+    'python',
+    'regex',
+    'rust',
+    'sql',
+    'tsx',
+    'typescript',
+    'vim',
+    'vimdoc',
+    'yaml',
+}
+
 return {
     {
         'numToStr/Comment.nvim',
-        config = function()
-            require('Comment').setup({
+        opts = function()
+            return {
                 pre_hook = require(
                     'ts_context_commentstring.integrations.comment_nvim'
                 ).create_pre_hook(),
-            })
+            }
         end,
-        dependencies = {
-            'JoosepAlviste/nvim-ts-context-commentstring',
-        },
-        event = 'VeryLazy',
     },
     {
         'nvim-treesitter/nvim-treesitter',
@@ -20,7 +53,8 @@ return {
             require('nvim-treesitter.configs').setup(opts)
         end,
         dependencies = {
-            { 'nvim-lua/plenary.nvim', event = 'VeryLazy' },
+            'JoosepAlviste/nvim-ts-context-commentstring',
+            { 'nvim-lua/plenary.nvim', lazy = true },
             'nvim-treesitter/nvim-treesitter-textobjects',
             {
                 'kevinhwang91/nvim-ufo',
@@ -46,57 +80,30 @@ return {
                     end,
                 },
             },
+            {
+                'windwp/nvim-ts-autotag',
+                opts = {
+                    filetypes = {
+                        'html',
+                        'htmldjango',
+                        'javascript',
+                        'javascriptreact',
+                        'typescript',
+                        'typescriptreact',
+                        'xml',
+                    },
+                },
+            },
         },
+        ft = ts_langs,
         keys = {
             { '<leader>i', '<cmd>Inspect<cr>' },
         },
         opts = {
-            ensure_installed = {
-                'bash',
-                'c',
-                'cmake',
-                'comment',
-                'cpp',
-                'css',
-                'diff',
-                'dockerfile',
-                'git_rebase',
-                'gitattributes',
-                'gitignore',
-                'go',
-                'graphql',
-                'html',
-                'htmldjango',
-                'http',
-                'java',
-                'javascript',
-                'jq',
-                'json',
-                'json5',
-                'lua',
-                'make',
-                'markdown',
-                'markdown_inline',
-                'python',
-                'regex',
-                'rust',
-                'sql',
-                'tsx',
-                'typescript',
-                'vim',
-                'vimdoc',
-                'yaml',
-            },
-            highlight = {
-                enable = true,
-            },
-            indent = {
-                enable = true,
-                disable = { 'python' },
-            },
-            context_commentstring = {
-                enable = true,
-            },
+            autotag = { enable = true },
+            ensure_installed = ts_langs,
+            highlight = { enable = true },
+            context_commentstring = { enable = true },
             textobjects = {
                 move = {
                     enable = true,
@@ -146,20 +153,6 @@ return {
                         is = '@class.inner',
                     },
                 },
-            },
-        },
-    },
-    {
-        'windwp/nvim-ts-autotag',
-        opts = {
-            filetypes = {
-                'html',
-                'htmldjango',
-                'javascript',
-                'javascriptreact',
-                'typescript',
-                'typescriptreact',
-                'xml',
             },
         },
     },

@@ -48,6 +48,9 @@ null_ls.setup({
                 end
             end,
         }),
+        diagnostics.commitlint.with({
+            extra_args = { '--extends', '@commitlint/config-conventional' },
+        }),
         diagnostics.dotenv_linter,
         diagnostics.hadolint,
         diagnostics.markdownlint.with({
@@ -124,7 +127,7 @@ null_ls.setup({
             },
         }),
         formatting.shfmt.with({
-            extra_args = { '-i', '4', '-ln=posix' },
+            extra_args = { '-i', '2' },
         }),
         formatting.sql_formatter,
         formatting.stylua,

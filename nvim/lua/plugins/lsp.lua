@@ -1,28 +1,13 @@
 local prepare_lsp_settings = require('lsp.utils').prepare_lsp_settings
 
 return {
-    {
-        'dmmulroy/tsc.nvim',
-        ft = {
-            'typescript',
-            'typescriptreact',
-        },
-        opts = {
-            auto_open_qflist = false,
-            flags = {
-                build = true,
-                noEmit = true,
-            },
-            enable_progress_notifications = false,
-        },
-        keys = { { '<leader>t', '<cmd>TSC<cr>' } },
-    },
     { 'folke/neodev.nvim', ft = { 'lua' } },
     {
         'jose-elias-alvarez/null-ls.nvim',
         config = function()
             require('lsp.null-ls')
         end,
+        event = 'VeryLazy'
     },
     {
         'pmizio/typescript-tools.nvim',
@@ -44,6 +29,7 @@ return {
                 'clangd',
                 'cssmodules_ls',
                 'cssls',
+                'emmet_ls',
                 'html',
                 'jedi_language_server',
                 'jsonls',

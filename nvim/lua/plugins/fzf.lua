@@ -59,10 +59,13 @@ return {
         { '<c-f>', '<cmd>FzfLua files cwd_prompt=false<cr>' },
         { '<c-g>', '<cmd>FzfLua live_grep_native<cr>' },
         { '<leader>gb', '<cmd>FzfLua git_branches<cr>' },
+        { '<leader>ff', '<cmd>FzfLua files cwd=%:h<cr>' },
+        { '<leader>fg', '<cmd>FzfLua live_grep_native cwd=%:h<cr>' },
         { '<leader>fh', '<cmd>FzfLua help_tags<cr>' },
         { '<leader>fH', '<cmd>FzfLua highlights<cr>' },
         { '<leader>fm', '<cmd>FzfLua man_pages<cr>' },
         { '<leader>fr', '<cmd>FzfLua resume<cr>' },
+        { '<leader>fs', '<cmd>FzfLua files cwd=~/.local/bin/scripts<cr>' },
         {
             '<leader>fe',
             function()
@@ -72,9 +75,15 @@ return {
                 })
             end,
         },
-        { '<leader>ff', '<cmd>FzfLua files cwd=%:h<cr>' },
-        { '<leader>fg', '<cmd>FzfLua live_grep_native cwd=%:h<cr>' },
-        { '<leader>fs', '<cmd>FzfLua files cwd=~/.local/bin/scripts<cr>' },
+        { 'gw', '<cmd>FzfLua lsp_workspace_diagnostics<cr>' },
+        { 'gsa', '<cmd>FzfLua lsp_document_symbols<cr>' },
+        { 'gsc', '<cmd>FzfLua lsp_document_symbols regex_filter=Class.*<cr>' },
+        { 'gsf', '<cmd>FzfLua lsp_document_symbols regex_filter=Function.*<cr>' },
+        { 'gd', '<cmd>FzfLua lsp_definitions<cr>' },
+        { 'gD', '<cmd>FzfLua lsp_declarations<cr>' },
+        { 'gI', '<cmd>FzfLua lsp_implementations<cr>' },
+        { 'gR', '<cmd>FzfLua lsp_references<cr>' },
+        { 'gt', '<cmd>FzfLua lsp_typedefs<cr>' }
     },
     opts = {
         debug = true,

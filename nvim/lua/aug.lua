@@ -68,3 +68,15 @@ au('LspAttach', {
         end
     end,
 })
+
+au({ 'BufRead', 'BufNewFile' }, {
+    pattern = '*/templates/*.html',
+    callback = function(opts)
+        vim.api.nvim_set_option_value(
+            'filetype',
+            'htmldjango',
+            { buf = opts.buf }
+        )
+    end,
+    group = aug,
+})
