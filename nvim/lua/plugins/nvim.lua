@@ -121,7 +121,6 @@ return {
                 rgb_fun = true,
                 hsl_fn = true,
                 tailwind = true,
-                mode = 'foreground',
             },
         },
     },

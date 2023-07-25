@@ -54,9 +54,8 @@ au('LspAttach', {
                                 'clangd', -- clang-format
                                 'cssls', -- prettier
                                 'html', -- prettier
-                                'jedi_language_server', -- black/autopep8
                                 'jsonls', -- prettier
-                                'pyright', -- black/autopep8
+                                'pylsp', -- black/autopep8
                                 'lua_ls', -- stylua
                                 'tsserver', -- prettier
                             }, c.name)

@@ -7,7 +7,7 @@ return {
         config = function()
             require('lsp.null-ls')
         end,
-        event = 'VeryLazy'
+        event = 'VeryLazy',
     },
     {
         'pmizio/typescript-tools.nvim',
@@ -16,7 +16,6 @@ return {
                 prepare_lsp_settings(require('lsp.servers.typescript'))
             )
         end,
-        ft = { 'typescript', 'typescriptreact' },
     },
     {
         'neovim/nvim-lspconfig',
@@ -31,9 +30,9 @@ return {
                 'cssls',
                 'emmet_ls',
                 'html',
-                'jedi_language_server',
                 'jsonls',
                 'pyright',
+                'pylsp',
                 'lua_ls',
                 'tailwindcss',
             }) do

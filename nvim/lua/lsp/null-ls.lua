@@ -38,16 +38,6 @@ null_ls.setup({
                 })
             end,
         }),
-        diagnostics.flake8.with({
-            condition = function(_)
-                return project_contains_source('flake8', true)
-            end,
-            diagnostics_postprocess = function(diagnostic)
-                if diagnostic.severity == vim.diagnostic.severity.ERROR then
-                    diagnostic.severity = vim.diagnostic.severity.WARN
-                end
-            end,
-        }),
         diagnostics.commitlint.with({
             extra_args = { '--extends', '@commitlint/config-conventional' },
         }),
@@ -57,11 +47,11 @@ null_ls.setup({
             diagnostics_format = '#{m}',
         }),
         diagnostics.mypy.with({
+            extra_args = { '--check-untyped-defs' },
             runtime_condition = function(params)
                 return require('null-ls.utils').path.exists(params.bufname)
             end,
         }),
-        diagnostics.ruff,
         diagnostics.selene,
         diagnostics.shellcheck.with({
             runtime_condition = function(_)
@@ -84,14 +74,14 @@ null_ls.setup({
                 return project_contains_source('autopep8', false)
             end,
         }),
-        formatting.black.with({
+        formatting.blackd.with({
             condition = function(_)
                 return project_contains_source('black', true)
             end,
-            extra_args = {
-                '--skip-string-normalization',
-                '--fast',
-                '--line-length=79',
+            config = {
+                skip_string_normalization = 'true',
+                fast = 'true',
+                line_length = 79,
             },
         }),
         formatting.cbfmt,
@@ -100,7 +90,6 @@ null_ls.setup({
                 return project_contains_source('isort', true)
             end,
         }),
-
         formatting.clang_format.with({
             filetypes = { 'c', 'cpp' },
             extra_args = { '--fallback-style=google' },

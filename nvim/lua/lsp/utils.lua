@@ -3,7 +3,7 @@ local M = {}
 function M.on_attach()
     local diagnostic, buf = vim.diagnostic, vim.lsp.buf
 
-    bmap({ 'n', '\\c', buf.code_action })
+    bmap({ { 'n', 'x' }, '\\c', buf.code_action })
     bmap({ 'n', '\\f', diagnostic.open_float })
     bmap({ 'n', 'K', buf.hover })
     bmap({ 'n', 'gD', buf.declaration })
