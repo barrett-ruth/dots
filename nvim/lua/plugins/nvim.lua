@@ -1,4 +1,5 @@
 return {
+    -- TODO: swap to axelvc when PR merged
     {
         'barrett-ruth/template-string.nvim',
         opts = {
@@ -14,20 +15,13 @@ return {
     {
         'lewis6991/gitsigns.nvim',
         config = function(_, opts)
-            require('gitsigns').setup(opts)
+            local gitsigns = require('gitsigns')
+            gitsigns.setup(opts)
 
-            map({ 'n', '<leader>gb', '<cmd>Gitsigns blame_line<cr>' })
-            map({ 'n', '<leader>gp', '<cmd>Gitsigns preview_hunk<cr>' })
-            map({
-                'n',
-                '[g',
-                '<cmd>lua require("gitsigns").prev_hunk { preview = true }<cr>',
-            })
-            map({
-                'n',
-                ']g',
-                '<cmd>lua require("gitsigns").next_hunk { preview = true }<cr>',
-            })
+            map({ 'n', '<leader>gb', gitsigns.blame_line })
+            map({ 'n', '<leader>gp', gitsigns.preview_hunk })
+            map({ 'n', '[g', gitsigns.prev_hunk })
+            map({ 'n', ']g', gitsigns.next_hunk })
         end,
         event = 'VeryLazy',
         opts = {

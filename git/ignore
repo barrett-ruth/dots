@@ -1,2 +1,3 @@
 undo/
 .mypy_cache/
+venv/
