@@ -61,12 +61,16 @@ __set_git() {
 }
 
 __set_venv() {
-    if [[ ! -x venv/bin/python ]]; then
-        type deactivate >/dev/null && deactivate
-        return
-    fi
-    [[ -n "$VIRTUAL_ENV" ]] || . venv/bin/activate
-    PS1+='%F{yellow}venv%f '
+    local dir="$PWD"
+    while [[ "$dir" != "" && "$dir" != "/" ]]; do
+        if [[ -x "$dir/venv/bin/python" ]]; then
+            [[ -n "$VIRTUAL_ENV" ]] || . "$dir/venv/bin/activate"
+            PS1+='%F{yellow}venv%f '
+            return
+        fi
+        dir="$(dirname "$dir")"
+    done
+    type deactivate >/dev/null && deactivate
 }
 
 __set_beam_cursor() { echo -ne '\e[5 q'; }

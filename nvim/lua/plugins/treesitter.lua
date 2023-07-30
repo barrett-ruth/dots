@@ -7,13 +7,14 @@ local ts_langs = {
     'http', 'java', 'javascript', 'jq',
     'json', 'json5', 'lua', 'make', 'markdown',
     'markdown_inline', 'python', 'regex',
-    'rust', 'sql', 'tsx', 'typescript',
-    'vim', 'vimdoc', 'yaml',
+    'query', 'rust', 'sql', 'tsx',
+    'typescript', 'vim', 'vimdoc', 'yaml',
 }
 
 return {
     {
         'numToStr/Comment.nvim',
+        event = 'VeryLazy',
         opts = function()
             return {
                 pre_hook = require(
@@ -21,6 +22,11 @@ return {
                 ).create_pre_hook(),
             }
         end,
+    },
+    {
+        'nvim-treesitter/playground',
+        dependencies = { 'nvim-treesitter/nvim-treesitter' },
+        keys = { { '<leader>t', '<cmd>TSPlaygroundToggle<cr>' } },
     },
     {
         'nvim-treesitter/nvim-treesitter',
@@ -39,6 +45,31 @@ return {
                     },
                 },
             },
+            {
+                'David-Kunz/treesitter-unit',
+                keys = {
+                    {
+                        'iu',
+                        '<cmd>lua require("treesitter-unit").select()<cr>',
+                        mode = 'x',
+                    },
+                    {
+                        'au',
+                        '<cmd>lua require("treesitter-unit").select(true)<cr>',
+                        mode = 'x',
+                    },
+                    {
+                        'iu',
+                        '<cmd><c-u>lua require("treesitter-unit").select()<cr>',
+                        mode = 'o',
+                    },
+                    {
+                        'au',
+                        '<cmd><c-u>lua require("treesitter-unit").select(true)<cr>',
+                        mode = 'o',
+                    },
+                },
+            },
             'JoosepAlviste/nvim-ts-context-commentstring',
             { 'nvim-lua/plenary.nvim', lazy = true },
             'nvim-treesitter/nvim-treesitter-textobjects',
@@ -48,7 +79,6 @@ return {
                     vim.o.foldenable = true
                     vim.o.foldlevel = 99
                     vim.o.foldlevelstart = 99
-                    vim.o.foldminlines = 20
                 end,
                 dependencies = { 'kevinhwang91/promise-async' },
                 keys = {

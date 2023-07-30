@@ -40,6 +40,7 @@ require('lazy').setup('plugins', {
     },
 })
 
+require('cloak').setup()
 require('lines').setup()
 require('projects').setup()
 require('yank').setup()

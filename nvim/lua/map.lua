@@ -50,7 +50,7 @@ map({ 'n', 'J', 'mzJ`z' })
 map({ 'n', '<leader>w', vim.cmd.w })
 map({
     'n',
-    '<leader>Y',
+    '<leader>y',
     '<cmd>call setreg("+", getreg("0"))<cr>'
 })
 

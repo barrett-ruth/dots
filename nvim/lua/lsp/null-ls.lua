@@ -38,9 +38,6 @@ null_ls.setup({
                 })
             end,
         }),
-        diagnostics.commitlint.with({
-            extra_args = { '--extends', '@commitlint/config-conventional' },
-        }),
         diagnostics.dotenv_linter,
         diagnostics.hadolint,
         diagnostics.markdownlint.with({
