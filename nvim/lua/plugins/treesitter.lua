@@ -13,20 +13,72 @@ local ts_langs = {
 
 return {
     {
-        'numToStr/Comment.nvim',
-        event = 'VeryLazy',
-        opts = function()
-            return {
-                pre_hook = require(
-                    'ts_context_commentstring.integrations.comment_nvim'
-                ).create_pre_hook(),
-            }
-        end,
+        'CKolkey/ts-node-action',
+        config = true,
+        dependencies = 'nvim-treesitter/nvim-treesitter',
+        keys = {
+            { 'gS', '<cmd>lua require("ts-node-action").node_action()<cr>' },
+        },
     },
     {
-        'nvim-treesitter/playground',
-        dependencies = { 'nvim-treesitter/nvim-treesitter' },
-        keys = { { '<leader>t', '<cmd>TSPlaygroundToggle<cr>' } },
+        'David-Kunz/treesitter-unit',
+        dependencies = 'nvim-treesitter/nvim-treesitter',
+        keys = {
+            {
+                'iu',
+                '<cmd>lua require("treesitter-unit").select()<cr>',
+                mode = 'x',
+            },
+            {
+                'au',
+                '<cmd>lua require("treesitter-unit").select(true)<cr>',
+                mode = 'x',
+            },
+            {
+                'iu',
+                '<cmd><c-u>lua require("treesitter-unit").select()<cr>',
+                mode = 'o',
+            },
+            {
+                'au',
+                '<cmd><c-u>lua require("treesitter-unit").select(true)<cr>',
+                mode = 'o',
+            },
+        },
+    },
+    {
+        'kevinhwang91/nvim-ufo',
+        config = function(_, opts)
+            vim.o.foldenable = true
+            vim.o.foldlevel = 99
+            vim.o.foldlevelstart = 99
+
+            require('ufo').setup(opts)
+
+            local colors = require('colors')
+            colors.hi(
+                'UfoFoldedEllipsis',
+                { fg = colors[vim.g.colors_name].dark_grey }
+            )
+        end,
+        dependencies = {
+            'kevinhwang91/promise-async',
+            'nvim-treesitter/nvim-treesitter',
+        },
+        keys = {
+            { 'zM', '<cmd>lua require("ufo").closeAllFolds()<cr>' },
+            { 'zR', '<cmd>lua require("ufo").openAllFolds()<cr>' },
+            {
+                '[z',
+                '<cmd>lua require("ufo").goPreviousStartFold()<cr>',
+            },
+        },
+        opts = {
+            open_fold_hl_timeout = 0,
+            provider_selector = function()
+                return { 'treesitter', 'indent' }
+            end,
+        },
     },
     {
         'nvim-treesitter/nvim-treesitter',
@@ -35,99 +87,18 @@ return {
             require('nvim-treesitter.configs').setup(opts)
         end,
         dependencies = {
-            {
-                'CKolkey/ts-node-action',
-                config = true,
-                keys = {
-                    {
-                        'gS',
-                        '<cmd>lua require("ts-node-action").node_action()<cr>',
-                    },
-                },
-            },
-            {
-                'David-Kunz/treesitter-unit',
-                keys = {
-                    {
-                        'iu',
-                        '<cmd>lua require("treesitter-unit").select()<cr>',
-                        mode = 'x',
-                    },
-                    {
-                        'au',
-                        '<cmd>lua require("treesitter-unit").select(true)<cr>',
-                        mode = 'x',
-                    },
-                    {
-                        'iu',
-                        '<cmd><c-u>lua require("treesitter-unit").select()<cr>',
-                        mode = 'o',
-                    },
-                    {
-                        'au',
-                        '<cmd><c-u>lua require("treesitter-unit").select(true)<cr>',
-                        mode = 'o',
-                    },
-                },
-            },
-            'JoosepAlviste/nvim-ts-context-commentstring',
-            { 'nvim-lua/plenary.nvim', lazy = true },
             'nvim-treesitter/nvim-treesitter-textobjects',
-            {
-                'kevinhwang91/nvim-ufo',
-                config = function(_, opts)
-                    vim.o.foldenable = true
-                    vim.o.foldlevel = 99
-                    vim.o.foldlevelstart = 99
-
-                    require('ufo').setup(opts)
-
-                    local colors = require('colors')
-                    colors.hi(
-                        'UfoFoldedEllipsis',
-                        { fg = colors[vim.g.colors_name].dark_grey }
-                    )
-                end,
-                dependencies = { 'kevinhwang91/promise-async' },
-                keys = {
-                    { 'zM', '<cmd>lua require("ufo").closeAllFolds()<cr>' },
-                    { 'zR', '<cmd>lua require("ufo").openAllFolds()<cr>' },
-                    {
-                        '[z',
-                        '<cmd>lua require("ufo").goPreviousStartFold()<cr>',
-                    },
-                },
-                opts = {
-                    open_fold_hl_timeout = 0,
-                    provider_selector = function()
-                        return { 'treesitter', 'indent' }
-                    end,
-                },
-            },
-            {
-                'windwp/nvim-ts-autotag',
-                opts = {
-                    filetypes = {
-                        'html',
-                        'htmldjango',
-                        'javascript',
-                        'javascriptreact',
-                        'typescript',
-                        'typescriptreact',
-                        'xml',
-                    },
-                },
-            },
+            'nvim-lua/plenary.nvim',
         },
         ft = ts_langs,
-        keys = {
-            { '<leader>i', '<cmd>Inspect<cr>' },
-        },
+        keys = { { '<leader>i', '<cmd>Inspect<cr>' } },
         opts = {
-            autotag = { enable = true },
             ensure_installed = ts_langs,
             highlight = { enable = true },
-            context_commentstring = { enable = true },
+            context_commentstring = {
+                enable = true,
+                enable_autocmd = false,
+            },
             textobjects = {
                 move = {
                     enable = true,
@@ -179,5 +150,15 @@ return {
                 },
             },
         },
+    },
+    {
+        'nvim-treesitter/playground',
+        dependencies = 'nvim-treesitter/nvim-treesitter',
+        keys = { { '<leader>t', '<cmd>TSPlaygroundToggle<cr>' } },
+    },
+    {
+        'windwp/nvim-ts-autotag',
+        config = true,
+        dependencies = 'nvim-treesitter/nvim-treesitter',
     },
 }

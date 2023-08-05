@@ -1,5 +1,4 @@
 {
-  "Comment.nvim": { "branch": "master", "commit": "d0cbbfb539898a275dc4398446ab0ae3b94819bf" },
   "LuaSnip": { "branch": "master", "commit": "99a94cc35ec99bf06263d0346128e908a204575c" },
   "cmp-conventionalcommits": { "branch": "master", "commit": "a4dfacf0601130b7f8afa7c948d735c27802fb7f" },
   "cmp-git": { "branch": "main", "commit": "f900a4cf117300fdc3ba31d26f8b6223ccd9c574" },
@@ -16,6 +15,7 @@
   "mini.ai": { "branch": "main", "commit": "5218ea75e635df78a807bc9d5a7162594fb76d02" },
   "mini.bracketed": { "branch": "main", "commit": "ac93e3d6df596c750200aa8529fd352ec91bbad2" },
   "mini.bufremove": { "branch": "main", "commit": "7821606e35c1ac931b56d8e3155f45ffe76ee7e5" },
+  "mini.comment": { "branch": "main", "commit": "877acea5b2a32ff55f808fc0ebe9aa898648318c" },
   "neodev.nvim": { "branch": "main", "commit": "aca9cf154e4a9c1b79450969dd8e179dc211b3f6" },
   "null-ls.nvim": { "branch": "main", "commit": "db09b6c691def0038c456551e4e2772186449f35" },
   "nvim-autopairs": { "branch": "master", "commit": "ae5b41ce880a6d850055e262d6dfebd362bb276e" },
