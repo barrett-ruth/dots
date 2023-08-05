@@ -1,7 +1,6 @@
 return {
-    -- TODO: swap to axelvc when PR merged
     {
-        'barrett-ruth/template-string.nvim',
+        'axelvc/template-string.nvim',
         opts = {
             remove_template_string = true,
         },
@@ -10,13 +9,37 @@ return {
         'barrett-ruth/import-cost.nvim',
         build = 'sh install.sh yarn',
         config = true,
-        ft = { 'javascript', 'javascripreact', 'typescript', 'typescriptreact' },
+        ft = {
+            'javascript',
+            'javascripreact',
+            'typescript',
+            'typescriptreact',
+        },
+    },
+    {
+        'iamcco/markdown-preview.nvim',
+        build = 'yarn install --cwd app',
+        ft = { 'markdown' },
+        config = function()
+            vim.g.mkdp_page_title = '${name}'
+            vim.g.mkdp_theme = 'light'
+        end,
+        keys = { { '<leader>m', '<cmd>MarkdownPreviewToggle<cr>' } },
     },
     {
         'lewis6991/gitsigns.nvim',
         config = function(_, opts)
             local gitsigns = require('gitsigns')
             gitsigns.setup(opts)
+
+            local colors = require('colors')
+            colors.link('DiffAdd', 'GitSignsAdd')
+            colors.link('DiffChange', 'GitSignsChange')
+            colors.link('DiffDelete', 'GitSignsDelete')
+            colors.hi(
+                'GitSignsCurrentLineBlame',
+                { italic = true, fg = colors[vim.g.colors_name].light_black }
+            )
 
             map({ 'n', '<leader>gb', gitsigns.blame_line })
             map({ 'n', '<leader>gp', gitsigns.preview_hunk })
@@ -35,12 +58,27 @@ return {
         },
     },
     {
+        'm4xshen/smartcolumn.nvim',
+        opts = {
+            disabled_filetypes = {
+                'help',
+                'lazy',
+                'log',
+                'markdown',
+                'NvimTree',
+                'text',
+            },
+        },
+    },
+    {
         'monaqa/dial.nvim',
         config = function()
             local augend = require('dial.augend')
 
             require('dial.config').augends:register_group({
                 default = {
+                    augend.constant.alias.alpha,
+                    augend.constant.alias.Alpha,
                     augend.constant.alias.bool,
                     augend.constant.new({
                         elements = { 'and', 'or' },
@@ -86,11 +124,24 @@ return {
         },
     },
     {
+        'phaazon/hop.nvim',
+        config = function()
+            require('hop').setup()
+            vim.cmd('hi clear HopUnmatched')
+        end,
+        keys = { { '<leader>h', '<cmd>HopChar2<cr>' } },
+    },
+    {
         'stevearc/oil.nvim',
+        config = function(_, opts)
+            require('oil').setup(opts)
+            require('colors').link('Directory', 'OilDir')
+        end,
         keys = {
             { '-', '<cmd>e .<cr>' },
             { '_', '<cmd>Oil<cr>' },
         },
+        lazy = false,
         opts = {
             skip_confirm_for_simple_edits = true,
             prompt_save_on_select_new_entry = false,

@@ -5,9 +5,10 @@ return {
         Lua = {
             completion = { keywordSnippet = 'Disable' },
             diagnostics = { globals = { 'vim' } },
+            format = { enable = false },
             hint = {
-                arrayIndex = 'Disable',
                 enable = true,
+                arrayIndex = 'Disable',
                 semicolon = 'Disable',
             },
             runtime = { version = 'LuaJIT' },

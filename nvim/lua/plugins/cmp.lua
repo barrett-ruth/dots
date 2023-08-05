@@ -66,6 +66,12 @@ return {
 
             cmp.setup(opts)
 
+            local colors = require('colors')
+            colors.hi(
+                'CmpItemAbbrMatch',
+                { fg = colors[vim.g.colors_name].green }
+            )
+
             cmp.setup.filetype('gitcommit', {
                 sources = cmp.config.sources({
                     { name = 'git' },

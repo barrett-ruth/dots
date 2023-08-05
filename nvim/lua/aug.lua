@@ -56,7 +56,6 @@ au('LspAttach', {
                                 'html', -- prettier
                                 'jsonls', -- prettier
                                 'pylsp', -- black/autopep8
-                                'lua_ls', -- stylua
                                 'tsserver', -- prettier
                             }, c.name)
                         end,

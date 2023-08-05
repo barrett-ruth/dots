@@ -1,8 +1,7 @@
 local colors = require('colors')
 colors.setup('gruvbox', 'dark')
 
-local hi, tshi, link, cs =
-    colors.hi, colors.tshi, colors.link, colors[vim.g.colors_name]
+local hi, tshi, cs = colors.hi, colors.tshi, colors[vim.g.colors_name]
 
 hi('Normal', { fg = cs.white, bg = cs.bg }, { 'Identifier', 'Special' })
 hi('NonText', { fg = cs.grey }, { 'SpecialKey' })
@@ -114,29 +113,3 @@ hi('@attribute.diff', { fg = cs.magenta })
 hi('DiffAdd', { fg = cs.green }, { '@text.diff.add', 'diffAdded' })
 hi('DiffDelete', { fg = cs.red }, { '@text.diff.delete', 'diffRemoved' })
 hi('DiffChange', { fg = cs.blue })
-
--- fzf-lua
-link('NormalFloat', 'FzfLuaBorder')
-hi('FzfLuaHeaderText', { fg = cs.red }, { 'FzfLuaBufFlagCur' })
-hi('FzfLuaBufFlagAlt', { fg = cs.cyan })
-
--- null-ls
-link('NormalFloat', 'NullLsInfoBorder')
-
--- gitsigns.nvim
-link('DiffAdd', 'GitSignsAdd')
-link('DiffChange', 'GitSignsChange')
-link('DiffDelete', 'GitSignsDelete')
-hi('GitSignsCurrentLineBlame', { italic = true, fg = cs.light_black })
-
--- nvim-cmp
-hi('CmpItemAbbrMatch', { fg = cs.green })
-
--- indent-blankline.nvim
-hi('IndentBlanklineChar', { fg = cs.med_grey })
-
--- oil.nvim
-link('Directory', 'OilDir')
-
--- nvim-ufo
-hi('UfoFoldedEllipsis', { fg = cs.dark_grey })

@@ -53,6 +53,18 @@ return {
         })
 
         fzf.setup(opts)
+
+        local colors = require('colors')
+        colors.link('NormalFloat', 'FzfLuaBorder')
+        colors.hi(
+            'FzfLuaHeaderText',
+            { fg = colors[vim.g.colors_name].red },
+            { 'FzfLuaBufFlagCur' }
+        )
+        colors.hi(
+            'FzfLuaBufFlagAlt',
+            { fg = colors[vim.g.colors_name].cyan }
+        )
     end,
     keys = {
         { '<c-b>', '<cmd>FzfLua buffers<cr>' },
@@ -78,12 +90,15 @@ return {
         { 'gw', '<cmd>FzfLua lsp_workspace_diagnostics<cr>' },
         { 'gsa', '<cmd>FzfLua lsp_document_symbols<cr>' },
         { 'gsc', '<cmd>FzfLua lsp_document_symbols regex_filter=Class.*<cr>' },
-        { 'gsf', '<cmd>FzfLua lsp_document_symbols regex_filter=Function.*<cr>' },
+        {
+            'gsf',
+            '<cmd>FzfLua lsp_document_symbols regex_filter=Function.*<cr>',
+        },
         { 'gd', '<cmd>FzfLua lsp_definitions<cr>' },
         { 'gD', '<cmd>FzfLua lsp_declarations<cr>' },
         { 'gI', '<cmd>FzfLua lsp_implementations<cr>' },
         { 'gR', '<cmd>FzfLua lsp_references<cr>' },
-        { 'gt', '<cmd>FzfLua lsp_typedefs<cr>' }
+        { 'gt', '<cmd>FzfLua lsp_typedefs<cr>' },
     },
     opts = {
         debug = true,

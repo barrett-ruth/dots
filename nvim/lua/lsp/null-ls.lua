@@ -71,15 +71,11 @@ null_ls.setup({
                 return project_contains_source('autopep8', false)
             end,
         }),
-        formatting.blackd.with({
+        formatting.black.with({
             condition = function(_)
                 return project_contains_source('black', true)
             end,
-            config = {
-                skip_string_normalization = 'true',
-                fast = 'true',
-                line_length = 79,
-            },
+            extra_args = { '-S', '--fast', '--line-length=79' },
         }),
         formatting.cbfmt,
         formatting.isort.with({

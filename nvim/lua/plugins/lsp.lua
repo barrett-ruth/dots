@@ -6,6 +6,8 @@ return {
         'jose-elias-alvarez/null-ls.nvim',
         config = function()
             require('lsp.null-ls')
+            local colors = require('colors')
+            colors.link('NormalFloat', 'NullLsInfoBorder')
         end,
         event = 'VeryLazy',
     },
