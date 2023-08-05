@@ -33,9 +33,10 @@ return {
                 'emmet_ls',
                 'html',
                 'jsonls',
+                'ltex',
+                'lua_ls',
                 'pyright',
                 'pylsp',
-                'lua_ls',
                 'tailwindcss',
             }) do
                 local status, settings =

@@ -38,7 +38,14 @@ null_ls.setup({
                 })
             end,
         }),
-        diagnostics.dotenv_linter,
+        diagnostics.dotenv_linter.with({
+            filetypes = {
+                'config'
+            },
+            runtime_condition = function(_)
+                return vim.fn.bufname():match('.env.*')
+            end,
+        }),
         diagnostics.hadolint,
         diagnostics.markdownlint.with({
             diagnostics_format = '#{m}',

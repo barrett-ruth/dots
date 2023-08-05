@@ -14,6 +14,7 @@ djhtml
 docker
 docker-completion
 docker-compose
+dotenv-linter
 exa
 fd
 ffmpeg
@@ -84,6 +85,7 @@ libyaml
 little-cms2
 llvm
 lpeg
+ltex-ls
 lua
 lua-language-server
 luajit
@@ -105,6 +107,7 @@ node
 oniguruma
 opencore-amr
 openexr
+openjdk
 openjpeg
 openssl@1.1
 openssl@3
