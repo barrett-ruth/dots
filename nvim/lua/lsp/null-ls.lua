@@ -39,11 +39,15 @@ null_ls.setup({
             end,
         }),
         diagnostics.dotenv_linter.with({
-            filetypes = {
-                'config'
+            extra_args = {
+                '--skip',
+                'UnorderedKey',
+                '--skip',
+                'ValueWithoutQuotes',
             },
+            filetypes = { 'config' },
             runtime_condition = function(_)
-                return vim.fn.bufname():match('.env.*')
+                return vim.fn.bufname():match('.*.env.*')
             end,
         }),
         diagnostics.hadolint,

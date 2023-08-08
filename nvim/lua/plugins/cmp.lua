@@ -7,18 +7,14 @@ return {
                     require('luasnip').lsp_expand(args.body)
                 end,
             },
-            completion = {
-                autocomplete = false,
-            },
+            completion = { autocomplete = false },
             window = {
                 completion = {
                     border = 'single',
                     scrollbar = false,
                     winhighlight = 'CursorLine:Visual',
                 },
-                documentation = {
-                    border = 'single',
-                },
+                documentation = { border = 'single' },
             },
             formatting = {
                 format = function(_, item)
@@ -37,12 +33,11 @@ return {
             local mapping = cmp.mapping
 
             opts = vim.tbl_extend('keep', opts, {
-                confirmation = {
-                    completopt = '',
-                },
                 sources = cmp.config.sources({
                     { name = 'nvim_lsp' },
                     { name = 'path' },
+                }, {
+                    { name = 'buffer' },
                 }),
                 mapping = {
                     ['<c-y>'] = mapping.confirm({ select = true }),
@@ -80,6 +75,7 @@ return {
             })
         end,
         dependencies = {
+            'hrsh7th/cmp-buffer',
             'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-path',
             'roobert/tailwindcss-colorizer-cmp.nvim',

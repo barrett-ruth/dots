@@ -51,9 +51,10 @@ export PSQL_HISTORY="$XDG_STATE_HOME"/psql_history
 export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/pythonrc
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME"/rg/config
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
-export SCRIPTS="$HOME/.local/bin/scripts"
 export SQLITE_HISTORY="$XDG_STATE_HOME"/sqlite_history
 export VIRTUAL_ENV_DISABLE_PROMPT=1
+
+export SCRIPTS="$HOME/.local/bin/scripts"
 
 [[ "$PATH" == *"$HOME/.local/bin"* ]] || export PATH="$PATH:$HOME/.local/bin"
 [[ "$PATH" == *"$SCRIPTS"* ]] || export PATH="$PATH:$SCRIPTS"
