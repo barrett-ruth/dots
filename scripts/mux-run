@@ -7,9 +7,6 @@ theCourseForum2)
   # docker compose up --build
   cmd='docker compose up'
   ;;
-certd)
-  cmd='python -m flask run --debug --port 8080'
-  ;;
 esac
 
 echo " > $cmd" | sed "s|$HOME|~|g"
