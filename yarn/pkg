@@ -9,6 +9,7 @@ neovim@4.10.1
 prettier@2.8.8
 pyright@1.1.318
 sql-formatter@12.2.3
+stylelint@15.10.2
 ts-node@10.9.1
 typescript@5.1.6
 vscode-langservers-extracted@4.7.0

@@ -2,6 +2,7 @@ return {
     cmd = {
         'clangd',
         '--clang-tidy',
+        '--clang-tidy-checks=*',
         '-j=4',
         '--background-index',
         '--completion-style=bundled',

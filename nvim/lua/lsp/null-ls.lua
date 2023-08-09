@@ -74,6 +74,7 @@ null_ls.setup({
                 'LT02,LT05',
             },
         }),
+        diagnostics.stylelint,
         diagnostics.tsc,
         diagnostics.yamllint,
 
@@ -88,7 +89,24 @@ null_ls.setup({
             end,
             extra_args = { '-S', '--fast', '--line-length=79' },
         }),
-        formatting.cbfmt,
+        formatting.cbfmt.with({
+            condition = function(utils)
+                return utils.root_has_file({ '.cbfmt.toml' })
+            end,
+        }),
+        formatting.eslint_d.with({
+            condition = function(utils)
+                return utils.root_has_file({
+                    {
+                        '.eslintrc',
+                        '.eslintrc.cjs',
+                        '.eslintrc.yaml',
+                        '.eslintrc.yml',
+                        '.eslintrc.json',
+                    },
+                })
+            end,
+        }),
         formatting.isort.with({
             condition = function(_)
                 return project_contains_source('isort', true)
@@ -101,6 +119,7 @@ null_ls.setup({
         formatting.djhtml.with({
             extra_args = { '--tabwidth', '2' },
         }),
+        formatting.markdownlint,
         formatting.prettierd.with({
             env = {
                 XDG_RUNTIME_DIR = vim.env.XDG_RUNTIME_DIR
@@ -123,6 +142,7 @@ null_ls.setup({
             extra_args = { '-i', '2' },
         }),
         formatting.sql_formatter,
+        formatting.stylelint,
         formatting.stylua,
     },
     on_attach = on_attach,

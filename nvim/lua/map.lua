@@ -3,7 +3,7 @@ function _G.map(mapping, opts)
         mapping[1],
         mapping[2],
         mapping[3],
-        vim.tbl_extend('keep', opts or {}, { noremap = true, silent = true })
+        vim.tbl_extend('keep', opts or {}, { silent = true })
     )
 end
 
@@ -51,7 +51,7 @@ map({ 'n', '<leader>w', vim.cmd.w })
 map({
     'n',
     '<leader>y',
-    '<cmd>call setreg("+", getreg("0"))<cr>'
+    '<cmd>call setreg("+", getreg("0"))<cr>',
 })
 
 map({ 'n', '[o', '@="m`O\\eg``"<cr>' })

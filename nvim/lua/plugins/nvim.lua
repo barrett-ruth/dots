@@ -120,5 +120,5 @@ return {
         },
     },
     -- TODO: swap back to windwp (manually remove fork)
-    { 'windwp/nvim-autopairs', config = true, event = 'InsertEnter' },
+    { 'barrett-ruth/nvim-autopairs', config = true, event = 'InsertEnter' },
 }
