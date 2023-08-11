@@ -19,9 +19,7 @@ require('lazy').setup('plugins', {
         enabled = false,
         notify = false,
     },
-    git = {
-        url_format = 'git@github.com:%s.git',
-    },
+    git = { url_format = 'git@github.com:%s.git' },
     lockfile = vim.fn.stdpath('data') .. '/lazy-lock.json',
     performance = {
         rtp = {
@@ -41,6 +39,7 @@ require('lazy').setup('plugins', {
 })
 
 require('cloak').setup()
+require('hlsearch').setup()
 require('lines').setup()
 require('projects').setup()
 require('yank').setup()

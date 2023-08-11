@@ -16,6 +16,8 @@ return {
 
             map({ 'n', '<leader>gb', gitsigns.blame_line })
             map({ 'n', '<leader>gp', gitsigns.preview_hunk })
+            map({ 'n', '<leader>gs', gitsigns.stage_hunk })
+            map({ 'n', '<leader>gS', gitsigns.undo_stage_hunk })
             map({ 'n', '[g', gitsigns.prev_hunk })
             map({ 'n', ']g', gitsigns.next_hunk })
         end,
@@ -35,11 +37,11 @@ return {
         dependencies = 'nvim-lua/plenary.nvim',
         keys = {
             {
-                '<leader>gy',
+                '<leader>gl',
                 '<cmd>lua require("gitlinker").get_buf_range_url("n")<cr>',
             },
             {
-                '<leader>gy',
+                '<leader>gl',
                 '<cmd>lua require("gitlinker").get_buf_range_url("v")<cr>',
                 mode = 'x',
             },
@@ -48,5 +50,5 @@ return {
             opts = { print_url = false },
         },
     },
-    { 'tpope/vim-fugitive', event = 'VeryLazy' },
+    'tpope/vim-fugitive',
 }

@@ -62,7 +62,7 @@ hi('@text.uri', { fg = cs.blue, underline = true }, { '@text.reference' })
 
 hi('@text.danger', { fg = cs.red, bold = true, italic = true })
 hi('@text.note', { fg = cs.green, bold = true, italic = true })
-hi('@text.todo', { fg = cs.yellow, bold = true, italic = true })
+hi('@text.todo', { fg = cs.yellow, bold = true, italic = true }, { 'Todo' })
 hi('@text.warning', { fg = cs.orange, bold = true, italic = true })
 
 hi('Pmenu', { bg = cs.med_grey }, { 'PmenuSbar' })

@@ -20,6 +20,7 @@ null_ls.setup({
     sources = {
         code_actions.eslint_d,
         code_actions.gitrebase,
+        code_actions.gitsigns,
         code_actions.shellcheck,
 
         diagnostics.curlylint.with({

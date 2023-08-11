@@ -7,31 +7,37 @@ extension="${filename##*.}"
 
 case "$extension" in
 c)
-    cmd="clang $filename"
-    run='./a.out'
-    clean='test -f a.out && rm a.out'
-    ;;
+  cmd="clang $filename"
+  run='./a.out'
+  clean='[ -f a.out ] && rm a.out'
+  ;;
 cpp | cc)
-    cmd="clang++ $filename"
-    run='./a.out'
-    clean='test -f a.out && rm a.out'
-    ;;
+  cmd="clang++ $filename"
+  run='./a.out'
+  clean='[ -f a.out ] && rm a.out'
+  ;;
 sh)
-    cmd="sh $filename"
-    ;;
+  cmd="sh $filename"
+  ;;
 ts)
-    cmd="ts-node $filename"
-    ;;
+  cmd="ts-node $filename"
+  ;;
 js)
-    cmd="node $filename"
-    ;;
+  cmd="node $filename"
+  ;;
 py)
-    cmd="python3 $filename"
-    ;;
+  cmd="python3 $filename"
+  ;;
 esac
 
 echo " > $cmd" | sed "s|$HOME|~|g"
-[ "$run" ] && cmd="$cmd && $run"
+
+if [ "$run" ]; then
+    cmd="$cmd && $run"
+fi
+
 eval "$cmd"
 
-[ "$clean" ] && eval "$clean"
+if [ "$clean" ]; then
+  eval "$clean"
+fi

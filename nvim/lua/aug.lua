@@ -13,11 +13,6 @@ au('VimResized', {
     group = aug,
 })
 
-au('ModeChanged', {
-    command = 'let &hlsearch = index(["?", "/"], getcmdtype()) > -1',
-    group = aug,
-})
-
 au('TermOpen', {
     command = 'startinsert | setl nonumber norelativenumber statuscolumn=',
     group = aug,
@@ -44,8 +39,14 @@ au('LspAttach', {
         end
 
         if client.server_capabilities.documentFormattingProvider then
+            local modes = { 'n' }
+
+            if client.server_capabilities.documentRangeFormattingProvider then
+                table.insert(modes, 'x')
+            end
+
             bmap({
-                'n',
+                modes,
                 '<leader>w',
                 function()
                     vim.lsp.buf.format({
