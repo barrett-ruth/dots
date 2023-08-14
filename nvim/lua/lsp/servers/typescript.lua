@@ -8,5 +8,8 @@ return {
             includeInlayFunctionLikeReturnTypeHints = true,
             includeInlayEnumMemberValueHints = true,
         },
+        tsserver_plugins = {
+            '@styled/typescript-styled-plugin',
+        },
     },
 }

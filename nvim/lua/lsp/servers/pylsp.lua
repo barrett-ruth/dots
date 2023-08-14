@@ -4,6 +4,7 @@ return {
         for _, provider in ipairs({
             'completion',
             'documentSymbol',
+            'hover', -- unsure if pylsp or pyrights' hoverProvider is better
             'rename',
             'workspaceSymbol',
         }) do

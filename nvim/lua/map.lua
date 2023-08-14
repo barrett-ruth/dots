@@ -8,7 +8,7 @@ function _G.map(mapping, opts)
 end
 
 function _G.bmap(mapping, opts)
-    map(mapping, vim.tbl_extend('keep', opts or {}, { buffer = 0 }))
+    _G.map(mapping, vim.tbl_extend('force', opts or {}, { buffer = 0 }))
 end
 
 map({
@@ -21,7 +21,7 @@ map({
             url = 'https://github.com/' .. url
         end
 
-        vim.fn.jobstart({ vim.env.BROWSER, '--new-window', url })
+        vim.fn.jobstart({ vim.env.BROWSER, url })
     end,
 })
 

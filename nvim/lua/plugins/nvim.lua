@@ -30,6 +30,7 @@ return {
         'm4xshen/smartcolumn.nvim',
         opts = {
             disabled_filetypes = {
+                'checkhealth',
                 'help',
                 'lazy',
                 'log',

@@ -36,12 +36,12 @@ return {
             },
             {
                 'iu',
-                '<cmd><c-u>lua require("treesitter-unit").select()<cr>',
+                '<cmd>lua require("treesitter-unit").select()<cr>',
                 mode = 'o',
             },
             {
                 'au',
-                '<cmd><c-u>lua require("treesitter-unit").select(true)<cr>',
+                '<cmd>lua require("treesitter-unit").select(true)<cr>',
                 mode = 'o',
             },
         },

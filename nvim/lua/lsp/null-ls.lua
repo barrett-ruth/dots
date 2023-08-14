@@ -115,7 +115,6 @@ null_ls.setup({
         }),
         formatting.clang_format.with({
             filetypes = { 'c', 'cpp' },
-            extra_args = { '--fallback-style=google' },
         }),
         formatting.djhtml.with({
             extra_args = { '--tabwidth', '2' },
