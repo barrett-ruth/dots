@@ -105,7 +105,6 @@ return {
         'stevearc/oil.nvim',
         config = function(_, opts)
             require('oil').setup(opts)
-            require('colors').link('Directory', 'OilDir')
         end,
         keys = {
             { '-', '<cmd>e .<cr>' },

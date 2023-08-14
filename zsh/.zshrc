@@ -11,27 +11,8 @@ __set_ssh() {
     [[ "$SSH_CONNECTION" ]] && PS1+=" %m"
 }
 
-__shrink() {
-    dir=${PWD/#$HOME/\~} base="$(basename $dir)"
-    typeset -a tree=(${(s:/:)dir})
-
-    if [[ $tree[1] == '~' ]]; then
-        res='~'
-        shift tree
-    else
-        echo '%c' && exit
-    fi
-
-    for dir in $tree; do
-        [[ $dir == $base ]] && res+=/$dir && break
-        res+=/$dir[1]
-        [[ $dir[1] == '.' ]] && res+=$dir[2]
-    done
-    echo $res
-}
-
 __set_dir() {
-    PS1+=" %F{blue}$(__shrink)%f "
+    PS1+=' %F{blue}%~%f '
 }
 
 __set_git() {

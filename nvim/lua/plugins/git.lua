@@ -5,15 +5,6 @@ return {
             local gitsigns = require('gitsigns')
             gitsigns.setup(opts)
 
-            local colors = require('colors')
-            colors.link('DiffAdd', 'GitSignsAdd')
-            colors.link('DiffChange', 'GitSignsChange')
-            colors.link('DiffDelete', 'GitSignsDelete')
-            colors.hi(
-                'GitSignsCurrentLineBlame',
-                { italic = true, fg = colors[vim.g.colors_name].light_black }
-            )
-
             map({ 'n', '<leader>gb', gitsigns.blame_line })
             map({ 'n', '<leader>gp', gitsigns.preview_hunk })
             map({ 'n', '<leader>gs', gitsigns.stage_hunk })

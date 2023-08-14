@@ -35,7 +35,6 @@ au('LspAttach', {
                     vim.lsp.inlay_hint(opts.buf)
                 end,
             }, { buffer = opts.buf })
-            vim.lsp.inlay_hint(opts.buf, true)
         end
 
         if client.server_capabilities.documentFormattingProvider then

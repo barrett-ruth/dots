@@ -54,12 +54,6 @@ return {
             vim.o.foldlevelstart = 99
 
             require('ufo').setup(opts)
-
-            local colors = require('colors')
-            colors.hi(
-                'UfoFoldedEllipsis',
-                { fg = colors[vim.g.colors_name].dark_grey }
-            )
         end,
         dependencies = {
             'kevinhwang91/promise-async',

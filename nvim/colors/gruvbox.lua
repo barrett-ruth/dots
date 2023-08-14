@@ -1,7 +1,8 @@
 local colors = require('colors')
 colors.setup('gruvbox', 'dark')
 
-local hi, tshi, cs = colors.hi, colors.tshi, colors[vim.g.colors_name]
+local hi, link, tshi, cs =
+    colors.hi, colors.link, colors.tshi, colors[vim.g.colors_name]
 
 hi('Normal', { fg = cs.white, bg = cs.bg }, { 'Identifier', 'Special' })
 hi('NonText', { fg = cs.grey }, { 'SpecialKey' })
@@ -42,7 +43,7 @@ tshi(
 )
 hi('@punctuation.delimiter', { fg = cs.light_black })
 tshi('PreProc', { fg = cs.magenta })
-tshi('String', { fg = cs.yellow })
+tshi('String', { fg = cs.yellow }, { '@character' })
 hi('@string.escape', { fg = cs.green })
 tshi('Title', { bold = true, fg = cs.green })
 
@@ -113,3 +114,33 @@ hi('@attribute.diff', { fg = cs.magenta })
 hi('DiffAdd', { fg = cs.green }, { '@text.diff.add', 'diffAdded' })
 hi('DiffDelete', { fg = cs.red }, { '@text.diff.delete', 'diffRemoved' })
 hi('DiffChange', { fg = cs.blue })
+
+-- gitsigns.nvim
+hi('GitSignsCurrentLineBlame', { italic = true, fg = cs.light_black })
+link('DiffAdd', 'GitSignsAdd')
+link('DiffChange', 'GitSignsChange')
+link('DiffDelete', 'GitSignsDelete')
+
+-- nvim-cmp
+hi('CmpItemAbbrMatch', { fg = colors[vim.g.colors_name].green })
+
+-- nvim-ufo
+hi('UfoFoldedEllipsis', { fg = colors[vim.g.colors_name].dark_grey })
+
+-- null-ls
+link('NormalFloat', 'NullLsInfoBorder')
+
+-- oil.nvim
+link('Directory', 'OilDir')
+
+-- fzf-lua
+link('NormalFloat', 'FzfLuaBorder')
+hi(
+    'FzfLuaHeaderText',
+    { fg = colors[vim.g.colors_name].red },
+    { 'FzfLuaBufFlagCur' }
+)
+hi('FzfLuaBufFlagAlt', { fg = colors[vim.g.colors_name].cyan })
+
+-- language-specific
+hi('@constructor.lua', { fg = cs.white })

@@ -53,18 +53,6 @@ return {
         })
 
         fzf.setup(opts)
-
-        local colors = require('colors')
-        colors.link('NormalFloat', 'FzfLuaBorder')
-        colors.hi(
-            'FzfLuaHeaderText',
-            { fg = colors[vim.g.colors_name].red },
-            { 'FzfLuaBufFlagCur' }
-        )
-        colors.hi(
-            'FzfLuaBufFlagAlt',
-            { fg = colors[vim.g.colors_name].cyan }
-        )
     end,
     keys = {
         { '<c-b>', '<cmd>FzfLua buffers<cr>' },
