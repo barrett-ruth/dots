@@ -26,6 +26,18 @@ null_ls.setup({
         diagnostics.curlylint.with({
             extra_filetypes = { 'html' },
         }),
+        diagnostics.dotenv_linter.with({
+            extra_args = {
+                '--skip',
+                'UnorderedKey',
+                '--skip',
+                'ValueWithoutQuotes',
+            },
+            filetypes = { 'config' },
+            runtime_condition = function(_)
+                return vim.fn.bufname():match('.*.env.*')
+            end,
+        }),
         diagnostics.eslint_d.with({
             condition = function(utils)
                 return utils.root_has_file({
@@ -39,17 +51,8 @@ null_ls.setup({
                 })
             end,
         }),
-        diagnostics.dotenv_linter.with({
-            extra_args = {
-                '--skip',
-                'UnorderedKey',
-                '--skip',
-                'ValueWithoutQuotes',
-            },
-            filetypes = { 'config' },
-            runtime_condition = function(_)
-                return vim.fn.bufname():match('.*.env.*')
-            end,
+        diagnostics.gitlint.with({
+            extra_ars = { '--ignore', 'body-is-missing' },
         }),
         diagnostics.hadolint,
         diagnostics.markdownlint.with({

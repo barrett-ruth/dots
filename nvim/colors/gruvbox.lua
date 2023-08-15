@@ -121,6 +121,9 @@ link('DiffAdd', 'GitSignsAdd')
 link('DiffChange', 'GitSignsChange')
 link('DiffDelete', 'GitSignsDelete')
 
+-- hop.nvim
+hi('HopUnmatched', { guibg = cs.bg })
+
 -- nvim-cmp
 hi('CmpItemAbbrMatch', { fg = colors[vim.g.colors_name].green })
 
