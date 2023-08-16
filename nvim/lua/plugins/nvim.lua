@@ -20,7 +20,7 @@ return {
         'iamcco/markdown-preview.nvim',
         build = 'yarn install --cwd app',
         ft = { 'markdown' },
-        config = function()
+        init = function()
             vim.g.mkdp_page_title = '${name}'
             vim.g.mkdp_theme = 'light'
         end,
@@ -75,6 +75,24 @@ return {
     },
     {
         'NvChad/nvim-colorizer.lua',
+        init = function()
+            vim.g.markdown_fenced_languages = {
+                'c',
+                'cpp',
+                'css',
+                'html',
+                'javascript',
+                'javascriptreact',
+                'json',
+                'lua',
+                'python',
+                'sql',
+                'typescript',
+                'typescriptreact',
+                'vim',
+                'yaml',
+            }
+        end,
         opts = {
             filetypes = {
                 'conf',

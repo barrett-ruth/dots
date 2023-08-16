@@ -2,23 +2,6 @@ local g = vim.g
 
 g.mapleader = ' '
 
-g.markdown_fenced_languages = {
-    'c',
-    'cpp',
-    'css',
-    'html',
-    'javascript',
-    'javascriptreact',
-    'json',
-    'lua',
-    'python',
-    'sql',
-    'typescript',
-    'typescriptreact',
-    'vim',
-    'yaml',
-}
-
 g.wildignore = {
     'undo/',
     '__pycache__/',

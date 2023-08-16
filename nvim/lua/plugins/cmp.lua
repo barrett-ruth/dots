@@ -72,16 +72,19 @@ return {
             'hrsh7th/cmp-buffer',
             'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-path',
+            'L3MON4D3/LuaSnip',
             'roobert/tailwindcss-colorizer-cmp.nvim',
         },
         event = 'InsertEnter',
     },
     {
         'davidsierradz/cmp-conventionalcommits',
+        dependencies = 'hrsh7th/nvim-cmp',
         ft = { 'gitcommit' },
     },
     {
         'petertriho/cmp-git',
+        dependencies = 'hrsh7th/nvim-cmp',
         ft = { 'gitcommit' },
         opts = {
             github = {

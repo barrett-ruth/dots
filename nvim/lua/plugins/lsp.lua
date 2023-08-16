@@ -40,11 +40,9 @@ return {
                 local status, settings =
                     pcall(require, 'lsp.servers.' .. server)
 
-                if not status then
-                    settings = {}
-                end
-
-                lspconfig[server].setup(prepare_lsp_settings(settings))
+                lspconfig[server].setup(
+                    prepare_lsp_settings(status and settings or {})
+                )
             end
         end,
         dependencies = {

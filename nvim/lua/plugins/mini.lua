@@ -43,9 +43,7 @@ return {
     },
     {
         'echasnovski/mini.bufremove',
-        config = function()
-            require('mini.bufremove').setup()
-        end,
+        config = true,
         keys = {
             { '<leader>bd', '<cmd>lua require("mini.bufremove").delete()<cr>' },
             {
@@ -67,5 +65,10 @@ return {
             },
             mappings = { comment_line = 'g/' },
         },
+    },
+    {
+        'echasnovski/mini.operators',
+        config = true,
+        event = 'VeryLazy',
     },
 }
