@@ -60,6 +60,9 @@ au('LspAttach', {
                             }, c.name)
                         end,
                     })
+                    if vim.fn.exists(':EslintFixAll') ~= 0 then
+                        vim.cmd('EslintFixAll')
+                    end
                     vim.cmd.w()
                 end,
             }, { buffer = opts.buf, silent = false })

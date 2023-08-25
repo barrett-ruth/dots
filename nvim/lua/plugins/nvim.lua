@@ -34,6 +34,7 @@ return {
                 'help',
                 'lazy',
                 'log',
+                'lspinfo',
                 'markdown',
                 'NvimTree',
                 'text',
@@ -75,24 +76,6 @@ return {
     },
     {
         'NvChad/nvim-colorizer.lua',
-        init = function()
-            vim.g.markdown_fenced_languages = {
-                'c',
-                'cpp',
-                'css',
-                'html',
-                'javascript',
-                'javascriptreact',
-                'json',
-                'lua',
-                'python',
-                'sql',
-                'typescript',
-                'typescriptreact',
-                'vim',
-                'yaml',
-            }
-        end,
         opts = {
             filetypes = {
                 'conf',
@@ -113,16 +96,11 @@ return {
     },
     {
         'phaazon/hop.nvim',
-        config = function()
-            require('hop').setup()
-        end,
+        config = true,
         keys = { { '<leader>h', '<cmd>HopChar2<cr>' } },
     },
     {
         'stevearc/oil.nvim',
-        config = function(_, opts)
-            require('oil').setup(opts)
-        end,
         keys = {
             { '-', '<cmd>e .<cr>' },
             { '_', '<cmd>Oil<cr>' },
@@ -138,4 +116,15 @@ return {
     },
     -- TODO: swap back to windwp (manually remove fork)
     { 'barrett-ruth/nvim-autopairs', config = true, event = 'InsertEnter' },
+    -- {
+    --     'barrett-ruth/guard.nvim',
+    --     config = function()
+    --         require('guard.filetype')('python'):fmt({
+    --             cmd = 'black',
+    --             args = { '-' },
+    --             stdin = true
+    --         }):lint('pylint')
+    --         require('guard').setup({ fmt_on_save = false })
+    --     end
+    -- }
 }

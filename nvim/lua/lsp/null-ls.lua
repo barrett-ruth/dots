@@ -18,7 +18,6 @@ end
 
 null_ls.setup({
     sources = {
-        code_actions.eslint_d,
         code_actions.gitrebase,
         code_actions.gitsigns,
         code_actions.shellcheck,
@@ -38,21 +37,8 @@ null_ls.setup({
                 return vim.fn.bufname():match('.*.env.*')
             end,
         }),
-        diagnostics.eslint_d.with({
-            condition = function(utils)
-                return utils.root_has_file({
-                    {
-                        '.eslintrc',
-                        '.eslintrc.cjs',
-                        '.eslintrc.yaml',
-                        '.eslintrc.yml',
-                        '.eslintrc.json',
-                    },
-                })
-            end,
-        }),
         diagnostics.gitlint.with({
-            extra_ars = { '--ignore', 'body-is-missing' },
+            extra_args = { '--ignore', 'body-is-missing' },
         }),
         diagnostics.hadolint,
         diagnostics.markdownlint.with({
@@ -65,11 +51,11 @@ null_ls.setup({
             end,
         }),
         diagnostics.selene,
-        diagnostics.shellcheck.with({
-            runtime_condition = function(_)
-                return not vim.fn.bufname():match('.env.*')
-            end,
-        }),
+        -- diagnostics.shellcheck.with({
+        --     runtime_condition = function(_)
+        --         return not vim.fn.bufname():match('.env.*')
+        --     end,
+        -- }),
         diagnostics.sqlfluff.with({
             extra_args = {
                 '--dialect',
@@ -96,19 +82,6 @@ null_ls.setup({
         formatting.cbfmt.with({
             condition = function(utils)
                 return utils.root_has_file({ '.cbfmt.toml' })
-            end,
-        }),
-        formatting.eslint_d.with({
-            condition = function(utils)
-                return utils.root_has_file({
-                    {
-                        '.eslintrc',
-                        '.eslintrc.cjs',
-                        '.eslintrc.yaml',
-                        '.eslintrc.yml',
-                        '.eslintrc.json',
-                    },
-                })
             end,
         }),
         formatting.isort.with({

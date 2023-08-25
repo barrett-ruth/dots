@@ -29,6 +29,7 @@ return {
                 'cssmodules_ls',
                 'cssls',
                 'emmet_ls',
+                'eslint',
                 'html',
                 'jsonls',
                 'ltex',
@@ -52,7 +53,7 @@ return {
                     require('nvim-navic').setup(opts)
                 end,
                 opts = {
-                    depth_limit = 2,
+                    depth_limit = 3,
                     depth_limit_indicator = '...',
                     icons = {
                         File = ' ',

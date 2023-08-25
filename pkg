@@ -25,6 +25,7 @@ frei0r
 fribidi
 gcc
 gettext
+ghostscript
 giflib
 glib
 gmp
@@ -38,6 +39,8 @@ highway
 icu4c
 imath
 isl
+isort
+jbig2dec
 jpeg-turbo
 jpeg-xl
 jq
@@ -50,6 +53,7 @@ libb2
 libbluray
 libevent
 libgit2
+libidn
 libidn2
 libmpc
 libnghttp2
@@ -168,12 +172,12 @@ zeromq
 zimg
 zsh-syntax-highlighting
 zstd
-basictex
 discord
 element
 google-cloud-sdk
 karabiner-elements
 kitty
+mactex
 notion
 rectangle
 sioyek

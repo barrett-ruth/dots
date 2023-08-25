@@ -1,4 +1,9 @@
 return {
+    {
+        'lervag/vimtex',
+        ft = 'tex',
+        keys = { { '<leader>v', '<cmd>VimtexCompile<cr>' } },
+    },
     { 'tpope/vim-abolish', event = 'VeryLazy' },
     { 'tpope/vim-dadbod', event = 'VeryLazy' },
     { 'tpope/vim-repeat', event = 'VeryLazy' },
