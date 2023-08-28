@@ -60,12 +60,15 @@ export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export SQLITE_HISTORY="$XDG_STATE_HOME"/sqlite_history
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
+export PNPM_HOME="$XDG_DATASTATE_HOME/pnpm"
+[[ "$PATH" == *"$PNPM_HOME"* ]] || export PATH="$PATH:$PNPM_HOME"
+
 export SCRIPTS="$HOME/.local/bin/scripts"
+[[ "$PATH" == *"$SCRIPTS"* ]] || export PATH="$PATH:$SCRIPTS"
 
 [[ "$PATH" == *"$HOME/.local/bin"* ]] || export PATH="$PATH:$HOME/.local/bin"
-[[ "$PATH" == *"$SCRIPTS"* ]] || export PATH="$PATH:$SCRIPTS"
 [[ "$PATH" == *"$CARGO_HOME"/bin* ]] || export PATH="$PATH:$CARGO_HOME/bin"
-[[ "$PATH" == *'/opt/homebrew/opt/postgresql@15/bin'* ]] || export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+[[ "$PATH" == *'/opt/homebrew/opt/postgresql@15/bin'* ]] || export PATH="$PATH:/opt/homebrew/opt/postgresql@15/bin"
 
 export FZF_COMPLETION_TRIGGER=\;
 export FZF_ALT_C_COMMAND='fd --type directory --strip-cwd-prefix'

@@ -14,12 +14,6 @@ alias g='git'
 alias nv='nvim'
 alias pe='printenv'
 
-# Yarn
-wool() {
-    yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config" "$@"
-    test -f "$HOME/.yarnrc" && rm "$HOME/.yarnrc"
-}
-
 # Misc
 theme() {
     [[ "$1" ]] || return

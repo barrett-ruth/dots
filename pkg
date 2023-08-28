@@ -121,6 +121,7 @@ pango
 pcre2
 pixman
 pkg-config
+pnpm
 popt
 postgresql@15
 pygments

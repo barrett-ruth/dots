@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# TODO: cleanup/dry
+
 cfg="$HOME/Desktop/dots"
 
 cd "$cfg" || exit
@@ -11,16 +13,18 @@ linux() {
 
     test -d ~/.local/share/fonts && cp -r ~/.local/share/fonts .
 
-    for e in git nvim python rg sioyek templates tmux yarn zsh; do
+    for e in git nvim python rg sioyek templates tmux zsh; do
         cp -r "$XDG_CONFIG_HOME/$e" .
     done
     test -f "$XDG_DATA_HOME/nvim/lazy-lock.json" && cp "$XDG_DATA_HOME/nvim/lazy-lock.json" nvim
 
-    rmb config yarn
-    yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config" global list | rg --no-config -o '".*"' | sed 's/"//g' >yarn/pkg
+    rmb config
     rm -rf nvim/undo
     rmb .zshrc .zprofile .zaliases zsh
     rmb tmux.conf tmux
+
+    [ -d pnpm ] || mkdir pnpm
+    pnpm list > pnpm/pkg
 }
 
 mac() {
@@ -29,7 +33,7 @@ mac() {
 
     brew list >pkg
 
-    for e in git fd karabiner kitty npm nvim python rg sioyek templates yarn zsh; do
+    for e in git fd karabiner kitty npm nvim python rg sioyek templates zsh; do
         cp -r "$XDG_CONFIG_HOME/$e" .
     done
 
@@ -41,11 +45,13 @@ mac() {
     mkdir tmux
     cp "$XDG_CONFIG_HOME/tmux/tmux.conf" tmux
 
-    rmb config yarn
-    yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config" global list 2>/dev/null | rg --no-config -o '".*"' | sed 's/"//g' >yarn/pkg
+    rmb config
     rm -rf nvim/undo
     rmb .zshrc .zprofile .zaliases zsh
     rmb karabiner.json karabiner
+
+    [ -d pnpm ] || mkdir pnpm
+    pnpm list > pnpm/pkg
 }
 
 type brew >/dev/null && mac || linux
