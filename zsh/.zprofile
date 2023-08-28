@@ -25,6 +25,7 @@ setopt auto_cd incappendhistory extendedhistory histignorealldups
 eval "$(/opt/homebrew/bin/brew shellenv)"
 . /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 [[ "$PATH" == *'/opt/homebrew/opt/llvm/bin'* ]] || export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+[[ "$PATH" == *'/opt/homebrew/opt/python@3.11/libexec/bin'* ]] || export PATH="/opt/homebrew/opt/python@3.11/libexec/bin:$PATH"
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export LDFLAGS='-L/opt/homebrew/opt/llvm/lib'
 export CPPFLAGS='-I/opt/homebrew/opt/llvm/include'
