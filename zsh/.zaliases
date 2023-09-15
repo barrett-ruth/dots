@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 # Color aliases
-alias ls='exa'
+alias ls='eza'
 alias l='ls --color=auto --group-directories-first'
 alias ll='l -alF'
 alias la='ll -R'

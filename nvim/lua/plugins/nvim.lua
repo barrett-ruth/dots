@@ -114,17 +114,10 @@ return {
             },
         },
     },
-    -- TODO: swap back to windwp (manually remove fork)
-    { 'barrett-ruth/nvim-autopairs', config = true, event = 'InsertEnter' },
-    -- {
-    --     'barrett-ruth/guard.nvim',
-    --     config = function()
-    --         require('guard.filetype')('python'):fmt({
-    --             cmd = 'black',
-    --             args = { '-' },
-    --             stdin = true
-    --         }):lint('pylint')
-    --         require('guard').setup({ fmt_on_save = false })
-    --     end
-    -- }
+    {
+        'tzachar/highlight-undo.nvim',
+        config = true,
+        event = 'VeryLazy',
+    },
+    { 'windwp/nvim-autopairs', config = true, event = 'InsertEnter' },
 }

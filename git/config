@@ -21,7 +21,7 @@
     a = add
     b = branch
     c = commit
-    cap = "!cap() { git add . && git commit -m \"$*\" && git push; }; cap"
+    acp = "!acp() { git add . && git commit -m \"$*\" && git push; }; acp"
     cane = commit --amend --no-edit
     cf = config
     ch = checkout

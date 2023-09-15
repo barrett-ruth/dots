@@ -9,9 +9,11 @@ test -f "$file" || echo '#!/bin/sh' >"$file"
 
 nvim "$file"
 
+[ -f "$file" ] || exit
+
 if [ "$(cat "$file")" = '#!/bin/sh' ]; then
-    rm "$file"
-    exit
+  rm "$file"
+  exit
 fi
 
 test -x "$file" || chmod +x "$SCRIPTS/$(basename "$file")"

@@ -1,27 +1,27 @@
 #!/bin/sh
 
 attach_or_restore() {
-    [ "$(pgrep tmux)" ] || cmd='start\; run ~/.config/tmux/tmux-resurrect/scripts/restore.sh\; '
+  [ "$(pgrep tmux)" ] || cmd='start\; run ~/.config/tmux/tmux-resurrect/scripts/restore.sh\; '
 
-    eval "tmux $cmd"a 2>/dev/null || tmux
+  eval "tmux $cmd"a 2>/dev/null || tmux
 }
 
 [ "$1" ] || attach_or_restore
 
 case "$1" in
 bar)
-    bar="$(tmux ls -F '#S' | nl -w1 -v0 -s ':' | paste -sd '-' - | sed "s/$2/$2*/;s/-/  /g")"
-    echo "$bar"
-    ;;
+  bar="$(tmux ls -F '#S' | nl -w1 -v0 -s ':' | paste -sd '-' - | sed "s/$2/$2*/;s/-/  /g")"
+  echo "$bar"
+  ;;
 file | run)
-    [ "$(tmux lsw -F '#W' | rg "$1")" ] && tmux send -t "$1" 'C-c' \; killw -t "$1"
-    tmux neww -c '#{pane_current_path}' -n "$1" \; send 'C-l' "mux-$1 $2" 'enter'
-    ;;
+  [ "$(tmux lsw -F '#W' | rg "$1")" ] && tmux send -t "$1" 'C-c' \; killw -t "$1"
+  tmux neww -c '#{pane_current_path}' -n "$1" \; send 'C-l' "mux-$1 $2" 'enter'
+  ;;
 git)
-    [ "$(tmux lsw -F '#W' | rg git)" ] && tmux send -t git 'C-c'\; killw -t git
-    tmux neww -c '#{pane_current_path}' -n git 'nvim -c "Git|only"'
-    ;;
+  [ "$(tmux lsw -F '#W' | rg git)" ] && tmux send -t git 'C-c'\; killw -t git
+  tmux neww -c '#{pane_current_path}' -n git 'nvim -c "Git|only"'
+  ;;
 switch)
-    mux-switch "$2"
-    ;;
+  mux-switch "$2"
+  ;;
 esac

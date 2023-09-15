@@ -10,14 +10,6 @@ return {
         event = 'VeryLazy',
     },
     {
-        'pmizio/typescript-tools.nvim',
-        config = function()
-            require('typescript-tools').setup(
-                prepare_lsp_settings(require('lsp.servers.typescript'))
-            )
-        end,
-    },
-    {
         'neovim/nvim-lspconfig',
         config = function()
             require('lsp.signs')
@@ -30,6 +22,7 @@ return {
                 'cssls',
                 'emmet_ls',
                 'eslint',
+                'gopls',
                 'html',
                 'jsonls',
                 'ltex',
@@ -37,6 +30,7 @@ return {
                 'pyright',
                 'pylsp',
                 'tailwindcss',
+                'tsserver',
             }) do
                 local status, settings =
                     pcall(require, 'lsp.servers.' .. server)

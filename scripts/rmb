@@ -8,8 +8,8 @@ last="$(eval "echo \$$(echo $#)")"
 
 args="$*"
 for e in .[!.]* *; do
-    case "$args" in
-    *"$e"*) continue ;;
-    esac
-    rm -rf "$e"
+  case "$args" in
+  *"$e"*) continue ;;
+  esac
+  rm -rf "$e"
 done

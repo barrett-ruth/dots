@@ -1,10 +1,10 @@
 #!/usr/bin/env zsh
 
 # XDG
+export XDG_RUNTIME_DIR="/tmp/user/$UID"
 if [[ "$(uname -s)" == 'Darwin' ]]; then
     dir="/tmp/user/$UID"
     [[ -d "$dir" ]] || mkdir -p "$XDG_RUNTIME_DIR"
-    export XDG_RUNTIME_DIR="/tmp/user/$UID"
 fi
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
@@ -47,6 +47,8 @@ export BOTO_CONFIG="$XDG_CONFIG_HOME"/boto/config
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export GNUPGHOME="$XDG_CONFIG_HOME"/gnupg
+export GOPATH="$XDG_DATA_HOME"/go
+export GOMODCACHE="$XDG_CACHE_HOME"/go/mod
 export GRADLE_USER_HOME="$XDG_CONFIG_HOME"/gradle
 export LESSHISTFILE="$XDG_STATE_HOME"/lesshst
 export MYPY_CACHE_DIR="$XDG_CACHE_HOME"/mypy
@@ -60,15 +62,18 @@ export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export SQLITE_HISTORY="$XDG_STATE_HOME"/sqlite_history
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
-export PNPM_HOME="$XDG_DATASTATE_HOME/pnpm"
+export PNPM_HOME="$XDG_DATA_HOME/pnpm"
 [[ "$PATH" == *"$PNPM_HOME"* ]] || export PATH="$PATH:$PNPM_HOME"
+
+[[ "$PATH" == *"$HOME"/.local/bin* ]] || export PATH="$PATH:$HOME/.local/bin"
 
 export SCRIPTS="$HOME/.local/bin/scripts"
 [[ "$PATH" == *"$SCRIPTS"* ]] || export PATH="$PATH:$SCRIPTS"
 
-[[ "$PATH" == *"$HOME/.local/bin"* ]] || export PATH="$PATH:$HOME/.local/bin"
 [[ "$PATH" == *"$CARGO_HOME"/bin* ]] || export PATH="$PATH:$CARGO_HOME/bin"
 [[ "$PATH" == *'/opt/homebrew/opt/postgresql@15/bin'* ]] || export PATH="$PATH:/opt/homebrew/opt/postgresql@15/bin"
+
+[[ "$PATH" == *"$GOPATH/bin"* ]] || export PATH="$PATH:$GOPATH/bin"
 
 export FZF_COMPLETION_TRIGGER=\;
 export FZF_ALT_C_COMMAND='fd --type directory --strip-cwd-prefix'

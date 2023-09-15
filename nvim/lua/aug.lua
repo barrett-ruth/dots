@@ -51,7 +51,6 @@ au('LspAttach', {
                     vim.lsp.buf.format({
                         filter = function(c)
                             return not vim.tbl_contains({
-                                'clangd', -- clang-format
                                 'cssls', -- prettier
                                 'html', -- prettier
                                 'jsonls', -- prettier

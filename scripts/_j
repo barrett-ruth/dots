@@ -8,6 +8,7 @@ case "$1" in
     dl) cd ~/Downloads;;
     lz) cd ~/.local/share/nvim/lazy;;
     site) cd ~/Desktop/barrett-ruth.github.io;;
+    notes) cd ~/Desktop/notes;;
     scr) cd "$SCRIPTS";;
     desk) cd ~/Desktop;;
     dots) cd ~/Desktop/dots;;

@@ -7,51 +7,51 @@ cfg="$HOME/Desktop/dots"
 cd "$cfg" || exit
 
 linux() {
-    rmb .git misc wip ssh readme.md .
+  rmb .git misc wip ssh readme.md .
 
-    cp -r "$SCRIPTS" .
+  cp -r "$SCRIPTS" .
 
-    test -d ~/.local/share/fonts && cp -r ~/.local/share/fonts .
+  test -d ~/.local/share/fonts && cp -r ~/.local/share/fonts .
 
-    for e in git nvim python rg sioyek templates tmux zsh; do
-        cp -r "$XDG_CONFIG_HOME/$e" .
-    done
-    test -f "$XDG_DATA_HOME/nvim/lazy-lock.json" && cp "$XDG_DATA_HOME/nvim/lazy-lock.json" nvim
+  for e in git nvim python rg sioyek templates tmux zsh; do
+    cp -r "$XDG_CONFIG_HOME/$e" .
+  done
+  test -f "$XDG_DATA_HOME/nvim/lazy-lock.json" && cp "$XDG_DATA_HOME/nvim/lazy-lock.json" nvim
 
-    rmb config
-    rm -rf nvim/undo
-    rmb .zshrc .zprofile .zaliases zsh
-    rmb tmux.conf tmux
+  rmb config
+  rm -rf nvim/undo
+  rmb .zshrc .zprofile .zaliases zsh
+  rmb tmux.conf tmux
 
-    [ -d pnpm ] || mkdir pnpm
-    pnpm list > pnpm/pkg
+  [ -d pnpm ] || mkdir pnpm
+  pnpm list >pnpm/pkg
 }
 
 mac() {
-    rmb .git readme.md linux .
-    cp -r "$SCRIPTS" .
+  rmb .git readme.md linux .
+  cp -r "$SCRIPTS" .
 
-    brew list >pkg
+  brew list >pkg
 
-    for e in git fd karabiner kitty npm nvim python rg sioyek templates zsh; do
-        cp -r "$XDG_CONFIG_HOME/$e" .
-    done
+  for e in git fd karabiner kitty npm nvim python rg sioyek templates zsh; do
+    cp -r "$XDG_CONFIG_HOME/$e" .
+  done
 
-    test -f "$XDG_DATA_HOME/nvim/lazy-lock.json" && cp "$XDG_DATA_HOME/nvim/lazy-lock.json" nvim
-    test -f "$XDG_DATA_HOME/nvim/spell.encoding.add" && cp "$XDG_DATA_HOME/nvim/spell.encoding.add" nvim
+  test -f "$XDG_DATA_HOME/nvim/lazy-lock.json" && cp "$XDG_DATA_HOME/nvim/lazy-lock.json" nvim
+  test -f "$XDG_DATA_HOME/nvim/spell.encoding.add" && cp "$XDG_DATA_HOME/nvim/spell.encoding.add" nvim
 
-    test -f nvim/todo.txt && rm nvim/todo.txt
+  test -f nvim/todo.txt && rm nvim/todo.txt
 
-    mkdir tmux
-    cp "$XDG_CONFIG_HOME/tmux/tmux.conf" tmux
+  mkdir tmux
+  cp "$XDG_CONFIG_HOME/tmux/tmux.conf" tmux
 
-    rmb config
-    rm -rf nvim/undo
-    rmb .zshrc .zprofile .zaliases zsh
-    rmb karabiner.json karabiner
+  rmb config
+  rm -rf nvim/undo
+  rmb .zshrc .zprofile .zaliases zsh
+  rmb karabiner.json karabiner
 
-    [ -d pnpm ] || mkdir pnpm
-    pnpm list > pnpm/pkg
+  [ -d pnpm ] || mkdir pnpm
+  pnpm list >pnpm/pkg
 }
 
 type brew >/dev/null && mac || linux

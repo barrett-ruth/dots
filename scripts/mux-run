@@ -7,6 +7,9 @@ theCourseForum2)
   # docker compose up --build
   cmd='docker compose up'
   ;;
+t3)
+  cmd='pnpm run dev'
+  ;;
 esac
 
 echo " > $cmd" | sed "s|$HOME|~|g"

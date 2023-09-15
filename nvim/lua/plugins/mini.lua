@@ -29,6 +29,8 @@ return {
     {
         'echasnovski/mini.bracketed',
         opts = {
+            undo = { suffix = '' },
+            redo = { suffix = '' },
             comment = { suffix = '/' },
             oldfile = { suffix = ' ' },
         },
@@ -61,7 +63,11 @@ return {
     },
     {
         'echasnovski/mini.operators',
-        config = true,
+        opts = {
+            replace = {
+                prefix = 'gl',
+            },
+        },
         event = 'VeryLazy',
     },
 }

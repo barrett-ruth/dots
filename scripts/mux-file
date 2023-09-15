@@ -33,7 +33,7 @@ esac
 echo " > $cmd" | sed "s|$HOME|~|g"
 
 if [ "$run" ]; then
-    cmd="$cmd && $run"
+  cmd="$cmd && $run"
 fi
 
 eval "$cmd"

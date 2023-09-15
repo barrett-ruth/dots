@@ -3,7 +3,7 @@ local ts_langs = {
     'bash', 'c', 'cmake', 'comment',
     'cpp', 'css', 'diff', 'dockerfile',
     'git_rebase', 'gitattributes', 'gitignore',
-    'go', 'graphql', 'html', 'htmldjango',
+    'go', 'gomod', 'gosum', 'html', 'htmldjango',
     'http', 'java', 'javascript', 'jq',
     'json', 'json5', 'lua', 'make', 'markdown',
     'markdown_inline', 'python', 'regex',

@@ -115,6 +115,9 @@ hi('DiffAdd', { fg = cs.green }, { '@text.diff.add', 'diffAdded' })
 hi('DiffDelete', { fg = cs.red }, { '@text.diff.delete', 'diffRemoved' })
 hi('DiffChange', { fg = cs.blue })
 
+-- language-specific
+hi('@constructor.lua', { fg = cs.white })
+
 -- gitsigns.nvim
 hi('GitSignsCurrentLineBlame', { italic = true, fg = cs.light_black })
 link('DiffAdd', 'GitSignsAdd')
@@ -123,6 +126,9 @@ link('DiffDelete', 'GitSignsDelete')
 
 -- hop.nvim
 hi('HopUnmatched', { guibg = cs.bg })
+
+-- highlight-undo.nvim
+link('Search', 'HighlightUndo')
 
 -- nvim-cmp
 hi('CmpItemAbbrMatch', { fg = colors[vim.g.colors_name].green })
@@ -144,6 +150,3 @@ hi(
     { 'FzfLuaBufFlagCur' }
 )
 hi('FzfLuaBufFlagAlt', { fg = colors[vim.g.colors_name].cyan })
-
--- language-specific
-hi('@constructor.lua', { fg = cs.white })

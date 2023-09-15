@@ -51,11 +51,11 @@ null_ls.setup({
             end,
         }),
         diagnostics.selene,
-        -- diagnostics.shellcheck.with({
-        --     runtime_condition = function(_)
-        --         return not vim.fn.bufname():match('.env.*')
-        --     end,
-        -- }),
+        diagnostics.shellcheck.with({
+            runtime_condition = function(_)
+                return not vim.fn.bufname():match('.env.*')
+            end,
+        }),
         diagnostics.sqlfluff.with({
             extra_args = {
                 '--dialect',
@@ -89,12 +89,13 @@ null_ls.setup({
                 return project_contains_source('isort', true)
             end,
         }),
-        formatting.clang_format.with({
-            filetypes = { 'c', 'cpp' },
-        }),
         formatting.djhtml.with({
             extra_args = { '--tabwidth', '2' },
         }),
+        formatting.gofumpt,
+        formatting.goimports_reviser,
+        formatting.golines,
+        formatting.latexindent,
         formatting.markdownlint,
         formatting.prettierd.with({
             env = {

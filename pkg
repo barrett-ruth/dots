@@ -13,9 +13,7 @@ dav1d
 djhtml
 docker
 docker-completion
-docker-compose
 dotenv-linter
-exa
 fd
 ffmpeg
 flac
@@ -25,11 +23,13 @@ frei0r
 fribidi
 gcc
 gettext
+gh
 ghostscript
 giflib
 glib
 gmp
 gnutls
+go
 graphite2
 hadolint
 harfbuzz
@@ -109,6 +109,7 @@ neovim
 nettle
 node
 oniguruma
+openblas
 opencore-amr
 openexr
 openjdk
@@ -128,6 +129,7 @@ pygments
 python-typing-extensions
 python@3.11
 pyyaml
+r
 rav1e
 readline
 redis
@@ -148,6 +150,7 @@ sqlite
 srt
 stylua
 svt-av1
+tcl-tk
 tesseract
 theora
 tmux
