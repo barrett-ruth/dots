@@ -38,26 +38,6 @@ au('LspAttach', {
             }, { buffer = opts.buf })
         end
 
-        if client.supports_method(methods.textDocument_codeLens) then
-            map({ 'n', '\\C', vim.lsp.codelens.run })
-
-            local lens = api.nvim_create_augroup('ALens', { clear = false })
-            au('InsertEnter', {
-                group = lens,
-                buffer = opts.buf,
-                callback = function()
-                    vim.lsp.codelens.clear(nil, opts.buf)
-                end,
-            })
-            au({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
-                buffer = opts.buf,
-                callback = vim.lsp.codelens.refresh,
-                group = lens,
-            })
-
-            vim.lsp.codelens.refresh()
-        end
-
         if client.supports_method(methods.textDocument_formatting) then
             local modes = { 'n' }
 
