@@ -43,11 +43,11 @@ au('LspAttach', {
 
             local lens = api.nvim_create_augroup('ALens', { clear = false })
             au('InsertEnter', {
+                group = lens,
                 buffer = opts.buf,
                 callback = function()
                     vim.lsp.codelens.clear(nil, opts.buf)
                 end,
-                group = lens,
             })
             au({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
                 buffer = opts.buf,
@@ -69,16 +69,25 @@ au('LspAttach', {
                 modes,
                 '<leader>w',
                 function()
-                    for _, cmd in ipairs({
-                        'TSToolsFixAll',
-                        'EslintFixAll',
-                        'TSToolsAddMissingImports',
-                        'TSToolsOrganizeImports',
-                    }) do
-                        if vim.fn.exists(':' .. cmd) ~= 0 then
+                    local function run_cmd(cmd)
+                        if vim.fn.exists(':' .. cmd) then
                             vim.cmd(cmd)
                         end
                     end
+
+                    if client.name == 'eslint' then
+                        run_cmd('EslintFixAll')
+                    elseif client.name == 'typescript-tools' then
+                        for _, cmd in ipairs({
+                            'TSToolsRemovedUnused',
+                            'TSToolsFixAll',
+                            'TSToolsAddMissingImports',
+                            'TSToolsOrganizeImports',
+                        }) do
+                            run_cmd(cmd)
+                        end
+                    end
+
                     vim.lsp.buf.format({
                         filter = function(c)
                             return not vim.tbl_contains({
@@ -86,7 +95,7 @@ au('LspAttach', {
                                 'html', -- prettier
                                 'jsonls', -- prettier
                                 'pylsp', -- black/autopep8
-                                'tsserver', -- prettier
+                                'typescript-tools', -- prettier
                             }, c.name)
                         end,
                     })

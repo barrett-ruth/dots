@@ -17,6 +17,7 @@ return {
         )
     end,
     settings = {
+        complete_function_calls = true,
         expose_as_code_action = 'all',
         tsserver_file_preferences = {
             includeInlayParameterNameHints = 'all',
@@ -37,31 +38,27 @@ return {
             config
         )
             local ok, format_ts = pcall(require, 'format-ts-errors')
+            local filtered = {}
 
-            if ok then
-                -- ignore some tsserver diagnostics
-                local idx = 1
-                while idx <= #result.diagnostics do
-                    local entry = result.diagnostics[idx]
-
-                    local formatter = format_ts[entry.code]
-                    entry.message = formatter and formatter(entry.message)
-                        or entry.message
-
-                    -- codes: https://github.com/microsoft/TypeScript/blob/main/src/compiler/diagnosticMessages.json
-                    if
-                        vim.tbl_contains({
-                            80001, -- "File is a CommonJS module; it may be converted to an ES module."
-                            80006, -- "This may be converted to an async function."
-                        }, entry.code)
-                    then
-                        table.remove(result.diagnostics, idx)
-                    else
-                        idx = idx + 1
+            for _, diagnostic in ipairs(result.diagnostics) do
+                if
+                    not vim.tbl_contains({
+                        80001, -- "File is a CommonJS module; it may be converted to an ES module."
+                        80006, -- "This may be converted to an async function."
+                    }, diagnostic.code)
+                then
+                    if ok then
+                        local formatter = format_ts[diagnostic.code]
+                        diagnostic.message = formatter
+                                and formatter(diagnostic.message)
+                            or diagnostic.message
                     end
+
+                    filtered[#filtered + 1] = diagnostic
                 end
             end
 
+            result.diagnostics = filtered
             lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
         end,
     },

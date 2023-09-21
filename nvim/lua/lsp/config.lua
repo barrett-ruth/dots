@@ -1,12 +1,12 @@
-local lsp = vim.lsp
+local handlers = vim.lsp.handlers
 
-lsp.handlers[lsp.protocol.Methods.textDocument_hover] =
-    lsp.with(lsp.handlers.hover, {
+handlers[vim.lsp.protocol.Methods.textDocument_hover] =
+    vim.lsp.with(handlers.hover, {
         border = 'single',
     })
 
-lsp.handlers[lsp.protocol.Methods.textDocument_signatureHelp] =
-    lsp.with(lsp.handlers.signature_help, {
+handlers[vim.lsp.protocol.Methods.textDocument_signatureHelp] =
+    vim.lsp.with(handlers.signature_help, {
         border = 'single',
         focusable = false,
     })
