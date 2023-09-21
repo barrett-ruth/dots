@@ -8,7 +8,7 @@ local function stop_hl()
     end
 
     local keycode =
-        api.nvim_replace_termcodes('<Cmd>nohl<CR>', true, false, true)
+        api.nvim_replace_termcodes('<cmd>nohl<cr>', true, false, true)
 
     api.nvim_feedkeys(keycode, 'n', false)
 end

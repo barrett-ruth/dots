@@ -38,7 +38,7 @@ __set_git() {
       br="${sb##* }"
   fi
 
-  PS1+="%F{magenta}$dirty$br$us$up_down "
+  PS1+="%F{magenta}$dirty$br$us$up_down%f "
 }
 
 __set_venv() {
@@ -72,11 +72,3 @@ precmd() {
     __set_venv
     __set_beam_cursor
 }
-
-# pnpm
-export PNPM_HOME="/Users/barrett/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end

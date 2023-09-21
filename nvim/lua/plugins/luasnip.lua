@@ -24,7 +24,10 @@ return {
         ls.filetype_extend('htmldjango', { 'html' })
         ls.filetype_extend('javascriptreact', { 'javascript', 'html' })
         ls.filetype_extend('typescript', { 'javascript' })
-        ls.filetype_extend('typescriptreact', { 'javascriptreact' })
+        ls.filetype_extend(
+            'typescriptreact',
+            { 'javascriptreact', 'javascript', 'html' }
+        )
 
         require('luasnip.loaders.from_lua').lazy_load({
             paths = '~/.config/nvim/lua/snippets',

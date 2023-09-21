@@ -10,10 +10,7 @@ local function assign_args(args)
     for e in arg:gmatch(' ?([^,]*)') do
         if e:len() > 0 and not e:match(']') then
             local var = e:gsub(':.*', '')
-            table.insert(
-                out,
-                t({ '', ('\t\tself.%s = %s'):format(var, var) })
-            )
+            out[#out + 1] = t({ '', ('\t\tself.%s = %s'):format(var, var) })
         end
     end
 

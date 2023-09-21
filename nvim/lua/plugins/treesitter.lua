@@ -85,13 +85,16 @@ return {
             'nvim-lua/plenary.nvim',
         },
         ft = ts_langs,
-        keys = { { '<leader>i', '<cmd>Inspect<cr>' } },
+        keys = { { '<leader>i', vim.cmd.Inspect } },
         opts = {
             ensure_installed = ts_langs,
-            highlight = { enable = true },
             context_commentstring = {
                 enable = true,
                 enable_autocmd = false,
+            },
+            highlight = {
+                additional_vim_regex_highlighting = true,
+                enable = true,
             },
             textobjects = {
                 move = {
@@ -151,13 +154,26 @@ return {
         keys = {
             {
                 '<leader>t',
-                '<cmd>TSPlaygroundToggle<cr>',
+                vim.cmd.TSPlaygroundToggle
             },
         },
     },
     {
-        'windwp/nvim-ts-autotag',
+        'razak17/tailwind-fold.nvim',
         config = true,
+        dependencies = 'nvim-treesitter/nvim-treesitter',
+        ft = {
+            'javascript',
+            'javascriptreact',
+            'typescript',
+            'typescriptreact',
+        },
+    },
+    {
+        'windwp/nvim-ts-autotag',
+        opts = {
+            enable_close_on_slash = false,
+        },
         dependencies = 'nvim-treesitter/nvim-treesitter',
     },
 }

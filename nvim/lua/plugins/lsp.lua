@@ -1,7 +1,17 @@
 local prepare_lsp_settings = require('lsp.utils').prepare_lsp_settings
 
 return {
-    { 'folke/neodev.nvim', ft = { 'lua' } },
+    {
+        'davidosomething/format-ts-errors.nvim',
+        dependencies = 'neovim/nvim-lspconfig',
+        ft = {
+            'javascript',
+            'javascriptreact',
+            'typescript',
+            'typescriptreact',
+        },
+    },
+    { 'folke/neodev.nvim', ft = 'lua' },
     {
         'jose-elias-alvarez/null-ls.nvim',
         config = function()
@@ -12,7 +22,7 @@ return {
     {
         'neovim/nvim-lspconfig',
         config = function()
-            require('lsp.signs')
+            require('lsp.config')
 
             local lspconfig = require('lspconfig')
 
@@ -30,7 +40,6 @@ return {
                 'pyright',
                 'pylsp',
                 'tailwindcss',
-                'tsserver',
             }) do
                 local status, settings =
                     pcall(require, 'lsp.servers.' .. server)
@@ -85,5 +94,16 @@ return {
                 },
             },
         },
+    },
+    {
+        'pmizio/typescript-tools.nvim',
+        dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+        event = {
+            'BufReadPre *.js,*.jsx,*.ts,*.tsx',
+            'BufNewFile *.js,*.jsx,*.ts,*.tsx',
+        },
+        opts = function()
+            return require('lsp.servers.typescript')
+        end,
     },
 }

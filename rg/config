@@ -6,4 +6,5 @@
 --no-heading
 --smart-case
 --follow
+--glob=!*lock*.json
 --ignore-file=/Users/barrett/.config/git/ignore

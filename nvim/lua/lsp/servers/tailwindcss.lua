@@ -1,6 +1,8 @@
 return {
     filetypes = {
+        'javascript',
         'javascriptreact',
+        'typescript',
         'typescriptreact',
     },
     root_dir = require('lspconfig.util').root_pattern(

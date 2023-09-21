@@ -30,7 +30,8 @@ export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export LDFLAGS='-L/opt/homebrew/opt/llvm/lib'
 export CPPFLAGS='-I/opt/homebrew/opt/llvm/include'
 
-export BROWSER='/Applications/Google Chrome.app'
+export BROWSER='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
+export GH_BROWSER="$BROWSER"
 export EDITOR='nvim'
 export MANPAGER='nvim +Man!'
 

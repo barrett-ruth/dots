@@ -2,7 +2,16 @@ return {
     {
         'lervag/vimtex',
         ft = 'tex',
-        keys = { { '<leader>v', '<cmd>VimtexCompile<cr>' } },
+        keys = { { '<leader>v', vim.cmd.VimtexCompile } },
+    },
+    {
+        'maxmellon/vim-jsx-pretty',
+        ft = {
+            'javascript',
+            'javascriptreact',
+            'typescript',
+            'typescriptreact',
+        },
     },
     { 'tpope/vim-abolish', event = 'VeryLazy' },
     { 'tpope/vim-dadbod', event = 'VeryLazy' },

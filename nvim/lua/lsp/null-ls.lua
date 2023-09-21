@@ -22,9 +22,7 @@ null_ls.setup({
         code_actions.gitsigns,
         code_actions.shellcheck,
 
-        diagnostics.curlylint.with({
-            extra_filetypes = { 'html' },
-        }),
+        diagnostics.curlylint.with({ extra_filetypes = { 'html' } }),
         diagnostics.dotenv_linter.with({
             extra_args = {
                 '--skip',

@@ -24,7 +24,7 @@ return {
             vim.g.mkdp_page_title = '${name}'
             vim.g.mkdp_theme = 'light'
         end,
-        keys = { { '<leader>m', '<cmd>MarkdownPreviewToggle<cr>' } },
+        keys = { { '<leader>m', vim.cmd.MarkdownPreviewToggle } },
     },
     {
         'm4xshen/smartcolumn.nvim',
@@ -97,13 +97,13 @@ return {
     {
         'phaazon/hop.nvim',
         config = true,
-        keys = { { '<leader>h', '<cmd>HopChar2<cr>' } },
+        keys = { { '<leader>h', vim.cmd.HopChar2 } },
     },
     {
         'stevearc/oil.nvim',
         keys = {
             { '-', '<cmd>e .<cr>' },
-            { '_', '<cmd>Oil<cr>' },
+            { '_', vim.cmd.Oil },
         },
         lazy = false,
         opts = {

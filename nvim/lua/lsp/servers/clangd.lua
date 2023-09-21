@@ -10,6 +10,6 @@ return {
         '--header-insertion-decorators=false',
     },
     on_attach = function()
-        bmap({ 'n', '\\h', '<cmd>ClangdSwitchSourceHeader<cr>' })
+        bmap({ 'n', '\\h', vim.cmd.ClangdSwitchSourceHeader })
     end,
 }

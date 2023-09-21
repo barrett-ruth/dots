@@ -5,12 +5,12 @@ local send_to_ll = function(selected, opts)
     for i = 1, #selected do
         local file = require('fzf-lua.path').entry_to_file(selected[i], opts)
         local text = selected[i]:match(':%d+:%d?%d?%d?%d?:?(.*)$')
-        table.insert(ll, {
+        ll[#ll + 1] = {
             filename = file.path,
             lnum = file.line,
             col = file.col,
             text = text,
-        })
+        }
     end
 
     vim.fn.setloclist(0, ll)

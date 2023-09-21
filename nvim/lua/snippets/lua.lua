@@ -18,7 +18,7 @@ local function extract_vars(args)
                 var = var:match("'([^)]+)'")
             end
 
-            table.insert(vars, var)
+            vars[#vars + 1] = var
         end
     end
 

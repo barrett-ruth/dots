@@ -15,7 +15,7 @@ function M.format_components(components)
         local component = components[i]
 
         if vorfn(component.condition) ~= false then
-            table.insert(side, vorfn(component.value))
+            side[#side + 1] = vorfn(component.value)
         end
     end
 
