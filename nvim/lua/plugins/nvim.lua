@@ -1,3 +1,6 @@
+local colors = require('colors')
+local cs = colors[vim.g.colors_name]
+
 return {
     {
         'axelvc/template-string.nvim',
@@ -97,7 +100,7 @@ return {
     {
         'phaazon/hop.nvim',
         config = true,
-        keys = { { '<leader>h', vim.cmd.HopChar2 } },
+        keys = { { 'H', vim.cmd.HopChar2 } },
     },
     {
         'stevearc/oil.nvim',

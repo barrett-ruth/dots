@@ -1,4 +1,11 @@
 return {
+    settings = {
+        css = {
+            lint = {
+                unknownAtRules = 'ignore',
+            },
+        },
+    },
     capabilities = {
         textDocument = {
             completion = {

@@ -4,7 +4,7 @@ local aug = vim.api.nvim_create_augroup('AProjects', {})
 
 M.projects = {
     theCourseForum2 = {
-        lsp_sources = { 'autopep8' },
+        lsp_sources = { 'autopep8', 'isort' },
     },
     ['import-cost.nvim'] = {
         setup = function()

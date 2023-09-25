@@ -1,18 +1,46 @@
 local M = {}
 
-function M.on_attach()
+local methods = vim.lsp.protocol.Methods
+
+function M.on_attach(client, bufnr)
     local diagnostic, buf = vim.diagnostic, vim.lsp.buf
 
-    bmap({ { 'n', 'x' }, '\\c', buf.code_action })
-    bmap({ 'n', '\\f', diagnostic.open_float })
-    bmap({ 'n', 'K', buf.hover })
-    bmap({ 'n', 'gD', buf.declaration })
-    bmap({ 'n', 'gr', require('lsp.rename').rename })
+    local mappings = {
+        [methods.textDocument_codeAction] = {
+            { 'n', 'x' },
+            '\\c',
+            buf.code_action,
+        },
+        [methods.textDocument_declaration] = { 'n', 'gD', buf.declaration },
+        [methods.textDocument_hover] = { 'n', 'K', buf.hover },
+        [methods.textDocument_inlayHint] = {
+            'n',
+            '\\i',
+            function()
+                vim.lsp.inlay_hint(bufnr)
+            end,
+        },
+        [methods.textDocument_rename] = {
+            'n',
+            'gr',
+            require('lsp.rename').rename,
+        },
+        [methods.textDocument_signatureHelp] = {
+            'i',
+            '<c-space>',
+            buf.signature_help,
+        },
+    }
 
+    for method, mapping in pairs(mappings) do
+        if client.supports_method(method) then
+            bmap(mapping)
+        end
+    end
+
+    bmap({ 'n', '\\f', diagnostic.open_float })
     bmap({ 'n', ']\\', diagnostic.goto_next })
     bmap({ 'n', '[\\', diagnostic.goto_prev })
-
-    bmap({ 'i', '<c-space>', buf.signature_help })
 end
 
 function M.prepare_lsp_settings(user_settings)
@@ -32,7 +60,7 @@ function M.prepare_lsp_settings(user_settings)
             user_settings.on_attach(...)
         end
 
-        M.on_attach()
+        M.on_attach(...)
     end
 
     return settings

@@ -154,7 +154,7 @@ return {
         keys = {
             {
                 '<leader>t',
-                vim.cmd.TSPlaygroundToggle
+                vim.cmd.TSPlaygroundToggle,
             },
         },
     },
@@ -170,10 +170,17 @@ return {
         },
     },
     {
-        'windwp/nvim-ts-autotag',
-        opts = {
-            enable_close_on_slash = false,
+        'laytan/tailwind-sorter.nvim',
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter',
+            'nvim-lua/plenary.nvim',
         },
+        build = 'cd formatter && pnpm i && pnpm run build',
+        config = true,
+    },
+    {
+        'gungun974/nvim-ts-autotag',
+        config = true,
         dependencies = 'nvim-treesitter/nvim-treesitter',
     },
 }

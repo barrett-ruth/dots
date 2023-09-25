@@ -1,6 +1,5 @@
 local api = vim.api
 local au = api.nvim_create_autocmd
-local methods = vim.lsp.protocol.Methods
 
 local aug = api.nvim_create_augroup('AAugs', {})
 
@@ -24,9 +23,27 @@ au('BufReadPost', {
     group = aug,
 })
 
+au({ 'BufRead', 'BufNewFile' }, {
+    pattern = '*/templates/*.html',
+    callback = function(opts)
+        vim.api.nvim_set_option_value(
+            'filetype',
+            'htmldjango',
+            { buf = opts.buf }
+        )
+    end,
+    group = aug,
+})
+
+local methods = vim.lsp.protocol.Methods
+
 au('LspAttach', {
     callback = function(opts)
         local client = vim.lsp.get_client_by_id(opts.data.client_id)
+
+        if not client then
+            return
+        end
 
         if client.supports_method(methods.textDocument_inlayHint) then
             bmap({
@@ -49,25 +66,6 @@ au('LspAttach', {
                 modes,
                 '<leader>w',
                 function()
-                    local function run_cmd(cmd)
-                        if vim.fn.exists(':' .. cmd) then
-                            vim.cmd(cmd)
-                        end
-                    end
-
-                    if client.name == 'eslint' then
-                        run_cmd('EslintFixAll')
-                    elseif client.name == 'typescript-tools' then
-                        for _, cmd in ipairs({
-                            'TSToolsRemovedUnused',
-                            'TSToolsFixAll',
-                            'TSToolsAddMissingImports',
-                            'TSToolsOrganizeImports',
-                        }) do
-                            run_cmd(cmd)
-                        end
-                    end
-
                     vim.lsp.buf.format({
                         filter = function(c)
                             return not vim.tbl_contains({
@@ -80,20 +78,20 @@ au('LspAttach', {
                         end,
                     })
                     vim.cmd.w()
+
+                    for _, cmd in ipairs({
+                        'TailwindSort',
+                        'TSToolsOrganizeImports',
+                        'TSToolsAddMissingImports',
+                        'TSToolsRemoveUnused',
+                        'EslintFixAll'
+                    }) do
+                        if vim.fn.exists(':' .. cmd) ~= 0 then
+                            vim.cmd(cmd)
+                        end
+                    end
                 end,
             }, { buffer = opts.buf, silent = false })
         end
     end,
-})
-
-au({ 'BufRead', 'BufNewFile' }, {
-    pattern = '*/templates/*.html',
-    callback = function(opts)
-        vim.api.nvim_set_option_value(
-            'filetype',
-            'htmldjango',
-            { buf = opts.buf }
-        )
-    end,
-    group = aug,
 })

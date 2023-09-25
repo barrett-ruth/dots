@@ -124,9 +124,6 @@ link('DiffAdd', 'GitSignsAdd')
 link('DiffChange', 'GitSignsChange')
 link('DiffDelete', 'GitSignsDelete')
 
--- hop.nvim
-hi('HopUnmatched', { guibg = cs.bg })
-
 -- highlight-undo.nvim
 link('Search', 'HighlightUndo')
 
