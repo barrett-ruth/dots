@@ -83,11 +83,11 @@ au('LspAttach', {
                         'TailwindSort',
                         'TSToolsOrganizeImports',
                         'TSToolsAddMissingImports',
-                        'TSToolsRemoveUnused',
-                        'EslintFixAll'
+                        'TSToolsFixAll',
+                        'EslintFixAll',
                     }) do
                         if vim.fn.exists(':' .. cmd) ~= 0 then
-                            vim.cmd(cmd)
+                            vim.fn.execute(cmd)
                         end
                     end
                 end,
