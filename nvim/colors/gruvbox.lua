@@ -128,10 +128,52 @@ link('DiffDelete', 'GitSignsDelete')
 link('Search', 'HighlightUndo')
 
 -- nvim-cmp
-hi('CmpItemAbbrMatch', { fg = colors[vim.g.colors_name].green })
+hi('CmpItemAbbrMatch', { fg = cs.green })
+
+-- sainnhe/gruvbox-material
+for hlgroup, color in pairs({
+    [''] = 'yellow',
+    Key = 'red',
+    Enum = 'yellow',
+    File = 'green',
+    Null = 'cyan',
+    Text = 'white',
+    Unit = 'magenta',
+    Array = 'cyan',
+    Class = 'red',
+    Color = 'cyan',
+    Event = 'orange',
+    Field = 'green',
+    Value = 'magenta',
+    Folder = 'cyan',
+    Method = 'green',
+    Module = 'magenta',
+    Number = 'cyan',
+    Object = 'cyan',
+    String = 'cyan',
+    Struct = 'yellow',
+    Boolean = 'cyan',
+    Default = 'cyan',
+    Keyword = 'red',
+    Package = 'magenta',
+    Snippet = 'cyan',
+    Constant = 'blue',
+    Function = 'green',
+    Operator = 'orange',
+    Property = 'blue',
+    Variable = 'blue',
+    Interface = 'yellow',
+    Namespace = 'magenta',
+    Reference = 'cyan',
+    EnumMember = 'magenta',
+    Constructor = 'green',
+    TypeParameter = 'yellow',
+}) do
+    hi('CmpItemKind' .. hlgroup, { fg = cs[color] })
+end
 
 -- nvim-ufo
-hi('UfoFoldedEllipsis', { fg = colors[vim.g.colors_name].dark_grey })
+hi('UfoFoldedEllipsis', { fg = cs.dark_grey })
 
 -- null-ls
 link('NormalFloat', 'NullLsInfoBorder')
@@ -141,9 +183,5 @@ link('Directory', 'OilDir')
 
 -- fzf-lua
 link('NormalFloat', 'FzfLuaBorder')
-hi(
-    'FzfLuaHeaderText',
-    { fg = colors[vim.g.colors_name].red },
-    { 'FzfLuaBufFlagCur' }
-)
-hi('FzfLuaBufFlagAlt', { fg = colors[vim.g.colors_name].cyan })
+hi('FzfLuaHeaderText', { fg = cs.red }, { 'FzfLuaBufFlagCur' })
+hi('FzfLuaBufFlagAlt', { fg = cs.cyan })

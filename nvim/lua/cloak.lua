@@ -12,7 +12,10 @@ end
 local function cloak(cloak_pattern)
     uncloak()
 
-    require('cmp').setup.buffer({ enabled = false })
+    local ok, cmp = pcall(require, 'cmp')
+    if ok then
+        cmp.setup.buffer({ enabled = false })
+    end
 
     local found_pattern = false
     local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)

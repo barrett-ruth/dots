@@ -37,6 +37,33 @@ au({ 'BufRead', 'BufNewFile' }, {
 
 local methods = vim.lsp.protocol.Methods
 
+local function format()
+    vim.lsp.buf.format({
+        filter = function(c)
+            return not vim.tbl_contains({
+                'cssls', -- prettier
+                'html', -- prettier
+                'jsonls', -- prettier
+                'pylsp', -- black/autopep8
+                'typescript-tools', -- prettier
+            }, c.name)
+        end,
+    })
+    vim.cmd.w()
+
+    for _, cmd in ipairs({
+        'TailwindSort',
+        'TSToolsOrganizeImports',
+        'TSToolsAddMissingImports',
+        'TSToolsFixAll',
+        'EslintFixAll',
+    }) do
+        if vim.fn.exists(':' .. cmd) ~= 0 then
+            vim.fn.execute(cmd)
+        end
+    end
+end
+
 au('LspAttach', {
     callback = function(opts)
         local client = vim.lsp.get_client_by_id(opts.data.client_id)
@@ -65,33 +92,18 @@ au('LspAttach', {
             bmap({
                 modes,
                 '<leader>w',
-                function()
-                    vim.lsp.buf.format({
-                        filter = function(c)
-                            return not vim.tbl_contains({
-                                'cssls', -- prettier
-                                'html', -- prettier
-                                'jsonls', -- prettier
-                                'pylsp', -- black/autopep8
-                                'typescript-tools', -- prettier
-                            }, c.name)
-                        end,
-                    })
-                    vim.cmd.w()
-
-                    for _, cmd in ipairs({
-                        'TailwindSort',
-                        'TSToolsOrganizeImports',
-                        'TSToolsAddMissingImports',
-                        'TSToolsFixAll',
-                        'EslintFixAll',
-                    }) do
-                        if vim.fn.exists(':' .. cmd) ~= 0 then
-                            vim.fn.execute(cmd)
-                        end
-                    end
-                end,
+                format,
             }, { buffer = opts.buf, silent = false })
+            bmap({
+                'i',
+                '<c-a>',
+                function()
+                    vim.api.nvim_input('<esc>')
+                    format()
+                end,
+                { buffer = opts.buf, silent = false },
+            })
         end
     end,
+    group = aug,
 })
