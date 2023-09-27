@@ -39,7 +39,7 @@ return {
                 }, {
                     { name = 'buffer' },
                 }),
-                mapping = {
+                mapping = cmp.mapping.preset.insert({
                     ['<c-y>'] = mapping.confirm({ select = true }),
                     ['<c-b>'] = mapping.scroll_docs(-4),
                     ['<c-f>'] = mapping.scroll_docs(4),
@@ -56,7 +56,7 @@ return {
                         cmp.select_next_item()
                         cmp.confirm()
                     end,
-                },
+                }),
             })
 
             cmp.setup(opts)

@@ -30,7 +30,6 @@ return {
                 'clangd',
                 'cssmodules_ls',
                 'cssls',
-                'emmet_ls',
                 'eslint',
                 'gopls',
                 'html',

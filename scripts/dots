@@ -24,7 +24,7 @@ linux() {
   rmb tmux.conf tmux
 
   [ -d pnpm ] || mkdir pnpm
-  pnpm list >pnpm/pkg
+  pnpm -g list >pnpm/pkg
 }
 
 mac() {

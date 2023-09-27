@@ -5,7 +5,7 @@ return {
             local gitsigns = require('gitsigns')
             gitsigns.setup(opts)
 
-            map({ 'n', '<leader>gl', gitsigns.toggle_current_line_blame })
+            map({ 'n', '<leader>gb', gitsigns.toggle_current_line_blame })
             map({ 'n', '<leader>gp', gitsigns.preview_hunk })
             map({ 'n', '<leader>gs', gitsigns.stage_hunk })
             map({ 'n', '<leader>gS', gitsigns.undo_stage_hunk })
@@ -28,11 +28,11 @@ return {
         dependencies = 'nvim-lua/plenary.nvim',
         keys = {
             {
-                '<leader>gL',
+                '<leader>gl',
                 '<cmd>lua require("gitlinker").get_buf_range_url("n")<cr>',
             },
             {
-                '<leader>gL',
+                '<leader>gl',
                 '<cmd>lua require("gitlinker").get_buf_range_url("v")<cr>',
                 mode = 'x',
             },
