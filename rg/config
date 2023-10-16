@@ -6,5 +6,5 @@
 --no-heading
 --smart-case
 --follow
---glob=!*lock*.json
+--glob=!{pnpm-lock.yaml,package-lock.json}
 --ignore-file=/Users/barrett/.config/git/ignore

@@ -35,14 +35,7 @@ map({ 'n', ';', ':' }, { silent = false })
 map({ 'x', ':', ';' }, { silent = false })
 map({ 'x', ';', ':' }, { silent = false })
 
-map({
-    { 'i', 'c' },
-    '<c-a>',
-    function()
-        vim.api.nvim_input('<esc>')
-        vim.cmd.w()
-    end,
-})
+map({ { 'i', 'c' }, '<c-a>', '<esc>' })
 
 map({
     'n',

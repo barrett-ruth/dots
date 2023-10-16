@@ -53,7 +53,7 @@ function M.prepare_lsp_settings(user_settings)
 
     settings.flags = { debounce_text_changes = 0 }
 
-    settings = vim.tbl_extend('force', settings, user_settings)
+    settings = vim.tbl_extend('force', settings, user_settings or {})
 
     settings.on_attach = function(...)
         if user_settings.on_attach then

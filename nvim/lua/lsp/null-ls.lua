@@ -36,10 +36,12 @@ null_ls.setup({
             end,
         }),
         diagnostics.gitlint.with({
+            diagnostic_config = { update_in_insert = true },
             extra_args = { '--ignore', 'body-is-missing' },
         }),
         diagnostics.hadolint,
         diagnostics.markdownlint.with({
+            diagnostic_config = { update_in_insert = true },
             diagnostics_format = '#{m}',
         }),
         diagnostics.mypy.with({

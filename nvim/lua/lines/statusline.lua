@@ -2,7 +2,7 @@ local utils = require('utils')
 
 local file = {
     value = function()
-        return vim.fn.expand('%:~:.')
+        return vim.fn.bufname(vim.api.nvim_get_current_buf())
     end,
 }
 
@@ -54,7 +54,10 @@ local search = {
 
 local filetype = {
     value = function()
-        local ft = vim.bo.filetype
+        local ft = vim.api.nvim_buf_get_option(
+            vim.api.nvim_get_current_buf(),
+            'filetype'
+        )
 
         if utils.empty(ft) then
             ft = vim.bo.buftype
@@ -63,8 +66,12 @@ local filetype = {
         return ft
     end,
     condition = function()
-        return not utils.empty(vim.bo.filetype)
-            or not utils.empty(vim.bo.buftype)
+        local ft = vim.api.nvim_buf_get_option(
+            vim.api.nvim_get_current_buf(),
+            'filetype'
+        )
+
+        return not utils.empty(ft) or not utils.empty(vim.bo.buftype)
     end,
 }
 

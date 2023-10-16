@@ -1,6 +1,9 @@
 return {
     {
         'lervag/vimtex',
+        config = function()
+            vim.g.vimtex_quickfix_ignore_filters = { 'Overfull \\\\hbox' }
+        end,
         ft = 'tex',
         keys = { { '<leader>v', vim.cmd.VimtexCompile } },
     },

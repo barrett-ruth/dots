@@ -2,23 +2,15 @@ local lsp = vim.lsp
 
 return {
     on_attach = function(_, bufnr)
-        bmap({
-            'n',
-            '\\ti',
-            function()
-                vim.cmd.TSToolsAddMissingImports()
-                vim.cmd.TSToolsOrganizeImports()
-            end,
-        }, { buffer = bufnr })
-        bmap({ 'n', '\\tf', vim.cmd.TSToolsFixAll }, { buffer = bufnr })
         bmap(
             { 'n', 'gD', vim.cmd.TSToolsGoToSourceDefinition },
             { buffer = bufnr }
         )
     end,
     settings = {
-        complete_function_calls = true,
         expose_as_code_action = 'all',
+        tsserver_path = vim.env.XDG_DATA_HOME
+            .. '/pnpm/global/5/node_modules/typescript/lib/tsserver.js',
         tsserver_file_preferences = {
             includeInlayParameterNameHints = 'all',
             includeInlayParameterNameHintsWhenArgumentMatchesName = false,

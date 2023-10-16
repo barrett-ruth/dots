@@ -158,29 +158,4 @@ return {
             },
         },
     },
-    {
-        'razak17/tailwind-fold.nvim',
-        config = true,
-        dependencies = 'nvim-treesitter/nvim-treesitter',
-        ft = {
-            'javascript',
-            'javascriptreact',
-            'typescript',
-            'typescriptreact',
-        },
-    },
-    {
-        'laytan/tailwind-sorter.nvim',
-        dependencies = {
-            'nvim-treesitter/nvim-treesitter',
-            'nvim-lua/plenary.nvim',
-        },
-        build = 'cd formatter && pnpm i && pnpm run build',
-        config = true,
-    },
-    {
-        'gungun974/nvim-ts-autotag',
-        config = true,
-        dependencies = 'nvim-treesitter/nvim-treesitter',
-    },
 }

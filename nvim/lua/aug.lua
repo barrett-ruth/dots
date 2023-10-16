@@ -52,9 +52,8 @@ local function format()
     vim.cmd.w()
 
     for _, cmd in ipairs({
-        'TailwindSort',
-        'TSToolsOrganizeImports',
         'TSToolsAddMissingImports',
+        'TSToolsOrganizeImports',
         'TSToolsFixAll',
         'EslintFixAll',
     }) do
@@ -94,15 +93,6 @@ au('LspAttach', {
                 '<leader>w',
                 format,
             }, { buffer = opts.buf, silent = false })
-            bmap({
-                'i',
-                '<c-a>',
-                function()
-                    vim.api.nvim_input('<esc>')
-                    format()
-                end,
-                { buffer = opts.buf, silent = false },
-            })
         end
     end,
     group = aug,

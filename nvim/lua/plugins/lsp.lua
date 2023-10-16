@@ -111,7 +111,7 @@ return {
             'BufNewFile *.js,*.jsx,*.ts,*.tsx',
         },
         opts = function()
-            return require('lsp.servers.typescript')
+            return prepare_lsp_settings(require('lsp.servers.typescript'))
         end,
     },
 }

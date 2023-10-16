@@ -70,4 +70,9 @@ return {
         },
         event = 'VeryLazy',
     },
+    {
+        'echasnovski/mini.pairs',
+        config = true,
+        event = 'InsertEnter',
+    },
 }

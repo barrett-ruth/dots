@@ -1,6 +1,3 @@
-local colors = require('colors')
-local cs = colors[vim.g.colors_name]
-
 return {
     {
         'axelvc/template-string.nvim',
@@ -40,6 +37,7 @@ return {
                 'log',
                 'lspinfo',
                 'markdown',
+                'man',
                 'NvimTree',
                 'text',
             },
@@ -68,14 +66,64 @@ return {
                 },
             })
 
-            map({ 'n', '<c-a>', require('dial.map').inc_normal() })
-            map({ 'n', '<c-x>', require('dial.map').dec_normal() })
-            map({ 'n', 'g<c-a>', require('dial.map').inc_gnormal() })
-            map({ 'n', 'g<c-x>', require('dial.map').dec_gnormal() })
-            map({ 'x', '<c-a>', require('dial.map').inc_visual() })
-            map({ 'x', '<c-x>', require('dial.map').dec_visual() })
-            map({ 'x', 'g<c-a>', require('dial.map').inc_gvisual() })
-            map({ 'x', 'g<c-x>', require('dial.map').dec_gvisual() })
+            local dmap = require('dial.map')
+
+            map({
+                'n',
+                '<c-a>',
+                function()
+                    dmap.manipulate('increment', 'normal')
+                end,
+            })
+            map({
+                'n',
+                '<c-x>',
+                function()
+                    dmap.manipulate('decrement', 'normal')
+                end,
+            })
+            map({
+                'n',
+                'g<c-a>',
+                function()
+                    dmap.manipulate('increment', 'gnormal')
+                end,
+            })
+            map({
+                'n',
+                'g<c-x>',
+                function()
+                    dmap.manipulate('decrement', 'gnormal')
+                end,
+            })
+            map({
+                'x',
+                '<c-a>',
+                function()
+                    dmap.manipulate('increment', 'visual')
+                end,
+            })
+            map({
+                'x',
+                '<c-x>',
+                function()
+                    dmap.manipulate('decrement', 'visual')
+                end,
+            })
+            map({
+                'x',
+                'g<c-a>',
+                function()
+                    dmap.manipulate('increment', 'gvisual')
+                end,
+            })
+            map({
+                'x',
+                'g<c-x>',
+                function()
+                    dmap.manipulate('decrement', 'gvisual')
+                end,
+            })
         end,
     },
     {
@@ -123,5 +171,16 @@ return {
         config = true,
         event = 'VeryLazy',
     },
-    { 'windwp/nvim-autopairs', config = true, event = 'InsertEnter' },
+    {
+        'nvimdev/guard.nvim',
+        config = function()
+            require('guard.filetype')('javascript'):fmt({
+                cmd = 'prettierd',
+                fname = true,
+                stdin = true,
+            })
+            require('guard').setup()
+        end,
+        dependencies = { 'nvimdev/guard-collection' },
+    },
 }

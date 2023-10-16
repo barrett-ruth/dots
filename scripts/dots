@@ -51,7 +51,7 @@ mac() {
   rmb karabiner.json karabiner
 
   [ -d pnpm ] || mkdir pnpm
-  pnpm list >pnpm/pkg
+  pnpm -g list >pnpm/pkg
 }
 
 type brew >/dev/null && mac || linux

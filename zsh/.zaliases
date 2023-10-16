@@ -9,17 +9,11 @@ alias lss='less --use-color --color=d+b --color=P+c --color=u+g'
 
 # Basic programs
 alias dk='docker'
-alias dv='deactivate'
 alias g='git'
 alias nv='nvim'
 alias pe='printenv'
 
 # Misc
-theme() {
-    [[ "$1" ]] || return
-    sed -i '' "s|THEME=.*|THEME=$1|" ~/.config/zsh/.zprofile
-    sed -i '' "s|themes/.*.conf|themes/$1.conf|" ~/.config/kitty/kitty.conf
-}
 mkcd() { mkdir -p "$@"; cd "$@"; }
 alias psa='ps aux'
 gcl() { . _gcl "$@"; }
