@@ -33,7 +33,6 @@ go
 graphite2
 hadolint
 harfbuzz
-heroku
 heroku-node
 highway
 icu4c
@@ -126,8 +125,12 @@ pnpm
 popt
 postgresql@15
 pygments
+python-certifi
+python-mutagen
+python-packaging
 python-typing-extensions
 python@3.11
+python@3.12
 pyyaml
 r
 rav1e

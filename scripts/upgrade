@@ -1,0 +1,11 @@
+#!/bin/sh
+
+brew update
+brew upgrade
+brew upgrade --cask
+
+pip install --upgrade pip
+pip list -o | cut -d " " -f 1 | tail -n +3 | xargs pip install --upgrade
+
+pnpm add -g pnpm
+pnpm -g update
