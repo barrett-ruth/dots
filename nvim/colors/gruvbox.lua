@@ -161,9 +161,6 @@ for hlgroup, color in pairs({
     hi('CmpItemKind' .. hlgroup, { fg = cs[color] })
 end
 
--- nvim-ufo
-hi('UfoFoldedEllipsis', { fg = cs.dark_grey })
-
 -- null-ls
 link('NormalFloat', 'NullLsInfoBorder')
 

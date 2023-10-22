@@ -47,34 +47,6 @@ return {
         },
     },
     {
-        'kevinhwang91/nvim-ufo',
-        config = function(_, opts)
-            vim.o.foldenable = true
-            vim.o.foldlevel = 99
-            vim.o.foldlevelstart = 99
-
-            require('ufo').setup(opts)
-        end,
-        dependencies = {
-            'kevinhwang91/promise-async',
-            'nvim-treesitter/nvim-treesitter',
-        },
-        keys = {
-            { 'zM', '<cmd>lua require("ufo").closeAllFolds()<cr>' },
-            { 'zR', '<cmd>lua require("ufo").openAllFolds()<cr>' },
-            {
-                '[z',
-                '<cmd>lua require("ufo").goPreviousStartFold()<cr>',
-            },
-        },
-        opts = {
-            open_fold_hl_timeout = 0,
-            provider_selector = function()
-                return { 'treesitter', 'indent' }
-            end,
-        },
-    },
-    {
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdateSync',
         config = function(_, opts)

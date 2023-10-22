@@ -20,6 +20,12 @@ opt.fillchars = {
     diff = '╱',
 }
 
+o.foldlevel = 99
+o.foldmethod = 'expr'
+o.foldminlines = 9
+opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+opt.foldtext = 'v:lua.vim.treesitter.foldtext()'
+
 opt.iskeyword:append('-')
 
 o.laststatus = 3
