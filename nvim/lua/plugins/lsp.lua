@@ -48,59 +48,6 @@ return {
                 )
             end
         end,
-        dependencies = {
-            {
-                'SmiteshP/nvim-navic',
-                config = function(_, opts)
-                    require('nvim-navic').setup(opts)
-                    vim.api.nvim_create_autocmd('BufEnter', {
-                        callback = function()
-                            if vim.api.nvim_buf_line_count(0) > 10000 then
-                                vim.b.navic_lazy_update_context = true
-                            end
-                        end,
-                        group = vim.api.nvim_create_augroup('ANavic', {}),
-                    })
-                end,
-                opts = {
-                    depth_limit = 3,
-                    depth_limit_indicator = '...',
-                    icons = {
-                        File = ' ',
-                        Module = ' ',
-                        Namespace = ' ',
-                        Package = ' ',
-                        Class = ' ',
-                        Method = ' ',
-                        Property = ' ',
-                        Field = ' ',
-                        Constructor = ' ',
-                        Enum = ' ',
-                        Interface = ' ',
-                        Function = ' ',
-                        Variable = ' ',
-                        Constant = ' ',
-                        String = ' ',
-                        Number = ' ',
-                        Boolean = ' ',
-                        Array = ' ',
-                        Object = ' ',
-                        Key = ' ',
-                        Null = ' ',
-                        EnumMember = ' ',
-                        Struct = ' ',
-                        Event = ' ',
-                        Operator = ' ',
-                        TypeParameter = ' ',
-                    },
-                    lsp = {
-                        auto_attach = true,
-                        preference = { 'pyright' },
-                    },
-                    separator = ' ->',
-                },
-            },
-        },
     },
     {
         'pmizio/typescript-tools.nvim',

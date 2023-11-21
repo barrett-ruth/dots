@@ -6,14 +6,14 @@ local builtins = null_ls.builtins
 local code_actions, diagnostics, formatting =
     builtins.code_actions, builtins.diagnostics, builtins.formatting
 
-local function project_contains_source(name, default)
+local function project_contains_source(name, opts)
     local project = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
 
     if projects[project] and projects[project].lsp_sources then
         return vim.tbl_contains(projects[project].lsp_sources, name)
     end
 
-    return default or false
+    return (opts and opts.default) or false
 end
 
 null_ls.setup({
@@ -69,14 +69,9 @@ null_ls.setup({
         diagnostics.tsc,
         diagnostics.yamllint,
 
-        formatting.autopep8.with({
-            condition = function(_)
-                return project_contains_source('autopep8', false)
-            end,
-        }),
         formatting.black.with({
             condition = function(_)
-                return project_contains_source('black', true)
+                return project_contains_source('black', { default = true })
             end,
             extra_args = { '-S', '--fast', '--line-length=79' },
         }),
@@ -87,7 +82,7 @@ null_ls.setup({
         }),
         formatting.isort.with({
             condition = function(_)
-                return project_contains_source('isort', true)
+                return project_contains_source('isort', { default = true })
             end,
         }),
         formatting.djhtml.with({

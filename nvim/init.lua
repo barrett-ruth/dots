@@ -38,7 +38,6 @@ require('lazy').setup('plugins', {
     },
 })
 
-require('cloak').setup()
 require('hlsearch').setup()
 require('lines').setup()
 require('projects').setup()

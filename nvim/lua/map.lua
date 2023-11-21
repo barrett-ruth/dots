@@ -25,16 +25,6 @@ map({
     end,
 })
 
-map({ 'n', '<up>', '<cmd>resize -5<cr>' })
-map({ 'n', '<down>', '<cmd>resize +5<cr>' })
-map({ 'n', '<left>', '<cmd>vert resize +5<cr>' })
-map({ 'n', '<right>', '<cmd>vert resize -5<cr>' })
-
-map({ 'n', ':', ';' }, { silent = false })
-map({ 'n', ';', ':' }, { silent = false })
-map({ 'x', ':', ';' }, { silent = false })
-map({ 'x', ';', ':' }, { silent = false })
-
 map({ { 'i', 'c' }, '<c-a>', '<esc>' })
 
 map({
@@ -47,15 +37,11 @@ map({
 
 map({ 'n', 'J', 'mzJ`z' })
 
-map({ 'n', '<leader>w', vim.cmd.w })
 map({
     'n',
     '<leader>y',
     '<cmd>call setreg("+", getreg("0"))<cr>',
 })
-
-map({ 'n', '[o', '@="m`O\\eg``"<cr>' })
-map({ 'n', ']o', '@="m`o\\eg``"<cr>' })
 
 map({ 'x', 'p', '"_dp' })
 map({ 'x', 'P', '"_dP' })

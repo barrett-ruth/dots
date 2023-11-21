@@ -49,7 +49,6 @@ local function format()
             }, c.name)
         end,
     })
-    vim.cmd.w()
 
     for _, cmd in ipairs({
         'TSToolsAddMissingImports',

@@ -124,6 +124,7 @@ pnpm
 popt
 postgresql@15
 pygments
+python-brotli
 python-certifi
 python-click
 python-markupsafe
@@ -182,6 +183,7 @@ zsh-syntax-highlighting
 zstd
 discord
 element
+eloston-chromium
 google-cloud-sdk
 karabiner-elements
 kitty

@@ -69,15 +69,6 @@ return {
         },
     },
     {
-        'echasnovski/mini.operators',
-        opts = {
-            replace = {
-                prefix = 'gl',
-            },
-        },
-        event = 'VeryLazy',
-    },
-    {
         'echasnovski/mini.pairs',
         config = true,
         event = 'InsertEnter',

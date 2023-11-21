@@ -29,7 +29,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 export LDFLAGS='-L/opt/homebrew/opt/llvm/lib'
 export CPPFLAGS='-I/opt/homebrew/opt/llvm/include'
 
-export BROWSER='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
+export BROWSER='/Applications/Chromium.app'
 export GH_BROWSER="$BROWSER"
 export EDITOR='nvim'
 export MANPAGER='nvim +Man!'
