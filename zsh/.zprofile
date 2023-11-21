@@ -26,7 +26,6 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 . /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 [[ "$PATH" == *'/opt/homebrew/opt/llvm/bin'* ]] || export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 [[ "$PATH" == *'/opt/homebrew/opt/python@3.11/libexec/bin'* ]] || export PATH="/opt/homebrew/opt/python@3.11/libexec/bin:$PATH"
-export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export LDFLAGS='-L/opt/homebrew/opt/llvm/lib'
 export CPPFLAGS='-I/opt/homebrew/opt/llvm/include'
 
@@ -70,6 +69,8 @@ export PNPM_HOME="$XDG_DATA_HOME/pnpm"
 
 export SCRIPTS="$HOME/.local/bin/scripts"
 [[ "$PATH" == *"$SCRIPTS"* ]] || export PATH="$PATH:$SCRIPTS"
+
+[[ "$PATH" == *"$HOME/.luarocks/bin"* ]] || export PATH="$HOME/.luarocks/bin:$PATH"
 
 [[ "$PATH" == *"$CARGO_HOME"/bin* ]] || export PATH="$PATH:$CARGO_HOME/bin"
 [[ "$PATH" == *'/opt/homebrew/opt/postgresql@15/bin'* ]] || export PATH="$PATH:/opt/homebrew/opt/postgresql@15/bin"

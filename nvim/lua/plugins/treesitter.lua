@@ -60,10 +60,6 @@ return {
         keys = { { '<leader>i', vim.cmd.Inspect } },
         opts = {
             ensure_installed = ts_langs,
-            context_commentstring = {
-                enable = true,
-                enable_autocmd = false,
-            },
             highlight = {
                 additional_vim_regex_highlighting = true,
                 enable = true,

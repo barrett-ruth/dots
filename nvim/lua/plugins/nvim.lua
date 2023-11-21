@@ -18,113 +18,13 @@ return {
     },
     {
         'iamcco/markdown-preview.nvim',
-        build = 'yarn install --cwd app',
+        build = 'pnpm install --cwd app',
         ft = { 'markdown' },
         init = function()
             vim.g.mkdp_page_title = '${name}'
             vim.g.mkdp_theme = 'light'
         end,
         keys = { { '<leader>m', vim.cmd.MarkdownPreviewToggle } },
-    },
-    {
-        'm4xshen/smartcolumn.nvim',
-        opts = {
-            disabled_filetypes = {
-                '',
-                'checkhealth',
-                'help',
-                'lazy',
-                'log',
-                'lspinfo',
-                'markdown',
-                'man',
-                'NvimTree',
-                'text',
-            },
-        },
-    },
-    {
-        'monaqa/dial.nvim',
-        config = function()
-            local augend = require('dial.augend')
-
-            require('dial.config').augends:register_group({
-                default = {
-                    augend.constant.alias.alpha,
-                    augend.constant.alias.Alpha,
-                    augend.constant.alias.bool,
-                    augend.constant.new({
-                        elements = { 'and', 'or' },
-                        word = true,
-                        cyclic = true,
-                    }),
-                    augend.constant.new({
-                        elements = { '&&', '||' },
-                        word = false,
-                        cyclic = true,
-                    }),
-                },
-            })
-
-            local dmap = require('dial.map')
-
-            map({
-                'n',
-                '<c-a>',
-                function()
-                    dmap.manipulate('increment', 'normal')
-                end,
-            })
-            map({
-                'n',
-                '<c-x>',
-                function()
-                    dmap.manipulate('decrement', 'normal')
-                end,
-            })
-            map({
-                'n',
-                'g<c-a>',
-                function()
-                    dmap.manipulate('increment', 'gnormal')
-                end,
-            })
-            map({
-                'n',
-                'g<c-x>',
-                function()
-                    dmap.manipulate('decrement', 'gnormal')
-                end,
-            })
-            map({
-                'x',
-                '<c-a>',
-                function()
-                    dmap.manipulate('increment', 'visual')
-                end,
-            })
-            map({
-                'x',
-                '<c-x>',
-                function()
-                    dmap.manipulate('decrement', 'visual')
-                end,
-            })
-            map({
-                'x',
-                'g<c-a>',
-                function()
-                    dmap.manipulate('increment', 'gvisual')
-                end,
-            })
-            map({
-                'x',
-                'g<c-x>',
-                function()
-                    dmap.manipulate('decrement', 'gvisual')
-                end,
-            })
-        end,
     },
     {
         'NvChad/nvim-colorizer.lua',
@@ -147,11 +47,6 @@ return {
         },
     },
     {
-        'phaazon/hop.nvim',
-        config = true,
-        keys = { { 'H', vim.cmd.HopChar2 } },
-    },
-    {
         'stevearc/oil.nvim',
         keys = {
             { '-', '<cmd>e .<cr>' },
@@ -170,17 +65,5 @@ return {
         'tzachar/highlight-undo.nvim',
         config = true,
         event = 'VeryLazy',
-    },
-    {
-        'nvimdev/guard.nvim',
-        config = function()
-            require('guard.filetype')('javascript'):fmt({
-                cmd = 'prettierd',
-                fname = true,
-                stdin = true,
-            })
-            require('guard').setup()
-        end,
-        dependencies = { 'nvimdev/guard-collection' },
     },
 }

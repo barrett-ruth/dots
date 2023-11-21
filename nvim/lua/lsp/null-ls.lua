@@ -40,10 +40,10 @@ null_ls.setup({
             extra_args = { '--ignore', 'body-is-missing' },
         }),
         diagnostics.hadolint,
-        diagnostics.markdownlint.with({
-            diagnostic_config = { update_in_insert = true },
-            diagnostics_format = '#{m}',
-        }),
+        -- diagnostics.markdownlint.with({
+        --     diagnostic_config = { update_in_insert = true },
+        --     diagnostics_format = '#{m}',
+        -- }),
         diagnostics.mypy.with({
             extra_args = { '--check-untyped-defs' },
             runtime_condition = function(params)
@@ -52,6 +52,7 @@ null_ls.setup({
         }),
         diagnostics.selene,
         diagnostics.shellcheck.with({
+            extra_args = { '--enable', 'avoid-nullary-conditions' },
             runtime_condition = function(_)
                 return not vim.fn.bufname():match('.env.*')
             end,

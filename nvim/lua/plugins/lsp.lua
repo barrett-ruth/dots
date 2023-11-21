@@ -35,7 +35,6 @@ return {
                 'gopls',
                 'html',
                 'jsonls',
-                'ltex',
                 'lua_ls',
                 'pyright',
                 'pylsp',

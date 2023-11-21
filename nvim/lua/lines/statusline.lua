@@ -54,9 +54,9 @@ local search = {
 
 local filetype = {
     value = function()
-        local ft = vim.api.nvim_buf_get_option(
-            vim.api.nvim_get_current_buf(),
-            'filetype'
+        local ft = vim.api.nvim_get_option_value(
+            'filetype',
+            { buf = vim.api.nvim_get_current_buf() }
         )
 
         if utils.empty(ft) then
@@ -66,9 +66,9 @@ local filetype = {
         return ft
     end,
     condition = function()
-        local ft = vim.api.nvim_buf_get_option(
-            vim.api.nvim_get_current_buf(),
-            'filetype'
+        local ft = vim.api.nvim_get_option_value(
+            'filetype',
+            { buf = vim.api.nvim_get_current_buf() }
         )
 
         return not utils.empty(ft) or not utils.empty(vim.bo.buftype)

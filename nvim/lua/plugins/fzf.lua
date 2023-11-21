@@ -71,7 +71,7 @@ return {
             function()
                 require('fzf-lua').files({
                     cwd = '~/.config',
-                    fd_opts = fd_opts .. ' --hidden',
+                    fd_opts = ('%s --hidden'):format(fd_opts),
                 })
             end,
         },
@@ -98,12 +98,8 @@ return {
             file_icons = false,
         },
         fzf_args = vim.env.FZF_DEFAULT_OPTS,
-        grep = {
-            no_header_i = true,
-        },
-        loclist = {
-            path_shorten = true,
-        },
+        grep = { no_header_i = true },
+        loclist = { path_shorten = true },
         lsp = {
             jump_to_single_result = true,
             symbols = {
@@ -117,11 +113,7 @@ return {
                 hidden = 'hidden',
             },
         },
-        diagnostics = {
-            file_icons = false,
-        },
-        quickfix = {
-            path_shorten = true,
-        },
+        diagnostics = { file_icons = false },
+        quickfix = { path_shorten = true },
     },
 }

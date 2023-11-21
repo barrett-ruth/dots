@@ -31,7 +31,11 @@ opt.iskeyword:append('-')
 o.laststatus = 3
 
 o.list = true
-o.listchars = 'trail:·,tab:··'
+opt.listchars = {
+    space = ' ',
+    trail = '·',
+    tab = '  ',
+}
 
 opt.matchpairs:append('<:>')
 

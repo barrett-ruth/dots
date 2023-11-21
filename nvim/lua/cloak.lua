@@ -21,12 +21,12 @@ local function cloak(cloak_pattern)
     local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
     for i, line in ipairs(lines) do
         -- Find all matches for the current line
-        local searchStartIndex = 1
-        while searchStartIndex < #line do
+        local start = 1
+        while start < #line do
             -- Find best pattern based on starting position and tiebreak with length
             local first, last = -1, 1
             local current_first, current_last =
-                line:find(cloak_pattern, searchStartIndex)
+                line:find(cloak_pattern, start)
 
             if
                 current_first ~= nil
@@ -55,7 +55,7 @@ local function cloak(cloak_pattern)
                 break
             end
 
-            searchStartIndex = last
+            start = last
         end
     end
 
