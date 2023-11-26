@@ -39,6 +39,7 @@ return {
                 'pyright',
                 'pylsp',
                 'tailwindcss',
+                'yamlls'
             }) do
                 local status, settings =
                     pcall(require, 'lsp.servers.' .. server)

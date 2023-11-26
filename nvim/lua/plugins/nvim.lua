@@ -1,5 +1,22 @@
 return {
     {
+        'iamcco/markdown-preview.nvim',
+        build = 'pnpm up && cd app && pnpm install',
+        ft = { 'markdown' },
+        init = function()
+            vim.g.mkdp_page_title = '${name}'
+            vim.g.mkdp_theme = 'light'
+
+            vim.cmd([[
+                function OpenMarkdownPreview (url)
+                    exec "silent ! open -a Chromium -n --args --new-window " . a:url
+                endfunction
+                let g:mkdp_browserfunc = 'OpenMarkdownPreview'
+            ]])
+        end,
+        keys = { { '<leader>m', vim.cmd.MarkdownPreviewToggle } },
+    },
+    {
         'NvChad/nvim-colorizer.lua',
         opts = {
             filetypes = {

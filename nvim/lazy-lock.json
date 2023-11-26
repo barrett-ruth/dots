@@ -12,6 +12,7 @@
   "harpoon": { "branch": "master", "commit": "c1aebbad9e3d13f20bedb8f2ce8b3a94e39e424a" },
   "highlight-undo.nvim": { "branch": "main", "commit": "50a6884a8476be04ecce8f1c4ed692c5000ef0a1" },
   "lazy.nvim": { "branch": "main", "commit": "96584866b9c5e998cbae300594d0ccfd0c464627" },
+  "markdown-preview.nvim": { "branch": "master", "commit": "a923f5fc5ba36a3b17e289dc35dc17f66d0548ee" },
   "mini.ai": { "branch": "main", "commit": "4a2e387b121352dfb478f440c9a5313a9d97006c" },
   "mini.bracketed": { "branch": "main", "commit": "944e81e192cf054bb879cb64231e9b1cfb3c8145" },
   "mini.bufremove": { "branch": "main", "commit": "f53c7f27e36009fe61563c11cde154b94a0e5b94" },
