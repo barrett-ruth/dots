@@ -62,6 +62,7 @@ local function format()
     end
 end
 
+
 au('LspAttach', {
     callback = function(opts)
         local client = vim.lsp.get_client_by_id(opts.data.client_id)

@@ -19,6 +19,8 @@ g.markdown_fenced_languages = {
     'yaml',
 }
 
+g.python3_host_prog = vim.env.XDG_CONFIG_HOME .. '/nvim/venv/bin/python'
+
 g.wildignore = {
     'undo/',
     '__pycache__/',

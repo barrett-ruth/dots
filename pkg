@@ -1,5 +1,6 @@
 aom
 aribb24
+autoconf
 black
 brotli
 c-ares
@@ -13,6 +14,7 @@ dav1d
 djhtml
 docker
 docker-completion
+doctl
 dotenv-linter
 fd
 ffmpeg
@@ -53,6 +55,7 @@ libevent
 libgit2
 libidn
 libidn2
+libmicrohttpd
 libmpc
 libnghttp2
 libogg
@@ -95,17 +98,18 @@ luarocks
 luv
 lz4
 lzo
+m4
 mbedtls
 mpdecimal
 mpfr
 mpg123
 msgpack
 mujs
-mypy
 ncurses
 neovim
 nettle
 node
+nvm
 oniguruma
 openblas
 opencore-amr
@@ -123,6 +127,7 @@ pkg-config
 pnpm
 popt
 postgresql@15
+pyenv
 pygments
 python-brotli
 python-certifi

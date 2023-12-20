@@ -33,7 +33,7 @@ mac() {
 
   brew list >pkg
 
-  for e in git fd karabiner kitty npm nvim python rg sioyek templates zsh; do
+  for e in git fd karabiner kitty npm nvim python rg sioyek templates yamllint zsh; do
     cp -r "$XDG_CONFIG_HOME/$e" .
   done
 

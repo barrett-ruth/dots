@@ -22,12 +22,20 @@ set completion-ignore-case on
 unset completealiases
 setopt auto_cd incappendhistory extendedhistory histignorealldups
 
+function prepend_path() { [[ "$PATH" == *"$1"* ]] || export PATH="$1:$PATH"; }
+function append_path() { [[ "$PATH" == *"$1"* ]] || export PATH="$PATH:$1"; }
+
 eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(pyenv init -)"
 . /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-[[ "$PATH" == *'/opt/homebrew/opt/llvm/bin'* ]] || export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-[[ "$PATH" == *'/opt/homebrew/opt/python@3.11/libexec/bin'* ]] || export PATH="/opt/homebrew/opt/python@3.11/libexec/bin:$PATH"
+
+export NVM_DIR="$XDG_DATA_HOME"/nvm
+nvm() { unset -f nvm && . "$NVM_DIR/nvm.sh" && nvm "$@"; }
+
 export LDFLAGS='-L/opt/homebrew/opt/llvm/lib'
 export CPPFLAGS='-I/opt/homebrew/opt/llvm/include'
+
+export PYENV_ROOT="$XDG_CONFIG_HOME"/pyenv
 
 export BROWSER='/Applications/Chromium.app'
 export GH_BROWSER="$BROWSER"
@@ -54,28 +62,25 @@ export LESSHISTFILE="$XDG_STATE_HOME"/lesshst
 export MYPY_CACHE_DIR="$XDG_CACHE_HOME"/mypy
 export npm_config_userconfig="$XDG_CONFIG_HOME"/npm/npmrc
 export NODE_REPL_HISTORY="$XDG_STATE_HOME"/node_repl_history
+export PNPM_HOME="$XDG_DATA_HOME/pnpm"
 export PRETTIERD_CONFIG_HOME="$XDG_STATE_HOME"/prettierd
 export PSQL_HISTORY="$XDG_STATE_HOME"/psql_history
 export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/pythonrc
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME"/rg/config
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+export SCRIPTS="$HOME/.local/bin/scripts"
 export SQLITE_HISTORY="$XDG_STATE_HOME"/sqlite_history
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
-export PNPM_HOME="$XDG_DATA_HOME/pnpm"
-[[ "$PATH" == *"$PNPM_HOME"* ]] || export PATH="$PATH:$PNPM_HOME"
-
-[[ "$PATH" == *"$HOME"/.local/bin* ]] || export PATH="$PATH:$HOME/.local/bin"
-
-export SCRIPTS="$HOME/.local/bin/scripts"
-[[ "$PATH" == *"$SCRIPTS"* ]] || export PATH="$PATH:$SCRIPTS"
-
-[[ "$PATH" == *"$HOME/.luarocks/bin"* ]] || export PATH="$HOME/.luarocks/bin:$PATH"
-
-[[ "$PATH" == *"$CARGO_HOME"/bin* ]] || export PATH="$PATH:$CARGO_HOME/bin"
-[[ "$PATH" == *'/opt/homebrew/opt/postgresql@15/bin'* ]] || export PATH="$PATH:/opt/homebrew/opt/postgresql@15/bin"
-
-[[ "$PATH" == *"$GOPATH/bin"* ]] || export PATH="$PATH:$GOPATH/bin"
+prepend_path '/opt/homebrew/opt/llvm/bin'
+prepend_path "$PYENV_ROOT/bin"
+append_path "$PNPM_HOME"
+append_path "$HOME/.local/bin"
+append_path "$SCRIPTS"
+prepend_path "$HOME/.luarocks/bin"
+append_path "$CARGO_HOME/bin"
+append_path '/opt/homebrew/opt/postgresql@15/bin'
+append_path "$GOPATH/bin"
 
 export FZF_COMPLETION_TRIGGER=\;
 export FZF_ALT_C_COMMAND='fd --type directory --strip-cwd-prefix'

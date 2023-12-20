@@ -9,7 +9,7 @@ return {
 
             vim.cmd([[
                 function OpenMarkdownPreview (url)
-                    exec "silent ! open -a Chromium -n --args --new-window " . a:url
+                    exec "silent ! open -a /Applications/Chromium.app -n --args --new-window " . a:url
                 endfunction
                 let g:mkdp_browserfunc = 'OpenMarkdownPreview'
             ]])
