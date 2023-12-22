@@ -12,7 +12,7 @@ if not vim.loop.fs_stat(lazypath) then
         lazypath,
     })
 end
-vim.opt.rtp:prepend(lazypath)
+vim.opt.rtp:prepend(vim.fn.stdpath('data') .. '/lazy/lazy.nvim')
 
 require('lazy').setup('plugins', {
     change_detection = {
@@ -40,7 +40,6 @@ require('lazy').setup('plugins', {
 
 require('hlsearch').setup()
 require('lines').setup()
-require('projects').setup()
 require('yank').setup()
 
 vim.cmd.colorscheme('gruvbox')

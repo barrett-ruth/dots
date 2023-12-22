@@ -3,8 +3,8 @@ local projects = require('projects').projects
 
 local null_ls = require('null-ls')
 local builtins = null_ls.builtins
-local code_actions, diagnostics, formatting =
-    builtins.code_actions, builtins.diagnostics, builtins.formatting
+local diagnostics, formatting =
+    builtins.diagnostics, builtins.formatting
 
 local function project_contains_source(name, opts)
     local project = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
@@ -18,32 +18,16 @@ end
 
 null_ls.setup({
     sources = {
-        code_actions.gitrebase,
-        code_actions.gitsigns,
-        code_actions.shellcheck,
-
         diagnostics.curlylint.with({ extra_filetypes = { 'html' } }),
-        diagnostics.dotenv_linter.with({
-            extra_args = {
-                '--skip',
-                'UnorderedKey',
-                '--skip',
-                'ValueWithoutQuotes',
-            },
-            filetypes = { 'config' },
-            runtime_condition = function(_)
-                return vim.fn.bufname():match('.*.env.*')
-            end,
-        }),
         diagnostics.gitlint.with({
             diagnostic_config = { update_in_insert = true },
             extra_args = { '--ignore', 'body-is-missing' },
         }),
         diagnostics.hadolint,
-        -- diagnostics.markdownlint.with({
-        --     diagnostic_config = { update_in_insert = true },
-        --     diagnostics_format = '#{m}',
-        -- }),
+        diagnostics.markdownlint.with({
+            diagnostic_config = { update_in_insert = true },
+            diagnostics_format = '#{m}',
+        }),
         diagnostics.mypy.with({
             extra_args = { '--check-untyped-defs' },
             runtime_condition = function(params)
@@ -65,7 +49,6 @@ null_ls.setup({
                 'LT02,LT05',
             },
         }),
-        diagnostics.stylelint,
         diagnostics.tsc,
         diagnostics.yamllint,
 
@@ -115,7 +98,6 @@ null_ls.setup({
             extra_args = { '-i', '2' },
         }),
         formatting.sql_formatter,
-        formatting.stylelint,
         formatting.stylua,
     },
     on_attach = on_attach,

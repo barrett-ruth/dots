@@ -8,21 +8,6 @@ au('BufEnter', {
     group = aug,
 })
 
-au('VimResized', {
-    command = 'wincmd =',
-    group = aug,
-})
-
-au('TermOpen', {
-    command = 'startinsert | setl nonumber norelativenumber statuscolumn=',
-    group = aug,
-})
-
-au('BufReadPost', {
-    command = 'sil! normal g`"',
-    group = aug,
-})
-
 au({ 'BufRead', 'BufNewFile' }, {
     pattern = '*/templates/*.html',
     callback = function(opts)

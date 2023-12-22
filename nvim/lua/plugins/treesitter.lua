@@ -73,6 +73,7 @@ return {
                         ['[c'] = '@class.outer',
                         ['[f'] = '@function.outer',
                         ['[i'] = '@conditional.outer',
+                        ['[/'] = '@comment.outer',
                     },
                     goto_previous_end = {
                         ['[A'] = '@parameter.inner',
@@ -85,6 +86,7 @@ return {
                         [']c'] = '@class.outer',
                         [']f'] = '@function.outer',
                         [']i'] = '@conditional.outer',
+                        [']/'] = '@comment.outer',
                     },
                     goto_next_end = {
                         [']A'] = '@parameter.inner',
@@ -113,16 +115,6 @@ return {
                         is = '@class.inner',
                     },
                 },
-            },
-        },
-    },
-    {
-        'nvim-treesitter/playground',
-        dependencies = 'nvim-treesitter/nvim-treesitter',
-        keys = {
-            {
-                '<leader>t',
-                vim.cmd.TSPlaygroundToggle,
             },
         },
     },

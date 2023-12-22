@@ -1,20 +1,143 @@
 return {
     {
+        'echasnovski/mini.bufremove',
+        config = true,
+        keys = {
+            { '<leader>bd', '<cmd>lua require("mini.bufremove").delete()<cr>' },
+            {
+                '<leader>bw',
+                '<cmd>lua require("mini.bufremove").wipeout()<cr>',
+            },
+        },
+    },
+    {
+        'echasnovski/mini.comment',
+        dependencies = {
+            'JoosepAlviste/nvim-ts-context-commentstring',
+            config = function()
+                require('ts_context_commentstring').setup({
+                    enable_autocmd = false,
+                })
+            end,
+        },
+        event = 'VeryLazy',
+        opts = {
+            options = {
+                custom_commentstring = function()
+                    return require('ts_context_commentstring.internal').calculate_commentstring()
+                        or vim.bo.commentstring
+                end,
+            },
+            mappings = { comment_line = 'g/' },
+        },
+    },
+    {
+        'echasnovski/mini.pairs',
+        config = true,
+        event = 'InsertEnter',
+    },
+    {
         'iamcco/markdown-preview.nvim',
         build = 'pnpm up && cd app && pnpm install',
         ft = { 'markdown' },
         init = function()
-            vim.g.mkdp_page_title = '${name}'
-            vim.g.mkdp_theme = 'light'
-
             vim.cmd([[
-                function OpenMarkdownPreview (url)
+                function OpenMarkdownPreview(url)
                     exec "silent ! open -a /Applications/Chromium.app -n --args --new-window " . a:url
                 endfunction
                 let g:mkdp_browserfunc = 'OpenMarkdownPreview'
             ]])
         end,
         keys = { { '<leader>m', vim.cmd.MarkdownPreviewToggle } },
+    },
+    {
+        'lewis6991/gitsigns.nvim',
+        config = function(_, opts)
+            local gitsigns = require('gitsigns')
+            gitsigns.setup(opts)
+
+            map({ 'n', '<leader>gb', gitsigns.toggle_current_line_blame })
+            map({ 'n', '<leader>gp', gitsigns.preview_hunk })
+            map({ 'n', '<leader>gs', gitsigns.stage_hunk })
+            map({ 'n', '<leader>gS', gitsigns.undo_stage_hunk })
+            map({ 'n', '[g', gitsigns.prev_hunk })
+            map({ 'n', ']g', gitsigns.next_hunk })
+        end,
+        event = 'VeryLazy',
+        opts = {
+            on_attach = function()
+                vim.wo.signcolumn = 'yes'
+            end,
+            attach_to_untracked = false,
+            signs = {
+                delete = { text = '＿' },
+            },
+        },
+    },
+    {
+        'L3MON4D3/LuaSnip',
+        config = function()
+            local ls = require('luasnip')
+
+            ls.setup({
+                region_check_events = 'InsertEnter',
+                delete_check_events = {
+                    'TextChanged',
+                    'TextChangedI',
+                    'InsertLeave',
+                },
+            })
+
+            ls.filetype_extend('htmldjango', { 'html' })
+            ls.filetype_extend('javascriptreact', { 'javascript', 'html' })
+            ls.filetype_extend('typescript', { 'javascript' })
+            ls.filetype_extend(
+                'typescriptreact',
+                { 'javascriptreact', 'javascript', 'html' }
+            )
+
+            require('luasnip.loaders.from_lua').lazy_load({
+                paths = { '~/.config/nvim/lua/snippets' },
+            })
+        end,
+        keys = {
+            -- restore digraph mapping
+            { '<c-d>', '<c-k>', mode = 'i' },
+            {
+                '<c-s>',
+                '<cmd>lua require("luasnip").expand()<cr>',
+                mode = 'i',
+            },
+            {
+                '<c-h>',
+                '<cmd>lua if require("luasnip").jumpable(-1) then require("luasnip").jump(-1) end<cr>',
+                mode = { 'i', 's' },
+            },
+            {
+                '<c-l>',
+                '<cmd>lua if require("luasnip").jumpable(1) then require("luasnip").jump(1) end<cr>',
+                mode = { 'i', 's' },
+            },
+            {
+                '<c-j>',
+                '<cmd>lua if require("luasnip").choice_active() then require("luasnip").change_choice(-1) end<cr>',
+                mode = 'i',
+            },
+            {
+                '<c-k>',
+                '<cmd>lua if require("luasnip").choice_active() then require("luasnip").change_choice(1) end<cr>',
+                mode = 'i',
+            },
+        },
+    },
+    {
+        'maxmellon/vim-jsx-pretty',
+        ft = {
+            'javascript',
+            'javascriptreact',
+            'typescript',
+            'typescriptreact',
+        },
     },
     {
         'NvChad/nvim-colorizer.lua',
@@ -51,9 +174,32 @@ return {
             },
         },
     },
+    'tpope/vim-abolish',
+    'tpope/vim-fugitive',
+    'tpope/vim-repeat',
+    'tpope/vim-sleuth',
+    'tpope/vim-surround',
     {
         'tzachar/highlight-undo.nvim',
         config = true,
         event = 'VeryLazy',
     },
+    {
+        'ThePrimeagen/harpoon',
+        keys = {
+            { '<leader>ha', '<cmd>lua require("harpoon.mark").add_file()<cr>' },
+            { '<leader>hd', '<cmd>lua require("harpoon.mark").rm_file()<cr>' },
+            {
+                '<leader>hq',
+                '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>',
+            },
+            { ']h', '<cmd>lua require("harpoon.ui").nav_next()<cr>' },
+            { '[h', '<cmd>lua require("harpoon.ui").nav_prev()<cr>' },
+            { '<c-h>', '<cmd>lua require("harpoon.ui").nav_file(1)<cr>' },
+            { '<c-j>', '<cmd>lua require("harpoon.ui").nav_file(2)<cr>' },
+            { '<c-k>', '<cmd>lua require("harpoon.ui").nav_file(3)<cr>' },
+            { '<c-l>', '<cmd>lua require("harpoon.ui").nav_file(4)<cr>' },
+        },
+    },
+    { 'Vimjas/vim-python-pep8-indent', ft = { 'python' } },
 }

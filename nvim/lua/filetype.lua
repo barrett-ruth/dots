@@ -1,10 +1,12 @@
 vim.filetype.add({
+    extension = {
+        log = 'log',
+    },
     filename = {
-        ['requirements.txt'] = 'config',
         ['.env'] = 'config',
+        ['requirements.txt'] = 'config',
     },
     pattern = {
         ['.env.*'] = 'config',
-        ['.*.log'] = 'log',
     },
 })

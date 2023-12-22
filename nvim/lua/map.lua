@@ -31,7 +31,7 @@ map({
     'n',
     '<leader>r',
     function()
-        vim.cmd('sil !mux file %')
+        vim.cmd('!mux file %')
     end,
 })
 
@@ -45,3 +45,12 @@ map({
 
 map({ 'x', 'p', '"_dp' })
 map({ 'x', 'P', '"_dP' })
+
+map({ 'n', '[b', '<cmd>bprev<cr>' })
+map({ 'n', ']b', '<cmd>bnext<cr>' })
+
+map({ 'n', '[q', '<cmd>cprev<cr>' })
+map({ 'n', ']q', '<cmd>cnext<cr>' })
+
+map({ 'n', '[l', '<cmd>lprev<cr>' })
+map({ 'n', ']l', '<cmd>lnext<cr>' })

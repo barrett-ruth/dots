@@ -1,4 +1,6 @@
-local utils = require('utils')
+local function empty(s)
+    return s == nil or s == ''
+end
 
 local file = {
     value = function()
@@ -11,7 +13,7 @@ local git = {
         return vim.b.gitsigns_head
     end,
     condition = function()
-        return not utils.empty(vim.b.gitsigns_head)
+        return not empty(vim.b.gitsigns_head)
     end,
 }
 
@@ -44,7 +46,7 @@ local filetype = {
             { buf = vim.api.nvim_get_current_buf() }
         )
 
-        if utils.empty(ft) then
+        if empty(ft) then
             ft = vim.bo.buftype
         end
 
@@ -56,7 +58,7 @@ local filetype = {
             { buf = vim.api.nvim_get_current_buf() }
         )
 
-        return not utils.empty(ft) or not utils.empty(vim.bo.buftype)
+        return not empty(ft) or not empty(vim.bo.buftype)
     end,
 }
 

@@ -15,7 +15,6 @@ djhtml
 docker
 docker-completion
 doctl
-dotenv-linter
 fd
 ffmpeg
 flac

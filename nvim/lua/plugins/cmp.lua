@@ -60,13 +60,6 @@ return {
             })
 
             cmp.setup(opts)
-
-            cmp.setup.filetype('gitcommit', {
-                sources = cmp.config.sources({
-                    { name = 'git' },
-                    { name = 'conventionalcommits' },
-                }),
-            })
         end,
         dependencies = {
             'hrsh7th/cmp-buffer',
@@ -76,27 +69,5 @@ return {
             'roobert/tailwindcss-colorizer-cmp.nvim',
         },
         event = 'InsertEnter',
-    },
-    {
-        'davidsierradz/cmp-conventionalcommits',
-        dependencies = 'hrsh7th/nvim-cmp',
-        ft = { 'gitcommit' },
-    },
-    {
-        'petertriho/cmp-git',
-        dependencies = 'hrsh7th/nvim-cmp',
-        ft = { 'gitcommit' },
-        opts = {
-            github = {
-                issues = {
-                    state = 'all',
-                },
-            },
-            gitlab = {
-                issues = {
-                    state = 'all',
-                },
-            },
-        },
     },
 }

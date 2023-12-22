@@ -1,41 +1,18 @@
 local fd_opts = vim.env.FZF_CTRL_T_COMMAND:match(' (.*)')
 
-local send_to_ll = function(selected, opts)
-    local ll = {}
-    for i = 1, #selected do
-        local file = require('fzf-lua.path').entry_to_file(selected[i], opts)
-        local text = selected[i]:match(':%d+:%d?%d?%d?%d?:?(.*)$')
-        ll[#ll + 1] = {
-            filename = file.path,
-            lnum = file.line,
-            col = file.col,
-            text = text,
-        }
-    end
-
-    vim.fn.setloclist(0, ll)
-    vim.cmd.lclose()
-end
-
 return {
     'ibhagwan/fzf-lua',
     config = function(_, opts)
         local actions, fzf = require('fzf-lua.actions'), require('fzf-lua')
+
         opts = vim.tbl_extend('keep', opts, {
             actions = {
                 files = {
-                    ['default'] = actions.file_edit,
-                    ['ctrl-h'] = {
-                        function(_, args)
-                            if args.cmd:find('--hidden') then
-                                args.cmd = args.cmd:gsub('--hidden', '', 1)
-                            else
-                                args.cmd = args.cmd .. ' --hidden'
-                            end
-                            fzf.files(args)
-                        end,
-                    },
-                    ['ctrl-l'] = send_to_ll,
+                    default = actions.file_edit,
+                    ['ctrl-l'] = function(...)
+                        actions.file_sel_to_ll(...)
+                        vim.cmd.lclose()
+                    end,
                     ['ctrl-q'] = function(...)
                         actions.file_sel_to_qf(...)
                         vim.cmd.cclose()
