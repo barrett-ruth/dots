@@ -45,8 +45,9 @@ local function format()
             vim.fn.execute(cmd)
         end
     end
-end
 
+    vim.cmd.w()
+end
 
 au('LspAttach', {
     callback = function(opts)

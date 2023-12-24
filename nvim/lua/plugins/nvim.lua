@@ -86,6 +86,19 @@ return {
                     'TextChangedI',
                     'InsertLeave',
                 },
+                ext_opts = {
+                    [require('luasnip.util.types').choiceNode] = {
+                        active = {
+                            virt_text = {
+                                {
+                                    ' <- ',
+                                    vim.wo.cursorline and 'CursorLine'
+                                        or 'Normal',
+                                },
+                            },
+                        },
+                    },
+                },
             })
 
             ls.filetype_extend('htmldjango', { 'html' })

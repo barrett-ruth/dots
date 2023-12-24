@@ -66,9 +66,6 @@ return {
         { 'gt', '<cmd>FzfLua lsp_typedefs<cr>' },
     },
     opts = {
-        debug = true,
-        global_resume = true,
-        global_resume_query = true,
         files = {
             fd_opts = fd_opts,
             git_icons = false,
@@ -77,6 +74,7 @@ return {
         fzf_args = vim.env.FZF_DEFAULT_OPTS,
         grep = { no_header_i = true },
         loclist = { path_shorten = true },
+        euickfix = { path_shorten = true },
         lsp = {
             jump_to_single_result = true,
             symbols = {
@@ -91,6 +89,5 @@ return {
             },
         },
         diagnostics = { file_icons = false },
-        quickfix = { path_shorten = true },
     },
 }

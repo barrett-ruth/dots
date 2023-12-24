@@ -31,7 +31,7 @@ map({
     'n',
     '<leader>r',
     function()
-        vim.cmd('!mux file %')
+        vim.cmd('sil !mux file %')
     end,
 })
 
