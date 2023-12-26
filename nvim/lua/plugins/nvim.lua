@@ -144,6 +144,12 @@ return {
         },
     },
     {
+        'laytan/cloak.nvim',
+        config = true,
+        event = 'BufRead .env*',
+        keys = { { '<leader>c', '<cmd>CloakToggle<cr>' } },
+    },
+    {
         'maxmellon/vim-jsx-pretty',
         ft = {
             'javascript',
@@ -151,6 +157,10 @@ return {
             'typescript',
             'typescriptreact',
         },
+    },
+    {
+        'nvimdev/hlsearch.nvim',
+        config = true,
     },
     {
         'NvChad/nvim-colorizer.lua',

@@ -37,20 +37,10 @@ map({
 
 map({ 'n', 'J', 'mzJ`z' })
 
-map({
-    'n',
-    '<leader>y',
-    '<cmd>call setreg("+", getreg("0"))<cr>',
-})
-
 map({ 'x', 'p', '"_dp' })
 map({ 'x', 'P', '"_dP' })
 
-map({ 'n', '[b', '<cmd>bprev<cr>' })
-map({ 'n', ']b', '<cmd>bnext<cr>' })
-
-map({ 'n', '[q', '<cmd>cprev<cr>' })
-map({ 'n', ']q', '<cmd>cnext<cr>' })
-
-map({ 'n', '[l', '<cmd>lprev<cr>' })
-map({ 'n', ']l', '<cmd>lnext<cr>' })
+for _, lhs in ipairs({ 'b', 'q', 'l' }) do
+    map({ 'n', ('[%s'):format(lhs), ('<cmd>%sprev<cr>'):format(lhs) })
+    map({ 'n', (']%s'):format(lhs), ('<cmd>%snext<cr>'):format(lhs) })
+end

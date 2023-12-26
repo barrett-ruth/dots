@@ -8,6 +8,21 @@ au('BufEnter', {
     group = aug,
 })
 
+au('VimResized', {
+    command = 'wincmd =',
+    group = aug,
+})
+
+au('TermOpen', {
+    command = 'startinsert | setl nonumber norelativenumber statuscolumn=',
+    group = aug,
+})
+
+au('BufReadPost', {
+    command = 'sil! normal g`"',
+    group = aug,
+})
+
 au({ 'BufRead', 'BufNewFile' }, {
     pattern = '*/templates/*.html',
     callback = function(opts)
@@ -16,6 +31,13 @@ au({ 'BufRead', 'BufNewFile' }, {
             'htmldjango',
             { buf = opts.buf }
         )
+    end,
+    group = aug,
+})
+
+au('TextYankPost', {
+    callback = function()
+        vim.highlight.on_yank({ higroup = 'IncSearch', timeout = 300 })
     end,
     group = aug,
 })
