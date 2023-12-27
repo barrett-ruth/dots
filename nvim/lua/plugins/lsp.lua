@@ -39,7 +39,7 @@ return {
                 'pyright',
                 'pylsp',
                 'tailwindcss',
-                'yamlls'
+                'yamlls',
             }) do
                 local status, settings =
                     pcall(require, 'lsp.servers.' .. server)
@@ -60,5 +60,16 @@ return {
         opts = function()
             return prepare_lsp_settings(require('lsp.servers.typescript'))
         end,
+    },
+    {
+        'simrat39/rust-tools.nvim',
+        opts = {
+            tools = {
+                inlay_hints = {
+                    auto = false,
+                },
+            },
+            server = prepare_lsp_settings(require('lsp.servers.rust_analyzer')),
+        },
     },
 }

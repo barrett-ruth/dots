@@ -10,6 +10,9 @@ theCourseForum2)
 atlas)
   cmd='pnpm run dev'
   ;;
+*)
+  test -f Cargo.toml && cmd='cargo build'
+  ;;
 esac
 
 echo " > $cmd" | sed "s|$HOME|~|g"

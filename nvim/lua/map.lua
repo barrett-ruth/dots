@@ -40,7 +40,7 @@ map({ 'n', 'J', 'mzJ`z' })
 map({ 'x', 'p', '"_dp' })
 map({ 'x', 'P', '"_dP' })
 
-for _, lhs in ipairs({ 'b', 'q', 'l' }) do
-    map({ 'n', ('[%s'):format(lhs), ('<cmd>%sprev<cr>'):format(lhs) })
-    map({ 'n', (']%s'):format(lhs), ('<cmd>%snext<cr>'):format(lhs) })
+for key, keymap in pairs({ b = 'b', q = 'c', l = 'l' }) do
+    map({ 'n', ('[%s'):format(key), ('<cmd>%sprev<cr>'):format(keymap) })
+    map({ 'n', (']%s'):format(key), ('<cmd>%snext<cr>'):format(keymap) })
 end

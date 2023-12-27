@@ -1,6 +1,6 @@
 #!/bin/sh
 
-[ "$1" ] || exit
+[ -z "$1" ] && exit
 
 filename="$1"
 extension="${filename##*.}"
@@ -9,12 +9,17 @@ case "$extension" in
 c)
   cmd="clang $filename"
   run='./a.out'
-  clean='[ -f a.out ] && rm a.out'
+  clean='test -f a.out && rm a.out'
   ;;
 cpp | cc)
   cmd="clang++ $filename"
   run='./a.out'
-  clean='[ -f a.out ] && rm a.out'
+  clean='test -f a.out  && rm a.out'
+  ;;
+rs)
+  cmd="rustc $filename -o a.out"
+  run='./a.out'
+  clean='test -f a.out && rm a.out'
   ;;
 sh)
   cmd="sh $filename"
