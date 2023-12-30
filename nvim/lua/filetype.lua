@@ -1,7 +1,7 @@
 vim.filetype.add({
     extension = {
         log = 'log',
-        mdx = 'jsx',
+        mdx = 'mdx'
     },
     filename = {
         ['.env'] = 'config',

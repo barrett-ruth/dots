@@ -3,31 +3,23 @@ local projects = require('projects').projects
 
 local null_ls = require('null-ls')
 local builtins = null_ls.builtins
-local diagnostics, formatting =
-    builtins.diagnostics, builtins.formatting
+local diagnostics, formatting = builtins.diagnostics, builtins.formatting
 
-local function project_contains_source(name, opts)
+local function project_contains_source(name, default)
     local project = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
 
     if projects[project] and projects[project].lsp_sources then
         return vim.tbl_contains(projects[project].lsp_sources, name)
     end
 
-    return (opts and opts.default) or false
+    return default or false
 end
 
 null_ls.setup({
     sources = {
         diagnostics.curlylint.with({ extra_filetypes = { 'html' } }),
-        diagnostics.gitlint.with({
-            diagnostic_config = { update_in_insert = true },
-            extra_args = { '--ignore', 'body-is-missing' },
-        }),
         diagnostics.hadolint,
-        diagnostics.markdownlint.with({
-            diagnostic_config = { update_in_insert = true },
-            diagnostics_format = '#{m}',
-        }),
+        diagnostics.markdownlint,
         diagnostics.mypy.with({
             extra_args = { '--check-untyped-defs' },
             runtime_condition = function(params)
@@ -35,18 +27,13 @@ null_ls.setup({
             end,
         }),
         diagnostics.selene,
-        diagnostics.shellcheck.with({
-            extra_args = { '--enable', 'avoid-nullary-conditions' },
-            runtime_condition = function(_)
-                return not vim.fn.bufname():match('.env.*')
-            end,
-        }),
+        diagnostics.shellcheck,
         diagnostics.sqlfluff.with({
             extra_args = {
                 '--dialect',
                 'postgres',
                 '--exclude-rules',
-                'LT02,LT05',
+                'LT02,LT05', -- indent, line length
             },
         }),
         diagnostics.tsc,
@@ -54,7 +41,7 @@ null_ls.setup({
 
         formatting.black.with({
             condition = function(_)
-                return project_contains_source('black', { default = true })
+                return project_contains_source('black', true)
             end,
             extra_args = { '-S', '--fast', '--line-length=79' },
         }),
@@ -65,12 +52,10 @@ null_ls.setup({
         }),
         formatting.isort.with({
             condition = function(_)
-                return project_contains_source('isort', { default = true })
+                return project_contains_source('isort', true)
             end,
         }),
-        formatting.djhtml.with({
-            extra_args = { '--tabwidth', '2' },
-        }),
+        formatting.djhtml.with({ extra_args = { '--tabwidth', '2' } }),
         formatting.gofumpt,
         formatting.goimports_reviser,
         formatting.golines,
@@ -94,9 +79,7 @@ null_ls.setup({
                 'yaml',
             },
         }),
-        formatting.shfmt.with({
-            extra_args = { '-i', '2' },
-        }),
+        formatting.shfmt.with({ extra_args = { '-i', '2' } }),
         formatting.sql_formatter,
         formatting.stylua,
     },

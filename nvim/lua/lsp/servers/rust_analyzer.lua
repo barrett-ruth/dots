@@ -9,7 +9,6 @@ return {
                     '--message-format=json',
                     '--',
                     '-W', 'clippy::expect_used',
-                    '-W', 'clippy::nursery',
                     '-W', 'clippy::pedantic',
                     '-W', 'clippy::unwrap_used',
                 },

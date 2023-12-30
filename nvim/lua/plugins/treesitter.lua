@@ -116,4 +116,11 @@ return {
             },
         },
     },
+    {
+        'nvim-treesitter/playground',
+        dependencies = 'nvim-treesitter/nvim-treesitter',
+        keys = {
+            { '<leader>t', '<cmd>TSPlaygroundToggle<cr>' },
+        },
+    },
 }

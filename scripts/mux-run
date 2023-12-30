@@ -11,7 +11,7 @@ atlas)
   cmd='pnpm run dev'
   ;;
 *)
-  test -f Cargo.toml && cmd='cargo build'
+  test -f Cargo.toml && cmd='cargo run'
   ;;
 esac
 

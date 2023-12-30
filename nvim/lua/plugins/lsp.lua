@@ -13,7 +13,7 @@ return {
     },
     { 'folke/neodev.nvim', ft = 'lua' },
     {
-        'jose-elias-alvarez/null-ls.nvim',
+        'nvimtools/none-ls.nvim',
         config = function()
             require('lsp.null-ls')
         end,
