@@ -11,8 +11,8 @@ eslint 8.56.0
 markdownlint 0.30.0
 markdownlint-cli 0.35.0
 neovim 4.10.1
-pnpm 8.13.1
-pyright 1.1.343
+pnpm 8.14.0
+pyright 1.1.344
 sql-formatter 12.2.4
 ts-node 10.9.2
 typescript 5.3.3

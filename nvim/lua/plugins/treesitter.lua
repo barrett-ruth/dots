@@ -1,16 +1,3 @@
--- stylua: ignore
-local ts_langs = {
-    'bash', 'c', 'cmake', 'comment',
-    'cpp', 'css', 'diff', 'dockerfile',
-    'git_rebase', 'gitattributes', 'gitignore',
-    'go', 'gomod', 'gosum', 'html', 'htmldjango',
-    'http', 'java', 'javascript', 'jq',
-    'json', 'json5', 'lua', 'make', 'markdown',
-    'markdown_inline', 'python', 'regex',
-    'query', 'rust', 'sql', 'tsx',
-    'typescript', 'vim', 'vimdoc', 'yaml',
-}
-
 return {
     {
         'CKolkey/ts-node-action',
@@ -56,10 +43,10 @@ return {
             'nvim-treesitter/nvim-treesitter-textobjects',
             'nvim-lua/plenary.nvim',
         },
-        ft = ts_langs,
         keys = { { '<leader>i', vim.cmd.Inspect } },
         opts = {
-            ensure_installed = ts_langs,
+            auto_install = true,
+            ensure_installed = { 'c', 'lua', 'vim', 'vimdoc', 'query' },
             highlight = {
                 additional_vim_regex_highlighting = true,
                 enable = true,

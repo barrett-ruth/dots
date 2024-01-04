@@ -37,7 +37,7 @@ export CPPFLAGS='-I/opt/homebrew/opt/llvm/include'
 
 export PYENV_ROOT="$XDG_CONFIG_HOME"/pyenv
 
-export BROWSER='/Applications/Chromium.app'
+export BROWSER='/Applications/Chromium.app/Contents/MacOS/Chromium'
 export GH_BROWSER="$BROWSER"
 export EDITOR='nvim'
 export MANPAGER='nvim +Man!'
