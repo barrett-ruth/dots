@@ -62,14 +62,19 @@ return {
         end,
     },
     {
-        'simrat39/rust-tools.nvim',
-        opts = {
-            tools = {
-                inlay_hints = {
-                    auto = false,
+        'mrcjkb/rustaceanvim',
+        ft = { 'rust' },
+        init = function()
+            vim.g.rustaceanvim = {
+                tools = {
+                    inlay_hints = {
+                        auto = false,
+                    },
                 },
-            },
-            server = prepare_lsp_settings(require('lsp.servers.rust_analyzer')),
-        },
+                server = prepare_lsp_settings(
+                    require('lsp.servers.rust_analyzer')
+                ),
+            }
+        end,
     },
 }

@@ -31,7 +31,7 @@ local search = {
     condition = function()
         local status, searchcount = pcall(vim.fn.searchcount)
 
-        if not status then
+        if not status or not searchcount or vim.tbl_isempty(searchcount) then
             return false
         end
 

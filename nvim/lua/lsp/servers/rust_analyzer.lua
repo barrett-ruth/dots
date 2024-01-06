@@ -18,7 +18,8 @@ return {
     on_attach = function(client, _)
         require('lsp.utils').on_attach(client, _)
 
-        bmap { 'n', '\\Rc', '<cmd>RustCodeAction<cr>' }
-        bmap { 'n', '\\Rm', '<cmd>RustExpandMacro<cr>' }
+        bmap { 'n', '\\Rc', '<cmd>RustLsp codeAction<cr>' }
+        bmap { 'n', '\\Rm', '<cmd>RustLsp expandMacro<cr>' }
+        bmap { 'n', '\\Ro', '<cmd>RustLsp openCargo<cr>' }
     end,
 }

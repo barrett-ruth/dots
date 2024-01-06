@@ -14,7 +14,7 @@ c)
 cpp | cc)
   cmd="clang++ $filename"
   run='./a.out'
-  clean='test -f a.out  && rm a.out'
+  clean='test -f a.out && rm a.out'
   ;;
 rs)
   cmd="rustc $filename -o a.out"
