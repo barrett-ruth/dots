@@ -3,7 +3,8 @@ local projects = require('projects').projects
 
 local null_ls = require('null-ls')
 local builtins = null_ls.builtins
-local diagnostics, formatting = builtins.diagnostics, builtins.formatting
+local code_actions, diagnostics, formatting =
+    builtins.code_actions, builtins.diagnostics, builtins.formatting
 
 local function project_contains_source(name, default)
     local project = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
@@ -17,6 +18,10 @@ end
 
 null_ls.setup({
     sources = {
+        code_actions.gitrebase,
+        code_actions.gitsigns,
+        code_actions.shellcheck,
+
         diagnostics.curlylint.with({ extra_filetypes = { 'html' } }),
         diagnostics.hadolint,
         diagnostics.markdownlint,

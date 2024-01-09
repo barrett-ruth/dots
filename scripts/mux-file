@@ -17,9 +17,9 @@ cpp | cc)
   clean='test -f a.out && rm a.out'
   ;;
 rs)
-  cmd="rustc $filename -o a.out"
-  run='./a.out'
-  clean='test -f a.out && rm a.out'
+  cmd="rustc $filename"
+  run='./a'
+  clean='test -f a && rm a'
   ;;
 sh)
   cmd="sh $filename"
@@ -33,16 +33,10 @@ js)
 py)
   cmd="python3 $filename"
   ;;
+*)
+  exit
 esac
 
-echo " > $cmd" | sed "s|$HOME|~|g"
-
-if [ "$run" ]; then
-  cmd="$cmd && $run"
-fi
-
-eval "$cmd"
-
-if [ "$clean" ]; then
-  eval "$clean"
-fi
+echo " > $cmd" && eval "$cmd" || exit
+[ -z "$run" ] || echo " > $run" && eval "$run"
+[ -z "$clean" ] || printf '\n > %s\n' "$clean" && eval "$clean"

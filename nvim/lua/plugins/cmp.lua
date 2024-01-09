@@ -36,7 +36,8 @@ return {
                 sources = cmp.config.sources({
                     { name = 'nvim_lsp' },
                     { name = 'path' },
-                }, {
+                    { name = 'git' },
+                    { name = 'conventionalcommits' },
                     { name = 'buffer' },
                 }),
                 mapping = cmp.mapping.preset.insert({
@@ -62,10 +63,12 @@ return {
             cmp.setup(opts)
         end,
         dependencies = {
+            'davidsierradz/cmp-conventionalcommits',
             'hrsh7th/cmp-buffer',
             'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-path',
             'L3MON4D3/LuaSnip',
+            'petertriho/cmp-git',
             'roobert/tailwindcss-colorizer-cmp.nvim',
         },
         event = 'InsertEnter',
