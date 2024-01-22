@@ -10,6 +10,12 @@ theCourseForum2)
 atlas)
   cmd='pnpm run dev'
   ;;
+swe-interview-prep)
+  cmd='pnpm run dev'
+  ;;
+neovim)
+  cmd='make'
+  ;;
 *)
   test -f Cargo.toml && cmd='cargo run'
   ;;

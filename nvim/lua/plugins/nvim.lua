@@ -1,5 +1,10 @@
 return {
     {
+        'barrett-ruth/live-server.nvim',
+        build = 'pnpm add -g live-server',
+        config = true,
+    },
+    {
         'echasnovski/mini.bufremove',
         config = true,
         keys = {

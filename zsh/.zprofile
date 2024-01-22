@@ -66,6 +66,7 @@ export PNPM_HOME="$XDG_DATA_HOME/pnpm"
 export PRETTIERD_CONFIG_HOME="$XDG_STATE_HOME"/prettierd
 export PSQL_HISTORY="$XDG_STATE_HOME"/psql_history
 export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/pythonrc
+export R_HISTFILE="$XDG_STATE_HOME"/Rhistory
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME"/rg/config
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export SCRIPTS="$HOME/.local/bin/scripts"

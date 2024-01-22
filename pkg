@@ -35,6 +35,7 @@ graphite2
 hadolint
 harfbuzz
 highway
+hwloc
 icu4c
 imath
 isl
@@ -107,7 +108,9 @@ mujs
 ncurses
 neovim
 nettle
+ninja
 node
+numpy
 nvm
 oniguruma
 openblas
@@ -117,6 +120,7 @@ openjdk
 openjpeg
 openssl@1.1
 openssl@3
+openvino
 opus
 p11-kit
 pango
@@ -126,6 +130,7 @@ pkg-config
 pnpm
 popt
 postgresql@15
+pugixml
 pyenv
 pygments
 python-brotli
@@ -159,6 +164,7 @@ sqlite
 srt
 stylua
 svt-av1
+tbb
 tcl-tk
 tesseract
 theora
@@ -199,3 +205,4 @@ sioyek
 spotify
 telegram
 utm
+visual-studio-code

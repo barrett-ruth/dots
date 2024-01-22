@@ -24,7 +24,7 @@ null_ls.setup({
 
         diagnostics.curlylint.with({ extra_filetypes = { 'html' } }),
         diagnostics.hadolint,
-        diagnostics.markdownlint,
+        -- diagnostics.markdownlint,
         diagnostics.mypy.with({
             extra_args = { '--check-untyped-defs' },
             runtime_condition = function(params)
@@ -46,7 +46,7 @@ null_ls.setup({
 
         formatting.black.with({
             condition = function(_)
-                return project_contains_source('black', true)
+                return project_contains_source('black', false)
             end,
             extra_args = { '-S', '--fast', '--line-length=79' },
         }),
@@ -57,7 +57,7 @@ null_ls.setup({
         }),
         formatting.isort.with({
             condition = function(_)
-                return project_contains_source('isort', true)
+                return project_contains_source('isort', false)
             end,
         }),
         formatting.djhtml.with({ extra_args = { '--tabwidth', '2' } }),
@@ -78,7 +78,9 @@ null_ls.setup({
                 'javascript',
                 'javascriptreact',
                 'json',
+                'jsonc',
                 'markdown',
+                'mdx',
                 'typescript',
                 'typescriptreact',
                 'yaml',

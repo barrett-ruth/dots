@@ -51,6 +51,8 @@ mac() {
 
   [ -d pnpm ] || mkdir pnpm
   pnpm -g list >pnpm/pkg
+
+  pip freeze >python/pkg
 }
 
 type brew >/dev/null && mac || linux
