@@ -24,7 +24,7 @@ o.foldlevel = 99
 o.foldmethod = 'expr'
 o.foldminlines = 9
 opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-opt.foldtext = 'v:lua.vim.treesitter.foldtext()'
+opt.foldtext = ''
 
 opt.iskeyword:append('-')
 

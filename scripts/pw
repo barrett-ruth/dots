@@ -1,0 +1,11 @@
+#!/bin/sh
+
+PW_LEN="${1:-15}"
+
+PASSWORD="$(LC_ALL=C tr -dc 'A-Za-z0-9_!@#$%^&*()-+=' </dev/urandom | head -c "$PW_LEN")"
+
+if [ "$(command -v pbcopy)" ]; then
+    echo "$PASSWORD" | pbcopy
+else
+    echo "$PASSWORD" | xclip -selection clipboard
+fi

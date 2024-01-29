@@ -70,6 +70,7 @@ return {
             fd_opts = fd_opts,
             git_icons = false,
             file_icons = false,
+            actions = { ['ctrl-g'] = false },
         },
         fzf_args = vim.env.FZF_DEFAULT_OPTS,
         grep = { no_header_i = true },

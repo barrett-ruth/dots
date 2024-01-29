@@ -41,6 +41,7 @@ tshi(
     { fg = cs.orange },
     { '@keyword.operator', '@conditional.ternary' }
 )
+hi('Delimiter', { none = true })
 hi('@punctuation.delimiter', { fg = cs.light_black })
 tshi('PreProc', { fg = cs.magenta })
 tshi('String', { fg = cs.yellow }, { '@character' })
@@ -65,6 +66,8 @@ hi('@text.danger', { fg = cs.red, bold = true, italic = true })
 hi('@text.note', { fg = cs.green, bold = true, italic = true })
 hi('@text.todo', { fg = cs.yellow, bold = true, italic = true }, { 'Todo' })
 hi('@text.warning', { fg = cs.orange, bold = true, italic = true })
+
+hi('@variable', { none = true })
 
 hi('Pmenu', { bg = cs.med_grey }, { 'PmenuSbar' })
 hi('PmenuSel', { fg = cs.med_grey, bg = cs.light_grey })

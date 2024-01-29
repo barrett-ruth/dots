@@ -2,6 +2,7 @@ return {
     {
         'barrett-ruth/live-server.nvim',
         build = 'pnpm add -g live-server',
+        cmd = { 'LiveServerStart', 'LiveServerStart' },
         config = true,
     },
     {
@@ -50,6 +51,7 @@ return {
                 function OpenMarkdownPreview(url)
                     exec "silent !/Applications/Chromium.app/Contents/MacOS/Chromium -n --args " . a:url
                 endfunction
+                let g:mkdp_auto_close = 0
                 let g:mkdp_browserfunc = 'OpenMarkdownPreview'
             ]])
         end,

@@ -10,7 +10,7 @@ theCourseForum2)
 atlas)
   cmd='pnpm run dev'
   ;;
-swe-interview-prep)
+interview-prep)
   cmd='pnpm run dev'
   ;;
 neovim)
