@@ -1,9 +1,4 @@
-cfgv==3.4.0
-distlib==0.3.8
-filelock==3.13.1
-identify==2.5.33
-nodeenv==1.8.0
-platformdirs==4.1.0
-pre-commit==3.6.0
-PyYAML==6.0.1
-virtualenv==20.25.0
+greenlet==3.0.3
+msgpack==1.0.7
+neovim==0.3.1
+pynvim==0.5.0

@@ -5,6 +5,7 @@ case "$1" in
     '') cd ~;;
     aoc) cd ~/Desktop/aoc;;
     atlas) cd ~/Desktop/atlas;;
+    cses) cd ~/Desktop/dsa/cses;;
     ip) cd ~/Desktop/swe-interview-prep;;
     dl) cd ~/Downloads;;
     lz) cd ~/.local/share/nvim/lazy;;
