@@ -46,9 +46,9 @@ null_ls.setup({
 
         formatting.black.with({
             condition = function(_)
-                return project_contains_source('black', false)
+                return project_contains_source('black', true)
             end,
-            extra_args = { '-S', '--fast', '--line-length=79' },
+            extra_args = { '-S', '--fast', '--line-length', '80' },
         }),
         formatting.cbfmt.with({
             condition = function(utils)
@@ -57,8 +57,9 @@ null_ls.setup({
         }),
         formatting.isort.with({
             condition = function(_)
-                return project_contains_source('isort', false)
+                return project_contains_source('isort', true)
             end,
+            extra_args = { '--profile', 'black', '--line-length', '80' },
         }),
         formatting.djhtml.with({ extra_args = { '--tabwidth', '2' } }),
         formatting.gofumpt,

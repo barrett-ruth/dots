@@ -4,7 +4,7 @@ return {
         client.server_capabilities.definitionProvider = false
         client.server_capabilities.referencesProvider = false
 
-        vim.lsp.handlers[vim.lsp.protocol.Methods.textDocument_publishDiagnostics] = vim.lsp.with(
+        vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
             function(_, result, ctx, config)
                 local index = 1
                 local size = #result.diagnostics

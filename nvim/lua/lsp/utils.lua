@@ -1,39 +1,41 @@
 local M = {}
 
-local methods = vim.lsp.protocol.Methods
-
 function M.on_attach(client, bufnr)
     local diagnostic, buf = vim.diagnostic, vim.lsp.buf
 
     local mappings = {
-        [methods.textDocument_codeAction] = {
+        codeAction = {
             { 'n', 'x' },
             '\\c',
             buf.code_action,
         },
-        [methods.textDocument_declaration] = { 'n', 'gD', buf.declaration },
-        [methods.textDocument_hover] = { 'n', 'K', buf.hover },
-        [methods.textDocument_inlayHint] = {
+        declaration = { 'n', 'gD', buf.declaration },
+        hover = { 'n', 'K', buf.hover },
+        inlayHint = {
             'n',
             '\\i',
             function()
                 vim.lsp.inlay_hint(bufnr)
             end,
         },
-        [methods.textDocument_rename] = {
+        rename = {
             'n',
             'gr',
             require('lsp.rename').rename,
         },
-        [methods.textDocument_signatureHelp] = {
+        signatureHelp = {
             'i',
             '<c-space>',
             buf.signature_help,
         },
     }
 
-    for method, mapping in pairs(mappings) do
-        if client.supports_method(method) then
+    for provider, mapping in pairs(mappings) do
+        if
+            client.server_capabilities[('textDocument/%sProvider'):format(
+                provider
+            )]
+        then
             bmap(mapping)
         end
     end

@@ -42,8 +42,6 @@ au('TextYankPost', {
     group = aug,
 })
 
-local methods = vim.lsp.protocol.Methods
-
 local function format()
     vim.lsp.buf.format({
         filter = function(c)
@@ -79,7 +77,7 @@ au('LspAttach', {
             return
         end
 
-        if client.supports_method(methods.textDocument_inlayHint) then
+        if client.server_capabilities.inlayHintProvider then
             bmap({
                 'n',
                 '\\i',
@@ -89,10 +87,10 @@ au('LspAttach', {
             }, { buffer = opts.buf })
         end
 
-        if client.supports_method(methods.textDocument_formatting) then
+        if client.server_capabilities.documentFormattingProvider then
             local modes = { 'n' }
 
-            if client.supports_method(methods.textDocument_rangeFormatting) then
+            if client.server_capabilities.documentRangeFormattingProvider then
                 modes[#modes + 1] = 'x'
             end
 

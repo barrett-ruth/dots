@@ -4,8 +4,6 @@ o.autowrite = true
 
 o.breakindent = true
 
-o.cursorline = true
-
 opt.diffopt:append('linematch:60')
 
 o.expandtab = true
@@ -24,7 +22,8 @@ o.foldlevel = 99
 o.foldmethod = 'expr'
 o.foldminlines = 9
 opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-opt.foldtext = ''
+-- TODO: default to '' on 0.10
+opt.foldtext = 'v:lua.vim.treesitter.foldtext()'
 
 opt.iskeyword:append('-')
 

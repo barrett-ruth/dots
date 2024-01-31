@@ -23,12 +23,7 @@ return {
         },
     },
     handlers = {
-        [lsp.protocol.Methods.textDocument_publishDiagnostics] = function(
-            _,
-            result,
-            ctx,
-            config
-        )
+        ['textDocument/publishDiagnostics'] = function(_, result, ctx, config)
             local ok, format_ts = pcall(require, 'format-ts-errors')
             local filtered = {}
 
