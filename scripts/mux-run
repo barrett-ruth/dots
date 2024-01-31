@@ -2,22 +2,22 @@
 
 proj="$PWD"
 
-case "$(basename "$proj")" in
-theCourseForum2)
+case "$proj" in
+*theCourseForum2*)
   # docker compose up --build
   cmd='docker compose up'
   ;;
-atlas)
+*atlas*)
   cmd='pnpm run dev'
   ;;
-interview-prep)
+*interview-prep*)
   cmd='pnpm run dev'
   ;;
-neovim)
+*neovim*)
   cmd='make'
   ;;
-*)
-  test -f Cargo.toml && cmd='cargo run'
+*cses*|*usaco*|*codeforces*)
+  cmd='python solution.py < input.txt'
   ;;
 esac
 
