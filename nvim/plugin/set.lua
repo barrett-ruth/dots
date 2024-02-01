@@ -2,6 +2,8 @@ local o, opt = vim.o, vim.opt
 
 o.autowrite = true
 
+o.background = vim.env.THEME
+
 o.breakindent = true
 
 opt.diffopt:append('linematch:60')

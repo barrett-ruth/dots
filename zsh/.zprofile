@@ -29,6 +29,8 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(pyenv init -)"
 . /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+export THEME='light' # gruvbox
+
 export NVM_DIR="$XDG_DATA_HOME"/nvm
 nvm() { unset -f nvm && . "$NVM_DIR/nvm.sh" && nvm "$@"; }
 
@@ -89,10 +91,16 @@ export FZF_CTRL_R_OPTS='--reverse'
 export FZF_CTRL_T_COMMAND='fd --type file --strip-cwd-prefix'
 export FZF_TMUX=1
 
-export FZF_DEFAULT_OPTS="--bind=ctrl-a:select-all --bind=ctrl-f:half-page-down --bind=ctrl-b:half-page-up --no-scrollbar --no-info \
+if [[ "$THEME" == 'light' ]]; then
+  export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --color=bg+:#CEE1F8,bg:#FFFFFF,spinner:#8250DF,hl:#8250DF \
+--color=fg:#000000,header:#8250DF,info:#9A6700,pointer:#8250DF \
+--color=marker:#1A7F37,fg+:#000000,prompt:#9A6700,pointer:#1A7F37,hl+:#8250DF"
+elif [[ "$THEME" == 'gruvbox' ]]; then
+  export FZF_DEFAULT_OPTS="--bind=ctrl-a:select-all --bind=ctrl-f:half-page-down --bind=ctrl-b:half-page-up --no-scrollbar --no-info \
 --color=fg:#D4BE98,bg:#282828,hl:#A9B665,fg+:#D4BE98,bg+:#32302F,hl+:#89B482 \
 --color=spinner:#D8A657 --color=marker:#D8A657 --color=pointer:#7DAEA3 \
 --color=prompt:#E78A4E --color=info:#89B482 --color=border:#928374 --color=header:#928374"
+fi
 
 . "$ZDOTDIR/.zaliases"
 . "$XDG_CONFIG_HOME/fzf/fzf.zsh"
