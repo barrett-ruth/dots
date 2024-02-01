@@ -92,7 +92,7 @@ export FZF_CTRL_T_COMMAND='fd --type file --strip-cwd-prefix'
 export FZF_TMUX=1
 
 if [[ "$THEME" == 'light' ]]; then
-  export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --color=bg+:#CEE1F8,bg:#FFFFFF,spinner:#8250DF,hl:#8250DF \
+  export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --color=bg+:#f1f1f2,bg:#FFFFFF,spinner:#8250DF,hl:#8250DF \
 --color=fg:#000000,header:#8250DF,info:#9A6700,pointer:#8250DF \
 --color=marker:#1A7F37,fg+:#000000,prompt:#9A6700,pointer:#1A7F37,hl+:#8250DF"
 elif [[ "$THEME" == 'gruvbox' ]]; then
