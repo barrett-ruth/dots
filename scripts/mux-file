@@ -25,7 +25,9 @@ sh)
   cmd="sh $filename"
   ;;
 ts)
-  cmd="ts-node $filename"
+  cmd="npx ts-node"
+  test -f package.json && cmd="$cmd --skipProject"
+  cmd="$cmd $filename"
   ;;
 js)
   cmd="node $filename"
@@ -35,6 +37,7 @@ py)
   ;;
 *)
   exit
+  ;;
 esac
 
 echo " > $cmd" && eval "$cmd" || exit

@@ -6,6 +6,8 @@ o.background = vim.env.THEME
 
 o.breakindent = true
 
+o.cursorline = true
+
 opt.diffopt:append('linematch:60')
 
 o.expandtab = true

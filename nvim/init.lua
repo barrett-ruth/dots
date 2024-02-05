@@ -1,3 +1,4 @@
+vim.cmd.syntax('off')
 require('let')
 require('map')
 require('filetype')
@@ -19,3 +20,4 @@ require('lazy').setup('plugins', {
 })
 
 require('lines').setup()
+vim.cmd.colorscheme('light')

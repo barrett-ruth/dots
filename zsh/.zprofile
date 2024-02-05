@@ -85,6 +85,7 @@ append_path "$CARGO_HOME/bin"
 append_path '/opt/homebrew/opt/postgresql@15/bin'
 append_path "$GOPATH/bin"
 
+# TODO: fix all this
 export FZF_COMPLETION_TRIGGER=\;
 export FZF_ALT_C_COMMAND='fd --type directory --strip-cwd-prefix'
 export FZF_CTRL_R_OPTS='--reverse'

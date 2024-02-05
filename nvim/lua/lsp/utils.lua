@@ -30,9 +30,10 @@ function M.on_attach(client, bufnr)
         },
     }
 
+
     for provider, mapping in pairs(mappings) do
         if
-            client.server_capabilities[('textDocument/%sProvider'):format(
+            client.server_capabilities[('%sProvider'):format(
                 provider
             )]
         then
