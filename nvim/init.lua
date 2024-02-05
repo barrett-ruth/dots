@@ -1,4 +1,3 @@
-vim.cmd.syntax('off')
 require('let')
 require('map')
 require('filetype')
