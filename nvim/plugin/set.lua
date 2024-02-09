@@ -6,7 +6,7 @@ o.background = vim.env.THEME
 
 o.breakindent = true
 
-o.cursorline = true
+-- o.cursorline = true
 
 opt.diffopt:append('linematch:60')
 
@@ -26,8 +26,8 @@ o.foldlevel = 99
 o.foldmethod = 'expr'
 o.foldminlines = 9
 opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
--- TODO: default to '' on 0.10
-opt.foldtext = 'v:lua.vim.treesitter.foldtext()'
+opt.foldtext = vim.fn.has('nvim-0.10') and ''
+    or 'v:lua.vim.treesitter.foldtext()'
 
 opt.iskeyword:append('-')
 

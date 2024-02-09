@@ -5,6 +5,7 @@ local hi, link, tshi, cs =
     colors.hi, colors.link, colors.tshi, colors[vim.g.colors_name]
 
 hi('Normal', { fg = cs.black, bg = cs.bg }, { 'Identifier', 'Special' })
+hi('NonText', { fg = cs.grey })
 hi('LineNr', { fg = cs.grey }, { 'SignColumn' })
 hi('CursorLineNr', { fg = cs.black }, { 'FoldColumn' })
 
@@ -37,8 +38,9 @@ tshi('Number', { fg = cs.blue })
 tshi('Operator', { fg = cs.blue })
 tshi('PreProc', { none = true })
 tshi('String', { fg = cs.dark_blue }, { '@string.escape' })
+tshi('Title', { fg = cs.blue, bold = true })
 tshi('Variable', { fg = cs.black })
-hi('@punctuation.delimiter', { fg = cs.black })
+ hi('@punctuation.delimiter', { fg = cs.black })
 
 tshi('Type', { fg = cs.black }, { '@type.builtin' })
 hi('@type.qualifier', { fg = cs.red })
@@ -50,9 +52,7 @@ hi(
     { 'Todo' }
 )
 
-hi('jsonKeyword', { fg = cs.green })
-
-hi('LspSignatureActiveParameter', { underline = true, italic = true })
+ hi('LspSignatureActiveParameter', { underline = true, italic = true })
 hi(
     'DiagnosticError',
     { fg = cs.red },
@@ -98,6 +98,20 @@ hi('DiagnosticUnderlineInfo', {
     undercurl = true,
     special = cs.cyan,
 })
+
+hi('@attribute.diff', { fg = cs.purple })
+hi('DiffAdd', { fg = cs.green }, { '@text.diff.add', 'diffAdded' })
+hi('DiffDelete', { fg = cs.red }, { '@text.diff.delete', 'diffRemoved' })
+hi('DiffChange', { fg = cs.blue })
+
+-- language-specific
+hi('jsonKeyword', { fg = cs.green })
+
+-- gitsigns.nvim
+hi('GitSignsCurrentLineBlame', { italic = true, fg = cs.light_black })
+link('DiffAdd', 'GitSignsAdd')
+link('DiffChange', 'GitSignsChange')
+link('DiffDelete', 'GitSignsDelete')
 
 -- null-ls
 link('NormalFloat', 'NullLsInfoBorder')

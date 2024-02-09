@@ -139,6 +139,7 @@ python-click
 python-markupsafe
 python-mutagen
 python-packaging
+python-pathspec
 python-typing-extensions
 python@3.11
 python@3.12
