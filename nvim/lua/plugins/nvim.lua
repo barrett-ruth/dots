@@ -34,7 +34,6 @@ return {
                         or vim.bo.commentstring
                 end,
             },
-            mappings = { comment_line = 'g/' },
         },
     },
     {

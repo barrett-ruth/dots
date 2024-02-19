@@ -37,6 +37,7 @@ return {
                 'jsonls',
                 'lua_ls',
                 'pyright',
+                'ltex',
                 'pylsp',
                 'tailwindcss',
                 'yamlls',

@@ -8,7 +8,7 @@ hi('Normal', { fg = cs.white, bg = cs.bg }, { 'Identifier', 'Special' })
 hi('NonText', { fg = cs.grey }, { 'SpecialKey' })
 
 hi('LineNr', { fg = cs.grey }, { 'SignColumn' })
-hi('CursorLine', { bg = cs.dark_grey }, { 'ColorColumn', 'Folded' })
+hi('CursorLine', { bg = cs.grey }, { 'ColorColumn', 'Folded', 'Visual' })
 hi('CursorLineNr', { fg = cs.light_black }, { 'FoldColumn' })
 
 hi('Conceal', { fg = cs.grey, bg = cs.bg })
@@ -24,7 +24,6 @@ hi('NormalFloat', { bg = cs.bg }, {
     'FloatShadowThrough',
 })
 hi('Search', { reverse = true }, { 'IncSearch' })
-hi('Visual', { bg = cs.med_grey })
 hi('Whitespace', { fg = cs.grey })
 
 tshi('Boolean', { fg = cs.magenta }, { '@constant.builtin' })

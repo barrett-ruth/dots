@@ -8,6 +8,10 @@ hi('Normal', { fg = cs.black, bg = cs.bg }, { 'Identifier', 'Special' })
 hi('NonText', { fg = cs.grey })
 hi('LineNr', { fg = cs.grey }, { 'SignColumn' })
 hi('CursorLineNr', { fg = cs.black }, { 'FoldColumn' })
+hi('CursorLine', { bg = cs.light_grey })
+hi('Search', { bg = cs.yellow })
+hi('IncSearch', { bg = cs.orange })
+hi('Visual', { reverse = true })
 
 tshi('Boolean', { fg = cs.blue })
 tshi('Constant', { fg = cs.blue })
@@ -40,7 +44,7 @@ tshi('PreProc', { none = true })
 tshi('String', { fg = cs.dark_blue }, { '@string.escape' })
 tshi('Title', { fg = cs.blue, bold = true })
 tshi('Variable', { fg = cs.black })
- hi('@punctuation.delimiter', { fg = cs.black })
+hi('@punctuation.delimiter', { fg = cs.black })
 
 tshi('Type', { fg = cs.black }, { '@type.builtin' })
 hi('@type.qualifier', { fg = cs.red })
@@ -52,7 +56,7 @@ hi(
     { 'Todo' }
 )
 
- hi('LspSignatureActiveParameter', { underline = true, italic = true })
+hi('LspSignatureActiveParameter', { underline = true, italic = true })
 hi(
     'DiagnosticError',
     { fg = cs.red },

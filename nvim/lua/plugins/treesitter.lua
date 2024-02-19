@@ -46,7 +46,7 @@ return {
         keys = { { '<leader>i', vim.cmd.Inspect } },
         opts = {
             auto_install = true,
-            ensure_installed = { 'c', 'lua', 'vim', 'vimdoc', 'query' },
+            ensure_installed = 'all',
             highlight = {
                 additional_vim_regex_highlighting = true,
                 enable = true,
