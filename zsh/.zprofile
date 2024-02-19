@@ -85,7 +85,6 @@ append_path "$CARGO_HOME/bin"
 append_path '/opt/homebrew/opt/postgresql@15/bin'
 append_path "$GOPATH/bin"
 
-# TODO: fix all this
 export FZF_COMPLETION_TRIGGER=\;
 export FZF_ALT_C_COMMAND='fd --type directory --strip-cwd-prefix'
 export FZF_CTRL_R_OPTS='--reverse'
@@ -105,7 +104,8 @@ elif [[ "$THEME" == 'gruvbox' ]]; then
 fi
 
 . "$ZDOTDIR/.zaliases"
-. "$XDG_CONFIG_HOME/fzf/fzf.zsh"
+. /opt/homebrew/opt/fzf/shell/key-bindings.zsh
+. "$XDG_CONFIG_HOME"/fzf/fzf.zsh
 
 fzf-config-widget() {
     file="$(FZF_CTRL_T_COMMAND="fd --type file --hidden . ~/.config | sed 's|$HOME|~|g'" __fsel | cut -c2-)"
@@ -115,7 +115,6 @@ fzf-config-widget() {
 zle -N fzf-config-widget
 
 bindkey -v
-bindkey -r '^R'
 bindkey '^E' fzf-config-widget
 bindkey '^F' fzf-file-widget
 bindkey '^G' fzf-cd-widget
@@ -123,5 +122,3 @@ bindkey '^H' fzf-history-widget
 bindkey '^[[3~' delete-char
 bindkey '^P' up-line-or-history
 bindkey '^N' down-line-or-history
-bindkey '^J' backward-char
-bindkey '^K' forward-char
