@@ -1,6 +1,7 @@
 aom
 aribb24
 autoconf
+automake
 black
 brotli
 c-ares
@@ -22,6 +23,7 @@ fontconfig
 freetype
 frei0r
 fribidi
+fzf
 gcc
 gettext
 gh
@@ -71,6 +73,7 @@ libssh2
 libtasn1
 libtermkey
 libtiff
+libtool
 libunibreak
 libunistring
 libusb
