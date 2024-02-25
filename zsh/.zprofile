@@ -29,7 +29,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(pyenv init -)"
 . /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-export THEME='light' # dark
+export THEME='light' # gruvbox-dark, gruvbox-light
 
 export NVM_DIR="$XDG_DATA_HOME"/nvm
 nvm() { unset -f nvm && . "$NVM_DIR/nvm.sh" && nvm "$@"; }
@@ -96,7 +96,7 @@ if [[ "$THEME" == 'light' ]]; then
   export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --color=bg+:#f1f1f2,bg:#FFFFFF,spinner:#8250DF,hl:#8250DF \
 --color=fg:#000000,header:#8250DF,info:#9A6700,pointer:#8250DF \
 --color=marker:#1A7F37,fg+:#000000,prompt:#9A6700,pointer:#1A7F37,hl+:#8250DF"
-elif [[ "$THEME" == 'gruvbox' ]]; then
+elif [[ "$THEME" == 'gruvbox-dark' ]]; then
   export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
 --color=fg:#D4BE98,bg:#282828,hl:#A9B665,fg+:#D4BE98,bg+:#32302F,hl+:#89B482 \
 --color=spinner:#D8A657 --color=marker:#D8A657 --color=pointer:#7DAEA3 \

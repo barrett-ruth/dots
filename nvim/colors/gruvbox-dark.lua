@@ -1,10 +1,10 @@
 local colors = require('colors')
-colors.setup('dark', 'dark')
+colors.setup('gruvbox-dark', 'dark')
 
 local hi, link, tshi, cs =
     colors.hi, colors.link, colors.tshi, colors[vim.g.colors_name]
 
-hi('Normal', { fg = cs.white, bg = cs.bg }, { 'Identifier', 'Special' })
+hi('Normal', { fg = cs.white, bg = cs.black }, { 'Identifier', 'Special' })
 hi('NonText', { fg = cs.grey }, { 'SpecialKey' })
 
 hi('LineNr', { fg = cs.grey }, { 'SignColumn' })
