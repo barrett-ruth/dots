@@ -49,7 +49,7 @@ local function format()
                 'cssls', -- prettier
                 'html', -- prettier
                 'jsonls', -- prettier
-                'pylsp',
+                'pylsp', -- black/isort/autopep8
                 'typescript-tools', -- prettier
             }, c.name)
         end,

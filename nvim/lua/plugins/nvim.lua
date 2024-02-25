@@ -188,13 +188,7 @@ return {
             },
         },
     },
-    {
-        'projekt0n/github-nvim-theme',
-        config = function()
-            require('github-theme').setup()
-            -- vim.cmd.colorscheme('github_light')
-        end
-    },
+    'sindrets/diffview.nvim',
     {
         'stevearc/oil.nvim',
         keys = {

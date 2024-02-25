@@ -16,7 +16,7 @@ local function hi(group, highlights, links)
 end
 
 return {
-    gruvbox = {
+    dark = {
         black = '#282828',
         red = '#EA6962',
         green = '#A9B665',
