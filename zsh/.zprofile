@@ -29,7 +29,9 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(pyenv init -)"
 . /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-export THEME='light' # gruvbox-dark, gruvbox-light
+# export THEME='light'
+# export THEME='gruvbox-light'
+export THEME='gruvbox-dark'
 
 export NVM_DIR="$XDG_DATA_HOME"/nvm
 nvm() { unset -f nvm && . "$NVM_DIR/nvm.sh" && nvm "$@"; }

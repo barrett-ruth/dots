@@ -21,10 +21,6 @@ git)
   [ "$(tmux lsw -F '#W' | rg git)" ] && tmux send -t git 'C-c'\; killw -t git
   tmux neww -c '#{pane_current_path}' -n git 'nvim -c "Git|only"'
   ;;
-diffview)
-  [ "$(tmux lsw -F '#W' | rg view)" ] && tmux killw -t view
-  tmux neww -c '#{pane_current_path}' -n view 'nvim -c DiffviewOpen'
-  ;;
 switch)
   mux-switch "$2"
   ;;
