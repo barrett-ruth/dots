@@ -43,6 +43,7 @@ return {
             'nvim-treesitter/nvim-treesitter-textobjects',
             'nvim-lua/plenary.nvim',
         },
+        event = 'BufReadPre',
         keys = { { '<leader>i', vim.cmd.Inspect } },
         opts = {
             auto_install = true,

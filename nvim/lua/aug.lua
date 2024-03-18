@@ -54,18 +54,6 @@ local function format()
             }, c.name)
         end,
     })
-
-    for _, cmd in ipairs({
-        'TSToolsAddMissingImports',
-        'TSToolsOrganizeImports',
-        'TSToolsFixAll',
-        'EslintFixAll',
-    }) do
-        if vim.fn.exists(':' .. cmd) ~= 0 then
-            vim.fn.execute(cmd)
-        end
-    end
-
     vim.cmd.w()
 end
 

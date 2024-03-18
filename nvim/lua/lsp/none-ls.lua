@@ -20,11 +20,9 @@ null_ls.setup({
     sources = {
         code_actions.gitrebase,
         code_actions.gitsigns,
-        code_actions.shellcheck,
 
-        diagnostics.curlylint.with({ extra_filetypes = { 'html' } }),
         diagnostics.hadolint,
-        -- diagnostics.markdownlint,
+        diagnostics.markdownlint,
         diagnostics.mypy.with({
             extra_args = { '--check-untyped-defs' },
             runtime_condition = function(params)
@@ -32,7 +30,7 @@ null_ls.setup({
             end,
         }),
         diagnostics.selene,
-        diagnostics.shellcheck,
+        -- diagnostics.shellcheck,
         diagnostics.sqlfluff.with({
             extra_args = {
                 '--dialect',
@@ -41,7 +39,6 @@ null_ls.setup({
                 'LT02,LT05', -- indent, line length
             },
         }),
-        diagnostics.tsc,
         diagnostics.yamllint,
 
         formatting.black.with({
@@ -65,8 +62,6 @@ null_ls.setup({
         formatting.gofumpt,
         formatting.goimports_reviser,
         formatting.golines,
-        formatting.latexindent,
-        formatting.markdownlint,
         formatting.prettierd.with({
             env = {
                 XDG_RUNTIME_DIR = vim.env.XDG_RUNTIME_DIR

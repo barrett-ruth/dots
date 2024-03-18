@@ -15,7 +15,7 @@ return {
     {
         'nvimtools/none-ls.nvim',
         config = function()
-            require('lsp.null-ls')
+            require('lsp.none-ls')
         end,
         event = 'VeryLazy',
     },
@@ -27,6 +27,7 @@ return {
             local lspconfig = require('lspconfig')
 
             for _, server in ipairs({
+                'bashls',
                 'clangd',
                 'cssmodules_ls',
                 'cssls',

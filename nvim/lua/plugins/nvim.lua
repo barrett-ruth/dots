@@ -108,6 +108,7 @@ return {
             })
 
             ls.filetype_extend('htmldjango', { 'html' })
+            ls.filetype_extend('markdown', { 'html' })
             ls.filetype_extend('javascriptreact', { 'javascript', 'html' })
             ls.filetype_extend('typescript', { 'javascript' })
             ls.filetype_extend(
@@ -188,7 +189,6 @@ return {
             },
         },
     },
-    'sindrets/diffview.nvim',
     {
         'stevearc/oil.nvim',
         keys = {

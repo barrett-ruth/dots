@@ -19,4 +19,4 @@ require('lazy').setup('plugins', {
 })
 
 require('lines').setup()
-vim.cmd.colorscheme('light')
+vim.cmd.colorscheme('gruvbox-dark')
