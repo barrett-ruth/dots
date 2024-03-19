@@ -22,6 +22,6 @@ done
 
 rmb .zaliases .zsh_profile .zshrc zsh
 
-pnpm -g list >pnpm.txt
-pip freeze >pip.txt
+pnpm -g list >pnpm."$(uname)".txt
+pip freeze >pip."$(uname)".txt
 mkdir tmux && cp "$XDG_CONFIG_HOME"/tmux/tmux.conf tmux
