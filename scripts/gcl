@@ -14,4 +14,4 @@ else
   shift
 fi
 
-eval "$cmd $dir $*" && cd "$dir" || return
+eval "$cmd $dir $*"
