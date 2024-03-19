@@ -1,57 +1,27 @@
 #!/bin/sh
 
-cfg="$HOME/Desktop/dots"
+if [ "$(uname)" = 'Darwin' ]; then
+  cp -r "$XDG_CONFIG_HOME"/kitty .
+  cp -r "$XDG_CONFIG_HOME"/karabiner/karabiner.json karabiner.json
 
-cd "$cfg" || exit
+  brew list >brew.txt
+else
+  pacman -Q >pacman.txt
+fi
 
-linux() {
-  rmb .git misc wip ssh readme.md .
+cd "$HOME"/dev/dots || exit
 
-  cp -r "$SCRIPTS" .
+# TODO: remove linux once fully merged
+rmb .git readme.md linux .
 
-  test -d ~/.local/share/fonts && cp -r ~/.local/share/fonts .
+cp -r "$SCRIPTS" .
 
-  for e in git nvim python rg sioyek templates tmux zsh; do
-    cp -r "$XDG_CONFIG_HOME/$e" .
-  done
+for folder in git npm nvim python rg sioyek yamllint zsh; do
+  cp -r "$XDG_CONFIG_HOME/$folder" .
+done
 
-  rmb config
-  rm -rf nvim/undo
-  rmb .zshrc .zprofile .zaliases zsh
-  rmb tmux.conf tmux
+rmb .zaliases .zsh_profile .zshrc zsh
 
-  [ -d pnpm ] || mkdir pnpm
-  pnpm -g list >pnpm/pkg
-}
-
-mac() {
-  rmb .git readme.md linux .
-  cp -r "$SCRIPTS" .
-
-  for e in git fd karabiner kitty npm nvim python rg sioyek templates yamllint zsh; do
-    cp -r "$XDG_CONFIG_HOME/$e" .
-  done
-
-  test -f "$XDG_DATA_HOME/nvim/lazy-lock.json" && cp "$XDG_DATA_HOME/nvim/lazy-lock.json" nvim
-  test -f "$XDG_DATA_HOME/nvim/spell.encoding.add" && cp "$XDG_DATA_HOME/nvim/spell.encoding.add" nvim
-
-  test -f nvim/todo.txt && rm nvim/todo.txt
-
-  mkdir tmux
-  cp "$XDG_CONFIG_HOME/tmux/tmux.conf" tmux
-
-  rmb config
-  rm -rf nvim/undo
-  rmb .zshrc .zprofile .zaliases zsh
-  rmb karabiner.json karabiner
-
-  [ -d brew ] || mkdir brew
-  brew list >brew/pkg
-
-  [ -d pnpm ] || mkdir pnpm
-  pnpm -g list >pnpm/pkg
-
-  pip freeze >python/pkg
-}
-
-type brew >/dev/null && mac || linux
+pnpm -g list >pnpm.txt
+pip freeze >pip.txt
+mkdir tmux && cp "$XDG_CONFIG_HOME"/tmux/tmux.conf tmux

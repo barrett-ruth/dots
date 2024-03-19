@@ -13,7 +13,7 @@ case "$1" in
     notes) cd ~/Desktop/notes;;
     scr) cd "$SCRIPTS";;
     desk) cd ~/Desktop;;
-    dots) cd ~/Desktop/dots;;
+    dots) cd ~/dev/dots;;
     tcf) cd ~/Desktop/theCourseForum2;;
     tm) cd ~/.config/tmux;;
     nv) cd ~/.config/nvim;;
