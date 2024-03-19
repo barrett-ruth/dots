@@ -1,11 +1,14 @@
 #!/bin/sh
 
-brew update
-brew upgrade
-brew upgrade --cask
-
-pip install --upgrade pip
-pip list -o | cut -d ' ' -f 1 | tail -n +3 | xargs pip install --upgrade
-
 pnpm add -g pnpm
 pnpm -g update
+pip install --upgrade pip
+
+if [ "$(uname)" = 'Darwin' ]; then
+  brew update
+  brew upgrade
+  brew upgrade --cask
+  pip list -o | cut -d ' ' -f 1 | tail -n +3 | xargs pip install --upgrade
+else
+  doas pacman -Syyu
+fi
