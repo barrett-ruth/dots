@@ -10,6 +10,7 @@ case "$1" in
     lz) cd ~/.local/share/nvim/lazy;;
     site) cd ~/dev/barrett-ruth.github.io;;
     atlas) cd ~/dev/atlas;;
+    uva) cd ~/dev/uva;;
     notes) cd ~/dev/notes;;
     scr) cd "$SCRIPTS";;
     dev) cd ~/dev;;

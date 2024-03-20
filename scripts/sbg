@@ -1,0 +1,24 @@
+#!/bin/sh
+
+wps="$HOME/img/wp"
+
+[ "$(xrandr | rg ' connected ' | wc -l)" -eq 1 ] && mons=1 || mons=2
+
+dir_one="$wps/one"
+dir_two="$wps/two"
+
+[ "$1" ] && one="$1" || one="$(fd -t f . "$dir_one" | shuf -n 1)"
+
+cmd="feh --no-fehbg --bg-scale $one"
+
+if [ $mons = 2 ]; then
+    if [ "$2" ]; then
+        two="$2"
+    else
+        [ -f "$dir_two/$(basename "$one")" ] && two="$dir_two/$(basename "$one")" || two="$(fd -t f . "$dir_two" | shuf -n 1)"
+    fi
+
+    cmd="$cmd --bg-fill $two"
+fi
+
+eval "$cmd"
