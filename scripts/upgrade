@@ -2,9 +2,9 @@
 
 pnpm add -g pnpm
 pnpm -g update
-pip install --upgrade pip
 
 if [ "$(uname)" = 'Darwin' ]; then
+  pip install --upgrade pip
   brew update
   brew upgrade
   brew upgrade --cask

@@ -7,6 +7,9 @@ alias ll='l -alF'
 alias la='ll -R'
 alias lss='less --use-color --color=d+b --color=P+c --color=u+g'
 
+alias ds='doas'
+alias pm='pacman'
+
 # Basic programs
 alias dk='docker'
 alias g='git'

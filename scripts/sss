@@ -1,0 +1,15 @@
+#!/bin/sh	
+
+filename="$(dmenu -p 'Enter filename:' </dev/null)"	
+
+if [ ! "$filename" ]; then	
+    filename="$(openssl rand -hex 10)"	
+    rand=true	
+fi	
+
+file="$HOME/img/ss/$filename".jpg	
+
+magick import ~/img/ss/"$filename.jpg"	
+xclip -sel c -t image/png ~/img/ss/"$filename.jpg"	
+
+[ "$rand" ] && rm "$file"	

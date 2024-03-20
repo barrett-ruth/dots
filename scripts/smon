@@ -1,0 +1,28 @@
+#!/bin/sh
+
+xrandr --dpi 192
+
+# nvidia graphics
+# xrandr --setprovideroutputsource modesetting NVIDIA-0
+
+mons="$(xrandr | rg --no-config ' connected ' | awk '{ print $1 }')"
+
+one="$(echo "$mons" | head -n 1)"
+two="$(echo "$mons" | tail -n 1)"
+
+xrandr --output "$one" --set TearFree on
+
+cmd="xrandr --output $one --primary --mode 2560x1440 --scale 1x1"
+# cmd="xrandr --output $one --primary --mode 3840x2400 --scale 1x1"
+
+[ "$one" = "$two" ] && xrandr --auto && exit
+
+xrandr --output "$two" --set TearFree on
+
+# Vertically centered horizontal monitor above
+cmd="$cmd --pos 0x2160 --output $two --mode 2560x1440 --scale 1.5x1.5 --pos 0x0"
+
+# Vertically oriented monitor to the left
+# cmd="$cmd --pos 2160x0 --output $two --mode 2560x1440 --scale=1.5x1.5 --pos 0x0"
+
+eval "$cmd"
