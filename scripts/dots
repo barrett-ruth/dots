@@ -1,5 +1,9 @@
 #!/bin/sh
 
+cd "$HOME"/dev/dots || exit
+
+rmb .git readme.md rg linux .
+
 if [ "$(uname)" = 'Darwin' ]; then
   cp -r "$XDG_CONFIG_HOME"/kitty .
   cp -r "$XDG_CONFIG_HOME"/karabiner/karabiner.json karabiner.json
@@ -9,11 +13,6 @@ else
   cp -r "$XDG_CONFIG_HOME"/X11 .
   pacman -Q >pacman.txt
 fi
-
-cd "$HOME"/dev/dots || exit
-
-# TODO: remove linux once fully merged
-rmb .git readme.md rg linux .
 
 cp -r "$SCRIPTS" .
 
