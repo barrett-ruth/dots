@@ -9,7 +9,7 @@ fi
 smon
 sxs
 (
-  sbg ~/img/wp/ones/pines.jpg
+  sbg ~/img/wp/one/pines.jpg
   skb
 ) &
 sclip &
