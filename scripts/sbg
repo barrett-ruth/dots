@@ -16,6 +16,4 @@ if [ "$mons" = 2 ]; then
   cmd="$cmd --bg-scale $2"
 fi
 
-echo "$cmd" > ~/sbg.log
-
 eval "$cmd"

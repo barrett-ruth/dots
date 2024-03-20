@@ -1,6 +1,6 @@
 #!/bin/sh
 
-xrandr --dpi 192
+xrandr --dpi 96
 
 # nvidia graphics
 # xrandr --setprovideroutputsource modesetting NVIDIA-0

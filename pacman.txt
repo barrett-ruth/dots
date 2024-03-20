@@ -50,6 +50,7 @@ dhcpcd 10.0.6-1
 diffutils 3.10-1
 dkms 3.0.12-1
 docker 1:25.0.4-1
+docker-compose 2.24.7-1
 double-conversion 3.3.0-1
 duktape 2.7.0-6
 e2fsprogs 1.47.0-2
@@ -528,6 +529,7 @@ tpm2-tss 4.0.1-1
 tracker3 3.6.0-3
 tree-sitter 0.22.2-1
 tslib 1.23-1
+ttf-hanazono 20170904-4
 ttf-liberation 2.1.5-1
 tzdata 2024a-1
 uchardet 0.0.8-2
