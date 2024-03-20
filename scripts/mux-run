@@ -7,7 +7,7 @@ case "$proj" in
   # docker compose up --build
   cmd='docker compose up'
   ;;
-*atlas*|*tinyground*)
+*atlas* | *tinyground*)
   cmd='pnpm run dev'
   ;;
 *interview-prep*)
@@ -16,8 +16,11 @@ case "$proj" in
 *neovim*)
   cmd='make'
   ;;
-*cses*|*usaco*|*codeforces*)
+*cses* | *usaco* | *codeforces*)
   cmd='python solution.py < input.txt'
+  ;;
+*dwmb* | *st* | *dmenu* | *dwm*)
+  cmd='make install clean'
   ;;
 esac
 
