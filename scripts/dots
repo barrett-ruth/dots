@@ -6,6 +6,7 @@ if [ "$(uname)" = 'Darwin' ]; then
 
   brew list >brew.txt
 else
+  cp -r "$XDG_CONFIG_HOME"/X11 .
   pacman -Q >pacman.txt
 fi
 
