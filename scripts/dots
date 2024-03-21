@@ -2,20 +2,19 @@
 
 cd "$HOME"/dev/dots || exit
 
-rmb .git readme.md rg linux .
+rmb .git readme.md rg linux fonts kitty X11 .
 
 if [ "$(uname)" = 'Darwin' ]; then
-  cp -r "$XDG_CONFIG_HOME"/kitty .
+  rm -rf kitty && cp -r "$XDG_CONFIG_HOME"/kitty .
   cp -r "$XDG_CONFIG_HOME"/karabiner/karabiner.json karabiner.json
 
   brew list >brew.txt
 else
-  cp -r "$XDG_CONFIG_HOME"/X11 .
+  rm -rf X11 && cp -r "$XDG_CONFIG_HOME"/X11 .
   pacman -Q >pacman.txt
 fi
 
 cp -r "$SCRIPTS" .
-cp -r "$HOME"/.local/share/fonts .
 
 for folder in git npm nvim python tmux sioyek yamllint zsh; do
   cp -r "$XDG_CONFIG_HOME/$folder" .
