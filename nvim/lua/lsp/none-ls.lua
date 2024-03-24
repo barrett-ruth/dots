@@ -30,6 +30,7 @@ null_ls.setup({
             end,
         }),
         diagnostics.selene,
+        -- diagnostics.shellcheck,
         diagnostics.sqlfluff.with({
             extra_args = {
                 '--dialect',

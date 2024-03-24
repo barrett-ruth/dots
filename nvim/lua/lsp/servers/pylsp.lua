@@ -1,4 +1,7 @@
 return {
+    settings = {
+        format = false,
+    },
     on_attach = function(client, _)
         -- Disable providers meant for pyright
         for _, provider in ipairs({
