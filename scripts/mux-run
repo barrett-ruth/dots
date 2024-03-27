@@ -2,24 +2,27 @@
 
 proj="$PWD"
 
-case "$proj" in
-*theCourseForum2*)
+case "$(basename "$proj")" in
+ag)
+  cmd='cp -f autograder.py examples/1 && cd examples/1 && ./run_autograder'
+  ;;
+theCourseForum2)
   # docker compose up --build
   cmd='docker compose up'
   ;;
-*atlas* | *tinyground*)
+atlas | tinyground)
   cmd='pnpm run dev'
   ;;
-*interview-prep*)
+interview-prep)
   cmd='pnpm run dev'
   ;;
-*neovim*)
+neovim)
   cmd='make'
   ;;
-*cses* | *usaco* | *codeforces*)
+cses | usaco | codeforces)
   cmd='python solution.py < input.txt'
   ;;
-*dwmb* | *st* | *dmenu* | *dwm*)
+dwmb | st | dmenu | dwm)
   cmd='make install clean'
   ;;
 esac
