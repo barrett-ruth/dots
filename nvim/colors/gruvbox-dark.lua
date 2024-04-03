@@ -67,6 +67,7 @@ hi('@text.todo', { fg = cs.yellow, bold = true, italic = true }, { 'Todo' })
 hi('@text.warning', { fg = cs.orange, bold = true, italic = true })
 
 hi('@variable', { none = true })
+hi('@markup.heading.gitcommit', { none = true })
 
 hi('Pmenu', { bg = cs.med_grey }, { 'PmenuSbar' })
 hi('PmenuSel', { fg = cs.med_grey, bg = cs.light_grey })

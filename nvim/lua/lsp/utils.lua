@@ -41,10 +41,6 @@ function M.on_attach(client, bufnr)
         end
     end
 
-    if client.server_capabilities.documentSymbolProvider then
-        require('nvim-navic').attach(client, bufnr)
-    end
-
     bmap({ 'n', '\\f', diagnostic.open_float })
     bmap({ 'n', ']\\', diagnostic.goto_next })
     bmap({ 'n', '[\\', diagnostic.goto_prev })

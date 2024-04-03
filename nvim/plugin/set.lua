@@ -6,6 +6,8 @@ o.breakindent = true
 
 -- o.cursorline = true
 
+o.conceallevel = 2
+
 opt.diffopt:append('linematch:60')
 
 o.expandtab = true

@@ -74,10 +74,14 @@ return {
             on_attach = function()
                 vim.wo.signcolumn = 'yes'
             end,
+            current_line_blame_formatter_nc = function()
+                return {}
+            end,
             attach_to_untracked = false,
             signs = {
                 delete = { text = '＿' },
             },
+            current_line_blame = true,
         },
     },
     {
@@ -171,6 +175,7 @@ return {
     },
     {
         'NvChad/nvim-colorizer.lua',
+        enabled = false,
         opts = {
             filetypes = {
                 'conf',

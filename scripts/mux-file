@@ -33,7 +33,11 @@ js)
   cmd="node $filename"
   ;;
 py)
-  cmd="python3 $filename"
+  if [ "$(basename "$PWD")" = icpc ]; then
+    inputfile="${filename%%.*}.txt"
+    cmd="cat $inputfile |"
+  fi
+  cmd="$cmd python $filename"
   ;;
 *)
   exit

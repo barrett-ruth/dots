@@ -10,6 +10,9 @@ theCourseForum2)
   # docker compose up --build
   cmd='docker compose up'
   ;;
+autogen)
+  cmd='docker compose up'
+  ;;
 atlas | tinyground)
   cmd='pnpm run dev'
   ;;
