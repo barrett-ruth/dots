@@ -1,22 +1,22 @@
 #!/bin/sh
 
+cd "$HOME"/dev/dots || exit
+
+rmb .git readme.md rg linux fonts kitty X11 .
+
 if [ "$(uname)" = 'Darwin' ]; then
-  cp -r "$XDG_CONFIG_HOME"/kitty .
+  cp -rf "$XDG_CONFIG_HOME"/kitty .
   cp -r "$XDG_CONFIG_HOME"/karabiner/karabiner.json karabiner.json
 
   brew list >brew.txt
 else
+  cp -fr "$XDG_CONFIG_HOME"/X11 .
   pacman -Q >pacman.txt
 fi
 
-cd "$HOME"/dev/dots || exit
+cp -r "$SCRIPTS" .
 
-# TODO: remove linux once fully merged
-rmb .git readme.md linux X11 scripts .
-
-cp -fr "$SCRIPTS" .
-
-for folder in git npm nvim python rg sioyek yamllint zsh; do
+for folder in git npm nvim python tmux sioyek yamllint zsh; do
   cp -r "$XDG_CONFIG_HOME/$folder" .
 done
 
@@ -25,4 +25,3 @@ rmb .zaliases .zprofile .zshrc zsh
 
 pnpm -g list >pnpm."$(uname)".txt
 pip freeze >pip."$(uname)".txt
-mkdir tmux && cp "$XDG_CONFIG_HOME"/tmux/tmux.conf tmux

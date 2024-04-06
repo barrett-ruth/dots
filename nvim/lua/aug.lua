@@ -54,6 +54,7 @@ local function format()
             }, c.name)
         end,
     })
+
     vim.cmd.w()
 end
 
@@ -79,7 +80,7 @@ au('LspAttach', {
             local modes = { 'n' }
 
             if client.server_capabilities.documentRangeFormattingProvider then
-                modes[#modes + 1] = 'x'
+                table.insert(modes, 'x')
             end
 
             bmap({

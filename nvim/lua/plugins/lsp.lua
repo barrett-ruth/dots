@@ -38,10 +38,10 @@ return {
                 'jsonls',
                 'lua_ls',
                 'pyright',
-                'ltex',
                 'pylsp',
                 'ruby_ls',
                 'tailwindcss',
+                'vimls',
                 'yamlls',
             }) do
                 local status, settings =

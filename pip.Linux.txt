@@ -51,7 +51,7 @@ tblib==1.7.0
 toml==0.10.2
 tomli==2.0.1
 tqdm==4.66.2
-trove-classifiers==2024.3.25
+trove-classifiers==2024.3.29
 typing_extensions==4.10.0
 ujson==5.9.0
 validate-pyproject==0.13.post1.dev0+gb752273.d20230520

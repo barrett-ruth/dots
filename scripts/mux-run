@@ -19,6 +19,9 @@ atlas | tinyground)
 interview-prep)
   cmd='pnpm run dev'
   ;;
+autogen)
+  cmd='docker compose up'
+  ;;
 neovim)
   cmd='make'
   ;;

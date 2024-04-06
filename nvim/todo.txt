@@ -1,7 +1,1 @@
-<<<<<<< HEAD
-codingchallenges.fyi
-ryan chung website, his own git server!
-fix saving file "w" after format
-=======
 ruff disable formatting
->>>>>>> 79c334b (update stuff)
