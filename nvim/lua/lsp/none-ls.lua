@@ -22,7 +22,9 @@ null_ls.setup({
         code_actions.gitsigns,
 
         diagnostics.hadolint,
-        diagnostics.markdownlint,
+        diagnostics.markdownlint.with({
+            extra_args = { '--disable', 'MD033', 'MD013' },
+        }),
         diagnostics.mypy.with({
             extra_args = { '--check-untyped-defs' },
             runtime_condition = function(params)

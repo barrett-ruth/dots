@@ -18,6 +18,15 @@ au('TermOpen', {
     group = aug,
 })
 
+au({ 'FileType' }, {
+    desc = 'Force commentstring to include spaces',
+    callback = function(event)
+        local cs = vim.bo[event.buf].commentstring
+        vim.bo[event.buf].commentstring = cs:gsub('(%S)%%s', '%1 %%s')
+            :gsub('%%s(%S)', '%%s %1')
+    end,
+})
+
 au('BufReadPost', {
     command = 'sil! normal g`"',
     group = aug,
@@ -54,7 +63,6 @@ local function format()
             }, c.name)
         end,
     })
-
     vim.cmd.w()
 end
 
@@ -80,7 +88,7 @@ au('LspAttach', {
             local modes = { 'n' }
 
             if client.server_capabilities.documentRangeFormattingProvider then
-                table.insert(modes, 'x')
+                modes[#modes + 1] = 'x'
             end
 
             bmap({

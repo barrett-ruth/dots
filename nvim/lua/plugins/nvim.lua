@@ -17,26 +17,6 @@ return {
         },
     },
     {
-        'echasnovski/mini.comment',
-        dependencies = {
-            'JoosepAlviste/nvim-ts-context-commentstring',
-            config = function()
-                require('ts_context_commentstring').setup({
-                    enable_autocmd = false,
-                })
-            end,
-        },
-        event = 'VeryLazy',
-        opts = {
-            options = {
-                custom_commentstring = function()
-                    return require('ts_context_commentstring.internal').calculate_commentstring()
-                        or vim.bo.commentstring
-                end,
-            },
-        },
-    },
-    {
         'echasnovski/mini.pairs',
         config = true,
         event = 'InsertEnter',
@@ -48,7 +28,7 @@ return {
         init = function()
             vim.cmd([[
                 function OpenMarkdownPreview(url)
-                    exec "silent !xdg-open " . a:url
+                    exec "silent !/Applications/Chromium.app/Contents/MacOS/Chromium -n --args " . a:url
                 endfunction
                 let g:mkdp_auto_close = 0
                 let g:mkdp_browserfunc = 'OpenMarkdownPreview'
@@ -175,7 +155,6 @@ return {
     },
     {
         'NvChad/nvim-colorizer.lua',
-        enabled = false,
         opts = {
             filetypes = {
                 'conf',
