@@ -4,8 +4,23 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
-export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
-test -f "$XDG_RUNTIME_DIR"/.Xauthority || touch "$XDG_RUNTIME_DIR"/.Xauthority
+
+if [[ "$(uname -s)" == 'Darwin' ]]; then
+    export XDG_RUNTIME_DIR="/tmp/user/$UID"
+    dir="/tmp/user/$UID"
+    [[ -d "$dir" ]] || mkdir -p "$XDG_RUNTIME_DIR"
+    append_path '/opt/homebrew/opt/postgresql@15/bin'
+    prepend_path '/opt/homebrew/opt/llvm/bin'
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+    export BROWSER='/Applications/Chromium.app/Contents/MacOS/Chromium'
+    export CPPFLAGS='-I/opt/homebrew/opt/llvm/include'
+    export LDFLAGS='-L/opt/homebrew/opt/llvm/lib'
+    . "$XDG_CONFIG_HOME"/fzf/fzf.zsh
+else
+    export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
+    test -f "$XDG_RUNTIME_DIR"/.Xauthority || touch "$XDG_RUNTIME_DIR"/.Xauthority
+    export BROWSER='chromium'
+fi
 
 autoload -U compinit && compinit -d "$XDG_STATE_HOME/zcompdump" -u
 autoload -U colors && colors
@@ -21,13 +36,14 @@ setopt auto_cd incappendhistory extendedhistory histignorealldups
 function prepend_path() { [[ "$PATH" == *"$1"* ]] || export PATH="$1:$PATH"; }
 function append_path() { [[ "$PATH" == *"$1"* ]] || export PATH="$PATH:$1"; }
 
+
 export NVM_DIR="$XDG_DATA_HOME"/nvm
 nvm() { unset -f nvm && . "$NVM_DIR/nvm.sh" && nvm "$@"; }
 
-export BROWSER='chromium'
 export EDITOR='nvim'
 export MANPAGER='nvim +Man!'
 
+. "${HOMEBREW_PREFIX:-/usr}"/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export HYPHEN_INSENSITIVE='true'
 export HIST_STAMPS='dd/mm/yyyy'
@@ -72,15 +88,16 @@ eval "$(pyenv init -)"
 
 export RBENV_ROOT="$XDG_DATA_HOME"/rbenv
 prepend_path "$RBENV_ROOT"/shims
-prepend_path "$RBENV_ROOT"/shims
-eval "$(pyenv init - zsh)"
-
-append_path "$HOME/.local/bin"
+eval "$(rbenv init - zsh)"
 
 export SCRIPTS="$HOME/.local/bin/scripts"
 append_path "$SCRIPTS"
 
-eval "$(fzf --zsh)"
+prepend_path "$HOME/.luarocks/bin"
+append_path "$HOME/.local/bin"
+prepend_path "$HOME"/.local/bin/sst
+
+export FZF_COMPLETION_TRIGGER=\;
 export FZF_ALT_C_COMMAND='fd --type directory --strip-cwd-prefix'
 export FZF_CTRL_R_OPTS='--reverse'
 export FZF_CTRL_T_COMMAND='fd --type file --strip-cwd-prefix'
@@ -90,9 +107,8 @@ export FZF_DEFAULT_OPTS="--bind=ctrl-a:select-all --bind=ctrl-f:half-page-down -
 --color=spinner:#D8A657 --color=marker:#D8A657 --color=pointer:#7DAEA3 \
 --color=prompt:#E78A4E --color=info:#89B482 --color=border:#928374 --color=header:#928374"
 
+eval "$(fzf --zsh)"
 . "$ZDOTDIR/.zaliases"
-[[ "$(uname -s)" == 'Linux' ]] && sh_base='/usr' || sh_base="$(brew --prefix)"
-. "$sh_base"/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 fzf-config-widget() {
     file="$(FZF_CTRL_T_COMMAND="fd --type file --hidden . ~/.config | sed 's|$HOME|~|g'" __fsel | cut -c2-)"
@@ -113,4 +129,4 @@ bindkey '^N' down-line-or-history
 bindkey '^J' backward-char
 bindkey '^K' forward-char
 
-[[ "$(uname)" = 'Linux' ]] && [[ -z "$DISPLAY" ]] && [[ $XDG_VTNR = 1 ]] && startx "$XDG_CONFIG_HOME/X11/xinitrc"
+[[ "$(uname -s)" = 'Linux' ]] && [[ -z "$DISPLAY" ]] && [[ $XDG_VTNR = 1 ]] && startx "$XDG_CONFIG_HOME/X11/xinitrc"
