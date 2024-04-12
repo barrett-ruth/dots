@@ -2,7 +2,7 @@
 
 cd "$HOME"/dev/dots || exit
 
-rmb .git readme.md rg linux fonts kitty X11 .
+rmb .git readme.md rg linux fonts kitty X11 pip.Darwin.txt pip.Linux.txt pnpm.Linux.txt pnpm.Darwin.txt .
 
 if [ "$(uname)" = 'Darwin' ]; then
   cp -rf "$XDG_CONFIG_HOME"/kitty .
