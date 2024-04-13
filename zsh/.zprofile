@@ -5,6 +5,9 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 
+function prepend_path() { [[ "$PATH" == *"$1"* ]] || export PATH="$1:$PATH"; }
+function append_path() { [[ "$PATH" == *"$1"* ]] || export PATH="$PATH:$1"; }
+
 if [[ "$(uname -s)" == 'Darwin' ]]; then
     export XDG_RUNTIME_DIR="/tmp/user/$UID"
     dir="/tmp/user/$UID"
@@ -32,10 +35,6 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-za-z}'
 set completion-ignore-case on
 unset completealiases
 setopt auto_cd incappendhistory extendedhistory histignorealldups
-
-function prepend_path() { [[ "$PATH" == *"$1"* ]] || export PATH="$1:$PATH"; }
-function append_path() { [[ "$PATH" == *"$1"* ]] || export PATH="$PATH:$1"; }
-
 
 export NVM_DIR="$XDG_DATA_HOME"/nvm
 nvm() { unset -f nvm && . "$NVM_DIR/nvm.sh" && nvm "$@"; }

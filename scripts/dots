@@ -17,7 +17,7 @@ fi
 cp -r "$SCRIPTS" .
 
 for folder in git npm nvim python tmux sioyek yamllint zsh; do
-  cp -r "$XDG_CONFIG_HOME/$folder" .
+  cp -r "$XDG_CONFIG_HOME/$folder" . 2>/dev/null
 done
 
 rmb tmux.conf tmux
