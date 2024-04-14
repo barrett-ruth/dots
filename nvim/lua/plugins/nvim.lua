@@ -28,7 +28,7 @@ return {
         init = function()
             vim.cmd([[
                 function OpenMarkdownPreview(url)
-                    exec "silent !/Applications/Chromium.app/Contents/MacOS/Chromium -n --args " . a:url
+                    exec "silent !xdg-open " . a:url
                 endfunction
                 let g:mkdp_auto_close = 0
                 let g:mkdp_browserfunc = 'OpenMarkdownPreview'

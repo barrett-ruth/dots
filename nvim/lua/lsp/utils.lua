@@ -30,15 +30,18 @@ function M.on_attach(client, bufnr)
         },
     }
 
-
     for provider, mapping in pairs(mappings) do
-        if
-            client.server_capabilities[('%sProvider'):format(
-                provider
-            )]
-        then
+        if client.server_capabilities[('%sProvider'):format(provider)] then
             bmap(mapping)
         end
+    end
+
+    if client.server_capabilities.documentSymbolProvider then
+        require('nvim-navic').attach(client, bufnr)
+    end
+
+    if client.server_capabilities.documentSymbolProvider then
+        require('nvim-navic').attach(client, bufnr)
     end
 
     bmap({ 'n', '\\f', diagnostic.open_float })

@@ -19,10 +19,12 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
     export CPPFLAGS='-I/opt/homebrew/opt/llvm/include'
     export LDFLAGS='-L/opt/homebrew/opt/llvm/lib'
     . "$XDG_CONFIG_HOME"/fzf/fzf.zsh
+    . "$HOMEBREW_PREFIX"/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 else
     export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
     test -f "$XDG_RUNTIME_DIR"/.Xauthority || touch "$XDG_RUNTIME_DIR"/.Xauthority
     export BROWSER='chromium'
+    . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
 autoload -U compinit && compinit -d "$XDG_STATE_HOME/zcompdump" -u
@@ -42,7 +44,6 @@ nvm() { unset -f nvm && . "$NVM_DIR/nvm.sh" && nvm "$@"; }
 export EDITOR='nvim'
 export MANPAGER='nvim +Man!'
 
-. "${HOMEBREW_PREFIX:-/usr}"/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export HYPHEN_INSENSITIVE='true'
 export HIST_STAMPS='dd/mm/yyyy'
@@ -128,4 +129,4 @@ bindkey '^N' down-line-or-history
 bindkey '^J' backward-char
 bindkey '^K' forward-char
 
-[[ "$(uname -s)" = 'Linux' ]] && [[ -z "$DISPLAY" ]] && [[ $XDG_VTNR = 1 ]] && startx "$XDG_CONFIG_HOME/X11/xinitrc"
+[[ "$(uname)" = 'Linux' ]] && [[ -z "$DISPLAY" ]] && [[ $XDG_VTNR = 1 ]] && startx "$XDG_CONFIG_HOME/X11/xinitrc"

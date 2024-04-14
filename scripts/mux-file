@@ -13,7 +13,7 @@ c)
   ;;
 cpp | cc)
   cmd='clang++'
-  [ -f compile_flags.txt ] && cmd="$cmd $(cat compile_flags.txt)"
+  test -f compile_flags.txt && cmd="$cmd $(cat compile_flags.txt)"
   cmd="$cmd $filename"
   run='./a.out'
   clean='test -f a.out && rm a.out'

@@ -50,6 +50,22 @@ return {
             ensure_installed = 'all',
             highlight = {
                 additional_vim_regex_highlighting = true,
+                disable = function(_, bufnr)
+                    local lines = vim.api.nvim_buf_line_count(bufnr)
+                    local line_cap = 5000
+
+                    if lines >= line_cap then
+                        vim.notify_once(
+                            ('Disable TreeSitter for bufnr %s; file too large (%s >= %s lines)'):format(
+                                bufnr,
+                                lines,
+                                line_cap
+                            )
+                        )
+                        return true
+                    end
+                    return false
+                end,
                 enable = true,
             },
             textobjects = {
