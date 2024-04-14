@@ -238,6 +238,7 @@ mactex
 notion
 rectangle
 sioyek
+slack
 spotify
 telegram
 utm

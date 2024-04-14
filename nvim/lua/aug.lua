@@ -74,16 +74,6 @@ au('LspAttach', {
             return
         end
 
-        if client.server_capabilities.inlayHintProvider then
-            bmap({
-                'n',
-                '\\i',
-                function()
-                    vim.lsp.inlay_hint(opts.buf)
-                end,
-            }, { buffer = opts.buf })
-        end
-
         if client.server_capabilities.documentFormattingProvider then
             local modes = { 'n' }
 
