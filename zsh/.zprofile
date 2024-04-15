@@ -23,6 +23,7 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
 else
     export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
     test -f "$XDG_RUNTIME_DIR"/.Xauthority || touch "$XDG_RUNTIME_DIR"/.Xauthority
+    export TERMINFO="$XDG_DATA_HOME"/terminfo
     export BROWSER='chromium'
     . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
@@ -63,7 +64,6 @@ export MYPY_CACHE_DIR="$XDG_CACHE_HOME"/mypy
 export npm_config_userconfig="$XDG_CONFIG_HOME"/npm/npmrc
 export NODE_REPL_HISTORY="$XDG_STATE_HOME"/node_repl_history
 export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
-export TERMINFO="$XDG_DATA_HOME"/terminfo
 export TS_NODE_REPL_HISTORY="$XDG_STATE_HOME"/ts_node_repl_history
 export PRETTIERD_CONFIG_HOME="$XDG_STATE_HOME"/prettierd
 export PSQL_HISTORY="$XDG_STATE_HOME"/psql_history
