@@ -1,24 +1,21 @@
 #!/usr/bin/env zsh
 
 case "$1" in
-    -) cd -;;
+    -) cd - >/dev/null && return;;
     '') cd ~;;
-    atlas) cd ~/dev/atlas;;
-    cses) cd ~/dev/dsa/cses;;
-    ip) cd ~/dev/swe-interview-prep;;
-    dl) cd ~/dl;;
+    aoc) cd ~/Desktop/aoc;;
+    atlas) cd ~/Desktop/atlas;;
+    cses) cd ~/Desktop/dsa/cses;;
+    ip) cd ~/Desktop/swe-interview-prep;;
+    dl) cd ~/Downloads;;
     lz) cd ~/.local/share/nvim/lazy;;
-    site) cd ~/dev/barrett-ruth.github.io;;
-    atlas) cd ~/dev/atlas;;
-    uva) cd ~/dev/uva;;
-    notes) cd ~/dev/notes;;
+    site) cd ~/Desktop/barrett-ruth.github.io;;
+    notes) cd ~/Desktop/notes;;
     scr) cd "$SCRIPTS";;
     desk) cd ~/Desktop;;
-    dev) cd ~/dev;;
     dots) cd ~/dev/dots;;
-    tcf) cd ~/dev/theCourseForum2;;
+    tcf) cd ~/Desktop/theCourseForum2;;
     tm) cd ~/.config/tmux;;
     nv) cd ~/.config/nvim;;
-    sl) cd ~/dev/sl;;
     zsh) cd ~/.config/zsh;;
 esac

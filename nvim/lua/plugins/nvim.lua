@@ -28,7 +28,7 @@ return {
         init = function()
             vim.cmd([[
                 function OpenMarkdownPreview(url)
-                    exec "silent !$BROWSER " . a:url
+                    exec "silent !$BROWSER -n --args " . a:url
                 endfunction
                 let g:mkdp_auto_close = 0
                 let g:mkdp_browserfunc = 'OpenMarkdownPreview'
