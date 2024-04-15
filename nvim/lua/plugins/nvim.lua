@@ -174,6 +174,18 @@ return {
         },
     },
     {
+        'phaazon/hop.nvim',
+        config = function()
+            require('hop').setup()
+            vim.schedule(function()
+                local hi = require('colors').hi
+                hi('HopUnmatched', { none = true })
+                hi('HopNextKey', { reverse = true })
+            end)
+        end,
+        keys = { { '<c-space>', '<cmd>HopChar2<cr>' } },
+    },
+    {
         'stevearc/oil.nvim',
         keys = {
             { '-', '<cmd>e .<cr>' },
