@@ -44,7 +44,32 @@ return {
             'nvim-lua/plenary.nvim',
         },
         event = 'BufReadPre',
-        keys = { { '<leader>i', vim.cmd.Inspect } },
+        keys = {
+            { '<leader>i', vim.cmd.Inspect },
+            {
+                '<leader>T',
+                function()
+                    local bufnr = vim.api.nvim_get_current_buf()
+                    local path = (
+                        vim.env.NVIM_APPNAME or vim.fn.stdpath('config')
+                    )
+                        .. ('/after/queries/%s/highlights.scm'):format(
+                            vim.treesitter.get_parser(bufnr):lang()
+                        )
+
+                    if vim.loop.fs_stat(path) then
+                        vim.fn.rename(path, path .. '.disabled')
+                    elseif vim.loop.fs_stat(path .. '.disabled') then
+                        vim.fn.rename(path .. '.disabled', path)
+                    end
+
+                    vim.cmd.TSBufToggle('highlight')
+                    local save = vim.fn.winsaveview()
+                    vim.cmd('w|e')
+                    vim.fn.winrestview(save)
+                end,
+            },
+        },
         opts = {
             auto_install = true,
             ensure_installed = 'all',
