@@ -13,7 +13,7 @@ live-server 1.2.2
 markdownlint 0.30.0
 markdownlint-cli 0.35.0
 neovim 4.11.0
-pnpm 8.15.6
+pnpm 8.15.7
 pyright 1.1.358
 sql-formatter 12.2.4
 ts-node 10.9.2
