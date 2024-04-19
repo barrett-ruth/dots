@@ -4,17 +4,17 @@ Legend: production dependency, optional only, dev only
 
 dependencies:
 @fsouza/prettierd 0.25.3
-@olrtg/emmet-language-server 2.5.0
 @tailwindcss/language-server 0.0.16
+bash-language-server 5.1.2
 cssmodules-language-server 1.3.2
-eslint 8.57.0
-live-server 1.2.2
+emmet-ls 0.4.2
+eslint_d 13.1.2
+markdownlint 0.34.0
 markdownlint-cli 0.39.0
 neovim 5.1.0
-pnpm 8.15.6
-pyright 1.1.358
+prettier 3.2.5
+pyright 1.1.359
 sql-formatter 15.3.0
-ts-node 10.9.2
 typescript 5.4.5
 typescript-language-server 4.3.3
 vim-language-server 2.3.1

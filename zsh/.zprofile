@@ -8,6 +8,23 @@ export XDG_STATE_HOME="$HOME/.local/state"
 function prepend_path() { [[ "$PATH" == *"$1"* ]] || export PATH="$1:$PATH"; }
 function append_path() { [[ "$PATH" == *"$1"* ]] || export PATH="$PATH:$1"; }
 
+export NVM_DIR="$XDG_DATA_HOME"/nvm
+append_path "$HOME/.local/bin"
+
+autoload -U compinit && compinit -d "$XDG_STATE_HOME/zcompdump" -u
+autoload -U colors && colors
+zmodload zsh/complist
+
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-za-z}'
+
+set completion-ignore-case on
+unset completealiases
+setopt auto_cd incappendhistory extendedhistory histignorealldups
+
+export EDITOR='nvim'
+export MANPAGER='nvim +Man!'
+
 if [[ "$(uname -s)" == 'Darwin' ]]; then
     export XDG_RUNTIME_DIR="/tmp/user/$UID"
     dir="/tmp/user/$UID"
@@ -26,24 +43,8 @@ else
     export TERMINFO="$XDG_DATA_HOME"/terminfo
     export BROWSER='chromium'
     . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    . /usr/share/nvm/init-nvm.sh
 fi
-
-autoload -U compinit && compinit -d "$XDG_STATE_HOME/zcompdump" -u
-autoload -U colors && colors
-zmodload zsh/complist
-
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-za-z}'
-
-set completion-ignore-case on
-unset completealiases
-setopt auto_cd incappendhistory extendedhistory histignorealldups
-
-export NVM_DIR="$XDG_DATA_HOME"/nvm
-nvm() { unset -f nvm && . "$NVM_DIR/nvm.sh" && nvm "$@"; }
-
-export EDITOR='nvim'
-export MANPAGER='nvim +Man!'
 
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export HYPHEN_INSENSITIVE='true'
@@ -94,7 +95,6 @@ export SCRIPTS="$HOME/.local/bin/scripts"
 append_path "$SCRIPTS"
 
 prepend_path "$HOME/.luarocks/bin"
-append_path "$HOME/.local/bin"
 prepend_path "$HOME"/.local/bin/sst
 
 export FZF_COMPLETION_TRIGGER=\;
