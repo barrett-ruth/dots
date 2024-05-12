@@ -83,6 +83,7 @@ return {
     {
         'SmiteshP/nvim-navic',
         opts = {
+            separator = '->',
             depth_limit = 4,
             depth_limit_indicator = '...',
             icons = {

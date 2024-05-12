@@ -59,6 +59,7 @@ null_ls.setup({
             extra_args = { '--profile', 'black', '--line-length', '80' },
         }),
         formatting.djhtml.with({ extra_args = { '--tabwidth', '2' } }),
+        formatting.google_java_format,
         formatting.gofumpt,
         formatting.goimports_reviser,
         formatting.golines,

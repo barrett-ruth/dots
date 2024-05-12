@@ -3,21 +3,22 @@ Legend: production dependency, optional only, dev only
 /Users/barrett/.local/share/pnpm/global/5
 
 dependencies:
-@fsouza/prettierd 0.24.2
+@fsouza/prettierd 0.25.3
 @olrtg/emmet-language-server 2.5.0
-@tailwindcss/language-server 0.0.13
-bash-language-server 5.1.2
+@tailwindcss/language-server 0.0.16
+bash-language-server 5.2.0
 cssmodules-language-server 1.3.2
-eslint 8.57.0
+eslint 9.2.0
 live-server 1.2.2
-markdownlint 0.30.0
-markdownlint-cli 0.35.0
-neovim 4.11.0
-pnpm 8.15.7
-pyright 1.1.358
-sql-formatter 12.2.4
+markdownlint 0.34.0
+markdownlint-cli 0.39.0
+neovim 5.1.0
+npm 10.7.0
+pnpm 9.1.0
+pyright 1.1.362
+sql-formatter 15.3.1
 ts-node 10.9.2
 typescript 5.4.5
-typescript-language-server 3.3.2
-vscode-langservers-extracted 4.8.0
+typescript-language-server 4.3.3
+vscode-langservers-extracted 4.10.0
 yaml-language-server 1.14.0

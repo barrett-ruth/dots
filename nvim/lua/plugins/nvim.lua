@@ -1,5 +1,12 @@
 return {
     {
+        'savq/melange-nvim',
+        config = function()
+            vim.o.background = 'light'
+            vim.cmd.colorscheme('melange')
+        end,
+    },
+    {
         'barrett-ruth/live-server.nvim',
         build = 'pnpm add -g live-server',
         cmd = { 'LiveServerStart', 'LiveServerStart' },
@@ -26,11 +33,11 @@ return {
         build = 'pnpm up && cd app && pnpm install',
         ft = { 'markdown' },
         init = function()
+            vim.g.mkdp_auto_close = 0
             vim.cmd([[
                 function OpenMarkdownPreview(url)
                     exec "silent !$BROWSER -n --args " . a:url
                 endfunction
-                let g:mkdp_auto_close = 0
                 let g:mkdp_browserfunc = 'OpenMarkdownPreview'
             ]])
         end,
