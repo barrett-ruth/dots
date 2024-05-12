@@ -18,5 +18,4 @@ require('lazy').setup('plugins', {
     change_detection = { enabled = false },
 })
 
-require('lines').setup()
--- vim.cmd.colorscheme('gruvbox')
+vim.cmd.colorscheme(vim.env.THEME)

@@ -1,4 +1,4 @@
-local handlers = vim.lsp.handlers
+local handlers, methods = vim.lsp.handlers, vim.lsp.protocol.Methods
 
 handlers['textDocument/hover'] = vim.lsp.with(handlers.hover, {
     border = 'single',
@@ -28,8 +28,8 @@ vim.diagnostic.config({
 
 -- TODO: remove once https://github.com/neovim/neovim/issues/27240 addressed
 local MAX_INLAY_HINT_LEN = 30
-local inlay_hint_handler = vim.lsp.handlers['textDocument/inlayHint']
-vim.lsp.handlers['textDocument/inlayHint'] = function(
+local inlay_hint_handler = vim.lsp.handlers[methods.textDocument_inlayHint]
+vim.lsp.handlers[methods.textDocument_inlayHint] = function(
     err,
     result,
     ctx,

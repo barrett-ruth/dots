@@ -39,7 +39,7 @@ return {
                 'lua_ls',
                 'pyright',
                 'pylsp',
-                'ruby_lsp',
+                'ruby_ls',
                 'tailwindcss',
                 'vimls',
                 'yamlls',

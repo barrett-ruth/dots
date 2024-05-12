@@ -26,6 +26,16 @@ au({ 'FileType' }, {
     end,
 })
 
+au('ColorScheme', {
+    pattern = '*',
+    callback = function()
+        vim.o.statusline =
+            [[%{%v:lua.require('lines.statusline').statusline()%}]]
+        vim.o.statuscolumn =
+            [[%{%v:lua.require('lines.statuscolumn').statuscolumn()%}]]
+    end,
+})
+
 au('BufReadPost', {
     command = 'sil! normal g`"',
     group = aug,

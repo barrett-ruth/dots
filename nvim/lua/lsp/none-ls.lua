@@ -21,6 +21,7 @@ null_ls.setup({
         code_actions.gitrebase,
         code_actions.gitsigns,
 
+        diagnostics.hadolint,
         diagnostics.markdownlint.with({
             extra_args = { '--disable', 'MD033', 'MD013' },
         }),

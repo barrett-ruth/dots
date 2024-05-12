@@ -8,23 +8,6 @@ export XDG_STATE_HOME="$HOME/.local/state"
 function prepend_path() { [[ "$PATH" == *"$1"* ]] || export PATH="$1:$PATH"; }
 function append_path() { [[ "$PATH" == *"$1"* ]] || export PATH="$PATH:$1"; }
 
-export NVM_DIR="$XDG_DATA_HOME"/nvm
-append_path "$HOME/.local/bin"
-
-autoload -U compinit && compinit -d "$XDG_STATE_HOME/zcompdump" -u
-autoload -U colors && colors
-zmodload zsh/complist
-
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-za-z}'
-
-set completion-ignore-case on
-unset completealiases
-setopt auto_cd incappendhistory extendedhistory histignorealldups
-
-export EDITOR='nvim'
-export MANPAGER='nvim +Man!'
-
 if [[ "$(uname -s)" == 'Darwin' ]]; then
     export XDG_RUNTIME_DIR="/tmp/user/$UID"
     dir="/tmp/user/$UID"
@@ -43,8 +26,24 @@ else
     export TERMINFO="$XDG_DATA_HOME"/terminfo
     export BROWSER='chromium'
     . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    . /usr/share/nvm/init-nvm.sh
 fi
+
+autoload -U compinit && compinit -d "$XDG_STATE_HOME/zcompdump" -u
+autoload -U colors && colors
+zmodload zsh/complist
+
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-za-z}'
+
+set completion-ignore-case on
+unset completealiases
+setopt auto_cd incappendhistory extendedhistory histignorealldups
+
+export NVM_DIR="$XDG_DATA_HOME"/nvm
+nvm() { unset -f nvm && . "$NVM_DIR/nvm.sh" && nvm "$@"; }
+
+export EDITOR='nvim'
+export MANPAGER='nvim +Man!'
 
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export HYPHEN_INSENSITIVE='true'
@@ -95,6 +94,7 @@ export SCRIPTS="$HOME/.local/bin/scripts"
 append_path "$SCRIPTS"
 
 prepend_path "$HOME/.luarocks/bin"
+append_path "$HOME/.local/bin"
 prepend_path "$HOME"/.local/bin/sst
 
 export FZF_COMPLETION_TRIGGER=\;
@@ -102,10 +102,21 @@ export FZF_ALT_C_COMMAND='fd --type directory --strip-cwd-prefix'
 export FZF_CTRL_R_OPTS='--reverse'
 export FZF_CTRL_T_COMMAND='fd --type file --strip-cwd-prefix'
 export FZF_TMUX=1
-export FZF_DEFAULT_OPTS="--bind=ctrl-a:select-all --bind=ctrl-f:half-page-down --bind=ctrl-b:half-page-up --no-scrollbar --no-info \
---color=fg:#D4BE98,bg:#282828,hl:#A9B665,fg+:#D4BE98,bg+:#32302F,hl+:#89B482 \
+
+FZF_DEFAULT_OPTS='--bind=ctrl-a:select-all --bind=ctrl-f:half-page-down --bind=ctrl-b:half-page-up --no-scrollbar --no-info'
+case "$THEME" in
+    gruvbox)
+        FZF_DEFAULT_OPTS+=" --color=fg:#D4BE98,bg:#282828,hl:#A9B665,fg+:#D4BE98,bg+:#32302F,hl+:#89B482 \
 --color=spinner:#D8A657 --color=marker:#D8A657 --color=pointer:#7DAEA3 \
 --color=prompt:#E78A4E --color=info:#89B482 --color=border:#928374 --color=header:#928374"
+        ;;
+    melange)
+        FZF_DEFAULT_OPTS+=" --color=fg:#7D6658,bg:#F1F1F1,hl:#6E9B72,fg+:#54433A,bg+:#D9D3CE,hl+:#739797 \
+--color=spinner:#BC5C00 --color=marker:#BC5C00 --color=pointer:#7892BD \
+--color=prompt:#A06D00 --color=info:#739797 --color=border:#A98A78 --color=header:#A98A78"
+        ;;
+esac
+export FZF_DEFAULT_OPTS
 
 eval "$(fzf --zsh)"
 . "$ZDOTDIR/.zaliases"
