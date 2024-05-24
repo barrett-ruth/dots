@@ -11,6 +11,7 @@ return {
         build = 'pnpm add -g live-server',
         cmd = { 'LiveServerStart', 'LiveServerStart' },
         config = true,
+        keys = { { '<leader>L', '<cmd>LiveServerToggle<cr>' } },
     },
     {
         'echasnovski/mini.bufremove',
@@ -235,4 +236,30 @@ return {
         },
     },
     { 'Vimjas/vim-python-pep8-indent', ft = { 'python' } },
+
+    {
+        'kana/vim-textobj-entire',
+        dependencies = 'kana/vim-textobj-user',
+        event = 'VeryLazy',
+    },
+    {
+        'kana/vim-textobj-indent',
+        dependencies = 'kana/vim-textobj-user',
+        event = 'VeryLazy',
+    },
+    {
+        'kana/vim-textobj-line',
+        dependencies = 'kana/vim-textobj-user',
+        event = 'VeryLazy',
+    },
+    {
+        'preservim/vim-textobj-sentence',
+        dependencies = 'kana/vim-textobj-user',
+        event = 'VeryLazy',
+    },
+    {
+        'whatyouhide/vim-textobj-xmlattr',
+        dependencies = 'kana/vim-textobj-user',
+        event = 'VeryLazy',
+    },
 }

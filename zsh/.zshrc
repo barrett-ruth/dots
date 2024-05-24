@@ -44,8 +44,8 @@ __set_git() {
   local br="${${sb%%.*}##* }"
 
   if [[ -z "${sb##*...*}" ]]; then
-    local usi="${sb##*.}"
-    local usr="${usi%%/*}"
+    local usr="${${sb#*...}%% *}"
+    [[ "${usr#*/}" == "$br" ]] && usr="${usr%%/*}"
     [[ -n "$usr" ]] && us="→$usr"
     [[ -n "${sb##*ahead*}" ]] || up_down+=↑
     [[ -n "${sb##*behind*}" ]] || up_down+=↓

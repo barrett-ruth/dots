@@ -4,7 +4,10 @@ end
 
 local file = {
     value = function()
-        return vim.fn.bufname(vim.api.nvim_get_current_buf())
+        return vim.fn.fnamemodify(
+            vim.fn.bufname(vim.api.nvim_get_current_buf()),
+            ':~:.'
+        )
     end,
 }
 

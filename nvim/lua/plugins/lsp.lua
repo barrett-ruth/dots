@@ -39,7 +39,7 @@ return {
                 'lua_ls',
                 'pyright',
                 'pylsp',
-                'ruby_ls',
+                'ruby_lsp',
                 'tailwindcss',
                 'vimls',
                 'yamlls',
@@ -83,9 +83,8 @@ return {
     {
         'SmiteshP/nvim-navic',
         opts = {
-            separator = '->',
-            depth_limit = 4,
-            depth_limit_indicator = '...',
+            depth_limit = 3,
+            depth_limit_indicator = '…',
             icons = {
                 File = ' ',
                 Module = ' ',

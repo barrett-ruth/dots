@@ -4,7 +4,11 @@ colors.setup('gruvbox', 'dark')
 local hi, link, tshi, cs =
     colors.hi, colors.link, colors.tshi, colors[vim.g.colors_name]
 
-hi('Normal', { fg = cs.white, bg = cs.black }, { 'Identifier', 'Special' })
+hi(
+    'Normal',
+    { fg = cs.white, bg = cs.black },
+    { 'Identifier', 'Special', 'StatusLine', 'StatusLineNC' }
+)
 hi('NonText', { fg = cs.grey }, { 'SpecialKey' })
 
 hi('LineNr', { fg = cs.grey }, { 'SignColumn' })

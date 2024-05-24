@@ -1,5 +1,8 @@
 #!/usr/bin/env zsh
 
+# export THEME='melange'
+export THEME='gruvbox'
+
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
