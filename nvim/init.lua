@@ -19,10 +19,3 @@ require('lazy').setup('plugins', {
 })
 
 vim.cmd.colorscheme(vim.env.THEME)
-
--- TODO: fix when plugins update to 0.12
-vim.tbl_add_reverse_lookup = function (tbl)
-  for k, v in pairs(tbl) do
-    tbl[v] = k
-  end
-end

@@ -2,7 +2,7 @@ return {
     settings = {
         format = false,
     },
-    on_attach = function(client, _)
+    on_attach = function(client, bufnr)
         -- Disable providers meant for pyright
         for _, provider in ipairs({
             'completion',
@@ -14,7 +14,7 @@ return {
             client.server_capabilities[provider .. 'Provider'] = false
         end
 
-        map({
+        bmap({
             'n',
             '<leader>ps',
             function()
@@ -35,14 +35,14 @@ return {
                 })
                 vim.fn.system({ 'mypy', '--install-types' })
             end,
-        })
+        }, { buffer = bufnr })
 
-        map({
+        bmap({
             'n',
             '<leader>pm',
             function()
                 vim.fn.system({ 'mypy', '--install-types' })
             end,
-        })
+        }, { buffer = bufnr })
     end,
 }

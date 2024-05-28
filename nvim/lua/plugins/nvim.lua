@@ -30,6 +30,11 @@ return {
         event = 'InsertEnter',
     },
     {
+        'folke/ts-comments.nvim',
+        config = true,
+        event = 'VeryLazy',
+    },
+    {
         'iamcco/markdown-preview.nvim',
         build = 'pnpm up && cd app && pnpm install',
         ft = { 'markdown' },
@@ -43,6 +48,10 @@ return {
             ]])
         end,
         keys = { { '<leader>m', vim.cmd.MarkdownPreviewToggle } },
+    },
+    {
+        'klen/nvim-config-local',
+        config = true,
     },
     {
         'lewis6991/gitsigns.nvim',
@@ -205,6 +214,12 @@ return {
             prompt_save_on_select_new_entry = false,
             float = {
                 border = 'single',
+            },
+            view_options = { show_hidden = true },
+            keymaps = {
+                ['<c-h>'] = false,
+                ['<c-v>'] = 'actions.select_vsplit',
+                ['<c-x>'] = 'actions.select_split',
             },
         },
     },

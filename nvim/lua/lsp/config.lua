@@ -1,4 +1,4 @@
-local handlers = vim.lsp.handlers
+local handlers, methods = vim.lsp.handlers, vim.lsp.protocol.Methods
 
 handlers['textDocument/hover'] = vim.lsp.with(handlers.hover, {
     border = 'single',

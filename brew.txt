@@ -65,7 +65,6 @@ libpng
 libraw
 libssh2
 libtasn1
-libtermkey
 libtiff
 libtool
 libunistring

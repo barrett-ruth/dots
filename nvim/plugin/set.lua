@@ -26,8 +26,6 @@ o.foldlevel = 99
 o.foldmethod = 'expr'
 o.foldminlines = 9
 opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-opt.foldtext = vim.fn.has('nvim-0.10') and ''
-    or 'v:lua.vim.treesitter.foldtext()'
 
 opt.iskeyword:append('-')
 

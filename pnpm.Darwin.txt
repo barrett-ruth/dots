@@ -14,11 +14,12 @@ markdownlint 0.34.0
 markdownlint-cli 0.39.0
 neovim 5.1.0
 npm 10.8.0
-pnpm 9.1.1
+pnpm 9.1.2
 pyright 1.1.363
 sql-formatter 15.3.1
 ts-node 10.9.2
 typescript 5.4.5
 typescript-language-server 4.3.3
+vim-language-server 2.3.1
 vscode-langservers-extracted 4.10.0
 yaml-language-server 1.14.0

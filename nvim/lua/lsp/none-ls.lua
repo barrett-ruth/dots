@@ -1,20 +1,9 @@
 local on_attach = require('lsp.utils').on_attach
-local projects = require('projects').projects
 
 local null_ls = require('null-ls')
 local builtins = null_ls.builtins
 local code_actions, diagnostics, formatting =
     builtins.code_actions, builtins.diagnostics, builtins.formatting
-
-local function project_contains_source(name, default)
-    local project = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
-
-    if projects[project] and projects[project].lsp_sources then
-        return vim.tbl_contains(projects[project].lsp_sources, name)
-    end
-
-    return default or false
-end
 
 null_ls.setup({
     sources = {
@@ -42,24 +31,14 @@ null_ls.setup({
         }),
         diagnostics.yamllint,
 
-        formatting.black.with({
-            condition = function(_)
-                return project_contains_source('black', true)
-            end,
-            extra_args = { '-S', '--fast', '--line-length', '80' },
-        }),
+        formatting.black.with({ extra_args = { '--fast' } }),
+        formatting.isort.with({ extra_args = { '--profile', 'black' } }),
+
         formatting.cbfmt.with({
             condition = function(utils)
                 return utils.root_has_file({ '.cbfmt.toml' })
             end,
         }),
-        formatting.isort.with({
-            condition = function(_)
-                return project_contains_source('isort', true)
-            end,
-            extra_args = { '--profile', 'black', '--line-length', '80' },
-        }),
-        formatting.djhtml.with({ extra_args = { '--tabwidth', '2' } }),
         formatting.google_java_format,
         formatting.gofumpt,
         formatting.goimports_reviser,
