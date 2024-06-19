@@ -7,18 +7,6 @@ return {
         lazy = true,
     },
     {
-        'projekt0n/github-nvim-theme',
-        config = function()
-            require('github-theme').setup()
-            vim.cmd.colorscheme('github_light_default')
-        end,
-        lazy = false,
-        priority = 1000,
-        enabled = function()
-            return vim.env.THEME == 'light'
-        end,
-    },
-    {
         'barrett-ruth/http-codes.nvim',
         config = true,
         dependencies = 'nvim-telescope/telescope.nvim',

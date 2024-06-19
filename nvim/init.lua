@@ -12,15 +12,14 @@ if not vim.loop.fs_stat(lazypath) then
         lazypath,
     })
 end
+
 vim.opt.rtp:prepend(lazypath)
 require('lazy').setup('plugins', {
     git = { url_format = 'git@github.com:%s.git' },
     change_detection = { enabled = false },
 })
 
-if vim.tbl_contains({ 'gruvbox', 'melange' }, vim.env.THEME) then
-    vim.cmd.colorscheme(vim.env.THEME)
-end
+vim.cmd.colorscheme(vim.env.THEME)
 
 vim.tbl_add_reverse_lookup = function(tbl)
     for k, v in pairs(tbl) do

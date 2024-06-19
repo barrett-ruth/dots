@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
-export THEME='melange'
-# export THEME='light'
+# export THEME='melange'
+export THEME='light'
 # export THEME='gruvbox'
 
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -118,6 +118,11 @@ case "$THEME" in
         FZF_DEFAULT_OPTS+=" --color=fg:#7D6658,bg:#F1F1F1,hl:#6E9B72,fg+:#54433A,bg+:#D9D3CE,hl+:#739797 \
 --color=spinner:#BC5C00 --color=marker:#BC5C00 --color=pointer:#7892BD \
 --color=prompt:#A06D00 --color=info:#739797 --color=border:#A98A78 --color=header:#A98A78"
+        ;;
+    light)
+        FZF_DEFAULT_OPTS+=" --color=fg:#000000,bg:#FFFFFF,hl:#1A7F37,fg+:#000000,bg+:#F1F1F2,hl+:#0550AE \
+--color=spinner:#953800 --color=marker:#953800 --color=pointer:#CF222E \
+--color=prompt:#8250DF --color=info:#0550AE --color=border:#CEE1F8 --color=header:#CEE1F8"
         ;;
 esac
 export FZF_DEFAULT_OPTS
