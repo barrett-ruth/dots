@@ -18,4 +18,12 @@ require('lazy').setup('plugins', {
     change_detection = { enabled = false },
 })
 
-vim.cmd.colorscheme(vim.env.THEME)
+if vim.tbl_contains({ 'gruvbox', 'melange' }, vim.env.THEME) then
+    vim.cmd.colorscheme(vim.env.THEME)
+end
+
+vim.tbl_add_reverse_lookup = function(tbl)
+    for k, v in pairs(tbl) do
+        tbl[v] = k
+    end
+end

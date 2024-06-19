@@ -44,6 +44,19 @@ return {
         med_grey = '#45403D',
         dark_grey = '#32302F',
     },
+    light = {
+        white = '#FFFFFF',
+        red = '#CF222E',
+        orange = '#9A6700',
+        green = '#1A7F37',
+        cyan = '#CEE1F8',
+        blue = '#0550AE',
+        dark_blue = '#0A3069',
+        purple = '#8250DF',
+        light_grey = '#F1F1F2',
+        grey = '#6E7781',
+        dark_grey = '#57606a',
+    },
     setup = function(colors_name, background)
         if vim.g.colors_name then
             vim.cmd.hi('clear')

@@ -31,6 +31,8 @@ opt.iskeyword:append('-')
 
 o.laststatus = 3
 
+o.linebreak = true
+
 o.list = true
 opt.listchars = {
     space = ' ',
@@ -48,6 +50,8 @@ o.relativenumber = true
 opt.path:append('**')
 
 o.pumheight = 10
+
+o.scrolloff = 8
 
 o.shiftwidth = 4
 

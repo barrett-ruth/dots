@@ -7,7 +7,7 @@ return {
         for _, provider in ipairs({
             'completion',
             'documentSymbol',
-            'hover', -- unsure if pylsp's or pyright's hoverProvider is better
+            -- 'hover', -- unsure if pylsp's or pyright's hoverProvider is better
             'rename',
             'workspaceSymbol',
         }) do
@@ -29,7 +29,7 @@ return {
                     'python-lsp-ruff',
                     'python-lsp-isort',
                     'python-lsp-black',
-                    'pyright',
+                    -- 'pyright',
                     'mypy',
                     'mypy-extensions',
                 })

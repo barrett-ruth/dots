@@ -49,12 +49,15 @@ return {
             {
                 '<leader>T',
                 function()
+                    local lang_map = { htmldjango = 'html' }
                     local bufnr = vim.api.nvim_get_current_buf()
+                    local parser = vim.treesitter.get_parser(bufnr)
+                    local lang = parser:lang()
                     local path = (
                         vim.env.NVIM_APPNAME or vim.fn.stdpath('config')
                     )
                         .. ('/after/queries/%s/highlights.scm'):format(
-                            vim.treesitter.get_parser(bufnr):lang()
+                            lang_map[lang] or lang
                         )
 
                     if vim.loop.fs_stat(path) then
@@ -62,11 +65,8 @@ return {
                     elseif vim.loop.fs_stat(path .. '.disabled') then
                         vim.fn.rename(path .. '.disabled', path)
                     end
-
                     vim.cmd.TSBufToggle('highlight')
-                    local save = vim.fn.winsaveview()
-                    vim.cmd('w|e')
-                    vim.fn.winrestview(save)
+                    vim.cmd.e()
                 end,
             },
         },
