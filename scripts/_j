@@ -6,11 +6,12 @@ case "$1" in
     aoc) cd ~/Desktop/aoc;;
     atlas) cd ~/Desktop/atlas;;
     cses) cd ~/Desktop/dsa/cses;;
-    ip) cd ~/Desktop/swe-interview-prep;;
+    ip) cd ~/dev/swe-interview-prep;;
     dl) cd ~/Downloads;;
     lz) cd ~/.local/share/nvim/lazy;;
-    site) cd ~/Desktop/barrett-ruth.github.io;;
-    notes) cd ~/Desktop/notes;;
+    dev) cd ~/dev;;
+    site) cd ~/dev/barrettruth.com;;
+    notes) cd ~/dev/notes;;
     scr) cd "$SCRIPTS";;
     desk) cd ~/Desktop;;
     dots) cd ~/dev/dots;;

@@ -25,6 +25,12 @@ neovim)
 cses | usaco | codeforces)
   cmd='python solution.py < input.txt'
   ;;
+TestCppClient)
+  cmd='rm -f TestCppClientStatic && cmake -S . -B build/ && make && ./TestCppClientStatic'
+  ;;
+st)
+  cmd='cmake -S . -B build/ -DCMAKE_INSTALL_PREFIX:PATH="$HOME/.local/bin" -DCMAKE_PREFIX_PATH=/opt/homebrew/Cellar/catch2/3.6.0 && cmake --build build --config Release --target install --parallel'
+  ;;
 esac
 
 echo " > $cmd" | sed "s|$HOME|~|g"
