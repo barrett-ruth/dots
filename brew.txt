@@ -6,6 +6,7 @@ brotli
 c-ares
 ca-certificates
 cairo
+catch2
 clang-format
 cmake
 coreutils
@@ -133,6 +134,7 @@ rsync
 ruby-build
 ruff
 rustup-init
+sdkman-cli
 selene
 shared-mime-info
 shellcheck
@@ -173,9 +175,9 @@ karabiner-elements
 kitty
 mactex
 notion
-protonvpn
 rectangle
 sioyek
 slack
 spotify
 telegram
+trader-workstation
