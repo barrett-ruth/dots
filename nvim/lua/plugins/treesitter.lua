@@ -43,7 +43,7 @@ return {
             'nvim-treesitter/nvim-treesitter-textobjects',
             'nvim-lua/plenary.nvim',
         },
-        event = 'BufReadPre',
+        event = { 'BufAdd', 'BufReadPre' },
         keys = {
             { '<leader>i', vim.cmd.Inspect },
             {
@@ -66,7 +66,7 @@ return {
                         vim.fn.rename(path .. '.disabled', path)
                     end
                     vim.cmd.TSBufToggle('highlight')
-                    vim.cmd.e()
+                    vim.cmd.TSBufToggle('highlight')
                 end,
             },
         },
@@ -148,8 +148,6 @@ return {
     {
         'nvim-treesitter/playground',
         dependencies = 'nvim-treesitter/nvim-treesitter',
-        keys = {
-            { '<leader>t', '<cmd>TSPlaygroundToggle<cr>' },
-        },
+        keys = { { '<leader>t', '<cmd>TSPlaygroundToggle<cr>' } },
     },
 }
