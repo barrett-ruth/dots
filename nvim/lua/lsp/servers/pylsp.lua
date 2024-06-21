@@ -3,16 +3,10 @@ return {
         format = false,
     },
     on_attach = function(client, bufnr)
-        -- Disable providers meant for pyright
-        for _, provider in ipairs({
-            'completion',
-            'documentSymbol',
-            -- 'hover', -- unsure if pylsp's or pyright's hoverProvider is better
-            'rename',
-            'workspaceSymbol',
-        }) do
-            client.server_capabilities[provider .. 'Provider'] = false
-        end
+        client.sever_capabilities.completionProvider = false
+        client.server_capabilities.documentSymbolProvider = false
+        client.server_capabilities.renameProvider = false
+        client.server_capabilities.workspaceSymbolProvider = false
 
         bmap({
             'n',

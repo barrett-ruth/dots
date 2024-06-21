@@ -17,7 +17,7 @@ return {
         config = function()
             require('lsp.none-ls')
         end,
-        event = 'VeryLazy',
+        event = 'BufReadPost',
     },
     {
         'neovim/nvim-lspconfig',
@@ -38,7 +38,7 @@ return {
                 'jinja_lsp',
                 'jsonls',
                 'lua_ls',
-                -- 'pyright',
+                'pyright',
                 'pylsp',
                 'ruby_lsp',
                 'tailwindcss',
@@ -53,10 +53,15 @@ return {
                 )
             end
         end,
+        event = 'VeryLazy',
     },
     {
         'pmizio/typescript-tools.nvim',
-        dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+            'neovim/nvim-lspconfig',
+            'hrsh7th/cmp-nvim-lsp',
+        },
         event = {
             'BufReadPre *.js,*.jsx,*.ts,*.tsx',
             'BufNewFile *.js,*.jsx,*.ts,*.tsx',
@@ -68,13 +73,8 @@ return {
     {
         'mrcjkb/rustaceanvim',
         ft = { 'rust' },
-        init = function()
+        config = function()
             vim.g.rustaceanvim = {
-                tools = {
-                    inlay_hints = {
-                        auto = false,
-                    },
-                },
                 server = prepare_lsp_settings(
                     require('lsp.servers.rust_analyzer')
                 ),

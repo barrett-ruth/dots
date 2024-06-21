@@ -43,7 +43,7 @@ return {
             'nvim-treesitter/nvim-treesitter-textobjects',
             'nvim-lua/plenary.nvim',
         },
-        event = { 'BufAdd', 'BufReadPre' },
+        event = { 'BufReadPre', 'BufNewFile' },
         keys = {
             { '<leader>i', vim.cmd.Inspect },
             {

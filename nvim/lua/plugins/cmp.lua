@@ -63,14 +63,18 @@ return {
             cmp.setup(opts)
         end,
         dependencies = {
-            'davidsierradz/cmp-conventionalcommits',
             'hrsh7th/cmp-buffer',
-            'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-path',
-            'L3MON4D3/LuaSnip',
-            'petertriho/cmp-git',
             'roobert/tailwindcss-colorizer-cmp.nvim',
         },
         event = 'InsertEnter',
+    },
+    {
+        'petertriho/cmp-git',
+        ft = { 'fugitive' },
+        dependencies = {
+            'hrsh7th/nvim-cmp',
+            'davidsierradz/cmp-conventionalcommits',
+        },
     },
 }

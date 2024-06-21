@@ -20,17 +20,6 @@ return {
         keys = { { '<leader>L', '<cmd>LiveServerToggle<cr>' } },
     },
     {
-        'echasnovski/mini.bufremove',
-        config = true,
-        keys = {
-            { '<leader>bd', '<cmd>lua require("mini.bufremove").delete()<cr>' },
-            {
-                '<leader>bw',
-                '<cmd>lua require("mini.bufremove").wipeout()<cr>',
-            },
-        },
-    },
-    {
         'echasnovski/mini.pairs',
         config = true,
         event = 'InsertEnter',
@@ -44,20 +33,16 @@ return {
         'iamcco/markdown-preview.nvim',
         build = 'pnpm up && cd app && pnpm install',
         ft = { 'markdown' },
-        init = function()
+        config = function()
             vim.cmd([[
                 function OpenMarkdownPreview(url)
                     exec "silent !$BROWSER -n --args " . a:url
                 endfunction
-                let g:mkdp_auto_close = 0
-                let g:mkdp_browserfunc = 'OpenMarkdownPreview'
             ]])
+            vim.g.mkdp_auto_close = 0
+            vim.g.mkdp_browserfunc = 'OpenMarkdownPreview'
         end,
         keys = { { '<leader>m', vim.cmd.MarkdownPreviewToggle } },
-    },
-    {
-        'klen/nvim-config-local',
-        config = true,
     },
     {
         'lewis6991/gitsigns.nvim',
@@ -176,6 +161,7 @@ return {
     {
         'nvimdev/hlsearch.nvim',
         config = true,
+        keys = { '/', '?' },
     },
     {
         'NvChad/nvim-colorizer.lua',
@@ -211,11 +197,54 @@ return {
     },
     {
         'stevearc/oil.nvim',
+        init = function()
+            local oilaug = vim.api.nvim_create_augroup('AOil', {})
+            vim.api.nvim_create_autocmd('VimEnter', {
+                callback = function()
+                    if vim.fn.isdirectory(vim.fn.expand('%:p')) == 1 then
+                        require('oil').setup()
+                        vim.cmd.Oil('.')
+                    end
+                end,
+                group = oilaug,
+            })
+            vim.api.nvim_create_autocmd('FileType', {
+                pattern = 'oil',
+                callback = function()
+                    bmap({
+                        'n',
+                        'q',
+                        function()
+                            local ok, bufremove =
+                                pcall(require, 'mini.bufremove')
+                            if ok and not vim.fn.buflisted(0) then
+                                bufremove.delete()
+                            else
+                                vim.cmd.bw()
+                            end
+                        end,
+                    })
+                end,
+            })
+        end,
         keys = {
             { '-', '<cmd>e .<cr>' },
             { '_', vim.cmd.Oil },
         },
-        lazy = false,
+        dependencies = {
+            'echasnovski/mini.bufremove',
+            config = true,
+            keys = {
+                {
+                    '<leader>bd',
+                    '<cmd>lua require("mini.bufremove").delete()<cr>',
+                },
+                {
+                    '<leader>bw',
+                    '<cmd>lua require("mini.bufremove").wipeout()<cr>',
+                },
+            },
+        },
         opts = {
             skip_confirm_for_simple_edits = true,
             prompt_save_on_select_new_entry = false,
@@ -230,15 +259,15 @@ return {
             },
         },
     },
-    'tpope/vim-abolish',
-    'tpope/vim-fugitive',
-    'tpope/vim-repeat',
-    'tpope/vim-sleuth',
-    'tpope/vim-surround',
+    { 'tpope/vim-abolish', event = 'VeryLazy' },
+    { 'tpope/vim-fugitive', cmd = 'Git' },
+    { 'tpope/vim-repeat', keys = { '.' } },
+    { 'tpope/vim-sleuth', event = 'BufReadPost' },
+    { 'tpope/vim-surround', keys = { 'y', 'd' } },
     {
         'tzachar/highlight-undo.nvim',
         config = true,
-        event = 'VeryLazy',
+        keys = { 'u', 'U' },
     },
     {
         'ThePrimeagen/harpoon',
@@ -258,30 +287,15 @@ return {
         },
     },
     { 'Vimjas/vim-python-pep8-indent', ft = { 'python' } },
-
     {
-        'kana/vim-textobj-entire',
-        dependencies = 'kana/vim-textobj-user',
-        event = 'VeryLazy',
-    },
-    {
-        'kana/vim-textobj-indent',
-        dependencies = 'kana/vim-textobj-user',
-        event = 'VeryLazy',
-    },
-    {
-        'kana/vim-textobj-line',
-        dependencies = 'kana/vim-textobj-user',
-        event = 'VeryLazy',
-    },
-    {
-        'preservim/vim-textobj-sentence',
-        dependencies = 'kana/vim-textobj-user',
-        event = 'VeryLazy',
-    },
-    {
-        'whatyouhide/vim-textobj-xmlattr',
-        dependencies = 'kana/vim-textobj-user',
+        'kana/vim-textobj-user',
+        dependencies = {
+            'kana/vim-textobj-entire',
+            'kana/vim-textobj-indent',
+            'kana/vim-textobj-line',
+            'preservim/vim-textobj-sentence',
+            'whatyouhide/vim-textobj-xmlattr',
+        },
         event = 'VeryLazy',
     },
 }
