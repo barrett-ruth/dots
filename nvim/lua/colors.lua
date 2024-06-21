@@ -46,6 +46,7 @@ return {
     },
     light = {
         white = '#FFFFFF',
+        black = '#000000',
         red = '#CF222E',
         bright_red = '#E4B7BE',
         orange = '#953800',

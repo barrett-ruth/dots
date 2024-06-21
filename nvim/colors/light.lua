@@ -9,7 +9,8 @@ hi('NonText', { fg = cs.grey })
 hi('LineNr', { fg = cs.grey }, { 'SignColumn' })
 hi('CursorLineNr', { fg = cs.black }, { 'FoldColumn' })
 hi('CursorLine', { bg = cs.light_grey }, { 'ColorColumn' })
-hi('Visual', { reverse = true }, { 'Search', 'IncSearch' })
+hi('Visual', { reverse = true }, { 'Search' })
+hi('IncSearch', { bg = cs.orange }, { 'CurSearch' })
 
 tshi('Boolean', { fg = cs.blue })
 tshi('Constant', { fg = cs.blue })
@@ -42,6 +43,7 @@ tshi('Number', { fg = cs.blue })
 tshi('Operator', { fg = cs.blue })
 tshi('PreProc', { none = true })
 tshi('String', { fg = cs.dark_blue }, { '@string.escape' })
+tshi('Tag', { fg = cs.green })
 tshi('Title', { fg = cs.blue, bold = true })
 tshi('Variable', { fg = cs.black })
 hi('Delimiter', { fg = cs.black }, { '@punctuation.delimiter' })
@@ -116,11 +118,15 @@ hi(
 )
 hi('DiffChange', { fg = cs.dark_blue, bg = cs.blue }, { 'GitSignsChange' })
 
+-- gitsigns.nvim
+hi('GitSignsAdd', { fg = cs.green })
+hi('GitSignsDelete', { fg = cs.red })
+hi('GitSignsChange', { fg = cs.blue })
+hi('GitSignsCurrentLineBlame', { fg = 'grey' })
+
 -- language-specific
 hi('jsonKeyword', { fg = cs.green })
-
--- gitsigns.nvim
-hi('GitSignsCurrentLineBlame', { italic = true, fg = cs.light_black })
+hi('@constructor.lua', { fg = cs.black })
 
 -- null-ls
 link('NormalFloat', 'NullLsInfoBorder')

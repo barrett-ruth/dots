@@ -6,7 +6,6 @@ brotli
 c-ares
 ca-certificates
 cairo
-catch2
 clang-format
 cmake
 coreutils
@@ -20,6 +19,7 @@ freetype
 fribidi
 fzf
 gcc
+gcc@13
 gettext
 gh
 ghostscript

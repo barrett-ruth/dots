@@ -20,8 +20,8 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
     prepend_path '/opt/homebrew/opt/llvm/bin'
     eval "$(/opt/homebrew/bin/brew shellenv)"
     export BROWSER='/Applications/Chromium.app/Contents/MacOS/Chromium'
-    export LDFLAGS='-L/opt/homebrew/opt/llvm/lib'
-    export CPPFLAGS='-I/opt/homebrew/opt/llvm/include'
+    export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+    export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
     . "$XDG_CONFIG_HOME"/fzf/fzf.zsh
     . "$HOMEBREW_PREFIX"/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 else

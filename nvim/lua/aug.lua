@@ -55,7 +55,7 @@ au({ 'BufRead', 'BufNewFile' }, {
 
 au('TextYankPost', {
     callback = function()
-        vim.highlight.on_yank({ higroup = 'IncSearch', timeout = 300 })
+        vim.highlight.on_yank({ higroup = 'Visual', timeout = 300 })
     end,
     group = aug,
 })
