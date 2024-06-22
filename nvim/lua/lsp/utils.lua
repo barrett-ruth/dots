@@ -9,7 +9,6 @@ function M.on_attach(client, bufnr)
             '\\c',
             buf.code_action,
         },
-        declaration = { 'n', 'gD', buf.declaration },
         hover = { 'n', 'K', buf.hover },
         inlayHint = {
             'n',

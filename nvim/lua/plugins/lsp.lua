@@ -53,7 +53,6 @@ return {
                 )
             end
         end,
-        event = 'VeryLazy',
     },
     {
         'pmizio/typescript-tools.nvim',
