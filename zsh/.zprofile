@@ -59,6 +59,7 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
 
 export BOTO_CONFIG="$XDG_CONFIG_HOME"/boto/config
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
+export FD_CONFIG_PATH="$XDG_CONFIG_HOME"/fd/config.toml
 export GNUPGHOME="$XDG_CONFIG_HOME"/gnupg
 export GOMODCACHE="$XDG_CACHE_HOME"/go/mod
 export GRADLE_USER_HOME="$XDG_CONFIG_HOME"/gradle
@@ -100,10 +101,12 @@ prepend_path "$HOME/.luarocks/bin"
 append_path "$HOME/.local/bin"
 prepend_path "$HOME"/.local/bin/sst
 
+export FZF_LUA_RG_OPTS="$(tr '\n' ' ' < "$RIPGREP_CONFIG_PATH")"
+
 export FZF_COMPLETION_TRIGGER=\;
-export FZF_ALT_C_COMMAND='fd --type directory --strip-cwd-prefix'
+export FZF_ALT_C_COMMAND="fd --type directory --strip-cwd-prefix"
 export FZF_CTRL_R_OPTS='--reverse'
-export FZF_CTRL_T_COMMAND='fd --type file --strip-cwd-prefix'
+export FZF_CTRL_T_COMMAND="fd --type file --strip-cwd-prefix"
 export FZF_TMUX=1
 
 FZF_DEFAULT_OPTS='--bind=ctrl-a:select-all --bind=ctrl-f:half-page-down --bind=ctrl-b:half-page-up --no-scrollbar --no-info'

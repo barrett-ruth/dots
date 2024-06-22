@@ -263,7 +263,7 @@ return {
     { 'tpope/vim-fugitive', cmd = 'Git' },
     { 'tpope/vim-repeat', keys = { '.' } },
     { 'tpope/vim-sleuth', event = 'BufReadPost' },
-    { 'tpope/vim-surround', keys = { 'y', 'd' } },
+    { 'tpope/vim-surround', keys = { 'c', 'd', 'y' } },
     {
         'tzachar/highlight-undo.nvim',
         config = true,

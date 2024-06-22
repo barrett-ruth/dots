@@ -6,5 +6,8 @@
 --no-heading
 --smart-case
 --follow
---glob=!{pnpm-lock.yaml,package-lock.json}
+--glob=!pnpm-lock.yaml
+--glob=!*.json
+--glob=!venv/
+--glob=!pyenv/
 --ignore-file=/Users/barrett/.config/git/ignore

@@ -73,7 +73,10 @@ return {
             actions = { ['ctrl-g'] = false },
         },
         fzf_args = vim.env.FZF_DEFAULT_OPTS,
-        grep = { no_header_i = true },
+        grep = {
+            rg_opts = vim.env.FZF_LUA_RG_OPTS,
+            no_header_i = true,
+        },
         loclist = { path_shorten = true },
         euickfix = { path_shorten = true },
         lsp = {
