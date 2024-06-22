@@ -1,5 +1,3 @@
-local fd_opts = vim.env.FZF_CTRL_T_COMMAND:match(' (.*)')
-
 return {
     'ibhagwan/fzf-lua',
     config = function(_, opts)
@@ -48,7 +46,7 @@ return {
             function()
                 require('fzf-lua').files({
                     cwd = '~/.config',
-                    fd_opts = ('%s --hidden'):format(fd_opts),
+                    fd_opts = '--hidden',
                 })
             end,
         },
@@ -67,18 +65,18 @@ return {
     },
     opts = {
         files = {
-            fd_opts = fd_opts,
+            cmd = vim.env.FZF_CTRL_T_COMMAND,
             git_icons = false,
             file_icons = false,
             actions = { ['ctrl-g'] = false },
+            formatter = { 'path.filename_first' }
         },
         fzf_args = vim.env.FZF_DEFAULT_OPTS,
         grep = {
             RIPGREP_CONFIG_PATH = vim.env.RIPGREP_CONFIG_PATH,
             no_header_i = true,
+            formatter = { 'path.filename_first' }
         },
-        loclist = { path_shorten = true },
-        euickfix = { path_shorten = true },
         lsp = {
             jump_to_single_result = true,
             symbols = {
