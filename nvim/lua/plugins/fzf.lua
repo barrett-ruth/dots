@@ -74,7 +74,7 @@ return {
         },
         fzf_args = vim.env.FZF_DEFAULT_OPTS,
         grep = {
-            rg_opts = vim.env.FZF_LUA_RG_OPTS,
+            RIPGREP_CONFIG_PATH = vim.env.RIPGREP_CONFIG_PATH,
             no_header_i = true,
         },
         loclist = { path_shorten = true },

@@ -59,7 +59,6 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
 
 export BOTO_CONFIG="$XDG_CONFIG_HOME"/boto/config
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
-export FD_CONFIG_PATH="$XDG_CONFIG_HOME"/fd/config.toml
 export GNUPGHOME="$XDG_CONFIG_HOME"/gnupg
 export GOMODCACHE="$XDG_CACHE_HOME"/go/mod
 export GRADLE_USER_HOME="$XDG_CONFIG_HOME"/gradle
