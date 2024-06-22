@@ -1,3 +1,36 @@
+local git_ignored = setmetatable({}, {
+    __index = function(self, key)
+        local proc = vim.system({
+            'git',
+            'ls-files',
+            '--ignored',
+            '--exclude-standard',
+            '--others',
+            '--directory',
+        }, {
+            cwd = key,
+            text = true,
+        })
+        local result = proc:wait()
+        local ret = {}
+        if result.code == 0 then
+            for line in
+                vim.gsplit(
+                    result.stdout,
+                    '\n',
+                    { plain = true, trimempty = true }
+                )
+            do
+                line = line:gsub('/$', '')
+                table.insert(ret, line)
+            end
+        end
+
+        rawset(self, key, ret)
+        return ret
+    end,
+})
+
 return {
     {
         'savq/melange-nvim',
@@ -187,27 +220,16 @@ return {
         'phaazon/hop.nvim',
         config = function()
             require('hop').setup()
-            vim.schedule(function()
-                local hi = require('colors').hi
-                hi('HopUnmatched', { none = true })
-                hi('HopNextKey', { reverse = true })
-            end)
+            local hi = require('colors').hi
+            hi('HopUnmatched', { none = true })
+            hi('HopNextKey', { reverse = true })
         end,
-        keys = { { '<c-space>', '<cmd>HopChar2<cr>' } },
+        keys = { { '<c-space>', vim.cmd.HopChar2 } },
     },
     {
         'stevearc/oil.nvim',
         init = function()
             local oilaug = vim.api.nvim_create_augroup('AOil', {})
-            vim.api.nvim_create_autocmd('VimEnter', {
-                callback = function()
-                    if vim.fn.isdirectory(vim.fn.expand('%:p')) == 1 then
-                        require('oil').setup()
-                        vim.cmd.Oil('.')
-                    end
-                end,
-                group = oilaug,
-            })
             vim.api.nvim_create_autocmd('FileType', {
                 pattern = 'oil',
                 callback = function()
@@ -225,6 +247,7 @@ return {
                         end,
                     })
                 end,
+                group = oilaug,
             })
         end,
         keys = {
@@ -245,13 +268,25 @@ return {
                 },
             },
         },
+        event = function()
+            if vim.fn.isdirectory(vim.fn.expand('%:p')) == 1 then
+                return 'VimEnter'
+            end
+        end,
         opts = {
             skip_confirm_for_simple_edits = true,
             prompt_save_on_select_new_entry = false,
-            float = {
-                border = 'single',
+            float = { border = 'single' },
+            view_options = {
+                is_hidden_file = function(name, _)
+                    if vim.startswith(name, '.') then
+                        return true
+                    end
+                    local dir = require('oil').get_current_dir()
+                    return not dir and false
+                        or vim.list_contains(git_ignored[dir], name)
+                end,
             },
-            view_options = { show_hidden = true },
             keymaps = {
                 ['<c-h>'] = false,
                 ['<c-v>'] = 'actions.select_vsplit',
@@ -263,7 +298,7 @@ return {
     { 'tpope/vim-fugitive', cmd = 'Git' },
     { 'tpope/vim-repeat', keys = { '.' } },
     { 'tpope/vim-sleuth', event = 'BufReadPost' },
-    { 'tpope/vim-surround', keys = { 'c', 'd', 'y' } },
+    { 'tpope/vim-surround', keys = { 'c', 'd', 'v', 'V', 'y' } },
     {
         'tzachar/highlight-undo.nvim',
         config = true,
@@ -296,6 +331,6 @@ return {
             'preservim/vim-textobj-sentence',
             'whatyouhide/vim-textobj-xmlattr',
         },
-        event = 'VeryLazy',
+        keys = { 'c', 'd', 'v', 'V', 'y', '<', '>' },
     },
 }
