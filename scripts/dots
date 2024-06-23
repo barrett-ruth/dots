@@ -25,3 +25,5 @@ rmb .zaliases .zprofile .zshrc zsh
 
 pnpm -g list >pnpm."$(uname)".txt
 pip freeze >pip."$(uname)".txt
+ls "$GOPATH"/bin > go.txt
+ls "$CARGO_HOME"/bin > cargo.txt
