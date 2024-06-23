@@ -17,7 +17,7 @@ return {
         config = function()
             require('lsp.none-ls')
         end,
-        event = 'BufReadPost',
+        event = 'BufReadPre',
     },
     {
         'neovim/nvim-lspconfig',
@@ -35,7 +35,6 @@ return {
                 'eslint',
                 'gopls',
                 'html',
-                'jinja_lsp',
                 'jsonls',
                 'lua_ls',
                 'pyright',

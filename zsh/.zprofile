@@ -89,6 +89,8 @@ export PYENV_ROOT="$XDG_CONFIG_HOME"/pyenv
 prepend_path "$PYENV_ROOT"/bin
 eval "$(pyenv init -)"
 
+ps aux | grep -q '[b]lackd' || { blackd >/dev/null 2>&1 &| }
+
 export RBENV_ROOT="$XDG_DATA_HOME"/rbenv
 prepend_path "$RBENV_ROOT"/shims
 eval "$(rbenv init - zsh)"

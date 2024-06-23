@@ -41,6 +41,8 @@ return {
         { '<leader>fm', '<cmd>FzfLua man_pages<cr>' },
         { '<leader>fr', '<cmd>FzfLua resume<cr>' },
         { '<leader>fs', '<cmd>FzfLua files cwd=~/.local/bin/scripts<cr>' },
+        { '<leader>fq', '<cmd>FzfLua quickfix' },
+        { '<leader>fl', '<cmd>FzfLua loclist' },
         {
             '<leader>fe',
             function()
@@ -75,6 +77,8 @@ return {
         },
         fzf_args = vim.env.FZF_DEFAULT_OPTS,
         grep = {
+            git_icons = false,
+            file_icons = false,
             RIPGREP_CONFIG_PATH = vim.env.RIPGREP_CONFIG_PATH,
             no_header_i = true,
             formatter = 'path.filename_first',

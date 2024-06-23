@@ -10,6 +10,7 @@ null_ls.setup({
         code_actions.gitrebase,
         code_actions.gitsigns,
 
+        diagnostics.djlint,
         diagnostics.hadolint,
         diagnostics.markdownlint.with({
             extra_args = { '--disable', 'MD033', 'MD013' },
@@ -31,7 +32,7 @@ null_ls.setup({
         }),
         diagnostics.yamllint,
 
-        formatting.black.with({ extra_args = { '--fast' } }),
+        formatting.blackd.with({ extra_args = { '--fast' } }),
         formatting.isort.with({ extra_args = { '--profile', 'black' } }),
 
         formatting.cbfmt.with({

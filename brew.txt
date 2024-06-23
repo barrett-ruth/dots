@@ -1,7 +1,6 @@
 aom
 autoconf
 awscli
-black
 brotli
 c-ares
 ca-certificates
@@ -13,6 +12,7 @@ djhtml
 docker
 docker-completion
 doctl
+dotenv-linter
 fd
 fontconfig
 freetype
