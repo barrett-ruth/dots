@@ -72,7 +72,6 @@ return {
             cmd = vim.env.FZF_CTRL_T_COMMAND,
             git_icons = false,
             file_icons = false,
-            actions = { ['ctrl-g'] = false },
             formatter = 'path.filename_first',
         },
         fzf_args = vim.env.FZF_DEFAULT_OPTS,

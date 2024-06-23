@@ -46,7 +46,6 @@ null_ls.setup({
             },
         }),
         diagnostics.staticcheck,
-        diagnostics.vale,
         diagnostics.write_good,
         diagnostics.yamllint,
         diagnostics.zsh,

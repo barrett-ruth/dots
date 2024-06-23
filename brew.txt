@@ -152,7 +152,6 @@ tree-sitter
 unbound
 unibilium
 utf8proc
-vale
 vapoursynth
 webp
 x265
