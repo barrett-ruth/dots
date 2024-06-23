@@ -17,7 +17,7 @@ return {
         config = function()
             require('lsp.none-ls')
         end,
-        event = 'BufReadPre',
+        dependencies = 'nvimtools/none-ls-extras.nvim',
     },
     {
         'neovim/nvim-lspconfig',

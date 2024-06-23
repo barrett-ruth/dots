@@ -194,7 +194,7 @@ return {
     {
         'nvimdev/hlsearch.nvim',
         config = true,
-        keys = { '/', '?' },
+        -- keys = { '/', '?' },
     },
     {
         'NvChad/nvim-colorizer.lua',
@@ -295,7 +295,7 @@ return {
         },
     },
     { 'tpope/vim-abolish', event = 'VeryLazy' },
-    { 'tpope/vim-fugitive', cmd = 'Git' },
+    { 'tpope/vim-fugitive', cmd = 'Git', ft = 'gitcommit' },
     { 'tpope/vim-repeat', keys = { '.' } },
     { 'tpope/vim-sleuth', event = 'BufReadPost' },
     { 'tpope/vim-surround', keys = { 'c', 'd', 'v', 'V', 'y' } },

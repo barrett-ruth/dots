@@ -2,18 +2,29 @@ local on_attach = require('lsp.utils').on_attach
 
 local null_ls = require('null-ls')
 local builtins = null_ls.builtins
-local code_actions, diagnostics, formatting =
-    builtins.code_actions, builtins.diagnostics, builtins.formatting
+local code_actions, diagnostics, formatting, hover =
+    builtins.code_actions,
+    builtins.diagnostics,
+    builtins.formatting,
+    builtins.hover
 
 null_ls.setup({
     sources = {
+        require('none-ls.code_actions.eslint_d'),
         code_actions.gitrebase,
         code_actions.gitsigns,
 
+        diagnostics.buf,
+        diagnostics.checkmake,
+        diagnostics.cmake_lint,
+        diagnostics.codespell,
+        require('none-ls.diagnostics.cpplint'),
         diagnostics.djlint,
         diagnostics.dotenv_linter,
+        require('none-ls.diagnostics.eslint_d'),
+        diagnostics.gitlint,
         diagnostics.hadolint,
-        diagnostics.markdownlint.with({
+        diagnostics.markdownlint_cli2.with({
             extra_args = { '--disable', 'MD033', 'MD013' },
         }),
         diagnostics.mypy.with({
@@ -22,6 +33,8 @@ null_ls.setup({
                 return require('null-ls.utils').path.exists(params.bufname)
             end,
         }),
+        diagnostics.npm_groovy_lint,
+        diagnostics.proselint,
         diagnostics.selene,
         diagnostics.sqlfluff.with({
             extra_args = {
@@ -31,20 +44,30 @@ null_ls.setup({
                 'LT02,LT05', -- indent, line length
             },
         }),
+        diagnostics.staticcheck,
+        diagnostics.vale,
+        diagnostics.write_good,
         diagnostics.yamllint,
+        diagnostics.zsh,
 
+        formatting.asmfmt,
         formatting.blackd.with({ extra_args = { '--fast' } }),
-        formatting.isort.with({ extra_args = { '--profile', 'black' } }),
-
+        formatting.buf,
         formatting.cbfmt.with({
             condition = function(utils)
                 return utils.root_has_file({ '.cbfmt.toml' })
             end,
         }),
+        formatting.cmake_format,
+        formatting.codespell,
+        require('none-ls.formatting.eslint_d'),
         formatting.google_java_format,
         formatting.gofumpt,
+        formatting.goimports,
         formatting.goimports_reviser,
         formatting.golines,
+        formatting.isort.with({ extra_args = { '--profile', 'black' } }),
+        formatting.npm_groovy_lint,
         formatting.prettierd.with({
             env = {
                 XDG_RUNTIME_DIR = vim.env.XDG_RUNTIME_DIR
@@ -68,6 +91,10 @@ null_ls.setup({
         formatting.shfmt.with({ extra_args = { '-i', '2' } }),
         formatting.sql_formatter,
         formatting.stylua,
+        formatting.yamlfmt,
+
+        hover.dictionary,
+        hover.printenv,
     },
     on_attach = on_attach,
     debounce = 0,
