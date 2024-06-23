@@ -18,12 +18,16 @@ null_ls.setup({
         diagnostics.buf,
         diagnostics.checkmake,
         diagnostics.cmake_lint,
-        diagnostics.codespell,
-        require('none-ls.diagnostics.cpplint'),
+        require('none-ls.diagnostics.cpplint').with({
+            extra_args = { '--filter', '-legal/copyright', '-whitespace/indent' },
+            prepend_extra_args = true,
+        }),
         diagnostics.djlint,
         diagnostics.dotenv_linter,
         require('none-ls.diagnostics.eslint_d'),
-        diagnostics.gitlint,
+        diagnostics.gitlint.with({
+            extra_args = { '--ignore', 'body-is-missing' },
+        }),
         diagnostics.hadolint,
         diagnostics.markdownlint_cli2.with({
             extra_args = { '--disable', 'MD033', 'MD013' },
@@ -59,7 +63,6 @@ null_ls.setup({
             end,
         }),
         formatting.cmake_format,
-        formatting.codespell,
         require('none-ls.formatting.eslint_d'),
         formatting.google_java_format,
         formatting.gofumpt,
