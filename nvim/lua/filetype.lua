@@ -4,10 +4,9 @@ vim.filetype.add({
         mdx = 'mdx',
     },
     filename = {
-        ['.env'] = 'config',
         ['requirements.txt'] = 'config',
     },
     pattern = {
-        ['.env.*'] = 'config',
+        ['.env.*'] = 'sh',
     },
 })

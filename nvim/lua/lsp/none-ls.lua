@@ -11,6 +11,7 @@ null_ls.setup({
         code_actions.gitsigns,
 
         diagnostics.djlint,
+        diagnostics.dotenv_linter,
         diagnostics.hadolint,
         diagnostics.markdownlint.with({
             extra_args = { '--disable', 'MD033', 'MD013' },
