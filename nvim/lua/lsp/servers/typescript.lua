@@ -24,16 +24,24 @@ return {
     },
     handlers = {
         ['textDocument/publishDiagnostics'] = function(_, result, ctx, config)
-            local ok, format_ts = pcall(require, 'format-ts-errors')
-            local filtered = {}
+            if not result.diagnostics then
+                return
+            end
 
-            for _, diagnostic in ipairs(result.diagnostics) do
+            local ok, format_ts = pcall(require, 'format-ts-errors')
+
+            local idx = 1
+            while idx <= #result.diagnostics do
+                local diagnostic = result.diagnostics[idx]
+
                 if
-                    not vim.tbl_contains({
+                    vim.tbl_contains({
                         80001, -- "File is a CommonJS module; it may be converted to an ES module."
                         80006, -- "This may be converted to an async function."
                     }, diagnostic.code)
                 then
+                    table.remove(result.diagnostics, idx)
+                else
                     if ok then
                         local formatter = format_ts[diagnostic.code]
                         diagnostic.message = formatter
@@ -41,11 +49,10 @@ return {
                             or diagnostic.message
                     end
 
-                    filtered[#filtered + 1] = diagnostic
+                    idx = idx + 1
                 end
             end
 
-            result.diagnostics = filtered
             lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
         end,
     },
