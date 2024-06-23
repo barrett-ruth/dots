@@ -194,7 +194,7 @@ return {
     {
         'nvimdev/hlsearch.nvim',
         config = true,
-        -- keys = { '/', '?' },
+        keys = { '/', '?' },
     },
     {
         'NvChad/nvim-colorizer.lua',
@@ -214,6 +214,14 @@ return {
                 hsl_fn = true,
                 tailwind = true,
             },
+        },
+        event = 'VeryLazy',
+        ft = {
+            'conf',
+            'sh',
+            'tmux',
+            'zsh',
+            unpack(vim.g.markdown_fenced_languages),
         },
     },
     {

@@ -13,6 +13,7 @@ null_ls.setup({
         require('none-ls.code_actions.eslint_d'),
         code_actions.gitrebase,
         code_actions.gitsigns,
+        code_actions.proselint,
 
         diagnostics.buf,
         diagnostics.checkmake,

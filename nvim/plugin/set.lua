@@ -61,7 +61,6 @@ o.showmode = false
 
 o.showtabline = 0
 
-o.spell = true
 o.spellfile = vim.env.XDG_DATA_HOME .. '/nvim/spell.encoding.add'
 
 o.splitkeep = 'screen'
