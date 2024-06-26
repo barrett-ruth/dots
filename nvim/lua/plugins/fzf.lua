@@ -83,6 +83,7 @@ return {
             formatter = 'path.filename_first',
         },
         lsp = {
+            includeDeclaration = false,
             jump_to_single_result = true,
             symbols = {
                 symbol_hl_prefix = '@',

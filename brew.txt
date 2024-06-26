@@ -176,6 +176,7 @@ karabiner-elements
 kitty
 mactex
 notion
+protonvpn
 rectangle
 sioyek
 slack
