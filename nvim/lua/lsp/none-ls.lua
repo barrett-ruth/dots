@@ -19,7 +19,11 @@ null_ls.setup({
         diagnostics.checkmake,
         diagnostics.cmake_lint,
         require('none-ls.diagnostics.cpplint').with({
-            extra_args = { '--filter', '-legal/copyright', '-whitespace/indent' },
+            extra_args = {
+                '--filter',
+                '-legal/copyright',
+                '-whitespace/indent',
+            },
             prepend_extra_args = true,
         }),
         diagnostics.djlint,
@@ -27,6 +31,7 @@ null_ls.setup({
         require('none-ls.diagnostics.eslint_d'),
         diagnostics.gitlint.with({
             extra_args = { '--ignore', 'body-is-missing' },
+            update_in_insert = true,
         }),
         diagnostics.hadolint,
         diagnostics.markdownlint_cli2.with({
@@ -50,7 +55,7 @@ null_ls.setup({
             },
         }),
         diagnostics.staticcheck,
-        diagnostics.write_good,
+        diagnostics.write_good.with({ update_in_insert = true }),
         diagnostics.yamllint,
         diagnostics.zsh,
 
@@ -93,7 +98,11 @@ null_ls.setup({
         }),
         formatting.shfmt.with({ extra_args = { '-i', '2' } }),
         formatting.sql_formatter,
-        formatting.stylua,
+        formatting.stylua.with({
+            condition = function(utils)
+                return utils.root_has_file({ 'stylua.toml', '.stylua.toml' })
+            end,
+        }),
         formatting.yamlfmt,
 
         hover.dictionary,
