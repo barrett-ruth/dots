@@ -62,11 +62,7 @@ null_ls.setup({
         formatting.asmfmt,
         formatting.blackd.with({ extra_args = { '--fast' } }),
         formatting.buf,
-        formatting.cbfmt.with({
-            condition = function(utils)
-                return utils.root_has_file({ '.cbfmt.toml' })
-            end,
-        }),
+        formatting.cbfmt,
         formatting.cmake_format,
         require('none-ls.formatting.eslint_d'),
         formatting.google_java_format,
