@@ -1,5 +1,0 @@
-std = "vim"
-
-# lazy.nvim configurations
-[rules]
-mixed_table = "allow"

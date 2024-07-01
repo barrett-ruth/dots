@@ -1,6 +1,0 @@
-#!/bin/sh
-
-session_id="$1"
-session="$(tmux ls -F '#S' | tail -n "+$((session_id + 1))" | head -1)"
-
-tmux switch -t "$session"
