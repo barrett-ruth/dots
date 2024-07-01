@@ -67,7 +67,6 @@ null_ls.setup({
         require('none-ls.formatting.eslint_d'),
         formatting.google_java_format,
         formatting.gofumpt,
-        formatting.goimports,
         formatting.goimports_reviser,
         formatting.golines,
         formatting.isort.with({ extra_args = { '--profile', 'black' } }),

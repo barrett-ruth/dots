@@ -17,13 +17,13 @@ if [ "$(uname)" = 'Darwin' ]; then
 
   exists brew && brew list > mac/brew.txt
   exists pnpm && pnpm -g list > mac/pnpm.txt
-  exists pip && pip freeze > mac/pip.txt
+  exists pip && pip list --not-required > mac/pip.txt
 else
   test -d "$XDG_CONFIG_HOME"/X11 && cp -rf "$XDG_CONFIG_HOME"/X11 linux
   exists sioyek && cp -rf "$XDG_CONFIG_HOME"/sioyek linux
   pacman -Qen >linux/pacman.txt
   exists pnpm && pnpm -g list > linux/pnpm.txt
-  exists pip && pip freeze > linux/pip.txt
+  exists pip && pip list --not-required > linux/pip.txt
 fi
 
 cp -r "$SCRIPTS" .

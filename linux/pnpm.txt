@@ -1,2 +1,26 @@
- ERROR  The configured global bin directory "/home/beirut/.local/share/pnpm" is not in PATH
-For help, run: pnpm help list
+Legend: production dependency, optional only, dev only
+
+/home/beirut/.local/share/pnpm/global/5
+
+dependencies:
+@bufbuild/buf 1.34.0
+@fsouza/prettierd 0.25.3
+@olrtg/emmet-language-server 2.6.0
+@tailwindcss/language-server 0.0.18
+bash-language-server 5.4.0
+cspell 8.9.1
+cssmodules-language-server 1.4.0
+eslint 9.6.0
+eslint_d 13.1.2
+markdownlint 0.34.0
+markdownlint-cli2 0.13.0
+neovim 5.1.0
+npm-groovy-lint 14.6.0
+sql-formatter 15.3.2
+ts-node 10.9.2
+typescript 5.5.3
+typescript-language-server 4.3.3
+vim-language-server 2.3.1
+vscode-langservers-extracted 4.10.0
+write-good 1.0.8
+yaml-language-server 1.15.0
