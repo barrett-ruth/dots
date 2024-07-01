@@ -45,7 +45,7 @@ return {
         },
         event = { 'BufReadPre', 'BufNewFile' },
         keys = {
-            { '<leader>i', vim.cmd.Inspect },
+            { '<leader>I', vim.cmd.Inspect },
             {
                 '<leader>T',
                 function()

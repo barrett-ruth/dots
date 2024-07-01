@@ -19,10 +19,4 @@ require('lazy').setup('plugins', {
     change_detection = { enabled = false },
 })
 
--- vim.cmd.colorscheme(vim.env.THEME)
-
-vim.tbl_add_reverse_lookup = function(tbl)
-    for k, v in pairs(tbl) do
-        tbl[v] = k
-    end
-end
+vim.cmd.colorscheme(vim.env.THEME)

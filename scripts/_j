@@ -15,5 +15,6 @@ case "$1" in
     tcf) cd ~/dev/theCourseForum2;;
     tm) cd ~/.config/tmux;;
     nv) cd ~/.config/nvim;;
+    x) cd ~/.config/X11;;
     zsh) cd ~/.config/zsh;;
 esac
