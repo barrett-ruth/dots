@@ -9,11 +9,11 @@ test -z "$XDG_CONFIG_HOME" && exit
 
 ! exists rmb && exit
 
-rmb .git readme.md linux/install fonts .
+rmb .git readme.md mac linux/install fonts .
 
 if [ "$(uname)" = 'Darwin' ]; then
   test -d "$XDG_CONFIG_HOME"/kitty && cp -rf "$XDG_CONFIG_HOME"/kitty mac
-  test -f "$XDG_CONFIG_HOME"/karabiner/karabiner.json && cp -rf "$XDG_CONFIG_HOME"/karabiner/karabiner.json mac
+  test -r "$XDG_CONFIG_HOME"/karabiner/karabiner.json && cp -rf "$XDG_CONFIG_HOME"/karabiner/karabiner.json mac
 
   exists brew && brew list > mac/brew.txt
   exists pnpm && pnpm -g list > mac/pnpm.txt

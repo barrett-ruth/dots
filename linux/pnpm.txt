@@ -1,0 +1,2 @@
+ ERROR  The configured global bin directory "/home/beirut/.local/share/pnpm" is not in PATH
+For help, run: pnpm help list

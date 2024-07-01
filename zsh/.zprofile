@@ -4,8 +4,7 @@ exists() {
     command -v "$1" >/dev/null 2>&1
 }
 
-export THEME='melange'
-# export THEME='gruvbox'
+export THEME='gruvbox'  # melange
 
 export XDG_CONFIG_HOME="$HOME"/.config
 export XDG_CACHE_HOME="$HOME"/.cache
@@ -24,6 +23,7 @@ function append_path() {
     export PATH="$PATH:$1";
 }
 
+
 if [[ "$(uname -s)" == 'Darwin' ]]; then
     export XDG_RUNTIME_DIR=/tmp/user/"$UID"
     test -d "$XDG_RUNTIME_DIR" || mkdir -p "$XDG_RUNTIME_DIR"
@@ -36,12 +36,13 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
     test -d /Applications/Chromium.app && export BROWSER='/Applications/Chromium.app/Contents/MacOS/Chromium'
     export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
     export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
-    exists fzf && test -d "$XDG_CONFIG_HOME"/fzf && . "$XDG_CONFIG_HOME"/fzf/fzf.zsh
+    export NVM_DIR="$XDG_DATA_HOME"/nvm && . "$NVM_DIR"/nvm.sh --no-use
 else
     export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
     test -d "$XDG_RUNTIME_DIR" || mkdir "$XDG_RUNTIME_DIR"
     exists chromium && export BROWSER='chromium'
     pacman -Q | grep zsh-syntax-highlighting >/dev/null && . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    export NVM_DIR="$XDG_DATA_HOME" && test -r /usr/share/nvm/init-nvm.sh && . /usr/share/nvm/init-nvm.sh --no-use
 fi
 
 autoload -U compinit && compinit -d "$XDG_STATE_HOME/zcompdump" -u
@@ -55,10 +56,6 @@ set completion-ignore-case on
 unset completealiases
 setopt auto_cd incappendhistory extendedhistory histignorealldups
 
-if exists nvm; then
-    export NVM_DIR="$XDG_DATA_HOME"/nvm
-    nvm() { unset -f nvm && . "$NVM_DIR/nvm.sh" && nvm "$@"; }
-fi
 
 export EDITOR='nvim'
 export MANPAGER='nvim +Man!'
@@ -78,7 +75,7 @@ export GNUPGHOME="$XDG_CONFIG_HOME"/gnupg
 exists gradle && export GRADLE_USER_HOME="$XDG_CONFIG_HOME"/gradle
 export LESSHISTFILE=-
 exists mypy && export MYPY_CACHE_DIR="$XDG_CACHE_HOME"/mypy
-exists npm && export npm_config_userconfig="$XDG_CONFIG_HOME"/npm/npmrc
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 exists node && export NODE_REPL_HISTORY="$XDG_STATE_HOME"/node_repl_history
 export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
 exists ts-node && export TS_NODE_REPL_HISTORY="$XDG_STATE_HOME"/ts_node_repl_history

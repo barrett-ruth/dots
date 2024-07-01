@@ -7,28 +7,28 @@ extension="${filename##*.}"
 
 case "$extension" in
 c)
-  cmd="clang $filename"
+  cmd="gcc $filename"
   run='./a.out'
-  clean='test -f a.out && rm a.out'
+  clean='rm -f a.out'
   ;;
 cpp | cc)
   cmd='g++'
   [ -f compile_flags.txt ] && cmd="$cmd $(cat compile_flags.txt)"
   cmd="$cmd $filename"
   run='./a.out'
-  clean='test -f a.out && rm a.out'
+  clean='rm -f a.out'
   ;;
 rs)
   cmd="rustc $filename"
   run='./a'
-  clean='test -f a && rm a'
+  clean='rm -f a'
   ;;
 sh)
   cmd="sh $filename"
   ;;
 ts)
   cmd="npx ts-node"
-  test -f package.json && cmd="$cmd --skipProject"
+  test -s package.json && cmd="$cmd --skipProject"
   cmd="$cmd $filename"
   ;;
 js)
