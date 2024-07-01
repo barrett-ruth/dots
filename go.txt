@@ -3,6 +3,7 @@ checkmake
 gofumpt
 goimports-reviser
 golines
+gopls
 shfmt
 staticcheck
 yamlfmt
