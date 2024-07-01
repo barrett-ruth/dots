@@ -1,0 +1,40 @@
+#!/bin/sh
+
+exists() {
+    command -v "$1" >/dev/null 2>&1
+}
+
+test -d "$HOME"/dev/dots && cd "$HOME"/dev/dots || exit
+test -z "$XDG_CONFIG_HOME" && exit
+
+! exists rmb && echo 'rmb not found in $PATH' && exit
+
+rmb .git readme.md linux/install fonts .
+
+if [ "$(uname)" = 'Darwin' ]; then
+  test -d "$XDG_CONFIG_HOME"/kitty && cp -rf "$XDG_CONFIG_HOME"/kitty mac
+  test -f "$XDG_CONFIG_HOME"/karabiner/karabiner.json && cp -rf "$XDG_CONFIG_HOME"/karabiner/karabiner.json mac
+
+  exists brew && brew list > mac/brew.txt
+  exists pnpm && pnpm -g list > mac/pnpm.txt
+  exists pip && pip freeze > mac/pip.txt
+else
+  test -d "$XDG_CONFIG_HOME"/X11 && cp -rf "$XDG_CONFIG_HOME"/X11 linux
+  exists sioyek && cp -rf "$XDG_CONFIG_HOME"/sioyek linux
+  pacman -Qen >linux/pacman.txt
+  exists pnpm && pnpm -g list > linux/pnpm.txt
+  exists pip && pip freeze > linux/pip.txt
+fi
+
+cp -r "$SCRIPTS" .
+
+for folder in git npm nvim python rg tmux proselint yamllint zsh; do
+  test -d "$XDG_CONFIG_HOME/$folder" && cp -rf "$XDG_CONFIG_HOME/$folder" .
+done
+
+test -d tmux && rmb tmux.conf tmux
+test -d zsh && rmb .zaliases .zprofile .zshrc zsh
+cp -f ~/.zshenv zsh
+
+exists go && test -d "$GOPATH"/bin && ls "$GOPATH"/bin > go.txt
+exists cargo && test -d "$CARGO_HOME"/bin && ls "$CARGO_HOME"/bin > cargo.txt

@@ -1,0 +1,13 @@
+--color=always
+--colors=line:style:nobold
+--colors=match:fg:green
+--colors=path:fg:blue
+--column
+--no-heading
+--smart-case
+--follow
+--glob=!pnpm-lock.yaml
+--glob=!*.json
+--glob=!venv/
+--glob=!pyenv/
+--ignore-file=/home/beirut/.config/git/ignore

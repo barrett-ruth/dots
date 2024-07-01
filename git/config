@@ -1,0 +1,48 @@
+[user]
+    username = barrett-ruth
+    name = Barrett Ruth
+    email = br.barrettruth@gmail.com
+[init]
+    defaultBranch = main
+[clone]
+    defaultRemoteName = home
+[core]
+    editor = nvim
+    whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+[color]
+    ui = auto
+[diff]
+    tool = nvimdiff
+[difftool]
+    prompt = false
+[difftool "nvimdiff"]
+    cmd = "nvim -c 'se scl=no' -d $LOCAL $REMOTE"
+[alias]
+    a = add
+    b = branch
+    c = commit
+    acp = "!acp() { git add . && git commit -m \"$*\" && git push; }; acp"
+    cane = commit --amend --no-edit
+    cf = config
+    ch = checkout
+    cl = clone
+    cp = cherry-pick
+    d = diff
+    dt = difftool
+    f = fetch
+    i = init
+    lg = log --oneline --graph --decorate
+    m = merge
+    p = pull
+    pu = push
+    r = remote
+    rb = rebase
+    rs = restore
+    rt = reset
+    s = status
+    sm = submodule
+    st = stash
+    sw = switch
+    wt = worktree
+[credential "https://source.developers.google.com"]
+    helper = gcloud.sh

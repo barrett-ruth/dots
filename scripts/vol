@@ -1,0 +1,30 @@
+#!/bin/sh
+
+[ "$1" ] || exit
+
+cmd="$1"
+shift
+
+sink_info="$(pacmd list-sinks | sed '/\* index/ p')"
+sink_id="$(echo "$sink_info" | rg 'index' | tail -c 2)"
+sink_name="$(pacmd list-sink-inputs | rg "sink: $sink_id" | cut -d '<' -f 2)"
+sink_name="${sink_name%?}"
+
+case "$cmd" in
+up | down)
+    [ "$cmd" = up ] && change=+ || change=-
+    pactl set-sink-volume "$sink_id" "$change${1:-5}%"
+    ;;
+mute)
+    pactl set-sink-mute "$sink_id" toggle
+    muted="$(pacmd list-sink | rg 'muted' | sed -n "$sink_id"p)"
+    muted="${muted##* }"
+    ;;
+toggle)
+    state="$(echo "$sink_info" | rg 'state')"
+    [ "${state##*RUNNING*}" ] && sus=0 || sus=1
+    pacmd suspend-sink "$sink_name" "$sus"
+    ;;
+esac
+
+pkill -RTMIN+5 dwmb

@@ -1,9 +1,0 @@
-asmfmt
-checkmake
-editorconfig-checker
-gofumpt
-goimports-reviser
-golines
-gopls
-staticcheck
-yamlfmt

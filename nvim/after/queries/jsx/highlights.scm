@@ -1,0 +1,2 @@
+;; inherits: jsx
+;; extends

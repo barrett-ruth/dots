@@ -1,0 +1,39 @@
+#!/bin/sh
+
+proj="$PWD"
+
+case "$(basename "$proj")" in
+ag)
+  cmd='cp -f autograder.py example && cd example && ./run_autograder'
+  ;;
+theCourseForum2)
+  # docker compose up --build
+  cmd='docker compose up'
+  ;;
+autogen)
+  cmd='docker compose up'
+  ;;
+atlas | tinyground)
+  cmd='pnpm run dev'
+  ;;
+interview-prep)
+  cmd='pnpm run dev'
+  ;;
+neovim)
+  cmd='make'
+  ;;
+cses | usaco | codeforces)
+  cmd='python solution.py < input.txt'
+  ;;
+TestCppClient)
+  cmd='rm -f TestCppClientStatic && cmake -S . -B build/ && make && ./TestCppClientStatic'
+  ;;
+st)
+  cmd='cmake -S . -B build/ -DCMAKE_TOOLCHAIN_FILE=toolchain.cmake \
+      -DCMAKE_INSTALL_PREFIX="$HOME"/.local \
+       && cmake --build build --config Release --target install --parallel'
+  ;;
+esac
+
+echo " > $cmd" | sed "s|$HOME|~|g"
+eval "$cmd"

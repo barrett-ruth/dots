@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if [ "$1" = 'toggle' ]; then
+    layout="$(setxkbmap -query | tail -n 1 | cut -d ' ' -f 6)"
+    [ "$layout" = 'us' ] && setxkbmap dvorak || setxkbmap us
+fi
+
+xmodmap "$XDG_CONFIG_HOME"/X11/xmodmap
