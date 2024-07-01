@@ -1,5 +1,9 @@
 #!/usr/bin/env zsh
 
+exists() {
+    command -v "$1" >/dev/null 2>&1
+}
+
 # Color aliases
 exists eza && alias ls='eza'
 alias l='ls --color=auto --group-directories-first'
@@ -7,11 +11,11 @@ alias ll='l -alF'
 alias la='ll -R'
 alias lss='less --use-color --color=d+b --color=P+c --color=u+g'
 
-exists dosa && alias ds='doas'
+exists doas && alias ds='doas'
 exists pacman && alias pm='pacman'
 
 # Basic programs
-exists docker alias dk='docker'
+exists docker && alias dk='docker'
 exists git && alias g='git'
 exists nvim && alias nv='nvim'
 alias pe='printenv'

@@ -7,7 +7,7 @@ exists() {
 test -d "$HOME"/dev/dots && cd "$HOME"/dev/dots || exit
 test -z "$XDG_CONFIG_HOME" && exit
 
-! exists rmb && echo 'rmb not found in $PATH' && exit
+! exists rmb && exit
 
 rmb .git readme.md linux/install fonts .
 

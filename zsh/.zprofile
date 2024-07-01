@@ -158,7 +158,6 @@ if exists fzf; then
     export FZF_DEFAULT_OPTS
 
     eval "$(fzf --zsh)"
-    . "$ZDOTDIR"/.zaliases
 
     fzf-config-widget() {
         file="$(FZF_CTRL_T_COMMAND="fd --type file --hidden . ~/.config | sed 's|$HOME|~|g'" __fzf_select | cut -c2-)"
@@ -173,6 +172,8 @@ if exists fzf; then
     bindkey '^G' fzf-cd-widget
     bindkey '^H' fzf-history-widget
 fi
+
+. "$ZDOTDIR"/.zaliases
 
 bindkey -v
 bindkey '^[[3~' delete-char
