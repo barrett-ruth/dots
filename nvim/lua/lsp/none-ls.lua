@@ -13,7 +13,6 @@ null_ls.setup({
         require('none-ls.code_actions.eslint_d'),
         code_actions.gitrebase,
         code_actions.gitsigns,
-        code_actions.proselint,
 
         diagnostics.buf,
         diagnostics.checkmake,
@@ -44,7 +43,6 @@ null_ls.setup({
             end,
         }),
         diagnostics.npm_groovy_lint,
-        diagnostics.proselint,
         diagnostics.selene,
         diagnostics.sqlfluff.with({
             extra_args = {
@@ -55,7 +53,6 @@ null_ls.setup({
             },
         }),
         diagnostics.staticcheck,
-        diagnostics.write_good.with({ update_in_insert = true }),
         diagnostics.yamllint,
         diagnostics.zsh,
 

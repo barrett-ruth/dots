@@ -1,3 +1,4 @@
+asmfmt
 checkmake
 gofumpt
 goimports-reviser

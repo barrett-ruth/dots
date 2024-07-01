@@ -22,22 +22,22 @@ function append_path() {
 
 if [[ "$(uname -s)" == 'Darwin' ]]; then
     export XDG_RUNTIME_DIR=/tmp/user/"$UID"
-    test -d "$XDG_RUNTIME_DIR" || mkdir -p "$XDG_RUNTIME_DIR"
     eval "$(/opt/homebrew/bin/brew shellenv)"
     append_path '/opt/homebrew/opt/postgresql@15/bin'
     prepend_path '/opt/homebrew/opt/llvm/bin'
-    test -d "$HOMEBREW_PREFIX"/share/zsh-syntax-highlighting && . "$HOMEBREW_PREFIX"/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    test -d /Applications/Chromium.app && export BROWSER='/Applications/Chromium.app/Contents/MacOS/Chromium'
+    . "$HOMEBREW_PREFIX"/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    export BROWSER='/Applications/Chromium.app/Contents/MacOS/Chromium'
     export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
     export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
     export NVM_DIR="$XDG_DATA_HOME"/nvm && . "$NVM_DIR"/nvm.sh
 else
     export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
-    test -d "$XDG_RUNTIME_DIR" || mkdir "$XDG_RUNTIME_DIR"
     export BROWSER='chromium'
-    pacman -Q | grep zsh-syntax-highlighting >/dev/null && . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    export NVM_DIR="$XDG_DATA_HOME" && test -r /usr/share/nvm/init-nvm.sh && . /usr/share/nvm/init-nvm.sh
+    . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    export NVM_DIR="$XDG_DATA_HOME" && . /usr/share/nvm/init-nvm.sh
 fi
+
+test -d "$XDG_RUNTIME_DIR" || mkdir "$XDG_RUNTIME_DIR"
 
 autoload -U compinit && compinit -d "$XDG_STATE_HOME/zcompdump" -u
 autoload -U colors && colors
@@ -96,10 +96,6 @@ prepend_path "$PYENV_ROOT"/bin
 eval "$(pyenv init -)"
 
 ps aux | grep -q '[b]lackd' || { blackd >/dev/null 2>&1 &| }
-
-export RBENV_ROOT="$XDG_DATA_HOME"/rbenv
-prepend_path "$RBENV_ROOT"/shims
-eval "$(rbenv init - zsh)"
 
 export SCRIPTS="$HOME"/.local/bin/scripts
 append_path "$SCRIPTS"
