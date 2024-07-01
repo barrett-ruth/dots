@@ -8,7 +8,7 @@ dkms 3.0.12-1
 docker 1:27.0.2-1
 docker-compose 2.28.1-1
 efibootmgr 18-3
-eza 0.18.20-3
+eza 0.18.21-1
 fakeroot 1.35-1
 fd 10.1.0-1
 feh 3.10.2-1
@@ -39,7 +39,7 @@ mpv 1:0.38.0-5
 nodejs 22.3.0-1
 ntfs-3g 2022.10.3-1
 opendoas 6.8.2-3
-openssh 9.7p1-2
+openssh 9.8p1-1
 os-prober 1.81-1
 patch 2.7.6-10
 pkgconf 2.1.1-1

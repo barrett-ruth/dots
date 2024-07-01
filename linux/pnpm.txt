@@ -15,6 +15,7 @@ markdownlint 0.34.0
 markdownlint-cli2 0.13.0
 neovim 5.1.0
 npm-groovy-lint 14.6.0
+pnpm 9.4.0
 sql-formatter 15.3.2
 ts-node 10.9.2
 typescript 5.5.3
