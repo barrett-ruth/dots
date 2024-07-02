@@ -1,4 +1,8 @@
+adobe-source-code-pro-fonts 2.042u+1.062i+1.026vf-1
+autoconf 2.72-1
+automake 1.16.5-2
 base 3-2
+brightnessctl 0.5.1-2
 clang 17.0.6-2
 cmake 3.29.6-1
 dash 0.5.12-1
@@ -61,10 +65,12 @@ xclip 0.13-5
 xf86-video-amdgpu 23.0.0-2
 xorg-server 21.1.13-1
 xorg-setxkbmap 1.3.4-1
+xorg-xev 1.2.6-1
 xorg-xinit 1.4.2-1
 xorg-xrandr 1.5.2-1
 xorg-xrdb 1.2.2-1
 xorg-xset 1.2.5-1
 zsh 5.9-5
+zsh-autosuggestions 0.7.0-2
 zsh-completions 0.35.0-1
 zsh-syntax-highlighting 0.8.0-1

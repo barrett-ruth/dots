@@ -12,6 +12,7 @@ case "$1" in
     scr) cd "$SCRIPTS";;
     desk) cd ~/Desktop;;
     dots) cd ~/dev/dots;;
+    sl) cd ~/dev/sl;;
     tcf) cd ~/dev/theCourseForum2;;
     tm) cd ~/.config/tmux;;
     nv) cd ~/.config/nvim;;

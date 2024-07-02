@@ -1,3 +1,2 @@
 jinja2
 lockscreen
-scripts (download on mac)

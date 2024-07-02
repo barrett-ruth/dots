@@ -54,11 +54,15 @@ else
     export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
     export BROWSER='chromium'
     . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    . /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
     export NVM_DIR="$XDG_DATA_HOME" && . /usr/share/nvm/init-nvm.sh
 fi
 
 test -d "$XDG_RUNTIME_DIR" || mkdir "$XDG_RUNTIME_DIR"
 
+append_path "$HOME"/.local/bin
+prepend_path "$HOME"/.luarocks/bin
+prepend_path "$HOME"/.local/bin/sst
 
 export GOMODCACHE="$XDG_CACHE_HOME"/go/mod
 export GOPATH="$XDG_DATA_HOME"/go
@@ -79,10 +83,6 @@ ps aux | grep -q '[b]lackd' || { blackd >/dev/null 2>&1 &| }
 
 export SCRIPTS="$HOME"/.local/bin/scripts
 append_path "$SCRIPTS"
-
-prepend_path "$HOME"/.luarocks/bin
-append_path "$HOME"/.local/bin
-prepend_path "$HOME"/.local/bin/sst
 
 export BOTO_CONFIG="$XDG_CONFIG_HOME"/boto/config
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
@@ -152,4 +152,4 @@ bindkey '^N' down-line-or-history
 bindkey '^J' backward-char
 bindkey '^K' forward-char
 
-# [[ "$(uname)" = 'Linux' ]] && [[ -z "$DISPLAY" ]] && [[ $XDG_VTNR = 1 ]] && startx "$XDG_CONFIG_HOME"/X11/xinitrc
+[[ "$(uname)" = 'Linux' ]] && [[ -z "$DISPLAY" ]] && [[ $XDG_VTNR = 1 ]] && startx "$XDG_CONFIG_HOME"/X11/xinitrc

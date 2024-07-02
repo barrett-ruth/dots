@@ -1,4 +1,4 @@
-remove Control  = Control_L
+remove Control = Control_L
 keysym Control_L = Escape
 add Control = Control_L
 
