@@ -1,12 +1,33 @@
 #!/usr/bin/env zsh
 
-export THEME='gruvbox'  # melange
+autoload -U compinit && compinit -d "$XDG_STATE_HOME/zcompdump" -u
+autoload -U colors && colors
+zmodload zsh/complist
+
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-za-z}'
+
+set completion-ignore-case on
+unset completealiases
+setopt auto_cd incappendhistory extendedhistory histignorealldups
 
 export XDG_CONFIG_HOME="$HOME"/.config
 export XDG_CACHE_HOME="$HOME"/.cache
 export XDG_DATA_HOME="$HOME"/.local/share
 export XDG_STATE_HOME="$HOME"/.local/state
+
+export EDITOR='nvim'
+export HYPHEN_INSENSITIVE='true'
+export HIST_STAMPS='dd/mm/yyyy'
+export HISTFILE="$XDG_STATE_HOME/zsh_history"
+export HISTSIZE=2000
+export HISTFILESIZE=2000
+export MANPAGER='nvim +Man!'
+export SAVEHIST=2000
 export TERMINFO="$XDG_DATA_HOME"/terminfo
+export THEME='gruvbox'  # melange
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
+
 
 function prepend_path() {
     [[ "$PATH" == *"$1"* ]] && return
@@ -18,7 +39,6 @@ function append_path() {
     test -d "$1" || return
     export PATH="$PATH:$1";
 }
-
 
 if [[ "$(uname -s)" == 'Darwin' ]]; then
     export XDG_RUNTIME_DIR=/tmp/user/"$UID"
@@ -39,46 +59,6 @@ fi
 
 test -d "$XDG_RUNTIME_DIR" || mkdir "$XDG_RUNTIME_DIR"
 
-autoload -U compinit && compinit -d "$XDG_STATE_HOME/zcompdump" -u
-autoload -U colors && colors
-zmodload zsh/complist
-
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-za-z}'
-
-set completion-ignore-case on
-unset completealiases
-setopt auto_cd incappendhistory extendedhistory histignorealldups
-
-
-export EDITOR='nvim'
-export MANPAGER='nvim +Man!'
-
-export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
-export HYPHEN_INSENSITIVE='true'
-export HIST_STAMPS='dd/mm/yyyy'
-export HISTFILE="$XDG_STATE_HOME/zsh_history"
-export HISTSIZE=2000
-export HISTFILESIZE=2000
-export SAVEHIST=2000
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
-
-export BOTO_CONFIG="$XDG_CONFIG_HOME"/boto/config
-export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
-export GNUPGHOME="$XDG_CONFIG_HOME"/gnupg
-export GRADLE_USER_HOME="$XDG_CONFIG_HOME"/gradle
-export LESSHISTFILE=-
-export MYPY_CACHE_DIR="$XDG_CACHE_HOME"/mypy
-export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
-export NODE_REPL_HISTORY="$XDG_STATE_HOME"/node_repl_history
-export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
-export TS_NODE_REPL_HISTORY="$XDG_STATE_HOME"/ts_node_repl_history
-export PRETTIERD_CONFIG_HOME="$XDG_STATE_HOME"/prettierd
-export PSQL_HISTORY="$XDG_STATE_HOME"/psql_history
-export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/pythonrc
-export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME"/rg/config
-export SQLITE_HISTORY="$XDG_STATE_HOME"/sqlite_history
-export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 export GOMODCACHE="$XDG_CACHE_HOME"/go/mod
 export GOPATH="$XDG_DATA_HOME"/go
@@ -103,6 +83,23 @@ append_path "$SCRIPTS"
 prepend_path "$HOME"/.luarocks/bin
 append_path "$HOME"/.local/bin
 prepend_path "$HOME"/.local/bin/sst
+
+export BOTO_CONFIG="$XDG_CONFIG_HOME"/boto/config
+export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
+export GNUPGHOME="$XDG_CONFIG_HOME"/gnupg
+export GRADLE_USER_HOME="$XDG_CONFIG_HOME"/gradle
+export LESSHISTFILE=-
+export MYPY_CACHE_DIR="$XDG_CACHE_HOME"/mypy
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
+export NODE_REPL_HISTORY="$XDG_STATE_HOME"/node_repl_history
+export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
+export TS_NODE_REPL_HISTORY="$XDG_STATE_HOME"/ts_node_repl_history
+export PRETTIERD_CONFIG_HOME="$XDG_STATE_HOME"/prettierd
+export PSQL_HISTORY="$XDG_STATE_HOME"/psql_history
+export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/pythonrc
+export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME"/rg/config
+export SQLITE_HISTORY="$XDG_STATE_HOME"/sqlite_history
+export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 export FZF_LUA_RG_OPTS="$(tr '\n' ' ' < "$RIPGREP_CONFIG_PATH")"
 export FZF_COMPLETION_TRIGGER=\;
