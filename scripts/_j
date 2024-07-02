@@ -4,7 +4,7 @@ case "$1" in
     -) cd - >/dev/null && return;;
     '') cd ~;;
     ip) cd ~/dev/swe-interview-prep;;
-    dl) [ "$(uname -s)" == 'Darwin' ] && cd ~/Downloads || cd ~/dl;;
+    dl) [ "$(uname -s)" = 'Darwin' ] && cd ~/Downloads || cd ~/dl;;
     lz) cd ~/.local/share/nvim/lazy;;
     dev) cd ~/dev;;
     site) cd ~/dev/barrettruth.com;;
@@ -14,6 +14,7 @@ case "$1" in
     dots) cd ~/dev/dots;;
     sl) cd ~/dev/sl;;
     tcf) cd ~/dev/theCourseForum2;;
+    trb) cd ~/dev/trb-capital-management;;
     tm) cd ~/.config/tmux;;
     nv) cd ~/.config/nvim;;
     x) cd ~/.config/X11;;

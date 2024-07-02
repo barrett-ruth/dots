@@ -15,6 +15,7 @@ export XDG_CONFIG_HOME="$HOME"/.config
 export XDG_CACHE_HOME="$HOME"/.cache
 export XDG_DATA_HOME="$HOME"/.local/share
 export XDG_STATE_HOME="$HOME"/.local/state
+export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 
 export EDITOR='nvim'
 export HYPHEN_INSENSITIVE='true'
@@ -151,5 +152,3 @@ bindkey '^P' up-line-or-history
 bindkey '^N' down-line-or-history
 bindkey '^J' backward-char
 bindkey '^K' forward-char
-
-[[ "$(uname)" = 'Linux' ]] && [[ -z "$DISPLAY" ]] && [[ $XDG_VTNR = 1 ]] && startx "$XDG_CONFIG_HOME"/X11/xinitrc

@@ -1,2 +1,4 @@
 jinja2
-lockscreen
+separate slock repo w/ image
+ubuntu install
+two calvin and hobbes background, random background fom one and two if not specified

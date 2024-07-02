@@ -29,9 +29,16 @@ TestCppClient)
   cmd='rm -f TestCppClientStatic && cmake -S . -B build/ && make && ./TestCppClientStatic'
   ;;
 st)
-  cmd='cmake -S . -B build/ -DCMAKE_TOOLCHAIN_FILE=toolchain.cmake \
-      -DCMAKE_INSTALL_PREFIX="$HOME"/.local \
-       && cmake --build build --config Release --target install --parallel'
+  case "$(basename "$(dirname "$proj")")" in
+  sl)
+    cmd='make clean install && make clean'
+    ;;
+  trb-capital-management)
+    cmd='cmake -S . -B build/ -DCMAKE_TOOLCHAIN_FILE=toolchain.cmake \
+        -DCMAKE_INSTALL_PREFIX="$HOME"/.local \
+         && cmake --build build --config Release --target install --parallel'
+    ;;
+  esac
   ;;
 esac
 

@@ -9,7 +9,7 @@ fi
 smon
 sxs
 (
-  sbg ~/img/wp/one/beach.jpg
+  sbg
   skb
 ) &
 sclip &
