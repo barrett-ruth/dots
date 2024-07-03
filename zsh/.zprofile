@@ -26,7 +26,7 @@ export HISTFILESIZE=2000
 export MANPAGER='nvim +Man!'
 export SAVEHIST=2000
 export TERMINFO="$XDG_DATA_HOME"/terminfo
-export THEME='gruvbox'  # melange
+export THEME='gruvbox'
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
 
 

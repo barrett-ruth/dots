@@ -9,7 +9,7 @@ fi
 smon
 sxs
 (
-  sbg
+  sbg ~/dev/wp/two/calvin.jpg
   skb
 ) &
 sclip &

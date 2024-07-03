@@ -59,6 +59,7 @@ rustup 1.27.1-1
 stylua 0.20.0-3
 tmux 3.4-8
 ttf-hanazono 20170904-4
+ttf-jetbrains-mono-nerd 3.2.1-2
 ttf-liberation 2.1.5-1
 vulkan-radeon 1:24.1.2-1
 which 2.21-6

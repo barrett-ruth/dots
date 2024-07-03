@@ -33,13 +33,6 @@ local git_ignored = setmetatable({}, {
 
 return {
     {
-        'savq/melange-nvim',
-        config = function()
-            vim.o.background = 'light'
-        end,
-        lazy = true,
-    },
-    {
         'barrett-ruth/http-codes.nvim',
         config = true,
         dependencies = 'nvim-telescope/telescope.nvim',
@@ -51,6 +44,10 @@ return {
         cmd = { 'LiveServerStart', 'LiveServerStart' },
         config = true,
         keys = { { '<leader>L', '<cmd>LiveServerToggle<cr>' } },
+    },
+    {
+        'dhruvasagar/vim-zoom',
+        key = '<c-w>m',
     },
     {
         'echasnovski/mini.pairs',

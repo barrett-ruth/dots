@@ -14,15 +14,14 @@
   "hlsearch.nvim": { "branch": "main", "commit": "fdeb60b890d15d9194e8600042e5232ef8c29b0e" },
   "hop.nvim": { "branch": "master", "commit": "1a1eceafe54b5081eae4cb91c723abd1d450f34b" },
   "http-codes.nvim": { "branch": "main", "commit": "a610788dff2fb5df05b230d73a926c8dc3173c16" },
-  "lazy.nvim": { "branch": "main", "commit": "1fad61712bd3937dda925775a7736b8efbcbf1a7" },
+  "lazy.nvim": { "branch": "main", "commit": "d0921f5b9b3d2c5e09618da55a018228edcc4d16" },
   "live-server.nvim": { "branch": "main", "commit": "f34ae262bf046981d9e5f7cd4f41a353a9647a22" },
   "markdown-preview.nvim": { "branch": "master", "commit": "a923f5fc5ba36a3b17e289dc35dc17f66d0548ee" },
-  "melange-nvim": { "branch": "master", "commit": "b76b906cd6ed3c3152a47924a8eb5dcb35b326d8" },
   "mini.bufremove": { "branch": "main", "commit": "e6044aa28e61d4dd9ec86194d6f81743eced0c1c" },
   "mini.pairs": { "branch": "main", "commit": "40261dfcec7623cd57be3c3beb50fa73f2650cdf" },
   "neodev.nvim": { "branch": "main", "commit": "02893eeb9d6e8503817bd52385e111cba9a90500" },
   "none-ls-extras.nvim": { "branch": "main", "commit": "336e84b9e43c0effb735b08798ffac382920053b" },
-  "none-ls.nvim": { "branch": "main", "commit": "f1b438ab1709cf9d8875843559d20265013ac755" },
+  "none-ls.nvim": { "branch": "main", "commit": "0d1b3fa2ad0b371b94cb4b9a27ba6e5a1a915c91" },
   "nvim-cmp": { "branch": "main", "commit": "a110e12d0b58eefcf5b771f533fc2cf3050680ac" },
   "nvim-colorizer.lua": { "branch": "master", "commit": "85855b38011114929f4058efc97af1059ab3e41d" },
   "nvim-lspconfig": { "branch": "master", "commit": "9baca6a403b3b2098224010fda6ff5615ae6e782" },
@@ -51,5 +50,6 @@
   "vim-textobj-line": { "branch": "master", "commit": "1a6780d29adcf7e464e8ddbcd0be0a9df1a37339" },
   "vim-textobj-sentence": { "branch": "master", "commit": "c5dd562aff2c389dfc8cd55e6499854d352a80b8" },
   "vim-textobj-user": { "branch": "master", "commit": "41a675ddbeefd6a93664a4dc52f302fe3086a933" },
-  "vim-textobj-xmlattr": { "branch": "master", "commit": "694a297f1d75fd527e87da9769f3c6519a87ebb1" }
+  "vim-textobj-xmlattr": { "branch": "master", "commit": "694a297f1d75fd527e87da9769f3c6519a87ebb1" },
+  "vim-zoom": { "branch": "master", "commit": "01c737005312c09e0449d6518decf8cedfee32c7" }
 }
