@@ -72,6 +72,7 @@ xorg-xinit 1.4.2-1
 xorg-xrandr 1.5.2-1
 xorg-xrdb 1.2.2-1
 xorg-xset 1.2.5-1
+xss-lock 0.3.0.r27.g0c562bf-1
 zsh 5.9-5
 zsh-autosuggestions 0.7.0-2
 zsh-completions 0.35.0-1
