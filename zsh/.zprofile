@@ -59,8 +59,6 @@ else
     export NVM_DIR="$XDG_DATA_HOME" && . /usr/share/nvm/init-nvm.sh
 fi
 
-test -d "$XDG_RUNTIME_DIR" || mkdir "$XDG_RUNTIME_DIR"
-
 append_path "$HOME"/.local/bin
 prepend_path "$HOME"/.luarocks/bin
 prepend_path "$HOME"/.local/bin/sst

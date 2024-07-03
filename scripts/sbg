@@ -10,10 +10,14 @@ case "$two" in
   ;;
 esac
 
-cmd="feh --no-fehbg --bg-scale $1"
+wpdir="$HOME"/dev/wp
+
+[ "$1" ] && bgone="$1" || bgone="$(fd . "$wpdir"/one --type file | shuf -n 1)"
+cmd="feh --no-fehbg --bg-scale $bgone"
 
 if [ "$mons" = 2 ]; then
-  cmd="$cmd --bg-scale $2"
+  [ "$2" ] && bgtwo="$2" || bgtwo="$(fd . "$wpdir/two" --type file | shuf -n 1)"
+  cmd="$cmd --bg-scale $bgtwo"
 fi
 
 eval "$cmd"
