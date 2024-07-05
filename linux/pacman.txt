@@ -57,6 +57,8 @@ ripgrep 14.1.0-1
 rsync 3.3.0-2
 rustup 1.27.1-1
 stylua 0.20.0-3
+texlive-basic 2024.2-2
+texlive-fontsextra 2024.2-2
 tmux 3.4-8
 ttf-hanazono 20170904-4
 ttf-jetbrains-mono-nerd 3.2.1-2

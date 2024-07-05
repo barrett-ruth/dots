@@ -11,6 +11,7 @@ bash-language-server 5.4.0
 cssmodules-language-server 1.4.0
 eslint 9.6.0
 eslint_d 13.1.2
+live-server 1.2.2
 markdownlint 0.34.0
 markdownlint-cli2 0.13.0
 neovim 5.1.0
