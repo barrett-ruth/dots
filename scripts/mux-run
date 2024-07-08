@@ -22,7 +22,7 @@ case "$project" in
 */TestCppClient)
   cmd='rm -f TestCppClientStatic && cmake -S . -B build/ && make && ./TestCppClientStatic'
   ;;
-sl/*)
+.config/*)
   cmd='make clean install && make clean'
   [ "$name" = 'slock' ] && cmd="doas $cmd"
   ;;
