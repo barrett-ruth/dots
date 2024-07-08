@@ -10,7 +10,7 @@ case "$two" in
   ;;
 esac
 
-wpdir="$HOME"/dev/wp
+wpdir="$HOME"/img/wp
 
 [ "$1" ] && bgone="$1" || bgone="$(fd . "$wpdir"/one --type file | shuf -n 1)"
 cmd="feh --no-fehbg --bg-scale $bgone"

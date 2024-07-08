@@ -5,5 +5,5 @@ xset b off
 xset m 0
 xset r rate 300 50
 xset s 120
-xset dpms 180 240 540
+xset dpms 300 420 600
 xss-lock -- slock &

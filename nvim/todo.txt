@@ -1,2 +1,2 @@
-jinja2
-is computer shutting down?
+cpu usage while watching yt videos
+    - amd/graphics? proper pkgs/acceleration?

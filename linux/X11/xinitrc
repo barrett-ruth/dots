@@ -9,9 +9,10 @@ fi
 smon
 sxs
 (
-  sbg ~/dev/wp/two/calvin.jpg
+  sbg ~/img/wp/two/calvin.jpg
   skb
 ) &
+unclutter 5 &
 sclip &
 (st -e mux) &
 while true; do

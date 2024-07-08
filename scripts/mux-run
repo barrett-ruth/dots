@@ -1,44 +1,34 @@
 #!/bin/sh
 
-proj="$PWD"
+name="$(basename "$PWD")"
+project="$(basename "$(dirname "$PWD")")/$name"
 
-case "$(basename "$proj")" in
-ag)
+case "$project" in
+*/ag)
   cmd='cp -f autograder.py example && cd example && ./run_autograder'
   ;;
-theCourseForum2)
-  # docker compose up --build
+*/theCourseForum2)
   cmd='docker compose up'
   ;;
-autogen)
-  cmd='docker compose up'
-  ;;
-atlas | tinyground)
+*/atlas | */tinyground)
   cmd='pnpm run dev'
   ;;
-interview-prep)
+*/interview-prep)
   cmd='pnpm run dev'
   ;;
-neovim)
+*/neovim)
   cmd='make'
   ;;
-cses | usaco | codeforces)
-  cmd='python solution.py < input.txt'
-  ;;
-TestCppClient)
+*/TestCppClient)
   cmd='rm -f TestCppClientStatic && cmake -S . -B build/ && make && ./TestCppClientStatic'
   ;;
+sl/*)
+  cmd='make clean install && make clean'
+  [ "$name" = 'slock' ] && cmd="doas $cmd"
+  ;;
 st)
-  case "$(basename "$(dirname "$proj")")" in
-  sl)
-    cmd='make clean install && make clean'
-    ;;
-  trb-capital-management)
-    cmd='cmake -S . -B build/ -DCMAKE_TOOLCHAIN_FILE=toolchain.cmake \
-        -DCMAKE_INSTALL_PREFIX="$HOME"/.local \
-         && cmake --build build --config Release --target install --parallel'
-    ;;
-  esac
+  cmd='cmake -S . -B build/ -DCMAKE_INSTALL_PREFIX="$HOME"/.local \
+          && cmake --build build --config Release --target install --parallel'
   ;;
 esac
 

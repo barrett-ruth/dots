@@ -8,15 +8,16 @@ case "$1" in
     lz) cd ~/.local/share/nvim/lazy;;
     dev) cd ~/dev;;
     site) cd ~/dev/barrettruth.com;;
+    cf) cd ~/.config;;
     notes) cd ~/dev/notes;;
     scr) cd "$SCRIPTS";;
     desk) cd ~/Desktop;;
     dots) cd ~/dev/dots;;
-    sl) cd ~/dev/sl;;
     tcf) cd ~/dev/theCourseForum2;;
     trb) cd ~/dev/trb-capital-management;;
     tm) cd ~/.config/tmux;;
     nv) cd ~/.config/nvim;;
     x) cd ~/.config/X11;;
     zsh) cd ~/.config/zsh;;
+    *) cd "$@";;
 esac

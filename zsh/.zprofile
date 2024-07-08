@@ -32,12 +32,10 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
 
 function prepend_path() {
     [[ "$PATH" == *"$1"* ]] && return
-    test -d "$1" || return
     export PATH="$1:$PATH";
 }
 function append_path() {
     [[ "$PATH" == *"$1"* ]] && return
-    test -d "$1" || return
     export PATH="$PATH:$1";
 }
 
@@ -83,6 +81,8 @@ ps aux | grep -q '[b]lackd' || { blackd >/dev/null 2>&1 &| }
 export SCRIPTS="$HOME"/.local/bin/scripts
 append_path "$SCRIPTS"
 
+append_path "$HOME"/Jts/1019
+
 export BOTO_CONFIG="$XDG_CONFIG_HOME"/boto/config
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export GNUPGHOME="$XDG_CONFIG_HOME"/gnupg
@@ -94,6 +94,7 @@ export NODE_REPL_HISTORY="$XDG_STATE_HOME"/node_repl_history
 export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
 export TS_NODE_REPL_HISTORY="$XDG_STATE_HOME"/ts_node_repl_history
 export PRETTIERD_CONFIG_HOME="$XDG_STATE_HOME"/prettierd
+export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
 export PSQL_HISTORY="$XDG_STATE_HOME"/psql_history
 export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/pythonrc
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME"/rg/config
