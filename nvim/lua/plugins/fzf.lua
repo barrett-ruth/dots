@@ -59,7 +59,16 @@ return {
         { 'gsc', '<cmd>FzfLua lsp_document_symbols regex_filter=Class.*<cr>' },
         {
             'gsf',
-            '<cmd>FzfLua lsp_document_symbols regex_filter=Function.*<cr>',
+            function()
+                require('fzf-lua').lsp_document_symbols({
+                    regex_filter = function(entry)
+                        return vim.tbl_contains(
+                            { 'Function', 'Method' },
+                            entry.kind
+                        )
+                    end,
+                })
+            end,
         },
         { 'gd', '<cmd>FzfLua lsp_definitions<cr>' },
         { 'gD', '<cmd>FzfLua lsp_declarations<cr>' },

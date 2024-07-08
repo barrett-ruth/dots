@@ -26,7 +26,7 @@ case "$project" in
   cmd='make clean install && make clean'
   [ "$name" = 'slock' ] && cmd="doas $cmd"
   ;;
-st)
+*/st)
   cmd='cmake -S . -B build/ -DCMAKE_INSTALL_PREFIX="$HOME"/.local \
           && cmake --build build --config Release --target install --parallel'
   ;;

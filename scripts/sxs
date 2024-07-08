@@ -4,6 +4,6 @@ xrdb -merge "$XDG_CONFIG_HOME"/X11/xresources
 xset b off
 xset m 0
 xset r rate 300 50
-xset s 120
+xset s 180
 xset dpms 300 420 600
 xss-lock -- slock &
