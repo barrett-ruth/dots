@@ -16,7 +16,7 @@ unclutter 5 &
 sclip &
 (st -e mux) &
 while true; do
-  dwmb &
+  dwmblocks &
   dwm
   continue || exit
 done

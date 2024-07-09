@@ -10,7 +10,10 @@ attach_or_restore() {
 
 case "$1" in
 bar)
-  bar="$(tmux ls -F '#S' | nl -w1 -v0 -s ':' | paste -sd '-' - | sed "s/$2/$2*/;s/-/  /g")"
+  [ "$2" ] || exit
+  [ "$(tmux show-options | rg mouse | awk '{ print $NF }')" = 'on' ] && mouse='[m]'
+  sessions="$(tmux ls -F '#{session_id}:#{session_name}' | cut -c2- | paste -sd '-' - | sed "s/$2/$2*/;s/-/  /g")"
+  bar="$mouse  $sessions "
   echo "$bar"
   ;;
 file | run)

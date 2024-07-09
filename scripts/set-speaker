@@ -2,4 +2,6 @@
 
 sinks=$(pacmd list-sinks | grep -E 'index:|name:' | sed 's/^\s*//;s/index: //;s/name: //' | sed -n 'N;s/\n/: /p')
 count=$(echo "$sinks" | wc -l)
-echo "$sinks" | dmenu -i -l "$count" -p "Select Sink:" | cut -d: -f1 | xargs pacmd set-default-sink
+choice="$(echo "$sinks" | dmenu -i -l "$count" -p "Select Sink:" | cut -d: -f1)"
+
+[ "$choice" ] && xargs pacmd set-default-sink "$choice"
