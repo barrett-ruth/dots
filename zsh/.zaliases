@@ -17,6 +17,9 @@ alias nv='nvim'
 alias pe='printenv'
 
 # Misc
-mkcd() { mkdir -p "$@"; cd "$@"; }
+mkcd() {
+    mkdir -p "$@"
+    cd "$@"
+}
 alias psa='ps aux'
 j() { . _j "$@"; }

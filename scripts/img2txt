@@ -1,0 +1,9 @@
+#!/bin/sh
+
+filename=/tmp/"$(openssl rand -hex 10)".jpg
+
+magick import "$filename"
+
+tesseract "$filename" - 2>/dev/null | xclip -in -sel c
+
+rm "$filename"

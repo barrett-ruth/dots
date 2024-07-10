@@ -9,7 +9,7 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-za-z}'
 
 set completion-ignore-case on
 unset completealiases
-setopt auto_cd incappendhistory extendedhistory histignorealldups
+setopt auto_cd incappendhistory extendedhistory histignorealldups hist_ignore_space
 
 export XDG_CONFIG_HOME="$HOME"/.config
 export XDG_CACHE_HOME="$HOME"/.cache
