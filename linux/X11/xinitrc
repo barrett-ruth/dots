@@ -12,7 +12,7 @@ sxs
   sbg ~/img/wp/two/calvin.jpg
   skb
 ) &
-unclutter 5 &
+unclutter 10 &
 sclip &
 (st -e mux) &
 while true; do
