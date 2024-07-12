@@ -4,7 +4,7 @@ filename="$(dmenu -p 'Enter filename:' </dev/null)"
 
 [ "$filename" ] && file="$filename" || file="$(openssl rand -hex 10)-$(date +"%Y:%m:%d:%H:%M:%S")"
 
-file="$file".jpg
+file=~/img/ss/"$file".jpg
 
 import "$file"
 

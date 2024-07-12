@@ -5,8 +5,8 @@
 cmd="$1"
 shift
 
-sink_info="$(pacmd list-sinks | sed '/\* index/ p')"
-sink_id="$(echo "$sink_info" | rg 'index')"
+sink_info="$(pacmd list-sinks | sed '/\* index/p')"
+sink_id="$(echo "$sink_info" | rg '\* index')"
 sink_id="${sink_id##* }"
 sink_name="$(pacmd list-sink-inputs | rg "sink: $sink_id" | cut -d '<' -f 2)"
 sink_name="${sink_name%?}"

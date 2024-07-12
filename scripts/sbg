@@ -16,7 +16,7 @@ wpdir="$HOME"/img/wp
 cmd="feh --no-fehbg --bg-scale $bgone"
 
 if [ "$mons" = 2 ]; then
-  [ "$2" ] && bgtwo="$2" || bgtwo="$(fd . "$wpdir/two" --type file | shuf -n 1)"
+  [ "$2" ] && bgtwo="$2" || bgtwo="$(fd . "$wpdir"/two --type file | shuf -n 1)"
   cmd="$cmd --bg-scale $bgtwo"
 fi
 

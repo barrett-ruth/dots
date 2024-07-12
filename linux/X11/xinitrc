@@ -9,7 +9,7 @@ fi
 smon
 sxs
 (
-  sbg ~/img/wp/two/calvin.jpg
+  sbg ~/img/wp/one/forest.jpg ~/img/wp/two/forest.jpg
   skb
 ) &
 unclutter 10 &
