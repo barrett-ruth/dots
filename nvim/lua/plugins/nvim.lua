@@ -33,6 +33,14 @@ local git_ignored = setmetatable({}, {
 
 return {
     {
+        'savq/melange-nvim',
+        config = function()
+            vim.o.background = vim.env.THEME == 'melange-dark' and 'dark'
+                or 'light'
+        end,
+        lazy = true,
+    },
+    {
         'barrett-ruth/http-codes.nvim',
         config = true,
         dependencies = 'nvim-telescope/telescope.nvim',
