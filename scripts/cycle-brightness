@@ -1,0 +1,15 @@
+#!/bin/sh
+
+cur_brightness="$(brightnessctl -d tpacpi::kbd_backlight get)"
+next_brightness=1
+
+case "$cur_brightness" in
+"1")
+  next_brightness=2
+  ;;
+"2")
+  next_brightness=0
+  ;;
+esac
+
+brightnessctl -d tpacpi::kbd_backlight set "$next_brightness"

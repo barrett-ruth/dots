@@ -15,6 +15,7 @@ sxs
 unclutter 10 &
 sclip &
 (st -e mux) &
+chromium &
 while true; do
   dwmblocks &
   dwm

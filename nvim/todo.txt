@@ -1,3 +1,4 @@
 cpu usage while watching yt videos
     - amd/graphics? proper pkgs/acceleration?
 rest.nvim
+dwm crashes
