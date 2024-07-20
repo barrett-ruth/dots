@@ -19,12 +19,4 @@ require('lazy').setup('plugins', {
     change_detection = { enabled = false },
 })
 
-local theme_to_colorscheme =
-    { ['melange-dark'] = 'melange', ['melange-light'] = 'melange' }
-vim.cmd.colorscheme(theme_to_colorscheme[vim.env.THEME] or vim.env.THEME)
-
-vim.tbl_add_reverse_lookup = function(tbl)
-    for k, v in pairs(tbl) do
-        tbl[v] = k
-    end
-end
+vim.cmd.colorscheme(vim.env.THEME)

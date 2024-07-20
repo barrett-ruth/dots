@@ -40,8 +40,30 @@ function M.on_attach(client, bufnr)
     end
 
     bmap({ 'n', '\\f', diagnostic.open_float })
-    bmap({ 'n', ']\\', diagnostic.goto_next })
-    bmap({ 'n', '[\\', diagnostic.goto_prev })
+    bmap({
+        'n',
+        '\\t',
+        function()
+            local level = vim.lsp.log.get_level()
+            vim.lsp.log.set_level(
+                vim.lsp.log_levels[level] == 'WARN' and 'OFF' or 'WARN'
+            )
+        end,
+    })
+    bmap({
+        'n',
+        ']\\',
+        function()
+            diagnostic.jump({ count = 1, float = true })
+        end,
+    })
+    bmap({
+        'n',
+        '[\\',
+        function()
+            diagnostic.jump({ count = -1, float = true })
+        end,
+    })
 end
 
 function M.prepare_lsp_settings(user_settings)

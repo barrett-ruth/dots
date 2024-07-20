@@ -12,7 +12,6 @@ sxs
   sbg ~/img/wp/one/forest.jpg ~/img/wp/two/forest.jpg
   skb
 ) &
-unclutter 10 &
 sclip &
 (st -e mux) &
 chromium &

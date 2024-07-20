@@ -2,6 +2,8 @@
 
 filename="$(dmenu -p 'Enter filename:' </dev/null)"
 
+[ "$?" ] || exit
+
 [ "$filename" ] && file="$filename" || file="$(openssl rand -hex 10)-$(date +"%Y:%m:%d:%H:%M:%S")"
 
 file=~/img/ss/"$file".jpg

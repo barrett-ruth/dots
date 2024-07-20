@@ -1,37 +1,5 @@
 #!/usr/bin/env zsh
 
-export THEME='melange-dark'
-# export THEME='melange-light'
-# export THEME='gruvbox'
-
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_STATE_HOME="$HOME/.local/state"
-
-function prepend_path() { [[ "$PATH" == *"$1"* ]] || export PATH="$1:$PATH"; }
-function append_path() { [[ "$PATH" == *"$1"* ]] || export PATH="$PATH:$1"; }
-
-if [[ "$(uname -s)" == 'Darwin' ]]; then
-    export XDG_RUNTIME_DIR="/tmp/user/$UID"
-    dir="/tmp/user/$UID"
-    [[ -d "$dir" ]] || mkdir -p "$XDG_RUNTIME_DIR"
-    append_path '/opt/homebrew/opt/postgresql@15/bin'
-    prepend_path '/opt/homebrew/opt/llvm/bin'
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-    export BROWSER='/Applications/Chromium.app/Contents/MacOS/Chromium'
-    export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
-    export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
-    . "$XDG_CONFIG_HOME"/fzf/fzf.zsh
-    . "$HOMEBREW_PREFIX"/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-else
-    export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
-    test -f "$XDG_RUNTIME_DIR"/.Xauthority || touch "$XDG_RUNTIME_DIR"/.Xauthority
-    export TERMINFO="$XDG_DATA_HOME"/terminfo
-    export BROWSER='chromium'
-    . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
-
 autoload -U compinit && compinit -d "$XDG_STATE_HOME/zcompdump" -u
 autoload -U colors && colors
 zmodload zsh/complist

@@ -33,14 +33,6 @@ local git_ignored = setmetatable({}, {
 
 return {
     {
-        'savq/melange-nvim',
-        config = function()
-            vim.o.background = vim.env.THEME == 'melange-dark' and 'dark'
-                or 'light'
-        end,
-        lazy = true,
-    },
-    {
         'barrett-ruth/http-codes.nvim',
         config = true,
         dependencies = 'nvim-telescope/telescope.nvim',
@@ -345,5 +337,21 @@ return {
             'whatyouhide/vim-textobj-xmlattr',
         },
         keys = { 'c', 'd', 'v', 'V', 'y', '<', '>' },
+    },
+    {
+        'zbirenbaum/neodim',
+        event = 'LspAttach',
+        opts = {
+            blend_color = string.format(
+                '#%06x',
+                vim.api.nvim_get_hl(0, { name = 'Normal' }).bg
+            ),
+            regex = {
+                '[uU]nreachable',
+                '[uU]nused',
+                '[nN]ever [rR]ead',
+                '[nN]ot [rR]ead',
+            },
+        },
     },
 }

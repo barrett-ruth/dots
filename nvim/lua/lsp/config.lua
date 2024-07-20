@@ -1,13 +1,16 @@
 local handlers, methods = vim.lsp.handlers, vim.lsp.protocol.Methods
 
-handlers['textDocument/hover'] = vim.lsp.with(handlers.hover, {
+handlers[methods.textDocument_hover] = vim.lsp.with(handlers.hover, {
     border = 'single',
 })
 
-handlers['textDocument/signatureHelp'] = vim.lsp.with(handlers.signature_help, {
-    border = 'single',
-    focusable = false,
-})
+-- vim.lsp.log.set_level('OFF')
+
+handlers[methods.textDocument_signatureHelp] =
+    vim.lsp.with(handlers.signature_help, {
+        border = 'single',
+        focusable = false,
+    })
 
 vim.diagnostic.config({
     signs = false,

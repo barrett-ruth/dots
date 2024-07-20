@@ -43,7 +43,7 @@ null_ls.setup({
             end,
         }),
         diagnostics.npm_groovy_lint,
-        diagnostics.selene,
+        -- diagnostics.selene,
         diagnostics.sqlfluff.with({
             extra_args = {
                 '--dialect',
