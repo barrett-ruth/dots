@@ -1,0 +1,11 @@
+#!/bin/sh
+
+dir="$HOME"/doc
+
+test -d "$dir" || exit
+
+docs="$(ls "$dir")"
+count="$(echo "$docs" | wc -l)"
+choice="$(echo "$docs" | dmenu -i -l "$count" -p "Select document: ")"
+
+[ "$choice" ] && sioyek "$dir/$choice"

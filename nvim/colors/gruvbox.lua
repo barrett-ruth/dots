@@ -176,8 +176,3 @@ link('Directory', 'OilDir')
 link('NormalFloat', 'FzfLuaBorder')
 hi('FzfLuaHeaderText', { fg = cs.red }, { 'FzfLuaBufFlagCur' })
 hi('FzfLuaBufFlagAlt', { fg = cs.cyan })
-
--- run (custom)
-colors.hi('RunDone', { fg = cs.green })
-colors.hi('RunFailed', { fg = cs.red })
-colors.hi('RunKilled', { fg = cs.purple })

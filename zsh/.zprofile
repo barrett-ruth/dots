@@ -88,6 +88,7 @@ export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export GNUPGHOME="$XDG_CONFIG_HOME"/gnupg
 export GRADLE_USER_HOME="$XDG_CONFIG_HOME"/gradle
 export LESSHISTFILE=-
+export MBSYNCRC="$XDG_CONFIG_HOME"/mbsync/config
 export MYPY_CACHE_DIR="$XDG_CACHE_HOME"/mypy
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 export NODE_REPL_HISTORY="$XDG_STATE_HOME"/node_repl_history
