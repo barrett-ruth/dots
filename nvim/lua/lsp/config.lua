@@ -4,7 +4,7 @@ handlers[methods.textDocument_hover] = vim.lsp.with(handlers.hover, {
     border = 'single',
 })
 
--- vim.lsp.log.set_level('OFF')
+vim.lsp.log.set_level('OFF')
 
 handlers[methods.textDocument_signatureHelp] =
     vim.lsp.with(handlers.signature_help, {

@@ -24,7 +24,7 @@ case "$project" in
   ;;
 .config/*)
   cmd='make clean install && make clean'
-  [ "$name" = 'slock' ] && cmd="doas $cmd"
+  [ "$name" = 'slock' ] && cmd="sudo $cmd"
   ;;
 */st)
   cmd='cmake -S . -B build/ -DCMAKE_INSTALL_PREFIX="$HOME"/.local \
