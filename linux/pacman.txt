@@ -1,6 +1,6 @@
 adobe-source-code-pro-fonts 2.042u+1.062i+1.026vf-2
 autoconf 2.72-1
-automake 1.16.5-2
+automake 1.17-1
 base 3-2
 brightnessctl 0.5.1-3
 catch2 3.6.0-1

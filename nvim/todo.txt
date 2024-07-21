@@ -1,3 +1,2 @@
 cpu usage while watching yt videos
     - amd/graphics? proper pkgs/acceleration?
-consolidate emails (school, everything)
