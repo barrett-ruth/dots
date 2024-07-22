@@ -19,10 +19,9 @@ if [ "$(uname)" = 'Darwin' ]; then
   exists pnpm && pnpm -g list >mac/pnpm.txt
   exists pip && pip list --not-required >mac/pip.txt
 else
-  test -d "$XDG_CONFIG_HOME"/X11 && cp -rf "$XDG_CONFIG_HOME"/X11 linux
-  test -d "$XDG_CONFIG_HOME"/mutt && cp -rf "$XDG_CONFIG_HOME"/mutt linux
-  test -d "$XDG_CONFIG_HOME"/fontconfig && cp -rf "$XDG_CONFIG_HOME"/fontconfig linux
-  exists sioyek && cp -rf "$XDG_CONFIG_HOME"/sioyek linux
+  for i in X11 mutt fontconfig dunst sioyek; do
+    test -d "$XDG_CONFIG_HOME/$i" && cp -rf "$XDG_CONFIG_HOME/$i" linux
+  done
   pacman -Qen >linux/pacman.txt
   exists pnpm && pnpm -g list >linux/pnpm.txt
   exists pip && pip list --not-required >linux/pip.txt
