@@ -15,6 +15,7 @@ dkms 3.0.12-1
 docker 1:27.0.3-1
 docker-compose 2.29.0-1
 dosfstools 4.2-4
+dunst 1.11.0-1
 efibootmgr 18-3
 eza 0.18.22-1
 fakeroot 1.35-1
@@ -54,6 +55,7 @@ ntfs-3g 2022.10.3-1
 opendoas 6.8.2-3
 openssh 9.8p1-1
 os-prober 1.81-2
+parallel 20240622-1
 pass 1.7.4-5
 patch 2.7.6-10
 pkgconf 2.1.1-1
