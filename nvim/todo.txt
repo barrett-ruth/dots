@@ -1,3 +1,5 @@
 cpu usage while watching yt videos
     - amd/graphics? proper pkgs/acceleration?
 dunst notify-send for volume, wifi, battery
+gitlinker.nvim
+screenshot script still broken

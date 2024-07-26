@@ -1,15 +1,73 @@
+# See dunst(5) for all configuration options
+
+[global]
+    # Which monitor should the notifications be displayed on.
+    monitor = 0
+
+    follow = none
+
+    # Dynamic from 0:300 --> (0, 300)
+    width = 300
+
+    # The maximum height of a single notification, excluding the frame.
+    height = 300
+
+    origin = top-right
+    offset = 50x50
+
+    # Auto
+    scale = 0
+
+    notification_limit = 3
+    indicate_hidden = yes
+
+    # Draw a line of "separator_height" pixel height between two
+    separator_height = 0
+
+    # Padding between text and separator.
+    padding = 8
+
+    # Horizontal padding.
+    horizontal_padding = 8
+
+    frame_color = "#aaaaaa"
+    # Auto/foreground/frame/color
+    separator_color = "#282828"
+
+    font = Monospace 12
+
+    alignment = left
+    vertical_alignment = center
+    
+    show_age_threshold = -1
+
+    # Where to make ellipse (start, middle, end)
+    ellipsize = end
+
+    icon_position = off
+
+    icon_path = /usr/share/icons/Adwaita/16x16/status/:/usr/share/icons/Adwaita/16x16/devices/:/usr/share/icons/Adwaita/16x16/legacy/
+
+    always_run_script = false
+
+
+[experimental]
+    # Calculate the dpi to use on a per-monitor basis.
+    per_monitor_dpi = true
+
 [urgency_low]
-	background = "#282828"
-	foreground = "#928374"
-	frame_color= "#83a598"
-	timeout = 4
+    background = "#1d2021"
+    foreground = "#888888"
+    timeout = 5
+
 [urgency_normal]
-	background = "#458588"
-	foreground = "#1d2021"
-	frame_color = "#689d6a"
-	timeout = 10
+    background = "#1d2021"
+    foreground = "#d4be98"
+    frame_color = "#3c3836"
+    timeout = 5
+
 [urgency_critical]
-	background = "#1d2021"
-	foreground = "#ebdbb2"
-	frame_color= "#fb4934"
-	timeout = 0
+    background = "#900000"
+    foreground = "#ea6962"
+    frame_color = "#ea6962"
+    timeout = 6

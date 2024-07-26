@@ -36,6 +36,13 @@ au('ColorScheme', {
     end,
 })
 
+au('BufWritePost', {
+    pattern = os.getenv('XDG_CONFIG_HOME') .. '/dunst/dunstrc',
+    callback = function()
+        vim.fn.system('killall dunst && nohup dunst &')
+    end,
+})
+
 au('BufReadPost', {
     command = 'sil! normal g`"',
     group = aug,

@@ -7,6 +7,7 @@ case "$1" in
     dl) [ "$(uname -s)" = 'Darwin' ] && cd ~/Downloads || cd ~/dl;;
     lz) cd ~/.local/share/nvim/lazy;;
     dev) cd ~/dev;;
+    ds) cd ~/dev/data-structures;;
     site) cd ~/dev/barrettruth.com;;
     cf) cd ~/.config;;
     notes) cd ~/dev/notes;;

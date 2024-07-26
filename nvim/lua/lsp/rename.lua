@@ -6,6 +6,7 @@ return {
     end,
     rename = function()
         local cword = vim.fn.expand('<cword>')
+
         local bufnr = vim.api.nvim_create_buf(false, true)
         local winnr = vim.api.nvim_open_win(bufnr, true, {
             relative = 'cursor',
