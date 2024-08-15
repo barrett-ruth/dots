@@ -3,11 +3,6 @@ return {
         format = false,
     },
     on_attach = function(client, bufnr)
-        client.server_capabilities.completionProvider = false
-        client.server_capabilities.documentSymbolProvider = false
-        client.server_capabilities.renameProvider = false
-        client.server_capabilities.workspaceSymbolProvider = false
-
         bmap({
             'n',
             '<leader>ps',

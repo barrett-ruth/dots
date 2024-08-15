@@ -232,6 +232,12 @@ return {
         keys = { { '<c-space>', vim.cmd.HopChar2 } },
     },
     {
+        'ruifm/gitlinker.nvim',
+        opts = {
+            mappings = '<leader>gL'
+        }
+    },
+    {
         'stevearc/oil.nvim',
         init = function()
             local oilaug = vim.api.nvim_create_augroup('AOil', {})
