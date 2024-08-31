@@ -78,6 +78,22 @@ return {
         end,
     },
     {
+        'saecki/live-rename.nvim',
+        event = 'LspAttach',
+        opts = {
+            hl = {
+                current = 'Visual',
+                others = 'Visual',
+            },
+        },
+        keys = {
+            {
+                'grn',
+                '<cmd>lua require("live-rename").rename()<cr>',
+            },
+        },
+    },
+    {
         'SmiteshP/nvim-navic',
         opts = {
             depth_limit = 3,
