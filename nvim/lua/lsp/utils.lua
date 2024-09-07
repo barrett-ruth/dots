@@ -24,7 +24,6 @@ function M.on_attach(client, bufnr)
         },
     }
 
-    vim.print('running mappings')
     for provider, mapping in pairs(mappings) do
         if client.server_capabilities[('%sProvider'):format(provider)] then
             bmap(mapping)

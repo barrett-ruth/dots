@@ -13,4 +13,4 @@ pnpm -g update
 
 pip install --upgrade pip
 pkgs="$(pip list --outdated --format=columns | tail -n +3 | cut -d ' ' -f 1)"
-pip install --upgrade "$pkgs"
+echo "$pkgs" | xargs pip install --upgrade
