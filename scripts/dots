@@ -15,7 +15,7 @@ for i in X11 mutt fontconfig dunst sioyek; do
   test -d "$XDG_CONFIG_HOME/$i" && cp -rf "$XDG_CONFIG_HOME/$i" linux
 done
 pacman -Qen >linux/pacman.txt
-exists pnpm && pnpm -g list >linux/pnpm.txt
+exists pnpm && pnpm -g list | tail -n +6 >linux/pnpm.txt
 exists pip && pip list --not-required >linux/pip.txt
 
 cp -r "$SCRIPTS" .

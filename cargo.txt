@@ -1,4 +1,4 @@
 cbfmt
-dotenv-linter
 selene
+stylua
 tree-sitter
