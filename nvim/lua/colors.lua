@@ -18,6 +18,25 @@ local function hi(group, highlights, links)
 end
 
 return {
+    light = {
+        black = '#000000',
+        red = '#ff0000',
+        green = '#00ff00',
+        yellow = '#ffa500',
+        blue = '#0000ff',
+        magenta = '#ff00ff',
+        cyan = '#00ffff',
+        white = '#ffffff',
+
+        light_black = '#555555',
+        light_red = '#ff5555',
+        light_green = '#55ff55',
+        light_yellow = '#ffae42',
+        light_blue = '#5555ff',
+        light_magenta = '#ff55ff',
+        light_cyan = '#55ffff',
+        light_white = '#ffffff',
+    },
     gruvbox = {
         black = '#282828',
         red = '#EA6962',

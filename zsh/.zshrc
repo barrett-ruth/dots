@@ -46,10 +46,10 @@ __set_git() {
   if [[ -z "${sb##*...*}" ]]; then
     local usr="${${sb#*...}%% *}"
     [[ "${usr#*/}" == "$br" ]] && usr="${usr%%/*}"
-    [[ -n "$usr" ]] && us="→$usr"
-    [[ -n "${sb##*ahead*}" ]] || up_down+=↑
-    [[ -n "${sb##*behind*}" ]] || up_down+=↓
-    [ "${#up_down}" = 2 ] && up_down=↑↓
+    [[ -n "$usr" ]] && us="..$usr"
+    [[ -n "${sb##*ahead*}" ]] || up_down+=^
+    [[ -n "${sb##*behind*}" ]] || up_down+=v
+    [ "${#up_down}" = 2 ] && up_down=^v
   elif [[ -z "${sb##*HEAD*}" ]]; then
       br=HEAD
   else
