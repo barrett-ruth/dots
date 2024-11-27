@@ -49,14 +49,14 @@ function M.on_attach(client, bufnr)
         'n',
         ']\\',
         function()
-            diagnostic.jump({ count = 1, float = true })
+            diagnostic.goto_next({ float = true })
         end,
     })
     bmap({
         'n',
         '[\\',
         function()
-            diagnostic.jump({ count = -1, float = true })
+            diagnostic.goto_prev({ float = true })
         end,
     })
 end

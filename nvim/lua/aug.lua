@@ -74,7 +74,6 @@ local function format()
                 'cssls', -- prettier
                 'html', -- prettier
                 'jsonls', -- prettier
-                'pylsp', -- black/isort/autopep8
                 'typescript-tools', -- prettier
             }, c.name)
         end,
@@ -93,7 +92,7 @@ au('LspAttach', {
         if client.server_capabilities.documentFormattingProvider then
             local modes = { 'n' }
 
-            if client.server_capabilities.documentRangeFormattingProvider then
+            if client.server_capabilities.documentFormattingProvider then
                 table.insert(modes, 'x')
             end
 

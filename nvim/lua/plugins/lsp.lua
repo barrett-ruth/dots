@@ -33,21 +33,19 @@ return {
                 'cssls',
                 'emmet_language_server',
                 'eslint',
-                'gopls',
                 'html',
                 'jsonls',
                 'lua_ls',
                 'pylsp',
-                'tailwindcss',
-                'vimls',
-                'yamlls',
             }) do
-                local status, settings =
-                    pcall(require, 'lsp.servers.' .. server)
+                if vim.fn.executable(server) then
+                    local status, settings =
+                        pcall(require, 'lsp.servers.' .. server)
 
-                lspconfig[server].setup(
-                    prepare_lsp_settings(status and settings or {})
-                )
+                    lspconfig[server].setup(
+                        prepare_lsp_settings(status and settings or {})
+                    )
+                end
             end
         end,
     },
