@@ -10,4 +10,4 @@
 --glob=!*.json
 --glob=!venv/
 --glob=!pyenv/
---ignore-file=/home/beirut/.config/git/ignore
+--ignore-file=/home/barrett/.config/git/ignore

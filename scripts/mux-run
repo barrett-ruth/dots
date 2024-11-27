@@ -22,9 +22,9 @@ case "$project" in
 */TestCppClient)
   cmd='rm -f TestCppClientStatic && cmake -S . -B build/ && make && ./TestCppClientStatic'
   ;;
-.config/*)
+sl/*)
   cmd='make clean install && make clean'
-  [ "$name" = 'slock' ] && cmd="sudo $cmd"
+  [ "$name" = 'slock' ] && cmd="doas $cmd"
   ;;
 */st)
   cmd='cmake -S . -B build/ -DCMAKE_INSTALL_PREFIX="$HOME"/.local \

@@ -4,7 +4,8 @@ case "$1" in
     -) cd - >/dev/null && return;;
     '') cd ~;;
     ip) cd ~/dev/swe-interview-prep;;
-    dl) [ "$(uname -s)" = 'Darwin' ] && cd ~/Downloads || cd ~/dl;;
+    dl) cd ~/dl;;
+    sl) cd ~/dev/sl;;
     lz) cd ~/.local/share/nvim/lazy;;
     dev) cd ~/dev;;
     ds) cd ~/dev/data-structures;;
