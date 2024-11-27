@@ -33,12 +33,6 @@ local git_ignored = setmetatable({}, {
 
 return {
     {
-        'barrett-ruth/http-codes.nvim',
-        config = true,
-        dependencies = 'nvim-telescope/telescope.nvim',
-        keys = { { '<leader>H', '<cmd>HTTPCodes<cr>' } },
-    },
-    {
         'barrett-ruth/live-server.nvim',
         build = 'pnpm add -g live-server',
         cmd = { 'LiveServerStart', 'LiveServerStart' },
@@ -189,11 +183,6 @@ return {
         },
     },
     {
-        'nvimdev/hlsearch.nvim',
-        config = true,
-        keys = { '/', '?' },
-    },
-    {
         'NvChad/nvim-colorizer.lua',
         opts = {
             filetypes = {
@@ -234,8 +223,8 @@ return {
     {
         'ruifm/gitlinker.nvim',
         opts = {
-            mappings = '<leader>gL'
-        }
+            mappings = '<leader>gL',
+        },
     },
     {
         'stevearc/oil.nvim',
@@ -343,21 +332,5 @@ return {
             'whatyouhide/vim-textobj-xmlattr',
         },
         keys = { 'c', 'd', 'v', 'V', 'y', '<', '>' },
-    },
-    {
-        'zbirenbaum/neodim',
-        event = 'LspAttach',
-        opts = {
-            blend_color = string.format(
-                '#%06x',
-                vim.api.nvim_get_hl(0, { name = 'Normal' }).bg
-            ),
-            regex = {
-                '[uU]nreachable',
-                '[uU]nused',
-                '[nN]ever [rR]ead',
-                '[nN]ot [rR]ead',
-            },
-        },
     },
 }

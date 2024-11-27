@@ -9,23 +9,14 @@ test -z "$XDG_CONFIG_HOME" && exit
 
 ! exists rmb && exit
 
-rmb .git readme.md mac linux/install fonts .
+rmb .git readme.md mac linux/install .
 
-if [ "$(uname)" = 'Darwin' ]; then
-  test -d "$XDG_CONFIG_HOME"/kitty && cp -rf "$XDG_CONFIG_HOME"/kitty mac
-  test -r "$XDG_CONFIG_HOME"/karabiner/karabiner.json && cp -rf "$XDG_CONFIG_HOME"/karabiner/karabiner.json mac
-
-  exists brew && brew list >mac/brew.txt
-  exists pnpm && pnpm -g list >mac/pnpm.txt
-  exists pip && pip list --not-required >mac/pip.txt
-else
-  for i in X11 mutt fontconfig dunst sioyek; do
-    test -d "$XDG_CONFIG_HOME/$i" && cp -rf "$XDG_CONFIG_HOME/$i" linux
-  done
-  pacman -Qen >linux/pacman.txt
-  exists pnpm && pnpm -g list >linux/pnpm.txt
-  exists pip && pip list --not-required >linux/pip.txt
-fi
+for i in X11 mutt fontconfig dunst sioyek; do
+  test -d "$XDG_CONFIG_HOME/$i" && cp -rf "$XDG_CONFIG_HOME/$i" linux
+done
+pacman -Qen >linux/pacman.txt
+exists pnpm && pnpm -g list >linux/pnpm.txt
+exists pip && pip list --not-required >linux/pip.txt
 
 cp -r "$SCRIPTS" .
 
@@ -35,7 +26,7 @@ done
 
 test -d tmux && rmb tmux.conf tmux
 test -d zsh && rmb .zaliases .zprofile .zshrc zsh
-cp -f ~/.zshenv zsh
+test -f ~/.zshenv && cp -f ~/.zshenv zsh
 
 exists go && test -d "$GOPATH"/bin && ls "$GOPATH"/bin >go.txt
 exists cargo && test -d "$CARGO_HOME"/bin && ls "$CARGO_HOME"/bin >cargo.txt
