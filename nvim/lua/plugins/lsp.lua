@@ -39,6 +39,7 @@ return {
                 'pylsp',
             }) do
                 if vim.fn.executable(server) then
+                    print('found server ', server)
                     local status, settings =
                         pcall(require, 'lsp.servers.' .. server)
 

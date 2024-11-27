@@ -11,16 +11,13 @@ test -z "$XDG_CONFIG_HOME" && exit
 
 rmb .git readme.md mac linux/install .
 
-for i in X11 mutt fontconfig dunst sioyek; do
-  test -d "$XDG_CONFIG_HOME/$i" && cp -rf "$XDG_CONFIG_HOME/$i" linux
-done
-pacman -Qen >linux/pacman.txt
-exists pnpm && pnpm -g list | tail -n +6 >linux/pnpm.txt
-exists pip && pip list --not-required >linux/pip.txt
+pacman -Qen >pacman.txt
+exists pnpm && pnpm -g list | tail -n +6 >pnpm.txt
+exists pip && pip list --not-required >pip.txt
 
 cp -r "$SCRIPTS" .
 
-for folder in git npm nvim python rg tmux yamllint zsh; do
+for folder in git npm nvim python rg tmux yamllint zsh X11 mutt dunst sioyek; do
   test -d "$XDG_CONFIG_HOME/$folder" && cp -rf "$XDG_CONFIG_HOME/$folder" .
 done
 
