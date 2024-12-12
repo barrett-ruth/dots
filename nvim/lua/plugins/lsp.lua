@@ -1,16 +1,6 @@
-local prepare_lsp_settings = require('lsp.utils').prepare_lsp_settings
+local lsp_utils = require('lsp.utils')
 
 return {
-    {
-        'davidosomething/format-ts-errors.nvim',
-        dependencies = 'neovim/nvim-lspconfig',
-        ft = {
-            'javascript',
-            'javascriptreact',
-            'typescript',
-            'typescriptreact',
-        },
-    },
     { 'folke/neodev.nvim', ft = 'lua' },
     {
         'nvimtools/none-ls.nvim',
@@ -25,12 +15,11 @@ return {
             require('lsp.config')
 
             local lspconfig = require('lspconfig')
-
             for _, server in ipairs({
                 'bashls',
                 'clangd',
-                'cssmodules_ls',
                 'cssls',
+                'cssmodules_ls',
                 'emmet_language_server',
                 'eslint',
                 'html',
@@ -38,21 +27,34 @@ return {
                 'lua_ls',
                 'pylsp',
             }) do
-                if vim.fn.executable(server) then
-                    print('found server ', server)
-                    local status, settings =
-                        pcall(require, 'lsp.servers.' .. server)
-
+                if vim.fn.executable(server) == 1 then
+                    local ok, settings =
+                        pcall(require, ('lsp.servers.%s'):format(server))
                     lspconfig[server].setup(
-                        prepare_lsp_settings(status and settings or {})
+                        lsp_utils.prepare_lsp_settings(ok and settings or {})
                     )
                 end
             end
         end,
+        dependencies = { 'b0o/SchemaStore.nvim' },
     },
     {
         'pmizio/typescript-tools.nvim',
+        opts = function()
+            return lsp_utils.prepare_lsp_settings(
+                require('lsp.servers.typescript')
+            )
+        end,
         dependencies = {
+            {
+                'davidosomething/format-ts-errors.nvim',
+                ft = {
+                    'javascript',
+                    'javascriptreact',
+                    'typescript',
+                    'typescriptreact',
+                },
+            },
             'nvim-lua/plenary.nvim',
             'neovim/nvim-lspconfig',
             'hrsh7th/cmp-nvim-lsp',
@@ -61,16 +63,13 @@ return {
             'BufReadPre *.js,*.jsx,*.ts,*.tsx',
             'BufNewFile *.js,*.jsx,*.ts,*.tsx',
         },
-        opts = function()
-            return prepare_lsp_settings(require('lsp.servers.typescript'))
-        end,
     },
     {
         'mrcjkb/rustaceanvim',
         ft = { 'rust' },
         config = function()
             vim.g.rustaceanvim = {
-                server = prepare_lsp_settings(
+                server = lsp_utils.prepare_lsp_settings(
                     require('lsp.servers.rust_analyzer')
                 ),
             }
@@ -126,7 +125,7 @@ return {
                 TypeParameter = ' ',
             },
         },
-        dependencies = 'neovim/nvim-lspconfig',
+        dependencies = { 'neovim/nvim-lspconfig' },
         event = 'LspAttach',
     },
 }

@@ -70,6 +70,7 @@ au('TextYankPost', {
 local function format()
     vim.lsp.buf.format({
         filter = function(c)
+            vim.print(c)
             return not vim.tbl_contains({
                 'cssls', -- prettier
                 'html', -- prettier
@@ -85,20 +86,16 @@ au('LspAttach', {
     callback = function(opts)
         local client = vim.lsp.get_client_by_id(opts.data.client_id)
 
-        if not client then
-            return
-        end
-
         if client.server_capabilities.documentFormattingProvider then
             local modes = { 'n' }
 
-            if client.server_capabilities.documentFormattingProvider then
+            if client.server_capabilities.documentRangeFormattingProvider then
                 table.insert(modes, 'x')
             end
 
             bmap({
                 modes,
-                '<leader>w',
+                'gF',
                 format,
             }, { buffer = opts.buf, silent = false })
         end

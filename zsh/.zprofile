@@ -95,13 +95,14 @@ if [ "$THEME" = "gruvbox" ]; then
 --color=spinner:#D8A657 --color=marker:#D8A657 --color=pointer:#7DAEA3 \
 --color=prompt:#E78A4E --color=info:#89B482 --color=border:#928374 --color=header:#928374"
 else
-    FZF_DEFAULT_OPTS+=" --color=fg:#000000,bg:#ffffff,hl:#ffa500,fg+:#ffffff,bg+:#555555,hl+:#0000ff \
---color=spinner:#ff00ff --color=marker:#00ff00 --color=pointer:#ffa500 \
---color=prompt:#ff0000 --color=info:#00ff00 --color=border:#555555 --color=header:#555555,fg+:#ffffff"
+    FZF_DEFAULT_OPTS+=" --color=fg:#000000,bg:#ffffff,hl:#ffa500,fg+:#000000,bg+:#ffffff,hl+:#ff0000 \
+--color=spinner:#ffa500 --color=marker:#ffa500 --color=pointer:#0000ff \
+--color=prompt:#ff00ff --color=info:#00ffff --color=border:#000000 --color=header:#000000"
 fi
 export FZF_DEFAULT_OPTS
 
 . <(fzf --zsh)
+. <(glab completion -s zsh); compdef _glab glab
 
 fzf-config-widget() {
     file="$(FZF_CTRL_T_COMMAND="fd --type file --hidden . ~/.config | sed 's|$HOME|~|g'" __fzf_select | cut -c2-)"

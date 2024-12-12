@@ -1,5 +1,8 @@
-local function link(from, to)
-    vim.api.nvim_set_hl(0, to, { link = from })
+local function link(from, tos)
+    tos = type(tos) == 'string' and { tos } or tos
+    for _, to in ipairs(tos) do
+        vim.api.nvim_set_hl(0, to, { link = from })
+    end
 end
 
 local function hi(group, highlights, links)
@@ -20,6 +23,7 @@ end
 return {
     light = {
         black = '#000000',
+        grey = '#666666',
         red = '#ff0000',
         green = '#00ff00',
         yellow = '#ffa500',

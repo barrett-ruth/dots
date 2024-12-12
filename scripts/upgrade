@@ -1,16 +1,6 @@
 #!/bin/sh
 
-if [ "$(uname)" = 'Darwin' ]; then
-  brew update
-  brew upgrade
-  brew upgrade --cask
-else
-  sudo pacman -Syyu
-fi
+sudo pacman -Syyu
 
 pnpm add -g pnpm
 pnpm -g update
-
-pip install --upgrade pip
-pkgs="$(pip list --outdated --format=columns | tail -n +3 | cut -d ' ' -f 1)"
-echo "$pkgs" | xargs pip install --upgrade

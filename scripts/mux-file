@@ -7,12 +7,12 @@ extension="${filename##*.}"
 
 case "$extension" in
 c)
-  cmd="gcc $filename"
+  cmd="clang $filename"
   run='./a.out'
   clean='rm -f a.out'
   ;;
 cpp | cc)
-  cmd='g++'
+  cmd='clang++'
   [ -f compile_flags.txt ] && cmd="$cmd $(cat compile_flags.txt)"
   cmd="$cmd $filename"
   run='./a.out'

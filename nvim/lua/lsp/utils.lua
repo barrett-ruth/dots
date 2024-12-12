@@ -62,8 +62,12 @@ function M.on_attach(client, bufnr)
 end
 
 function M.prepare_lsp_settings(user_settings)
+    user_settings = user_settings or {}
     local settings = {}
 
+    -- local ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
+    -- settings.capabilities = ok and cmp_nvim_lsp.default_capabilities()
+    --     or vim.lsp.protocol.make_client_capabilities()
     settings.capabilities = require('cmp_nvim_lsp').default_capabilities()
     settings.capabilities.offsetEncoding = { 'utf-16' }
     settings.capabilities.textDocument.completion.completionItem.snippetSupport =

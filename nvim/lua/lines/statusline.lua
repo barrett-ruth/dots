@@ -11,14 +11,15 @@ local file = {
     end,
 }
 
-local nvim_navic = require('nvim-navic')
+local ok, nvim_navic = pcall(require, 'nvim-navic')
 
 local navic = {
     value = function()
         local bufnr = vim.api.nvim_get_current_buf()
 
         return (
-            nvim_navic.is_available(bufnr)
+            ok
+            and nvim_navic.is_available(bufnr)
             and not require('utils').empty(nvim_navic.get_location())
         )
                 and nvim_navic.get_location()

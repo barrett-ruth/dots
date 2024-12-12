@@ -4,20 +4,14 @@ randr="$(xrandr | rg ' connected ')"
 one="$(echo "$randr" | head -n 1)"
 two="$(echo "$randr" | tail -n 1)"
 mons="$(echo "$randr" | wc -l)"
-case "$two" in
-*None*)
-  mons=1
-  ;;
-esac
-
 wpdir="$HOME"/img/wp
 
 [ "$1" ] && bgone="$1" || bgone="$(fd . "$wpdir"/one --type file | shuf -n 1)"
-cmd="feh --no-fehbg --bg-scale $bgone"
+cmd="feh --no-fehbg --bg-fill $bgone"
 
 if [ "$mons" = 2 ]; then
   [ "$2" ] && bgtwo="$2" || bgtwo="$(fd . "$wpdir"/two --type file | shuf -n 1)"
-  cmd="$cmd --bg-scale $bgtwo"
+  cmd="$cmd --bg-fill $bgtwo"
 fi
 
 eval "$cmd"
