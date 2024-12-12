@@ -70,7 +70,6 @@ au('TextYankPost', {
 local function format()
     vim.lsp.buf.format({
         filter = function(c)
-            vim.print(c)
             return not vim.tbl_contains({
                 'cssls', -- prettier
                 'html', -- prettier
