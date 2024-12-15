@@ -65,10 +65,7 @@ function M.prepare_lsp_settings(user_settings)
     user_settings = user_settings or {}
     local settings = {}
 
-    -- local ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
-    -- settings.capabilities = ok and cmp_nvim_lsp.default_capabilities()
-    --     or vim.lsp.protocol.make_client_capabilities()
-    settings.capabilities = require('cmp_nvim_lsp').default_capabilities()
+    settings.capabilities = vim.lsp.protocol.make_client_capabilities()
     settings.capabilities.offsetEncoding = { 'utf-16' }
     settings.capabilities.textDocument.completion.completionItem.snippetSupport =
         false
@@ -83,6 +80,12 @@ function M.prepare_lsp_settings(user_settings)
         end
 
         M.on_attach(...)
+    end
+
+    local ok, blink = pcall(require, 'blink.cmp')
+    if ok then
+        settings.capabilities =
+            blink.get_lsp_capabilities(settings.capabilities)
     end
 
     return settings

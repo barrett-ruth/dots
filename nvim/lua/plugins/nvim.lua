@@ -170,8 +170,8 @@ return {
     {
         'laytan/cloak.nvim',
         config = true,
-        event = 'BufRead .env*',
         keys = { { '<leader>c', '<cmd>CloakToggle<cr>' } },
+        event = 'VeryLazy'
     },
     {
         'maxmellon/vim-jsx-pretty',

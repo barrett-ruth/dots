@@ -1,7 +1,60 @@
 local lsp_utils = require('lsp.utils')
 
 return {
-    { 'folke/neodev.nvim', ft = 'lua' },
+    {
+        'saghen/blink.cmp',
+        lazy = false,
+        build = 'cargo build --release',
+        dependencies = { 'folke/lazydev.nvim', ft = 'lua' },
+        opts = {
+            enabled = function()
+                return vim.bo.buftype ~= 'prompt' and vim.b.completion ~= false
+            end,
+            keymap = {
+                ['<c-p>'] = { 'select_prev', 'fallback' },
+                ['<c-n>'] = { 'select_next', 'fallback' },
+                ['<c-e>'] = { 'hide', 'fallback' },
+                ['<c-y>'] = {
+                    function(cmp)
+                        return cmp.snippet_active() and cmp.accept()
+                            or cmp.select_and_accept()
+                    end,
+                    'snippet_forward',
+                    'fallback',
+                },
+                ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
+                ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
+            },
+            completion = {
+                menu = {
+                    auto_show = true,
+                    draw = { columns = { { 'label', 'label_description' } } },
+                },
+                documentation = {
+                    auto_show = true,
+                    window = { border = 'single' },
+                },
+            },
+            sources = {
+                default = {
+                    'lazydev',
+                    'lsp',
+                    'path',
+                    'snippets',
+                    'buffer',
+                },
+                cmdline = {},
+                providers = {
+                    lazydev = {
+                        name = 'LazyDev',
+                        fallbacks = { 'lsp' },
+                        module = 'lazydev.integrations.blink',
+                    },
+                },
+            },
+        },
+        opts_extend = { 'sources.default' },
+    },
     {
         'nvimtools/none-ls.nvim',
         config = function()
@@ -27,13 +80,11 @@ return {
                 'lua_ls',
                 'pylsp',
             }) do
-                if vim.fn.executable(server) == 1 then
-                    local ok, settings =
-                        pcall(require, ('lsp.servers.%s'):format(server))
-                    lspconfig[server].setup(
-                        lsp_utils.prepare_lsp_settings(ok and settings or {})
-                    )
-                end
+                local ok, settings =
+                    pcall(require, ('lsp.servers.%s'):format(server))
+                lspconfig[server].setup(
+                    lsp_utils.prepare_lsp_settings(ok and settings or {})
+                )
             end
         end,
         dependencies = { 'b0o/SchemaStore.nvim' },
