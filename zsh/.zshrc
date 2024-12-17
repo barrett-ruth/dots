@@ -56,6 +56,8 @@ __set_git() {
       br="${sb##* }"
   fi
 
+  [[ -n "$up_down" ]] && up_down=" $up_down"
+
   PS1+="%F{magenta}$dirty$br$us$up_down%f "
 }
 

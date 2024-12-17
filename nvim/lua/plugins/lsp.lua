@@ -11,23 +11,20 @@ return {
                 return vim.bo.buftype ~= 'prompt' and vim.b.completion ~= false
             end,
             keymap = {
-                ['<c-p>'] = { 'select_prev', 'fallback' },
-                ['<c-n>'] = { 'select_next', 'fallback' },
-                ['<c-e>'] = { 'hide', 'fallback' },
+                ['<c-p>'] = { 'select_prev' },
+                ['<c-n>'] = { 'show', 'select_next' },
+                ['<c-space>'] = {},
                 ['<c-y>'] = {
                     function(cmp)
                         return cmp.snippet_active() and cmp.accept()
                             or cmp.select_and_accept()
                     end,
                     'snippet_forward',
-                    'fallback',
                 },
-                ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
-                ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
             },
             completion = {
                 menu = {
-                    auto_show = true,
+                    auto_show = false,
                     draw = { columns = { { 'label', 'label_description' } } },
                 },
                 documentation = {
@@ -47,8 +44,8 @@ return {
                 providers = {
                     lazydev = {
                         name = 'LazyDev',
-                        fallbacks = { 'lsp' },
                         module = 'lazydev.integrations.blink',
+                        score_offset = 100,
                     },
                 },
             },
@@ -108,7 +105,6 @@ return {
             },
             'nvim-lua/plenary.nvim',
             'neovim/nvim-lspconfig',
-            'hrsh7th/cmp-nvim-lsp',
         },
         event = {
             'BufReadPre *.js,*.jsx,*.ts,*.tsx',

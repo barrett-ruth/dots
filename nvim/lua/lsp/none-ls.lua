@@ -1,6 +1,6 @@
 local on_attach = require('lsp.utils').on_attach
 
-local null_ls = require('null-ls')
+local null_ls, logger = require('null-ls'), require('null-ls.logger')
 local builtins = null_ls.builtins
 local code_actions, diagnostics, formatting, hover =
     builtins.code_actions,
@@ -8,7 +8,20 @@ local code_actions, diagnostics, formatting, hover =
     builtins.formatting,
     builtins.hover
 
+local function check_formatter_exit_code(code, stderr)
+    local success = code <= 0
+
+    if not success then
+        vim.schedule(function()
+            logger:warn(('failed to run formatter: %s'):format(stderr))
+        end)
+    end
+
+    return success
+end
+
 null_ls.setup({
+    border = 'single',
     sources = {
         require('none-ls.code_actions.eslint_d'),
         code_actions.gitrebase,
@@ -36,11 +49,21 @@ null_ls.setup({
         diagnostics.selene,
         diagnostics.zsh,
 
-        formatting.buf,
-        formatting.cbfmt,
-        formatting.cmake_format,
-        require('none-ls.formatting.eslint_d'),
+        formatting.buf.with({
+            check_exit_code = check_formatter_exit_code,
+        }),
+        formatting.cbfmt.with({
+            check_exit_code = check_formatter_exit_code,
+        }),
+        formatting.cmake_format.with({
+            check_exit_code = check_formatter_exit_code,
+        }),
+        require('none-ls.formatting.eslint_d').with({
+
+            check_exit_code = check_formatter_exit_code,
+        }),
         formatting.prettierd.with({
+            check_exit_code = check_formatter_exit_code,
             env = {
                 XDG_RUNTIME_DIR = vim.env.XDG_RUNTIME_DIR
                     or (vim.env.XDG_DATA_HOME .. '/prettierd'),
@@ -60,11 +83,15 @@ null_ls.setup({
                 'yaml',
             },
         }),
-        formatting.shfmt.with({ extra_args = { '-i', '2' } }),
+        formatting.shfmt.with({
+            extra_args = { '-i', '2' },
+            check_exit_code = check_formatter_exit_code,
+        }),
         formatting.stylua.with({
             condition = function(utils)
                 return utils.root_has_file({ 'stylua.toml', '.stylua.toml' })
             end,
+            check_exit_code = check_formatter_exit_code,
         }),
 
         hover.dictionary,

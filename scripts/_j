@@ -2,6 +2,7 @@
 
 case "$1" in
     -) cd - >/dev/null && return;;
+    auto) cd ~/dev/cavauto;;
     '') cd ~;;
     ip) cd ~/dev/swe-interview-prep;;
     dl) cd ~/dl;;

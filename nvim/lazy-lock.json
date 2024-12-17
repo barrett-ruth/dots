@@ -1,9 +1,8 @@
 {
   "LuaSnip": { "branch": "master", "commit": "0f7bbce41ea152a94d12aea286f2ce98e63c0f58" },
   "SchemaStore.nvim": { "branch": "main", "commit": "f8c2a0f5d51b800ea4625808e243d9e8f7c5e1df" },
-  "blink.cmp": { "branch": "main", "commit": "cfd1b7f1b24ed77049d978c0a8813097a6e3acc7" },
+  "blink.cmp": { "branch": "normalize-keymaps", "commit": "21c24d0e25959eb4e2aef2a2ed4013aca113a7dc" },
   "cloak.nvim": { "branch": "main", "commit": "648aca6d33ec011dc3166e7af3b38820d01a71e4" },
-  "cmp-nvim-lsp": { "branch": "main", "commit": "39e2eda76828d88b773cc27a3f61d2ad782c922d" },
   "format-ts-errors.nvim": { "branch": "main", "commit": "ffc683fa37d4d5dad7b3a1a2d01bee4f264ee970" },
   "fzf-lua": { "branch": "highlight-popup", "commit": "d07dd3d84b463b0943495c74b5da6e38f334ae24" },
   "gitlinker.nvim": { "branch": "master", "commit": "cc59f732f3d043b626c8702cb725c82e54d35c25" },

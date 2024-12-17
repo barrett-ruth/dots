@@ -1,17 +1,22 @@
-return {
+local config = require('projects')
+
+local default_settings = {
     filetypes = { 'c', 'cpp' },
-    cmd = { "socat", "-", "TCP:localhost:12345" },
-    -- cmd = {
-    --     'clangd',
-    --     '--clang-tidy',
-    --     '-j=4',
-    --     '--log=verbose',
-    --     '--background-index',
-    --     '--completion-style=bundled',
-    --     '--header-insertion=iwyu',
-    --     '--header-insertion-decorators=false',
-    -- },
     on_attach = function()
-        bmap({ 'n', '\\h', vim.cmd.ClangdSwitchSourceHeader })
+        bmap({ 'n', 'gh', vim.cmd.ClangdSwitchSourceHeader })
     end,
+    cmd = {
+        'clangd',
+        '--clang-tidy',
+        '-j=4',
+        '--background-index',
+        '--completion-style=bundled',
+        '--header-insertion=iwyu',
+        '--header-insertion-decorators=false',
+    },
 }
+
+local project_settings = (config.lsp and config.lsp.clangd)
+    and config.lsp.clangd
+
+return vim.tbl_extend('force', default_settings, project_settings or {})

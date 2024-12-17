@@ -109,7 +109,7 @@ link('DiffDelete', 'GitSignsDelete')
 link('Search', 'HighlightUndo')
 
 -- null-ls
-hi('NullLsInfoBorder', { fg = cs.white, bg = cs.black })
+link('NormalFloat', 'NullLsInfoBorder')
 
 -- oil.nvim
 link('Directory', 'OilDir')
