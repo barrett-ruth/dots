@@ -4,4 +4,4 @@ filename=~/img/ss/"$(openssl rand -hex 10)-$(date +"%Y:%m:%d:%H:%M:%S")".jpg
 
 import "$filename"
 
-tesseract "$filename" - 2>/dev/null | xclip -in -sel c
+tesseract -l eng "$filename" 2>/dev/null - | xclip -in -sel c

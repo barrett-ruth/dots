@@ -91,7 +91,7 @@ null_ls.setup({
             condition = function(utils)
                 return utils.root_has_file({ 'stylua.toml', '.stylua.toml' })
             end,
-            check_exit_code = check_formatter_exit_code,
+            -- check_exit_code = check_formatter_exit_code,
         }),
 
         hover.dictionary,
