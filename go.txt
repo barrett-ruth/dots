@@ -1,1 +1,6 @@
+asmfmt
 checkmake
+gofumpt
+goimports
+goimports-reviser
+golines

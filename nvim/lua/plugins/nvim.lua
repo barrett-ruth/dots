@@ -15,11 +15,11 @@ local git_ignored = setmetatable({}, {
         local ret = {}
         if result.code == 0 then
             for line in
-                vim.gsplit(
-                    result.stdout,
-                    '\n',
-                    { plain = true, trimempty = true }
-                )
+            vim.gsplit(
+                result.stdout,
+                '\n',
+                { plain = true, trimempty = true }
+            )
             do
                 line = line:gsub('/$', '')
                 table.insert(ret, line)
@@ -116,7 +116,7 @@ return {
                                 {
                                     ' <- ',
                                     vim.wo.cursorline and 'CursorLine'
-                                        or 'Normal',
+                                    or 'Normal',
                                 },
                             },
                         },
@@ -294,10 +294,10 @@ return {
             },
         },
     },
-    { 'tpope/vim-abolish', event = 'VeryLazy' },
-    { 'tpope/vim-fugitive', cmd = 'Git', ft = 'gitcommit' },
-    { 'tpope/vim-repeat', keys = { '.' } },
-    { 'tpope/vim-sleuth', event = 'BufReadPost' },
+    { 'tpope/vim-abolish',  event = 'VeryLazy' },
+    { 'tpope/vim-fugitive', cmd = 'Git',                       ft = 'gitcommit' },
+    { 'tpope/vim-repeat',   keys = { '.' } },
+    { 'tpope/vim-sleuth',   event = 'BufReadPost' },
     { 'tpope/vim-surround', keys = { 'c', 'd', 'v', 'V', 'y' } },
     {
         'tzachar/highlight-undo.nvim',
@@ -313,8 +313,8 @@ return {
                 '<leader>hq',
                 '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>',
             },
-            { ']h', '<cmd>lua require("harpoon.ui").nav_next()<cr>' },
-            { '[h', '<cmd>lua require("harpoon.ui").nav_prev()<cr>' },
+            { ']h',    '<cmd>lua require("harpoon.ui").nav_next()<cr>' },
+            { '[h',    '<cmd>lua require("harpoon.ui").nav_prev()<cr>' },
             { '<c-h>', '<cmd>lua require("harpoon.ui").nav_file(1)<cr>' },
             { '<c-j>', '<cmd>lua require("harpoon.ui").nav_file(2)<cr>' },
             { '<c-k>', '<cmd>lua require("harpoon.ui").nav_file(3)<cr>' },

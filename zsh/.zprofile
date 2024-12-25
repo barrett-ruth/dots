@@ -61,6 +61,9 @@ export PYENV_ROOT="$XDG_DATA_HOME"/pyenv
 prepend_path "$PYENV_ROOT"/bin
 eval "$(pyenv init -)"
 
+export OPAMROOT="$XDG_DATA_HOME"/opam
+eval "$(opam env)"
+
 export SCRIPTS="$HOME"/.local/bin/scripts
 append_path "$SCRIPTS"
 
