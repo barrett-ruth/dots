@@ -1,0 +1,7 @@
+a.cc: In function ‘int main()’:
+a.cc:4:14: error: expected ‘;’ before ‘}’ token
+    4 |   printf("e")
+      |              ^
+      |              ;
+    5 | }
+      | ~             

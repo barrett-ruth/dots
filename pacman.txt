@@ -1,4 +1,4 @@
-aws-cli 1.35.2-2
+aws-cli 1.36.22-1
 base 3-2
 bash 5.2.037-1
 brightnessctl 0.5.1-3
@@ -9,13 +9,13 @@ dash 0.5.12-1
 debugedit 5.1-1
 dhcpcd 10.1.0-1
 discord 0.0.78-1
-dkms 3.1.3-1
+dkms 3.1.4-1
 docker 1:27.3.1-1
 docker-compose 2.32.1-1
 dosfstools 4.2-5
 dunst 1.12.1-1
 efibootmgr 18-3
-eza 0.20.13-1
+eza 0.20.14-1
 fakeroot 1.36.2-1
 fd 10.2.0-1
 feh 3.10.3-1
@@ -32,9 +32,9 @@ jq 1.7.1-2
 libnotify 0.8.3-1
 libxft 2.3.8-2
 libxinerama 1.1.5-2
-linux 6.12.6.arch1-1
+linux 6.12.7.arch1-1
 linux-firmware 20241210.b00a7f7e-1
-linux-headers 6.12.6.arch1-1
+linux-headers 6.12.7.arch1-1
 lua-language-server 3.13.5-1
 luarocks 3.11.1-2
 make 4.4.1-2
@@ -82,4 +82,5 @@ xorg-xrandr 1.5.3-1
 xorg-xrdb 1.2.2-2
 xorg-xset 1.2.5-2
 xss-lock 0.3.0.r27.g0c562bf-1
+yq 3.4.3-2
 zsh 5.9-5

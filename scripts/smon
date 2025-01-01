@@ -11,6 +11,7 @@ case "$two" in
   ;;
 esac
 
+xrandr --auto
 xrandr --output "$one" --primary --mode 1920x1200 --scale 1x1 --set TearFree on --dpi 161.73
 
 [ -z "$two" ] && exit

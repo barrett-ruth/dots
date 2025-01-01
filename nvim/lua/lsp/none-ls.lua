@@ -29,7 +29,6 @@ null_ls.setup({
 
         diagnostics.buf,
         diagnostics.checkmake,
-        diagnostics.cmake_lint,
         require('none-ls.diagnostics.cpplint').with({
             extra_args = {
                 '--filter',

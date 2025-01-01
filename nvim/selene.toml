@@ -1,5 +1,7 @@
 std = "vim"
 
+exclude = [".luacheckrc"]
+
 # lazy.nvim configurations
 [rules]
 mixed_table = "allow"

@@ -45,5 +45,5 @@ for key, keymap in pairs({ b = 'b', q = 'c', l = 'l' }) do
     map({ 'n', (']%s'):format(key), ('<cmd>%snext<cr>'):format(keymap) })
 end
 
-map({ 'n', '<leader>iw', '<cmd>se wrap!' })
-map({ 'n', '<leader>is', '<cmd>se spell!' })
+map({ 'n', '<leader>iw', '<cmd>se wrap!<cr>' })
+map({ 'n', '<leader>is', '<cmd>se spell!<cr>' })
