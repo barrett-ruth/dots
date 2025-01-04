@@ -27,7 +27,8 @@ export MANPAGER='nvim +Man!'
 export SAVEHIST=2000
 export TERMINFO="$XDG_DATA_HOME"/terminfo
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
-
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
+# export GDK_SCALE=2
 
 function prepend_path() {
     [[ "$PATH" == *"$1"* ]] && return

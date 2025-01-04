@@ -17,7 +17,7 @@ xrandr --output "$one" --primary --mode 1920x1200 --scale 1x1 --set TearFree on 
 [ -z "$two" ] && exit
 
 # Vertically centered horizontal monitor above
-xrandr --output "$one" --pos 960x2160 --output "$two" --mode 2560x1440 --scale 1.5x1.5 --pos 0x0
+xrandr --output "$one" --primary --mode 1920x2100 --set TearFree on --dpi 161.73 --output "$two" --above "$one" --mode 2560x1440 --scale 1.5x1.5 --set TearFree on --dpi 190
 
 # Vertically oriented monitor to the left
 # xrandr --output "$one" --pos 2160x0 --output "$two" --mode 2560x1440 --scale 1.5x1.5 --pos 0x0
