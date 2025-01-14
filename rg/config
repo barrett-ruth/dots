@@ -11,3 +11,5 @@
 --glob=!venv/
 --glob=!pyenv/
 --ignore-file=/home/barrett/.config/git/ignore
+--no-messages
+--no-follow

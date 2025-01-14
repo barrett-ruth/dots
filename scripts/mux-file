@@ -7,7 +7,7 @@ extension="${filename##*.}"
 
 case "$extension" in
 c)
-  cmd="clang $filename"
+  cmd="gcc $filename"
   run='./a.out'
   clean='rm -f a.out'
   ;;

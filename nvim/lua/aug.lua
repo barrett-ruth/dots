@@ -8,11 +8,6 @@ au('BufEnter', {
     group = aug,
 })
 
-au('VimResized', {
-    command = 'wincmd =',
-    group = aug,
-})
-
 au('TermOpen', {
     command = 'startinsert | setl nonumber norelativenumber statuscolumn=',
     group = aug,
