@@ -1,2 +1,2 @@
 cpp and splitjoin and {}
-add to statusline if buffer not saved in red
+fix the venv source (cd to tcf, it doesn't update)
