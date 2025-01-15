@@ -18,11 +18,11 @@ local navic = {
         local bufnr = vim.api.nvim_get_current_buf()
 
         return (
-            ok
-            and nvim_navic.is_available(bufnr)
-            and not require('utils').empty(nvim_navic.get_location())
-        )
-                and nvim_navic.get_location()
+                ok
+                and nvim_navic.is_available(bufnr)
+                and not require('utils').empty(nvim_navic.get_location())
+            )
+            and nvim_navic.get_location()
             or ''
     end,
 }
@@ -33,6 +33,12 @@ local git = {
     end,
     condition = function()
         return not empty(vim.b.gitsigns_head)
+    end,
+}
+
+local modified = {
+    value = function()
+        return vim.api.nvim_get_option_value('modified', { buf = 0 }) and '[w]' or ''
     end,
 }
 
@@ -90,6 +96,7 @@ local statusline = {
         [1] = git,
         [2] = file,
         [3] = navic,
+        [4] = modified,
     },
     right = {
         [1] = search,

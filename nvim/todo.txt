@@ -1,4 +1,2 @@
 cpp and splitjoin and {}
 add to statusline if buffer not saved in red
-codeforces pragmas
-fix print overload operator

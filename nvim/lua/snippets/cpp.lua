@@ -25,7 +25,7 @@ const __m128i KEY2{(i64)rd(), (i64)rd()};
 
 template <class T, class D = void> struct custom_hash {};
 
-template <class T> inline void hash_combine(u64 &seed, const T &v) {
+template <class T> inline void hash_combine(u64 &seed, T const &v) {
   custom_hash<T> hasher;
   seed ^= hasher(v) + 0x9e3779b97f4a7c15 + (seed << 12) + (seed >> 4);
 };
@@ -51,7 +51,7 @@ struct custom_hash<T,
 
 template <class T>
 struct custom_hash<T, std::void_t<decltype(std::begin(std::declval<T>()))>> {
-  u64 operator()(const T &a) const {
+  u64 operator()(T const &a) const {
     u64 value = FIXED_RANDOM;
     for (auto &x : a)
       hash_combine(value, x);
@@ -69,7 +69,7 @@ template <class... T> struct custom_hash<std::tuple<T...>> {
 };
 
 template <class T, class U> struct custom_hash<std::pair<T, U>> {
-  u64 operator()(const std::pair<T, U> &a) const {
+  u64 operator()(std::pair<T, U> const &a) const {
     u64 value = FIXED_RANDOM;
     hash_combine(value, a.first);
     hash_combine(value, a.second);
@@ -109,6 +109,7 @@ using rbtree = tree<Key, Value, std::less<Key>, rb_tree_tag,
 #define vec vector
 
 #define all(x) (x).begin(), (x).end()
+#define rall(x) (r).rbegin(), (x).rend()
 #define sz(x) static_cast<int>((x).size())
 
 #ifdef LOCAL

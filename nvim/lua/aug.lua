@@ -13,14 +13,6 @@ au('TermOpen', {
     group = aug,
 })
 
-au({ 'FileType' }, {
-    callback = function(e)
-        local cs = vim.bo[e.buf].commentstring
-        vim.bo[e.buf].commentstring = cs:gsub('(%S)%%s', '%1 %%s')
-            :gsub('%%s(%S)', '%%s %1')
-    end,
-})
-
 au('ColorScheme', {
     pattern = '*',
     callback = function()
@@ -60,6 +52,13 @@ au('TextYankPost', {
         vim.highlight.on_yank({ higroup = 'Visual', timeout = 300 })
     end,
     group = aug,
+})
+
+au({ 'FocusLost', 'BufLeave', 'VimLeave' }, {
+    pattern = '*',
+    callback = function()
+        vim.cmd('silent! wall')
+    end
 })
 
 local function format()
