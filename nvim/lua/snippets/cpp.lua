@@ -1,14 +1,25 @@
-local function read_file(relative_path)
+local cppsnippets = {}
+
+local Path = require('plenary.path')
+local cpsnippets =
+    Path:new(debug.getinfo(1, 'S').source:sub(2)):parent():joinpath('cp')
+
+local function readlines(file, absolute)
     return vim.fn.readfile(
-        require('plenary.path')
-        :new(debug.getinfo(1, 'S').source:sub(2))
-        :parent()
-        :joinpath(relative_path)
-        :absolute()
+        not absolute and cpsnippets:joinpath(file):absolute() or file
     )
 end
 
-return {
+require('plenary.scandir').scan_dir(tostring(cpsnippets), {
+    on_insert = function(file)
+        table.insert(
+            cppsnippets,
+            s(vim.fn.fnamemodify(file, ':t:r'), t(readlines(file, true)))
+        )
+    end,
+})
+
+for _, snippet in ipairs({
     s('in', fmt('#include {}', { i(1) })),
     s('main', fmt('#include <iostream>\n\nint main() {{\n\t{}\n}}', { i(1) })),
     s('pr', fmt('std::cout << {}', { i(1) })),
@@ -35,7 +46,7 @@ int main() {{
   return 0;
 }}]],
             {
-                t(read_file('cp/template.cc')),
+                t(readlines('template.cc')),
                 f(function()
                     return vim.fn.expand('%:t:r')
                 end),
@@ -43,7 +54,6 @@ int main() {{
             }
         )
     ),
-    s('st', t(read_file('cp/sparse_table.cc'))),
     s(
         'cf',
         fmt(
@@ -65,7 +75,11 @@ int main() {{
 
   return 0;
 }}]],
-            { t(read_file('cp/template.cc')), i(1) }
+            { t(readlines('template.cc')), i(1) }
         )
     ),
-}
+}) do
+    table.insert(cppsnippets, snippet)
+end
+
+return cppsnippets

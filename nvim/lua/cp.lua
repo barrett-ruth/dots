@@ -19,6 +19,9 @@ local compile_flags = [[-std=c++20
 -Wshadow
 -DLOCAL]]
 
+local clang_format = [[BasedOnStyle: Google
+AllowShortFunctionsOnASingleLine: Empty]]
+
 local types = { 'usaco', 'cf' }
 
 vim.api.nvim_create_user_command('CP', function(opts)
@@ -33,12 +36,18 @@ vim.api.nvim_create_user_command('CP', function(opts)
         return
     end
 
-    -- Update compile flags
+    -- Update compile flags & format config
     -- Do this first so LSP reads & configures
-    vim.fn.system(
-        ('test -f compile_flags.txt || echo "%s" >compile_flags.txt'):format(
-            compile_flags
-        )
+    vim.fn.jobstart(
+        ('test -f compile_flags.txt || echo "%s" >compile_flags.txt; test -f .clang-format || echo "%s" >.clang-format'):format(
+            compile_flags,
+            clang_format
+        ),
+        {
+            on_exit = function()
+                vim.cmd.LspRestart()
+            end,
+        }
     )
 
     -- vim.diagnostic.enable(false)
@@ -71,26 +80,18 @@ vim.api.nvim_create_user_command('CP', function(opts)
             vim.lsp.buf.format({ async = true })
 
             -- Compile
-            vim.system(
-                { 'g++', '@compile_flags.txt', filename, '-o', exename },
-                {},
-                function(obj)
-                    -- Send stderr to output on failure
-                    if obj.code ~= 0 then
-                        vim.schedule(function()
-                            vim.api.nvim_buf_set_lines(
-                                output_buf,
-                                0,
-                                -1,
-                                true,
-                                vim.split(
-                                    obj.stderr,
-                                    '\n',
-                                    { trimempty = true }
-                                )
-                            )
-                        end)
-                    else
+            vim.fn.jobstart(
+                ('test -f %s && echo >%s; g++ @compile_flags.txt %s -o %s 2>%s'):format(
+                    output,
+                    output,
+                    filename,
+                    exename,
+                    output,
+                    output
+                ),
+                {
+                    on_exit = function()
+                        -- Send stderr to output on failure
                         -- Configure timer
                         local job_stopped = false
                         local timer = vim.loop.new_timer()
@@ -98,12 +99,13 @@ vim.api.nvim_create_user_command('CP', function(opts)
                         -- Run the program on success
                         vim.schedule(function()
                             local job_id = vim.fn.jobstart(
-                                ('%s < %s > %s && rm %s'):format(
+                                ('%s < %s >>%s 2>&1 && rm %s'):format(
                                     exename,
                                     input,
                                     output,
                                     exename
-                                ),({
+                                ),
+                                {
                                     on_exit = function()
                                         if not job_stopped then
                                             timer:stop()
@@ -116,12 +118,14 @@ vim.api.nvim_create_user_command('CP', function(opts)
                                             )
                                         end
                                     end,
-                                })
+                                }
                             )
 
                             -- Enforce timeout (2s)
                             timer:start(2000, 0, function()
                                 vim.schedule(function()
+                                    local line_count =
+                                        vim.api.nvim_buf_line_count(output_buf)
                                     if
                                         vim.fn.jobwait({ job_id }, 0)[1] == -1
                                     then
@@ -129,8 +133,8 @@ vim.api.nvim_create_user_command('CP', function(opts)
                                         vim.fn.jobstop(job_id)
                                         vim.api.nvim_buf_set_lines(
                                             output_buf,
-                                            0,
-                                            -1,
+                                            line_count,
+                                            line_count,
                                             true,
                                             { 'TIMEOUT' }
                                         )
@@ -141,8 +145,8 @@ vim.api.nvim_create_user_command('CP', function(opts)
                                 end)
                             end)
                         end)
-                    end
-                end
+                    end,
+                }
             )
         end,
     })
