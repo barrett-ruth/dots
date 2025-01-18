@@ -72,6 +72,17 @@ T MIN() {
 #define all(x) (x).begin(), (x).end()
 #define rall(x) (r).rbegin(), (x).rend()
 #define sz(x) static_cast<int>((x).size())
+#define FOR(a, b, c) for (int a = b; a < c; ++a)
+
+mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
+#define randint(a, b) uniform_int_distribution(a, b)(rng)
+
+void YES() {
+  cout << "YES\n";
+}
+void NO() {
+  cout << "NO\n";
+}
 
 #ifdef LOCAL
 #define dbg(x) cout << __LINE__ << ": " << #x << "=<" << (x) << ">\n";

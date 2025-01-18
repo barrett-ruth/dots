@@ -1,13 +1,5 @@
 return {
     {
-        'CKolkey/ts-node-action',
-        config = true,
-        dependencies = 'nvim-treesitter/nvim-treesitter',
-        keys = {
-            { 'gS', '<cmd>lua require("ts-node-action").node_action()<cr>' },
-        },
-    },
-    {
         'David-Kunz/treesitter-unit',
         dependencies = 'nvim-treesitter/nvim-treesitter',
         keys = {
@@ -149,5 +141,12 @@ return {
         'nvim-treesitter/playground',
         dependencies = 'nvim-treesitter/nvim-treesitter',
         keys = { { '<leader>t', '<cmd>TSPlaygroundToggle<cr>' } },
+    },
+    {
+        'Wansmer/treesj',
+        config = true,
+        keys = {
+            { 'gS', '<cmd>lua require("treesj").toggle()<cr>' },
+        },
     },
 }
