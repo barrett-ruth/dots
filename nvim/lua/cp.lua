@@ -39,8 +39,7 @@ vim.api.nvim_create_user_command('CP', function(opts)
     -- Update compile flags & format config
     -- Do this first so LSP reads & configures
     vim.fn.jobstart(
-        ('test -f compile_flags.txt || echo "%s" >compile_flags.txt; test -f .clang-format || echo "%s" >.clang-format')
-        :format(
+        ('test -f compile_flags.txt || echo "%s" >compile_flags.txt; test -f .clang-format || echo "%s" >.clang-format'):format(
             compile_flags,
             clang_format
         ),
@@ -78,9 +77,14 @@ vim.api.nvim_create_user_command('CP', function(opts)
     -- Configure keymaps
     local function move_problem(delta)
         local base_filename = vim.fn.fnamemodify(base_filepath, ':t')
-        local delta_filename = (
-            string.char(base_filename:byte() + delta) .. '.cc'
-        )
+        local next_filename_byte = base_filename:byte() + delta
+        if
+            next_filename_byte < ('a'):byte()
+            or next_filename_byte > ('z'):byte()
+        then
+            return
+        end
+        local delta_filename = (string.char(next_filename_byte) .. '.cc')
         vim.cmd.wall()
         vim.cmd.bwipeout(input_buf)
         vim.cmd.bwipeout(output_buf)
