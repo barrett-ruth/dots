@@ -18,6 +18,7 @@ alias pe='printenv'
 
 # Misc
 mkcd() {
+    [ "$1" ] || return
     mkdir -p "$@"
     cd "$@"
 }
