@@ -8,20 +8,19 @@
 using namespace std;
 
 template <typename... Args>
-void print(std::string const &str, Args &&...args) {
-  std::cout << std::vformat(
-      str,
-      // make_format_args binds arguments to const
-      str, std::make_format_args(static_cast<Args const &>(args)...));
+void dbg(std::string const &str, Args &&...args) {
+  std::cout << std::vformat(str,
+                            // make_format_args binds arguments to const
+                            std::make_format_args(args...));
 }
 
 template <typename T>
-void print(T const &t) {
+void dbg(T const &t) {
   std::cout << t;
 }
 
 template <std::ranges::range T>
-void print(T const &t) {
+void dbgln(T const &t) {
   if constexpr (std::is_convertible_v<T, char const *>) {
     std::cout << t << '\n';
   } else {
@@ -33,19 +32,14 @@ void print(T const &t) {
 }
 
 template <typename... Args>
-void println(std::string const &str, Args &&...args) {
+void dbgln(std::string const &str, Args &&...args) {
   print(str, std::forward<Args>(args)...);
   cout << '\n';
 }
 
 template <typename T>
-void println(T const &t) {
-  print("{}\n", t);
-}
-
-template <std::ranges::range T>
-void println(T const &t) {
-  cout << t << '\n';
+void dbgln(T const &t) {
+  dbg("{}\n", t);
 }
 
 void println() {
@@ -53,14 +47,10 @@ void println() {
 }
 
 template <typename T>
-T MAX() {
-  return std::numeric_limits<T>::max();
-}
+constexpr auto MIN = std::numeric_limits<T>::min();
 
 template <typename T>
-T MIN() {
-  return std::numeric_limits<T>::min();
-}
+constexpr auto MAX = std::numeric_limits<T>::min();
 
 #define ff first
 #define ss second
@@ -74,20 +64,13 @@ T MIN() {
 #define sz(x) static_cast<int>((x).size())
 #define FOR(a, b, c) for (int a = b; a < c; ++a)
 
-mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
-#define randint(a, b) uniform_int_distribution(a, b)(rng)
+std::random_device rd;
+std::mt19937 gen(rd());
 
 void YES() {
   cout << "YES\n";
 }
+
 void NO() {
   cout << "NO\n";
 }
-
-#ifdef LOCAL
-#define dbg(x) cout << __LINE__ << ": " << #x << "=<" << (x) << ">\n";
-#else
-#define dbg(x)
-#endif
-
-static constexpr int MOD = 1e9 + 7;
