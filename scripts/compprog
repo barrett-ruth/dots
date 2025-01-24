@@ -1,0 +1,54 @@
+#!/bin/sh
+
+compile_flags='-std=c++20 -Wall -Wextra -Wpedantic -Wshadow'
+debug_flags='-g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-inline'
+
+setup() {
+  test -f compile_flags.txt || echo "$compile_flags" | tr ' ' '\n' >compile_flags.txt
+
+  if [ ! -f .clang-format ]; then
+    echo 'BasedOnStyle: Google' >.clang-format
+    for i in Blocks CaseLabels CompoundRequirement Enums Functions IfStatements Lambdas Loops; do
+      printf 'AllowShort%sOnASingleLine: false\n' "$i" >>.clang-format
+    done
+  fi
+}
+
+run() {
+  file="$1"
+  input="$2"
+  output="$3"
+  exe="$4"
+  shift 4
+  args="$*"
+
+  if [ "$(g++ @compile_flags.txt $args "$file" -o "$exe" 2>"$output")" ]; then
+    return
+  fi
+
+  echo "$exe $input $output"
+  timeout 2s "$exe" <"$input" >>"$output" 2>"$output"
+
+  code=$?
+  if [ $code -eq 124 ]; then
+    echo TIMEOUT >>"$output"
+  elif [ $code -eq 139 ]; then
+    echo SEGFAULT >>"$output"
+  fi
+}
+
+cmd="$1"
+file="$2"
+
+base_name="${file##*/}"
+base_name="${base_name%.*}"
+
+input="${base_name}.in"
+output="${base_name}.out"
+debug_file="${base_name}.debug"
+exe="${base_name}.$cmd"
+[ "${exe##*.}" = debug ] && flags="$debug_flags"
+
+setup "$input" "$output"
+
+run "$file" "$input" "$output" "./$debug_file" "$flags"
