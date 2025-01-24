@@ -92,7 +92,7 @@ function M.setup()
             pattern = input,
             callback = function()
                 vim.cmd.w()
-                vim.fn.jobstart({ 'compprog', 'run', filename }, {
+                vim.fn.jobstart({ 'CP', 'run', filename }, {
                     on_exit = function()
                         vim.cmd.checktime()
                     end,
@@ -103,7 +103,7 @@ function M.setup()
         vim.keymap.set('n', '<leader>w', function()
             vim.cmd.w()
             vim.lsp.buf.format({ async = true })
-            vim.fn.jobstart({ 'compprog', 'run', filename }, {
+            vim.fn.jobstart({ 'CP', 'run', filename }, {
                 on_exit = function()
                     vim.cmd.checktime()
                 end,
@@ -113,7 +113,7 @@ function M.setup()
         vim.keymap.set('n', '<leader>d', function()
             vim.cmd.w()
             vim.lsp.buf.format({ async = true })
-            vim.fn.jobstart({ 'compprog', 'debug', filename }, {
+            vim.fn.jobstart({ 'CP', 'debug', filename }, {
                 on_exit = function()
                     vim.cmd.checktime()
                 end,

@@ -1,8 +1,8 @@
 require('let')
 require('map')
-require('cp')
 require('filetype')
 require('aug')
+
 require('cp').setup()
 
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'

@@ -14,16 +14,11 @@ local file = {
 local ok, nvim_navic = pcall(require, 'nvim-navic')
 
 local navic = {
-    value = function()
-        local bufnr = vim.api.nvim_get_current_buf()
-
-        return (
-                ok
-                and nvim_navic.is_available(bufnr)
-                and not require('utils').empty(nvim_navic.get_location())
-            )
-            and nvim_navic.get_location()
-            or ''
+    value = nvim_navic.get_location,
+    condition = function()
+        return ok
+            and nvim_navic.is_available(vim.api.nvim_get_current_buf())
+            and not require('utils').empty(nvim_navic.get_location())
     end,
 }
 
@@ -38,14 +33,14 @@ local git = {
 
 local modified = {
     value = function()
-        return vim.api.nvim_get_option_value('modified', { buf = 0 }) and '[w]' or ''
+        return vim.api.nvim_get_option_value('modified', { buf = 0 }) and '[w]'
+            or ''
     end,
 }
 
-
 local cp = {
     value = require('cp').render,
-    condition = require('cp').enabled
+    condition = require('cp').enabled,
 }
 
 local search = {
