@@ -9,9 +9,7 @@ using namespace std;
 
 template <typename... Args>
 void dbg(std::string const &str, Args &&...args) {
-  std::cout << std::vformat(str,
-                            // make_format_args binds arguments to const
-                            std::make_format_args(args...));
+  std::cout << std::vformat(str, std::make_format_args(args...));
 }
 
 template <typename T>
@@ -33,7 +31,7 @@ void dbgln(T const &t) {
 
 template <typename... Args>
 void dbgln(std::string const &str, Args &&...args) {
-  print(str, std::forward<Args>(args)...);
+  dbg(str, std::forward<Args>(args)...);
   cout << '\n';
 }
 
@@ -47,10 +45,10 @@ void println() {
 }
 
 template <typename T>
-constexpr auto MIN = std::numeric_limits<T>::min();
+constexpr T MIN = std::numeric_limits<T>::min();
 
 template <typename T>
-constexpr auto MAX = std::numeric_limits<T>::min();
+constexpr T MAX = std::numeric_limits<T>::min();
 
 #define ff first
 #define ss second
@@ -62,7 +60,8 @@ constexpr auto MAX = std::numeric_limits<T>::min();
 #define all(x) (x).begin(), (x).end()
 #define rall(x) (r).rbegin(), (x).rend()
 #define sz(x) static_cast<int>((x).size())
-#define FOR(a, b, c) for (int a = b; a < c; ++a)
+#define FOR(a, b, c) for (int(a) = (b); (a) < (c); ++(a))
+#define ROF(a, b, c) for (int(a) = (b); (a) > (c); --(a))
 
 std::random_device rd;
 std::mt19937 gen(rd());

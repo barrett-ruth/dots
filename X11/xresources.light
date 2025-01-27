@@ -9,20 +9,20 @@ Xft.dpi: 103
 
 ! 8 Normal Colors
 *color0:  #000000    ! black
+*color1:  #b22222    ! red
+*color2:  #228222    ! green
+*color3:  #b8860b    ! yellow
+*color4:  #27408b    ! blue
+*color5:  #8b008b    ! magenta
+*color6:  #00bfff    ! cyan
+*color7:  #ffffff    ! white
+
+! 8 Bright Colors
+*color0:  #555555    ! black
 *color1:  #ff0000    ! red
 *color2:  #00ff00    ! green
-*color3:  #ffa500    ! orange; yellow #ffff00
+*color3:  #ffa500    ! yellow
 *color4:  #0000ff    ! blue
 *color5:  #ff00ff    ! magenta
 *color6:  #00ffff    ! cyan
 *color7:  #ffffff    ! white
-
-! 8 Bright Colors
-*color8:  #555555    ! black (bright)
-*color9:  #ff5555    ! red (bright)
-*color10: #55ff55    ! green (bright)
-*color11: #ffae42    ! orange(bright); yellow (bright) #ffff55
-*color12: #5555ff    ! blue (bright)
-*color13: #ff55ff    ! magenta (bright)
-*color14: #55ffff    ! cyan (bright)
-*color15: #ffffff    ! white (bright)

@@ -9,7 +9,7 @@ hi('Directory', { fg = cs.blue })
 hi('Error', { fg = cs.red })
 hi('ErrorMsg', { bold = true, underline = true, fg = cs.red })
 hi('MoreMsg', { bold = true, fg = cs.yellow }, { 'WarningMsg' })
-hi('MatchParen', { reverse = true })
+hi('MatchParen', { fg = cs.white, bg = cs.grey })
 hi('NormalFloat', { bg = cs.bg }, {
     'LspInfoBorder',
     'FloatBorder',

@@ -15,7 +15,7 @@ docker-compose 2.32.4-1
 dosfstools 4.2-5
 dunst 1.12.1-1
 efibootmgr 18-3
-eza 0.20.15-1
+eza 0.20.18-1
 fakeroot 1.36.2-1
 fd 10.2.0-1
 feh 3.10.3-1
@@ -40,8 +40,8 @@ lua-language-server 3.13.5-1
 luarocks 3.11.1-2
 make 4.4.1-2
 man-db 2.13.0-1
-man-pages 6.9.1-1
-mesa 1:24.3.3-2
+man-pages 6.10-1
+mesa 1:24.3.4-1
 mpv 1:0.39.0-4
 neovim 0.10.3-1
 networkmanager 1.50.2-1
@@ -70,7 +70,7 @@ tk 8.6.16-1
 tmux 3.5_a-1
 ttf-hanazono 20170904-4
 vi 1:070224-6
-vulkan-radeon 1:24.3.3-2
+vulkan-radeon 1:24.3.4-1
 which 2.21-6
 wpa_supplicant 2:2.11-2
 xclip 0.13-6
