@@ -70,7 +70,7 @@ int main() {{
   cin >> t;
 
   while (t--) {{
-      solve();
+    solve();
   }}
 
   return 0;

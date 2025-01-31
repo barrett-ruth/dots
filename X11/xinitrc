@@ -13,8 +13,5 @@ skb &
 sclip &
 (st -e mux) &
 chromium &
-while true; do
-  dwmblocks &
-  dwm
-  continue || exit
-done
+dwmblocks &
+dwm

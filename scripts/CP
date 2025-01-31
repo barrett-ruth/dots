@@ -22,14 +22,15 @@ run() {
   shift 4
   args="$*"
 
-  echo '' >"$output"
+  test -f "$exe" && rm "$exe"
 
-  if [ "$(g++ @compile_flags.txt $args "$file" -o "$exe" 2>>"$output")" ]; then
+  if [ "$(g++ @compile_flags.txt $args "$file" -o "$exe" 2>"$output")" ]; then
     return
   fi
 
-  echo "$exe $input $output"
-  timeout 2s "$exe" <"$input" >>"$output" 2>>"$output"
+  test -f "$exe" || return
+
+  timeout 2s "$exe" <"$input" >"$output"
 
   code=$?
   if [ $code -eq 124 ]; then
@@ -47,7 +48,6 @@ base_name="${base_name%.*}"
 
 input="${base_name}.in"
 output="${base_name}.out"
-debug_file="${base_name}.debug"
 exe="${base_name}.$cmd"
 [ "${exe##*.}" = debug ] && flags="$debug_flags"
 

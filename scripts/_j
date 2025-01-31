@@ -11,6 +11,7 @@ case "$1" in
     dev) cd ~/dev;;
     ds) cd ~/dev/data-structures;;
     site) cd ~/dev/barrettruth.com;;
+    cp) cd ~/dev/cp;;
     cf) cd ~/.config;;
     notes) cd ~/dev/notes;;
     scr) cd "$SCRIPTS";;

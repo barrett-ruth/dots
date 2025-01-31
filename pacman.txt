@@ -8,7 +8,7 @@ cmake 3.31.5-1
 dash 0.5.12-1
 debugedit 5.1-1
 dhcpcd 10.1.0-1
-discord 0.0.81-1
+discord 0.0.82-1
 dkms 3.1.4-1
 docker 1:27.3.1-1
 docker-compose 2.32.4-1
@@ -16,7 +16,7 @@ dosfstools 4.2-5
 dunst 1.12.1-1
 efibootmgr 18-3
 eza 0.20.18-1
-fakeroot 1.36.2-1
+fakeroot 1.37-1
 fd 10.2.0-1
 feh 3.10.3-1
 fzf 0.57.0-1
@@ -43,7 +43,7 @@ man-db 2.13.0-1
 man-pages 6.10-1
 mesa 1:24.3.4-1
 mpv 1:0.39.0-4
-neovim 0.10.3-1
+neovim 0.10.4-1
 networkmanager 1.50.2-1
 ntfs-3g 2022.10.3-1
 ocaml 5.3.0-1
@@ -51,7 +51,7 @@ opam 2.3.0-4
 opendoas 6.8.2-3
 openssh 9.9p1-2
 os-prober 1.81-2
-pass 1.7.4-6
+pass 1.7.4-7
 patch 2.7.6-10
 pkgconf 2.3.0-1
 postgresql 17.2-1
@@ -63,7 +63,7 @@ rsync 3.4.1-1
 rustup 1.27.1-1
 shfmt 3.10.0-1
 socat 1.8.0.2-1
-strace 6.12-1
+strace 6.13-1
 sudo 1.9.16.p2-2
 tesseract-data-eng 2:4.1.0-4
 tk 8.6.16-1
@@ -72,7 +72,7 @@ ttf-hanazono 20170904-4
 vi 1:070224-6
 vulkan-radeon 1:24.3.4-1
 which 2.21-6
-wpa_supplicant 2:2.11-2
+wpa_supplicant 2:2.11-3
 xclip 0.13-6
 xf86-video-amdgpu 23.0.0-2
 xorg-server 21.1.15-1
@@ -84,6 +84,6 @@ xorg-xmodmap 1.0.11-2
 xorg-xrandr 1.5.3-1
 xorg-xrdb 1.2.2-2
 xorg-xset 1.2.5-2
-xss-lock 0.3.0.r27.g0c562bf-1
+xss-lock 0.3.0.r30.gac39fdc-1
 yq 3.4.3-2
 zsh 5.9-5
