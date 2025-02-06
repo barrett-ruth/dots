@@ -37,10 +37,9 @@ function M.setup()
             })
         end
 
+        local code = vim.api.nvim_get_current_buf()
         -- Disable LSP
-        if vim.diagnostic.is_enabled({ bufnr = 0 }) then
-            vim.diagnostic.enable(false, { bufnr = 0 })
-        end
+        vim.diagnostic.enable(false, { bufnr = code })
 
         -- Populate coding buffer
         if vim.api.nvim_buf_get_lines(0, 0, -1, true)[1] == '' then
@@ -81,32 +80,37 @@ function M.setup()
             vim.cmd.CP(type_)
         end
 
-        vim.keymap.set('n', ']]', function()
-            move_problem(1)
-        end, { buffer = true })
-        vim.keymap.set('n', '[[', function()
-            move_problem(-1)
-        end, { buffer = true })
+        for _, buf in ipairs({ code, output_buf, input_buf }) do
+            vim.keymap.set('n', ']]', function()
+                move_problem(1)
+            end, { buffer = buf })
+            vim.keymap.set('n', '[[', function()
+                move_problem(-1)
+            end, { buffer = true })
+        end
+
+        local function on_exit(_, exit_code)
+            vim.cmd.checktime()
+            if exit_code ~= 0 then
+                vim.diagnostic.enable(true, { buf = code })
+            end
+        end
 
         vim.api.nvim_create_autocmd('BufWritePost', {
             pattern = input,
             callback = function()
-                vim.cmd.w()
+                vim.cmd.wall()
                 vim.fn.jobstart({ 'CP', 'run', filename }, {
-                    on_exit = function()
-                        vim.cmd.checktime()
-                    end,
+                    on_exit = on_exit,
                 })
             end,
         })
 
         vim.keymap.set('n', '<leader>w', function()
-            vim.cmd.w()
+            vim.cmd.wall()
             vim.lsp.buf.format({ async = true })
             vim.fn.jobstart({ 'CP', 'run', filename }, {
-                on_exit = function()
-                    vim.cmd.checktime()
-                end,
+                on_exit = on_exit,
             })
         end, { buffer = true })
 
@@ -114,9 +118,7 @@ function M.setup()
             vim.cmd.w()
             vim.lsp.buf.format({ async = true })
             vim.fn.jobstart({ 'CP', 'debug', filename }, {
-                on_exit = function()
-                    vim.cmd.checktime()
-                end,
+                on_exit = on_exit,
             })
         end, { buffer = true })
     end, { nargs = 1 })

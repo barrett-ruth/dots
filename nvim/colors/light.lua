@@ -4,12 +4,11 @@ colors.setup(vim.env.THEME, 'light')
 local hi, link, tshi, cs =
     colors.hi, colors.link, colors.tshi, colors[vim.g.colors_name]
 
-hi('CursorLine', { bg = cs.grey }, { 'ColorColumn', 'Folded', 'Visual' })
+hi('CursorLine', { bg = cs.light_grey }, { 'ColorColumn', 'Folded' })
 hi('Directory', { fg = cs.blue })
 hi('Error', { fg = cs.red })
 hi('ErrorMsg', { bold = true, underline = true, fg = cs.red })
 hi('MoreMsg', { bold = true, fg = cs.yellow }, { 'WarningMsg' })
-hi('MatchParen', { fg = cs.white, bg = cs.grey })
 hi('NormalFloat', { bg = cs.bg }, {
     'LspInfoBorder',
     'FloatBorder',
@@ -21,12 +20,14 @@ hi('CursorLineNr', { fg = cs.black })
 hi(
     'Normal',
     { fg = cs.black, bg = cs.white },
-    { 'Identifier', 'Special', 'StatusLine', 'StatusLineNC' }
+    { 'Identifier', 'StatusLine', 'StatusLineNC' }
 )
+hi('Special', { fg = cs.black, bg = 'none' })
 hi('NonText', { fg = cs.grey }, { 'Whitespace' })
 hi('Question', { fg = cs.blue })
-hi('Search', { reverse = true }, { 'IncSearch' })
-hi('Visual', { reverse = true })
+hi('Search', { reverse = true }, { 'IncSearch', 'Visual', 'MatchParen' })
+hi('Pmenu', { bg = cs.light_grey })
+hi('PmenuSel', {reverse=true})
 
 tshi('Boolean', { fg = cs.blue }, { '@constant.builtin' })
 tshi('Comment', { fg = cs.grey })

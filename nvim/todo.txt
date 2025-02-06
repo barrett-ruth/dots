@@ -1,4 +1,1 @@
 fix the venv source (cd to tcf, it doesn't update)
-not sure if the dwm restore actually works
-2>> in the stderr CP script, not updating the file
-the stderr isn't showing up if there isn't any... redirec tot emp?

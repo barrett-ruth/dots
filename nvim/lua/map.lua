@@ -35,6 +35,21 @@ map({
     end,
 })
 
+for key, cmd in pairs({
+    left = 'vertical resize -10',
+    right = 'vertical resize +10',
+    down = 'resize +10',
+    up = 'resize -10',
+}) do
+    map({
+        'n',
+        ('<%s>'):format(key),
+        function()
+            vim.cmd(cmd)
+        end,
+    })
+end
+
 map({ 'n', 'J', 'mzJ`z' })
 
 map({ 'x', 'p', '"_dp' })

@@ -5,7 +5,7 @@ local function parse_output(proc)
     local ret = {}
     if result.code == 0 then
         for line in
-        vim.gsplit(result.stdout, '\n', { plain = true, trimempty = true })
+            vim.gsplit(result.stdout, '\n', { plain = true, trimempty = true })
         do
             -- Remove trailing slash
             line = line:gsub('/$', '')
@@ -50,6 +50,16 @@ end
 local git_status = new_git_status()
 
 return {
+    {
+        'savq/melange-nvim',
+        config = function()
+            vim.o.background = 'dark'
+            vim.g.melange_enable_font_variants = false
+            vim.cmd.colorscheme('melange')
+        end,
+        event = 'VeryLazy',
+        enabled = false,
+    },
     {
         'barrett-ruth/live-server.nvim',
         build = 'pnpm add -g live-server',
@@ -134,7 +144,7 @@ return {
                                 {
                                     ' <- ',
                                     vim.wo.cursorline and 'CursorLine'
-                                    or 'Normal',
+                                        or 'Normal',
                                 },
                             },
                         },
@@ -329,14 +339,14 @@ return {
             },
         },
     },
-    { 'tpope/vim-abolish',  event = 'VeryLazy' },
+    { 'tpope/vim-abolish', event = 'VeryLazy' },
     {
         'tpope/vim-fugitive',
         cmd = 'Git',
         ft = 'gitcommit',
     },
-    { 'tpope/vim-repeat',   keys = { '.' } },
-    { 'tpope/vim-sleuth',   event = 'BufReadPost' },
+    { 'tpope/vim-repeat', keys = { '.' } },
+    { 'tpope/vim-sleuth', event = 'BufReadPost' },
     { 'tpope/vim-surround', keys = { 'c', 'd', 'v', 'V', 'y' } },
     {
         'tzachar/highlight-undo.nvim',
@@ -352,8 +362,8 @@ return {
                 '<leader>hq',
                 '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>',
             },
-            { ']h',    '<cmd>lua require("harpoon.ui").nav_next()<cr>' },
-            { '[h',    '<cmd>lua require("harpoon.ui").nav_prev()<cr>' },
+            { ']h', '<cmd>lua require("harpoon.ui").nav_next()<cr>' },
+            { '[h', '<cmd>lua require("harpoon.ui").nav_prev()<cr>' },
             { '<c-h>', '<cmd>lua require("harpoon.ui").nav_file(1)<cr>' },
             { '<c-j>', '<cmd>lua require("harpoon.ui").nav_file(2)<cr>' },
             { '<c-k>', '<cmd>lua require("harpoon.ui").nav_file(3)<cr>' },

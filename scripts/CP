@@ -1,10 +1,17 @@
 #!/bin/sh
 
 compile_flags='-std=c++20 -Wall -Wextra -Wpedantic -Wshadow'
+clangd_config="$compile_flags -Wno-unknown-pragmas"
 debug_flags='-g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-inline'
 
 setup() {
   test -f compile_flags.txt || echo "$compile_flags" | tr ' ' '\n' >compile_flags.txt
+  if [ ! -f .clangd ]; then
+    printf 'CompileFlags:\n\tAdd:' >.clangd
+    echo "$clangd_config" | tr ' ' '\n' | while read -r flag; do
+      printf '\n\t\t- %s' "$flag" >>.clangd
+    done
+  fi
 
   if [ ! -f .clang-format ]; then
     echo 'BasedOnStyle: Google' >.clang-format
@@ -24,20 +31,65 @@ run() {
 
   test -f "$exe" && rm "$exe"
 
-  if [ "$(g++ @compile_flags.txt $args "$file" -o "$exe" 2>"$output")" ]; then
-    return
-  fi
-
-  test -f "$exe" || return
-
-  timeout 2s "$exe" <"$input" >"$output"
-
+  g++ @compile_flags.txt $args "$file" -o "$exe" 2>"$output"
   code=$?
-  if [ $code -eq 124 ]; then
-    echo TIMEOUT >>"$output"
-  elif [ $code -eq 139 ]; then
-    echo SEGFAULT >>"$output"
+  if [ $code -gt 0 ]; then
+    printf '\n[code]: %s' $code >>"$output"
+    exit $code
+  else
+    echo '' >"$output"
   fi
+
+  test -f "$exe" || exit 1
+
+  start=$(date '+%s.%N')
+  timeout 2s "$exe" <"$input" >"$output" 2>&1
+  code=$?
+  end=$(date '+%s.%N')
+
+  if [ $code -ge 124 ]; then
+    code=$((code - 124))
+    msg=''
+    case $code in
+    0)
+      code=124
+      msg='TIMEOUT'
+      ;;
+    4)
+      msg='SIGILL'
+      ;;
+    6)
+      msg='SIGABRT'
+      ;;
+    7)
+      msg='SIGBUS'
+      ;;
+    8)
+      msg='SIGFPE'
+      ;;
+    11)
+      msg='SIGSEGV'
+      ;;
+    13)
+      msg='SIGPIPE'
+      ;;
+    15)
+      msg='SIGTERM'
+      ;;
+    esac
+
+    # remove `timeout`'s message
+    [ $code -ne 124 ] && sed -i '$d' "$output"
+
+    test -n "$msg" && printf '\n[code]: %s (%s)' "$code" "$msg" >>"$output"
+  else
+    printf '\n[code]: %s' $code >>"$output"
+  fi
+
+  delta=$(awk "BEGIN {print ($end - $start) * 1000}")
+  printf '\n[time]: %s ms' "$delta" >>"$output"
+
+  exit $code
 }
 
 cmd="$1"

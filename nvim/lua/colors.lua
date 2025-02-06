@@ -33,6 +33,7 @@ return {
         white = '#ffffff',
 
         light_black = '#555555',
+        light_grey = '#ECECEC',
         light_red = '#ff0000',
         light_green = '#00ff00',
         light_yellow = '#ffa500',

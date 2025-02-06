@@ -17,9 +17,9 @@ au('ColorScheme', {
     pattern = '*',
     callback = function()
         vim.o.statusline =
-            [[%{%v:lua.require('lines.statusline').statusline()%}]]
+        [[%{%v:lua.require('lines.statusline').statusline()%}]]
         vim.o.statuscolumn =
-            [[%{%v:lua.require('lines.statuscolumn').statuscolumn()%}]]
+        [[%{%v:lua.require('lines.statuscolumn').statuscolumn()%}]]
     end,
 })
 
@@ -58,16 +58,31 @@ au({ 'FocusLost', 'BufLeave', 'VimLeave' }, {
     pattern = '*',
     callback = function()
         vim.cmd('silent! wall')
-    end
+    end,
+    group = aug,
+})
+
+au({ 'VimEnter', 'BufWinEnter', 'BufEnter' }, {
+    callback = function()
+        vim.api.nvim_set_option_value('cursorline', true, { scope = 'local' })
+    end,
+    group = aug,
+})
+
+au('WinLeave', {
+    callback = function()
+        vim.api.nvim_set_option_value('cursorline', false, { scope = 'local' })
+    end,
+    group = aug,
 })
 
 local function format()
     vim.lsp.buf.format({
         filter = function(c)
             return not vim.tbl_contains({
-                'cssls', -- prettier
-                'html', -- prettier
-                'jsonls', -- prettier
+                'cssls',            -- prettier
+                'html',             -- prettier
+                'jsonls',           -- prettier
                 'typescript-tools', -- prettier
             }, c.name)
         end,
@@ -79,10 +94,19 @@ au('LspAttach', {
     callback = function(opts)
         local client = vim.lsp.get_client_by_id(opts.data.client_id)
 
-        if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_formatting) then
+        if
+            client
+            and client:supports_method(
+                vim.lsp.protocol.Methods.textDocument_formatting
+            )
+        then
             local modes = { 'n' }
 
-            if client:supports_method(vim.lsp.protocol.Methods.textDocument_rangeFormatting) then
+            if
+                client:supports_method(
+                    vim.lsp.protocol.Methods.textDocument_rangeFormatting
+                )
+            then
                 table.insert(modes, 'x')
             end
 

@@ -73,15 +73,9 @@ template <class T, class U> struct custom_hash<std::pair<T, U>> {
 }; // namespace hashing
 
 #ifdef PB_DS_ASSOC_CNTNR_HPP
-template <class Key, class Value>
-using hashmap = gp_hash_table<
+template <class Key, class Value=null_type>
+using hashtable = gp_hash_table<
     Key, Value, hashing::custom_hash<Key>, std::equal_to<Key>,
-    direct_mask_range_hashing<>, linear_probe_fn<>,
-    hash_standard_resize_policy<hash_exponential_size_policy<>,
-                                hash_load_check_resize_trigger<>, true>>;
-template <class Key>
-using hashset = gp_hash_table<
-    Key, null_type, hashing::custom_hash<Key>, std::equal_to<Key>,
     direct_mask_range_hashing<>, linear_probe_fn<>,
     hash_standard_resize_policy<hash_exponential_size_policy<>,
                                 hash_load_check_resize_trigger<>, true>>;

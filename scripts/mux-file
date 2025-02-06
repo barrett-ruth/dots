@@ -13,7 +13,7 @@ case "$extension" in
     ;;
   cpp | cc)
     cmd='g++'
-    test -f compile_flags.txt && cmd="$cmd $(tr '\n' ' ' < compile_flags.txt)"
+    test -f compile_flags.txt && cmd="$cmd @compile_flags.txt"
     cmd="$cmd $filename"
     run='./a.out'
     clean='rm -f a.out'
