@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#include <bits/stdc++.h>  // {{{
 
 // https://codeforces.com/blog/entry/96344
 
@@ -7,49 +7,6 @@
 
 using namespace std;
 
-template <typename... Args>
-void pr(std::string const &str, Args &&...args) {
-  std::cout << std::vformat(str, std::make_format_args(args...));
-}
-
-template <typename T>
-void pr(T const &t) {
-  std::cout << t;
-}
-
-template <std::ranges::range T>
-void pr(T const &t) {
-  if constexpr (std::is_convertible_v<T, char const *>) {
-    std::cout << t;
-  } else {
-    for (auto const &e : t) {
-      cout << e << ' ';
-    }
-  }
-}
-
-template <std::ranges::range T>
-void prln(T const &t) {
-  pr(t);
-  std::cout << '\n';
-}
-
-void prln() {
-  std::cout << '\n';
-}
-
-template <typename... Args>
-void prln(std::string const &str, Args &&...args) {
-  pr(str, std::forward<Args>(args)...);
-  std::cout << '\n';
-}
-
-template <typename T>
-void prln(T const &t) {
-  pr(t);
-  std::cout << '\n';
-}
-
 template <typename T>
 constexpr T MIN = std::numeric_limits<T>::min();
 
@@ -57,21 +14,53 @@ template <typename T>
 constexpr T MAX = std::numeric_limits<T>::max();
 
 template <typename T>
-static T sc(auto &&x) {
+[[nodiscard]] static T sc(auto&& x) {
   return static_cast<T>(x);
 }
+
+template <typename T>
+[[nodiscard]] static T sz(auto&& x) {
+  return static_cast<T>(x.size());
+}
+
+
+template <typename... Args>
+void pr(std::format_string<Args...> fmt, Args&&... args) {
+  std::print(fmt, std::forward<Args>(args)...);
+}
+
+template <typename... Args>
+void pr(std::format_string<Args...> fmt) {
+  std::print(fmt);
+}
+
+template <typename... Args>
+void prln(std::format_string<Args...> fmt, Args&&... args) {
+  std::println(fmt, std::forward<Args>(args)...);
+}
+
+template <typename... Args>
+void prln(std::format_string<Args...> fmt) {
+  std::println(fmt);
+}
+
+void prln() {
+  std::println();
+}
+
+void prln(auto const& t) {
+  std::println("{}", t);
+}
+
+using ll = long long;
+using ld = long double;
+template <typename T>
+using vec = std::vector<T>;
 
 #define ff first
 #define ss second
 #define eb emplace_back
 #define pb push_back
-#define ll long long
-#define ld long double
-#define vec vector
-#define endl '\n'
-
 #define all(x) (x).begin(), (x).end()
-#define rall(x) (r).rbegin(), (x).rend()
-#define sz(x) static_cast<int>((x).size())
-#define FOR(a, b, c) for (long long a = (b); (a) < (c); ++a)
-#define ROF(a, b, c) for (long long a = (b); (a) > (c); --a)
+#define rall(x) (x).rbegin(), (x).rend()
+//  }}}

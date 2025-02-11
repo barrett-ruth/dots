@@ -21,7 +21,19 @@ require('plenary.scandir').scan_dir(tostring(cpsnippets), {
 
 for _, snippet in ipairs({
     s('in', fmt('#include {}', { i(1) })),
-    s('main', fmt('#include <iostream>\n\nint main() {{\n\t{}\n}}', { i(1) })),
+    s(
+        'main',
+        fmt(
+            [[#include <iostream>
+
+int main() {{
+    {}
+
+    return 0;
+}}]],
+            { i(1) }
+        )
+    ),
     s('pr', fmt('std::cout << {}', { i(1) })),
     s('s', fmt('std::{}', { i(1) })),
     s(
@@ -35,7 +47,7 @@ void solve() {{
     {}
 }}
 
-int main() {{
+int main() {{  // {{{
   cin.tie(nullptr)->sync_with_stdio(false);
 
   freopen(PROBLEM_NAME ".in", "r", stdin);
@@ -44,7 +56,8 @@ int main() {{
   solve();
 
   return 0;
-}}]],
+}}
+// }}}}}}]],
             {
                 t(readlines('template.cc')),
                 f(function()
@@ -63,7 +76,7 @@ void solve() {{
   {}
 }}
 
-int main() {{
+int main() {{  // {{{
   cin.tie(nullptr)->sync_with_stdio(false);
 
   int t = 1;
@@ -74,7 +87,8 @@ int main() {{
   }}
 
   return 0;
-}}]],
+}}
+// }}}}}}]],
             { t(readlines('template.cc')), i(1) }
         )
     ),

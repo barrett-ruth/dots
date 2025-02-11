@@ -1,6 +1,6 @@
 struct union_find {
  public:
-  union_find(size_t n) : par(n + 1), rank(n + 1, 0) {
+  union_find(size_t capacity) : par(capacity), rank(capacity, 0) {
     std::iota(par.begin(), par.end(), 0);
   };
 
@@ -23,6 +23,12 @@ struct union_find {
     if (u != par[u])
       par[u] = find(par[u]);
     return par[u];
+  }
+
+  void resize(size_t capacity) {
+    par.assign(capacity, 0);
+    std::iota(par.begin(), par.end(), 0);
+    rank.assign(capacity, 0);
   }
 
   std::vector<int> par;

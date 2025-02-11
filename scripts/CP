@@ -1,6 +1,6 @@
 #!/bin/sh
 
-compile_flags='-std=c++20 -Wall -Wextra -Wpedantic -Wshadow'
+compile_flags='-std=c++23 -Wall -Wextra -Wpedantic -Wshadow'
 clangd_config="$compile_flags -Wno-unknown-pragmas"
 debug_flags='-g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-inline'
 

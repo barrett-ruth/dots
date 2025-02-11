@@ -1,7 +1,8 @@
 local function clearcol()
     vim.api.nvim_set_option_value('number', false, { scope = 'local' })
     vim.api.nvim_set_option_value('relativenumber', false, { scope = 'local' })
-    vim.api.nvim_set_option_value('statuscolumn', ' ', { scope = 'local' })
+    vim.api.nvim_set_option_value('statuscolumn', '', { scope = 'local' })
+    vim.api.nvim_set_option_value('signcolumn', 'no', { scope = 'local' })
     vim.api.nvim_set_option_value('equalalways', false, { scope = 'global' })
 end
 
@@ -38,12 +39,28 @@ function M.setup()
         end
 
         local code = vim.api.nvim_get_current_buf()
+
         -- Disable LSP
         vim.diagnostic.enable(false, { bufnr = code })
 
+        -- Configure options
+        vim.api.nvim_set_option_value('foldlevel', 0, { scope = 'local' })
+        vim.api.nvim_set_option_value(
+            'foldmethod',
+            'marker',
+            { scope = 'local' }
+        )
+        vim.api.nvim_set_option_value(
+            'foldmarker',
+            '{{{,}}}',
+            { scope = 'local' }
+        )
+
+
         -- Populate coding buffer
         if vim.api.nvim_buf_get_lines(0, 0, -1, true)[1] == '' then
-            vim.api.nvim_input('i' .. type_ .. '<c-s>')
+            -- enter normal mode to trigger folding
+            vim.api.nvim_input('i' .. type_ .. '<c-s><esc>')
         end
 
         -- Configure windows
