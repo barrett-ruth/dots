@@ -74,14 +74,26 @@ __set_venv() {
     type deactivate >/dev/null && deactivate
 }
 
-__set_beam_cursor() { echo -ne '\e[5 q'; }
-__set_block_cursor() { echo -ne '\e[1 q'; }
-
-zle-keymap-select() {
-    [[ "$KEYMAP" = main || "$KEYMAP" = viins || -z "$KEYMAP" ]] && __set_beam_cursor || __set_block_cursor
+function __set_beam_cursor {
+    echo -ne '\e[6 q'
 }
 
+function __set_block_cursor {
+    echo -ne '\e[2 q'
+}
+
+function zle-keymap-select {
+  case $KEYMAP in
+    vicmd) __set_block_cursor;;
+    viins|main) __set_beam_cursor;;
+  esac
+}
 zle -N zle-keymap-select
+
+function zle-line-init {
+    __set_beam_cursor
+}
+zle -N zle-line-init
 
 precmd() {
     code=$?
