@@ -65,7 +65,7 @@ __set_venv() {
     local dir="$PWD"
     while [[ "$dir" != "" && "$dir" != "/" ]]; do
         if [[ -x "$dir/venv/bin/python" ]]; then
-            [[ -n "$VIRTUAL_ENV" ]] || . "$dir/venv/bin/activate"
+            . "$dir/venv/bin/activate"
             PS1+='%F{yellow}venv%f '
             return
         fi
