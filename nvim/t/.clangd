@@ -1,8 +1,0 @@
-CompileFlags:
-	Add:
-		- -std=c++23
-		- -Wall
-		- -Wextra
-		- -Wpedantic
-		- -Wshadow
-		- -Wno-unknown-pragmas
