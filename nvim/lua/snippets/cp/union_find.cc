@@ -1,10 +1,9 @@
+template <typename T>
 struct union_find {
  public:
-  union_find(size_t capacity) : par(capacity), rank(capacity, 0) {
-    std::iota(par.begin(), par.end(), 0);
-  };
+  explicit union_find(size_t capacity) : rank(capacity, 0) {};
 
-  void join(int u, int v) {
+  void join(T const& u, T const& v) noexcept {
     u = find(u), v = find(v);
 
     if (u == v)
@@ -19,18 +18,17 @@ struct union_find {
     par[v] = u;
   }
 
-  int find(int u) {
+  [[nodiscard]] T find(T const& u) noexcept {
     if (u != par[u])
       par[u] = find(par[u]);
     return par[u];
   }
 
-  void resize(size_t capacity) {
-    par.assign(capacity, 0);
-    std::iota(par.begin(), par.end(), 0);
-    rank.assign(capacity, 0);
+ private:
+  [[nodiscard]] T sentinel() const noexcept {
+    throw std::logic_error("must implement union_find::sentinel");
   }
 
-  std::vector<int> par;
+  std::unordered_map<T, T> par;
   std::vector<int> rank;
 };

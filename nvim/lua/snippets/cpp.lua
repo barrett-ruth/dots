@@ -47,7 +47,7 @@ void solve() {{
     {}
 }}
 
-int main() {{  // {{{
+int main() {{  // {{{{{{
   cin.tie(nullptr)->sync_with_stdio(false);
 
   freopen(PROBLEM_NAME ".in", "r", stdin);
@@ -76,7 +76,7 @@ void solve() {{
   {}
 }}
 
-int main() {{  // {{{
+int main() {{  // {{{{{{
   cin.tie(nullptr)->sync_with_stdio(false);
 
   int t = 1;

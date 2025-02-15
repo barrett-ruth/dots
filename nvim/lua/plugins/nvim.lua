@@ -213,7 +213,7 @@ return {
     {
         'nvimdev/hlsearch.nvim',
         config = true,
-        event = 'BufRead',
+        event = 'BufReadPre',
     },
     {
         'NvChad/nvim-colorizer.lua',

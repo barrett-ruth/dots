@@ -23,7 +23,6 @@ template <typename T>
   return static_cast<T>(x.size());
 }
 
-
 template <typename... Args>
 void pr(std::format_string<Args...> fmt, Args&&... args) {
   std::print(fmt, std::forward<Args>(args)...);
@@ -56,6 +55,8 @@ using ll = long long;
 using ld = long double;
 template <typename T>
 using vec = std::vector<T>;
+template <typename T, size_t N>
+using arr = std::array<T, N>;
 
 #define ff first
 #define ss second
