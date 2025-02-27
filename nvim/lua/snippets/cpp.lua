@@ -59,12 +59,56 @@ int main() {{  // {{{{{{
 }}
 // }}}}}}]],
             {
-                t(readlines('template.cc')),
+                t(readlines('template-23.cc')),
                 f(function()
                     return vim.fn.expand('%:t:r')
                 end),
                 i(1),
             }
+        )
+    ),
+    s(
+        'cses',
+        fmt(
+            [[{}
+
+void solve() {{
+  {}
+}}
+
+int main() {{  // {{{{{{
+  cin.tie(nullptr)->sync_with_stdio(false);
+
+  int t = 1;
+  // cin >> t;
+  while (t--) {{
+    solve();
+  }}
+
+  return 0;
+}}
+// }}}}}}]],
+            { t(readlines('template-23.cc')), i(1) }
+        )
+    ),
+    s(
+        'icpc',
+        fmt(
+            [[{}
+
+void solve() {{
+  {}
+}}
+
+int main() {{  // {{{{{{
+  cin.tie(nullptr)->sync_with_stdio(false);
+
+  solve();
+
+  return 0;
+}}
+// }}}}}}]],
+            { t(readlines('template-23.cc')), i(1) }
         )
     ),
     s(
@@ -89,7 +133,7 @@ int main() {{  // {{{{{{
   return 0;
 }}
 // }}}}}}]],
-            { t(readlines('template.cc')), i(1) }
+            { t(readlines('template-23.cc')), i(1) }
         )
     ),
 }) do

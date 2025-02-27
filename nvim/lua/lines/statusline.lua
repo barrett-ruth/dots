@@ -38,11 +38,6 @@ local modified = {
     end,
 }
 
-local cp = {
-    value = require('cp').render,
-    condition = require('cp').enabled,
-}
-
 local search = {
     value = function()
         local count = vim.fn.searchcount({ maxcount = 999 })
@@ -100,10 +95,9 @@ local statusline = {
         [4] = modified,
     },
     right = {
-        [1] = cp,
-        [2] = search,
-        [3] = lineinfo,
-        [4] = filetype,
+        [1] = search,
+        [2] = lineinfo,
+        [3] = filetype,
     },
 }
 

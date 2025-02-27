@@ -83,7 +83,7 @@ using hashtable = gp_hash_table<
 #endif
 #ifdef PB_DS_TREE_POLICY_HPP
 template <typename T>
-using multiset = tree<T, null_type, std::less_equal<T>, rb_tree_tag,
+using multitree = tree<T, null_type, std::less_equal<T>, rb_tree_tag,
                       tree_order_statistics_node_update>;
 template <class Key, class Value = null_type>
 using rbtree = tree<Key, Value, std::less<Key>, rb_tree_tag,

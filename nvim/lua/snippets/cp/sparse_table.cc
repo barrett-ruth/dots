@@ -14,11 +14,12 @@ struct sparse_table {
     }
   }
 
-  [[nodiscard]] T query(size_t const l, size_t const r) const {
-    if (!(0 <= l && r < table[0].size())) {
-      throw std::out_of_range(
-          std::format("cannot query sparse table of size {} at range [{}, {}]",
-                      table[0].size(), l, r));
+  [[nodiscard]] T query(int const l, int const r) const {
+    if (!(0 <= l && l <= r && r < static_cast<int>(table[0].size()))) {
+      throw std::out_of_range("cannot query sparse table of size " +
+                              std::to_string(table[0].size()) + " at range [" +
+                              std::to_string(l) + ", " + std::to_string(r) +
+                              "]");
     }
 
     int k = floor(__lg(r - l + 1));
@@ -26,7 +27,7 @@ struct sparse_table {
   }
 
  private:
-  [[nodiscard]] T merge(T const& x, T const& y) const noexcept {
+  [[nodiscard]] inline T merge(T const& x, T const& y) const noexcept {
     throw std::logic_error("implement sparse_table::merge");
   }
 

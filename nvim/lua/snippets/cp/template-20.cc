@@ -8,10 +8,15 @@
 using namespace std;
 
 template <typename T>
-constexpr T MIN = std::numeric_limits<T>::min();
+[[nodiscard]] static T MIN() {
+  return std::numeric_limits<T>::min();
+}
+
 
 template <typename T>
-constexpr T MAX = std::numeric_limits<T>::max();
+[[nodiscard]] static T MAX() {
+  return std::numeric_limits<T>::max();
+}
 
 template <typename T>
 [[nodiscard]] static T sc(auto&& x) {
@@ -21,34 +26,6 @@ template <typename T>
 template <typename T>
 [[nodiscard]] static T sz(auto&& x) {
   return static_cast<T>(x.size());
-}
-
-template <typename... Args>
-void pr(std::format_string<Args...> fmt, Args&&... args) {
-  std::print(fmt, std::forward<Args>(args)...);
-}
-
-template <typename... Args>
-void pr(std::format_string<Args...> fmt) {
-  std::print(fmt);
-}
-
-template <typename... Args>
-void prln(std::format_string<Args...> fmt, Args&&... args) {
-  std::println(fmt, std::forward<Args>(args)...);
-}
-
-template <typename... Args>
-void prln(std::format_string<Args...> fmt) {
-  std::println(fmt);
-}
-
-void prln() {
-  std::println();
-}
-
-void prln(auto const& t) {
-  std::println("{}", t);
 }
 
 using ll = long long;

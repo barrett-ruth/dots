@@ -96,7 +96,7 @@ return {
         },
         lsp = {
             includeDeclaration = false,
-            jump_to_single_result = true,
+            jump1 = true,
             symbols = {
                 symbol_hl_prefix = '@',
                 symbol_style = 3,

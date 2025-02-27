@@ -13,10 +13,11 @@ struct fenwick_tree {
     }
   }
 
-  T const query(size_t i) const {
-    if (!(0 <= i && i < tree.size())) {
-      throw std::out_of_range(std::format(
-          "cannot query fenwick tree of size {} at index {}", tree.size(), i));
+  T const query(int i) const {
+    if (!(0 <= i && i < static_cast<int>(tree.size()))) {
+      throw std::out_of_range("cannot query fenwick tree of size " +
+                              std::to_string(tree.size()) + " at index " +
+                              std::to_string(i));
     }
 
     T t = sentinel();
@@ -28,11 +29,11 @@ struct fenwick_tree {
     return t;
   };
 
-  T const query(size_t l, size_t r) const {
-    if (!(0 <= l && r < tree.size())) {
+  T const query(int l, int r) const {
+    if (!(0 <= l && l <= r && r < static_cast<int>(tree.size()))) {
       throw std::out_of_range(
-          std::format("cannot query fenwick tree of size {} at range [{}, {}]",
-                      tree.size(), l, r));
+          "cannot query fenwick tree of size " + std::to_string(tree.size()) +
+          " at range [" + std::to_string(l) + ", " + std::to_string(r) + "]");
     }
 
     if (l == 0) {
@@ -42,8 +43,8 @@ struct fenwick_tree {
     return unmerge(query(r), query(l - 1));
   };
 
-  void update(size_t i, T const& t) noexcept {
-    assert(0 <= i && t < tree.size());
+  void update(int i, T const& t) noexcept {
+    assert(0 <= i && i < static_cast<int>(tree.size()));
 
     for (size_t j = i; j < tree.size(); j = g(j)) {
       tree[j] = merge(tree[j], t);
@@ -51,23 +52,23 @@ struct fenwick_tree {
   }
 
  private:
-  [[nodiscard]] T merge(T const& x, T const& y) const noexcept {
+  [[nodiscard]] inline T merge(T const& x, T const& y) const noexcept {
     throw std::logic_error("must implement fenwick_tree::merge");
   }
 
-  [[nodiscard]] T unmerge(T const& x, T const& y) const noexcept {
+  [[nodiscard]] inline T unmerge(T const& x, T const& y) const noexcept {
     throw std::logic_error("must implement fenwick_tree::unmerge");
   }
 
-  [[nodiscard]] T sentinel() const noexcept {
+  [[nodiscard]] inline T sentinel() const noexcept {
     throw std::logic_error("must implement fenwick_tree::sentinel");
   }
 
-  [[nodiscard]] size_t g(size_t i) const noexcept {
+  [[nodiscard]] inline size_t g(size_t i) const noexcept {
     return i | (i + 1);
   }
 
-  [[nodiscard]] size_t h(size_t i) const noexcept {
+  [[nodiscard]] inline size_t h(size_t i) const noexcept {
     return i & (i + 1);
   }
 

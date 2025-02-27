@@ -6,7 +6,7 @@ local function clearcol()
     vim.api.nvim_set_option_value('equalalways', false, { scope = 'global' })
 end
 
-local types = { 'usaco', 'cf' }
+local types = { 'usaco', 'cf', 'icpc', 'cses' }
 
 local M = { _enabled = {}, last = {}, time = {} }
 
@@ -15,7 +15,7 @@ function M.setup()
         local type_ = opts.args
         if not vim.tbl_contains(types, type_) then
             vim.notify_once(
-                ('Must specify competition of type: []'):format(
+                ('Must specify competition of type: [%s]'):format(
                     table.concat(types, ', ')
                 ),
                 vim.log.levels.ERROR
@@ -23,20 +23,7 @@ function M.setup()
             return
         end
 
-        local id = vim.fn.expand('%')
-
-        -- Configure statusline support
-        if not M._enabled[id] then
-            M._enabled[id] = true
-            M.last[id] = os.time()
-            M.time[id] = 0
-            vim.api.nvim_create_autocmd('BufWinEnter', {
-                pattern = '<buffer>',
-                callback = function()
-                    M.last[id] = os.time()
-                end,
-            })
-        end
+        local version = type_ == 'cses' and '20' or '23'
 
         local code = vim.api.nvim_get_current_buf()
 
@@ -117,7 +104,7 @@ function M.setup()
             pattern = input,
             callback = function()
                 vim.cmd.wall()
-                vim.fn.jobstart({ 'CP', 'run', filename }, {
+                vim.fn.jobstart({ 'CP', 'run', filename, version }, {
                     on_exit = on_exit,
                 })
             end,
@@ -126,7 +113,7 @@ function M.setup()
         vim.keymap.set('n', '<leader>w', function()
             vim.cmd.wall()
             vim.lsp.buf.format({ async = true })
-            vim.fn.jobstart({ 'CP', 'run', filename }, {
+            vim.fn.jobstart({ 'CP', 'run', filename, version }, {
                 on_exit = on_exit,
             })
         end, { buffer = true })
@@ -134,24 +121,11 @@ function M.setup()
         vim.keymap.set('n', '<leader>d', function()
             vim.cmd.w()
             vim.lsp.buf.format({ async = true })
-            vim.fn.jobstart({ 'CP', 'debug', filename }, {
+            vim.fn.jobstart({ 'CP', 'debug', filename, version }, {
                 on_exit = on_exit,
             })
         end, { buffer = true })
     end, { nargs = 1 })
-end
-
-function M.enabled()
-    return M._enabled[vim.fn.expand('%')] or false
-end
-
-function M.render()
-    local id = vim.fn.expand('%')
-    local time = os.time()
-    local elapsed = time - M.last[id]
-    M.time[id] = M.time[id] + elapsed
-    M.last[id] = time
-    return ('[%s]'):format(os.date('%M:%S', M.time[id]))
 end
 
 return M

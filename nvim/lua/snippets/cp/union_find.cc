@@ -25,7 +25,7 @@ struct union_find {
   }
 
  private:
-  [[nodiscard]] T sentinel() const noexcept {
+  [[nodiscard]] inline T sentinel() const noexcept {
     throw std::logic_error("must implement union_find::sentinel");
   }
 

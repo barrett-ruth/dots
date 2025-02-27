@@ -6,32 +6,32 @@ struct segment_tree {
     build(1, 0, n - 1, ts);
   }
 
-  [[nodiscard]] T const query(size_t const l, size_t const r) const {
-    if (!(0 <= l && r < n)) {
-      throw std::out_of_range(std::format(
-          "cannot query segment tree of size {} at range [{}, {}]", n, l, r));
+  [[nodiscard]] T const query(int const l, int const r) const {
+    if (!(0 <= l && l <= r && r < static_cast<int>(n))) {
+      throw std::out_of_range(
+          "cannot query segment tree of size " + std::to_string(n) +
+          " at range [" + std::to_string(l) + ", " + std::to_string(r) + "]");
     }
 
     return query(1, 0, n - 1, l, r);
   }
 
-  // TODO: update range
-
-  void update(int i, T const& t) noexcept {
-    if (!(0 <= i && i < n)) {
-      throw std::out_of_range(std::format(
-          "cannot update segment tree of size {} at index {}", n, i));
+  void update(int i, T const& t) {
+    if (!(0 <= i && i < static_cast<int>(n))) {
+      throw std::out_of_range("cannot update segment tree of size " +
+                              std::to_string(n) + " at index " +
+                              std::to_string(i));
     }
 
     update(1, 0, n - 1, i, t);
   }
 
  private:
-  T const sentinel() const noexcept {
+  inline T const sentinel() const noexcept {
     throw std::logic_error("implement segment_tree::sentinel");
   }
 
-  T const merge(T const& x, T const& y) const noexcept {
+  inline T const merge(T const& x, T const& y) const noexcept {
     throw std::logic_error("implement segment_tree::merge");
   }
 
@@ -82,4 +82,3 @@ struct segment_tree {
   size_t n;
   std::vector<T> tree;
 };
-

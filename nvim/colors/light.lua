@@ -97,8 +97,8 @@ hi('DiagnosticUnderlineOk', { undercurl = true, special = cs.green })
 hi('DiagnosticUnderlineInfo', { undercurl = true, special = cs.blue })
 
 hi('@attribute.diff', { fg = cs.magenta })
-hi('DiffAdd', { fg = cs.green }, { '@text.diff.add', 'diffAdded' })
-hi('DiffDelete', { fg = cs.red }, { '@text.diff.delete', 'diffRemoved' })
+hi('DiffAdd', { fg = cs.green }, { 'Added', '@text.diff.add', 'diffAdded' })
+hi('DiffDelete', { fg = cs.red }, { 'Removed', '@text.diff.delete', 'diffRemoved' })
 hi('DiffChange', { fg = cs.blue })
 
 -- gitsigns.nvim
