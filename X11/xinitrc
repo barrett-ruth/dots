@@ -8,10 +8,8 @@ fi
 
 sxs
 smon
-sbg ~/img/wp/one/split.jpg &
+sbg ~/img/wp/one/gts.jpg
 skb &
 sclip &
-(st -e mux) &
-chromium &
 dwmblocks &
 dwm
