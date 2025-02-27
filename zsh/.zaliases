@@ -22,5 +22,4 @@ mkcd() {
     mkdir -p "$@"
     cd "$@"
 }
-alias psa='ps aux'
 j() { . _j "$@"; }
