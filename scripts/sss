@@ -8,6 +8,7 @@ filename="$(dmenu -p 'Enter filename:' </dev/null)"
 
 file=~/img/ss/"$file".jpg
 
-import "$file"
-
-xclip -sel c -t image/png "$file"
+(
+    import "$file"
+    xclip -sel c -t image/png "$file"
+) &

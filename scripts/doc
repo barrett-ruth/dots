@@ -4,8 +4,8 @@ dir="$HOME"/doc
 
 test -d "$dir" || exit
 
-docs="$(ls "$dir")"
+docs="$(find "$dir" -type f | sed "s|$dir/||g")"
 count="$(echo "$docs" | wc -l)"
 choice="$(echo "$docs" | dmenu -i -l "$count" -p "Select document: ")"
 
-[ "$choice" ] && sioyek "$dir/$choice"
+[ "$choice" ] && sioyek --new-window "$dir/$choice"
