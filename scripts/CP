@@ -31,8 +31,13 @@ run() {
 
   test -f "$exe" && rm "$exe"
 
-  g++ @compile_flags.txt $args "$file" -o "$exe" 2>"$output"
-  code=$?
+  if [ "${file##*.}" = 'py' ]; then
+    exe="python $file"
+    code=0
+  else
+    g++ @compile_flags.txt $args "$file" -o "$exe" 2>"$output"
+    code=$?
+  fi
   if [ $code -gt 0 ]; then
     printf '\n[code]: %s' $code >>"$output"
     exit $code
@@ -40,10 +45,8 @@ run() {
     echo '' >"$output"
   fi
 
-  test -f "$exe" || exit 1
-
   start=$(date '+%s.%N')
-  timeout 2s "$exe" <"$input" >"$output" 2>&1
+  timeout 2s $exe <"$input" >"$output" 2>&1
   code=$?
   if [ "$(wc -l <"$output")" -gt 1000 ]; then
     sed -i '1001,$d' "$output"
