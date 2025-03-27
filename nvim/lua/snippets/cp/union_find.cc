@@ -1,9 +1,11 @@
 template <typename T>
 struct union_find {
  public:
-  explicit union_find(size_t capacity) : rank(capacity, 0) {};
+  explicit union_find(size_t capacity) : par(capacity, 0), rank(capacity, 0) {
+    std::iota(par.begin(), par.end(), 0);
+  };
 
-  void join(T const& u, T const& v) noexcept {
+  void join(T u, T v) noexcept {
     u = find(u), v = find(v);
 
     if (u == v)
@@ -24,11 +26,6 @@ struct union_find {
     return par[u];
   }
 
- private:
-  [[nodiscard]] inline T sentinel() const noexcept {
-    throw std::logic_error("must implement union_find::sentinel");
-  }
-
-  std::unordered_map<T, T> par;
+  std::vector<T> par;
   std::vector<int> rank;
 };

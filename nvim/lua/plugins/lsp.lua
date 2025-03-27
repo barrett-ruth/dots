@@ -32,6 +32,7 @@ return {
                     window = { border = 'single' },
                 },
             },
+            cmdline = { sources = {} },
             sources = {
                 default = {
                     'lazydev',
@@ -40,7 +41,6 @@ return {
                     'snippets',
                     'buffer',
                 },
-                cmdline = {},
                 providers = {
                     lazydev = {
                         name = 'LazyDev',

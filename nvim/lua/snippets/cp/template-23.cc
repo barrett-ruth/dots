@@ -8,10 +8,14 @@
 using namespace std;
 
 template <typename T>
-constexpr T MIN = std::numeric_limits<T>::min();
+[[nodiscard]] static T MIN() {
+  return std::numeric_limits<T>::min();
+}
 
 template <typename T>
-constexpr T MAX = std::numeric_limits<T>::max();
+[[nodiscard]] static T MAX() {
+  return std::numeric_limits<T>::max();
+}
 
 template <typename T>
 [[nodiscard]] static T sc(auto&& x) {
@@ -31,14 +35,38 @@ template <typename T>
 #define dbg(...) std::print(__VA_ARGS__)
 #endif
 
+inline static void NO() {
+  prln("NO");
+}
+
+inline static void YES() {
+  prln("YES");
+}
+
 using ll = long long;
 using ld = long double;
 template <typename T>
-using v = std::vector<T>;
+using ve = std::vector<T>;
 template <typename T, size_t N>
-using r = std::array<T, N>;
-template<typename T1, typename T2>
-using p = std::pair<T1, T2>;
+using ar = std::array<T, N>;
+template <typename T1, typename T2>
+using pa = std::pair<T1, T2>;
+template <typename... Ts>
+using tu = std::tuple<Ts...>;
+template <typename... Ts>
+using dq = std::deque<Ts...>;
+template <typename... Ts>
+using qu = std::queue<Ts...>;
+template <typename... Ts>
+using pq = std::priority_queue<Ts...>;
+template <typename... Ts>
+using st = std::stack<Ts...>;
+auto lb = [](auto... args) {
+  return std::lower_bound(args...);
+};
+auto ub = [](auto... args) {
+  return std::upper_bound(args...);
+};
 
 #define ff first
 #define ss second

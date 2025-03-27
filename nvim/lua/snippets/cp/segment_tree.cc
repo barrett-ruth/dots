@@ -26,6 +26,14 @@ struct segment_tree {
     update(1, 0, n - 1, i, t);
   }
 
+  [[nodiscard]] size_t lower_bound(T const& t) const noexcept {
+    return lower_bound(1, 0, n - 1, t);
+  }
+
+  [[nodiscard]] size_t upper_bound(T const& t) const noexcept {
+    return upper_bound(1, 0, n - 1, t);
+  }
+
  private:
   inline T const sentinel() const noexcept {
     throw std::logic_error("implement segment_tree::sentinel");
@@ -77,6 +85,38 @@ struct segment_tree {
       }
       tree[node] = merge(tree[2 * node], tree[2 * node + 1]);
     }
+  }
+
+  [[nodiscard]] size_t lower_bound(size_t const node, size_t const l,
+                                   size_t const r, T const& t) const noexcept {
+    if (l == r) {
+      return tree[node] >= t ? l : n;
+    }
+
+    size_t m = l + (r - l) / 2;
+    if (tree[2 * node] >= t) {
+      size_t res = lower_bound(2 * node, l, m, t);
+      if (res < n)
+        return res;
+    }
+
+    return lower_bound(2 * node + 1, m + 1, r, t);
+  }
+
+  [[nodiscard]] size_t upper_bound(size_t const node, size_t const l,
+                                   size_t const r, T const& t) const noexcept {
+    if (l == r) {
+      return tree[node] > t ? l : n;
+    }
+
+    size_t m = l + (r - l) / 2;
+    if (tree[2 * node] > t) {
+      size_t res = upper_bound(2 * node, l, m, t);
+      if (res < n)
+        return res;
+    }
+
+    return upper_bound(2 * node + 1, m + 1, r, t);
   }
 
   size_t n;

@@ -49,6 +49,7 @@ void solve() {{
 
 int main() {{  // {{{{{{
   cin.tie(nullptr)->sync_with_stdio(false);
+  cin.exceptions(cin.failbit);
 
   freopen(PROBLEM_NAME ".in", "r", stdin);
   freopen(PROBLEM_NAME ".out", "w", stdout);
@@ -78,6 +79,7 @@ void solve() {{
 
 int main() {{  // {{{{{{
   cin.tie(nullptr)->sync_with_stdio(false);
+  cin.exceptions(cin.failbit);
 
   int t = 1;
   // cin >> t;
@@ -102,6 +104,7 @@ void solve() {{
 
 int main() {{  // {{{{{{
   cin.tie(nullptr)->sync_with_stdio(false);
+  cin.exceptions(cin.failbit);
 
   solve();
 
@@ -122,6 +125,7 @@ void solve() {{
 
 int main() {{  // {{{{{{
   cin.tie(nullptr)->sync_with_stdio(false);
+  cin.exceptions(cin.failbit);
 
   int t = 1;
   cin >> t;

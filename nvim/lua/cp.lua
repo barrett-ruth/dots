@@ -77,6 +77,9 @@ function M.setup()
                 return
             end
             local delta_filename = (string.char(next_filename_byte) .. '.cc')
+            if vim.loop.fs_stat(delta_filename) == nil then
+                delta_filename = (string.char(next_filename_byte) .. '.py')
+            end
             vim.cmd.wall()
             vim.cmd.bwipeout(input_buf)
             vim.cmd.bwipeout(output_buf)
