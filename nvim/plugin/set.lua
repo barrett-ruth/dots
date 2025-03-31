@@ -74,4 +74,7 @@ o.undodir = vim.env.XDG_DATA_HOME .. '/nvim/undo'
 o.undofile = true
 
 o.updatetime = 50
+
+o.winborder = 'single'
+
 o.wrap = false

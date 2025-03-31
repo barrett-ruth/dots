@@ -12,4 +12,4 @@ local function project_name()
     return vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
 end
 
-return project_configs[project_name()]
+return project_configs[project_name()] or {}

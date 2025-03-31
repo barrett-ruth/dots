@@ -1,5 +1,3 @@
-local lsp_utils = require('lsp.utils')
-
 return {
     {
         'saghen/blink.cmp',
@@ -25,14 +23,13 @@ return {
             completion = {
                 menu = {
                     auto_show = false,
+                    scrollbar = false,
                     draw = { columns = { { 'label', 'label_description' } } },
                 },
                 documentation = {
                     auto_show = true,
-                    window = { border = 'single' },
                 },
             },
-            cmdline = { sources = {} },
             sources = {
                 default = {
                     'lazydev',
@@ -55,44 +52,27 @@ return {
     {
         'nvimtools/none-ls.nvim',
         config = function()
-            require('lsp.none-ls')
+            require('lsp').setup_none_ls()
         end,
         dependencies = 'nvimtools/none-ls-extras.nvim',
     },
     {
-        'neovim/nvim-lspconfig',
-        config = function()
-            require('lsp.config')
-
-            local lspconfig = require('lspconfig')
-            for _, server in ipairs({
-                'bashls',
-                'clangd',
-                'cssls',
-                'cssmodules_ls',
-                'emmet_language_server',
-                'eslint',
-                'html',
-                'jsonls',
-                'lua_ls',
-                'pylsp',
-            }) do
-                local ok, settings =
-                    pcall(require, ('lsp.servers.%s'):format(server))
-                lspconfig[server].setup(
-                    lsp_utils.prepare_lsp_settings(ok and settings or {})
-                )
-            end
-        end,
-        dependencies = { 'b0o/SchemaStore.nvim' },
+        'Massolari/lsp-auto-setup.nvim',
+        config = true,
+        dependencies = {
+            {
+                'neovim/nvim-lspconfig',
+                config = function()
+                    require('lsp').setup()
+                end,
+                lazy = true,
+            },
+            'b0o/SchemaStore.nvim',
+        },
     },
     {
         'pmizio/typescript-tools.nvim',
-        opts = function()
-            return lsp_utils.prepare_lsp_settings(
-                require('lsp.servers.typescript')
-            )
-        end,
+        config = true,
         dependencies = {
             {
                 'davidosomething/format-ts-errors.nvim',
@@ -114,13 +94,8 @@ return {
     {
         'mrcjkb/rustaceanvim',
         ft = { 'rust' },
-        config = function()
-            vim.g.rustaceanvim = {
-                server = lsp_utils.prepare_lsp_settings(
-                    require('lsp.servers.rust_analyzer')
-                ),
-            }
-        end,
+        -- TODO: check if this supports lsp/
+        config = true,
     },
     {
         'saecki/live-rename.nvim',

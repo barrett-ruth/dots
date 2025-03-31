@@ -74,8 +74,6 @@ return {
         { 'gD', '<cmd>FzfLua lsp_declarations<cr>' },
         { 'gq', '<cmd>FzfLua quickfix<cr>' },
         { 'gl', '<cmd>FzfLua loclist<cr>' },
-        { 'gI', '<cmd>FzfLua lsp_implementations<cr>' },
-        { 'gR', '<cmd>FzfLua lsp_references<cr>' },
         { 'gt', '<cmd>FzfLua lsp_typedefs<cr>' },
     },
     opts = {
