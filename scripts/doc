@@ -1,11 +1,18 @@
 #!/bin/sh
 
-dir="$HOME"/doc
+dir="$HOME/doc"
 
 test -d "$dir" || exit
 
-docs="$(find "$dir" -type f | sed "s|$dir/||g")"
-count="$(echo "$docs" | wc -l)"
-choice="$(echo "$docs" | dmenu -i -l "$count" -p "Select document: ")"
+while true; do
+  choice="$(find "$dir" -mindepth 1 -maxdepth 1 \( -type d -printf "%f/\n" -o -type f -printf "%f\n" \) | dmenu -i -l 10 -p "Select file or folder: ")"
 
-[ "$choice" ] && sioyek --new-window "$dir/$choice"
+  [ "$choice" ] || break
+
+  if [ -d "$dir/${choice%/}" ]; then
+    dir="$dir/${choice%/}"
+  elif [ -f "$dir/$choice" ]; then
+    sioyek --new-window "$dir/$choice" &
+    break
+  fi
+done
