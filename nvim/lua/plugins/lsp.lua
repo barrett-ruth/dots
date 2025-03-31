@@ -58,7 +58,9 @@ return {
     },
     {
         'Massolari/lsp-auto-setup.nvim',
-        config = true,
+        opts = {
+            exclude = { 'digestif' },
+        },
         dependencies = {
             {
                 'neovim/nvim-lspconfig',
