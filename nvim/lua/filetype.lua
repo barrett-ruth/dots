@@ -7,7 +7,4 @@ vim.filetype.add({
     filename = {
         ['requirements.txt'] = 'config',
     },
-    pattern = {
-        ['.env*'] = 'sh',
-    },
 })

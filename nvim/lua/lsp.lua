@@ -1,27 +1,8 @@
-local diagnostic, buf = vim.diagnostic, vim.lsp.buf
-
 local M = {}
 
 local function on_attach(client, bufnr)
     local mappings = {
-        codeAction = {
-            { 'n', 'x' },
-            'gra',
-            buf.code_action,
-        },
-        hover = { 'n', 'K', buf.hover },
-        inlayHint = {
-            'n',
-            '\\i',
-            function()
-                vim.lsp.inlay_hint(bufnr)
-            end,
-        },
-        signatureHelp = {
-            'i',
-            '<c-space>',
-            buf.signature_help,
-        },
+        hover = { 'n', 'K', vim.lsp.buf.hover },
     }
 
     for provider, mapping in pairs(mappings) do
@@ -34,7 +15,7 @@ local function on_attach(client, bufnr)
         require('nvim-navic').attach(client, bufnr)
     end
 
-    bmap({ 'n', '\\f', diagnostic.open_float })
+    bmap({ 'n', '\\f', vim.diagnostic.open_float })
     bmap({
         'n',
         '\\t',
@@ -49,26 +30,38 @@ local function on_attach(client, bufnr)
         'n',
         ']\\',
         function()
-            diagnostic.jump({ count = 1 })
+            vim.diagnostic.jump({ count = 1 })
         end,
     })
     bmap({
         'n',
         '[\\',
         function()
-            diagnostic.jump({ count = -1 })
+            vim.diagnostic.jump({ count = -1 })
         end,
     })
 end
 
 local function prepare_capabilities()
     local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities.offsetEncoding = { 'utf-16' }
     capabilities.textDocument.completion.completionItem.snippetSupport = false
 
     local ok, blink = pcall(require, 'blink.cmp')
 
     return ok and blink.get_lsp_capabilities(capabilities) or capabilities
+end
+
+local function lsp_format()
+    vim.lsp.buf.format({
+        filter = function(c)
+            if c.name == 'tsserver' then
+                vim.cmd.TSToolsOrganizeImports()
+            end
+            -- disable all lsp formatting
+            return c.name == 'null-ls'
+        end,
+    })
+    vim.cmd.w()
 end
 
 function M.setup()
@@ -97,6 +90,27 @@ function M.setup()
             capabilities = prepare_capabilities(),
             flags = { debounce_text_changes = 0 },
         })
+
+    vim.api.nvim_create_autocmd('LspAttach', {
+        callback = function(opts)
+            local client = vim.lsp.get_client_by_id(opts.data.client_id)
+
+            if client and client:supports_method('textDocument/formatting') then
+                local modes = { 'n' }
+
+                if client:supports_method('textDocument/rangeFormatting') then
+                    table.insert(modes, 'x')
+                end
+
+                bmap({
+                    modes,
+                    'gF',
+                    lsp_format,
+                }, { buffer = opts.buf, silent = false })
+            end
+        end,
+        group = vim.api.nvim_create_augroup('LSPFormat', { clear = true }),
+    })
 end
 
 function M.setup_none_ls()
@@ -148,6 +162,10 @@ function M.setup_none_ls()
             diagnostics.selene,
             diagnostics.zsh,
 
+            formatting.black,
+            formatting.isort.with({
+                extra_args = { '--profile', 'black' }
+            }),
             formatting.buf.with({
                 check_exit_code = check_formatter_exit_code,
             }),

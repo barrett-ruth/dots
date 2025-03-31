@@ -55,26 +55,12 @@ return {
             end,
         },
         { 'gw', '<cmd>FzfLua lsp_workspace_diagnostics<cr>' },
-        { 'gsa', '<cmd>FzfLua lsp_document_symbols<cr>' },
-        { 'gsc', '<cmd>FzfLua lsp_document_symbols regex_filter=Class.*<cr>' },
-        {
-            'gsf',
-            function()
-                require('fzf-lua').lsp_document_symbols({
-                    regex_filter = function(entry)
-                        return vim.tbl_contains(
-                            { 'Function', 'Method' },
-                            entry.kind
-                        )
-                    end,
-                })
-            end,
-        },
+        { 'gO', '<cmd>FzfLua lsp_document_symbols<cr>' },
         { 'gd', '<cmd>FzfLua lsp_definitions<cr>' },
         { 'gD', '<cmd>FzfLua lsp_declarations<cr>' },
         { 'gq', '<cmd>FzfLua quickfix<cr>' },
         { 'gl', '<cmd>FzfLua loclist<cr>' },
-        { 'gt', '<cmd>FzfLua lsp_typedefs<cr>' },
+        { 'gs', '<cmd>FzfLua lsp_typedefs<cr>' },
     },
     opts = {
         files = {

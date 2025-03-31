@@ -169,7 +169,7 @@ return {
             -- restore digraph mapping
             { '<c-d>', '<c-k>', mode = 'i' },
             {
-                '<c-s>',
+                '<c-space>',
                 '<cmd>lua require("luasnip").expand()<cr>',
                 mode = 'i',
             },

@@ -59,7 +59,8 @@ return {
     {
         'Massolari/lsp-auto-setup.nvim',
         opts = {
-            exclude = { 'digestif' },
+            cache = { enable = false },
+            exclude = { 'pylsp', 'digestif', 'tvm_ffi_navigator' },
         },
         dependencies = {
             {
@@ -96,7 +97,6 @@ return {
     {
         'mrcjkb/rustaceanvim',
         ft = { 'rust' },
-        -- TODO: check if this supports lsp/
         config = true,
     },
     {

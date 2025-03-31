@@ -9,8 +9,6 @@ return {
     end,
     settings = {
         expose_as_code_action = 'all',
-        tsserver_path = vim.env.XDG_DATA_HOME
-            .. '/pnpm/global/5/node_modules/typescript/lib/tsserver.js',
         tsserver_file_preferences = {
             includeInlayParameterNameHints = 'all',
             includeInlayParameterNameHintsWhenArgumentMatchesName = false,
@@ -22,6 +20,7 @@ return {
             includeInlayEnumMemberValueHints = true,
         },
     },
+    -- https://github.com/davidosomething/format-ts-errors.nvim
     handlers = {
         ['textDocument/publishDiagnostics'] = function(_, result, ctx, config)
             if not result.diagnostics then
@@ -29,6 +28,9 @@ return {
             end
 
             local ok, format_ts = pcall(require, 'format-ts-errors')
+            if not ok then
+                return
+            end
 
             local idx = 1
             while idx <= #result.diagnostics do
@@ -45,7 +47,7 @@ return {
                     if ok then
                         local formatter = format_ts[diagnostic.code]
                         diagnostic.message = formatter
-                                and formatter(diagnostic.message)
+                            and formatter(diagnostic.message)
                             or diagnostic.message
                     end
 

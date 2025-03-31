@@ -47,7 +47,7 @@ function M.setup()
         -- Populate coding buffer
         if vim.api.nvim_buf_get_lines(0, 0, -1, true)[1] == '' then
             -- enter normal mode to trigger folding
-            vim.api.nvim_input('i' .. type_ .. '<c-s><esc>')
+            vim.api.nvim_input('i' .. type_ .. '<c-space><esc>')
         end
 
         -- Configure windows

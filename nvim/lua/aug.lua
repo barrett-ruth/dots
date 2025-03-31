@@ -94,19 +94,10 @@ au('LspAttach', {
     callback = function(opts)
         local client = vim.lsp.get_client_by_id(opts.data.client_id)
 
-        if
-            client
-            and client:supports_method(
-                vim.lsp.protocol.Methods.textDocument_formatting
-            )
-        then
+        if client and client:supports_method('textDocument/formatting') then
             local modes = { 'n' }
 
-            if
-                client:supports_method(
-                    vim.lsp.protocol.Methods.textDocument_rangeFormatting
-                )
-            then
+            if client:supports_method('textDocument/rangeFormatting') then
                 table.insert(modes, 'x')
             end
 
