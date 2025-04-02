@@ -8,7 +8,7 @@ fi
 
 sxs
 smon
-sbg ~/img/wp/one/split.jpg
+sbg ~/img/wp/one/delta.jpg
 skb &
 sclip &
 dwmblocks &

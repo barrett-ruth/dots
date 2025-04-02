@@ -57,21 +57,27 @@ return {
         dependencies = 'nvimtools/none-ls-extras.nvim',
     },
     {
-        'Massolari/lsp-auto-setup.nvim',
-        opts = {
-            cache = { enable = false },
-            exclude = { 'pylsp', 'digestif', 'tvm_ffi_navigator' },
-        },
-        dependencies = {
-            {
-                'neovim/nvim-lspconfig',
-                config = function()
-                    require('lsp').setup()
-                end,
-                lazy = true,
-            },
-            'b0o/SchemaStore.nvim',
-        },
+        'neovim/nvim-lspconfig',
+        config = function()
+            require('lsp').setup()
+            local lspconfig = require('lspconfig')
+            for _, server in ipairs({
+                'bashls',
+                'clangd',
+                'cssls',
+                'cssmodules_ls',
+                'emmet_language_server',
+                'eslint',
+                'html',
+                'jsonls',
+                'lua_ls',
+                'ruff',
+            }) do
+                lspconfig[server].setup({})
+            end
+        end,
+        dependencies = 'b0o/SchemaStore.nvim',
+        lazy = true,
     },
     {
         'pmizio/typescript-tools.nvim',

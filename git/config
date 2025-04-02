@@ -2,10 +2,6 @@
     username = barrett-ruth
     name = Barrett Ruth
     email = br.barrettruth@gmail.com
-[init]
-    defaultBranch = main
-[clone]
-    defaultRemoteName = home
 [core]
     editor = nvim
     whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
@@ -16,7 +12,7 @@
 [difftool]
     prompt = false
 [difftool "nvimdiff"]
-    cmd = "nvim -c 'se scl=no' -d $LOCAL $REMOTE"
+    cmd = "nvim -d $LOCAL $REMOTE"
 [alias]
     a = add
     b = branch
@@ -47,7 +43,7 @@
 [credential "https://source.developers.google.com"]
     helper = gcloud.sh
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true

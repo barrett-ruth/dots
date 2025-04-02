@@ -14,7 +14,6 @@
   "lazydev.nvim": { "branch": "main", "commit": "2367a6c0a01eb9edb0464731cc0fb61ed9ab9d2c" },
   "live-rename.nvim": { "branch": "main", "commit": "c3187918c8a9a461ffeedf214814f228f2ee8bad" },
   "live-server.nvim": { "branch": "main", "commit": "3547fecc984dde6de20664058b028e5e94e9bc87" },
-  "lsp-auto-setup.nvim": { "branch": "master", "commit": "3ca582125cffb2ff3c3dbbfb6adb67aab833f181" },
   "markdown-preview.nvim": { "branch": "master", "commit": "a923f5fc5ba36a3b17e289dc35dc17f66d0548ee" },
   "melange-nvim": { "branch": "master", "commit": "2db5407f2f6d6d6286f50f2f7365728d66f6f3ae" },
   "mini.bufremove": { "branch": "main", "commit": "bba1d8b413d37081756f59200b8cf756181e5b9a" },

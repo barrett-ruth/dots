@@ -9,6 +9,8 @@ return {
     end,
     settings = {
         expose_as_code_action = 'all',
+        tsserver_path = vim.env.XDG_DATA_HOME
+            .. '/pnpm/global/5/node_modules/typescript/lib/tsserver.js',
         tsserver_file_preferences = {
             includeInlayParameterNameHints = 'all',
             includeInlayParameterNameHintsWhenArgumentMatchesName = false,
@@ -47,7 +49,7 @@ return {
                     if ok then
                         local formatter = format_ts[diagnostic.code]
                         diagnostic.message = formatter
-                            and formatter(diagnostic.message)
+                                and formatter(diagnostic.message)
                             or diagnostic.message
                     end
 

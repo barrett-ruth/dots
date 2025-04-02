@@ -1,17 +1,11 @@
 local M = {}
 
 local function on_attach(client, bufnr)
-    local mappings = {
-        hover = { 'n', 'K', vim.lsp.buf.hover },
-    }
-
-    for provider, mapping in pairs(mappings) do
-        if client.server_capabilities[('%sProvider'):format(provider)] then
-            bmap(mapping)
-        end
+    if client:supports_method('hover') then
+        bmap({ 'n', 'K', vim.lsp.buf.hover })
     end
 
-    if client.server_capabilities.documentSymbolProvider then
+    if client:supports_method('documentSymbol') then
         require('nvim-navic').attach(client, bufnr)
     end
 
@@ -24,20 +18,6 @@ local function on_attach(client, bufnr)
             vim.lsp.log.set_level(
                 vim.lsp.log_levels[level] == 'WARN' and 'OFF' or 'WARN'
             )
-        end,
-    })
-    bmap({
-        'n',
-        ']\\',
-        function()
-            vim.diagnostic.jump({ count = 1 })
-        end,
-    })
-    bmap({
-        'n',
-        '[\\',
-        function()
-            vim.diagnostic.jump({ count = -1 })
         end,
     })
 end
@@ -75,21 +55,19 @@ function M.setup()
             prefix = ' ',
         },
         jump = { float = true },
-        virtual_text = {
-            virtual_lines = { current_line = true },
+        virtual_lines = {
+            current_line = true,
             format = function(diagnostic)
                 return vim.split(diagnostic.message, '\n')[1]
             end,
         },
     })
 
-    local lspconfig = require('lspconfig')
-    lspconfig.util.default_config =
-        vim.tbl_extend('force', lspconfig.util.default_config, {
-            on_attach = on_attach,
-            capabilities = prepare_capabilities(),
-            flags = { debounce_text_changes = 0 },
-        })
+    vim.lsp.config('*', {
+        capabilities = prepare_capabilities(),
+        flags = { debounce_text_changes = 0 },
+        on_attach = on_attach,
+    })
 
     vim.api.nvim_create_autocmd('LspAttach', {
         callback = function(opts)
@@ -114,25 +92,13 @@ function M.setup()
 end
 
 function M.setup_none_ls()
-    local null_ls, logger = require('null-ls'), require('null-ls.logger')
+    local null_ls = require('null-ls')
     local builtins = null_ls.builtins
     local code_actions, diagnostics, formatting, hover =
         builtins.code_actions,
         builtins.diagnostics,
         builtins.formatting,
         builtins.hover
-
-    local function check_formatter_exit_code(code, stderr)
-        local success = code <= 0
-
-        if not success then
-            vim.schedule(function()
-                logger:warn(('failed to run formatter: %s'):format(stderr))
-            end)
-        end
-
-        return success
-    end
 
     null_ls.setup({
         border = 'single',
@@ -163,24 +129,14 @@ function M.setup_none_ls()
             diagnostics.zsh,
 
             formatting.black,
+            formatting.clang_format,
             formatting.isort.with({
-                extra_args = { '--profile', 'black' }
+                extra_args = { '--profile', 'black' },
             }),
-            formatting.buf.with({
-                check_exit_code = check_formatter_exit_code,
-            }),
-            formatting.cbfmt.with({
-                check_exit_code = check_formatter_exit_code,
-            }),
-            formatting.cmake_format.with({
-                check_exit_code = check_formatter_exit_code,
-            }),
-            require('none-ls.formatting.eslint_d').with({
-
-                check_exit_code = check_formatter_exit_code,
-            }),
+            formatting.buf,
+            formatting.cbfmt,
+            formatting.cmake_format,
             formatting.prettierd.with({
-                check_exit_code = check_formatter_exit_code,
                 env = {
                     XDG_RUNTIME_DIR = vim.env.XDG_RUNTIME_DIR
                         or (vim.env.XDG_DATA_HOME .. '/prettierd'),
@@ -202,13 +158,11 @@ function M.setup_none_ls()
             }),
             formatting.shfmt.with({
                 extra_args = { '-i', '2' },
-                check_exit_code = check_formatter_exit_code,
             }),
             formatting.stylua.with({
                 condition = function(utils)
                     return utils.root_has_file({ 'stylua.toml', '.stylua.toml' })
                 end,
-                -- check_exit_code = check_formatter_exit_code,
             }),
 
             hover.dictionary,
