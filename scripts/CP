@@ -37,22 +37,19 @@ run() {
     exe="python $file"
     code=0
   else
-    g++ @compile_flags.txt $args "$file" -o "$exe" 2>"$output"
+    g++ @compile_flags.txt $args "$file" -o "$exe"
     code=$?
   fi
   if [ $code -gt 0 ]; then
-    printf '\n[code]: %s' $code >>"$output"
+    printf '\n[code]: %s' $code
     exit $code
   else
-    echo '' >"$output"
+    printf '\n'
   fi
 
   start=$(date '+%s.%N')
-  timeout 2s $exe <"$input" >"$output" 2>&1
+  timeout 2s $exe <"$input" 2>&1
   code=$?
-  if [ "$(wc -l <"$output")" -gt 1000 ]; then
-    sed -i '1001,$d' "$output"
-  fi
   end=$(date '+%s.%N')
 
   if [ $code -ge 124 ]; then
@@ -87,15 +84,15 @@ run() {
     esac
 
     # remove `timeout`'s message
-    [ $code -ne 124 ] && sed -i '$d' "$output"
+    # [ $code -ne 124 ] && sed -i '$d' "$output"
 
-    test -n "$msg" && printf '\n[code]: %s (%s)' "$code" "$msg" >>"$output"
+    test -n "$msg" && printf '\n[code]: %s (%s)' "$code" "$msg"
   else
-    printf '\n[code]: %s' $code >>"$output"
+    printf '\n[code]: %s' $code
   fi
 
   delta=$(awk "BEGIN {print ($end - $start) * 1000}")
-  printf '\n[time]: %s ms' "$delta" >>"$output"
+  printf '\n[time]: %s ms' "$delta"
 
   exit $code
 }

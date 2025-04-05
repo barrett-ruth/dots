@@ -8,7 +8,7 @@ end
 
 local types = { 'usaco', 'cf', 'icpc', 'cses' }
 
-local M = { _enabled = {}, last = {}, time = {} }
+local M = {}
 
 function M.setup()
     vim.api.nvim_create_user_command('CP', function(opts)
@@ -26,9 +26,6 @@ function M.setup()
         local version = type_ == 'cses' and '20' or '23'
 
         local code = vim.api.nvim_get_current_buf()
-
-        -- Disable LSP
-        vim.diagnostic.enable(false, { bufnr = code })
 
         -- Configure options
         vim.api.nvim_set_option_value('foldlevel', 0, { scope = 'local' })
@@ -52,82 +49,61 @@ function M.setup()
         -- Configure windows
         local filename = vim.fn.expand('%')
         local base_filepath = vim.fn.fnamemodify(filename, ':p:r')
-        local input, output = base_filepath .. '.in', base_filepath .. '.out'
-
-        vim.cmd('50vsplit ' .. output)
-        local output_buf = vim.api.nvim_get_current_buf()
-        vim.cmd.w()
-        clearcol()
-        vim.cmd.split(input)
+        local input = base_filepath .. '.in'
+        vim.cmd('50vsplit ' .. input)
         local input_buf = vim.api.nvim_get_current_buf()
         vim.cmd.w()
         clearcol()
         vim.cmd.wincmd('h')
-        vim.cmd('vertical resize +8')
 
         -- Configure keymaps
         local function move_problem(delta)
             local base_filename = vim.fn.fnamemodify(base_filepath, ':t')
             local next_filename_byte = base_filename:byte() + delta
-            if
-                next_filename_byte < ('a'):byte()
-                or next_filename_byte > ('z'):byte()
-            then
+            if next_filename_byte < ('a'):byte() then
                 return
             end
             local delta_filename = (string.char(next_filename_byte) .. '.cc')
-            local delta_py_filename = (string.char(next_filename_byte) .. '.py')
-            if vim.loop.fs_stat(delta_py_filename) ~= nil then
-                delta_filename = (string.char(next_filename_byte) .. '.py')
-            end
             vim.cmd.wall()
-            vim.cmd.bwipeout(input_buf)
-            vim.cmd.bwipeout(output_buf)
             vim.cmd.e(delta_filename)
+            vim.cmd.bwipeout(input_buf)
             vim.cmd.CP(type_)
         end
 
-        for _, buf in ipairs({ code, output_buf, input_buf }) do
-            vim.keymap.set('n', ']]', function()
-                move_problem(1)
-            end, { buffer = buf })
-            vim.keymap.set('n', '[[', function()
-                move_problem(-1)
-            end, { buffer = true })
-        end
+        vim.keymap.set('n', ']]', function()
+            move_problem(1)
+        end, { buffer = code })
+        vim.keymap.set('n', '[[', function()
+            move_problem(-1)
+        end, { buffer = code })
 
-        local function on_exit(_, exit_code)
-            vim.cmd.checktime()
-            if exit_code ~= 0 then
-                vim.diagnostic.enable(true, { buf = code })
-            end
-        end
-
-        require('utils').au('BufWritePost', 'CP', {
-            pattern = input,
-            callback = function()
+        bmap({
+            'n',
+            '<leader>m',
+            function()
+                vim.api.nvim_set_option_value(
+                    'makeprg',
+                    ('CP run %% %s'):format(version),
+                    { buf = code }
+                )
                 vim.cmd.wall()
-                vim.fn.jobstart({ 'CP', 'run', filename, version }, {
-                    on_exit = on_exit,
-                })
+                vim.cmd.make()
             end,
-        })
+        }, { buffer = code })
 
-        vim.keymap.set('n', '<leader>w', function()
-            vim.cmd.wall()
-            vim.lsp.buf.format({ async = true })
-            vim.fn.jobstart({ 'CP', 'run', filename, version }, {
-                on_exit = on_exit,
-            })
-        end, { buffer = true })
-
-        vim.keymap.set('n', '<leader>d', function()
-            vim.cmd.w()
-            vim.lsp.buf.format({ async = true })
-            vim.fn.jobstart({ 'CP', 'debug', filename, version }, {
-                on_exit = on_exit,
-            })
-        end, { buffer = true })
+        bmap({
+            'n',
+            '<leader>d',
+            function()
+                vim.api.nvim_set_option_value(
+                    'makeprg',
+                    ('CP debug %% %s'):format(version),
+                    { buf = code }
+                )
+                vim.cmd.wall()
+                vim.cmd.make()
+            end,
+        }, { buffer = code })
     end, { nargs = 1 })
 end
 

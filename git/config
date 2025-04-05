@@ -2,6 +2,8 @@
     username = barrett-ruth
     name = Barrett Ruth
     email = br.barrettruth@gmail.com
+[init]
+    defaultBranch = main
 [core]
     editor = nvim
     whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
@@ -12,7 +14,7 @@
 [difftool]
     prompt = false
 [difftool "nvimdiff"]
-    cmd = "nvim -d $LOCAL $REMOTE"
+    cmd = "nvim -c 'se scl=no' -d $LOCAL $REMOTE"
 [alias]
     a = add
     b = branch
