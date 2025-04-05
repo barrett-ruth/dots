@@ -1,5 +1,6 @@
 return {
     standalone = false,
+    capabilities = { general = { positionEncodings = { 'utf-16' } } },
     settings = {
         ['rust-analyzer'] = {
             checkOnSave = {

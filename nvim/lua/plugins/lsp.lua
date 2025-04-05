@@ -76,7 +76,35 @@ return {
                 lspconfig[server].setup({})
             end
         end,
-        dependencies = 'b0o/SchemaStore.nvim',
+        dependencies = {
+            'b0o/SchemaStore.nvim',
+            {
+                'saecki/live-rename.nvim',
+                config = function(_, opts)
+                    require('live-rename').setup(opts)
+                    local live_rename = require('live-rename')
+                    require('utils').au('LspAttach', 'LiveRenameMap', {
+                        callback = function(o)
+                            local clients =
+                                vim.lsp.get_clients({ buffer = o.buf })
+                            for _, client in ipairs(clients) do
+                                if
+                                    client:supports_method(
+                                        'textDocument/rename'
+                                    )
+                                then
+                                    bmap(
+                                        { 'n', 'grn', live_rename.rename },
+                                        { buffer = o.buf }
+                                    )
+                                end
+                            end
+                        end,
+                    })
+                end,
+                keys = { 'grn' },
+            },
+        },
         lazy = true,
     },
     {
@@ -103,23 +131,6 @@ return {
     {
         'mrcjkb/rustaceanvim',
         ft = { 'rust' },
-        config = true,
-    },
-    {
-        'saecki/live-rename.nvim',
-        event = 'LspAttach',
-        opts = {
-            hl = {
-                current = 'Visual',
-                others = 'Visual',
-            },
-        },
-        keys = {
-            {
-                'grn',
-                '<cmd>lua require("live-rename").rename()<cr>',
-            },
-        },
     },
     {
         'SmiteshP/nvim-navic',

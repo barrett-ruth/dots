@@ -1,7 +1,7 @@
 local api = vim.api
 local au = api.nvim_create_autocmd
 
-local aug = api.nvim_create_augroup('AAugs', {})
+local aug = api.nvim_create_augroup('MyAugs', { clear = true })
 
 au('BufEnter', {
     command = 'setl formatoptions-=cro spelloptions=camel,noplainbuffer',
@@ -17,9 +17,9 @@ au('ColorScheme', {
     pattern = '*',
     callback = function()
         vim.o.statusline =
-        [[%{%v:lua.require('lines.statusline').statusline()%}]]
+            [[%{%v:lua.require('lines.statusline').statusline()%}]]
         vim.o.statuscolumn =
-        [[%{%v:lua.require('lines.statuscolumn').statuscolumn()%}]]
+            [[%{%v:lua.require('lines.statuscolumn').statuscolumn()%}]]
     end,
 })
 
@@ -80,9 +80,9 @@ local function format()
     vim.lsp.buf.format({
         filter = function(c)
             return not vim.tbl_contains({
-                'cssls',            -- prettier
-                'html',             -- prettier
-                'jsonls',           -- prettier
+                'cssls', -- prettier
+                'html', -- prettier
+                'jsonls', -- prettier
                 'typescript-tools', -- prettier
             }, c.name)
         end,

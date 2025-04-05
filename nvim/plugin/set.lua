@@ -40,8 +40,6 @@ opt.listchars = {
 
 opt.matchpairs:append('<:>')
 
-o.modeline = false
-
 o.number = true
 o.relativenumber = true
 

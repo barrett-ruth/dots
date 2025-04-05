@@ -19,6 +19,7 @@ return {
                     end,
                     ['ctrl-v'] = actions.file_vsplit,
                     ['ctrl-x'] = actions.file_split,
+                    ['ctrl-h'] = actions.toggle_hidden
                 },
             },
             border = 'single',

@@ -9,8 +9,7 @@ return {
     end,
     settings = {
         expose_as_code_action = 'all',
-        tsserver_path = vim.env.XDG_DATA_HOME
-            .. '/pnpm/global/5/node_modules/typescript/lib/tsserver.js',
+        tsserver_path = vim.env.XDG_DATA_HOME .. '/pnpm/tsserver',
         tsserver_file_preferences = {
             includeInlayParameterNameHints = 'all',
             includeInlayParameterNameHintsWhenArgumentMatchesName = false,

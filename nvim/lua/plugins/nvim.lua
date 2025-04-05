@@ -1,4 +1,3 @@
--- https://github.com/stevearc/oil.nvim/blob/master/doc/recipes.md#hide-gitignored-files-and-show-git-tracked-hidden-files
 -- helper function to parse output
 local function parse_output(proc)
     local result = proc:wait()
@@ -204,7 +203,7 @@ return {
     {
         'let-def/texpresso.vim',
         config = function()
-            vim.api.nvim_create_autocmd('FileType', {
+            require('utils').au('FileType', 'TeXpresso', {
                 pattern = { 'tex' },
                 callback = function(opts)
                     bmap({
@@ -215,10 +214,6 @@ return {
                         end,
                     }, { buffer = opts.buf })
                 end,
-                group = vim.api.nvim_create_augroup(
-                    'TeXpresso',
-                    { clear = true }
-                ),
             })
         end,
         ft = 'tex',
@@ -277,55 +272,37 @@ return {
     },
     {
         'stevearc/oil.nvim',
-        init = function()
-            local oilaug = vim.api.nvim_create_augroup('AOil', {})
-            vim.api.nvim_create_autocmd('FileType', {
+        config = function(_, opts)
+            require('oil').setup(opts)
+
+            require('utils').au('FileType', 'OilBufremove', {
                 pattern = 'oil',
-                callback = function()
-                    bmap({
-                        'n',
-                        'q',
-                        function()
-                            local ok, bufremove =
-                                pcall(require, 'mini.bufremove')
-                            if ok and not vim.fn.buflisted(0) then
-                                bufremove.delete()
-                            else
-                                vim.cmd.bw()
-                            end
-                        end,
-                    })
+                callback = function(o)
+                    local ok, bufremove = pcall(require, 'mini.bufremove')
+                    bmap(
+                        { 'n', 'q', ok and bufremove.delete or vim.cmd.bd },
+                        { buffer = o.buf }
+                    )
                 end,
-                group = oilaug,
             })
         end,
-        config = function(_, opts)
-            -- Clear git status cache on refresh
-            local refresh = require('oil.actions').refresh
-            local orig_refresh = refresh.callback
-            refresh.callback = function(...)
-                git_status = new_git_status()
-                orig_refresh(...)
-            end
-            require('oil').setup(opts)
+        init = function()
+            require('utils').au('FileType', 'OilGit', {
+                pattern = 'oil',
+                callback = function()
+                    -- Clear git status cache on refresh
+                    local refresh = require('oil.actions').refresh
+                    local orig_refresh = refresh.callback
+                    refresh.callback = function(...)
+                        git_status = new_git_status()
+                        orig_refresh(...)
+                    end
+                end,
+            })
         end,
         keys = {
             { '-', '<cmd>e .<cr>' },
             { '_', vim.cmd.Oil },
-        },
-        dependencies = {
-            'echasnovski/mini.bufremove',
-            config = true,
-            keys = {
-                {
-                    '<leader>bd',
-                    '<cmd>lua require("mini.bufremove").delete()<cr>',
-                },
-                {
-                    '<leader>bw',
-                    '<cmd>lua require("mini.bufremove").wipeout()<cr>',
-                },
-            },
         },
         event = function()
             if vim.fn.isdirectory(vim.fn.expand('%:p')) == 1 then
@@ -336,22 +313,43 @@ return {
             skip_confirm_for_simple_edits = true,
             prompt_save_on_select_new_entry = false,
             float = { border = 'single' },
-            is_hidden_file = function(name, bufnr)
-                local dir = require('oil').get_current_dir(bufnr)
-                local is_dotfile = vim.startswith(name, '.') and name ~= '..'
-                if not dir then
-                    return is_dotfile
-                end
-                if is_dotfile then
-                    return not git_status[dir].tracked[name]
-                else
-                    return git_status[dir].ignored[name]
-                end
-            end,
+            view_options = {
+                is_hidden_file = function(name, bufnr)
+                    local dir = require('oil').get_current_dir(bufnr)
+                    local is_dotfile = vim.startswith(name, '.')
+                        and name ~= '..'
+                    -- if no local directory (e.g. for ssh connections), just hide dotfiles
+                    if not dir then
+                        return is_dotfile
+                    end
+                    -- dotfiles are considered hidden unless tracked
+                    if is_dotfile then
+                        return not git_status[dir].tracked[name]
+                    else
+                        -- Check if file is gitignored
+                        return git_status[dir].ignored[name]
+                    end
+                end,
+            },
             keymaps = {
                 ['<c-h>'] = false,
-                ['<c-v>'] = 'actions.select_vsplit',
+                ['<c-s>'] = 'actions.select_vsplit',
                 ['<c-x>'] = 'actions.select_split',
+            },
+        },
+    },
+    {
+        'echasnovski/mini.bufremove',
+        config = true,
+        event = 'VeryLazy',
+        keys = {
+            {
+                '<leader>bd',
+                '<cmd>lua require("mini.bufremove").delete()<cr>',
+            },
+            {
+                '<leader>bw',
+                '<cmd>lua require("mini.bufremove").wipeout()<cr>',
             },
         },
     },
@@ -368,6 +366,11 @@ return {
         'tzachar/highlight-undo.nvim',
         config = true,
         keys = { 'u', 'U' },
+    },
+    {
+        'ruifm/gitlinker.nvim',
+        config = true,
+        keys = { '<leader>gy' },
     },
     {
         'ThePrimeagen/harpoon',

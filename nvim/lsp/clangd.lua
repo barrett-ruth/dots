@@ -1,6 +1,6 @@
 local config = require('projects')
 
-local default_settings = {
+local clangd_settings = {
     filetypes = { 'c', 'cpp' },
     on_attach = function()
         bmap({ 'n', 'gh', vim.cmd.ClangdSwitchSourceHeader })
@@ -19,4 +19,4 @@ local default_settings = {
 local project_settings = (config.lsp and config.lsp.clangd)
     and config.lsp.clangd
 
-return vim.tbl_extend('force', default_settings, project_settings or {})
+return vim.tbl_extend('force', clangd_settings, project_settings or {})

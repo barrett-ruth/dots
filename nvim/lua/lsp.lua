@@ -55,7 +55,7 @@ function M.setup()
             prefix = ' ',
         },
         jump = { float = true },
-        virtual_lines = {
+        virtual_text = {
             current_line = true,
             format = function(diagnostic)
                 return vim.split(diagnostic.message, '\n')[1]
@@ -69,7 +69,7 @@ function M.setup()
         on_attach = on_attach,
     })
 
-    vim.api.nvim_create_autocmd('LspAttach', {
+    require('utils').au('LspAttach', 'LspFormat', {
         callback = function(opts)
             local client = vim.lsp.get_client_by_id(opts.data.client_id)
 
@@ -87,7 +87,6 @@ function M.setup()
                 }, { buffer = opts.buf, silent = false })
             end
         end,
-        group = vim.api.nvim_create_augroup('LSPFormat', { clear = true }),
     })
 end
 
@@ -122,7 +121,7 @@ function M.setup_none_ls()
             diagnostics.mypy.with({
                 extra_args = { '--check-untyped-defs' },
                 runtime_condition = function(params)
-                    return require('null-ls.utils').path.exists(params.bufname)
+                    return vim.fn.executable('mypy') and require('null-ls.utils').path.exists(params.bufname)
                 end,
             }),
             diagnostics.selene,

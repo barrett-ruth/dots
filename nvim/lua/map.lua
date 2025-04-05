@@ -27,14 +27,6 @@ map({
 
 map({ { 'i', 'c' }, '<c-a>', '<esc>' })
 
-map({
-    'n',
-    '<leader>r',
-    function()
-        vim.cmd('sil !mux file %')
-    end,
-})
-
 for key, cmd in pairs({
     left = 'vertical resize -10',
     right = 'vertical resize +10',

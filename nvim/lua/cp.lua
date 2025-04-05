@@ -43,7 +43,6 @@ function M.setup()
             { scope = 'local' }
         )
 
-
         -- Populate coding buffer
         if vim.api.nvim_buf_get_lines(0, 0, -1, true)[1] == '' then
             -- enter normal mode to trigger folding
@@ -104,7 +103,7 @@ function M.setup()
             end
         end
 
-        vim.api.nvim_create_autocmd('BufWritePost', {
+        require('utils').au('BufWritePost', 'CP', {
             pattern = input,
             callback = function()
                 vim.cmd.wall()

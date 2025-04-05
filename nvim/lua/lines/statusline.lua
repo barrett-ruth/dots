@@ -1,6 +1,4 @@
-local function empty(s)
-    return s == nil or s == ''
-end
+local empty = require('utils').empty
 
 local file = {
     value = function()
@@ -19,7 +17,7 @@ local navic = {
     condition = function()
         return ok
             and nvim_navic.is_available(vim.api.nvim_get_current_buf())
-            and not require('utils').empty(nvim_navic.get_location())
+            and not empty(nvim_navic.get_location())
     end,
 }
 

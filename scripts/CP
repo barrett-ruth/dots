@@ -1,8 +1,10 @@
 #!/bin/sh
 
-compile_flags='-Wall -Wextra -Wpedantic -Wshadow -DLOCAL'
+# lefticus.gitbooks.io/cpp-best-practice
+compile_flags='-Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wpedantic -Wconversion -Wsign-conversion -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wnull-dereference -Wuseless-cast -Wformat=2 -Wformat-overflow -Wformat-truncation -Wdouble-promotion -Wundef -DLOCAL'
 clangd_config="$compile_flags -Wno-unknown-pragmas"
-debug_flags='-g -fsanitize=address,undefined -fno-omit-frame-pointer -fno-inline'
+# https://interrupt.memfault.com/blog/best-and-worst-gcc-clang-compiler-flags#the-best-one-off-warning-options-options-not-covered-by--wall-or--wextra
+debug_flags='-g3 -fsanitize=address,undefined -fstack-usage -fno-omit-frame-pointer -fno-inline -ffunction-sections'
 
 setup() {
   test -f compile_flags.txt || echo "$compile_flags" | tr ' ' '\n' >compile_flags.txt
