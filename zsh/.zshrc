@@ -68,6 +68,10 @@ __set_venv() {
             . "$dir/venv/bin/activate"
             PS1+='%F{yellow}venv%f '
             return
+        elif [[ -x "$dir/.venv/bin/python" ]]; then
+            . "$dir/.venv/bin/activate"
+            PS1+='%F{yellow}.venv%f '
+            return
         fi
         dir="$(dirname "$dir")"
     done

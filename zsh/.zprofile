@@ -57,10 +57,6 @@ append_path "$CARGO_HOME"/bin
 export PNPM_HOME="$XDG_DATA_HOME"/pnpm
 append_path "$PNPM_HOME"
 
-export PYENV_ROOT="$XDG_DATA_HOME"/pyenv
-prepend_path "$PYENV_ROOT"/bin
-eval "$(pyenv init -)"
-
 export OPAMROOT="$XDG_DATA_HOME"/opam
 eval "$(opam env)"
 
