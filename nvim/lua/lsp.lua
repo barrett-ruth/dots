@@ -31,7 +31,7 @@ local function prepare_capabilities()
     return ok and blink.get_lsp_capabilities(capabilities) or capabilities
 end
 
-local function lsp_format()
+function M.lsp_format()
     vim.lsp.buf.format({
         filter = function(c)
             if c.name == 'tsserver' then
@@ -83,7 +83,7 @@ function M.setup()
                 bmap({
                     modes,
                     'gF',
-                    lsp_format,
+                    M.lsp_format,
                 }, { buffer = opts.buf, silent = false })
             end
         end,

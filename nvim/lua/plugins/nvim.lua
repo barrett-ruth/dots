@@ -1,3 +1,5 @@
+local au = require('utils').au
+
 -- helper function to parse output
 local function parse_output(proc)
     local result = proc:wait()
@@ -92,8 +94,16 @@ return {
             ]])
             vim.g.mkdp_auto_close = 0
             vim.g.mkdp_browserfunc = 'OpenMarkdownPreview'
+            au('FileType', 'MarkdownKeybind', function(opts)
+                bmap(
+                    { 'n', '<leader>m', vim.cmd.MarkdownPreviewToggle },
+                    { buffer = opts.buf }
+                )
+            end)
         end,
-        keys = { { '<leader>m', vim.cmd.MarkdownPreviewToggle } },
+    },
+    {
+        'jake-stewart/auto-cmdheight.nvim',
     },
     {
         'lewis6991/gitsigns.nvim',

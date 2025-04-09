@@ -1,5 +1,4 @@
-local api = vim.api
-local au = api.nvim_create_autocmd
+local api, au = vim.api, vim.api.nvim_create_autocmd
 
 local aug = api.nvim_create_augroup('MyAugs', { clear = true })
 
@@ -21,6 +20,7 @@ au('ColorScheme', {
         vim.o.statuscolumn =
             [[%{%v:lua.require('lines.statuscolumn').statuscolumn()%}]]
     end,
+    group = aug,
 })
 
 au('BufWritePost', {
@@ -28,6 +28,7 @@ au('BufWritePost', {
     callback = function()
         vim.fn.system('killall dunst && nohup dunst &')
     end,
+    group = aug,
 })
 
 au('BufReadPost', {
@@ -72,41 +73,6 @@ au({ 'VimEnter', 'BufWinEnter', 'BufEnter' }, {
 au('WinLeave', {
     callback = function()
         vim.api.nvim_set_option_value('cursorline', false, { scope = 'local' })
-    end,
-    group = aug,
-})
-
-local function format()
-    vim.lsp.buf.format({
-        filter = function(c)
-            return not vim.tbl_contains({
-                'cssls', -- prettier
-                'html', -- prettier
-                'jsonls', -- prettier
-                'typescript-tools', -- prettier
-            }, c.name)
-        end,
-    })
-    vim.cmd.w()
-end
-
-au('LspAttach', {
-    callback = function(opts)
-        local client = vim.lsp.get_client_by_id(opts.data.client_id)
-
-        if client and client:supports_method('textDocument/formatting') then
-            local modes = { 'n' }
-
-            if client:supports_method('textDocument/rangeFormatting') then
-                table.insert(modes, 'x')
-            end
-
-            bmap({
-                modes,
-                'gF',
-                format,
-            }, { buffer = opts.buf, silent = false })
-        end
     end,
     group = aug,
 })

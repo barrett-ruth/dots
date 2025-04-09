@@ -1,3 +1,7 @@
+local lsp_format = require('lsp').lsp_format
+
+local M = {}
+
 local function clearcol()
     vim.api.nvim_set_option_value('number', false, { scope = 'local' })
     vim.api.nvim_set_option_value('relativenumber', false, { scope = 'local' })
@@ -7,8 +11,6 @@ local function clearcol()
 end
 
 local types = { 'usaco', 'cf', 'icpc', 'cses' }
-
-local M = {}
 
 function M.setup()
     vim.api.nvim_create_user_command('CP', function(opts)
@@ -81,12 +83,12 @@ function M.setup()
             'n',
             '<leader>m',
             function()
+                lsp_format()
                 vim.api.nvim_set_option_value(
                     'makeprg',
                     ('CP run %% %s'):format(version),
                     { buf = code }
                 )
-                vim.cmd.wall()
                 vim.cmd.make()
             end,
         }, { buffer = code })
@@ -95,12 +97,12 @@ function M.setup()
             'n',
             '<leader>d',
             function()
+                lsp_format()
                 vim.api.nvim_set_option_value(
                     'makeprg',
                     ('CP debug %% %s'):format(version),
                     { buf = code }
                 )
-                vim.cmd.wall()
                 vim.cmd.make()
             end,
         }, { buffer = code })

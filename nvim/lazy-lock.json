@@ -1,6 +1,7 @@
 {
   "LuaSnip": { "branch": "master", "commit": "c9b9a22904c97d0eb69ccb9bab76037838326817" },
   "SchemaStore.nvim": { "branch": "main", "commit": "87cf380f6ecc0b5aed0cba353fd6d8a1397e1167" },
+  "auto-cmdheight.nvim": { "branch": "main", "commit": "bb1d938773cadcc7b5e11d7cc24f2cfef253f7db" },
   "blink.cmp": { "branch": "main", "commit": "ea29ab1620de5e61284abc01ae39e56df5a5fe53" },
   "cloak.nvim": { "branch": "main", "commit": "648aca6d33ec011dc3166e7af3b38820d01a71e4" },
   "format-ts-errors.nvim": { "branch": "main", "commit": "4b7418d6689bc0fd3c1db0500c67133422522384" },
