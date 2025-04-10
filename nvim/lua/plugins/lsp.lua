@@ -73,7 +73,8 @@ return {
                 'lua_ls',
                 'ruff',
             }) do
-                lspconfig[server].setup({})
+                local ok, config = pcall(require, 'lsp.' .. server)
+                lspconfig[server].setup(ok and config or {})
             end
         end,
         dependencies = {
@@ -105,7 +106,6 @@ return {
                 keys = { 'grn' },
             },
         },
-        lazy = true,
     },
     {
         'pmizio/typescript-tools.nvim',

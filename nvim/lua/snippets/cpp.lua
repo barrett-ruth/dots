@@ -81,9 +81,10 @@ int main() {{  // {{{{{{
   cin.tie(nullptr)->sync_with_stdio(false);
   cin.exceptions(cin.failbit);
 
-  int t = 1;
-  // cin >> t;
-  while (t--) {{
+  int tc = 1;
+  // cin >> tc;
+
+  for (int t = 0; t < tc; ++t) {{
     solve();
   }}
 
@@ -127,10 +128,10 @@ int main() {{  // {{{{{{
   cin.tie(nullptr)->sync_with_stdio(false);
   cin.exceptions(cin.failbit);
 
-  int t = 1;
-  cin >> t;
+  int tc = 1;
+  cin >> tc;
 
-  while (t--) {{
+  for (int t = 0; t < tc; ++t) {{
     solve();
   }}
 

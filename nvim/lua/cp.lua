@@ -52,7 +52,9 @@ function M.setup()
         local filename = vim.fn.expand('%')
         local base_filepath = vim.fn.fnamemodify(filename, ':p:r')
         local input = base_filepath .. '.in'
-        vim.cmd('50vsplit ' .. input)
+        vim.cmd.vsplit(input)
+        -- 30% split
+        vim.cmd('vertical resize ' .. math.floor(vim.o.columns * 0.3))
         local input_buf = vim.api.nvim_get_current_buf()
         vim.cmd.w()
         clearcol()
