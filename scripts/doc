@@ -12,7 +12,7 @@ while true; do
   if [ -d "$dir/${choice%/}" ]; then
     dir="$dir/${choice%/}"
   elif [ -f "$dir/$choice" ]; then
-    sioyek --new-window "$dir/$choice" &
+    zathura "$dir/$choice" &
     break
   fi
 done

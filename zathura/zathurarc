@@ -1,0 +1,22 @@
+set font "monospace normal 17"
+set guioptions none
+
+set default-bg "#ffffff"
+set statusbar-bg "#000000"
+set inputbar-bg "#000000"
+set statusbar-home-tilde true
+set selection-clipboard clipboard
+set statusbar-h-padding 0
+set statusbar-v-padding 0
+set selection-notification false
+
+map b toggle_statusbar
+map u scroll half-up
+map d scroll half-down
+map g goto top
+map h zoom out
+map l zoom in
+map j navigate next
+map k navigate previous
+map J scroll down
+map K scroll up
