@@ -60,7 +60,7 @@ int main() {{  // {{{{{{
 }}
 // }}}}}}]],
             {
-                t(readlines('template-23.cc')),
+                t(readlines('template.cc')),
                 f(function()
                     return vim.fn.expand('%:t:r')
                 end),
@@ -91,7 +91,7 @@ int main() {{  // {{{{{{
   return 0;
 }}
 // }}}}}}]],
-            { t(readlines('template-23.cc')), i(1) }
+            { t(readlines('template.cc')), i(1) }
         )
     ),
     s(
@@ -112,11 +112,11 @@ int main() {{  // {{{{{{
   return 0;
 }}
 // }}}}}}]],
-            { t(readlines('template-23.cc')), i(1) }
+            { t(readlines('template.cc')), i(1) }
         )
     ),
     s(
-        'cf',
+        'codeforces',
         fmt(
             [[{}
 
@@ -138,7 +138,7 @@ int main() {{  // {{{{{{
   return 0;
 }}
 // }}}}}}]],
-            { t(readlines('template-23.cc')), i(1) }
+            { t(readlines('template.cc')), i(1) }
         )
     ),
 }) do

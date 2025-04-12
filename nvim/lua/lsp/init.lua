@@ -31,8 +31,8 @@ local function prepare_capabilities()
     return ok and blink.get_lsp_capabilities(capabilities) or capabilities
 end
 
-function M.lsp_format()
-    vim.lsp.buf.format({
+function M.lsp_format(opts)
+    local format_opts = vim.tbl_extend('force', opts or {}, {
         filter = function(c)
             if c.name == 'tsserver' then
                 vim.cmd.TSToolsOrganizeImports()
@@ -41,6 +41,7 @@ function M.lsp_format()
             return c.name == 'null-ls'
         end,
     })
+    vim.lsp.buf.format(format_opts)
     vim.cmd.w()
 end
 

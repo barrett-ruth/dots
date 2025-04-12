@@ -94,12 +94,14 @@ return {
             ]])
             vim.g.mkdp_auto_close = 0
             vim.g.mkdp_browserfunc = 'OpenMarkdownPreview'
-            au('FileType', 'MarkdownKeybind', function(opts)
-                bmap(
-                    { 'n', '<leader>m', vim.cmd.MarkdownPreviewToggle },
-                    { buffer = opts.buf }
-                )
-            end)
+            au('FileType', 'MarkdownKeybind', {
+                callback = function(opts)
+                    bmap(
+                        { 'n', '<leader>m', vim.cmd.MarkdownPreviewToggle },
+                        { buffer = opts.buf }
+                    )
+                end,
+            })
         end,
     },
     {
