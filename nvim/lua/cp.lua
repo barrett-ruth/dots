@@ -10,15 +10,15 @@ local function clearcol()
     vim.api.nvim_set_option_value('equalalways', false, { scope = 'global' })
 end
 
-local types = { 'usaco', 'codeforces', 'icpc', 'cses' }
+local competition_types = { 'codeforces', 'cses', 'icpc', 'usaco' }
 
 function M.setup()
     vim.api.nvim_create_user_command('CP', function(opts)
         local competition_type = opts.args
-        if not vim.tbl_contains(types, competition_type) then
+        if not vim.tbl_contains(competition_types, competition_type) then
             vim.notify_once(
                 ('Must specify competition of type: [%s]'):format(
-                    table.concat(types, ', ')
+                    table.concat(competition_types, ', ')
                 ),
                 vim.log.levels.ERROR
             )
@@ -46,13 +46,20 @@ function M.setup()
             vim.api.nvim_input('i' .. competition_type .. '<c-space><esc>')
         end
 
-        vim.fn.system('cp -fr ' .. vim.env.XDG_CONFIG_HOME .. '/cp-template/* . && make setup')
+        vim.fn.system(
+            'cp -fr '
+                .. vim.env.XDG_CONFIG_HOME
+                .. '/cp-template/* . && make setup'
+        )
 
         -- windows
         local filename = vim.fn.expand('%')
-        local base_filepath = vim.fn.fnamemodify(filename, ':p:r')
-        local input = base_filepath .. '.in'
-        local output = base_filepath .. '.out'
+        local base_fp, basename =
+            vim.fn.fnamemodify(filename, ':p:h'),
+            vim.fn.fnamemodify(filename, ':t:r')
+        local input, output =
+            ('%s/io/%s.in'):format(base_fp, basename),
+            ('%s/io/%s.out'):format(base_fp, basename)
         vim.cmd.vsplit(output)
         vim.cmd.w()
         clearcol()
@@ -67,7 +74,7 @@ function M.setup()
 
         -- keymaps
         local function move_problem(delta)
-            local base_filename = vim.fn.fnamemodify(base_filepath, ':t')
+            local base_filename = vim.fn.fnamemodify(base_fp, ':t')
             local next_filename_byte = base_filename:byte() + delta
             if next_filename_byte < ('a'):byte() then
                 return
@@ -87,12 +94,13 @@ function M.setup()
             move_problem(-1)
         end, { buffer = code })
 
+        local filename_basename = vim.fn.fnamemodify(filename, ':t')
         bmap({
             'n',
             '<leader>m',
             function()
                 lsp_format({ async = true })
-                vim.system({ 'make', 'run', input }, {}, function()
+                vim.system({ 'make', 'run', filename_basename }, {}, function()
                     vim.schedule(function()
                         vim.cmd.checktime()
                     end)
@@ -105,14 +113,23 @@ function M.setup()
             '<leader>d',
             function()
                 lsp_format({ async = true })
-                vim.system({ 'make', 'debug', input }, {}, function()
-                    vim.schedule(function()
-                        vim.cmd.checktime()
-                    end)
-                end)
+                vim.system(
+                    { 'make', 'debug', filename_basename },
+                    {},
+                    function()
+                        vim.schedule(function()
+                            vim.cmd.checktime()
+                        end)
+                    end
+                )
             end,
         }, { buffer = code })
-    end, { nargs = 1 })
+    end, {
+        nargs = 1,
+        complete = function()
+            return competition_types
+        end,
+    })
 end
 
 return M

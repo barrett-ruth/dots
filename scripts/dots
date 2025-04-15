@@ -19,7 +19,7 @@ exists pip && pip list --not-required >pip.txt
 
 cp -r "$SCRIPTS" .
 
-for folder in git npm nvim python rg tmux yamllint zsh X11 mutt dunst sioyek ghostty zathura; do
+for folder in git npm nvim python rg tmux yamllint zsh X11 mutt dunst sioyek ghostty zathura cp-template; do
   test -d "$XDG_CONFIG_HOME/$folder" && cp -rf "$XDG_CONFIG_HOME/$folder" .
 done
 

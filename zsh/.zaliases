@@ -15,6 +15,10 @@ alias dk='docker'
 alias g='git'
 alias nv='nvim'
 alias pe='printenv'
+sy() {
+    [ "$1" ] || return
+    sioyek "$1" 1>/dev/null 2>/dev/null &; disown
+}
 
 # Misc
 mkcd() {

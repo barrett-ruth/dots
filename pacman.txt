@@ -75,6 +75,10 @@ python-mypy_extensions 1.0.0-5
 python-pip 25.0.1-1
 python-ruff 0.11.4-1
 python-xlib 0.33-4
+qt5-3d 5.15.16-3
+qt5-base 5.15.16+kde+r130-4
+qt5-speech 5.15.16+kde+r1-3
+qt5-svg 5.15.16+kde+r5-3
 reflector 2023-3
 ripgrep 14.1.1-1
 rsync 3.4.1-2
@@ -128,8 +132,4 @@ xorg-xrdb 1.2.2-2
 xorg-xset 1.2.5-2
 xss-lock 0.3.0.r30.gac39fdc-1
 yq 3.4.3-2
-zathura 0.5.11-1
-zathura-djvu 0.2.10-4
-zathura-pdf-mupdf 0.4.4-14
-zathura-ps 0.2.8-5
 zsh 5.9-5

@@ -12,7 +12,7 @@ while true; do
   if [ -d "$dir/${choice%/}" ]; then
     dir="$dir/${choice%/}"
   elif [ -f "$dir/$choice" ]; then
-    zathura "$dir/$choice" &
+    sioyek "$dir/$choice" &
     break
   fi
 done
