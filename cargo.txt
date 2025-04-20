@@ -1,4 +1,3 @@
 cbfmt
 selene
 stylua
-tree-sitter
