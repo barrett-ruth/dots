@@ -1,6 +1,6 @@
 #!/bin/sh
 
 sudo pacman -Syyu
-
+pikaur -Syyu
 pnpm add -g pnpm
 pnpm -g update

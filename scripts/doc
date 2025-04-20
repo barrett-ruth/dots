@@ -5,7 +5,7 @@ dir="$HOME/doc"
 test -d "$dir" || exit
 
 while true; do
-  choice="$(find "$dir" -mindepth 1 -maxdepth 1 \( -type d -printf "%f/\n" -o -type f -printf "%f\n" \) | dmenu -i -l 10 -p "Select file or folder: ")"
+  choice="$(find "$dir" -not -path "$dir/.*" -mindepth 1 -maxdepth 1 \( -type d -printf "%f/\n" -o -type f -printf "%f\n" \) | dmenu -i -l 10 -p "Select file or folder: ")"
 
   [ "$choice" ] || break
 

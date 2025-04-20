@@ -1,17 +1,18 @@
 #!/bin/sh
 
 randr="$(xrandr | rg ' connected ')"
-one="$(echo "$randr" | head -n 1)"
-two="$(echo "$randr" | tail -n 1)"
 mons="$(echo "$randr" | wc -l)"
 wpdir="$HOME"/img/wp
 
-[ "$1" ] && bgone="$1" || bgone="$(fd . "$wpdir"/one --type file | shuf -n 1)"
+# [ "$1" ] && bgone="$1" || bgone="$(fd . "$wpdir"/one --type file | shuf -n 1)"
+[ "$1" ] && bgone="$1" || bgone="$wpdir"/one/delta.jpg
 cmd="feh --no-fehbg --bg-fill $bgone"
 
 if [ "$mons" = 2 ]; then
-  [ "$2" ] && bgtwo="$2" || bgtwo="$(fd . "$wpdir"/two --type file | shuf -n 1)"
+  [ "$2" ] && bgtwo="$2" || bgtwo="$wpdir"/two/delta.jpg
   cmd="$cmd --bg-fill $bgtwo"
+else
+  cmd="feh --no-fehbg --bg-fill $wpdir/one/progress.jpg"
 fi
 
 eval "$cmd"
