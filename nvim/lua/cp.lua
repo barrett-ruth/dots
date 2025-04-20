@@ -15,17 +15,29 @@ local competition_types = { 'codeforces', 'cses', 'icpc', 'usaco' }
 function M.setup()
     vim.api.nvim_create_user_command('CP', function(opts)
         local competition_type = opts.args
+
         if not vim.tbl_contains(competition_types, competition_type) then
-            vim.notify_once(
-                ('Must specify competition of type: [%s]'):format(
-                    table.concat(competition_types, ', ')
-                ),
-                vim.log.levels.ERROR
-            )
+            vim.schedule(function()
+                vim.notify_once(
+                    ('must choose a competition of type [%s]'):format(
+                        table.concat(competition_types, ', ')
+                    ),
+                    vim.log.levels.ERROR
+                )
+            end)
             return
         end
 
         local code = vim.api.nvim_get_current_buf()
+
+        -- statusline
+        if competition_type == 'codeforces' then
+            local components = require('lines.statusline').components
+            local round_nr = vim.fn.fnamemodify(vim.fn.bufname(code), ':p:h:t')
+            components.left[#components.left + 1] = {
+                value = ('[%s]'):format(round_nr),
+            }
+        end
 
         -- options
         vim.api.nvim_set_option_value('foldlevel', 0, { scope = 'local' })
@@ -73,26 +85,20 @@ function M.setup()
         vim.cmd.wincmd('h')
 
         -- keymaps
-        local function move_problem(delta)
-            local base_filename = vim.fn.fnamemodify(base_fp, ':t')
-            local next_filename_byte = base_filename:byte() + delta
-            if next_filename_byte < ('a'):byte() then
-                return
-            end
-            local delta_filename = (string.char(next_filename_byte) .. '.cc')
-            vim.cmd.wall()
-            vim.cmd.e(delta_filename)
-            vim.cmd.bwipeout(output_buf)
-            vim.cmd.bwipeout(input_buf)
-            vim.cmd.CP(competition_type)
+        local function move_problem()
+            vim.ui.input(
+                { prompt = 'problem: ' },
+                function(problem_name)
+                    vim.cmd.wall()
+                    vim.cmd.e(problem_name .. '.cc')
+                    vim.cmd.bwipeout(output_buf)
+                    vim.cmd.bwipeout(input_buf)
+                    vim.cmd.CP(competition_type)
+                end
+            )
         end
 
-        vim.keymap.set('n', ']]', function()
-            move_problem(1)
-        end, { buffer = code })
-        vim.keymap.set('n', '[[', function()
-            move_problem(-1)
-        end, { buffer = code })
+        vim.keymap.set('n', '<localleader>c', move_problem, { buffer = code })
 
         local filename_basename = vim.fn.fnamemodify(filename, ':t')
         bmap({

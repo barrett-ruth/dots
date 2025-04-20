@@ -1,8 +1,11 @@
 local empty = require('utils').empty
 
+local M = {}
+
 local file = {
     value = function()
-        return vim.fn.pathshorten(vim.fn.expand('%:~'))
+        return vim.fn.expand('%:~')
+        -- return vim.fn.pathshorten(vim.fn.expand('%:~'))
         -- return vim.fn.fnamemodify(
         --     vim.fn.bufname(vim.api.nvim_get_current_buf()),
         --     ':~:.'
@@ -86,7 +89,7 @@ local lineinfo = {
     value = '%c:%l/%L',
 }
 
-local statusline = {
+M.components = {
     left = {
         [1] = git,
         [2] = file,
@@ -102,11 +105,11 @@ local statusline = {
 
 local format_components = require('lines.utils').format_components
 
-return {
-    statusline = function()
-        return ('%s%%=%s'):format(
-            format_components(statusline.left),
-            format_components(statusline.right)
-        )
-    end,
-}
+M.statusline = function()
+    return ('%s%%=%s'):format(
+        format_components(M.components.left),
+        format_components(M.components.right)
+    )
+end
+
+return M

@@ -1,3 +1,5 @@
+local utils = require('utils')
+
 local M = {}
 
 local function vorfn(val_or_fn)
@@ -14,12 +16,15 @@ function M.format_components(components)
     for i = 1, #components do
         local component = components[i]
 
-        if vorfn(component.condition) ~= false then
+        if
+            vorfn(component.condition) ~= false
+            and not utils.empty(vorfn(component.value))
+        then
             side[#side + 1] = vorfn(component.value)
         end
     end
 
-    return ' ' .. table.concat(side, ' ') .. ' '
+    return ' ' .. table.concat(side, ' ')
 end
 
 return M

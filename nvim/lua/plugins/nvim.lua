@@ -70,7 +70,7 @@ return {
     },
     {
         'dhruvasagar/vim-zoom',
-        key = '<c-w>m',
+        keys = { { '<c-w>m' } },
     },
     {
         'echasnovski/mini.pairs',
@@ -213,10 +213,15 @@ return {
         event = 'BufReadPre .env*',
     },
     {
+        'lervag/vimtex',
+        ft = { 'plaintext', 'tex' },
+    },
+    {
         'let-def/texpresso.vim',
         config = function()
+            require('texpresso')
             require('utils').au('FileType', 'TeXpresso', {
-                pattern = { 'tex' },
+                pattern = { 'plaintex', 'tex' },
                 callback = function(opts)
                     bmap({
                         'n',
@@ -228,7 +233,7 @@ return {
                 end,
             })
         end,
-        ft = 'tex',
+        ft = { 'plaintex', 'tex' },
     },
     {
         'maxmellon/vim-jsx-pretty',
