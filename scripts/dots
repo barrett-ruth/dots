@@ -27,7 +27,7 @@ test -d tmux && rmb tmux.conf tmux
 test -d zsh && rmb .zaliases .zprofile .zshrc zsh
 test -f ~/.zshenv && cp -f ~/.zshenv zsh
 
-test -f /etc/keyd/default.conf && cp /etc/keyd/default.conf X11
+mkdir keyd && test -f /etc/keyd/default.conf && cp /etc/keyd/default.conf keyd
 
 exists go && test -d "$GOPATH"/bin && ls "$GOPATH"/bin >go.txt
 exists cargo && test -d "$CARGO_HOME"/bin && ls "$CARGO_HOME"/bin >cargo.txt

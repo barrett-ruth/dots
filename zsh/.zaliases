@@ -11,19 +11,43 @@ alias ds='doas'
 alias pm='pacman'
 
 # Basic programs
-alias dk='docker'
 alias g='git'
 alias nv='nvim'
-alias pe='printenv'
 sy() {
     [ "$1" ] || return
     sioyek "$1" 1>/dev/null 2>/dev/null &; disown
 }
 
-# Misc
 mkcd() {
     [ "$1" ] || return
     mkdir -p "$@"
     cd "$@"
 }
-j() { . _j "$@"; }
+
+j() {
+    case "$1" in
+        -) cd - >/dev/null && return;;
+        auto) cd ~/dev/cavauto;;
+        '') cd ~;;
+        ip) cd ~/dev/swe-interview-prep;;
+        dl) cd ~/dl;;
+        sl) cd ~/dev/sl;;
+        lz) cd ~/.local/share/nvim/lazy;;
+        dev) cd ~/dev;;
+        ds) cd ~/dev/data-structures;;
+        site) cd ~/dev/barrettruth.com;;
+        cp) cd ~/dev/cp;;
+        cf) cd ~/.config;;
+        notes) cd ~/dev/notes;;
+        scr) cd "$SCRIPTS";;
+        desk) cd ~/Desktop;;
+        dots) cd ~/dev/dots;;
+        tcf) cd ~/dev/theCourseForum2;;
+        trb) cd ~/dev/trb-capital-management;;
+        tm) cd ~/.config/tmux;;
+        nv) cd ~/.config/nvim;;
+        x) cd ~/.config/X11;;
+        zsh) cd ~/.config/zsh;;
+        *) cd "$@";;
+    esac
+}

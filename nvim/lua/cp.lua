@@ -30,15 +30,6 @@ function M.setup()
 
         local code = vim.api.nvim_get_current_buf()
 
-        -- statusline
-        if competition_type == 'codeforces' then
-            local components = require('lines.statusline').components
-            local round_nr = vim.fn.fnamemodify(vim.fn.bufname(code), ':p:h:t')
-            components.left[#components.left + 1] = {
-                value = ('[%s]'):format(round_nr),
-            }
-        end
-
         -- options
         vim.api.nvim_set_option_value('foldlevel', 0, { scope = 'local' })
         vim.api.nvim_set_option_value(

@@ -21,6 +21,10 @@ local function hi(group, highlights, links)
 end
 
 return {
+    bore = {
+        black = '#000000',
+        white = '#ffffff',
+    },
     light = {
         black = '#000000',
         grey = '#666666',

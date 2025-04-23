@@ -122,7 +122,7 @@ function M.setup_none_ls()
             diagnostics.mypy.with({
                 extra_args = { '--check-untyped-defs' },
                 runtime_condition = function(params)
-                    return vim.fn.executable('mypy')
+                    return vim.fn.executable('mypy') == 1
                         and require('null-ls.utils').path.exists(params.bufname)
                 end,
             }),

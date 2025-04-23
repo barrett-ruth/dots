@@ -87,18 +87,7 @@ export FZF_ALT_C_COMMAND="fd --type directory --strip-cwd-prefix"
 export FZF_CTRL_R_OPTS='--reverse'
 export FZF_CTRL_T_COMMAND="fd --type file --strip-cwd-prefix"
 export FZF_TMUX=1
-
-FZF_DEFAULT_OPTS='--bind=ctrl-a:select-all --bind=ctrl-f:half-page-down --bind=ctrl-b:half-page-up --no-scrollbar --no-info'
-if [ "$THEME" = "gruvbox" ]; then
-    FZF_DEFAULT_OPTS+=" --color=fg:#D4BE98,bg:#282828,hl:#A9B665,fg+:#ffffff,bg+:#32302F,hl+:#89B482 \
---color=spinner:#D8A657 --color=marker:#D8A657 --color=pointer:#7DAEA3 \
---color=prompt:#E78A4E --color=info:#89B482 --color=border:#928374 --color=header:#928374"
-else
-    FZF_DEFAULT_OPTS+=" --color=fg:#000000,bg:#ffffff,hl:#ffa500,fg+:#000000,bg+:#ffffff,hl+:#ff0000 \
---color=spinner:#ffa500 --color=marker:#ffa500 --color=pointer:#0000ff \
---color=prompt:#ff00ff --color=info:#00ffff --color=border:#000000 --color=header:#000000"
-fi
-export FZF_DEFAULT_OPTS
+export FZF_DEFAULT_OPTS='--bind=ctrl-a:select-all --bind=ctrl-f:half-page-down --bind=ctrl-b:half-page-up --no-scrollbar --no-info'
 
 . <(fzf --zsh)
 . <(glab completion -s zsh); compdef _glab glab
@@ -110,11 +99,7 @@ fzf-config-widget() {
 }
 zle -N fzf-config-widget
 
-bindkey -r '^R'
 bindkey '^E' fzf-config-widget
-bindkey '^F' fzf-file-widget
-bindkey '^G' fzf-cd-widget
-bindkey '^H' fzf-history-widget
 
 . "$ZDOTDIR"/.zaliases
 
