@@ -23,10 +23,6 @@ end
 return {
     bore = {
         black = '#000000',
-        white = '#ffffff',
-    },
-    light = {
-        black = '#000000',
         grey = '#666666',
         red = '#B22222',
         green = '#228B22',

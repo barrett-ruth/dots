@@ -6,16 +6,16 @@ local hi, link, tshi, cs =
 
 hi('CursorLine', { bg = cs.white }, { 'ColorColumn', 'Folded' })
 hi('Directory', { fg = cs.black })
-hi('Error', { fg = cs.black })
-hi('ErrorMsg', { bold = true, underline = true, fg = cs.black })
-hi('MoreMsg', { bold = true, fg = cs.black }, { 'WarningMsg' })
+hi('Error', { fg = cs.red })
+hi('ErrorMsg', { bold = true, underline = true, fg = cs.red })
+hi('MoreMsg', { bold = true, fg = cs.yellow }, { 'WarningMsg' })
 hi('NormalFloat', { bg = cs.bg }, {
     'LspInfoBorder',
     'FloatBorder',
     'FloatShadow',
     'FloatShadowThrough',
 })
-hi('LineNr', { fg = cs.black }, { 'SignColumn' })
+hi('LineNr', { fg = cs.grey }, { 'SignColumn' })
 hi('CursorLineNr', { fg = cs.black })
 hi(
     'Normal',
@@ -58,51 +58,51 @@ hi('@lsp.type.comment', { none = true }, { '@lsp.type.macro' })
 hi('@text.emphasis', { italic = true })
 hi('@text.strong', { bold = true })
 hi('@text.underline', { underline = true })
-hi('@text.uri', { fg = cs.black, underline = true }, { '@text.reference' })
-hi('@text.danger', { fg = cs.black, bold = true, italic = true })
-hi('@text.note', { fg = cs.black, bold = true, italic = true })
-hi('@text.todo', { fg = cs.black, bold = true, italic = true }, { 'Todo' })
-hi('@text.warning', { fg = cs.black, bold = true, italic = true })
+hi('@text.uri', { fg = cs.blue, underline = true }, { '@text.reference' })
+hi('@text.danger', { fg = cs.red, bold = true, italic = true })
+hi('@text.note', { fg = cs.green, bold = true, italic = true })
+hi('@text.todo', { fg = cs.blue, bold = true, italic = true }, { 'Todo' })
+hi('@text.warning', { fg = cs.yellow, bold = true, italic = true })
 
-hi('LspInlayHint', { fg = cs.black })
+hi('LspInlayHint', { fg = cs.grey })
 hi(
     'DiagnosticError',
-    { fg = cs.black },
+    { fg = cs.red },
     { 'DiagnosticFloatingError', 'DiagnosticSignError' }
 )
 hi(
     'DiagnosticWarn',
-    { fg = cs.black },
+    { fg = cs.yellow },
     { 'DiagnosticFloatingWarn', 'DiagnosticSignWarn' }
 )
 hi(
     'DiagnosticHint',
-    { fg = cs.black },
+    { fg = cs.magenta },
     { 'DiagnosticFloatingHint', 'DiagnosticSignHint' }
 )
 hi(
     'DiagnosticOk',
-    { fg = cs.black },
+    { fg = cs.green },
     { 'DiagnosticFloatingOk', 'DiagnosticSignOk' }
 )
 hi(
     'DiagnosticInfo',
-    { fg = cs.black },
+    { fg = cs.blue },
     { 'DiagnosticFloatingInfo', 'DiagnosticSignInfo' }
 )
-hi('DiagnosticUnderlineError', { undercurl = true, special = cs.black })
-hi('DiagnosticUnderlineWarn', { undercurl = true, special = cs.black })
-hi('DiagnosticUnderlineHint', { undercurl = true, special = cs.black })
-hi('DiagnosticUnderlineOk', { undercurl = true, special = cs.black })
-hi('DiagnosticUnderlineInfo', { undercurl = true, special = cs.black })
+hi('DiagnosticUnderlineError', { undercurl = true, special = cs.red })
+hi('DiagnosticUnderlineWarn', { undercurl = true, special = cs.yellow })
+hi('DiagnosticUnderlineHint', { undercurl = true, special = cs.magenta })
+hi('DiagnosticUnderlineOk', { undercurl = true, special = cs.green })
+hi('DiagnosticUnderlineInfo', { undercurl = true, special = cs.blue })
 
 hi('@attribute.diff', { fg = cs.black })
-hi('DiffAdd', { fg = cs.black }, { 'Added', '@text.diff.add', 'diffAdded' })
-hi('DiffDelete', { fg = cs.black }, { 'Removed', '@text.diff.delete', 'diffRemoved' })
-hi('DiffChange', { fg = cs.black })
+hi('DiffAdd', { fg = cs.green }, { 'Added', '@text.diff.add', 'diffAdded' })
+hi('DiffDelete', { fg = cs.red }, { 'Removed', '@text.diff.delete', 'diffRemoved' })
+hi('DiffChange', { fg = cs.blue })
 
 -- gitsigns.nvim
-hi('GitSignsCurrentLineBlame', { italic = true, fg = cs.black })
+hi('GitSignsCurrentLineBlame', { italic = true, fg = cs.grey })
 link('DiffAdd', 'GitSignsAdd')
 link('DiffChange', 'GitSignsChange')
 link('DiffDelete', 'GitSignsDelete')

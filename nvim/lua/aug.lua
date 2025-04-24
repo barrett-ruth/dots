@@ -12,17 +12,6 @@ au('TermOpen', {
     group = aug,
 })
 
-au('ColorScheme', {
-    pattern = '*',
-    callback = function()
-        vim.o.statusline =
-            [[%{%v:lua.require('lines.statusline').statusline()%}]]
-        vim.o.statuscolumn =
-            [[%{%v:lua.require('lines.statuscolumn').statuscolumn()%}]]
-    end,
-    group = aug,
-})
-
 au('BufWritePost', {
     pattern = os.getenv('XDG_CONFIG_HOME') .. '/dunst/dunstrc',
     callback = function()

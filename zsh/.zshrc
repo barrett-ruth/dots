@@ -4,7 +4,7 @@
 
 __set_code() {
     PS1=''
-    [[ $code -eq 0 ]] || PS1=" %F{red}$code%f"
+    [[ $code -eq 0 ]] || PS1=" $code"
 }
 
 __set_ssh() {
@@ -30,7 +30,7 @@ __shrink() {
 }
 
 __set_dir() {
-    PS1+=" %F{blue}$(__shrink)%f "
+    PS1+=" $(__shrink) "
 }
 
 __set_git() {
@@ -58,21 +58,19 @@ __set_git() {
 
   [[ -n "$up_down" ]] && up_down=" $up_down"
 
-  PS1+="%F{magenta}$dirty$br$us$up_down%f "
+  PS1+="$dirty$br$us$up_down "
 }
 
 __set_venv() {
     local dir="$PWD"
     while [[ "$dir" != "" && "$dir" != "/" ]]; do
-        if [[ -x "$dir/venv/bin/python" ]]; then
-            . "$dir/venv/bin/activate"
-            PS1+='%F{yellow}venv%f '
-            return
-        elif [[ -x "$dir/.venv/bin/python" ]]; then
-            . "$dir/.venv/bin/activate"
-            PS1+='%F{yellow}.venv%f '
-            return
-        fi
+        for venv in venv .venv; do
+            if [[ -x "$dir/$venv/bin/python" ]]; then
+                . "$dir/$venv/bin/activate"
+                PS1+="($venv) "
+                return
+            fi
+        done
         dir="$(dirname "$dir")"
     done
     type deactivate >/dev/null && deactivate

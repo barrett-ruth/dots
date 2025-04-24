@@ -106,7 +106,7 @@ M.components = {
 local format_components = require('lines.utils').format_components
 
 M.statusline = function()
-    return ('%s%%=%s'):format(
+    return ('%s%%=%s '):format(
         format_components(M.components.left),
         format_components(M.components.right)
     )

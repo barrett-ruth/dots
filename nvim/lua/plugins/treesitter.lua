@@ -28,12 +28,10 @@ return {
     {
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdateSync',
-        config = function(_, opts)
-            require('nvim-treesitter.configs').setup(opts)
-        end,
         dependencies = {
             'nvim-treesitter/nvim-treesitter-textobjects',
             'nvim-lua/plenary.nvim',
+            'echasnovski/mini.ai'
         },
         event = { 'BufReadPre', 'BufNewFile' },
         keys = {

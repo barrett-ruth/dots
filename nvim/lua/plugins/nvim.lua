@@ -342,6 +342,7 @@ return {
             },
         },
     },
+    { 'tommcdo/vim-exchange', event = 'VeryLazy' },
     { 'tpope/vim-abolish', event = 'VeryLazy' },
     {
         'tpope/vim-fugitive',

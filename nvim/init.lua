@@ -4,6 +4,7 @@ require('filetype')
 require('aug')
 
 require('cp').setup()
+require('lines').setup()
 
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.uv.fs_stat(lazypath) then
@@ -21,5 +22,4 @@ require('lazy').setup('plugins', {
     change_detection = { enabled = false },
 })
 
--- vim.cmd.colorscheme(vim.env.THEME)
 vim.cmd.colorscheme('bore')

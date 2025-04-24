@@ -117,7 +117,7 @@ tk 8.6.16-1
 tmux 3.5_a-1
 tree-sitter 0.25.3-1
 tree-sitter-cli 0.25.3-1
-ttf-hanazono 20170904-5
+ttf-font-awesome 6.7.2-1
 uv 0.6.16-1
 vi 1:070224-6
 webkit2gtk 2.48.1-1
