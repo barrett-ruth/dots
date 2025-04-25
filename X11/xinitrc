@@ -8,7 +8,7 @@ fi
 
 sxs
 smon
-sbg ~/img/wp/one/flowers.jpg ~/img/wp/one/lilies.jpg
+sbg ~/img/wp/one/cliff.jpg ~/img/wp/one/lilies.jpg
 skb &
 sclip &
 dwmblocks &

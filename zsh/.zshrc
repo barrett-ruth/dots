@@ -38,7 +38,7 @@ __set_git() {
 
   setopt +o nomatch
 
-  local sb=(${(@f)"$(git status -sb)"}) up_down us
+  local sb=(${(@f)"$(git status -sb)"}) us
   (( ${#sb[@]} > 1 )) && local dirty=*
   sb="${sb[1]}"
   local br="${${sb%%.*}##* }"
@@ -47,18 +47,13 @@ __set_git() {
     local usr="${${sb#*...}%% *}"
     [[ "${usr#*/}" == "$br" ]] && usr="${usr%%/*}"
     [[ -n "$usr" ]] && us="..$usr"
-    [[ -n "${sb##*ahead*}" ]] || up_down+=^
-    [[ -n "${sb##*behind*}" ]] || up_down+=v
-    [ "${#up_down}" = 2 ] && up_down=^v
   elif [[ -z "${sb##*HEAD*}" ]]; then
       br=HEAD
   else
       br="${sb##* }"
   fi
 
-  [[ -n "$up_down" ]] && up_down=" $up_down"
-
-  PS1+="$dirty$br$us$up_down "
+  PS1+="%F{magenta}$dirty$br$us%f "
 }
 
 __set_venv() {
@@ -67,7 +62,7 @@ __set_venv() {
         for venv in venv .venv; do
             if [[ -x "$dir/$venv/bin/python" ]]; then
                 . "$dir/$venv/bin/activate"
-                PS1+="($venv) "
+                PS1+="%F{yellow}($venv)%f "
                 return
             fi
         done
