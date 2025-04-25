@@ -1,37 +1,14 @@
 return {
     {
-        'David-Kunz/treesitter-unit',
-        dependencies = 'nvim-treesitter/nvim-treesitter',
-        keys = {
-            {
-                'iu',
-                '<cmd>lua require("treesitter-unit").select()<cr>',
-                mode = 'x',
-            },
-            {
-                'au',
-                '<cmd>lua require("treesitter-unit").select(true)<cr>',
-                mode = 'x',
-            },
-            {
-                'iu',
-                '<cmd>lua require("treesitter-unit").select()<cr>',
-                mode = 'o',
-            },
-            {
-                'au',
-                '<cmd>lua require("treesitter-unit").select(true)<cr>',
-                mode = 'o',
-            },
-        },
-    },
-    {
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdateSync',
+        config = function(_, opts)
+            require('nvim-treesitter.configs').setup(opts)
+        end,
         dependencies = {
             'nvim-treesitter/nvim-treesitter-textobjects',
             'nvim-lua/plenary.nvim',
-            'echasnovski/mini.ai'
+            { 'echasnovski/mini.ai', config = true, event = 'VeryLazy' },
         },
         event = { 'BufReadPre', 'BufNewFile' },
         keys = {

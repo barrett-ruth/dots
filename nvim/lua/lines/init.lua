@@ -8,7 +8,6 @@ return {
             [[%{%v:lua.require('lines.statuscolumn').statuscolumn()%}]]
 
         utils.au('ColorScheme', 'StatusLineInit', {
-            pattern = '*',
             callback = function()
                 vim.o.statusline =
                     [[%{%v:lua.require('lines.statusline').statusline()%}]]
