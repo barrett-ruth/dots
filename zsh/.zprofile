@@ -87,7 +87,7 @@ export FZF_ALT_C_COMMAND="fd --type directory --strip-cwd-prefix"
 export FZF_CTRL_R_OPTS='--reverse'
 export FZF_CTRL_T_COMMAND="fd --type file --strip-cwd-prefix"
 export FZF_TMUX=1
-export FZF_DEFAULT_OPTS='--bind=ctrl-a:select-all --bind=ctrl-f:half-page-down --bind=ctrl-b:half-page-up --no-scrollbar --no-info'
+export FZF_DEFAULT_OPTS='--color=light --bind=ctrl-a:select-all --bind=ctrl-f:half-page-down --bind=ctrl-b:half-page-up --no-scrollbar --no-info'
 
 . <(fzf --zsh)
 . <(glab completion -s zsh); compdef _glab glab

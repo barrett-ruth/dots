@@ -225,6 +225,7 @@ return {
         'NvChad/nvim-colorizer.lua',
         opts = {
             filetypes = {
+                'config',
                 'conf',
                 'sh',
                 'tmux',

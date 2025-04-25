@@ -41,3 +41,5 @@ keybind = alt+y=copy_to_clipboard
 keybind = alt+p=paste_from_clipboard
 keybind = alt+shift+h=decrease_font_size:1
 keybind = alt+shift+l=increase_font_size:1
+
+# vim: ft=config
