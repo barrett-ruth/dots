@@ -10,17 +10,20 @@ local function clearcol()
     vim.api.nvim_set_option_value('equalalways', false, { scope = 'global' })
 end
 
-local competition_versions = { codeforces = 23, cses = 23, icpc = 20, usaco = 17 }
+local competition_versions =
+    { codeforces = 23, cses = 23, icpc = 20, usaco = 17 }
+
+local competition_types = vim.tbl_keys(competition_versions)
 
 function M.setup()
     vim.api.nvim_create_user_command('CP', function(opts)
-        local competition_type = opts.args
+        local competition_type, fname = opts.fargs[1], opts.fargs[2]
 
-        if not vim.tbl_contains(vim.tbl_keys(competition_versions), competition_type) then
+        if not vim.tbl_contains(competition_types, competition_type) then
             vim.schedule(function()
                 vim.notify_once(
-                    ('must choose a competition of type [%s]'):format(
-                        table.concat(vim.tbl_keys(competition_versions), ', ')
+                    ('Enter competition of type: [%s]'):format(
+                        table.concat(competition_types, ', ')
                     ),
                     vim.log.levels.ERROR
                 )
@@ -29,6 +32,19 @@ function M.setup()
         end
 
         local code = vim.api.nvim_get_current_buf()
+
+        for _, win in ipairs(vim.api.nvim_list_wins()) do
+            local buf = vim.api.nvim_win_get_buf(win)
+            local name = vim.api.nvim_buf_get_name(buf)
+            if
+                name:match('/io/[^/]+%.in$') or name:match('/io/[^/]+%.out$')
+            then
+                vim.api.nvim_win_close(win, true)
+            end
+        end
+
+        vim.cmd.wall()
+        vim.cmd.e(fname)
 
         -- options
         vim.api.nvim_set_option_value('foldlevel', 0, { scope = 'local' })
@@ -52,7 +68,8 @@ function M.setup()
         vim.fn.system(
             'cp -fr '
                 .. vim.env.XDG_CONFIG_HOME
-                .. '/cp-template/* . && make setup VERSION=' .. competition_versions[competition_type]
+                .. '/cp-template/* . && make setup VERSION='
+                .. competition_versions[competition_type]
         )
 
         vim.diagnostic.enable(false)
@@ -68,30 +85,12 @@ function M.setup()
         vim.cmd.vsplit(output)
         vim.cmd.w()
         clearcol()
-        local output_buf = vim.api.nvim_get_current_buf()
         -- 30% split
         vim.cmd('vertical resize ' .. math.floor(vim.o.columns * 0.3))
         vim.cmd.split(input)
         vim.cmd.w()
         clearcol()
-        local input_buf = vim.api.nvim_get_current_buf()
         vim.cmd.wincmd('h')
-
-        -- keymaps
-        local function move_problem()
-            vim.ui.input(
-                { prompt = 'problem: ' },
-                function(problem_name)
-                    vim.cmd.wall()
-                    vim.cmd.e(problem_name .. '.cc')
-                    vim.cmd.bwipeout(output_buf)
-                    vim.cmd.bwipeout(input_buf)
-                    vim.cmd.CP(competition_type)
-                end
-            )
-        end
-
-        vim.keymap.set('n', '<localleader>c', move_problem, { buffer = code })
 
         local filename_basename = vim.fn.fnamemodify(filename, ':t')
         bmap({
@@ -124,9 +123,17 @@ function M.setup()
             end,
         }, { buffer = code })
     end, {
-        nargs = 1,
-        complete = function()
-            return competition_types
+        nargs = '+',
+        complete = function(ArgLead, CmdLine, ...)
+            if #CmdLine <= 3 then
+                return competition_types
+            end
+            return vim.tbl_filter(function(e)
+                return vim.tbl_contains(
+                    { '.py', '.cpp', '.cc' },
+                    vim.fn.fnamemodify(e, ':t')
+                )
+            end, vim.fn.glob(ArgLead .. '*', false, true))
         end,
     })
 end

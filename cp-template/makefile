@@ -20,7 +20,7 @@ setup:
 	test -d io || mkdir -p io
 	test -d scripts || mkdir -p scripts
 	test -f compile_flags.txt || cp $(HOME)/.config/cp-template/compile_flags.txt . && echo -std=c++$(VERSION) >>compile_flags.txt
-	test -f .clangd || cp $(HOME)/.config/cp-template/.clangd . && echo "\t\t-std=c++$(VERSION)" >>.clangd
+	test -f .clangd || cp $(HOME)/.config/cp-template/.clangd . && echo -e "\t\t-std=c++$(VERSION)" >>.clangd
 
 init:
 	make setup
