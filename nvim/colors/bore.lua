@@ -4,7 +4,7 @@ colors.setup('bore', 'light')
 local hi, link, tshi, cs =
     colors.hi, colors.link, colors.tshi, colors[vim.g.colors_name]
 
-hi('CursorLine', { bg = cs.white }, { 'ColorColumn', 'Folded' })
+hi('CursorLine', { bg = cs.light_grey }, { 'ColorColumn', 'Folded' })
 hi('Directory', { fg = cs.black })
 hi('Error', { fg = cs.red })
 hi('ErrorMsg', { bold = true, underline = true, fg = cs.red })
@@ -20,7 +20,7 @@ hi('CursorLineNr', { fg = cs.black })
 hi(
     'Normal',
     { fg = cs.black, bg = cs.white },
-    { 'Identifier', 'StatusLine', 'StatusLineNC' }
+    { 'Identifier', 'StatusLine', 'StatusLineNC', '@markup.heading.gitcommit' }
 )
 hi('Special', { fg = cs.black, bg = 'none' })
 hi('NonText', { fg = cs.black }, { 'Whitespace' })
@@ -30,15 +30,14 @@ hi('Pmenu', { bg = cs.white })
 hi('PmenuSel', { reverse = true })
 hi('ModeMsg', { fg = cs.black })
 
-tshi('Boolean', { fg = cs.black }, { '@constant.builtin' })
-tshi('Comment', { fg = cs.black })
+tshi('Boolean', { fg = cs.blue }, { '@constant.builtin', 'Number' })
+tshi('Comment', { fg = cs.grey })
 tshi('Constant', { fg = cs.black })
 tshi('Define', { fg = cs.black })
-tshi('Function', { fg = cs.black }, { '@function.builtin', '@function.macro' })
+tshi('Function', { fg = cs.green }, { '@function.builtin', '@function.macro' })
 tshi('Include', { fg = cs.black })
-tshi('Keyword', { fg = cs.black }, { 'Statement' })
+tshi('Keyword', { fg = cs.red }, { 'Statement' })
 tshi('Namespace', { fg = cs.black })
-tshi('Number', { fg = cs.black })
 tshi(
     'Operator',
     { fg = cs.black },
@@ -47,7 +46,7 @@ tshi(
 hi('Delimiter', { none = true })
 hi('@punctuation.delimiter', { fg = cs.light_black })
 tshi('PreProc', { fg = cs.black })
-tshi('String', { fg = cs.black }, { '@character' })
+tshi('String', { fg = cs.yellow }, { '@character' })
 hi('@string.escape', { fg = cs.black })
 tshi('Title', { bold = true, fg = cs.black })
 tshi('Variable', { none = true }, { '@constant.python' })
@@ -98,7 +97,11 @@ hi('DiagnosticUnderlineInfo', { undercurl = true, special = cs.blue })
 
 hi('@attribute.diff', { fg = cs.black })
 hi('DiffAdd', { fg = cs.green }, { 'Added', '@text.diff.add', 'diffAdded' })
-hi('DiffDelete', { fg = cs.red }, { 'Removed', '@text.diff.delete', 'diffRemoved' })
+hi(
+    'DiffDelete',
+    { fg = cs.red },
+    { 'Removed', '@text.diff.delete', 'diffRemoved' }
+)
 hi('DiffChange', { fg = cs.blue })
 
 -- gitsigns.nvim

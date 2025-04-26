@@ -16,7 +16,6 @@
 -Wunused
 -Woverloaded-virtual
 -Wconversion
--Wsign-conversion
 -Wmisleading-indentation
 -Wduplicated-cond
 -Wduplicated-branches
@@ -28,4 +27,3 @@
 -Wdouble-promotion
 -Wundef
 -DLOCAL
--std=c++23

@@ -4,7 +4,7 @@
 
 __set_code() {
     PS1=''
-    [[ $code -eq 0 ]] || PS1=" $code"
+    [[ $code -eq 0 ]] || PS1=" %F{red}$code%f"
 }
 
 __set_ssh() {
@@ -30,7 +30,7 @@ __shrink() {
 }
 
 __set_dir() {
-    PS1+=" $(__shrink) "
+    PS1+=" %F{blue}$(__shrink)%f "
 }
 
 __set_git() {
@@ -100,4 +100,5 @@ precmd() {
     __set_git
     __set_venv
     __set_beam_cursor
+    PS1+='$ '
 }

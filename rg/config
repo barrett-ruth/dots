@@ -10,6 +10,6 @@
 --glob=!*.json
 --glob=!venv/
 --glob=!pyenv/
---ignore-file=/home/sigpipe/.config/git/ignore
+--ignore-file=/home/frozenpipe/.config/git/ignore
 --no-messages
 --no-follow

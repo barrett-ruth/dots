@@ -10,17 +10,17 @@ local function clearcol()
     vim.api.nvim_set_option_value('equalalways', false, { scope = 'global' })
 end
 
-local competition_types = { 'codeforces', 'cses', 'icpc', 'usaco' }
+local competition_versions = { codeforces = 23, cses = 23, icpc = 20, usaco = 17 }
 
 function M.setup()
     vim.api.nvim_create_user_command('CP', function(opts)
         local competition_type = opts.args
 
-        if not vim.tbl_contains(competition_types, competition_type) then
+        if not vim.tbl_contains(vim.tbl_keys(competition_versions), competition_type) then
             vim.schedule(function()
                 vim.notify_once(
                     ('must choose a competition of type [%s]'):format(
-                        table.concat(competition_types, ', ')
+                        table.concat(vim.tbl_keys(competition_versions), ', ')
                     ),
                     vim.log.levels.ERROR
                 )
@@ -52,8 +52,10 @@ function M.setup()
         vim.fn.system(
             'cp -fr '
                 .. vim.env.XDG_CONFIG_HOME
-                .. '/cp-template/* . && make setup'
+                .. '/cp-template/* . && make setup VERSION=' .. competition_versions[competition_type]
         )
+
+        vim.diagnostic.enable(false)
 
         -- windows
         local filename = vim.fn.expand('%')

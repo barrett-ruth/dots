@@ -42,32 +42,6 @@ return {
         light_cyan = '#00ffff',
         light_white = '#ffffff',
     },
-    gruvbox = {
-        black = '#282828',
-        red = '#EA6962',
-        green = '#A9B665',
-        yellow = '#D8A657',
-        blue = '#7DAEA3',
-        magenta = '#D3869B',
-        cyan = '#89B482',
-        white = '#D4BE98',
-
-        light_black = '#928374',
-        light_red = '#EF938E',
-        light_green = '#BBC585',
-        light_yellow = '#E1BB7E',
-        light_blue = '#9DC2BA',
-        light_magenta = '#E1ACBB',
-        light_cyan = '#A7C7A2',
-        light_white = '#E2D3BA',
-
-        orange = '#E78A4E',
-
-        light_grey = '#A89984',
-        grey = '#5A524C',
-        med_grey = '#45403D',
-        dark_grey = '#32302F',
-    },
     setup = function(colors_name, background)
         if vim.g.colors_name then
             vim.cmd.hi('clear')

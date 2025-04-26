@@ -41,18 +41,23 @@ int main() {{
         fmt(
             [[{}
 
-#define PROBLEM_NAME "{}"
-
 void solve() {{
-    {}
+  {}
 }}
 
 int main() {{  // {{{{{{
   cin.tie(nullptr)->sync_with_stdio(false);
   cin.exceptions(cin.failbit);
 
+#define PROBLEM_NAME "{}"
+
+#ifdef LOCAL
+  freopen("io/" PROBLEM_NAME ".in", "r", stdin);
+  freopen("io/" PROBLEM_NAME ".out", "w", stdout);
+#else
   freopen(PROBLEM_NAME ".in", "r", stdin);
   freopen(PROBLEM_NAME ".out", "w", stdout);
+#endif
 
   solve();
 
@@ -61,10 +66,10 @@ int main() {{  // {{{{{{
 // }}}}}}]],
             {
                 t(readlines('template.cc')),
+                i(1),
                 f(function()
                     return vim.fn.expand('%:t:r')
                 end),
-                i(1),
             }
         )
     ),

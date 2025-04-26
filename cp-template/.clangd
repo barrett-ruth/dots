@@ -30,5 +30,4 @@ CompileFlags:
 		-Wdouble-promotion
 		-Wundef
 		-DLOCAL
-		-std=c++20
 		-Wno-unknown-pragmas

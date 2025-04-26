@@ -11,15 +11,10 @@ using i32 = int32_t;
 using u32 = uint32_t;
 using i64 = int64_t;
 using u64 = uint64_t;
-using d64 = double;
-using d128 = long double;
-template <typename T>
-using vec = std::vector<T>;
-template <typename T, size_t N>
-using arr = std::array<T, N>;
-template<typename T1, typename T2>
-using pai = std::pair<T1, T2>;
+using f64 = double;
+using f128 = long double;
 
+#if __cplusplus >= 202002L
 template <typename T>
 constexpr T MIN = std::numeric_limits<T>::min();
 
@@ -35,6 +30,7 @@ template <typename T>
 [[nodiscard]] static T sz(auto&& x) {
   return static_cast<T>(x.size());
 }
+#endif
 
 static void NO() {
   std::cout << "NO\n";
@@ -46,6 +42,8 @@ static void YES() {
 
 #define all(x) (x).begin(), (x).end()
 #define rall(x) (x).rbegin(), (x).rend()
+#define ff first
+#define ss second
 
 #ifdef LOCAL
 #define db(...) std::print(__VA_ARGS__)

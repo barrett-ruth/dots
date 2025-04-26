@@ -165,7 +165,6 @@ function M.setup_none_ls()
                     return utils.root_has_file({ 'stylua.toml', '.stylua.toml' })
                 end,
             }),
-            require('none-ls.formatting.tex_fmt'),
 
             hover.dictionary,
             hover.printenv,
