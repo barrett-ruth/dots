@@ -52,16 +52,6 @@ local git_status = new_git_status()
 
 return {
     {
-        'savq/melange-nvim',
-        config = function()
-            vim.o.background = 'dark'
-            vim.g.melange_enable_font_variants = false
-            vim.cmd.colorscheme('melange')
-        end,
-        event = 'VeryLazy',
-        enabled = false,
-    },
-    {
         'barrett-ruth/live-server.nvim',
         build = 'pnpm add -g live-server',
         cmd = { 'LiveServerStart', 'LiveServerStart' },
@@ -186,26 +176,13 @@ return {
     },
     {
         'lervag/vimtex',
-        ft = { 'plaintext', 'tex' },
-    },
-    {
-        'let-def/texpresso.vim',
-        config = function()
-            require('texpresso')
-            require('utils').au('FileType', 'TeXpresso', {
-                pattern = { 'plaintex', 'tex' },
-                callback = function(opts)
-                    bmap({
-                        'n',
-                        '<leader>t',
-                        function()
-                            vim.cmd('TeXpresso %')
-                        end,
-                    }, { buffer = opts.buf })
-                end,
-            })
+        init = function()
+            vim.g.vimtex_view_method = 'sioyek'
+            vim.g.vimtex_callback_progpath = '/usr/bin/nvim'
+            vim.g.vimtex_view_sioyek_exe = vim.env.HOME .. '/.local/bin/sioyek'
+            vim.g.vimtex_quickfix_mode = 0
         end,
-        ft = { 'plaintex', 'tex' },
+        ft = { 'plaintext', 'tex' },
     },
     {
         'maxmellon/vim-jsx-pretty',

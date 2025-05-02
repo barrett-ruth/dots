@@ -50,10 +50,6 @@ export GOMODCACHE="$XDG_CACHE_HOME"/go/mod
 export GOPATH="$XDG_DATA_HOME"/go
 append_path "$GOPATH"/bin
 
-export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
-export CARGO_HOME="$XDG_DATA_HOME"/cargo
-append_path "$CARGO_HOME"/bin
-
 export PNPM_HOME="$XDG_DATA_HOME"/pnpm
 append_path "$PNPM_HOME"
 

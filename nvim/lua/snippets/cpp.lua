@@ -86,10 +86,10 @@ int main() {{  // {{{{{{
   cin.tie(nullptr)->sync_with_stdio(false);
   cin.exceptions(cin.failbit);
 
-  int tc = 1;
+  u32 tc = 1;
   // cin >> tc;
 
-  for (int t = 0; t < tc; ++t) {{
+  for (u32 t = 0; t < tc; ++t) {{
     solve();
   }}
 
@@ -133,10 +133,10 @@ int main() {{  // {{{{{{
   cin.tie(nullptr)->sync_with_stdio(false);
   cin.exceptions(cin.failbit);
 
-  int tc = 1;
+  u32 tc = 1;
   cin >> tc;
 
-  for (int t = 0; t < tc; ++t) {{
+  for (u32 t = 0; t < tc; ++t) {{
     solve();
   }}
 

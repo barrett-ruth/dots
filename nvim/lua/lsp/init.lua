@@ -105,7 +105,6 @@ function M.setup_none_ls()
         sources = {
             require('none-ls.code_actions.eslint_d'),
             code_actions.gitrebase,
-            code_actions.gitsigns,
 
             diagnostics.buf,
             diagnostics.checkmake,
@@ -137,6 +136,7 @@ function M.setup_none_ls()
             formatting.buf,
             formatting.cbfmt,
             formatting.cmake_format,
+            require('none-ls.formatting.latexindent'),
             formatting.prettierd.with({
                 env = {
                     XDG_RUNTIME_DIR = vim.env.XDG_RUNTIME_DIR

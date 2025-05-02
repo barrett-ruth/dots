@@ -11,7 +11,7 @@ local function clearcol()
 end
 
 local competition_versions =
-    { codeforces = 23, cses = 23, icpc = 20, usaco = 17 }
+    { codeforces = 23, cses = 20, icpc = 20, usaco = 17 }
 
 local competition_types = vim.tbl_keys(competition_versions)
 
