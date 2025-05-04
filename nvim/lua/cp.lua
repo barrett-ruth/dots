@@ -58,6 +58,7 @@ function M.setup()
             '{{{,}}}',
             { scope = 'local' }
         )
+        vim.api.nvim_set_option_value('foldtext', '', { scope = 'local' })
 
         -- Populate coding buffer
         if vim.api.nvim_buf_get_lines(0, 0, -1, true)[1] == '' then

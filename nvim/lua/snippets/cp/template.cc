@@ -40,6 +40,9 @@ static void YES() {
   std::cout << "YES\n";
 }
 
+template<typename T>
+using vec = std::vector<T>;
+
 #define all(x) (x).begin(), (x).end()
 #define rall(x) (x).rbegin(), (x).rend()
 #define ff first

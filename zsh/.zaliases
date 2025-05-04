@@ -31,6 +31,7 @@ j() {
         '') cd ~;;
         ip) cd ~/dev/swe-interview-prep;;
         dl) cd ~/dl;;
+        doc) cd ~/doc;;
         sl) cd ~/dev/sl;;
         lz) cd ~/.local/share/nvim/lazy;;
         dev) cd ~/dev;;

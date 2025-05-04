@@ -59,6 +59,8 @@ eval "$(opam env)"
 export SCRIPTS="$HOME"/.local/bin/scripts
 append_path "$SCRIPTS"
 
+append_path "$HOME"/.cargo/bin
+
 export BOTO_CONFIG="$XDG_CONFIG_HOME"/boto/config
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export GNUPGHOME="$XDG_CONFIG_HOME"/gnupg
