@@ -8,7 +8,11 @@ return {
         dependencies = {
             'nvim-treesitter/nvim-treesitter-textobjects',
             'nvim-lua/plenary.nvim',
-            { 'echasnovski/mini.ai', config = true, event = 'VeryLazy' },
+            {
+                'echasnovski/mini.ai',
+                opts = { silent = true },
+                event = 'VeryLazy',
+            },
         },
         event = { 'BufReadPre', 'BufNewFile' },
         keys = {

@@ -12,4 +12,5 @@ sbg ~/img/wp/one/cliff.jpg ~/img/wp/one/lilies.jpg
 skb &
 sclip &
 dwmblocks &
+redshift &
 dwm

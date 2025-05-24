@@ -65,11 +65,11 @@ return {
                 'bashls',
                 'clangd',
                 'cssls',
-                'cssmodules_ls',
                 'emmet_language_server',
                 'eslint',
                 'html',
                 'jsonls',
+                'vtsls',
                 'lua_ls',
                 'ruff',
             }) do
@@ -107,9 +107,12 @@ return {
             },
         },
     },
+
     {
-        'pmizio/typescript-tools.nvim',
-        config = true,
+        'yioneko/nvim-vtsls',
+        config = function(_, opts)
+            require('vtsls').config(opts)
+        end,
         dependencies = {
             {
                 'davidosomething/format-ts-errors.nvim',
@@ -120,12 +123,132 @@ return {
                     'typescriptreact',
                 },
             },
+        },
+        ft = {
+            'javascript',
+            'javascriptreact',
+            'typescript',
+            'typescriptreact',
+        },
+        opts = {
+            on_attach = function(_, bufnr)
+                bmap(
+                    { 'n', 'gD', vim.cmd.VtsExec('goto_source_definition') },
+                    { buffer = bufnr }
+                )
+            end,
+            settings = {
+                typescript = {
+                    inlayHints = {
+                        parameterNames = { enabled = 'literals' },
+                        parameterTypes = { enabled = true },
+                        variableTypes = { enabled = true },
+                        propertyDeclarationTypes = { enabled = true },
+                        functionLikeReturnTypes = { enabled = true },
+                        enumMemberValues = { enabled = true },
+                    },
+                },
+            },
+            handlers = {
+                ['textDocument/publishDiagnostics'] = function(_, result, ctx)
+                    if not result.diagnostics then
+                        return
+                    end
+
+                    local idx = 1
+                    while idx <= #result.diagnostics do
+                        local entry = result.diagnostics[idx]
+
+                        local formatter =
+                            require('format-ts-errors')[entry.code]
+                        entry.message = formatter and formatter(entry.message)
+                            or entry.message
+
+                        if vim.tbl_contains({ 80001, 80006 }, entry.code) then
+                            table.remove(result.diagnostics, idx)
+                        else
+                            idx = idx + 1
+                        end
+                    end
+
+                    vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx)
+                end,
+            },
+        },
+    },
+    {
+        'pmizio/typescript-tools.nvim',
+        enabled = false,
+        config = function()
+            require('typescript-tools').setup({
+                on_attach = function(_, bufnr)
+                    bmap(
+                        { 'n', 'gD', vim.cmd.TSToolsGoToSourceDefinition },
+                        { buffer = bufnr }
+                    )
+                end,
+                handlers = {
+                    ['textDocument/publishDiagnostics'] = function(
+                        _,
+                        result,
+                        ctx
+                    )
+                        if not result.diagnostics then
+                            return
+                        end
+
+                        local idx = 1
+                        while idx <= #result.diagnostics do
+                            local entry = result.diagnostics[idx]
+
+                            local formatter =
+                                require('format-ts-errors')[entry.code]
+                            entry.message = formatter
+                                    and formatter(entry.message)
+                                or entry.message
+
+                            if
+                                vim.tbl_contains({ 80001, 80006 }, entry.code)
+                            then
+                                table.remove(result.diagnostics, idx)
+                            else
+                                idx = idx + 1
+                            end
+                        end
+
+                        vim.lsp.diagnostic.on_publish_diagnostics(
+                            _,
+                            result,
+                            ctx
+                        )
+                    end,
+                },
+
+                settings = {
+                    expose_as_code_action = 'all',
+                    -- tsserver_path = vim.env.XDG_DATA_HOME .. '/pnpm/tsserver',
+                    tsserver_file_preferences = {
+                        includeInlayParameterNameHints = 'all',
+                        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                        includeInlayFunctionParameterTypeHints = true,
+                        includeInlayVariableTypeHints = true,
+                        includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+                        includeInlayPropertyDeclarationTypeHints = true,
+                        includeInlayFunctionLikeReturnTypeHints = true,
+                        includeInlayEnumMemberValueHints = true,
+                    },
+                },
+            })
+        end,
+        dependencies = {
             'nvim-lua/plenary.nvim',
             'neovim/nvim-lspconfig',
         },
-        event = {
-            'BufReadPre *.js,*.jsx,*.ts,*.tsx',
-            'BufNewFile *.js,*.jsx,*.ts,*.tsx',
+        ft = {
+            'javascript',
+            'javascriptreact',
+            'typescript',
+            'typescriptreact',
         },
     },
     {

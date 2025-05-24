@@ -9,6 +9,16 @@ local function on_attach(client, bufnr)
         require('nvim-navic').attach(client, bufnr)
     end
 
+    if client:supports_method('signatureHelp') then
+        bmap({
+            'n',
+            'gra',
+            function()
+                vim.lsp.buf.signature_help()
+            end,
+        })
+    end
+
     bmap({ 'n', '\\f', vim.diagnostic.open_float })
     bmap({
         'n',
@@ -34,7 +44,7 @@ end
 function M.lsp_format(opts)
     local format_opts = vim.tbl_extend('force', opts or {}, {
         filter = function(c)
-            if c.name == 'tsserver' then
+            if c.name == 'typescript-tools' then
                 vim.cmd.TSToolsOrganizeImports()
             end
             -- disable all lsp formatting
@@ -56,12 +66,6 @@ function M.setup()
             prefix = ' ',
         },
         jump = { float = true },
-        virtual_text = {
-            current_line = true,
-            format = function(diagnostic)
-                return vim.split(diagnostic.message, '\n')[1]
-            end,
-        },
     })
 
     vim.lsp.config('*', {

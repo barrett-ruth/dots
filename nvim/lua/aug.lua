@@ -65,3 +65,13 @@ au('WinLeave', {
     end,
     group = aug,
 })
+
+au('CursorHold', {
+    callback = function()
+        vim.diagnostic.open_float(
+            nil,
+            { focusable = false, source = 'if_many' }
+        )
+    end,
+    group = aug,
+})
