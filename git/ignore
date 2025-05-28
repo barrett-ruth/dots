@@ -3,3 +3,5 @@ undo/
 __pycache__/
 venv/
 pyenv/
+
+**/.claude/settings.local.json

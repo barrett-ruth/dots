@@ -168,7 +168,7 @@ return {
     {
         'laytan/cloak.nvim',
         config = true,
-        keys = { { '<leader>c', '<cmd>CloakToggle<cr>' } },
+        keys = { { '<leader>C', '<cmd>CloakToggle<cr>' } },
         event = 'BufReadPre .env*',
     },
     {

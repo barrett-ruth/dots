@@ -4,4 +4,4 @@ set -eu
 
 resp="$(printf 'yes\nno' | dmenu -p 'Reboot?')"
 
-[ "$resp" = 'yes' ] && sudo reboot
+[ "$resp" = 'yes' ] && doas reboot

@@ -63,7 +63,6 @@ append_path "$HOME"/.cargo/bin
 
 export BOTO_CONFIG="$XDG_CONFIG_HOME"/boto/config
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
-export GNUPGHOME="$XDG_CONFIG_HOME"/gnupg
 export GRADLE_USER_HOME="$XDG_CONFIG_HOME"/gradle
 export LESSHISTFILE=-
 export MBSYNCRC="$XDG_CONFIG_HOME"/mbsync/config
