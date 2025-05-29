@@ -95,6 +95,31 @@ return {
         end,
     },
     {
+        'krady21/compiler-explorer.nvim',
+        keys = {
+            {
+                '<leader>c',
+                function()
+                    local cmd = { 'CECompileLive', 'compiler=g143' }
+                    if vim.uv.fs_stat('compile_flags.txt') then
+                        for line in io.lines('compile_flags.txt') do
+                            if line ~= '' then
+                                table.insert(cmd, 'flags=' .. line)
+                            end
+                        end
+                    end
+                    vim.cmd(table.concat(cmd, ' '))
+                end,
+            },
+        },
+        opts = {
+            line_match = {
+                highlight = true,
+                jump = true,
+            },
+        },
+    },
+    {
         'L3MON4D3/LuaSnip',
         build = 'make install_jsregexp',
         config = function()
