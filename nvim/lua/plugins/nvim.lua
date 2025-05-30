@@ -85,6 +85,7 @@ return {
             vim.g.mkdp_auto_close = 0
             vim.g.mkdp_browserfunc = 'OpenMarkdownPreview'
             au('FileType', 'MarkdownKeybind', {
+                pattern = 'markdown',
                 callback = function(opts)
                     bmap(
                         { 'n', '<leader>m', vim.cmd.MarkdownPreviewToggle },
@@ -118,6 +119,19 @@ return {
                 jump = true,
             },
         },
+        config = function(_, opts)
+            require('compiler-explorer').setup(opts)
+            
+            -- Auto-center assembly buffer
+            vim.api.nvim_create_autocmd('BufWinEnter', {
+                pattern = '*',
+                callback = function()
+                    if vim.bo.filetype == 'asm' or vim.bo.buftype == 'nofile' and vim.fn.bufname():match('Compiler Explorer') then
+                        vim.cmd('normal! zz')
+                    end
+                end,
+            })
+        end,
     },
     {
         'L3MON4D3/LuaSnip',

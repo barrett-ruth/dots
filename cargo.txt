@@ -988,6 +988,8 @@ kdestroy
 kernel-install
 ketcindy
 keyctl
+keyd
+keyd-application-mapper
 key.dns_resolver
 kill
 killall
@@ -1796,6 +1798,7 @@ screendump
 script
 scriptlive
 scriptreplay
+scrotwm
 sdiff
 sdl2-config
 secret-tool
@@ -1890,6 +1893,7 @@ sortman
 sotruss
 spawn_console
 spawn_login
+spectrwm
 speexdec
 speexenc
 spirv-as
