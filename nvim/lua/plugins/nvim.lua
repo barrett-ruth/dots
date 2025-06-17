@@ -96,6 +96,17 @@ return {
         end,
     },
     {
+        'lervag/vimtex',
+        init = function()
+            vim.g.vimtex_view_method = 'sioyek'
+            vim.g.vimtex_compiler_method = 'latexmk'
+            vim.g.vimtex_callback_progpath = '/usr/bin/nvim'
+            vim.g.vimtex_view_sioyek_exe = '/usr/bin/sioyek'
+            -- vim.g.vimtex_quickfix_mode = 0
+        end,
+        ft = { 'plaintext', 'tex' },
+    },
+    {
         'krady21/compiler-explorer.nvim',
         keys = {
             {
@@ -121,17 +132,42 @@ return {
         },
         config = function(_, opts)
             require('compiler-explorer').setup(opts)
-            
-            -- Auto-center assembly buffer
+
             vim.api.nvim_create_autocmd('BufWinEnter', {
                 pattern = '*',
                 callback = function()
-                    if vim.bo.filetype == 'asm' or vim.bo.buftype == 'nofile' and vim.fn.bufname():match('Compiler Explorer') then
+                    if
+                        vim.bo.filetype == 'asm'
+                        or vim.bo.buftype == 'nofile'
+                            and vim.fn.bufname():match('Compiler Explorer')
+                    then
                         vim.cmd('normal! zz')
                     end
                 end,
             })
         end,
+    },
+    {
+        'lewis6991/gitsigns.nvim',
+        keys = {
+            { '[g', '<cmd>Gitsigns next_hunk<cr>' },
+            { ']g', '<cmd>Gitsigns prev_hunk<cr>' },
+        },
+        event = 'VeryLazy',
+        opts = {
+            on_attach = function()
+                vim.wo.signcolumn = 'yes'
+            end,
+            attach_to_untracked = false,
+            signs = {
+                add = { text = '│' },
+                change = { text = '│' },
+                delete = { text = '＿' },
+                topdelete = { text = '‾' },
+                changedelete = { text = '│' },
+            },
+            current_line_blame = true,
+        },
     },
     {
         'L3MON4D3/LuaSnip',
@@ -215,7 +251,7 @@ return {
         init = function()
             vim.g.vimtex_view_method = 'sioyek'
             vim.g.vimtex_callback_progpath = '/usr/bin/nvim'
-            vim.g.vimtex_view_sioyek_exe = vim.env.HOME .. '/.local/bin/sioyek'
+            vim.g.vimtex_view_sioyek_exe = 'sioyek'
             vim.g.vimtex_quickfix_mode = 0
         end,
         ft = { 'plaintext', 'tex' },
@@ -227,6 +263,41 @@ return {
             'javascriptreact',
             'typescript',
             'typescriptreact',
+        },
+    },
+    {
+        'ruifm/gitlinker.nvim',
+        config = true,
+        keys = { '<leader>gy' },
+    },
+    {
+        'sindrets/diffview.nvim',
+        cmd = {
+            'DiffviewOpen',
+            'DiffviewClose',
+            'DiffviewToggleFiles',
+            'DiffviewFocusFiles',
+        },
+        keys = {
+            { '<leader>dv', '<cmd>DiffviewOpen<cr>' },
+            { '<leader>dc', '<cmd>DiffviewClose<cr>' },
+        },
+    },
+    {
+        'ThePrimeagen/harpoon',
+        keys = {
+            { '<leader>ha', '<cmd>lua require("harpoon.mark").add_file()<cr>' },
+            { '<leader>hd', '<cmd>lua require("harpoon.mark").rm_file()<cr>' },
+            {
+                '<leader>hq',
+                '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>',
+            },
+            { ']h', '<cmd>lua require("harpoon.ui").nav_next()<cr>' },
+            { '[h', '<cmd>lua require("harpoon.ui").nav_prev()<cr>' },
+            { '<c-h>', '<cmd>lua require("harpoon.ui").nav_file(1)<cr>' },
+            { '<c-j>', '<cmd>lua require("harpoon.ui").nav_file(2)<cr>' },
+            { '<c-k>', '<cmd>lua require("harpoon.ui").nav_file(3)<cr>' },
+            { '<c-l>', '<cmd>lua require("harpoon.ui").nav_file(4)<cr>' },
         },
     },
     {
@@ -370,28 +441,6 @@ return {
         'tzachar/highlight-undo.nvim',
         config = true,
         keys = { 'u', 'U' },
-    },
-    {
-        'ruifm/gitlinker.nvim',
-        config = true,
-        keys = { '<leader>gy' },
-    },
-    {
-        'ThePrimeagen/harpoon',
-        keys = {
-            { '<leader>ha', '<cmd>lua require("harpoon.mark").add_file()<cr>' },
-            { '<leader>hd', '<cmd>lua require("harpoon.mark").rm_file()<cr>' },
-            {
-                '<leader>hq',
-                '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>',
-            },
-            { ']h', '<cmd>lua require("harpoon.ui").nav_next()<cr>' },
-            { '[h', '<cmd>lua require("harpoon.ui").nav_prev()<cr>' },
-            { '<c-h>', '<cmd>lua require("harpoon.ui").nav_file(1)<cr>' },
-            { '<c-j>', '<cmd>lua require("harpoon.ui").nav_file(2)<cr>' },
-            { '<c-k>', '<cmd>lua require("harpoon.ui").nav_file(3)<cr>' },
-            { '<c-l>', '<cmd>lua require("harpoon.ui").nav_file(4)<cr>' },
-        },
     },
     { 'Vimjas/vim-python-pep8-indent', ft = { 'python' } },
     {

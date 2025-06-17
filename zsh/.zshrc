@@ -102,3 +102,6 @@ precmd() {
     __set_beam_cursor
     PS1+='$ '
 }
+
+bindkey '^F' fzf-file-widget
+bindkey '^G' fzf-cd-widget

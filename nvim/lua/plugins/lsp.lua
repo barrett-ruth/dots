@@ -68,6 +68,7 @@ return {
                 'emmet_language_server',
                 'eslint',
                 'html',
+                'mdx_analyzer',
                 'jsonls',
                 'vtsls',
                 'lua_ls',
@@ -107,7 +108,6 @@ return {
             },
         },
     },
-
     {
         'yioneko/nvim-vtsls',
         config = function(_, opts)

@@ -34,7 +34,7 @@ return {
     end,
     keys = {
         { '<c-b>', '<cmd>FzfLua buffers<cr>' },
-        { '<c-t>', '<cmd>FzfLua files cwd_prompt=false<cr>' },
+        { '<c-f>', '<cmd>FzfLua files cwd_prompt=false<cr>' },
         { '<c-g>', '<cmd>FzfLua live_grep<cr>' },
         { '<leader>gB', '<cmd>FzfLua git_branches<cr>' },
         { '<leader>ff', '<cmd>FzfLua files cwd=%:h<cr>' },
@@ -56,6 +56,7 @@ return {
             end,
         },
         { 'gw', '<cmd>FzfLua lsp_workspace_diagnostics<cr>' },
+        { 'gW', '<cmd>FzfLua lsp_workspace_symbols<cr>' },
         { 'gO', '<cmd>FzfLua lsp_document_symbols<cr>' },
         { 'gd', '<cmd>FzfLua lsp_definitions<cr>' },
         { 'gD', '<cmd>FzfLua lsp_declarations<cr>' },
@@ -70,6 +71,7 @@ return {
             file_icons = false,
             formatter = 'path.filename_first',
             no_header_i = true,
+            no_ignore = true,
         },
         fzf_args = vim.env.FZF_DEFAULT_OPTS,
         grep = {

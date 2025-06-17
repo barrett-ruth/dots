@@ -10,6 +10,9 @@ opt.diffopt:append('linematch:60')
 
 o.expandtab = true
 
+o.exrc = true
+o.secure = true
+
 opt.fillchars = {
     fold = ' ',
     foldopen = 'v',
