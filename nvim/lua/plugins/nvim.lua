@@ -272,6 +272,9 @@ return {
     },
     {
         'sindrets/diffview.nvim',
+        opts = {
+            use_icons = false,
+        },
         cmd = {
             'DiffviewOpen',
             'DiffviewClose',
@@ -429,11 +432,7 @@ return {
     },
     { 'tommcdo/vim-exchange', event = 'VeryLazy' },
     { 'tpope/vim-abolish', event = 'VeryLazy' },
-    {
-        'tpope/vim-fugitive',
-        cmd = 'Git',
-        ft = 'gitcommit',
-    },
+    { 'tpope/vim-fugitive' },
     { 'tpope/vim-repeat', keys = { '.' } },
     { 'tpope/vim-sleuth', event = 'BufReadPost' },
     { 'tpope/vim-surround', keys = { 'c', 'd', 'v', 'V', 'y' } },

@@ -1,13 +1,13 @@
 clipmenu-git 6.2.0.r72.g46d45c9-1
 cmake-format 0.6.13-3
 cmake-lint 1.4.3-1
+flamegraph 1.0-2
 hadolint-bin 2.12.0-2
 nvm-git 0.40.3.r0.g977563e-1
 otf-san-francisco 1:2-2
 otf-stix 2.13.b171-2
 pikaur 1.32-2
 shellcheck-bin 0.10.0-1
-sioyek 2.0.0-7
 slack-desktop 4.44.60-1
 spectrwm 3.6.0-1
 teams 1.5.00.23861-1
@@ -15,4 +15,4 @@ tex-fmt 0.5.4-1
 ttf-joypixels 8.0.0-2
 ttf-times-new-roman 2.0-3
 ttf-vista-fonts 1-11
-ungoogled-chromium-bin 137.0.7151.55-1
+ungoogled-chromium-bin 138.0.7204.49-1

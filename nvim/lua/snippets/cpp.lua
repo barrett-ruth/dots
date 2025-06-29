@@ -27,9 +27,9 @@ for _, snippet in ipairs({
             [[#include <iostream>
 
 int main() {{
-    {}
+  {}
 
-    return 0;
+  return 0;
 }}]],
             { i(1) }
         )

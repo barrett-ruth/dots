@@ -1,55 +1,59 @@
 #!/bin/sh
 
+set -eu
+
 get_volume() {
-  vol=$(pactl get-sink-volume @DEFAULT_SINK@ | awk '{ print $5 }')
+  vol=$(pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}')
   vol="${vol%?}"
-  [ "$(pactl get-sink-mute @DEFAULT_SINK@ | awk '{ print $2 }')" = 'yes' ] && muted=!
-  vol=" ${vol:-n/a}$muted"
-  echo "$vol"
+  muted=''
+  [ "$(pactl get-sink-mute @DEFAULT_SINK@ | awk '{print $2}')" = yes ] && muted='!'
+  printf ' %s%s' "${vol:-n/a}" "$muted"
 }
 
 get_battery() {
   STATE_FILE="$XDG_STATE_HOME/.battery_notify_state"
-  filler_icon='/usr/share/icons/Adwaita/16x16/status/airplane-mode-symbolic.symbolic.png'
-
-  bat="$(cat /sys/class/power_supply/BAT0/capacity)"
-  status="$(cat /sys/class/power_supply/BAT0/status)"
-  status_symbol=-
-  [ "$status" = "Charging" ] && status_symbol=+
-  [ "$status" = "Full" ] && status_symbol=
-
-  if [ "$status" = "Discharging" ]; then
-    if [ "$bat" -eq 30 ] && ! grep -q "^30$" "$STATE_FILE" 2>/dev/null; then
-      notify-send --urgency normal -i "$filler_icon" "Battery at 30%"
-      echo 30 >"$STATE_FILE"
-    fi
-
-    if [ "$bat" -eq 15 ] && ! grep -q "^15$" "$STATE_FILE" 2>/dev/null; then
-      notify-send --urgency critical -i "$filler_icon" "Battery at 15%"
-      echo 15 >"$STATE_FILE"
-    fi
+  icon='/usr/share/icons/Adwaita/16x16/status/airplane-mode-symbolic.symbolic.png'
+  cap=$(cat /sys/class/power_supply/BAT0/capacity)
+  stat=$(cat /sys/class/power_supply/BAT0/status)
+  sym='-'
+  [ "$stat" = Charging ] && sym='+'
+  [ "$stat" = Full ] && sym=''
+  if [ "$stat" = Discharging ]; then
+    for trg in 30 15; do
+      if [ "$cap" -eq "$trg" ] && ! grep -qx "$trg" "$STATE_FILE" 2>/dev/null; then
+        urgency=normal
+        [ "$trg" -eq 15 ] && urgency=critical
+        notify-send --urgency=$urgency -i "$icon" "Battery at ${trg}%"
+        echo "$trg" >"$STATE_FILE"
+      fi
+    done
   else
-    true >"$STATE_FILE" 2>/dev/null
+    : >"$STATE_FILE" 2>/dev/null
   fi
-
-  [ -n "$bat" ] && echo "$status_symbol$bat%"
+  printf '%s%s%%' "$sym" "$cap"
 }
 
 get_wifi() {
-  station="$(iwctl station list | rg ' connected' | awk '{ print $2 }')"
-  if [ -n "$station" ]; then
-    station_info="$(iwctl station "$station" show)"
-    ssid="$(echo "${station_info#*Connected network}" | head -n 1 | xargs)"
-  fi
-  ssid="${ssid:-n/a}"
-  echo "$ssid"
+  sta=$(iwctl station list | grep ' connected' | awk '{print $2}')
+  ssid='n/a'
+  [ -n "$sta" ] && ssid=$(iwctl station "$sta" show | awk -F': ' '/Connected network/{print $2}')
+  printf '%s' "$ssid"
 }
 
-get_date() {
-  date '+%R | %a %d/%m/%Y'
+get_date() { date '+%R │ %d/%m/%Y'; }
+
+pidfile=${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/spectrwm_bar.pid
+echo $$ >"$pidfile"
+trap 'rm -f "$pidfile"' EXIT
+
+update_bar() {
+  printf '%s │ %s │ %s │ %s\n' "$(get_volume)" "$(get_battery)" "$(get_wifi)" "$(get_date)"
 }
+
+trap update_bar USR1
+update_bar
 
 while :; do
-  echo "$(get_volume) | $(get_battery) | $(get_wifi) | $(get_date)"
-  sleep 1
+  update_bar
+  sleep 5
 done
