@@ -16,6 +16,8 @@ function M.format_components(components)
     for i = 1, #components do
         local component = components[i]
 
+        -- local highlight = component.highlight or 
+
         if
             vorfn(component.condition) ~= false
             and not utils.empty(vorfn(component.value))

@@ -36,7 +36,7 @@ get_battery() {
 get_wifi() {
   sta=$(iwctl station list | grep ' connected' | awk '{print $2}')
   ssid='n/a'
-  [ -n "$sta" ] && ssid=$(iwctl station "$sta" show | awk -F': ' '/Connected network/{print $2}')
+  [ -n "$sta" ] && ssid=$(iwctl station "$sta" show | awk -F'Connected network' '{ print $2 }' | xargs)
   printf '%s' "$ssid"
 }
 
@@ -55,5 +55,6 @@ update_bar
 
 while :; do
   update_bar
-  sleep 5
+  sleep 2 &
+  wait $! 2>/dev/null || true
 done
