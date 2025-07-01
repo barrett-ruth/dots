@@ -3,6 +3,7 @@
 . "$ZDOTDIR"/.zprofile
 
 __set_code() {
+    code=$?``
     PS1=''
     [[ $code -eq 0 ]] || PS1=" %F{red}$code%f"
 }
@@ -79,6 +80,10 @@ function __set_block_cursor {
     echo -ne '\e[2 q'
 }
 
+function __set_symbol() {
+    PS1+='$ '
+}
+
 function zle-keymap-select {
   case $KEYMAP in
     vicmd) __set_block_cursor;;
@@ -92,16 +97,8 @@ function zle-line-init {
 }
 zle -N zle-line-init
 
-precmd() {
-    code=$?
-    __set_code
-    __set_ssh
-    __set_dir
-    __set_git
-    __set_venv
-    __set_beam_cursor
-    PS1+='$ '
-}
+builtin typeset -ag precmd_functions
+precmd_functions+=(__set_code __set_ssh __set_dir __set_git __set_venv __set_beam_cursor __set_symbol)
 
 bindkey '^F' fzf-file-widget
 bindkey '^G' fzf-cd-widget

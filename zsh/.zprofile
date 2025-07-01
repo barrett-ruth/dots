@@ -17,6 +17,8 @@ export XDG_DATA_HOME="$HOME"/.local/share
 export XDG_STATE_HOME="$HOME"/.local/state
 export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 
+export GHOSTTY_SHELL_INTEGRATION_NO_CURSOR=1
+
 export EDITOR='nvim'
 export HYPHEN_INSENSITIVE='true'
 export HIST_STAMPS='dd/mm/yyyy'

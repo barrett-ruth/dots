@@ -4,6 +4,16 @@ colors.setup('bore', 'light')
 local hi, link, tshi, cs =
     colors.hi, colors.link, colors.tshi, colors[vim.g.colors_name]
 
+hi('red', { fg = cs.red })
+hi('yellow', { fg = cs.yellow })
+hi('white', { fg = cs.white })
+hi('black', { fg = cs.black })
+hi('magenta', { fg = cs.magenta })
+hi('blue', { fg = cs.blue })
+hi('cyan', { fg = cs.cyan })
+hi('green', { fg = cs.green })
+hi('grey', { fg = cs.grey })
+
 hi('CursorLine', { bg = cs.light_grey }, { 'ColorColumn', 'Folded' })
 hi('Directory', { fg = cs.black })
 hi('Error', { fg = cs.red })
@@ -29,6 +39,7 @@ hi('Search', { reverse = true }, { 'IncSearch', 'Visual', 'MatchParen' })
 hi('Pmenu', { bg = cs.white })
 hi('PmenuSel', { reverse = true })
 hi('ModeMsg', { fg = cs.black })
+hi('WinBar', { fg = cs.grey, none = true })
 
 tshi('Boolean', { fg = cs.blue }, { '@constant.builtin', 'Number' })
 tshi('Comment', { fg = cs.grey })

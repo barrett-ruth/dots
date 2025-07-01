@@ -2,7 +2,8 @@ local config = require('projects')
 
 local clangd_settings = {
     filetypes = { 'c', 'cpp' },
-    on_attach = function()
+    on_attach = function(...)
+        require('lsp').on_attach(...)
         bmap({ 'n', 'gh', vim.cmd.ClangdSwitchSourceHeader })
     end,
     cmd = {

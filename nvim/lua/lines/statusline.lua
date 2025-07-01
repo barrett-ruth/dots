@@ -3,6 +3,7 @@ local empty = require('utils').empty
 local M = {}
 
 local file = {
+    highlight = 'blue',
     value = function()
         return vim.fn.expand('%:~')
         -- return vim.fn.pathshorten(vim.fn.expand('%:~'))
@@ -13,18 +14,8 @@ local file = {
     end,
 }
 
-local ok, nvim_navic = pcall(require, 'nvim-navic')
-
-local navic = {
-    value = nvim_navic.get_location,
-    condition = function()
-        return ok
-            and nvim_navic.is_available(vim.api.nvim_get_current_buf())
-            and not empty(nvim_navic.get_location())
-    end,
-}
-
 local git = {
+    highlight = 'magenta',
     value = function()
         return vim.b.gitsigns_head
     end,
@@ -35,7 +26,7 @@ local git = {
 
 local modified = {
     value = function()
-        return vim.api.nvim_get_option_value('modified', { buf = 0 }) and '[w]'
+        return vim.api.nvim_get_option_value('modified', { buf = 0 }) and '+w'
             or ''
     end,
 }
@@ -63,6 +54,7 @@ local search = {
 }
 
 local filetype = {
+    highlight = 'green',
     value = function()
         local ft = vim.api.nvim_get_option_value(
             'filetype',
@@ -86,6 +78,7 @@ local filetype = {
 }
 
 local lineinfo = {
+    highlight = 'yellow',
     value = '%c:%l/%L',
 }
 
@@ -93,20 +86,19 @@ M.components = {
     left = {
         [1] = git,
         [2] = file,
-        [3] = navic,
-        [4] = modified,
+        [3] = modified,
     },
     right = {
-        [1] = search,
-        [2] = lineinfo,
-        [3] = filetype,
+        -- [1] = search,
+        [1] = lineinfo,
+        [2] = filetype,
     },
 }
 
 local format_components = require('lines.utils').format_components
 
 M.statusline = function()
-    return ('%s%%=%s '):format(
+    return ('%s%%=%s'):format(
         format_components(M.components.left),
         format_components(M.components.right)
     )

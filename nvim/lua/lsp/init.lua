@@ -1,12 +1,13 @@
 local M = {}
 
-local function on_attach(client, bufnr)
+function M.on_attach(client, bufnr)
     if client:supports_method('hover') then
         bmap({ 'n', 'K', vim.lsp.buf.hover })
     end
 
     if client:supports_method('documentSymbol') then
         require('nvim-navic').attach(client, bufnr)
+        vim.opt_local.winbar = [[%{%v:lua.require('lines.winbar').winbar()%}]]
     end
 
     if client:supports_method('signatureHelp') then
@@ -69,9 +70,9 @@ function M.setup()
     })
 
     vim.lsp.config('*', {
+        on_attach = M.on_attach,
         capabilities = prepare_capabilities(),
         flags = { debounce_text_changes = 0 },
-        on_attach = on_attach,
     })
 
     require('utils').au('LspAttach', 'LspFormat', {

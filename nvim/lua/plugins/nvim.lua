@@ -158,8 +158,12 @@ return {
             on_attach = function()
                 vim.wo.signcolumn = 'yes'
             end,
+            current_line_blame_formatter_nc = function()
+                return {}
+            end,
             attach_to_untracked = false,
             signs = {
+                -- use boxdraw chars
                 add = { text = '│' },
                 change = { text = '│' },
                 delete = { text = '＿' },
