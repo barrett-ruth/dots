@@ -50,7 +50,7 @@ update_bar() {
   printf '%s │ %s │ %s │ %s\n' "$(get_volume)" "$(get_battery)" "$(get_wifi)" "$(get_date)"
 }
 
-trap update_bar USR1
+trap : USR1
 update_bar
 
 while :; do

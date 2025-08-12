@@ -1,14 +1,9 @@
 #!/bin/sh
-
-filename="$(dmenu -p 'Enter filename:' </dev/null)"
-
-[ "$?" -ne 0 ] && exit
-
-[ "$filename" ] && file="$filename" || file="$(openssl rand -hex 10)-$(date +"%Y:%m:%d:%H:%M:%S")"
-
-file=~/img/ss/"$file".jpg
-
+dir=~/img/ss
+mkdir -p "$dir"
+filename="$(dmenu -p 'Enter filename:' </dev/null || true)"
+[ -n "$filename" ] || filename="$(openssl rand -hex 10)-$(date +'%Y-%m-%d_%H-%M-%S')"
+file="$dir/$filename.png"
 (
-    import "$file"
-    xclip -sel c -t image/png "$file"
+  maim -s "$file" && xclip -selection clipboard -t image/png -i "$file"
 ) &

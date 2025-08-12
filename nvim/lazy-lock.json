@@ -33,7 +33,6 @@
   "playground": { "branch": "master", "commit": "ba48c6a62a280eefb7c85725b0915e021a1a0749" },
   "plenary.nvim": { "branch": "master", "commit": "857c5ac632080dba10aae49dba902ce3abf91b35" },
   "rustaceanvim": { "branch": "master", "commit": "140d1c28db23e88bec674336a3291a80faf16b01" },
-  "semshi": { "branch": "master", "commit": "0182447e2ff4dfa04cd2dfe5f189e012c581ca45" },
   "treesj": { "branch": "main", "commit": "3b4a2bc42738a63de17e7485d4cc5e49970ddbcc" },
   "ts-comments.nvim": { "branch": "main", "commit": "1bd9d0ba1d8b336c3db50692ffd0955fe1bb9f0c" },
   "typescript-tools.nvim": { "branch": "master", "commit": "885f4cc150f996f5bff5804874f92ff3051c883d" },

@@ -3,7 +3,7 @@
 . "$ZDOTDIR"/.zprofile
 
 __set_code() {
-    code=$?``
+    code=$?
     PS1=''
     [[ $code -eq 0 ]] || PS1=" %F{red}$code%f"
 }

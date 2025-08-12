@@ -2,5 +2,5 @@
 
 sudo pacman -Syyu
 pikaur -Syyu
-pnpm -g self-update
+pnpm self-update
 pnpm -g update

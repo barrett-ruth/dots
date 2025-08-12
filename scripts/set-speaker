@@ -4,4 +4,4 @@ sinks="$(pacmd list-sinks | grep -E 'index:|name:' | sed 's/^\s*//;s/index: //;s
 count="$(echo "$sinks" | wc -l)"
 choice="$(echo "$sinks" | dmenu -i -l "$count" -p "Select Sink:" | cut -d: -f1)"
 
-[ "$choice" ] && xargs pacmd set-default-sink "$choice"
+[ "$choice" ] && pacmd set-default-sink "$choice"

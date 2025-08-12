@@ -176,6 +176,8 @@ cairo-trace
 cal
 callgrind_annotate
 callgrind_control
+canberra-boot
+canberra-gtk-play
 capsh
 captest
 captoinfo
@@ -518,6 +520,7 @@ efibootdump
 efibootmgr
 efisecdb
 efivar
+eglewinfo
 egrep
 eject
 elfedit
@@ -737,6 +740,7 @@ git-shell
 git-upload-archive
 git-upload-pack
 glab
+glewinfo
 glib-compile-resources
 glib-compile-schemas
 glib-gettextize
@@ -744,6 +748,7 @@ glilypond
 glslang
 glslangValidator
 glslc
+glxewinfo
 gnutls-cli
 gnutls-cli-debug
 gnutls-serv
@@ -886,6 +891,8 @@ gupnp-binding-tool-1.6
 gxditview
 gzexe
 gzip
+h264dec
+h264enc
 hadolint
 halt
 hardlink
@@ -899,6 +906,7 @@ heif-dec
 heif-enc
 heif-info
 heif-thumbnailer
+heif-view
 hexdump
 hilatex
 hishrink
@@ -1244,7 +1252,7 @@ luac5.4
 luacsplain
 luahbtex
 luajit
-luajit-2.1.1748459687
+luajit-2.1.1753364724
 luajithbtex
 luajittex
 lua-language-server
@@ -1277,6 +1285,7 @@ MagickCore-config
 magick-script
 MagickWand-config
 magnet-link
+maim
 make
 make4ht
 makeconv
@@ -1630,6 +1639,7 @@ pasuspender
 patch
 patgen
 pathchk
+pavucontrol
 pax11publish
 pbibtex
 pbmtojbg
@@ -1776,8 +1786,6 @@ pphs
 ppltotf
 ppm2tiff
 ppmcheckpdf
-pprof
-pprof-symbolize
 pp-trace
 pr
 preconv
@@ -1787,6 +1795,8 @@ prepmx
 printafm
 printenv
 printf
+printf_gettext
+printf_ngettext
 prlimit
 procan
 proptest
@@ -2038,6 +2048,7 @@ slabtop
 slack
 sleep
 sln
+slop
 slsh
 sndfile-cmp
 sndfile-concat
@@ -2421,6 +2432,7 @@ vi
 view
 vigr
 vipw
+visualinfo
 visudo
 vlna
 vlock
