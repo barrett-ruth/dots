@@ -1,5 +1,8 @@
 #!/bin/sh
-
-filename=~/img/ss/"$(openssl rand -hex 10)-$(date +"%Y:%m:%d:%H:%M:%S")".jpg
-import "$filename"
-tesseract -l eng "$filename" - 2>/dev/null | xclip -in -sel c
+dir=~/img/ss
+mkdir -p "$dir"
+filename="$dir/$(openssl rand -hex 10)-$(date +'%Y-%m-%d_%H-%M-%S').jpg"
+(
+  maim -s "$filename" &&
+  tesseract -l eng "$filename" - 2>/dev/null | xclip -in -sel c
+) </dev/null >/dev/null 2>&1 &

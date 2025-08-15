@@ -39,7 +39,7 @@ hi('Search', { reverse = true }, { 'IncSearch', 'Visual', 'MatchParen' })
 hi('Pmenu', { bg = cs.white })
 hi('PmenuSel', { reverse = true })
 hi('ModeMsg', { fg = cs.black })
-hi('WinBar', { fg = cs.grey, none = true })
+hi('WinBar', { fg = cs.grey, none = true }, { 'WinBarNC' })
 
 tshi('Boolean', { fg = cs.blue }, { '@constant.builtin', 'Number' })
 tshi('Comment', { fg = cs.grey })

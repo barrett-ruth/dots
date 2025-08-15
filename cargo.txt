@@ -2492,7 +2492,7 @@ x86_64-linux-gnu-gcc-ranlib
 x86_64-pc-linux-gnu-c++
 x86_64-pc-linux-gnu-g++
 x86_64-pc-linux-gnu-gcc
-x86_64-pc-linux-gnu-gcc-15.1.1
+x86_64-pc-linux-gnu-gcc-15.2.1
 x86_64-pc-linux-gnu-gcc-ar
 x86_64-pc-linux-gnu-gcc-nm
 x86_64-pc-linux-gnu-gcc-ranlib
