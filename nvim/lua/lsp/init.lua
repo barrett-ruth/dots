@@ -7,7 +7,9 @@ function M.on_attach(client, bufnr)
 
     if client:supports_method('documentSymbol') then
         require('nvim-navic').attach(client, bufnr)
-        vim.opt_local.winbar = [[%{%v:lua.require('lines.winbar').winbar()%}]]
+        if not vim.tbl_contains({ 'sh' }, vim.bo.ft) then
+            vim.opt_local.winbar = [[%{%v:lua.require('lines.winbar').winbar()%}]]
+        end
     end
 
     if client:supports_method('signatureHelp') then

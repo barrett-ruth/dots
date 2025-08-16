@@ -7,6 +7,7 @@ nvm-git 0.40.3.r0.g977563e-1
 otf-san-francisco 1:2-2
 otf-stix 2.13.b171-2
 pikaur 1.33.1-1
+quarto-cli-bin 1.7.33-1
 shellcheck-bin 0.11.0-1
 slack-desktop 4.45.64-1
 spectrwm 3.6.0-1

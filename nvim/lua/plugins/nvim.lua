@@ -59,6 +59,70 @@ return {
         keys = { { '<leader>L', '<cmd>LiveServerToggle<cr>' } },
     },
     {
+        'quarto-dev/quarto-nvim',
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter',
+            'jmbuhr/otter.nvim',
+            {
+                'benlubas/molten-nvim',
+                version = '^1.0.0',
+                build = ':UpdateRemotePlugins',
+                init = function()
+                    vim.g.molten_virt_lines_off_by_1 = true
+                    vim.g.molten_use_border_highlights = true
+                    vim.g.molten_virt_text_output = true
+                end,
+                dependencies = {
+                    {
+                        '3rd/image.nvim',
+                        build = false,
+                        opts = {
+                            processor = 'magick_cli',
+                            max_height_window_percentage = math.huge,
+                        },
+                    },
+                },
+                keys = {
+                    {
+                        '<leader>mi',
+                        function()
+                            local venv = os.getenv('VIRTUAL_ENV')
+                                or os.getenv('CONDA_PREFIX')
+                            if venv ~= nil then
+                                venv = string.match(venv, '/.+/(.+)')
+                                vim.cmd(('MoltenInit %s'):format(venv))
+                            else
+                                vim.cmd('MoltenInit python3')
+                            end
+                        end,
+                    },
+                    {
+                        '<leader>ml',
+                        '<cmd>MoltenEvaluateLine<cr>',
+                    },
+                    {
+                        '<leader>mo',
+                        '<cmd>MoltenEvaluateOperator<cr>',
+                    },
+                    {
+                        ']m',
+                        '<cmd>MoltenNext 1<cr>',
+                    },
+                    {
+                        '[m',
+                        '<cmd>MoltenNext -1<cr>',
+                    },
+                },
+            },
+        },
+        opts = {
+            codeRunner = {
+                enabled = true,
+                default_method = 'molten',
+            },
+        },
+    },
+    {
         'dhruvasagar/vim-zoom',
         keys = { { '<c-w>m' } },
     },

@@ -3,7 +3,7 @@ local M = {}
 local ok, nvim_navic = pcall(require, 'nvim-navic')
 
 local navic = {
-    highlight = 'grey',
+    -- highlight = 'grey',
     condition = function()
         return ok
             and nvim_navic.is_available()

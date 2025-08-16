@@ -4,7 +4,7 @@ o.autowrite = true
 
 o.breakindent = true
 
-o.conceallevel = 2
+o.conceallevel = 0
 
 opt.diffopt:append('linematch:60')
 
