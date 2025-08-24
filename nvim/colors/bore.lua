@@ -15,7 +15,7 @@ hi('green', { fg = cs.green })
 hi('grey', { fg = cs.grey })
 
 hi('CursorLine', { bg = cs.light_grey }, { 'ColorColumn', 'Folded' })
-hi('Directory', { fg = cs.black })
+hi('Directory', { fg = cs.blue })
 hi('Error', { fg = cs.red })
 hi('ErrorMsg', { bold = true, underline = true, fg = cs.red })
 hi('MoreMsg', { bold = true, fg = cs.yellow }, { 'WarningMsg' })

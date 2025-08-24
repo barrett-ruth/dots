@@ -25,5 +25,5 @@ compile_source "$SRC" "$DBG_BIN" "$OUTPUT" @debug_flags.txt
 CODE=$?
 test $CODE -gt 0 && exit $CODE
 
-execute_binary "$DBG_BIN" "$INPUT" "$OUTPUT"
+execute_binary "$DBG_BIN" "$INPUT" "$OUTPUT" true
 exit $?

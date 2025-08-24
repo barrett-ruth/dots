@@ -1,6 +1,7 @@
 require('let')
 require('map')
 require('filetype')
+require('filetype')
 require('aug')
 
 require('cp').setup()

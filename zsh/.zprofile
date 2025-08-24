@@ -40,7 +40,6 @@ function append_path() {
     export PATH="$PATH:$1";
 }
 
-export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 export BROWSER='chromium'
 export NVM_DIR="$XDG_DATA_HOME" && . /usr/share/nvm/init-nvm.sh
 

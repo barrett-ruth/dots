@@ -4,9 +4,15 @@ execute_binary() {
   binary="$1"
   input="$2"
   output="$3"
+  is_debug="$4"
 
   start=$(date '+%s.%N')
-  timeout 2s ./"$binary" <"$input" >"$output" 2>&1
+  if [ -n "$is_debug" ]; then
+    asan="$(ldconfig -p | grep libasan.so | head -n1 | awk '{print $4}')"
+    LD_PRELOAD="$asan" timeout 2s ./"$binary" <"$input" >"$output" 2>&1
+  else
+    timeout 2s ./"$binary" <"$input" >"$output" 2>&1
+  fi
   CODE=$?
   end=$(date '+%s.%N')
   truncate -s "$(head -n 1000 "$output" | wc -c)" "$output"
@@ -30,6 +36,8 @@ execute_binary() {
   fi
 
   printf '\n[time]: %s ms' "$(awk "BEGIN {print ($end - $start) * 1000}")" >>$output
+  test -n "$is_debug" && is_debug_string=true || is_debug_string=false
+  printf '\n[debug]: %s' "$is_debug_string" >>$output
   return $CODE
 }
 

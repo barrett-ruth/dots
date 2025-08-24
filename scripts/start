@@ -1,0 +1,19 @@
+#!/bin/sh
+
+[ -z "$1" ] && exit
+
+case "$1" in
+sway | wayland)
+  export XDG_SESSION_TYPE=wayland
+  export ELECTRON_OZONE_PLATFORM_HINT=wayland
+  export OZONE_PLATFORM=wayland
+  export QT_QPA_PLATFORM=wayland
+  export GDK_BACKEND=wayland,x11
+  export SDL_VIDEODRIVER=wayland
+  sway
+  ;;
+x | x11)
+  export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
+  startx
+  ;;
+esac

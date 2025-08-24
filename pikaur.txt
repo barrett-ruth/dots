@@ -17,3 +17,4 @@ ttf-joypixels 9.0.0-1
 ttf-times-new-roman 2.0-3
 ttf-vista-fonts 1-11
 ungoogled-chromium-bin 139.0.7258.66-1
+zoom 6.5.8-1

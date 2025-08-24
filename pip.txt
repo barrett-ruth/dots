@@ -23,7 +23,7 @@ jaraco.collections 5.1.0
 lit                20.1.0.dev0
 markdown-it-py     4.0.0
 mypy               1.17.0
-orjson             3.11.1
+orjson             3.11.2
 perf               0.1
 pikaur             1.33.1
 pip                25.2

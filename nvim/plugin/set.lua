@@ -52,7 +52,7 @@ o.pumheight = 10
 
 o.scrolloff = 8
 
-o.shiftwidth = 4
+o.shiftwidth = 2
 
 opt.shortmess:append('acCIs')
 
@@ -79,3 +79,5 @@ o.updatetime = 50
 o.winborder = 'single'
 
 o.wrap = false
+
+o.clipboard = 'unnamedplus'

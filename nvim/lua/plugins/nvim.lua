@@ -334,6 +334,68 @@ return {
         },
     },
     {
+        'monaqa/dial.nvim',
+        keys = {
+            {
+                '<c-a>',
+                function()
+                    require('dial.map').manipulate('increment', 'normal')
+                end,
+                mode = 'n',
+            },
+            {
+                '<c-x>',
+                function()
+                    require('dial.map').manipulate('decrement', 'normal')
+                end,
+                mode = 'n',
+            },
+            {
+                'g<c-a>',
+                function()
+                    require('dial.map').manipulate('increment', 'gnormal')
+                end,
+                mode = 'n',
+            },
+            {
+                'g<c-x>',
+                function()
+                    require('dial.map').manipulate('decrement', 'gnormal')
+                end,
+                mode = 'n',
+            },
+
+            {
+                '<c-a>',
+                function()
+                    require('dial.map').manipulate('increment', 'visual')
+                end,
+                mode = 'v',
+            },
+            {
+                '<c-x>',
+                function()
+                    require('dial.map').manipulate('decrement', 'visual')
+                end,
+                mode = 'v',
+            },
+            {
+                'g<c-a>',
+                function()
+                    require('dial.map').manipulate('increment', 'gvisual')
+                end,
+                mode = 'v',
+            },
+            {
+                'g<c-x>',
+                function()
+                    require('dial.map').manipulate('decrement', 'gvisual')
+                end,
+                mode = 'v',
+            },
+        },
+    },
+    {
         'ruifm/gitlinker.nvim',
         config = true,
         keys = { '<leader>gy' },
@@ -350,8 +412,8 @@ return {
             'DiffviewFocusFiles',
         },
         keys = {
-            { '<leader>dv', '<cmd>DiffviewOpen<cr>' },
-            { '<leader>dc', '<cmd>DiffviewClose<cr>' },
+            { '<leader>go', '<cmd>DiffviewOpen<cr>' },
+            { '<leader>gc', '<cmd>DiffviewClose<cr>' },
         },
     },
     {

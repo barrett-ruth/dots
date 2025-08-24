@@ -96,7 +96,7 @@ function M.setup()
         local filename_basename = vim.fn.fnamemodify(filename, ':t')
         bmap({
             'n',
-            '<leader>m',
+            '<leader>r',
             function()
                 lsp_format({ async = true })
                 vim.system({ 'make', 'run', filename_basename }, {}, function()

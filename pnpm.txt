@@ -1,4 +1,4 @@
-@anthropic-ai/claude-code 1.0.81
+@anthropic-ai/claude-code 1.0.85
 @fsouza/prettierd 0.26.1
 @mdx-js/language-server 0.6.2
 @vtsls/language-server 0.2.9
