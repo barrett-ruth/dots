@@ -1,3 +1,4 @@
+-pedantic-errors
 -O2
 -Wall
 -Wextra

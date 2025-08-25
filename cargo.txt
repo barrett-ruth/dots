@@ -115,8 +115,6 @@ bdftogd
 bd_info
 bd_list_titles
 bd_splice
-bemenu
-bemenu-run
 bg5conv
 bg5+latex
 bg5latex
@@ -2029,6 +2027,9 @@ rmdir
 rmligamarks
 rmmod
 r-mpost
+rofi
+rofi-sensible-terminal
+rofi-theme-selector
 routel
 rpdfcrop
 r-pmpost
@@ -2276,6 +2277,7 @@ swapon
 sway
 swaybar
 swaybg
+swayidle
 swaylock
 swaymsg
 swaynag
@@ -2602,6 +2604,7 @@ webpinfo
 webpmux
 webpng
 webquiz
+wev
 whatis
 wheel
 whereis

@@ -47,6 +47,7 @@ function M.setup()
         vim.cmd.e(fname)
 
         -- options
+        vim.api.nvim_set_option_value('winbar', "", { scope = 'local' })
         vim.api.nvim_set_option_value('foldlevel', 0, { scope = 'local' })
         vim.api.nvim_set_option_value(
             'foldmethod',

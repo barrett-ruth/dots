@@ -46,7 +46,13 @@ void solve() {{
 }}
 
 int main() {{  // {{{{{{
-  cin.tie(nullptr)->sync_with_stdio(false);
+  #ifdef LOCAL
+    std::cerr.rdbuf(std::cout.rdbuf());
+    std::cout.setf(std::ios::unitbuf);
+    std::cerr.setf(std::ios::unitbuf);
+  #else
+    cin.tie(nullptr)->sync_with_stdio(false);
+  #endif
   cin.exceptions(cin.failbit);
 
 #define PROBLEM_NAME "{}"
@@ -83,7 +89,13 @@ void solve() {{
 }}
 
 int main() {{  // {{{{{{
-  cin.tie(nullptr)->sync_with_stdio(false);
+  #ifdef LOCAL
+    std::cerr.rdbuf(std::cout.rdbuf());
+    std::cout.setf(std::ios::unitbuf);
+    std::cerr.setf(std::ios::unitbuf);
+  #else
+    cin.tie(nullptr)->sync_with_stdio(false);
+  #endif
   cin.exceptions(cin.failbit);
 
   u32 tc = 1;
@@ -109,7 +121,13 @@ void solve() {{
 }}
 
 int main() {{  // {{{{{{
-  cin.tie(nullptr)->sync_with_stdio(false);
+  #ifdef LOCAL
+    std::cerr.rdbuf(std::cout.rdbuf());
+    std::cout.setf(std::ios::unitbuf);
+    std::cerr.setf(std::ios::unitbuf);
+  #else
+    cin.tie(nullptr)->sync_with_stdio(false);
+  #endif
   cin.exceptions(cin.failbit);
 
   solve();
@@ -130,7 +148,13 @@ void solve() {{
 }}
 
 int main() {{  // {{{{{{
-  cin.tie(nullptr)->sync_with_stdio(false);
+  #ifdef LOCAL
+    std::cerr.rdbuf(std::cout.rdbuf());
+    std::cout.setf(std::ios::unitbuf);
+    std::cerr.setf(std::ios::unitbuf);
+  #else
+    cin.tie(nullptr)->sync_with_stdio(false);
+  #endif
   cin.exceptions(cin.failbit);
 
   u32 tc = 1;

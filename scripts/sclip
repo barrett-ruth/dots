@@ -1,4 +1,9 @@
 #!/bin/sh
 
-systemctl --user import-environment display
-clipmenud
+if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+  pgrep -u "$USER" -f 'wl-paste .* cliphist store' >/dev/null && exit 0
+  wl-paste --watch cliphist store &
+else
+  systemctl --user import-environment display
+  clipmenud
+fi

@@ -1,7 +1,14 @@
 #!/bin/sh
 
-sinks="$(pacmd list-sinks | grep -E 'index:|name:' | sed 's/^\s*//;s/index: //;s/name: //' | sed -n 'N;s/\n/: /p')"
-count="$(echo "$sinks" | wc -l)"
-choice="$(echo "$sinks" | dmenu -i -l "$count" -p "Select Sink:" | cut -d: -f1)"
+sinks="$(pactl list short sinks | awk '{print $1": "$2}')"
+[ -z "$sinks" ] && exit 0
+count="$(printf "%s\n" "$sinks" | wc -l)"
 
-[ "$choice" ] && pacmd set-default-sink "$choice"
+if [ "$XDG_SESSION_TYPE" = x11 ]; then
+    choice="$(printf "%s\n" "$sinks" | dmenu -i -l "$count" -p "Select Sink:" | cut -d: -f1)"
+else
+    choice="$(printf "%s\n" "$sinks" | rofi -dmenu -i -lines "$count" -p "Select Sink:" | cut -d: -f1)"
+fi
+
+[ "$choice" ] && pactl set-default-sink "$choice"
+

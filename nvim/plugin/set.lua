@@ -79,5 +79,3 @@ o.updatetime = 50
 o.winborder = 'single'
 
 o.wrap = false
-
-o.clipboard = 'unnamedplus'

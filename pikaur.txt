@@ -11,6 +11,7 @@ quarto-cli-bin 1.7.33-1
 shellcheck-bin 0.11.0-1
 slack-desktop 4.45.64-1
 spectrwm 3.6.0-1
+swaylock-effects 1.7.0.0-4
 teams 1.5.00.23861-1
 tex-fmt 0.5.5-1
 ttf-joypixels 9.0.0-1

@@ -1,8 +1,18 @@
 #!/bin/sh
 
-if [ "$1" = 'toggle' ]; then
-    layout="$(setxkbmap -query | tail -n 1 | cut -d ' ' -f 6)"
-    [ "$layout" = 'us' ] && setxkbmap us dvorak || setxkbmap us
+if [ "$XDG_SESSION_TYPE" = x11 ]; then
+    if [ "$1" = 'toggle' ]; then
+        layout="$(setxkbmap -query | tail -n 1 | cut -d ' ' -f 6)"
+        [ "$layout" = 'us' ] && setxkbmap us dvorak || setxkbmap us
+    fi
+    xmodmap "$XDG_CONFIG_HOME"/X11/xmodmap
+else
+    if [ "$1" = 'toggle' ]; then
+        layout="$(swaymsg -t get_inputs | jq -r '.[] | select(.type=="keyboard") | .xkb_active_layout_name' | head -n1)"
+        if echo "$layout" | grep -qi dvorak; then
+            swaymsg input type:keyboard xkb_layout us
+        else
+            swaymsg input type:keyboard xkb_layout "us(dvorak)"
+        fi
+    fi
 fi
-
-xmodmap "$XDG_CONFIG_HOME"/X11/xmodmap

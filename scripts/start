@@ -3,7 +3,7 @@
 [ -z "$1" ] && exit
 
 case "$1" in
-sway | wayland)
+*sway* | *wayland*)
   export XDG_SESSION_TYPE=wayland
   export ELECTRON_OZONE_PLATFORM_HINT=wayland
   export OZONE_PLATFORM=wayland
@@ -12,7 +12,7 @@ sway | wayland)
   export SDL_VIDEODRIVER=wayland
   sway
   ;;
-x | x11)
+*x* | *x11*)
   export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
   startx
   ;;

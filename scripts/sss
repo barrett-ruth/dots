@@ -1,9 +1,18 @@
 #!/bin/sh
-dir=~/img/ss
+
+set -eu
+
+dir="$HOME/img/ss"
 mkdir -p "$dir"
-filename="$(dmenu -p 'Enter filename:' </dev/null || true)"
-[ -n "$filename" ] || filename="$(openssl rand -hex 10)-$(date +'%Y-%m-%d_%H-%M-%S')"
-file="$dir/$filename.png"
-(
- maim -s "$file" && xclip -selection clipboard -t image/png -i "$file"
-) &
+
+if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+  filename="$(rofi -dmenu -p 'Enter filename' </dev/null || true)"
+  [ -n "$filename" ] || filename="$(openssl rand -hex 10)-$(date +'%Y-%m-%d_%H-%M-%S')"
+  file="$dir/$filename.png"
+  grim -g "$(slurp)" "$file" && wl-copy < "$file"
+else
+  filename="$(dmenu -p 'Enter filename:' </dev/null || true)"
+  [ -n "$filename" ] || filename="$(openssl rand -hex 10)-$(date +'%Y-%m-%d_%H-%M-%S')"
+  file="$dir/$filename.png"
+  maim -s "$file" && xclip -selection clipboard -t image/png -i "$file" &
+fi

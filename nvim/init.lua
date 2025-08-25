@@ -23,4 +23,4 @@ require('lazy').setup('plugins', {
     change_detection = { enabled = false },
 })
 
-vim.cmd.colorscheme('bore')
+vim.cmd.colorscheme(vim.env.THEME)

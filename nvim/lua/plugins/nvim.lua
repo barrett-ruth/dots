@@ -439,29 +439,35 @@ return {
         event = 'BufReadPre',
     },
     {
-        'NvChad/nvim-colorizer.lua',
+        'catgoose/nvim-colorizer.lua',
         opts = {
             filetypes = {
                 'config',
+                html = { names = true },
+                css = { names = true },
                 'conf',
                 'sh',
                 'tmux',
+                'swayconfig',
                 'zsh',
                 unpack(vim.g.markdown_fenced_languages),
             },
             user_default_options = {
-                RRGGBBAA = true,
-                AARRGGBB = true,
+                names = false,
+                rrggbbaa = true,
+                aarrggbb = true,
                 css = true,
                 rgb_fun = true,
                 hsl_fn = true,
                 tailwind = true,
+                xterm = true,
             },
         },
         event = 'VeryLazy',
         ft = {
             'conf',
             'sh',
+            'swayconfig',
             'tmux',
             'zsh',
             unpack(vim.g.markdown_fenced_languages),
@@ -583,4 +589,7 @@ return {
         },
         keys = { 'c', 'd', 'v', 'V', 'y', '<', '>' },
     },
+    {
+        'andreasvc/vim-256noir'
+    }
 }

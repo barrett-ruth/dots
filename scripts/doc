@@ -1,13 +1,18 @@
 #!/bin/sh
 
 dir="$HOME/doc"
-
 test -d "$dir" || exit
 
-while true; do
-  choice="$(find "$dir" -not -path "$dir/.*" -mindepth 1 -maxdepth 1 \( -type d -printf "%f/\n" -o -type f -printf "%f\n" \) | dmenu -i -l 10 -p "Select file or folder: ")"
+if [ "$XDG_SESSION_TYPE" = x11 ]; then
+  picker() { dmenu -i -l 10 -p "Select file or folder: "; }
+else
+  picker() { rofi -dmenu -i -l 10 -p "Select file or folder"; }
+fi
 
-  [ "$choice" ] || break
+while :; do
+  choice="$(find "$dir" -not -path "$dir/.*" -mindepth 1 -maxdepth 1 \( -type d -printf "%f/\n" -o -type f -printf "%f\n" \) | picker)"
+
+  [ -n "$choice" ] || break
 
   if [ -d "$dir/${choice%/}" ]; then
     dir="$dir/${choice%/}"

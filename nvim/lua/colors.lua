@@ -21,7 +21,61 @@ local function hi(group, highlights, links)
 end
 
 return {
-    bore = {
+    gruvbox = {
+        black = '#1d2021',
+        red = '#cc241d',
+        green = '#98971a',
+        yellow = '#d79921',
+        blue = '#458588',
+        magenta = '#b16286',
+        cyan = '#689d6a',
+        white = '#ebdbb2',
+
+        light_black = '#928374',
+        light_red = '#fb4934',
+        light_green = '#b8bb26',
+        light_yellow = '#fabd2f',
+        light_blue = '#83a598',
+        light_magenta = '#d3869b',
+        light_cyan = '#8ec07c',
+        light_white = '#fbf1c7',
+
+        orange = '#d65d0e',
+
+        light_grey = '#a89984',
+        grey = '#7c6f64',
+        med_grey = '#665c54',
+        dark_grey = '#32302f',
+    },
+
+    gruvbox_material = {
+        black = '#282828',
+        red = '#EA6962',
+        green = '#A9B665',
+        yellow = '#D8A657',
+        blue = '#7DAEA3',
+        magenta = '#D3869B',
+        cyan = '#89B482',
+        white = '#D4BE98',
+
+        light_black = '#928374',
+        light_red = '#EF938E',
+        light_green = '#BBC585',
+        light_yellow = '#E1BB7E',
+        light_blue = '#9DC2BA',
+        light_magenta = '#E1ACBB',
+        light_cyan = '#A7C7A2',
+        light_white = '#E2D3BA',
+
+        orange = '#E78A4E',
+
+        light_grey = '#A89984',
+        grey = '#5A524C',
+        med_grey = '#45403D',
+        dark_grey = '#32302F',
+    },
+
+    light = {
         black = '#000000',
         grey = '#666666',
         red = '#B22222',

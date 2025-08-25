@@ -1,8 +1,23 @@
 #!/bin/sh
-dir=~/img/ss
+
+dir="$HOME/img/ss"
 mkdir -p "$dir"
-filename="$dir/$(openssl rand -hex 10)-$(date +'%Y-%m-%d_%H-%M-%S').jpg"
-(
-  maim -s "$filename" &&
-  tesseract -l eng "$filename" - 2>/dev/null | xclip -in -sel c
-) </dev/null >/dev/null 2>&1 &
+ts="$(date +'%Y-%m-%d_%H-%M-%S')"
+rnd="$(openssl rand -hex 10)"
+
+if [ "$XDG_SESSION_TYPE" = x11 ]; then
+    filename="$dir/$rnd-$ts.jpg"
+    (
+      maim -s "$filename" &&
+      tesseract -l eng "$filename" - 2>/dev/null | xclip -selection clipboard -in
+    ) </dev/null >/dev/null 2>&1 &
+else
+    filename="$dir/$rnd-$ts.png"
+    (
+      region="$(slurp)"
+      [ -n "$region" ] || exit 0
+      grim -g "$region" "$filename" &&
+      tesseract -l eng "$filename" - 2>/dev/null | wl-copy
+    ) </dev/null >/dev/null 2>&1 &
+fi
+

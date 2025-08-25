@@ -1,5 +1,5 @@
 local colors = require('colors')
-colors.setup('bore', 'light')
+colors.setup('light', 'light')
 
 local hi, link, tshi, cs =
     colors.hi, colors.link, colors.tshi, colors[vim.g.colors_name]
