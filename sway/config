@@ -23,6 +23,7 @@ bindsym Mod1+Shift+Return exec $term
 bindsym Mod1+space        exec $menu
 bindsym Mod1+Shift+c      exec chromium --ozone-platform=wayland
 bindsym Mod1+Shift+d      exec discord
+bindsym Mod1+Shift+v      exec vesktop
 bindsym Mod1+Shift+s      exec slack
 bindsym Mod1+q            kill
 bindsym Mod1+Shift+q      exit
@@ -102,6 +103,9 @@ for_window [class="Slack"] move to workspace number 4
 
 assign [app_id="discord"] workspace number 5
 for_window [class="discord"] move to workspace number 5
+
+assign [app_id="vesktop"] workspace number 5
+for_window [class="vesktop"] move to workspace number 5
 
 set $bg        #282828
 set $bg1       #3c3836

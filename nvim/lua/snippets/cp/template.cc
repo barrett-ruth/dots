@@ -1,5 +1,12 @@
 #include <bits/stdc++.h>  // {{{
 
+#include <version>
+#ifdef __cpp_lib_ranges_enumerate
+#include <ranges>
+namespace rv = std::views;
+namespace rs = std::ranges;
+#endif
+
 // https://codeforces.com/blog/entry/96344
 
 #pragma GCC optimize("O2,unroll-loops")
@@ -40,7 +47,7 @@ static void YES() {
   std::cout << "YES\n";
 }
 
-template<typename T>
+template <typename T>
 using vec = std::vector<T>;
 
 #define all(x) (x).begin(), (x).end()

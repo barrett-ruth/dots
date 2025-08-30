@@ -4,6 +4,10 @@ colors.setup('gruvbox', 'dark')
 local hi, link, tshi, cs =
     colors.hi, colors.link, colors.tshi, colors[vim.g.colors_name]
 
+for color, hexcode in pairs(cs) do
+    hi(color, { fg = hexcode })
+end
+
 hi(
     'Normal',
     { fg = cs.white, bg = cs.black },

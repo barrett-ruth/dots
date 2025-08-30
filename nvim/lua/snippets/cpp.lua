@@ -46,14 +46,15 @@ void solve() {{
 }}
 
 int main() {{  // {{{{{{
-  #ifdef LOCAL
-    std::cerr.rdbuf(std::cout.rdbuf());
-    std::cout.setf(std::ios::unitbuf);
-    std::cerr.setf(std::ios::unitbuf);
-  #else
-    cin.tie(nullptr)->sync_with_stdio(false);
-  #endif
-  cin.exceptions(cin.failbit);
+  std::cin.exceptions(std::cin.failbit);
+
+#ifdef LOCAL
+  std::cerr.rdbuf(std::cout.rdbuf());
+  std::cout.setf(std::ios::unitbuf);
+  std::cerr.setf(std::ios::unitbuf);
+#else
+  std::cin.tie(nullptr)->sync_with_stdio(false);
+#endif
 
 #define PROBLEM_NAME "{}"
 
@@ -89,17 +90,18 @@ void solve() {{
 }}
 
 int main() {{  // {{{{{{
-  #ifdef LOCAL
-    std::cerr.rdbuf(std::cout.rdbuf());
-    std::cout.setf(std::ios::unitbuf);
-    std::cerr.setf(std::ios::unitbuf);
-  #else
-    cin.tie(nullptr)->sync_with_stdio(false);
-  #endif
-  cin.exceptions(cin.failbit);
+  std::cin.exceptions(std::cin.failbit);
+
+#ifdef LOCAL
+  std::cerr.rdbuf(std::cout.rdbuf());
+  std::cout.setf(std::ios::unitbuf);
+  std::cerr.setf(std::ios::unitbuf);
+#else
+  std::cin.tie(nullptr)->sync_with_stdio(false);
+#endif
 
   u32 tc = 1;
-  // cin >> tc;
+  // std::cin >> tc;
 
   for (u32 t = 0; t < tc; ++t) {{
     solve();
@@ -121,14 +123,15 @@ void solve() {{
 }}
 
 int main() {{  // {{{{{{
-  #ifdef LOCAL
-    std::cerr.rdbuf(std::cout.rdbuf());
-    std::cout.setf(std::ios::unitbuf);
-    std::cerr.setf(std::ios::unitbuf);
-  #else
-    cin.tie(nullptr)->sync_with_stdio(false);
-  #endif
-  cin.exceptions(cin.failbit);
+  std::cin.exceptions(std::cin.failbit);
+
+#ifdef LOCAL
+  std::cerr.rdbuf(std::cout.rdbuf());
+  std::cout.setf(std::ios::unitbuf);
+  std::cerr.setf(std::ios::unitbuf);
+#else
+  std::cin.tie(nullptr)->sync_with_stdio(false);
+#endif
 
   solve();
 
@@ -148,17 +151,18 @@ void solve() {{
 }}
 
 int main() {{  // {{{{{{
-  #ifdef LOCAL
-    std::cerr.rdbuf(std::cout.rdbuf());
-    std::cout.setf(std::ios::unitbuf);
-    std::cerr.setf(std::ios::unitbuf);
-  #else
-    cin.tie(nullptr)->sync_with_stdio(false);
-  #endif
-  cin.exceptions(cin.failbit);
+  std::cin.exceptions(std::cin.failbit);
+
+#ifdef LOCAL
+  std::cerr.rdbuf(std::cout.rdbuf());
+  std::cout.setf(std::ios::unitbuf);
+  std::cerr.setf(std::ios::unitbuf);
+#else
+  std::cin.tie(nullptr)->sync_with_stdio(false);
+#endif
 
   u32 tc = 1;
-  cin >> tc;
+  std::cin >> tc;
 
   for (u32 t = 0; t < tc; ++t) {{
     solve();
@@ -168,6 +172,42 @@ int main() {{  // {{{{{{
 }}
 // }}}}}}]],
             { t(readlines('template.cc')), i(1) }
+        )
+    ),
+    s(
+        'atcoder',
+        fmt(
+            [[{}
+
+void solve() {{
+  {}
+}}
+
+int main() {{  // {{{{{{
+  std::cin.exceptions(std::cin.failbit);
+
+#ifdef LOCAL
+  std::cerr.rdbuf(std::cout.rdbuf());
+  std::cout.setf(std::ios::unitbuf);
+  std::cerr.setf(std::ios::unitbuf);
+
+  while (std::cin >> ws && !std::cin.eof()) {{
+    solve();
+  }}
+#else
+  std::cin.tie(nullptr)->sync_with_stdio(false);
+
+  solve();
+#endif
+
+  return 0;
+
+}}
+// }}}}}}]],
+            {
+                t(readlines('template.cc')),
+                i(1),
+            }
         )
     ),
 }) do

@@ -11,7 +11,7 @@ local function clearcol()
 end
 
 local competition_versions =
-    { codeforces = 23, cses = 20, icpc = 20, usaco = 17 }
+    { atcoder = 23, codeforces = 23, cses = 20, icpc = 20, usaco = 17 }
 
 local competition_types = vim.tbl_keys(competition_versions)
 
@@ -47,7 +47,7 @@ function M.setup()
         vim.cmd.e(fname)
 
         -- options
-        vim.api.nvim_set_option_value('winbar', "", { scope = 'local' })
+        vim.api.nvim_set_option_value('winbar', '', { scope = 'local' })
         vim.api.nvim_set_option_value('foldlevel', 0, { scope = 'local' })
         vim.api.nvim_set_option_value(
             'foldmethod',
