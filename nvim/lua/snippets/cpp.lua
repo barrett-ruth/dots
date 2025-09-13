@@ -36,179 +36,217 @@ int main() {{
     ),
     s('pr', fmt('std::cout << {}', { i(1) })),
     s('s', fmt('std::{}', { i(1) })),
+--     s(
+--         'usaco',
+--         fmt(
+--             [[{}
+--
+-- void solve() {{
+--   {}
+-- }}
+--
+-- int main() {{  // {{{{{{
+--   std::cin.exceptions(std::cin.failbit);
+--
+-- #ifdef LOCAL
+--   std::cerr.rdbuf(std::cout.rdbuf());
+--   std::cout.setf(std::ios::unitbuf);
+--   std::cerr.setf(std::ios::unitbuf);
+-- #else
+--   std::cin.tie(nullptr)->sync_with_stdio(false);
+-- #endif
+--
+-- #define PROBLEM_NAME "{}"
+--
+-- #ifdef LOCAL
+--   freopen("io/" PROBLEM_NAME ".in", "r", stdin);
+--   freopen("io/" PROBLEM_NAME ".out", "w", stdout);
+-- #else
+--   freopen(PROBLEM_NAME ".in", "r", stdin);
+--   freopen(PROBLEM_NAME ".out", "w", stdout);
+-- #endif
+--
+--   solve();
+--
+--   return 0;
+-- }}
+-- // }}}}}}]],
+--             {
+--                 t(readlines('template.cc')),
+--                 i(1),
+--                 f(function()
+--                     return vim.fn.expand('%:t:r')
+--                 end),
+--             }
+--         )
+--     ),
+--     s(
+--         'cses',
+--         fmt(
+--             [[{}
+--
+-- void solve() {{
+--   {}
+-- }}
+--
+-- int main() {{  // {{{{{{
+--   std::cin.exceptions(std::cin.failbit);
+--
+-- #ifdef LOCAL
+--   std::cerr.rdbuf(std::cout.rdbuf());
+--   std::cout.setf(std::ios::unitbuf);
+--   std::cerr.setf(std::ios::unitbuf);
+-- #else
+--   std::cin.tie(nullptr)->sync_with_stdio(false);
+-- #endif
+--
+--   u32 tc = 1;
+--   // std::cin >> tc;
+--
+--   for (u32 t = 0; t < tc; ++t) {{
+--     solve();
+--   }}
+--
+--   return 0;
+-- }}
+-- // }}}}}}]],
+--             { t(readlines('template.cc')), i(1) }
+--         )
+--     ),
+--     s(
+--         'icpc',
+--         fmt(
+--             [[{}
+--
+-- void solve() {{
+--   {}
+-- }}
+--
+-- int main() {{  // {{{{{{
+--   std::cin.exceptions(std::cin.failbit);
+--
+-- #ifdef LOCAL
+--   std::cerr.rdbuf(std::cout.rdbuf());
+--   std::cout.setf(std::ios::unitbuf);
+--   std::cerr.setf(std::ios::unitbuf);
+-- #else
+--   std::cin.tie(nullptr)->sync_with_stdio(false);
+-- #endif
+--
+--   solve();
+--
+--   return 0;
+-- }}
+-- // }}}}}}]],
+--             { t(readlines('template.cc')), i(1) }
+--         )
+--     ),
+--     s(
+--         'codeforces',
+--         fmt(
+--             [[{}
+--
+-- void solve() {{
+--   {}
+-- }}
+--
+-- int main() {{  // {{{{{{
+--   std::cin.exceptions(std::cin.failbit);
+--
+-- #ifdef LOCAL
+--   std::cerr.rdbuf(std::cout.rdbuf());
+--   std::cout.setf(std::ios::unitbuf);
+--   std::cerr.setf(std::ios::unitbuf);
+-- #else
+--   std::cin.tie(nullptr)->sync_with_stdio(false);
+-- #endif
+--
+--   u32 tc = 1;
+--   std::cin >> tc;
+--
+--   for (u32 t = 0; t < tc; ++t) {{
+--     solve();
+--   }}
+--
+--   return 0;
+-- }}
+-- // }}}}}}]],
+--             { t(readlines('template.cc')), i(1) }
+--         )
+--     ),
+--     s(
+--         'atcoder',
+--         fmt(
+--             [[{}
+--
+-- void solve() {{
+--   {}
+-- }}
+--
+-- int main() {{  // {{{{{{
+--   std::cin.exceptions(std::cin.failbit);
+--
+-- #ifdef LOCAL
+--   std::cerr.rdbuf(std::cout.rdbuf());
+--   std::cout.setf(std::ios::unitbuf);
+--   std::cerr.setf(std::ios::unitbuf);
+--
+--   u32 tc;
+--   std::cin >> tc;
+--
+--   for (u32 t = 0; t < tc; ++t) {{
+--     solve();
+--   }}
+-- #else
+--   std::cin.tie(nullptr)->sync_with_stdio(false);
+--
+--   solve();
+-- #endif
+--
+--   return 0;
+--
+-- }}
+-- // }}}}}}]],
+--             {
+--                 t(readlines('template.cc')),
+--                 i(1),
+--             }
+--         )
+--     ),
     s(
-        'usaco',
-        fmt(
-            [[{}
+        'pbds',
+        fmt([[
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
 
-void solve() {{
-  {}
-}}
+namespace pbds = __gnu_pbds;
 
-int main() {{  // {{{{{{
-  std::cin.exceptions(std::cin.failbit);
+template <class T>
+using hashset = pbds::gp_hash_table<T, pbds::null_type>;
 
-#ifdef LOCAL
-  std::cerr.rdbuf(std::cout.rdbuf());
-  std::cout.setf(std::ios::unitbuf);
-  std::cerr.setf(std::ios::unitbuf);
-#else
-  std::cin.tie(nullptr)->sync_with_stdio(false);
-#endif
+template <class K, class V>
+using hashmap = pbds::gp_hash_table<K, V>;
 
-#define PROBLEM_NAME "{}"
+template <class K, class V>
+using multitreemap =
+    pbds::tree<K, V, less_equal<K>, pbds::rb_tree_tag,
+               pbds::tree_order_statistics_node_update>;
 
-#ifdef LOCAL
-  freopen("io/" PROBLEM_NAME ".in", "r", stdin);
-  freopen("io/" PROBLEM_NAME ".out", "w", stdout);
-#else
-  freopen(PROBLEM_NAME ".in", "r", stdin);
-  freopen(PROBLEM_NAME ".out", "w", stdout);
-#endif
+template <class T>
+using treeset =
+    pbds::tree<T, pbds::null_type, less<T>, pbds::rb_tree_tag,
+               pbds::tree_order_statistics_node_update>;
 
-  solve();
+template <class K, class V>
+using treemap =
+    pbds::tree<K, V, less<K>, pbds::rb_tree_tag,
+               pbds::tree_order_statistics_node_update>;
 
-  return 0;
-}}
-// }}}}}}]],
-            {
-                t(readlines('template.cc')),
-                i(1),
-                f(function()
-                    return vim.fn.expand('%:t:r')
-                end),
-            }
-        )
-    ),
-    s(
-        'cses',
-        fmt(
-            [[{}
-
-void solve() {{
-  {}
-}}
-
-int main() {{  // {{{{{{
-  std::cin.exceptions(std::cin.failbit);
-
-#ifdef LOCAL
-  std::cerr.rdbuf(std::cout.rdbuf());
-  std::cout.setf(std::ios::unitbuf);
-  std::cerr.setf(std::ios::unitbuf);
-#else
-  std::cin.tie(nullptr)->sync_with_stdio(false);
-#endif
-
-  u32 tc = 1;
-  // std::cin >> tc;
-
-  for (u32 t = 0; t < tc; ++t) {{
-    solve();
-  }}
-
-  return 0;
-}}
-// }}}}}}]],
-            { t(readlines('template.cc')), i(1) }
-        )
-    ),
-    s(
-        'icpc',
-        fmt(
-            [[{}
-
-void solve() {{
-  {}
-}}
-
-int main() {{  // {{{{{{
-  std::cin.exceptions(std::cin.failbit);
-
-#ifdef LOCAL
-  std::cerr.rdbuf(std::cout.rdbuf());
-  std::cout.setf(std::ios::unitbuf);
-  std::cerr.setf(std::ios::unitbuf);
-#else
-  std::cin.tie(nullptr)->sync_with_stdio(false);
-#endif
-
-  solve();
-
-  return 0;
-}}
-// }}}}}}]],
-            { t(readlines('template.cc')), i(1) }
-        )
-    ),
-    s(
-        'codeforces',
-        fmt(
-            [[{}
-
-void solve() {{
-  {}
-}}
-
-int main() {{  // {{{{{{
-  std::cin.exceptions(std::cin.failbit);
-
-#ifdef LOCAL
-  std::cerr.rdbuf(std::cout.rdbuf());
-  std::cout.setf(std::ios::unitbuf);
-  std::cerr.setf(std::ios::unitbuf);
-#else
-  std::cin.tie(nullptr)->sync_with_stdio(false);
-#endif
-
-  u32 tc = 1;
-  std::cin >> tc;
-
-  for (u32 t = 0; t < tc; ++t) {{
-    solve();
-  }}
-
-  return 0;
-}}
-// }}}}}}]],
-            { t(readlines('template.cc')), i(1) }
-        )
-    ),
-    s(
-        'atcoder',
-        fmt(
-            [[{}
-
-void solve() {{
-  {}
-}}
-
-int main() {{  // {{{{{{
-  std::cin.exceptions(std::cin.failbit);
-
-#ifdef LOCAL
-  std::cerr.rdbuf(std::cout.rdbuf());
-  std::cout.setf(std::ios::unitbuf);
-  std::cerr.setf(std::ios::unitbuf);
-
-  while (std::cin >> ws && !std::cin.eof()) {{
-    solve();
-  }}
-#else
-  std::cin.tie(nullptr)->sync_with_stdio(false);
-
-  solve();
-#endif
-
-  return 0;
-
-}}
-// }}}}}}]],
-            {
-                t(readlines('template.cc')),
-                i(1),
-            }
-        )
+template <class T>
+using treemultiset =
+    pbds::tree<T, pbds::null_type, less_equal<T>, pbds::rb_tree_tag,
+               pbds::tree_order_statistics_node_update>;
+    ]], {})
     ),
 }) do
     table.insert(cppsnippets, snippet)

@@ -1,4 +1,4 @@
-.PHONY: run debug clean setup init
+.PHONY: run debug clean setup init scrape
 
 VERSION ?= 20
 
@@ -25,6 +25,9 @@ setup:
 
 init:
 	make setup
+
+scrape:
+	sh scripts/scrape.sh $(word 2,$(MAKECMDGOALS)) $(word 3,$(MAKECMDGOALS)) $(word 4,$(MAKECMDGOALS))
 
 %:
 	@:

@@ -11,7 +11,7 @@ end
 hi(
     'Normal',
     { fg = cs.white, bg = cs.black },
-    { 'Identifier', 'Special', 'StatusLine', 'StatusLineNC', 'Winbar' }
+    { 'Identifier', 'Special', 'StatusLine', 'StatusLineNC', 'Winbar', 'WinbarNC' }
 )
 hi('NonText', { fg = cs.grey }, { 'SpecialKey' })
 

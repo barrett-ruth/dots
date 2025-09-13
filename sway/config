@@ -87,7 +87,7 @@ bindsym Mod5+d exec doc
 bindsym Mod5+k exec "skb toggle"
 bindsym Mod5+r exec rbt
 bindsym Mod5+s exec sss
-bindsym Mod5+t exec ocr
+bindsym Mod5+o exec ocr
 
 assign [app_id="ghostty"] workspace number 1
 for_window [class="Ghostty"] move to workspace number 1
@@ -147,3 +147,8 @@ input * {
 output * bg ~/img/wp/one/progress.jpg fill
 
 include /etc/sway/config.d/*
+
+for_window [app_id="one.alynx.showmethekey" title="Floating Window - Show Me The Key"] {
+  floating enable
+  sticky enable
+}

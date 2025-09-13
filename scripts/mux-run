@@ -4,6 +4,9 @@ name="$(basename "$PWD")"
 project="$(basename "$(dirname "$PWD")")/$name"
 
 case "$project" in
+*/bmath)
+  cmd='cmake -B build -DCMAKE_BUILD_TYPE=Debug && cmake --build build && ctest --test-dir build --output-on-failure'
+  ;;
 */ag)
   cmd='cp -f autograder.py example && cd example && ./run_autograder'
   ;;

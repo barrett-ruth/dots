@@ -34,7 +34,18 @@ return {
     end,
     keys = {
         { '<c-b>', '<cmd>FzfLua buffers<cr>' },
-        { '<c-f>', '<cmd>FzfLua files cwd_prompt=false<cr>' },
+        { 
+            '<c-f>', 
+            function()
+                local fzf = require('fzf-lua')
+                local git_dir = vim.fn.system('git rev-parse --git-dir 2>/dev/null'):gsub('\n', '')
+                if vim.v.shell_error == 0 and git_dir ~= '' then
+                    fzf.git_files({ cwd_prompt = false })
+                else
+                    fzf.files()
+                end
+            end
+        },
         { '<c-g>', '<cmd>FzfLua live_grep<cr>' },
         { '<leader>gB', '<cmd>FzfLua git_branches<cr>' },
         { '<leader>ff', '<cmd>FzfLua files cwd=%:h<cr>' },

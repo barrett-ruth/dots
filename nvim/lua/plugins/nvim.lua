@@ -590,6 +590,6 @@ return {
         keys = { 'c', 'd', 'v', 'V', 'y', '<', '>' },
     },
     {
-        'andreasvc/vim-256noir'
-    }
+        'andreasvc/vim-256noir',
+    },
 }

@@ -5,7 +5,7 @@ mkdir -p "$dir"
 ts="$(date +'%Y-%m-%d_%H-%M-%S')"
 rnd="$(openssl rand -hex 10)"
 
-if [ "$XDG_SESSION_TYPE" = x11 ]; then
+if [ "$XDG_SESSION_TYPE" = tty ]; then
     filename="$dir/$rnd-$ts.jpg"
     (
       maim -s "$filename" &&
