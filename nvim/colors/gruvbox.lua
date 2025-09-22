@@ -180,3 +180,20 @@ link('Directory', 'OilDir')
 link('NormalFloat', 'FzfLuaBorder')
 hi('FzfLuaHeaderText', { fg = cs.red }, { 'FzfLuaBufFlagCur' })
 hi('FzfLuaBufFlagAlt', { fg = cs.cyan })
+
+vim.g.terminal_color_0 = cs.dark_grey
+vim.g.terminal_color_1 = cs.red
+vim.g.terminal_color_2 = cs.green
+vim.g.terminal_color_3 = cs.yellow
+vim.g.terminal_color_4 = cs.blue
+vim.g.terminal_color_5 = cs.magenta
+vim.g.terminal_color_6 = cs.cyan
+vim.g.terminal_color_7 = cs.light_grey
+vim.g.terminal_color_8 = cs.grey
+vim.g.terminal_color_9 = cs.red
+vim.g.terminal_color_10 = cs.green
+vim.g.terminal_color_11 = cs.yellow
+vim.g.terminal_color_12 = cs.blue
+vim.g.terminal_color_13 = cs.magenta
+vim.g.terminal_color_14 = cs.cyan
+vim.g.terminal_color_15 = cs.white

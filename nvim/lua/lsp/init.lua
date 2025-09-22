@@ -5,21 +5,9 @@ function M.on_attach(client, bufnr)
         bmap({ 'n', 'K', vim.lsp.buf.hover })
     end
 
-    if client:supports_method('documentSymbol') then
+    if client:supports_method('documentSymbols') then
         require('nvim-navic').attach(client, bufnr)
-        if not vim.tbl_contains({ 'sh' }, vim.bo.ft) then
-            vim.opt_local.winbar = [[%{%v:lua.require('lines.winbar').winbar()%}]]
-        end
-    end
-
-    if client:supports_method('signatureHelp') then
-        bmap({
-            'n',
-            'gra',
-            function()
-                vim.lsp.buf.signature_help()
-            end,
-        })
+        vim.opt_local.winbar = [[%{%v:lua.require('lines.winbar').winbar()%}]]
     end
 
     bmap({ 'n', '\\f', vim.diagnostic.open_float })
@@ -50,7 +38,6 @@ function M.lsp_format(opts)
             if c.name == 'typescript-tools' then
                 vim.cmd.TSToolsOrganizeImports()
             end
-            -- disable all lsp formatting
             return c.name == 'null-ls'
         end,
     })
@@ -96,6 +83,26 @@ function M.setup()
             end
         end,
     })
+
+    for _, server in ipairs({
+        'bashls',
+        'clangd',
+        'cssls',
+        'emmet_language_server',
+        'eslint',
+        'html',
+        'mdx_analyzer',
+        'jsonls',
+        'vtsls',
+        'lua_ls',
+        'ruff',
+    }) do
+        local ok, config = pcall(require, 'lsp.' .. server)
+        if ok and config then
+            vim.lsp.config(server, config)
+        end
+        vim.lsp.enable(server)
+    end
 end
 
 function M.setup_none_ls()
@@ -176,7 +183,7 @@ function M.setup_none_ls()
             hover.dictionary,
             hover.printenv,
         },
-        on_attach = on_attach,
+        on_attach = M.on_attach,
         debounce = 0,
     })
 end

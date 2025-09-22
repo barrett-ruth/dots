@@ -10,7 +10,7 @@ pikaur 1.33.1-1
 quarto-cli-bin 1.8.24-1
 shellcheck-bin 0.11.0-1
 sioyek-git 2.0.0.r1056.gb19e390f-1
-slack-desktop 4.45.69-1
+slack-desktop 4.46.96-1
 spectrwm 3.7.0-1
 swaylock-effects 1.7.0.0-4
 teams 1.5.00.23861-1
@@ -18,6 +18,6 @@ tex-fmt 0.5.5-1
 ttf-joypixels 9.0.0-1
 ttf-times-new-roman 2.0-3
 ttf-vista-fonts 1-11
-ungoogled-chromium-bin 140.0.7339.80-1
+ungoogled-chromium-bin 140.0.7339.127-1
 vesktop-bin 1.5.8-1
 zoom 6.5.11-3

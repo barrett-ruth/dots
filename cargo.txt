@@ -18,6 +18,7 @@ addpart
 addr2line
 adhocfilelist
 adig
+affixcompress
 afm2pl
 afm2tfm
 afmtodit
@@ -36,11 +37,10 @@ amrnb-dec
 amrnb-enc
 amrwb-dec
 amstex
+analyze
 analyze-build
 androiddeployqt6
 animate
-anim_diff
-anim_dump
 annotate
 aomdec
 aomenc
@@ -284,6 +284,7 @@ chktex
 chkweb
 chmem
 chmod
+chmorph
 choom
 chown
 chpasswd
@@ -419,7 +420,6 @@ cut
 cvt
 cvtsudoers
 cweave
-cwebp
 cx18-ctl
 cxl
 cxpm
@@ -567,7 +567,6 @@ dvisvgm
 dvitodvi
 dvitomp
 dvitype
-dwebp
 dwp
 e2freefrag
 e2fsck
@@ -754,6 +753,13 @@ fuser
 fusermount
 fusermount3
 fusermount-glusterfs
+fy-compose
+fy-dump
+fy-filter
+fy-join
+fy-testsuite
+fy-tool
+fy-ypath
 fzf
 fzf-tmux
 g++
@@ -829,7 +835,6 @@ ghostty
 gi-compile-repository
 gi-decompile-typelib
 gif2rgb
-gif2webp
 gifbuild
 gifclrmp
 giffix
@@ -995,6 +1000,7 @@ gtk4-builder-tool
 gtk4-encode-symbolic-svg
 gtk4-image-tool
 gtk4-launch
+gtk4-layer-demo
 gtk4-path-tool
 gtk4-query-settings
 gtk4-rendernode-tool
@@ -1046,6 +1052,8 @@ hostid
 hostnamectl
 hpftodit
 hugetop
+hunspell
+hunzip
 hwclock
 hwloc-annotate
 hwloc-bind
@@ -1062,6 +1070,7 @@ hwloc-patch
 hwloc-ps
 hwsim
 hyperxmp-add-bytecount
+hzip
 i386
 i686-pc-linux-gnu-pkg-config
 ibacm
@@ -1117,7 +1126,8 @@ ijs_server_example
 imagetops
 img2sixel
 img2txt
-img2webp
+imgcmp
+imginfo
 imlib2_bumpmap
 imlib2_colorspace
 imlib2_conv
@@ -1197,16 +1207,19 @@ iso-read
 isort
 isort-identify-imports
 isosize
+ispellaff2myspell
 ivtv-ctl
 iwctl
 iwmon
 iwpmd
 jackd
 jadetex
+jasper
 java2html
 jbgtopbm
 jbgtopbm85
 jbig2dec
+jiv
 jmaps
 join
 journalctl
@@ -1451,8 +1464,10 @@ lstopo-no-graphics
 ltxfileinfo
 ltximg
 lua
+lua5.1
 lua5.4
 luac
+luac5.1
 luac5.4
 luacsplain
 luahbtex
@@ -1493,6 +1508,7 @@ magnet-link
 maim
 make
 make4ht
+makealias
 makeconv
 makedb
 makedtx
@@ -1639,6 +1655,7 @@ mujs-pp
 multipath
 multipathc
 multipathd
+munch
 muxer
 mv
 mypy
@@ -1987,6 +2004,7 @@ pinky
 pip
 pip3
 pipesz
+pipewire
 pivot_root
 pk12util
 pk2bm
@@ -2094,11 +2112,22 @@ ptx
 pulseaudio
 purifyeps
 pwck
+pw-cli
+pw-config
+pw-container
 pwconv
 pwd
+pw-dot
+pw-dump
 pwdx
 pwhistory_helper
+pw-link
 pwmconfig
+pw-metadata
+pw-mon
+pw-profiler
+pw-reserve
+pw-top
 pwunconv
 pycman-database
 pycman-deptest
@@ -2475,6 +2504,9 @@ sotruss
 source-highlight
 source-highlight-esc.sh
 source-highlight-settings
+spa-inspect
+spa-json-dump
+spa-monitor
 spawn_console
 spawn_login
 spectrwm
@@ -2610,6 +2642,7 @@ systemd-mount
 systemd-notify
 systemd-nspawn
 systemd-path
+systemd-pty-forward
 systemd-repart
 systemd-resolve
 systemd-run
@@ -2645,6 +2678,7 @@ tdbtool
 teams
 teckit_compile
 tee
+Telegram
 tesseract
 test
 testlibraw
@@ -2805,6 +2839,7 @@ unixcmd
 unlink
 unlz4
 unlzma
+unmunch
 unshare
 unterm
 untoast
@@ -2947,8 +2982,6 @@ wc
 wcurl
 wdctl
 weave
-webpinfo
-webpmux
 webpng
 webquiz
 wev
@@ -2971,7 +3004,9 @@ woff2_info
 wofm2opl
 wopl2ofm
 wordcount
+wordforms
 wordlist2dawg
+wordlist2hunspell
 wovf2ovp
 wovp2ovf
 write

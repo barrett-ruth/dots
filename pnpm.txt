@@ -1,6 +1,6 @@
-@anthropic-ai/claude-code 1.0.112
+@anthropic-ai/claude-code 1.0.117
 @fsouza/prettierd 0.26.2
-@mdx-js/language-server 0.6.2
+@mdx-js/language-server 0.6.3
 @vtsls/language-server 0.2.9
 acorn 8.15.0
 bash-language-server 5.6.0

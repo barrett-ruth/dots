@@ -14,6 +14,8 @@ namespace rs = std::ranges;
 
 using namespace std;
 
+using i16 = int16_t;
+using u16 = uint16_t;
 using i32 = int32_t;
 using u32 = uint32_t;
 using i64 = int64_t;
@@ -66,19 +68,153 @@ using vec = std::vector<T>;
 
 return {
     'barrett-ruth/cp.nvim',
+    command = 'CP',
     dependencies = {
         'L3MON4D3/LuaSnip',
     },
-    config = function(...)
+    config = function()
         local ls = require('luasnip')
-        local s, t, i, fmt = ls.snippet, ls.text_node, ls.insert_node, require('luasnip.extras.fmt').fmt
+        local s, i, fmt =
+            ls.snippet, ls.insert_node, require('luasnip.extras.fmt').fmt
+
+        local default_cpp = {
+            compile = {
+                'g++',
+                '-fdiagnostics-color=always',
+                '-std=c++{version}',
+                '-pedantic-errors',
+                '-O2',
+                '-Wall',
+                '-Wextra',
+                '-Wpedantic',
+                '-Wshadow',
+                '-Wformat=2',
+                '-Wfloat-equal',
+                '-Wlogical-op',
+                '-Wshift-overflow=2',
+                '-Wnon-virtual-dtor',
+                '-Wold-style-cast',
+                '-Wcast-qual',
+                '-Wuseless-cast',
+                '-Wno-sign-promotion',
+                '-Wcast-align',
+                '-Wunused',
+                '-Woverloaded-virtual',
+                '-Wconversion',
+                '-Wmisleading-indentation',
+                '-Wduplicated-cond',
+                '-Wduplicated-branches',
+                '-Wnull-dereference',
+                '-Wformat-overflow',
+                '-Wformat-truncation',
+                '-Wdouble-promotion',
+                '-Wundef',
+                '-DLOCAL',
+                '{source}',
+                '-o',
+                '{binary}',
+            },
+            test = { '{binary}' },
+            debug = {
+                'g++',
+                '-std=c++{version}',
+                '-g3',
+                '-fsanitize=address,undefined',
+                '-fsanitize=float-divide-by-zero',
+                '-fsanitize=float-cast-overflow',
+                '-fno-sanitize-recover=all',
+                '-fstack-protector-all',
+                '-fstack-usage',
+                '-fno-omit-frame-pointer',
+                '-fno-inline',
+                '-ffunction-sections',
+                '-D_GLIBCXX_DEBUG',
+                '-D_GLIBCXX_DEBUG_PEDANTIC',
+                '-DLOCAL',
+                '{source}',
+                '-o',
+                '{binary}',
+            },
+            version = 20,
+            extension = 'cc',
+        }
+
+        local default_python = {
+            test = { '{source}' },
+            debug = { '{source}' },
+            executable = 'python3',
+            extension = 'py',
+        }
 
         require('cp').setup({
+            contests = {
+                codeforces = {
+                    cpp = vim.tbl_extend(
+                        'force',
+                        default_cpp,
+                        { version = 23, extension = 'cc' }
+                    ),
+                    python = default_python,
+                    default_language = 'python',
+                },
+                atcoder = {
+                    cpp = vim.tbl_extend(
+                        'force',
+                        default_cpp,
+                        { version = 23 }
+                    ),
+                    python = default_python,
+                    default_language = 'cpp',
+                },
+                cses = {
+                    cpp = vim.tbl_extend(
+                        'force',
+                        default_cpp,
+                        { version = 20 }
+                    ),
+                    python = default_python,
+                    default_language = 'cpp',
+                },
+            },
+            picker = 'fzf-lua',
+            hooks = {
+                before_run = function(ctx)
+                    vim.lsp.buf.format({ async = true })
+                    vim.cmd.wall()
+                end,
+                setup_code = function(ctx)
+                    vim.api.nvim_set_option_value(
+                        'winbar',
+                        '',
+                        { scope = 'local' }
+                    )
+                    vim.api.nvim_set_option_value(
+                        'foldlevel',
+                        0,
+                        { scope = 'local' }
+                    )
+                    vim.api.nvim_set_option_value(
+                        'foldmethod',
+                        'marker',
+                        { scope = 'local' }
+                    )
+                    vim.api.nvim_set_option_value(
+                        'foldmarker',
+                        '{{{,}}}',
+                        { scope = 'local' }
+                    )
+                    vim.api.nvim_set_option_value(
+                        'foldtext',
+                        '',
+                        { scope = 'local' }
+                    )
+                    vim.diagnostic.enable(false)
+                end,
+            },
             snippets = {
                 s(
-                    'codeforces',
-                    fmt(
-                        template .. [=[
+                    'cp.nvim/codeforces.cpp',
+                    fmt(template .. [=[
 
 
 void solve() {{
@@ -105,50 +241,11 @@ int main() {{  // {{{{{{
 
   return 0;
 }}
-// }}}}}}]=],
-                        { i(1) }
-                    )
+// }}}}}}]=], { i(1) })
                 ),
                 s(
-                    'atcoder',
-                    fmt(
-                        template .. [=[
-
-
-void solve() {{
-  {}
-}}
-
-int main() {{  // {{{{{{
-  std::cin.exceptions(std::cin.failbit);
-
-  u32 tc = 1;
-
-#ifdef LOCAL
-  std::cin >> tc;
-
-  std::cerr.rdbuf(std::cout.rdbuf());
-  std::cout.setf(std::ios::unitbuf);
-  std::cerr.setf(std::ios::unitbuf);
-#else
-  std::cin.tie(nullptr)->sync_with_stdio(false);
-#endif
-
-  for (u32 t = 0; t < tc; ++t) {{
-    solve();
-  }}
-
-  return 0;
-
-}}
-// }}}}}}]=],
-                        { i(1) }
-                    )
-                ),
-                s(
-                    'cses',
-                    fmt(
-                        template .. [=[
+                    'cp.nvim/atcoder.cpp',
+                    fmt(template .. [=[
 
 
 void solve() {{
@@ -166,78 +263,39 @@ int main() {{  // {{{{{{
   std::cin.tie(nullptr)->sync_with_stdio(false);
 #endif
 
-solve();
+  solve();
+
+  return 0;
+
+}}
+// }}}}}}]=], { i(1) })
+                ),
+                s(
+                    'cp.nvim/cses.cpp',
+                    fmt(template .. [=[
+
+
+void solve() {{
+  {}
+}}
+
+int main() {{  // {{{{{{
+  std::cin.exceptions(std::cin.failbit);
+
+#ifdef LOCAL
+  std::cerr.rdbuf(std::cout.rdbuf());
+  std::cout.setf(std::ios::unitbuf);
+  std::cerr.setf(std::ios::unitbuf);
+#else
+  std::cin.tie(nullptr)->sync_with_stdio(false);
+#endif
+
+  solve();
 
   return 0;
 }}
-// }}}}}}]=],
-                        { i(1) }
-                    )
+// }}}}}}]=], { i(1) })
                 ),
-            },
-            contests = {
-                default = {
-                    cpp_version = 20,
-                    compile_flags = {
-                        '-pedantic-errors',
-                        '-O2',
-                        '-Wall',
-                        '-Wextra',
-                        '-Wpedantic',
-                        '-Wshadow',
-                        '-Wformat=2',
-                        '-Wfloat-equal',
-                        '-Wlogical-op',
-                        '-Wshift-overflow=2',
-                        '-Wnon-virtual-dtor',
-                        '-Wold-style-cast',
-                        '-Wcast-qual',
-                        '-Wuseless-cast',
-                        '-Wno-sign-promotion',
-                        '-Wcast-align',
-                        '-Wunused',
-                        '-Woverloaded-virtual',
-                        '-Wconversion',
-                        '-Wmisleading-indentation',
-                        '-Wduplicated-cond',
-                        '-Wduplicated-branches',
-                        '-Wnull-dereference',
-                        '-Wformat-overflow',
-                        '-Wformat-truncation',
-                        '-Wdouble-promotion',
-                        '-Wundef',
-                        '-DLOCAL',
-                    },
-                    debug_flags = {
-                        '-g3',
-                        '-fsanitize=address,undefined',
-                        '-fsanitize=float-divide-by-zero',
-                        '-fsanitize=float-cast-overflow',
-                        '-fno-sanitize-recover=all',
-                        '-fstack-protector-all',
-                        '-fstack-usage',
-                        '-fno-omit-frame-pointer',
-                        '-fno-inline',
-                        '-ffunction-sections',
-                        '-D_GLIBCXX_DEBUG',
-                        '-D_GLIBCXX_DEBUG_PEDANTIC',
-                        '-DLOCAL',
-                    },
-                    timeout_ms = 2000,
-                },
-                codeforces = {
-                    cpp_version = 23,
-                },
-            },
-            hooks = {
-                before_run = function(problem_id)
-                    pcall(vim.lsp.buf.format)
-                    vim.cmd.w()
-                end,
-                before_debug = function(problem_id)
-                    pcall(vim.lsp.buf.format)
-                    vim.cmd.w()
-                end,
             },
         })
     end,

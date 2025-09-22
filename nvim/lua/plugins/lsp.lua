@@ -58,26 +58,6 @@ return {
     },
     {
         'neovim/nvim-lspconfig',
-        config = function()
-            require('lsp').setup()
-            local lspconfig = require('lspconfig')
-            for _, server in ipairs({
-                'bashls',
-                'clangd',
-                'cssls',
-                'emmet_language_server',
-                'eslint',
-                'html',
-                'mdx_analyzer',
-                'jsonls',
-                'vtsls',
-                'lua_ls',
-                'ruff',
-            }) do
-                local ok, config = pcall(require, 'lsp.' .. server)
-                lspconfig[server].setup(ok and config or {})
-            end
-        end,
         dependencies = {
             'b0o/SchemaStore.nvim',
             {
