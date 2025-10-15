@@ -5,7 +5,7 @@ return {
     config = function(_, opts)
         local actions, fzf = require('fzf-lua.actions'), require('fzf-lua')
 
-        opts = vim.tbl_extend('keep', opts, {
+        opts = vim.tbl_extend('force', opts, {
             actions = {
                 files = {
                     default = actions.file_edit,
@@ -19,10 +19,30 @@ return {
                     end,
                     ['ctrl-v'] = actions.file_vsplit,
                     ['ctrl-x'] = actions.file_split,
-                    ['ctrl-h'] = actions.toggle_hidden
+                    ['ctrl-h'] = actions.toggle_hidden,
                 },
             },
             border = 'single',
+            git = {
+                files = {
+                    cmd = 'git ls-files --cached --others --exclude-standard',
+                    git_icons = false,
+                },
+                branches = {
+                    actions = {
+                        ['ctrl-d'] = {
+                            fn = actions.git_branch_del,
+                            reload = true,
+                        },
+                        ['ctrl-x'] = {
+                            fn = actions.git_branch_add,
+                            field_index = '{q}',
+                            reload = true,
+                        },
+                        ['ctrl-a'] = false,
+                    },
+                },
+            },
             buffers = {
                 actions = {
                     ['ctrl-d'] = { actions.buf_del, actions.resume },
@@ -34,20 +54,22 @@ return {
     end,
     keys = {
         { '<c-b>', '<cmd>FzfLua buffers<cr>' },
-        { 
-            '<c-f>', 
+        {
+            '<c-f>',
             function()
                 local fzf = require('fzf-lua')
-                local git_dir = vim.fn.system('git rev-parse --git-dir 2>/dev/null'):gsub('\n', '')
+                local git_dir = vim.fn
+                    .system('git rev-parse --git-dir 2>/dev/null')
+                    :gsub('\n', '')
                 if vim.v.shell_error == 0 and git_dir ~= '' then
                     fzf.git_files({ cwd_prompt = false })
                 else
                     fzf.files()
                 end
-            end
+            end,
         },
         { '<c-g>', '<cmd>FzfLua live_grep<cr>' },
-        { '<leader>gB', '<cmd>FzfLua git_branches<cr>' },
+        { '<leader>gb', '<cmd>FzfLua git_branches<cr>' },
         { '<leader>ff', '<cmd>FzfLua files cwd=%:h<cr>' },
         { '<leader>fg', '<cmd>FzfLua live_grep cwd=%:h<cr>' },
         { '<leader>fh', '<cmd>FzfLua help_tags<cr>' },
@@ -82,7 +104,6 @@ return {
             file_icons = false,
             formatter = 'path.filename_first',
             no_header_i = true,
-            no_ignore = true,
         },
         fzf_args = vim.env.FZF_DEFAULT_OPTS,
         grep = {
@@ -91,6 +112,27 @@ return {
             formatter = 'path.filename_first',
             no_header_i = true,
             RIPGREP_CONFIG_PATH = vim.env.RIPGREP_CONFIG_PATH,
+            rg_opts = table.concat({
+                '--color=always',
+                '--colors=line:style:nobold',
+                '--colors=match:fg:green',
+                '--colors=path:fg:blue',
+                '--column',
+                '--no-heading',
+                '--smart-case',
+                '--follow',
+                '--glob=!pnpm-lock.yaml',
+                '--glob=!node_modules/',
+                '--glob=!*.json',
+                '--glob=!.venv/',
+                '--glob=!venv/',
+                '--glob=!__pycache__/',
+                '--glob=!pyenv/',
+                '--no-ignore-vcs',
+                '--hidden',
+                '--line-number',
+                '--column',
+            }, ' '),
         },
         lsp = {
             includeDeclaration = false,

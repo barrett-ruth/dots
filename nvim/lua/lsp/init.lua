@@ -1,27 +1,46 @@
 local M = {}
 
+local Methods = vim.lsp.protocol.Methods
+
 function M.on_attach(client, bufnr)
-    if client:supports_method('hover') then
-        bmap({ 'n', 'K', vim.lsp.buf.hover })
-    end
+  if client:supports_method(Methods.textDocument_hover) then
+    bmap({ 'n', 'K', vim.lsp.buf.hover })
+  end
 
-    if client:supports_method('documentSymbols') then
-        require('nvim-navic').attach(client, bufnr)
-        vim.opt_local.winbar = [[%{%v:lua.require('lines.winbar').winbar()%}]]
+  if client:supports_method(Methods.textDocument_documentSymbol) then
+    local ok, navic = pcall(require, 'nvim-navic')
+    if ok then
+      navic.attach(client, bufnr)
     end
+    vim.opt_local.winbar = [[%{%v:lua.require('lines.winbar').winbar()%}]]
+  end
 
-    bmap({ 'n', '\\f', vim.diagnostic.open_float })
-    bmap({
-        'n',
-        '\\t',
-        function()
-            local level = vim.lsp.log.get_level()
-            vim.lsp.log.set_level(
-                vim.lsp.log_levels[level] == 'WARN' and 'OFF' or 'WARN'
-            )
-        end,
-    })
+  local ok, _ = pcall(require, 'fzf-lua')
+  if not ok then return end
+
+  local mappings = {
+    { Methods.textDocument_definition,      'gd',  '<cmd>FzfLua lsp_definitions<CR>' },
+    { Methods.textDocument_declaration,     'gD',  '<cmd>FzfLua lsp_declarations<CR>' },
+    { Methods.textDocument_typeDefinition,  'grt', '<cmd>FzfLua lsp_typedefs<CR>' },
+    { Methods.textDocument_implementation,  'gri', '<cmd>FzfLua lsp_implementations<CR>' },
+    { Methods.textDocument_references,      'grr', '<cmd>FzfLua lsp_references<CR>' },
+    { Methods.textDocument_documentSymbol,  'go',  '<cmd>FzfLua lsp_document_symbols<CR>' },
+    { Methods.textDocument_documentSymbol,  'gO',  '<cmd>FzfLua lsp_workspace_symbols<CR>' },
+    { Methods.textDocument_codeAction,      'gra', '<cmd>FzfLua lsp_code_actions<CR>' },
+    { Methods.textDocument_rename,          'grn', '<cmd>FzfLua lsp_rename<CR>' },
+  }
+
+  for _, m in ipairs(mappings) do
+    local method, key, cmd = unpack(m)
+    if client:supports_method(method) then
+      bmap({ 'n', key, cmd })
+    end
+  end
+
+  bmap({ 'n', 'gw', '<cmd>FzfLua lsp_document_diagnostics<CR>' })
+  bmap({ 'n', 'gW', '<cmd>FzfLua lsp_workspace_diagnostics<CR>' })
 end
+
 
 local function prepare_capabilities()
     local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -86,6 +105,7 @@ function M.setup()
 
     for _, server in ipairs({
         'bashls',
+        'basedpyright',
         'clangd',
         'cssls',
         'emmet_language_server',
@@ -98,7 +118,7 @@ function M.setup()
         'ruff',
     }) do
         local ok, config = pcall(require, 'lsp.' .. server)
-        if ok and config then
+        if ok and config and vim.fn.executable(server) == 1 then
             vim.lsp.config(server, config)
         end
         vim.lsp.enable(server)

@@ -1,8 +1,9 @@
 window-decoration = none
-font-family = "Berkeley Mono"
+# font-family = "Berkeley Mono"
+font-family = "Jet Brains Mono"
 font-feature = "-calt"
-font-size = 20
-adjust-cell-height = 10%
+# font-size = 20
+# adjust-cell-height = 10%
 
 window-padding-x = 0
 window-padding-y = 0

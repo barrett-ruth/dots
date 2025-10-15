@@ -158,7 +158,6 @@ return {
     },
     {
         'pmizio/typescript-tools.nvim',
-        enabled = false,
         config = function()
             require('typescript-tools').setup({
                 on_attach = function(_, bufnr)

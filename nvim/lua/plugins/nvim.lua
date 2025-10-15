@@ -59,70 +59,6 @@ return {
         keys = { { '<leader>L', '<cmd>LiveServerToggle<cr>' } },
     },
     {
-        'quarto-dev/quarto-nvim',
-        dependencies = {
-            'nvim-treesitter/nvim-treesitter',
-            'jmbuhr/otter.nvim',
-            {
-                'benlubas/molten-nvim',
-                version = '^1.0.0',
-                build = ':UpdateRemotePlugins',
-                init = function()
-                    vim.g.molten_virt_lines_off_by_1 = true
-                    vim.g.molten_use_border_highlights = true
-                    vim.g.molten_virt_text_output = true
-                end,
-                dependencies = {
-                    {
-                        '3rd/image.nvim',
-                        build = false,
-                        opts = {
-                            processor = 'magick_cli',
-                            max_height_window_percentage = math.huge,
-                        },
-                    },
-                },
-                keys = {
-                    {
-                        '<leader>mi',
-                        function()
-                            local venv = os.getenv('VIRTUAL_ENV')
-                                or os.getenv('CONDA_PREFIX')
-                            if venv ~= nil then
-                                venv = string.match(venv, '/.+/(.+)')
-                                vim.cmd(('MoltenInit %s'):format(venv))
-                            else
-                                vim.cmd('MoltenInit python3')
-                            end
-                        end,
-                    },
-                    {
-                        '<leader>ml',
-                        '<cmd>MoltenEvaluateLine<cr>',
-                    },
-                    {
-                        '<leader>mo',
-                        '<cmd>MoltenEvaluateOperator<cr>',
-                    },
-                    {
-                        ']m',
-                        '<cmd>MoltenNext 1<cr>',
-                    },
-                    {
-                        '[m',
-                        '<cmd>MoltenNext -1<cr>',
-                    },
-                },
-            },
-        },
-        opts = {
-            codeRunner = {
-                enabled = true,
-                default_method = 'molten',
-            },
-        },
-    },
-    {
         'dhruvasagar/vim-zoom',
         keys = { { '<c-w>m' } },
     },
@@ -130,11 +66,6 @@ return {
         'echasnovski/mini.pairs',
         config = true,
         event = 'InsertEnter',
-    },
-    {
-        'folke/ts-comments.nvim',
-        config = true,
-        event = 'VeryLazy',
     },
     {
         'iamcco/markdown-preview.nvim',
@@ -171,51 +102,11 @@ return {
         ft = { 'plaintext', 'tex' },
     },
     {
-        'krady21/compiler-explorer.nvim',
-        keys = {
-            {
-                '<leader>c',
-                function()
-                    local cmd = { 'CECompileLive', 'compiler=g143' }
-                    if vim.uv.fs_stat('compile_flags.txt') then
-                        for line in io.lines('compile_flags.txt') do
-                            if line ~= '' then
-                                table.insert(cmd, 'flags=' .. line)
-                            end
-                        end
-                    end
-                    vim.cmd(table.concat(cmd, ' '))
-                end,
-            },
-        },
-        opts = {
-            line_match = {
-                highlight = true,
-                jump = true,
-            },
-        },
-        config = function(_, opts)
-            require('compiler-explorer').setup(opts)
-
-            vim.api.nvim_create_autocmd('BufWinEnter', {
-                pattern = '*',
-                callback = function()
-                    if
-                        vim.bo.filetype == 'asm'
-                        or vim.bo.buftype == 'nofile'
-                            and vim.fn.bufname():match('Compiler Explorer')
-                    then
-                        vim.cmd('normal! zz')
-                    end
-                end,
-            })
-        end,
-    },
-    {
         'lewis6991/gitsigns.nvim',
         keys = {
             { '[g', '<cmd>Gitsigns next_hunk<cr>' },
             { ']g', '<cmd>Gitsigns prev_hunk<cr>' },
+            { '<leader>gs', '<cmd>Gitsigns toggle_signs<cr>' },
         },
         event = 'VeryLazy',
         opts = {
@@ -226,6 +117,7 @@ return {
                 return {}
             end,
             attach_to_untracked = false,
+            signcolumn = false,
             signs = {
                 -- use boxdraw chars
                 add = { text = '│' },
@@ -417,26 +309,29 @@ return {
         },
     },
     {
-        'ThePrimeagen/harpoon',
-        keys = {
-            { '<leader>ha', '<cmd>lua require("harpoon.mark").add_file()<cr>' },
-            { '<leader>hd', '<cmd>lua require("harpoon.mark").rm_file()<cr>' },
-            {
-                '<leader>hq',
-                '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>',
+        'cbochs/grapple.nvim',
+        opts = {
+            scope = 'git_branch',
+            icons = false,
+            status = false,
+            win_opts = {
+                title = '',
+                footer = '',
             },
-            { ']h', '<cmd>lua require("harpoon.ui").nav_next()<cr>' },
-            { '[h', '<cmd>lua require("harpoon.ui").nav_prev()<cr>' },
-            { '<c-h>', '<cmd>lua require("harpoon.ui").nav_file(1)<cr>' },
-            { '<c-j>', '<cmd>lua require("harpoon.ui").nav_file(2)<cr>' },
-            { '<c-k>', '<cmd>lua require("harpoon.ui").nav_file(3)<cr>' },
-            { '<c-l>', '<cmd>lua require("harpoon.ui").nav_file(4)<cr>' },
         },
-    },
-    {
-        'nvimdev/hlsearch.nvim',
-        config = true,
-        event = 'BufReadPre',
+        keys = {
+            { '<leader>ha', '<cmd>Grapple toggle<cr>' },
+            { '<leader>hd', '<cmd>Grapple untag<cr>' },
+            { '<leader>hq', '<cmd>Grapple toggle_tags<cr>' },
+
+            { '<c-h>', '<cmd>Grapple select index=1<cr>' },
+            { '<c-j>', '<cmd>Grapple select index=2<cr>' },
+            { '<c-k>', '<cmd>Grapple select index=3<cr>' },
+            { '<c-l>', '<cmd>Grapple select index=4<cr>' },
+
+            { ']h', '<cmd>Grapple cycle_tags next<cr>' },
+            { '[h', '<cmd>Grapple cycle_tags prev<cr>' },
+        },
     },
     {
         'catgoose/nvim-colorizer.lua',
@@ -569,27 +464,62 @@ return {
     { 'tommcdo/vim-exchange', event = 'VeryLazy' },
     { 'tpope/vim-abolish', event = 'VeryLazy' },
     { 'tpope/vim-fugitive' },
-    { 'tpope/vim-repeat', keys = { '.' } },
     { 'tpope/vim-sleuth', event = 'BufReadPost' },
-    { 'tpope/vim-surround', keys = { 'c', 'd', 'v', 'V', 'y' } },
+    {
+        'kylechui/nvim-surround',
+        config = true,
+        keys = {
+            { 'cs', mode = 'n' },
+            { 'ds', mode = 'n' },
+            { 'ys', mode = 'n' },
+            { 'yS', mode = 'n' },
+            { 'yss', mode = 'n' },
+            { 'ySs', mode = 'n' },
+        },
+    },
     {
         'tzachar/highlight-undo.nvim',
         config = true,
         keys = { 'u', 'U' },
     },
-    { 'Vimjas/vim-python-pep8-indent', ft = { 'python' } },
     {
         'kana/vim-textobj-user',
         dependencies = {
-            'kana/vim-textobj-entire',
-            'kana/vim-textobj-indent',
-            'kana/vim-textobj-line',
-            'preservim/vim-textobj-sentence',
-            'whatyouhide/vim-textobj-xmlattr',
+            {
+                'kana/vim-textobj-entire',
+                keys = {
+                    { 'ae', mode = { 'o', 'x' } },
+                    { 'ie', mode = { 'o', 'x' } },
+                },
+            },
+            {
+                'kana/vim-textobj-line',
+                keys = {
+                    { 'al', mode = { 'o', 'x' } },
+                    { 'il', mode = { 'o', 'x' } },
+                },
+            },
+            {
+                'kana/vim-textobj-indent',
+                keys = {
+                    { 'ai', mode = { 'o', 'x' } },
+                    { 'ii', mode = { 'o', 'x' } },
+                },
+            },
+            {
+                'preservim/vim-textobj-sentence',
+                keys = {
+                    { 'as', mode = { 'o', 'x' } },
+                    { 'is', mode = { 'o', 'x' } },
+                },
+            },
+            {
+                'whatyouhide/vim-textobj-xmlattr',
+                keys = {
+                    { 'ax', mode = { 'o', 'x' } },
+                    { 'ix', mode = { 'o', 'x' } },
+                },
+            },
         },
-        keys = { 'c', 'd', 'v', 'V', 'y', '<', '>' },
-    },
-    {
-        'andreasvc/vim-256noir',
     },
 }

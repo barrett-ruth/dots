@@ -9,7 +9,12 @@
 --glob=!pnpm-lock.yaml
 --glob=!*.json
 --glob=!venv/
+--glob=!.venv/
+--glob=!node_modules/
+--glob=!__pycache__/
 --glob=!pyenv/
 --ignore-file=/home/frozen/.config/git/ignore
---no-messages
---no-follow
+--no-ignore-vcs
+--hidden
+--line-number
+--column

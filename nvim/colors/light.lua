@@ -132,3 +132,20 @@ link('Directory', 'OilDir')
 
 -- language-specific
 hi('cssBraces', { fg = cs.black })
+
+vim.g.terminal_color_0 = cs.black
+vim.g.terminal_color_1 = cs.red
+vim.g.terminal_color_2 = cs.green
+vim.g.terminal_color_3 = cs.yellow
+vim.g.terminal_color_4 = cs.blue
+vim.g.terminal_color_5 = cs.magenta
+vim.g.terminal_color_6 = cs.cyan
+vim.g.terminal_color_7 = cs.grey
+vim.g.terminal_color_8 = cs.light_black
+vim.g.terminal_color_9 = cs.light_red
+vim.g.terminal_color_10 = cs.light_green
+vim.g.terminal_color_11 = cs.light_yellow
+vim.g.terminal_color_12 = cs.light_blue
+vim.g.terminal_color_13 = cs.light_magenta
+vim.g.terminal_color_14 = cs.light_cyan
+vim.g.terminal_color_15 = cs.white
