@@ -822,7 +822,6 @@ gdiffmk
 gdk-pixbuf-csource
 gdk-pixbuf-pixdata
 gdk-pixbuf-query-loaders
-gdk-pixbuf-thumbnailer
 gdparttopng
 gdtopng
 genbrk
@@ -905,6 +904,8 @@ gluster-georep-sshkey
 gluster-mountbroker
 gluster-setgfid2path
 glxewinfo
+glycin-thumbnailer
+gnupg-key-manage
 gnutls-cli
 gnutls-cli-debug
 gnutls-serv
@@ -2145,15 +2146,15 @@ prlimit
 procan
 proptest
 protoc
-protoc-32.0.0
+protoc-32.1.0
 protoc-gen-buf-breaking
 protoc-gen-buf-lint
 protoc-gen-upb
-protoc-gen-upb-32.0.0
+protoc-gen-upb-32.1.0
 protoc-gen-upbdefs
-protoc-gen-upbdefs-32.0.0
+protoc-gen-upbdefs-32.1.0
 protoc-gen-upb_minitable
-protoc-gen-upb_minitable-32.0.0
+protoc-gen-upb_minitable-32.1.0
 proxy
 proxy_thr
 prtstat
@@ -2611,6 +2612,7 @@ spicy-screenshot
 spicy-stats
 spirv-as
 spirv-cfg
+spirv-diff
 spirv-dis
 spirv-lesspipe.sh
 spirv-link
@@ -2618,7 +2620,6 @@ spirv-lint
 spirv-objdump
 spirv-opt
 spirv-reduce
-spirv-remap
 spirv-val
 spix
 split

@@ -1,18 +1,17 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-if [ "$XDG_SESSION_TYPE" = x11 ]; then
-    if [ "$1" = 'toggle' ]; then
-        layout="$(setxkbmap -query | tail -n 1 | cut -d ' ' -f 6)"
-        [ "$layout" = 'us' ] && setxkbmap us dvorak || setxkbmap us
-    fi
-    xmodmap "$XDG_CONFIG_HOME"/X11/xmodmap
+if [ "$USE_WAYLAND" ]; then
+  if swaymsg -t get_inputs | grep -qi "Colemak"; then
+    swaymsg input type:keyboard xkb_variant "''"
+  else
+    swaymsg input type:keyboard xkb_variant colemak
+  fi
 else
-    if [ "$1" = 'toggle' ]; then
-        layout="$(swaymsg -t get_inputs | jq -r '.[] | select(.type=="keyboard") | .xkb_active_layout_name' | head -n1)"
-        if echo "$layout" | grep -qi dvorak; then
-            swaymsg input type:keyboard xkb_layout us
-        else
-            swaymsg input type:keyboard xkb_layout "us(dvorak)"
-        fi
-    fi
+  current="$(setxkbmap -query | awk '/variant/{print $2}')"
+  if [ "$current" = "colemak" ]; then
+    setxkbmap -layout us
+  else
+    setxkbmap -layout us -variant colemak
+  fi
 fi
+

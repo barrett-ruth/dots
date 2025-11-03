@@ -111,3 +111,18 @@ bindkey '^P' up-line-or-history
 bindkey '^N' down-line-or-history
 bindkey '^J' backward-char
 bindkey '^K' forward-char
+
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+    if [[ "$USE_WAYLAND" ]]; then
+        export XDG_SESSION_TYPE=wayland
+        export ELECTRON_OZONE_PLATFORM_HINT=wayland
+        export OZONE_PLATFORM=wayland
+        export QT_QPA_PLATFORM=wayland
+        export GDK_BACKEND=wayland,x11
+        export SDL_VIDEODRIVER=wayland
+        exec sway
+    else
+        export XDG_SESSION_TYPE=x11
+        exec startx
+    fi
+fi

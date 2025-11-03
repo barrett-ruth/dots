@@ -84,7 +84,7 @@ bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym Mod5+a exec set-speaker
 bindsym Mod5+c exec bash -lc 'cliphist list | rofi -dmenu -i -p Clipboard -l 15 | cliphist decode | wl-copy'
 bindsym Mod5+d exec doc
-bindsym Mod5+k exec "skb toggle"
+bindsym Mod5+k exec skb
 bindsym Mod5+r exec rbt
 bindsym Mod5+s exec sss
 bindsym Mod5+o exec ocr
