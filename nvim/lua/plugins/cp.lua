@@ -52,33 +52,7 @@ return {
             },
         }
 
-        local default_rust_lang = {
-            extension = 'rs',
-            commands = {
-                build = {
-                    'rustc',
-                    '-O',
-                    '--color=always',
-                    '-C',
-                    'codegen-units=1',
-                    '-C',
-                    'target-cpu=native',
-                    '{source}',
-                    '-o',
-                    '{binary}',
-                },
-                run = { '{binary}' },
-                debug = {
-                    'rustc',
-                    '-g',
-                    '-C',
-                    'overflow-checks=yes',
-                    '{source}',
-                    '-o',
-                    '{binary}',
-                },
-            },
-        }
+        local utils = require('utils')
 
         require('cp').setup({
             open_url = true,
@@ -116,17 +90,34 @@ return {
                     local buf = vim.api.nvim_get_current_buf()
                     local lines = vim.api.nvim_buf_get_lines(buf, 0, 1, true)
                     if #lines > 1 or (#lines == 1 and lines[1] ~= '') then
+                        local pos = vim.api.nvim_win_get_cursor(0)
+                        vim.cmd('normal! zx')
+                        vim.api.nvim_win_set_cursor(0, pos)
                         return
                     end
 
                     local trigger = state.get_platform() or ''
+                    local aug = vim.api.nvim_create_augroup(
+                        'cp_fold_fix',
+                        { clear = true }
+                    )
                     vim.api.nvim_buf_set_lines(buf, 0, -1, false, { trigger })
                     vim.api.nvim_win_set_cursor(0, { 1, #trigger })
                     vim.cmd.startinsert({ bang = true })
                     vim.schedule(function()
                         local ls = require('luasnip')
                         if ls.expandable() then
-                            ls.expand()
+                            vim.api.nvim_create_autocmd('TextChanged', {
+                                buffer = buf,
+                                once = true,
+                                callback = function()
+                                    local pos = vim.api.nvim_win_get_cursor(0)
+                                    vim.cmd('normal! zx')
+                                    vim.api.nvim_win_set_cursor(0, pos)
+                                    vim.api.nvim_del_augroup_by_id(aug)
+                                end,
+                                group = aug,
+                            })
                         end
                         vim.cmd.stopinsert()
                     end)

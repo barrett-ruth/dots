@@ -2,6 +2,7 @@ return {
     {
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdateSync',
+        lazy = false,
         config = function(_, opts)
             require('nvim-treesitter.configs').setup(opts)
         end,
@@ -14,7 +15,6 @@ return {
                 event = 'VeryLazy',
             },
         },
-        event = { 'BufReadPre', 'BufNewFile' },
         keys = {
             {
                 '<leader>T',

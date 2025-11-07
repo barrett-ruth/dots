@@ -383,7 +383,7 @@ return {
         config = function(_, opts)
             require('oil').setup(opts)
 
-            require('utils').au('FileType', 'OilBufremove', {
+            vim.api.nvim_create_autocmd('FileType', {
                 pattern = 'oil',
                 callback = function(o)
                     local ok, bufremove = pcall(require, 'mini.bufremove')
@@ -392,10 +392,11 @@ return {
                         { buffer = o.buf }
                     )
                 end,
+                group = vim.api.nvim_create_augroup('OilBufremove', { clear = true })
             })
         end,
         init = function()
-            require('utils').au('FileType', 'OilGit', {
+            vim.api.nvim_create_autocmd('FileType', {
                 pattern = 'oil',
                 callback = function()
                     -- Clear git status cache on refresh
@@ -406,6 +407,7 @@ return {
                         orig_refresh(...)
                     end
                 end,
+                group = vim.api.nvim_create_augroup('OilGit', { clear = true })
             })
         end,
         keys = {

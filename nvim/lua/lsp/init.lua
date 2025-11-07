@@ -83,7 +83,7 @@ function M.setup()
         flags = { debounce_text_changes = 0 },
     })
 
-    require('utils').au('LspAttach', 'LspFormat', {
+    vim.api.nvim_create_autocmd('LspAttach', {
         callback = function(opts)
             local client = vim.lsp.get_client_by_id(opts.data.client_id)
 
@@ -101,6 +101,7 @@ function M.setup()
                 }, { buffer = opts.buf, silent = false })
             end
         end,
+        group = vim.api.nvim_create_augroup('LspFormat', { clear = true })
     })
 
     for _, server in ipairs({

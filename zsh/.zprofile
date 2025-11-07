@@ -75,15 +75,14 @@ export PRETTIERD_CONFIG_HOME="$XDG_STATE_HOME"/prettierd
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
 export PSQL_HISTORY="$XDG_STATE_HOME"/psql_history
 export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/pythonrc
-test -f "$XDG_CONFIG_HOME"/rg/config && export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME"/rg/config && export FZF_LUA_RG_OPTS="$(tr '\n' ' ' < "$RIPGREP_CONFIG_PATH")"
+test -f "$XDG_CONFIG_HOME"/rg/config && export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME"/rg/config
 export SQLITE_HISTORY="$XDG_STATE_HOME"/sqlite_history
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 export FZF_COMPLETION_TRIGGER=\;
-export FZF_ALT_C_COMMAND="fd --type directory --strip-cwd-prefix"
 export FZF_CTRL_R_OPTS='--reverse'
-export FZF_CTRL_T_COMMAND="fd --type file --strip-cwd-prefix"
 export FZF_TMUX=1
+export FZF_CTRL_T_COMMAND='rg --files --hidden --color=auto'
 export FZF_DEFAULT_OPTS='--color=light --bind=ctrl-a:select-all --bind=ctrl-f:half-page-down --bind=ctrl-b:half-page-up --no-scrollbar --no-info'
 export LIBVIRT_DEFAULT_URI=qemu:///system
 
@@ -92,13 +91,13 @@ if [ "$THEME" = "gruvbox" ]; then
 fi
 
 . <(fzf --zsh)
-. <(glab completion -s zsh); compdef _glab glab
 
 fzf-config-widget() {
     file="$(FZF_CTRL_T_COMMAND="fd --type file --hidden . ~/.config | sed 's|$HOME|~|g'" __fzf_select | cut -c2-)"
     LBUFFER+="$file"
     zle reset-prompt
 }
+
 zle -N fzf-config-widget
 
 bindkey '^E' fzf-config-widget
