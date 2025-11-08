@@ -9,19 +9,18 @@ test -z "$XDG_CONFIG_HOME" && exit
 
 ! exists rmb && exit
 
-rmb .git readme.md mac linux/install .
-
-PATH=$(echo "$PATH" | tr ':' '\n' | grep -v pyenv | tr '\n' ':')
-
-pacman -Qen >pacman.txt
-pikaur -Qm >pikaur.txt
+exists pacman && pacman -Qen >pacman.txt
+exists pikaur && pikaur -Qm >pikaur.txt
 exists pnpm && pnpm -g list | tail -n +6 >pnpm.txt
 exists pip && pip list --not-required >pip.txt
 
 cp -r "$SCRIPTS" .
 
 for folder in git npm nvim python sway spectrwm rg tmux yamllint zsh X11 mutt dunst sioyek ghostty zathura; do
-  test -d "$XDG_CONFIG_HOME/$folder" && cp -rf "$XDG_CONFIG_HOME/$folder" .
+  if [ -d "$XDG_CONFIG_HOME/$folder" ]; then
+    rm -rf "$folder"
+    cp -rf "$XDG_CONFIG_HOME/$folder" .
+  fi
 done
 
 test -d tmux && rmb tmux.conf tmux

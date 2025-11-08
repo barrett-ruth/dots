@@ -1,3 +1,5 @@
+local fd_opts = vim.env.FZF_CTRL_T_COMMAND:match(' (.*)')
+
 return {
     'ibhagwan/fzf-lua',
     config = function(_, opts)
@@ -66,7 +68,20 @@ return {
     end,
     keys = {
         { '<c-b>', '<cmd>FzfLua buffers<cr>' },
-        { '<c-f>', '<cmd>FzfLua files<cr>' },
+        {
+            '<c-f>',
+            function()
+                local fzf = require('fzf-lua')
+                local git_dir = vim.fn
+                    .system('git rev-parse --git-dir 2>/dev/null')
+                    :gsub('\n', '')
+                if vim.v.shell_error == 0 and git_dir ~= '' then
+                    fzf.git_files({ cwd_prompt = false })
+                else
+                    fzf.files()
+                end
+            end,
+        },
         { '<c-g>', '<cmd>FzfLua live_grep<cr>' },
         { '<leader>gb', '<cmd>FzfLua git_worktrees<cr>' },
         { '<leader>gB', '<cmd>FzfLua git_branches<cr>' },
@@ -84,6 +99,7 @@ return {
             function()
                 require('fzf-lua').files({
                     cwd = '~/.config',
+                    fd_opts = ('%s --hidden'):format(fd_opts),
                 })
             end,
         },
@@ -98,17 +114,40 @@ return {
     },
     opts = {
         files = {
-            cmd = vim.env.FZF_CTRL_T_COMMAND,
+            fd_opts = fd_opts,
             git_icons = false,
             file_icons = false,
+            formatter = 'path.filename_first',
             no_header_i = true,
         },
         fzf_args = vim.env.FZF_DEFAULT_OPTS,
         grep = {
             git_icons = false,
             file_icons = false,
+            formatter = 'path.filename_first',
             no_header_i = true,
             RIPGREP_CONFIG_PATH = vim.env.RIPGREP_CONFIG_PATH,
+            rg_opts = table.concat({
+                '--color=always',
+                '--colors=line:style:nobold',
+                '--colors=match:fg:green',
+                '--colors=path:fg:blue',
+                '--column',
+                '--no-heading',
+                '--smart-case',
+                '--follow',
+                '--glob=!pnpm-lock.yaml',
+                '--glob=!node_modules/',
+                '--glob=!*.json',
+                '--glob=!.venv/',
+                '--glob=!venv/',
+                '--glob=!__pycache__/',
+                '--glob=!pyenv/',
+                '--no-ignore-vcs',
+                '--hidden',
+                '--line-number',
+                '--column',
+            }, ' '),
         },
         lsp = {
             includeDeclaration = false,

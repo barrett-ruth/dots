@@ -47,15 +47,13 @@ return {
         local default_python_lang = {
             extension = 'py',
             commands = {
-                run = { 'python3', '{source}' },
-                debug = { 'python3', '{source}' },
+                run = { 'python', '{source}' },
+                debug = { 'python', '{source}' },
             },
         }
 
-        local utils = require('utils')
-
         require('cp').setup({
-            open_url = true,
+            debug = true,
             languages = {
                 cpp = default_cpp_lang,
                 python = default_python_lang,
@@ -73,6 +71,12 @@ return {
             },
             ui = { picker = 'fzf-lua' },
             hooks = {
+                setup_io_input = function(buf)
+                    require('cp.helpers').clearcol(buf)
+                end,
+                setup_io_output = function(buf)
+                    require('cp.helpers').clearcol(buf)
+                end,
                 before_run = function(_)
                     require('lsp').lsp_format({ async = true })
                 end,
@@ -97,27 +101,31 @@ return {
                     end
 
                     local trigger = state.get_platform() or ''
-                    local aug = vim.api.nvim_create_augroup(
-                        'cp_fold_fix',
-                        { clear = true }
-                    )
                     vim.api.nvim_buf_set_lines(buf, 0, -1, false, { trigger })
                     vim.api.nvim_win_set_cursor(0, { 1, #trigger })
                     vim.cmd.startinsert({ bang = true })
                     vim.schedule(function()
                         local ls = require('luasnip')
                         if ls.expandable() then
+                            local aug = vim.api.nvim_create_augroup(
+                                'cp_fold_fix',
+                                { clear = true }
+                            )
                             vim.api.nvim_create_autocmd('TextChanged', {
+                                group = aug,
                                 buffer = buf,
                                 once = true,
                                 callback = function()
-                                    local pos = vim.api.nvim_win_get_cursor(0)
-                                    vim.cmd('normal! zx')
-                                    vim.api.nvim_win_set_cursor(0, pos)
-                                    vim.api.nvim_del_augroup_by_id(aug)
+                                    vim.schedule(function()
+                                        local pos =
+                                            vim.api.nvim_win_get_cursor(0)
+                                        vim.cmd('normal! zx')
+                                        vim.api.nvim_win_set_cursor(0, pos)
+                                        vim.api.nvim_del_augroup_by_id(aug)
+                                    end)
                                 end,
-                                group = aug,
                             })
+                            ls.expand()
                         end
                         vim.cmd.stopinsert()
                     end)

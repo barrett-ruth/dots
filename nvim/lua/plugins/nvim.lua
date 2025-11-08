@@ -59,8 +59,9 @@ return {
         keys = { { '<leader>L', '<cmd>LiveServerToggle<cr>' } },
     },
     {
-        'dhruvasagar/vim-zoom',
-        keys = { { '<c-w>m' } },
+        'nvim-mini/mini.misc',
+        config = true,
+        keys = { { '<c-w>m', "<cmd>lua require('mini.misc').zoom()<cr>" } },
     },
     {
         'echasnovski/mini.pairs',
@@ -117,7 +118,7 @@ return {
                 return {}
             end,
             attach_to_untracked = false,
-            signcolumn = false,
+            signcolumn = true,
             signs = {
                 -- use boxdraw chars
                 add = { text = '│' },
@@ -383,7 +384,7 @@ return {
         config = function(_, opts)
             require('oil').setup(opts)
 
-            vim.api.nvim_create_autocmd('FileType', {
+            require('utils').au('FileType', 'OilBufremove', {
                 pattern = 'oil',
                 callback = function(o)
                     local ok, bufremove = pcall(require, 'mini.bufremove')
@@ -392,11 +393,10 @@ return {
                         { buffer = o.buf }
                     )
                 end,
-                group = vim.api.nvim_create_augroup('OilBufremove', { clear = true })
             })
         end,
         init = function()
-            vim.api.nvim_create_autocmd('FileType', {
+            require('utils').au('FileType', 'OilGit', {
                 pattern = 'oil',
                 callback = function()
                     -- Clear git status cache on refresh
@@ -407,7 +407,6 @@ return {
                         orig_refresh(...)
                     end
                 end,
-                group = vim.api.nvim_create_augroup('OilGit', { clear = true })
             })
         end,
         keys = {
@@ -523,5 +522,23 @@ return {
                 },
             },
         },
+    },
+    {
+        'saghen/blink.indent',
+        --- @module 'blink.indent'
+        --- @type blink.indent.Config
+        opts = {
+            static = {
+                char = '│',
+            },
+            scope = { enabled = false },
+        },
+    },
+    {
+        'barrett-ruth/midnight.nvim',
+        config = function(_)
+            vim.cmd.colorscheme('midnight')
+        end,
+        event = 'VeryLazy',
     },
 }

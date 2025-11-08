@@ -1,6 +1,7 @@
 return {
     {
         'saghen/blink.cmp',
+        enabled = true,
         lazy = false,
         build = 'cargo build --release',
         dependencies = { 'folke/lazydev.nvim', ft = 'lua' },
@@ -65,7 +66,7 @@ return {
                 config = function(_, opts)
                     require('live-rename').setup(opts)
                     local live_rename = require('live-rename')
-                    vim.api.nvim_create_autocmd('LspAttach', {
+                    require('utils').au('LspAttach', 'LiveRenameMap', {
                         callback = function(o)
                             local clients =
                                 vim.lsp.get_clients({ buffer = o.buf })
@@ -82,10 +83,6 @@ return {
                                 end
                             end
                         end,
-                        group = vim.api.nvim_create_augroup(
-                            'LiveRenameMap',
-                            { clear = true }
-                        ),
                     })
                 end,
                 keys = { 'grn' },

@@ -1,9 +1,7 @@
 undo/
-pyenv/
 .mypy_cache/
 __pycache__/
 venv/
-.venv/
-*.null-ls*
-node_modules/
+pyenv/
+
 **/.claude/settings.local.json

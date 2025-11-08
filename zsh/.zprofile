@@ -27,7 +27,7 @@ export HISTSIZE=2000
 export HISTFILESIZE=2000
 export MANPAGER='nvim +Man!'
 export SAVEHIST=2000
-export TERMINFO="$XDG_DATA_HOME"/terminfo
+export TERM=xterm-ghostty
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
 
