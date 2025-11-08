@@ -99,7 +99,6 @@ return {
             function()
                 require('fzf-lua').files({
                     cwd = '~/.config',
-                    fd_opts = ('%s --hidden'):format(fd_opts),
                 })
             end,
         },
@@ -114,40 +113,17 @@ return {
     },
     opts = {
         files = {
-            fd_opts = fd_opts,
+            cmd = vim.env.FZF_CTRL_T_COMMAND,
             git_icons = false,
             file_icons = false,
-            formatter = 'path.filename_first',
             no_header_i = true,
         },
         fzf_args = vim.env.FZF_DEFAULT_OPTS,
         grep = {
             git_icons = false,
             file_icons = false,
-            formatter = 'path.filename_first',
             no_header_i = true,
             RIPGREP_CONFIG_PATH = vim.env.RIPGREP_CONFIG_PATH,
-            rg_opts = table.concat({
-                '--color=always',
-                '--colors=line:style:nobold',
-                '--colors=match:fg:green',
-                '--colors=path:fg:blue',
-                '--column',
-                '--no-heading',
-                '--smart-case',
-                '--follow',
-                '--glob=!pnpm-lock.yaml',
-                '--glob=!node_modules/',
-                '--glob=!*.json',
-                '--glob=!.venv/',
-                '--glob=!venv/',
-                '--glob=!__pycache__/',
-                '--glob=!pyenv/',
-                '--no-ignore-vcs',
-                '--hidden',
-                '--line-number',
-                '--column',
-            }, ' '),
         },
         lsp = {
             includeDeclaration = false,

@@ -27,7 +27,7 @@ export HISTSIZE=2000
 export HISTFILESIZE=2000
 export MANPAGER='nvim +Man!'
 export SAVEHIST=2000
-export TERM=xterm-ghostty
+export TERMINFO="$XDG_DATA_HOME"/terminfo
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
 
@@ -88,6 +88,8 @@ export LIBVIRT_DEFAULT_URI=qemu:///system
 
 if [ "$THEME" = "gruvbox" ]; then
   export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --color=fg:#ebdbb2,bg:#1d2021,hl:#fabd2f --color=fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f --color=info:#83a598,prompt:#b8bb26,pointer:#ebdbb2,marker:#83a598,spinner:#d3869b"
+elif [ "$THEME" = "midnight" ]; then
+  export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --color=fg:#e0e0e0,bg:#121212,hl:#7aa2f7 --color=fg+:#e0e0e0,bg+:#2d2d2d,hl+:#7aa2f7 --color=info:#98c379,prompt:#7aa2f7,pointer:#e0e0e0,marker:#98c379,spinner:#e0e0e0"
 fi
 
 . <(fzf --zsh)
@@ -119,6 +121,7 @@ if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
         export QT_QPA_PLATFORM=wayland
         export GDK_BACKEND=wayland,x11
         export SDL_VIDEODRIVER=wayland
+        ln -sf "~/.config/sway/themes/$THEME" ~/.config/sway/theme
         exec sway
     else
         export XDG_SESSION_TYPE=x11

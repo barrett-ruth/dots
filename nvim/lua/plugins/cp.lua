@@ -53,7 +53,6 @@ return {
         }
 
         require('cp').setup({
-            debug = true,
             languages = {
                 cpp = default_cpp_lang,
                 python = default_python_lang,
@@ -101,18 +100,17 @@ return {
                     end
 
                     local trigger = state.get_platform() or ''
+                    local aug = vim.api.nvim_create_augroup(
+                        'cp_fold_fix',
+                        { clear = true }
+                    )
                     vim.api.nvim_buf_set_lines(buf, 0, -1, false, { trigger })
                     vim.api.nvim_win_set_cursor(0, { 1, #trigger })
                     vim.cmd.startinsert({ bang = true })
                     vim.schedule(function()
                         local ls = require('luasnip')
                         if ls.expandable() then
-                            local aug = vim.api.nvim_create_augroup(
-                                'cp_fold_fix',
-                                { clear = true }
-                            )
                             vim.api.nvim_create_autocmd('TextChanged', {
-                                group = aug,
                                 buffer = buf,
                                 once = true,
                                 callback = function()
@@ -124,6 +122,7 @@ return {
                                         vim.api.nvim_del_augroup_by_id(aug)
                                     end)
                                 end,
+                                group = aug,
                             })
                             ls.expand()
                         end

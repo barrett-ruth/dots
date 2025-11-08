@@ -104,6 +104,7 @@ texlive-latexextra 2025.2-2
 time 1.9-6
 tmux 3.5_a-1
 tree-sitter-cli 0.25.10-1
+ttf-jetbrains-mono 2.304-2
 ueberzugpp 2.9.7-3
 uv 0.9.3-1
 valgrind 3.25.1-3

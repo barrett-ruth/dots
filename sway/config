@@ -10,6 +10,8 @@ exec_always {
 exec_always sh -c '$term -e mux'
 exec_always sh -c 'chromium --ozone-platform=wayland'
 
+include ~/.config/sway/theme
+
 set $term ghostty --theme=$THEME
 set $menu rofi -show run
 
@@ -106,20 +108,6 @@ for_window [class="discord"] move to workspace number 5
 
 assign [app_id="vesktop"] workspace number 5
 for_window [class="vesktop"] move to workspace number 5
-
-set $bg        #282828
-set $bg1       #3c3836
-set $bg2       #504945
-set $fg        #ebdbb2
-set $fg1       #d5c4a1
-set $fg2       #bdae93
-set $red       #cc241d
-set $green     #98971a
-set $yellow    #d79921
-set $blue      #458588
-set $purple    #b16286
-set $aqua      #689d6a
-set $orange    #d65d0e
 
 client.focused          $fg   $bg   $fg   $bg   $fg
 client.focused_inactive $bg1  $bg   $fg1  $bg1  $bg1

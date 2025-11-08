@@ -1,11 +1,10 @@
-font-family = "Berkeley Mono"
+window-decoration = none
+font-family = "Jetbrains Mono"
 font-feature = "-calt"
 font-size = 20
 adjust-cell-height = 10%
 
-# theme = light
 theme = midnight
-# theme = Gruvbox Material
 
 window-padding-x = 0
 window-padding-y = 0
@@ -17,12 +16,10 @@ quit-after-last-window-closed = true
 confirm-close-surface = false
 
 keybind = clear
-keybind = super+c=copy_to_clipboard
-keybind = super+v=paste_from_clipboard
-keybind = super+minus=decrease_font_size:1
-keybind = super+equal=increase_font_size:1
-keybind = super+0=reset_font_size
-keybind = super+q=quit
+keybind = alt+y=copy_to_clipboard
+keybind = alt+p=paste_from_clipboard
+keybind = alt+shift+h=decrease_font_size:1
+keybind = alt+shift+l=increase_font_size:1
 
 # claude config
 keybind = shift+enter=text:\n
