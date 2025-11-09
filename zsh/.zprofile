@@ -116,7 +116,9 @@ bindkey '^K' forward-char
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
     if [[ "$USE_WAYLAND" ]]; then
         export XDG_SESSION_TYPE=wayland
+        export XDG_CURRENT_DESKTOP=sway
         export ELECTRON_OZONE_PLATFORM_HINT=wayland
+        export GTK_USE_PORTAL=1
         export OZONE_PLATFORM=wayland
         export QT_QPA_PLATFORM=wayland
         export GDK_BACKEND=wayland,x11
