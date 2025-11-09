@@ -121,7 +121,7 @@ if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
         export QT_QPA_PLATFORM=wayland
         export GDK_BACKEND=wayland,x11
         export SDL_VIDEODRIVER=wayland
-        ln -sf "~/.config/sway/themes/$THEME" ~/.config/sway/theme
+        ln -sf "$XDG_CONFIG_HOME/sway/themes/$THEME" ~/.config/sway/theme
         exec sway
     else
         export XDG_SESSION_TYPE=x11

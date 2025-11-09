@@ -9,7 +9,7 @@ theme = midnight
 window-padding-x = 0
 window-padding-y = 0
 window-padding-color = background
-app-notifications = no-clipboard-copy
+app-notifications = no-clipboard-copy,no-config-reload
 resize-overlay = never
 mouse-scroll-multiplier = 0.5
 quit-after-last-window-closed = true
@@ -20,6 +20,7 @@ keybind = alt+y=copy_to_clipboard
 keybind = alt+p=paste_from_clipboard
 keybind = alt+shift+h=decrease_font_size:1
 keybind = alt+shift+l=increase_font_size:1
+keybind = ctrl+shift+r=reload_config
 
 # claude config
 keybind = shift+enter=text:\n
