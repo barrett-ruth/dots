@@ -102,6 +102,7 @@ fzf-config-widget() {
     LBUFFER+="$file"
     zle reset-prompt
 }
+
 zle -N fzf-config-widget
 
 bindkey '^E' fzf-config-widget
