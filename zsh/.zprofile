@@ -78,7 +78,6 @@ export PSQL_HISTORY="$XDG_STATE_HOME"/psql_history
 export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/pythonrc
 test -f "$XDG_CONFIG_HOME"/rg/config && export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME"/rg/config
 export SQLITE_HISTORY="$XDG_STATE_HOME"/sqlite_history
-export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 export FZF_COMPLETION_TRIGGER=\;
 export FZF_CTRL_R_OPTS='--reverse'

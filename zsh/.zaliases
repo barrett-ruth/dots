@@ -1,16 +1,15 @@
 #!/usr/bin/env zsh
 
-# Color aliases
 alias ls='eza'
 alias l='ls --color=auto --group-directories-first'
 alias ll='l -alF'
 alias la='ll -R'
 alias lss='less --use-color --color=d+b --color=P+c --color=u+g'
+alias pe='printenv'
 
 alias ds='doas'
 alias pm='pacman'
 
-# Basic programs
 alias g='git'
 alias nv='nvim'
 sy() {
