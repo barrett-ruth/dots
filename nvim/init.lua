@@ -22,5 +22,3 @@ require('lazy').setup('plugins', {
     git = { url_format = 'git@github.com:%s.git' },
     change_detection = { enabled = false },
 })
-
-vim.cmd.colorscheme('midnight')

@@ -1,6 +1,15 @@
 return {
     'barrett-ruth/cp.nvim',
     command = 'CP',
+    keys = {
+        { '<leader>cp', '<cmd>CP panel<cr>' },
+        { '<leader>cP', '<cmd>CP pick<cr>' },
+        { '<leader>cr', '<cmd>CP run<cr>' },
+        { '<leader>cd', '<cmd>CP run --debug<cr>' },
+        { '<leader>cc', '<cmd>CP cache read<cr>' },
+        { ']c', '<cmd>CP next<cr>' },
+        { '[c', '<cmd>CP prev<cr>' },
+    },
     dependencies = {
         'L3MON4D3/LuaSnip',
         'nvim-telescope/telescope.nvim',

@@ -69,7 +69,7 @@ return {
                     set_jumps = true,
                     goto_previous_start = {
                         ['[a'] = '@parameter.inner',
-                        ['[c'] = '@class.outer',
+                        ['[s'] = '@class.outer',
                         ['[f'] = '@function.outer',
                         ['[i'] = '@conditional.outer',
                         ['[/'] = '@comment.outer',
@@ -81,7 +81,7 @@ return {
                     },
                     goto_next_start = {
                         [']a'] = '@parameter.inner',
-                        [']c'] = '@class.outer',
+                        [']s'] = '@class.outer',
                         [']f'] = '@function.outer',
                         [']i'] = '@conditional.outer',
                         [']/'] = '@comment.outer',
@@ -100,8 +100,8 @@ return {
                         ia = '@parameter.inner',
                         ab = '@block.outer',
                         ib = '@block.inner',
-                        ac = '@class.outer',
-                        ic = '@class.inner',
+                        as = '@class.outer',
+                        is = '@class.inner',
                         aC = '@call.outer',
                         iC = '@call.inner',
                         af = '@function.outer',

@@ -557,8 +557,11 @@ return {
     {
         'barrett-ruth/midnight.nvim',
         config = function(_)
-            vim.cmd.colorscheme('midnight')
+            local theme = vim.tbl_contains(
+                { 'midnight', 'daylight' },
+                vim.env.THEME
+            ) and vim.env.THEME or 'gruvbox'
+            vim.cmd.colorscheme(theme)
         end,
-        event = 'VeryLazy',
     },
 }
