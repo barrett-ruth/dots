@@ -107,34 +107,6 @@ return {
         ft = { 'plaintext', 'tex' },
     },
     {
-        'lewis6991/gitsigns.nvim',
-        keys = {
-            { '[g', '<cmd>Gitsigns next_hunk<cr>' },
-            { ']g', '<cmd>Gitsigns prev_hunk<cr>' },
-            { '<leader>gs', '<cmd>Gitsigns toggle_signs<cr>' },
-        },
-        event = 'VeryLazy',
-        opts = {
-            on_attach = function()
-                vim.wo.signcolumn = 'yes'
-            end,
-            current_line_blame_formatter_nc = function()
-                return {}
-            end,
-            attach_to_untracked = false,
-            signcolumn = false,
-            signs = {
-                -- use boxdraw chars
-                add = { text = '│' },
-                change = { text = '│' },
-                delete = { text = '＿' },
-                topdelete = { text = '‾' },
-                changedelete = { text = '│' },
-            },
-            current_line_blame = true,
-        },
-    },
-    {
         'L3MON4D3/LuaSnip',
         build = 'make install_jsregexp',
         config = function()
@@ -308,27 +280,6 @@ return {
         },
     },
     {
-        'ruifm/gitlinker.nvim',
-        config = true,
-        keys = { '<leader>gy' },
-    },
-    {
-        'sindrets/diffview.nvim',
-        opts = {
-            use_icons = false,
-        },
-        cmd = {
-            'DiffviewOpen',
-            'DiffviewClose',
-            'DiffviewToggleFiles',
-            'DiffviewFocusFiles',
-        },
-        keys = {
-            { '<leader>go', '<cmd>DiffviewOpen<cr>' },
-            { '<leader>gc', '<cmd>DiffviewClose<cr>' },
-        },
-    },
-    {
         'cbochs/grapple.nvim',
         opts = {
             scope = 'git_branch',
@@ -483,7 +434,6 @@ return {
     },
     { 'tommcdo/vim-exchange', event = 'VeryLazy' },
     { 'tpope/vim-abolish', event = 'VeryLazy' },
-    { 'tpope/vim-fugitive' },
     { 'tpope/vim-sleuth', event = 'BufReadPost' },
     {
         'kylechui/nvim-surround',
@@ -545,6 +495,7 @@ return {
     {
         'saghen/blink.indent',
         opts = {
+            blocked = { filetypes = { include_defaults = true, 'fugitive' } },
             static = {
                 char = '│',
             },

@@ -16,6 +16,8 @@ return {
                         vim.cmd.cclose()
                     end,
                     ['ctrl-h'] = actions.toggle_hidden,
+                    ['ctrl-v'] = actions.file_vsplit,
+                    ['ctrl-x'] = actions.file_split,
                 },
             },
             border = 'single',
@@ -68,7 +70,7 @@ return {
         { '<leader>fc', '<cmd>FzfLua commands<cr>' },
         {
             '<leader>fe',
-            '<cmd>FzfLua files cwd=~/.config<cr>'
+            '<cmd>FzfLua files cwd=~/.config<cr>',
         },
         {
             '<leader>ff',

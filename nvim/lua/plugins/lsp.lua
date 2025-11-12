@@ -12,6 +12,8 @@ return {
         'saghen/blink.cmp',
         build = 'cargo build --release',
         dependencies = 'folke/lazydev.nvim',
+        ---@module 'blink.cmp'
+        ---@type blink.cmp.Config
         opts = {
             enabled = function()
                 return vim.bo.buftype ~= 'prompt' and vim.b.completion ~= false
