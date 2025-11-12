@@ -119,7 +119,7 @@ function M.setup()
         'ruff',
     }) do
         local ok, config = pcall(require, 'lsp.' .. server)
-        if ok and config and vim.fn.executable(server) == 1 then
+        if ok and config then
             vim.lsp.config(server, config)
         end
         vim.lsp.enable(server)

@@ -1,9 +1,17 @@
 return {
     {
+        'folke/lazydev.nvim',
+        ft = 'lua',
+        opts = {
+            library = {
+                { path = '${3rd}/luv/library' },
+            },
+        },
+    },
+    {
         'saghen/blink.cmp',
-        lazy = false,
         build = 'cargo build --release',
-        dependencies = { 'folke/lazydev.nvim', ft = 'lua' },
+        dependencies = 'folke/lazydev.nvim',
         opts = {
             enabled = function()
                 return vim.bo.buftype ~= 'prompt' and vim.b.completion ~= false
@@ -48,6 +56,9 @@ return {
             },
         },
         opts_extend = { 'sources.default' },
+        keys = {
+            { '<c-n>', mode = 'i' },
+        },
     },
     {
         'nvimtools/none-ls.nvim',
