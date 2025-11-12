@@ -80,7 +80,7 @@ return {
             ]])
             vim.g.mkdp_auto_close = 0
             vim.g.mkdp_browserfunc = 'OpenMarkdownPreview'
-            au('FileType', 'MarkdownKeybind', {
+            vim.api.nvim_create_autocmd('FileType', {
                 pattern = 'markdown',
                 callback = function(opts)
                     bmap(
@@ -88,6 +88,10 @@ return {
                         { buffer = opts.buf }
                     )
                 end,
+                group = vim.api.nvim_create_augroup(
+                    'MarkdownKeybind',
+                    { clear = true }
+                ),
             })
         end,
     },
@@ -433,11 +437,6 @@ return {
             { '-', '<cmd>e .<cr>' },
             { '_', vim.cmd.Oil },
         },
-        event = function()
-            if vim.fn.isdirectory(vim.fn.expand('%:p')) == 1 then
-                return 'VimEnter'
-            end
-        end,
         opts = {
             skip_confirm_for_simple_edits = true,
             prompt_save_on_select_new_entry = false,
@@ -468,7 +467,7 @@ return {
         },
     },
     {
-        'echasnovski/mini.bufremove',
+        'nvim-mini/mini.bufremove',
         config = true,
         event = 'VeryLazy',
         keys = {
@@ -545,8 +544,6 @@ return {
     },
     {
         'saghen/blink.indent',
-        --- @module 'blink.indent'
-        --- @type blink.indent.Config
         opts = {
             static = {
                 char = '│',

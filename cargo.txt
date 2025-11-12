@@ -70,11 +70,6 @@ asn1Decoding
 asn1Parser
 assistant6
 attr
-audisp-af_unix
-audispd-zos-remote
-audisp-filter
-audisp-remote
-audisp-syslog
 auditctl
 auditd
 augenrules
@@ -312,7 +307,7 @@ cjxl
 cksum
 clang
 clang++
-clang-20
+clang-21
 clang-apply-replacements
 clang-change-namespace
 clang-check
@@ -391,7 +386,6 @@ convertsegfilestops
 converttopdf
 converttops
 coredumpctl
-corepack
 core_perl
 coresched
 count
@@ -636,6 +630,7 @@ ei-debug-events
 eject
 elc3
 electron37
+electron39
 elf2dmp
 elfedit
 enchant-2
@@ -805,6 +800,8 @@ fy-ypath
 fzf
 fzf-tmux
 g++
+g13
+g13-syshelp
 gapplication
 gawk
 gawk-5.3.2
@@ -1204,7 +1201,6 @@ imlib2_test
 imlib2_view
 import
 importctl
-include-what-you-use
 index_usage
 indxbib
 inetcat
@@ -1280,8 +1276,6 @@ ivtv-ctl
 iwctl
 iwmon
 iwpmd
-iwyu-fix-includes
-iwyu-tool
 jackd
 jadetex
 jasper
@@ -1439,6 +1433,8 @@ lavinfo
 lavpipe
 lavtc.sh
 lavtrans
+lc_pkcs7_generator
+lc_x509_generator
 ld
 ldattach
 ldbadd
@@ -1526,6 +1522,7 @@ llvm-lto2
 llvm-mc
 llvm-mca
 llvm-ml
+llvm-ml64
 llvm-modextract
 llvm-mt
 llvm-nm
@@ -1553,6 +1550,7 @@ llvm-strings
 llvm-strip
 llvm-symbolizer
 llvm-tblgen
+llvm-test-mustache-spec
 llvm-tli-checker
 llvm-undname
 llvm-windres
@@ -1619,7 +1617,7 @@ luac5.4
 luacsplain
 luahbtex
 luajit
-luajit-2.1.1753364724
+luajit-2.1.1762795099
 luajithbtex
 luajittex
 lua-language-server
@@ -2023,6 +2021,7 @@ ocsptool
 od
 odvicopy
 odvitype
+offload-arch
 ofm2opl
 oid2name
 omfonts
@@ -2288,15 +2287,15 @@ prlimit
 procan
 proptest
 protoc
-protoc-32.1.0
+protoc-33.0.0
 protoc-gen-buf-breaking
 protoc-gen-buf-lint
 protoc-gen-upb
-protoc-gen-upb-32.1.0
+protoc-gen-upb-33.0.0
 protoc-gen-upbdefs
-protoc-gen-upbdefs-32.1.0
+protoc-gen-upbdefs-33.0.0
 protoc-gen-upb_minitable
-protoc-gen-upb_minitable-32.1.0
+protoc-gen-upb_minitable-33.0.0
 proxy
 proxy_thr
 prtstat

@@ -55,10 +55,8 @@ return {
                 },
             },
         },
+        keys = { { '<c-n>', mode = 'i' } },
         opts_extend = { 'sources.default' },
-        keys = {
-            { '<c-n>', mode = 'i' },
-        },
     },
     {
         'nvimtools/none-ls.nvim',

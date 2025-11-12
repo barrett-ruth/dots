@@ -1,5 +1,3 @@
-local fd_opts = vim.env.FZF_CTRL_T_COMMAND:match(' (.*)')
-
 return {
     'ibhagwan/fzf-lua',
     config = function(_, opts)
@@ -17,8 +15,6 @@ return {
                         actions.file_sel_to_qf(...)
                         vim.cmd.cclose()
                     end,
-                    ['ctrl-v'] = actions.file_vsplit,
-                    ['ctrl-x'] = actions.file_split,
                     ['ctrl-h'] = actions.toggle_hidden,
                 },
             },
@@ -26,40 +22,22 @@ return {
             git = {
                 files = {
                     cmd = 'git ls-files --cached --others --exclude-standard',
-                    git_icons = false,
                 },
                 worktrees = {
-                    actions = {
-                        ['ctrl-d'] = {
-                            fn = actions.git_worktree_del,
-                            reload = true,
-                        },
-                        ['ctrl-x'] = {
-                            fn = actions.git_worktree_add,
-                            field_index = '{q}',
-                            reload = true,
-                        },
-                        ['ctrl-a'] = false,
-                    },
+                    fzf_args = (
+                        vim.env.FZF_DEFAULT_OPTS:gsub(
+                            '--bind=ctrl-a:select-all',
+                            ''
+                        )
+                    ),
                 },
                 branches = {
-                    actions = {
-                        ['ctrl-d'] = {
-                            fn = actions.git_branch_del,
-                            reload = true,
-                        },
-                        ['ctrl-x'] = {
-                            fn = actions.git_branch_add,
-                            field_index = '{q}',
-                            reload = true,
-                        },
-                        ['ctrl-a'] = false,
-                    },
-                },
-            },
-            buffers = {
-                actions = {
-                    ['ctrl-d'] = { actions.buf_del, actions.resume },
+                    fzf_args = (
+                        vim.env.FZF_DEFAULT_OPTS:gsub(
+                            '--bind=ctrl-a:select-all',
+                            ''
+                        )
+                    ),
                 },
             },
         })
@@ -67,9 +45,8 @@ return {
         fzf.setup(opts)
     end,
     keys = {
-        { '<c-b>', '<cmd>FzfLua buffers<cr>' },
         {
-            '<c-f>',
+            '<c-t>',
             function()
                 local fzf = require('fzf-lua')
                 local git_dir = vim.fn
@@ -83,44 +60,51 @@ return {
             end,
         },
         { '<c-g>', '<cmd>FzfLua live_grep<cr>' },
-        { '<leader>gb', '<cmd>FzfLua git_worktrees<cr>' },
-        { '<leader>gB', '<cmd>FzfLua git_branches<cr>' },
-        { '<leader>ff', '<cmd>FzfLua files cwd=%:h<cr>' },
-        { '<leader>fg', '<cmd>FzfLua live_grep cwd=%:h<cr>' },
-        { '<leader>fh', '<cmd>FzfLua help_tags<cr>' },
-        { '<leader>fH', '<cmd>FzfLua highlights<cr>' },
-        { '<leader>fm', '<cmd>FzfLua man_pages<cr>' },
-        { '<leader>fr', '<cmd>FzfLua resume<cr>' },
-        { '<leader>fs', '<cmd>FzfLua files cwd=~/.local/bin/scripts<cr>' },
-        { '<leader>fq', '<cmd>FzfLua quickfix' },
-        { '<leader>fl', '<cmd>FzfLua loclist' },
+        { '<leader>f/', '<cmd>FzfLua search_history<cr>' },
+        { '<leader>f:', '<cmd>FzfLua command_history<cr>' },
+        { '<leader>fa', '<cmd>FzfLua autocmds<cr>' },
+        { '<leader>fB', '<cmd>FzfLua builtin<cr>' },
+        { '<leader>fb', '<cmd>FzfLua buffers<cr>' },
+        { '<leader>fc', '<cmd>FzfLua commands<cr>' },
         {
             '<leader>fe',
+            '<cmd>FzfLua files cwd=~/.config<cr>'
+        },
+        {
+            '<leader>ff',
             function()
-                require('fzf-lua').files({
-                    cwd = '~/.config',
-                })
+                require('fzf-lua').files({ cwd = vim.fn.expand('%:h') })
             end,
         },
-        { 'gw', '<cmd>FzfLua lsp_workspace_diagnostics<cr>' },
-        { 'gW', '<cmd>FzfLua lsp_workspace_symbols<cr>' },
-        { 'gO', '<cmd>FzfLua lsp_document_symbols<cr>' },
-        { 'gd', '<cmd>FzfLua lsp_definitions<cr>' },
-        { 'gD', '<cmd>FzfLua lsp_declarations<cr>' },
+        {
+            '<leader>fg',
+            function()
+                require('fzf-lua').live_grep({ cwd = vim.fn.expand('%:h') })
+            end,
+        },
+        { '<leader>fH', '<cmd>FzfLua highlights<cr>' },
+        { '<leader>fh', '<cmd>FzfLua help_tags<cr>' },
+        { '<leader>fl', '<cmd>FzfLua loclist<cr>' },
+        { '<leader>fm', '<cmd>FzfLua man_pages<cr>' },
+        { '<leader>fq', '<cmd>FzfLua quickfix<cr>' },
+        { '<leader>fr', '<cmd>FzfLua resume<cr>' },
+        {
+            '<leader>fs',
+            '<cmd>FzfLua files cwd=~/.local/bin/scripts<cr>',
+        },
+        { '<leader>gB', '<cmd>FzfLua git_branches<cr>' },
+        { '<leader>gb', '<cmd>FzfLua git_worktrees<cr>' },
         { 'gq', '<cmd>FzfLua quickfix<cr>' },
         { 'gl', '<cmd>FzfLua loclist<cr>' },
-        { 'gs', '<cmd>FzfLua lsp_typedefs<cr>' },
     },
     opts = {
         files = {
             cmd = vim.env.FZF_CTRL_T_COMMAND,
-            git_icons = false,
             file_icons = false,
             no_header_i = true,
         },
         fzf_args = vim.env.FZF_DEFAULT_OPTS,
         grep = {
-            git_icons = false,
             file_icons = false,
             no_header_i = true,
             RIPGREP_CONFIG_PATH = vim.env.RIPGREP_CONFIG_PATH,
