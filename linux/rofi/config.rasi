@@ -1,3 +1,7 @@
 configuration {
   font: "Berkeley Mono 15";
 }
+
+listview {
+  scrollbar: false;
+}
