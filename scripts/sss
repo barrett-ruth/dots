@@ -5,7 +5,7 @@ set -eu
 dir="$HOME/img/ss"
 mkdir -p "$dir"
 
-if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+if [ "$XDG_SESSION_TYPE" = 'wayland' ]; then
   filename="$(rofi -dmenu -p 'Enter filename' </dev/null || true)"
   [ -n "$filename" ] || filename="$(openssl rand -hex 10)-$(date +'%Y-%m-%d_%H-%M-%S')"
   file="$dir/$filename.png"

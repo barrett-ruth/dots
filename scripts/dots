@@ -33,8 +33,6 @@ if [ -d linux ]; then
   cp -f /etc/default/grub linux/grub
 fi
 
-test -d tmux && rmb tmux.conf tmux
-test -d zsh && rmb .zaliases .zprofile .zshrc zsh
 test -f ~/.zshenv && cp -f ~/.zshenv zsh
 
 if [ -d /etc/keyd ]; then

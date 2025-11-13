@@ -4,7 +4,7 @@ font-feature = "-calt"
 font-size = 20
 adjust-cell-height = 10%
 
-theme = midnight
+*theme = midnightidnight
 
 window-padding-x = 0
 window-padding-y = 0

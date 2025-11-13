@@ -1,7 +1,11 @@
 #!/bin/sh
-
 set -eu
 
-resp="$(printf 'yes\nno' | dmenu -p 'Reboot?')"
+if [ "${XDG_SESSION_TYPE:-}" = "wayland" ]; then
+    menu_cmd="rofi -dmenu -p 'Reboot?'"
+else
+    menu_cmd="dmenu -p 'Reboot?'"
+fi
 
-[ "$resp" = 'yes' ] && reboot
+resp="$(printf 'yes\nno' | $menu_cmd)"
+[ "$resp" = "yes" ] && reboot
