@@ -3,11 +3,11 @@ exec_always systemctl --user import-environment DISPLAY WAYLAND_DISPLAY XDG_CURR
 exec_always sclip
 exec_always {
     swayidle -w \
-        timeout 300 "sh -c '$HOME/.local/bin/scripts/genlock && swaylock -f -i \$HOME/img/random.jpg --indicator-radius 0 --indicator-thickness 0'" \
+        timeout 300 "sh -c '$HOME/.local/bin/scripts/genlock && swaylock -f -i \$HOME/img/wp/random.jpg --indicator-radius 0 --indicator-thickness 0'" \
         timeout 600 'swaymsg "output * dpms off"' \
         resume 'swaymsg "output * dpms on"' \
         timeout 900 'systemctl suspend-then-hibernate' \
-        before-sleep "sh -c '$HOME/.local/bin/scripts/genlock && swaylock -f -i \$HOME/img/random.jpg --indicator-radius 0 --indicator-thickness 0'"
+        before-sleep "sh -c '$HOME/.local/bin/scripts/genlock && swaylock -f -i \$HOME/img/wp/random.jpg --indicator-radius 0 --indicator-thickness 0'"
 }
 exec_always sh -c '$term -e mux'
 exec_always sh -c 'chromium --ozone-platform=wayland'
