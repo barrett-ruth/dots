@@ -1,0 +1,50 @@
+/* ==========================================================================
+   Rofi color theme
+
+   File: midnight.rasi
+   Desc: Minimal midnight theme for Rofi
+   ========================================================================== */
+
+* {
+    /* Theme settings */
+    highlight: bold;
+    scrollbar: true;
+
+    /* Midnight colors */
+    midnight-bg:          #121212;
+    midnight-bg-alt:      #1e1e1e;
+    midnight-fg:          #e0e0e0;
+    midnight-fg-dim:      #a0a0a0;
+    midnight-accent:      #98c379;
+    midnight-active:      #7aa2f7;
+    midnight-urgent:      #ff6b6b;
+
+    /* Theme colors */
+    background:                  @midnight-bg;
+    background-color:            @background;
+    foreground:                  @midnight-fg;
+    border-color:                @midnight-fg-dim;
+    separatorcolor:              @border-color;
+    scrollbar-handle:            @border-color;
+
+    normal-background:           @background;
+    normal-foreground:           @foreground;
+    alternate-normal-background: @midnight-bg-alt;
+    alternate-normal-foreground: @foreground;
+    selected-normal-background:  @midnight-accent;
+    selected-normal-foreground:  @midnight-bg;
+
+    active-background:           @midnight-active;
+    active-foreground:           @midnight-bg;
+    alternate-active-background: @active-background;
+    alternate-active-foreground: @active-foreground;
+    selected-active-background:  @midnight-active;
+    selected-active-foreground:  @midnight-bg;
+
+    urgent-background:           @midnight-urgent;
+    urgent-foreground:           @midnight-bg;
+    alternate-urgent-background: @urgent-background;
+    alternate-urgent-foreground: @urgent-foreground;
+    selected-urgent-background:  @midnight-urgent;
+    selected-urgent-foreground:  @midnight-bg;
+}
