@@ -1,25 +1,15 @@
-/* ==========================================================================
-   Rofi color theme
-
-   File: midnight.rasi
-   Desc: Minimal midnight theme for Rofi
-   ========================================================================== */
-
 * {
-    /* Theme settings */
     highlight: bold;
     scrollbar: true;
 
-    /* Midnight colors */
     midnight-bg:          #121212;
-    midnight-bg-alt:      #1e1e1e;
+    midnight-bg-alt:      #2d2d2d;
     midnight-fg:          #e0e0e0;
-    midnight-fg-dim:      #a0a0a0;
+    midnight-fg-dim:      #666666;
     midnight-accent:      #98c379;
     midnight-active:      #7aa2f7;
     midnight-urgent:      #ff6b6b;
 
-    /* Theme colors */
     background:                  @midnight-bg;
     background-color:            @background;
     foreground:                  @midnight-fg;

@@ -1,25 +1,15 @@
-/* ==========================================================================
-   Rofi color theme
-
-   File: daylight.rasi
-   Desc: Minimal daylight theme for Rofi
-   ========================================================================== */
-
 * {
-    /* Theme settings */
     highlight: bold;
     scrollbar: true;
 
-    /* Daylight colors */
     daylight-bg:          #f5f5f5;
     daylight-bg-alt:      #ebebeb;
     daylight-fg:          #1a1a1a;
-    daylight-fg-dim:      #6c6c6c;
+    daylight-fg-dim:      #999999;
     daylight-accent:      #2d7f3e;
-    daylight-active:      #4c6ef5;
+    daylight-active:      #3b5bdb;
     daylight-urgent:      #c7254e;
 
-    /* Theme colors */
     background:                  @daylight-bg;
     background-color:            @background;
     foreground:                  @daylight-fg;
