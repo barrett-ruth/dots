@@ -1,1 +1,3 @@
-@theme "gruvbox-dark-hard.rasi"
+configuration {
+  font: "Berkeley Mono 15";
+}
