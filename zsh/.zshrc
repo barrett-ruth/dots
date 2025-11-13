@@ -35,9 +35,4 @@ function _pure_cursor_init() {
 add-zle-hook-widget zle-keymap-select _pure_cursor_shape
 add-zle-hook-widget zle-line-init _pure_cursor_init
 
-_fix_venv_prompt() {
-  if [[ -n $VIRTUAL_ENV && $VIRTUAL_ENV_DISABLE_PROMPT == "1" ]]; then
-    unset VIRTUAL_ENV_DISABLE_PROMPT
-  fi
-}
-add-zsh-hook precmd _fix_venv_prompt
+eval "$(direnv hook zsh)"

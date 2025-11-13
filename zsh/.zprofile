@@ -11,6 +11,8 @@ set completion-ignore-case on
 unset completealiases
 setopt auto_cd incappendhistory extendedhistory histignorealldups hist_ignore_space
 
+export THEME="${THEME:-gruvbox}"
+
 export XDG_CONFIG_HOME="$HOME"/.config
 export XDG_CACHE_HOME="$HOME"/.cache
 export XDG_DATA_HOME="$HOME"/.local/share
@@ -76,7 +78,7 @@ export PRETTIERD_CONFIG_HOME="$XDG_STATE_HOME"/prettierd
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
 export PSQL_HISTORY="$XDG_STATE_HOME"/psql_history
 export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/pythonrc
-test -f "$XDG_CONFIG_HOME"/rg/config && export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME"/rg/config
+test -d "$XDG_CONFIG_HOME"/rg && export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/rg/themes/$THEME"
 export SQLITE_HISTORY="$XDG_STATE_HOME"/sqlite_history
 
 export FZF_COMPLETION_TRIGGER=\;

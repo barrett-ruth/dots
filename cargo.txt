@@ -492,6 +492,7 @@ dig
 digestif
 dir
 dircolors
+direnv
 dirmngr
 dirmngr-client
 dirname
@@ -1352,6 +1353,8 @@ kinfo
 kinit
 kioclient
 kioclient5
+kitten
+kitty
 klist
 kmimetypefinder
 kmimetypefinder5
@@ -2123,11 +2126,16 @@ pdf2dsc
 pdf2ps
 pdfannotextractor
 pdfatfi
+pdfattach
 pdfbook2
 pdfclose
 pdfcrop
 pdfcsplain
+pdfdetach
 pdfetex
+pdffonts
+pdfimages
+pdfinfo
 pdfjadetex
 pdfjam
 pdflatex
@@ -2138,10 +2146,18 @@ pdfmex
 pdfmom
 pdfopen
 pdfroff
+pdfseparate
+pdfsig
 pdftex
 pdftexi2dvi
 pdftex-quiet
+pdftocairo
+pdftohtml
+pdftoppm
+pdftops
 pdftosrc
+pdftotext
+pdfunite
 pdfxmltex
 pdfxup
 pdvitomp
@@ -2207,6 +2223,7 @@ pip
 pip3
 pipesz
 pipewire
+pistol
 pivot_root
 pixeltool6
 pk12util
@@ -2456,6 +2473,7 @@ qemu-vmsr-helper
 qemu-x86_64
 qemu-xtensa
 qemu-xtensaeb
+qgltf
 qlalr
 qlalr-qt5
 qmake
@@ -2498,6 +2516,7 @@ qrencode
 qtdiag6
 qt-faststart
 qtplugininfo6
+qtwaylandscanner
 quarto
 qv4l2
 qvidcap
@@ -2515,6 +2534,7 @@ rcc
 rcc-qt5
 rcopy
 rd-curves
+rdiff
 rdjpgcom
 rdma
 rdma_client
