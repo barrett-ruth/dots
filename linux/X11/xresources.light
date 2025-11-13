@@ -1,0 +1,26 @@
+Xcursor.theme: Adwaita
+Xcursor.size: 32
+
+Xft.dpi: 103
+
+*background: #ffffff
+*foreground: #000000
+
+*color0:   #000000
+*color1:   #b22222
+*color2:   #228222
+*color3:   #b8860b
+*color4:   #27408b
+*color5:   #8b008b
+*color6:   #00bfff
+*color7:   #ffffff
+
+! 8 Bright Colors
+*color8:   #555555
+*color9:   #ff0000
+*color10:  #00ff00
+*color11:  #ffa500
+*color12:  #0000ff
+*color13:  #ff00ff
+*color14:  #00ffff
+*color15:  #ffffff

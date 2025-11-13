@@ -16,7 +16,7 @@ exists pip && pip list --not-required >pip.txt
 
 cp -r "$SCRIPTS" .
 
-for folder in git npm nvim python sway spectrwm rg tmux yamllint zsh mutt dunst sioyek ghostty zathura; do
+for folder in git npm nvim python spectrwm rg tmux yamllint zsh mutt dunst sioyek ghostty zathura; do
   if [ -d "$XDG_CONFIG_HOME/$folder" ]; then
     rm -rf "$folder"
     cp -rf "$XDG_CONFIG_HOME/$folder" .
@@ -24,10 +24,12 @@ for folder in git npm nvim python sway spectrwm rg tmux yamllint zsh mutt dunst 
 done
 
 if [ -d linux ]; then
-  if [ -d "$XDG_CONFIG_HOME/X11" ]; then
-    rm -rf linux/X11
-    cp -rf "$XDG_CONFIG_HOME/X11" .
-  fi
+  for folder in X11 sway; do
+    if [ -d "$XDG_CONFIG_HOME/$folder" ]; then
+      rm -rf "linux/$folder"
+      cp -rf "$XDG_CONFIG_HOME/$folder" linux
+    fi
+  done
   cp -f /etc/default/grub linux/grub
 fi
 

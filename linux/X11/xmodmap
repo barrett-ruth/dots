@@ -1,0 +1,7 @@
+remove Control = Control_R
+add mod3 = Control_R
+remove mod1 = Alt_R
+add mod2 = Alt_R
+
+remove Shift = Shift_R
+remove Mod4 = Super_L
