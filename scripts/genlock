@@ -1,12 +1,50 @@
-#!/bin/sh
-DIR="$HOME/img"
-FILE="$DIR/random.jpg"
-mkdir -p "$DIR"
+#!/usr/bin/env python3
+from PIL import Image, ImageDraw
+import random
+import subprocess
+import os
+import math
 
-rand() {
-    od -An -N2 -i /dev/urandom | tr -d ' ' | awk "{print \$1 % $1 + 1}"
-}
+HOME = os.environ['HOME']
+DIR = f"{HOME}/img"
+FILE = f"{DIR}/random.jpg"
+os.makedirs(DIR, exist_ok=True)
 
-N=$(rand 512)
-SCALE=32
-magick -size "${N}x${N}" xc:white +noise Random -scale $((N*SCALE))x$((N*SCALE)) "$FILE"
+output = subprocess.check_output(
+    "swaymsg -t get_outputs -r | jq -r '.[] | select(.active==true) | .current_mode.width,.current_mode.height' | paste -sd x -",
+    shell=True
+).decode().strip()
+W, H = map(int, output.split('x'))
+
+UNIT = 16
+grid_w = W // UNIT
+grid_h = H // UNIT
+
+grid = [[False for _ in range(grid_w)] for _ in range(grid_h)]
+
+img = Image.new('RGB', (W, H), 'black')
+draw = ImageDraw.Draw(img)
+
+MU = 0.8
+SIGMA = 0.6
+SCALE_FACTOR = 1.8
+
+for y in range(grid_h):
+    for x in range(grid_w):
+        if grid[y][x]:
+            continue
+        max_w = grid_w - x
+        max_h = grid_h - y
+        w_units = max(1, min(max_w, int(round(random.lognormvariate(MU, SIGMA) * SCALE_FACTOR))))
+        h_units = max(1, min(max_h, int(round(random.lognormvariate(MU, SIGMA) * SCALE_FACTOR))))
+        for yy in range(y, y+h_units):
+            for xx in range(x, x+w_units):
+                grid[yy][xx] = True
+        color = (random.randint(0,255), random.randint(0,255), random.randint(0,255))
+        draw.rectangle(
+            [x*UNIT, y*UNIT, (x+w_units)*UNIT-1, (y+h_units)*UNIT-1],
+            fill=color
+        )
+
+img.save(FILE, quality=95)
+

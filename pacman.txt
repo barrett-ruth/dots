@@ -79,6 +79,7 @@ python-cpplint 2.0.0-1
 python-isort 7.0.0-1
 python-jupyter-client 8.6.3-4
 python-mypy_extensions 1.1.0-1
+python-pillow 12.0.0-2
 python-pip 25.2-1
 python-pynvim 0.6.0-1
 python-ruff 0.14.4-1

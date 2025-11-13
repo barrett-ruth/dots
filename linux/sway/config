@@ -91,6 +91,7 @@ bindsym Mod5+d exec doc
 bindsym Mod5+k exec skb
 bindsym Mod5+r exec rbt
 bindsym Mod5+s exec sss
+bindsym Mod5+t exec theme
 bindsym Mod5+o exec ocr
 
 assign [app_id="ghostty"] workspace number 1
