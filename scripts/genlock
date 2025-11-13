@@ -1,0 +1,12 @@
+#!/bin/sh
+DIR="$HOME/img"
+FILE="$DIR/random.jpg"
+mkdir -p "$DIR"
+
+rand() {
+    od -An -N2 -i /dev/urandom | tr -d ' ' | awk "{print \$1 % $1 + 1}"
+}
+
+N=$(rand 512)
+SCALE=32
+magick -size "${N}x${N}" xc:white +noise Random -scale $((N*SCALE))x$((N*SCALE)) "$FILE"

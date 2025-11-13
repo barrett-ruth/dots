@@ -3,17 +3,20 @@ exec_always systemctl --user import-environment DISPLAY WAYLAND_DISPLAY XDG_CURR
 exec_always sclip
 exec_always {
     swayidle -w \
-        timeout 60 'swaymsg "output * dpms off"' \
+        timeout 300 'swaylock -f -i ~/img/random.jpg --indicator-radius 0 --indicator-thickness 0' \
+        timeout 600 'swaymsg "output * dpms off"' \
         resume 'swaymsg "output * dpms on"' \
-        timeout 900 'systemctl suspend-then-hibernate'
+        timeout 900 'systemctl suspend-then-hibernate' \
+        before-sleep 'swaylock -f -i ~/img/random.jpg --indicator-radius 0 --indicator-thickness 0'
 }
+exec_always sh -c '$HOME/.local/bin/scripts/genlock'
 exec_always sh -c '$term -e mux'
 exec_always sh -c 'chromium --ozone-platform=wayland'
 
 include ~/.config/sway/theme
 
 set $term ghostty --theme=$THEME
-set $menu rofi -show run
+set $menu rofi -show run -theme "$XDG_CONFIG_HOME/rofi/themes/${THEME:-gruvbox-dark-hard}.rasi"
 
 font pango:Berkeley Mono 15
 default_border pixel 5

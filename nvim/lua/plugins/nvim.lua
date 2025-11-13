@@ -495,7 +495,9 @@ return {
     {
         'saghen/blink.indent',
         opts = {
-            blocked = { filetypes = { include_defaults = true, 'fugitive' } },
+            blocked = {
+                filetypes = { include_defaults = true, 'fugitive', 'markdown' },
+            },
             static = {
                 char = '│',
             },

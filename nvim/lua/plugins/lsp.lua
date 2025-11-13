@@ -28,29 +28,21 @@ return {
                     'snippet_forward',
                 },
             },
-
             completion = {
                 menu = {
                     auto_show = false,
                     scrollbar = false,
-                    max_height = 20,
+                    max_height = vim.o.pumheight,
                     draw = { columns = { { 'label', 'label_description' } } },
                 },
-                documentation = {
-                    auto_show = true,
-                    auto_show_delay_ms = 500,
-                },
             },
-
             cmdline = {
-                enabled = true,
                 completion = {
                     menu = {
                         auto_show = true,
                     },
                 },
             },
-
             sources = {
                 default = { 'lsp', 'path', 'snippets', 'buffer' },
                 providers = {

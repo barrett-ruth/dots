@@ -93,6 +93,7 @@ socat 1.8.0.3-2
 sway 1:1.11-1
 swaybg 1.2.1-1
 swayidle 1.9.0-1
+taskwarrior-tui 0.26.4-1
 telegram-desktop 6.2.6-1
 tesseract 5.5.1-2
 tesseract-data-eng 2:4.1.0-4
