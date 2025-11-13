@@ -1,0 +1,13 @@
+set $bg        #f5f5f5
+set $bg1       #f0f0f0
+set $bg2       #ebebeb
+set $fg        #1a1a1a
+set $fg1       #666666
+set $fg2       #999999
+set $red       #c7254e
+set $green     #2d7f3e
+set $yellow    #996800
+set $blue      #3b5bdb
+set $purple    #ae3ec9
+set $aqua      #1098ad
+set $orange    #d9730d
