@@ -67,7 +67,7 @@ export PRETTIERD_CONFIG_HOME="$XDG_STATE_HOME"/prettierd
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
 export PSQL_HISTORY="$XDG_STATE_HOME"/psql_history
 export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/pythonrc
-test -d "$XDG_CONFIG_HOME"/rg && export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/rg/themes/$THEME"
+test -f "$XDG_CONFIG_HOME"/rg/config && export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/rg/config"
 export SQLITE_HISTORY="$XDG_STATE_HOME"/sqlite_history
 
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then

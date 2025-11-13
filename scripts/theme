@@ -1,0 +1,22 @@
+#!/bin/sh
+
+THEMES="
+daylight
+gruvbox
+midnight
+"
+
+if [ "$XDG_SESSION_TYPE" = 'wayland' ]; then
+  THEME="$(printf "%s\n" "$THEMES" | rofi -dmenu -p 'theme')"
+else
+  THEM="$(printf "%s\n" "$THEMES" | dmenu -p 'theme: ')"
+fi
+
+test -z "$THEME" && exit 1
+
+ln -sf "$XDG_CONFIG_HOME/rofi/themes/$THEME.rasi" "$XDG_CONFIG_HOME/rofi/themes/theme.rasi"
+ln -sf "$XDG_CONFIG_HOME/sioyek/themes/$THEME.config" "$XDG_CONFIG_HOME/sioyek/themes/theme.config"
+
+test -f "$XDG_CONFIG_HOME/ghostty/config" && sed -i "s/^theme = ./*theme = $THEME/" "$XDG_CONFIG_HOME/ghostty/config"
+
+tmux set-environment -g THEME "$THEME" 2>/dev/null
