@@ -14,10 +14,8 @@ return {
         dependencies = 'folke/lazydev.nvim',
         ---@module 'blink.cmp'
         ---@type blink.cmp.Config
+        event = { 'InsertEnter', 'CmdlineEnter' },
         opts = {
-            enabled = function()
-                return vim.bo.buftype ~= 'prompt' and vim.b.completion ~= false
-            end,
             keymap = {
                 ['<c-p>'] = { 'select_prev' },
                 ['<c-n>'] = { 'show', 'select_next' },
@@ -30,24 +28,31 @@ return {
                     'snippet_forward',
                 },
             },
+
             completion = {
                 menu = {
                     auto_show = false,
                     scrollbar = false,
+                    max_height = 20,
                     draw = { columns = { { 'label', 'label_description' } } },
                 },
                 documentation = {
                     auto_show = true,
+                    auto_show_delay_ms = 500,
                 },
             },
-            sources = {
-                default = {
-                    'lazydev',
-                    'lsp',
-                    'path',
-                    'snippets',
-                    'buffer',
+
+            cmdline = {
+                enabled = true,
+                completion = {
+                    menu = {
+                        auto_show = true,
+                    },
                 },
+            },
+
+            sources = {
+                default = { 'lsp', 'path', 'snippets', 'buffer' },
                 providers = {
                     lazydev = {
                         name = 'LazyDev',

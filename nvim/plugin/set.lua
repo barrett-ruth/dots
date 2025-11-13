@@ -48,7 +48,7 @@ o.relativenumber = true
 
 opt.path:append('**')
 
-o.pumheight = 10
+o.pumheight = 20
 
 o.scrolloff = 8
 
