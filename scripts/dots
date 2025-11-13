@@ -24,7 +24,7 @@ for folder in git npm nvim python rg tmux yamllint zsh mutt dunst sioyek ghostty
 done
 
 if [ -d linux ]; then
-  for folder in sway spectrwm X11; do
+  for folder in rofi sway spectrwm X11; do
     if [ -d "$XDG_CONFIG_HOME/$folder" ]; then
       rm -rf "linux/$folder"
       cp -rf "$XDG_CONFIG_HOME/$folder" linux

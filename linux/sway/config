@@ -16,7 +16,7 @@ exec_always sh -c 'chromium --ozone-platform=wayland'
 include ~/.config/sway/theme
 
 set $term ghostty --theme=$THEME
-set $menu rofi -show run -theme "$XDG_CONFIG_HOME/rofi/themes/${THEME:-gruvbox-dark-hard}.rasi"
+set $menu rofi -show run -theme "$XDG_CONFIG_HOME/rofi/themes/$THEME.rasi"
 
 font pango:Berkeley Mono 15
 default_border pixel 5
