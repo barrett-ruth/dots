@@ -1,6 +1,5 @@
 local au = require('utils').au
 
--- helper function to parse output
 local function parse_output(proc)
     local result = proc:wait()
     local ret = {}
@@ -8,7 +7,6 @@ local function parse_output(proc)
         for line in
             vim.gsplit(result.stdout, '\n', { plain = true, trimempty = true })
         do
-            -- Remove trailing slash
             line = line:gsub('/$', '')
             ret[line] = true
         end
@@ -16,7 +14,6 @@ local function parse_output(proc)
     return ret
 end
 
--- build git status cache
 local function new_git_status()
     return setmetatable({}, {
         __index = function(self, key)
@@ -80,7 +77,7 @@ return {
             ]])
             vim.g.mkdp_auto_close = 0
             vim.g.mkdp_browserfunc = 'OpenMarkdownPreview'
-            vim.api.nvim_create_autocmd('FileType', {
+            au('FileType', 'MarkdownKeybind', {
                 pattern = 'markdown',
                 callback = function(opts)
                     bmap(
@@ -88,10 +85,6 @@ return {
                         { buffer = opts.buf }
                     )
                 end,
-                group = vim.api.nvim_create_augroup(
-                    'MarkdownKeybind',
-                    { clear = true }
-                ),
             })
         end,
     },
@@ -210,12 +203,12 @@ return {
                 default = {
                     augend.integer.alias.decimal_int,
                     augend.integer.alias.hex,
-                    augend.integer.alias.octal,
                     augend.integer.alias.binary,
+                    augend.integer.alias.octal,
                     augend.constant.alias.bool,
                     augend.constant.alias.alpha,
                     augend.constant.alias.Alpha,
-                    augend.semver.alias.semver,
+                    augend.constant.alias.semver,
                 },
             })
         end,
@@ -354,7 +347,7 @@ return {
         config = function(_, opts)
             require('oil').setup(opts)
 
-            vim.api.nvim_create_autocmd('FileType', {
+            require('utils').au('FileType', 'OilBufremove', {
                 pattern = 'oil',
                 callback = function(o)
                     local ok, bufremove = pcall(require, 'mini.bufremove')
@@ -363,14 +356,10 @@ return {
                         { buffer = o.buf }
                     )
                 end,
-                group = vim.api.nvim_create_augroup(
-                    'OilBufremove',
-                    { clear = true }
-                ),
             })
         end,
         init = function()
-            vim.api.nvim_create_autocmd('FileType', {
+            require('utils').au('FileType', 'OilGit', {
                 pattern = 'oil',
                 callback = function()
                     -- Clear git status cache on refresh
@@ -381,33 +370,43 @@ return {
                         orig_refresh(...)
                     end
                 end,
-                group = vim.api.nvim_create_augroup('OilGit', { clear = true }),
             })
         end,
         keys = {
             { '-', '<cmd>e .<cr>' },
             { '_', vim.cmd.Oil },
         },
+        event = function()
+            if vim.fn.isdirectory(vim.fn.expand('%:p')) == 1 then
+                return 'VimEnter'
+            end
+        end,
         opts = {
             skip_confirm_for_simple_edits = true,
             prompt_save_on_select_new_entry = false,
             float = { border = 'single' },
             view_options = {
                 is_hidden_file = function(name, bufnr)
+                    if name == '..' then
+                        return false
+                    end
+
                     local dir = require('oil').get_current_dir(bufnr)
-                    local is_dotfile = vim.startswith(name, '.')
-                        and name ~= '..'
-                    -- if no local directory (e.g. for ssh connections), just hide dotfiles
+
                     if not dir then
-                        return is_dotfile
+                        return false
                     end
-                    -- dotfiles are considered hidden unless tracked
-                    if is_dotfile then
-                        return not git_status[dir].tracked[name]
-                    else
-                        -- Check if file is gitignored
-                        return git_status[dir].ignored[name]
+
+                    local git_dir = vim.fs.find('.git', {
+                        path = dir,
+                        upward = true,
+                    })[1]
+
+                    if not git_dir then
+                        return false
                     end
+
+                    return not git_status[dir].tracked[name]
                 end,
             },
             keymaps = {
@@ -418,7 +417,7 @@ return {
         },
     },
     {
-        'nvim-mini/mini.bufremove',
+        'echasnovski/mini.bufremove',
         config = true,
         event = 'VeryLazy',
         keys = {
@@ -495,9 +494,6 @@ return {
     {
         'saghen/blink.indent',
         opts = {
-            blocked = {
-                filetypes = { include_defaults = true, 'fugitive', 'markdown' },
-            },
             static = {
                 char = '│',
             },
@@ -507,36 +503,11 @@ return {
     {
         'barrett-ruth/midnight.nvim',
         config = function(_)
-            local theme = vim.tbl_contains(
-                { 'midnight', 'daylight' },
-                vim.env.THEME
-            ) and vim.env.THEME or 'gruvbox'
-            vim.cmd.colorscheme(theme)
+            if vim.tbl_contains({ 'midnight', 'daylight' }, vim.env.THEME) then
+                vim.cmd.colorscheme(vim.env.THEME)
+            else
+                vim.cmd.colorscheme('gruvbox')
+            end
         end,
-    },
-    {
-        'krady21/compiler-explorer.nvim',
-        keys = {
-            {
-                '<leader>C',
-                function()
-                    local cmd = { 'CECompileLive', 'compiler=g143' }
-                    if vim.fn.filereadable('compile_flags.txt') == 1 then
-                        for line in io.lines('compile_flags.txt') do
-                            if line ~= '' then
-                                table.insert(cmd, 'flags=' .. line)
-                            end
-                        end
-                    end
-                    vim.cmd(table.concat(cmd, ''))
-                end,
-            },
-        },
-        opts = {
-            line_match = {
-                highlight = true,
-                jump = true,
-            },
-        },
     },
 }
