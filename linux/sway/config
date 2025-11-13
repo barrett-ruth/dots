@@ -6,7 +6,7 @@ exec_always {
         timeout 300 "sh -c '$HOME/.local/bin/scripts/genlock && swaylock -f -i \$HOME/img/wp/random.jpg --indicator-radius 0 --indicator-thickness 0'" \
         timeout 600 'swaymsg "output * dpms off"' \
         resume 'swaymsg "output * dpms on"' \
-        timeout 900 'systemctl suspend-then-hibernate' \
+        timeout 900 'systemctl suspend' \
         before-sleep "sh -c '$HOME/.local/bin/scripts/genlock && swaylock -f -i \$HOME/img/wp/random.jpg --indicator-radius 0 --indicator-thickness 0'"
 }
 exec_always sh -c '$term -e mux'
