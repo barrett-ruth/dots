@@ -16,6 +16,7 @@ test -z "$THEME" && exit 1
 
 ln -sf "$XDG_CONFIG_HOME/rofi/themes/$THEME.rasi" "$XDG_CONFIG_HOME/rofi/themes/theme.rasi"
 ln -sf "$XDG_CONFIG_HOME/sioyek/themes/$THEME.config" "$XDG_CONFIG_HOME/sioyek/themes/theme.config"
+ln -sf "$XDG_CONFIG_HOME/sioyek/themes/$THEME" "$XDG_CONFIG_HOME/sioyek/themes/theme"
 
 test -f "$XDG_CONFIG_HOME/ghostty/config" && sed -i "s/^theme = ./*theme = $THEME/" "$XDG_CONFIG_HOME/ghostty/config"
 
