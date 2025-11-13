@@ -1,9 +1,0 @@
---color=always
---no-heading
---smart-case
---hidden
---line-number
---column
---glob=!.git/
---ignore-file=/home/frozen/.config/git/ignore
---ignore-vcs
