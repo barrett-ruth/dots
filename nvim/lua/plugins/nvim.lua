@@ -1,52 +1,3 @@
-local au = require('utils').au
-
-local function parse_output(proc)
-    local result = proc:wait()
-    local ret = {}
-    if result.code == 0 then
-        for line in
-            vim.gsplit(result.stdout, '\n', { plain = true, trimempty = true })
-        do
-            line = line:gsub('/$', '')
-            ret[line] = true
-        end
-    end
-    return ret
-end
-
-local function new_git_status()
-    return setmetatable({}, {
-        __index = function(self, key)
-            local ignore_proc = vim.system({
-                'git',
-                'ls-files',
-                '--ignored',
-                '--exclude-standard',
-                '--others',
-                '--directory',
-            }, {
-                cwd = key,
-                text = true,
-            })
-            local tracked_proc = vim.system(
-                { 'git', 'ls-tree', 'HEAD', '--name-only' },
-                {
-                    cwd = key,
-                    text = true,
-                }
-            )
-            local ret = {
-                ignored = parse_output(ignore_proc),
-                tracked = parse_output(tracked_proc),
-            }
-
-            rawset(self, key, ret)
-            return ret
-        end,
-    })
-end
-local git_status = new_git_status()
-
 return {
     {
         'barrett-ruth/live-server.nvim',
@@ -77,7 +28,7 @@ return {
             ]])
             vim.g.mkdp_auto_close = 0
             vim.g.mkdp_browserfunc = 'OpenMarkdownPreview'
-            au('FileType', 'MarkdownKeybind', {
+            vim.api.nvim_create_autocmd('FileType', {
                 pattern = 'markdown',
                 callback = function(opts)
                     bmap(
@@ -85,6 +36,10 @@ return {
                         { buffer = opts.buf }
                     )
                 end,
+                group = vim.api.nvim_create_augroup(
+                    'MarkdownKeybind',
+                    { clear = true }
+                ),
             })
         end,
     },
@@ -203,12 +158,12 @@ return {
                 default = {
                     augend.integer.alias.decimal_int,
                     augend.integer.alias.hex,
-                    augend.integer.alias.binary,
                     augend.integer.alias.octal,
+                    augend.integer.alias.binary,
                     augend.constant.alias.bool,
                     augend.constant.alias.alpha,
                     augend.constant.alias.Alpha,
-                    augend.constant.alias.semver,
+                    augend.semver.alias.semver,
                 },
             })
         end,
@@ -347,7 +302,7 @@ return {
         config = function(_, opts)
             require('oil').setup(opts)
 
-            require('utils').au('FileType', 'OilBufremove', {
+            vim.api.nvim_create_autocmd('FileType', {
                 pattern = 'oil',
                 callback = function(o)
                     local ok, bufremove = pcall(require, 'mini.bufremove')
@@ -356,57 +311,42 @@ return {
                         { buffer = o.buf }
                     )
                 end,
+                group = vim.api.nvim_create_augroup(
+                    'OilBufremove',
+                    { clear = true }
+                ),
             })
         end,
-        init = function()
-            require('utils').au('FileType', 'OilGit', {
-                pattern = 'oil',
-                callback = function()
-                    -- Clear git status cache on refresh
-                    local refresh = require('oil.actions').refresh
-                    local orig_refresh = refresh.callback
-                    refresh.callback = function(...)
-                        git_status = new_git_status()
-                        orig_refresh(...)
-                    end
-                end,
-            })
-        end,
-        keys = {
-            { '-', '<cmd>e .<cr>' },
-            { '_', vim.cmd.Oil },
-        },
         event = function()
             if vim.fn.isdirectory(vim.fn.expand('%:p')) == 1 then
                 return 'VimEnter'
             end
         end,
+        keys = {
+            { '-', '<cmd>e .<cr>' },
+            { '_', vim.cmd.Oil },
+        },
         opts = {
             skip_confirm_for_simple_edits = true,
             prompt_save_on_select_new_entry = false,
             float = { border = 'single' },
             view_options = {
                 is_hidden_file = function(name, bufnr)
-                    if name == '..' then
-                        return false
-                    end
-
                     local dir = require('oil').get_current_dir(bufnr)
-
                     if not dir then
                         return false
                     end
-
-                    local git_dir = vim.fs.find('.git', {
-                        path = dir,
-                        upward = true,
-                    })[1]
-
-                    if not git_dir then
+                    if vim.startswith(name, '.') then
                         return false
                     end
-
-                    return not git_status[dir].tracked[name]
+                    local git_dir = vim.fn.finddir('.git', dir .. ';')
+                    if git_dir == '' then
+                        return false
+                    end
+                    local fullpath = dir .. '/' .. name
+                    local result =
+                        vim.fn.systemlist({ 'git', 'check-ignore', fullpath })
+                    return #result > 0
                 end,
             },
             keymaps = {
@@ -417,7 +357,7 @@ return {
         },
     },
     {
-        'echasnovski/mini.bufremove',
+        'nvim-mini/mini.bufremove',
         config = true,
         event = 'VeryLazy',
         keys = {
@@ -494,6 +434,9 @@ return {
     {
         'saghen/blink.indent',
         opts = {
+            blocked = {
+                filetypes = { include_defaults = true, 'fugitive', 'markdown' },
+            },
             static = {
                 char = '│',
             },
@@ -503,11 +446,36 @@ return {
     {
         'barrett-ruth/midnight.nvim',
         config = function(_)
-            if vim.tbl_contains({ 'midnight', 'daylight' }, vim.env.THEME) then
-                vim.cmd.colorscheme(vim.env.THEME)
-            else
-                vim.cmd.colorscheme('gruvbox')
-            end
+            local theme = vim.tbl_contains(
+                { 'midnight', 'daylight' },
+                vim.env.THEME
+            ) and vim.env.THEME or 'gruvbox'
+            vim.cmd.colorscheme(theme)
         end,
+    },
+    {
+        'krady21/compiler-explorer.nvim',
+        keys = {
+            {
+                '<leader>C',
+                function()
+                    local cmd = { 'CECompileLive', 'compiler=g143' }
+                    if vim.fn.filereadable('compile_flags.txt') == 1 then
+                        for line in io.lines('compile_flags.txt') do
+                            if line ~= '' then
+                                table.insert(cmd, 'flags=' .. line)
+                            end
+                        end
+                    end
+                    vim.cmd(table.concat(cmd, ''))
+                end,
+            },
+        },
+        opts = {
+            line_match = {
+                highlight = true,
+                jump = true,
+            },
+        },
     },
 }
