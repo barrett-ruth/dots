@@ -6,7 +6,7 @@ import os
 import math
 
 HOME = os.environ['HOME']
-DIR = f"{HOME}/img"
+DIR = f"{HOME}/img/wp"
 FILE = f"{DIR}/random.jpg"
 os.makedirs(DIR, exist_ok=True)
 
