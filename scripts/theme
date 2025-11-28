@@ -1,23 +1,87 @@
 #!/bin/sh
 
-THEMES="
+themes="
 daylight
 gruvbox
 midnight
 "
 
-if [ "$XDG_SESSION_TYPE" = 'wayland' ]; then
-  THEME="$(printf "%s\n" "$THEMES" | rofi -dmenu -p 'theme')"
+as_list="$(printf "%s\n" "$themes" | awk 'NF{printf "\"%s\",", $0}' | sed 's/,$//')"
+
+case "$(uname)" in
+Linux)
+  if [ -n "$1" ]; then
+    theme="$1"
+  else
+    if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+      theme="$(printf "%s\n" "$themes" | rofi -dmenu -p 'theme')"
+    else
+      theme="$(printf "%s\n" "$themes" | dmenu -p 'theme: ')"
+    fi
+  fi
+  ;;
+Darwin)
+  if [ -n "$1" ]; then
+    theme="$1"
+  else
+    theme="$(
+      osascript <<EOF
+set theList to {$as_list}
+
+set chosenTheme to (choose from list theList ¬
+  with title "Theme" ¬
+  with prompt "Pick a theme" ¬
+  OK button name "Apply" ¬
+  cancel button name "Cancel" ¬
+  without empty selection allowed)
+
+if chosenTheme is false then
+  return ""
 else
-  THEM="$(printf "%s\n" "$THEMES" | dmenu -p 'theme: ')"
-fi
+  return item 1 of chosenTheme
+end if
+EOF
+    )"
+  fi
+  ;;
+*)
+  exit 1
+  ;;
+esac
 
-test -z "$THEME" && exit 1
+[ -z "$theme" ] && exit 1
 
-ln -sf "$XDG_CONFIG_HOME/rofi/themes/$THEME.rasi" "$XDG_CONFIG_HOME/rofi/themes/theme.rasi"
-ln -sf "$XDG_CONFIG_HOME/sioyek/themes/$THEME.config" "$XDG_CONFIG_HOME/sioyek/themes/theme.config"
-ln -sf "$XDG_CONFIG_HOME/sioyek/themes/$THEME" "$XDG_CONFIG_HOME/sioyek/themes/theme"
+case "$(uname)" in
+Linux)
+  ln -sf "$XDG_CONFIG_HOME/rofi/themes/$theme.rasi" \
+    "$XDG_CONFIG_HOME/rofi/themes/theme.rasi"
 
-test -f "$XDG_CONFIG_HOME/ghostty/config" && sed -i "s/^theme = ./*theme = $THEME/" "$XDG_CONFIG_HOME/ghostty/config"
+  ln -sf "$XDG_CONFIG_HOME/sioyek/themes/$theme.config" \
+    "$XDG_CONFIG_HOME/sioyek/themes/theme.config"
 
-tmux set-environment -g THEME "$THEME" 2>/dev/null
+  ln -sf "$XDG_CONFIG_HOME/sioyek/themes/$theme" \
+    "$XDG_CONFIG_HOME/sioyek/themes/theme"
+
+  test -f "$XDG_CONFIG_HOME/ghostty/config" &&
+    sed -i "s/^theme = .*/theme = $theme/" "$XDG_CONFIG_HOME/ghostty/config"
+
+  case "$theme" in
+  gruvbox | midnight)
+    gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark' 2>/dev/null
+    ;;
+  *)
+    gsettings set org.gnome.desktop.interface color-scheme 'prefer-light' 2>/dev/null
+    ;;
+  esac
+
+  swaymsg reload 2>/dev/null
+  ;;
+Darwin)
+  test -f "$XDG_CONFIG_HOME/ghostty/config" &&
+    sed -i '' -e "s/^theme = .*/theme = $theme/" "$XDG_CONFIG_HOME/ghostty/config"
+
+  osascript -e 'tell application "System Events" to tell process "Ghostty" to click menu item "Reload Configuration" of menu "Ghostty" of menu bar item "Ghostty" of menu bar 1'
+  ;;
+esac
+
+tmux set-environment -g theme "$theme" 2>/dev/null
