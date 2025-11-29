@@ -55,14 +55,6 @@ export FZF_TMUX=1
 export FZF_CTRL_T_COMMAND='rg --files --hidden --color=auto'
 export FZF_DEFAULT_OPTS='--color=light --bind=ctrl-a:select-all --bind=ctrl-f:half-page-down --bind=ctrl-b:half-page-up --no-scrollbar --no-info'
 
-if [ "$THEME" = "gruvbox" ]; then
-  export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --color=fg:#ebdbb2,bg:#1d2021,hl:#fabd2f --color=fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f --color=info:#83a598,prompt:#b8bb26,pointer:#ebdbb2,marker:#83a598,spinner:#d3869b"
-elif [ "$THEME" = "midnight" ]; then
-  export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --color=fg:#e0e0e0,bg:#121212,hl:#7aa2f7 --color=fg+:#e0e0e0,bg+:#2d2d2d,hl+:#7aa2f7 --color=info:#98c379,prompt:#7aa2f7,pointer:#e0e0e0,marker:#98c379,spinner:#e0e0e0"
-elif [ "$THEME" = "daylight" ]; then
-  export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --color=fg:#1a1a1a,bg:#f5f5f5,hl:#3b5bdb --color=fg+:#1a1a1a,bg+:#ebebeb,hl+:#3b5bdb --color=info:#2d7f3e,prompt:#3b5bdb,pointer:#1a1a1a,marker:#2d7f3e,spinner:#1a1a1a"
-fi
-
 . <(fzf --zsh)
 
 fzf-config-widget() {
