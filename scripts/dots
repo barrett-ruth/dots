@@ -9,14 +9,16 @@ test -z "$XDG_CONFIG_HOME" && exit
 
 ! exists rmb && exit
 
-exists pacman && pacman -Qen >pacman.txt
-exists pikaur && pikaur -Qm >pikaur.txt
+test -d linux || mkdir linux
+
+exists pacman && pacman -Qen >linux/pacman.txt
+exists pikaur && pikaur -Qm >linux/pikaur.txt
 exists pnpm && pnpm -g list | tail -n +6 >pnpm.txt
 exists pip && pip list --not-required >pip.txt
 
 cp -r "$SCRIPTS" .
 
-for folder in git npm nvim python rg tmux yamllint zsh mutt dunst sioyek ghostty zathura; do
+for folder in git npm nvim python rg tmux yamllint zsh mutt dunst sioyek ghostty fzf; do
   if [ -d "$XDG_CONFIG_HOME/$folder" ]; then
     rm -rf "$folder"
     cp -rf "$XDG_CONFIG_HOME/$folder" .
@@ -24,7 +26,7 @@ for folder in git npm nvim python rg tmux yamllint zsh mutt dunst sioyek ghostty
 done
 
 if [ -d linux ]; then
-  for folder in rofi sway spectrwm X11; do
+  for folder in rofi sway spectrwm X11 zathura; do
     if [ -d "$XDG_CONFIG_HOME/$folder" ]; then
       rm -rf "linux/$folder"
       cp -rf "$XDG_CONFIG_HOME/$folder" linux

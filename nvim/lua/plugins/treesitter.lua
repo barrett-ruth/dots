@@ -124,7 +124,7 @@ return {
         'Wansmer/treesj',
         config = true,
         keys = {
-            { 'gS', '<cmd>lua require("treesj").toggle()<cr>' },
+            { 'gt', '<cmd>lua require("treesj").toggle()<cr>' },
         },
     },
 }

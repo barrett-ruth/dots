@@ -14,7 +14,8 @@ alias g='git'
 alias nv='nvim'
 sy() {
     [ "$1" ] || return
-    sioyek "$1" 2>/dev/null &; disown
+    sioyek "$1" 2>/dev/null &
+    disown
 }
 
 mkcd() {
@@ -47,4 +48,10 @@ j() {
         zsh) cd ~/.config/zsh;;
         *) cd "$@";;
     esac
+}
+
+fzf() {
+  local theme_file="$XDG_CONFIG_HOME/fzf/themes/theme"
+  local theme_args=( ${(f)"$(< $theme_file 2>/dev/null)"} )
+  command fzf "${theme_args[@]}" "$@"
 }

@@ -1,7 +1,9 @@
+@import "themes/midnight.rasi"
+
 configuration {
   font: "Berkeley Mono 15";
 }
 
-listview {
+* {
   scrollbar: false;
 }

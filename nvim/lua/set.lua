@@ -14,19 +14,10 @@ o.exrc = true
 o.secure = true
 
 opt.fillchars = {
-    fold = ' ',
-    foldopen = 'v',
-    foldclose = '>',
-    foldsep = ' ',
     eob = ' ',
     vert = '│',
     diff = '╱',
 }
-
-o.foldlevel = 99
-o.foldmethod = 'expr'
-o.foldminlines = 9
-opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 
 opt.iskeyword:append('-')
 

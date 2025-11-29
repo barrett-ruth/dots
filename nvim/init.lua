@@ -5,6 +5,7 @@ require('filetype')
 require('filetype')
 require('aug')
 
+require('fold').setup()
 require('lines').setup()
 require('lsp').setup()
 

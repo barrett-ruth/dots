@@ -350,9 +350,10 @@ return {
                 end,
             },
             keymaps = {
-                ['<c-h>'] = false,
-                ['<c-s>'] = 'actions.select_vsplit',
-                ['<c-x>'] = 'actions.select_split',
+                ['<C-h>'] = false,
+                ['<C-t>'] = false,
+                ['<c-s>'] = { 'actions.select', opts = { vertical = true } },
+                ['<c-x>'] = { 'actions.select', opts = { horizontal = true } },
             },
         },
     },
@@ -444,13 +445,13 @@ return {
         },
     },
     {
-        'barrett-ruth/midnight.nvim',
-        config = function(_)
-            local theme = vim.tbl_contains(
-                { 'midnight', 'daylight' },
-                vim.env.THEME
-            ) and vim.env.THEME or 'gruvbox'
-            vim.cmd.colorscheme(theme)
+        'barrett-ruth/auto-theme.nvim',
+        dependencies = {
+            'barrett-ruth/midnight.nvim',
+        },
+        init = function()
+            vim.g.auto_theme_dark = 'midnight'
+            vim.g.auto_theme_light = 'daylight'
         end,
     },
     {

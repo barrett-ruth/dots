@@ -4,7 +4,7 @@ font-feature = "-calt"
 font-size = 20
 adjust-cell-height = 10%
 
-*theme = midnightidnight
+theme = dark:midnight,light:daylight
 
 window-padding-x = 0
 window-padding-y = 0
@@ -16,11 +16,11 @@ quit-after-last-window-closed = true
 confirm-close-surface = false
 
 keybind = clear
+keybind = alt+r=reload_config
 keybind = alt+y=copy_to_clipboard
 keybind = alt+p=paste_from_clipboard
 keybind = alt+shift+h=decrease_font_size:1
 keybind = alt+shift+l=increase_font_size:1
-keybind = ctrl+shift+r=reload_config
 
 # claude config
 keybind = shift+enter=text:\n

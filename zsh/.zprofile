@@ -17,6 +17,7 @@ export HISTSIZE=2000
 export HISTFILESIZE=2000
 export MANPAGER='nvim +Man!'
 export SAVEHIST=2000
+export TERMINAL=ghostty
 export TERMINFO="$XDG_DATA_HOME"/terminfo
 export TERM=xterm-ghostty
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
@@ -80,10 +81,7 @@ if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
         export QT_QPA_PLATFORM=wayland
         export GDK_BACKEND=wayland,x11
         export SDL_VIDEODRIVER=wayland
-        ln -sf "$XDG_CONFIG_HOME/sway/themes/$THEME" ~/.config/sway/theme
-        exec sway
     else
         export XDG_SESSION_TYPE=x11
-        exec startx
     fi
 fi

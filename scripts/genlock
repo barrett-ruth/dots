@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
+
 from PIL import Image, ImageDraw
 import random
 import subprocess
 import os
-import math
 
 HOME = os.environ['HOME']
 DIR = f"{HOME}/img/wp"
@@ -26,7 +26,7 @@ img = Image.new('RGB', (W, H), 'black')
 draw = ImageDraw.Draw(img)
 
 MU = 0.8
-SIGMA = 0.6
+SIGMA = 0.7
 SCALE_FACTOR = 1.8
 
 for y in range(grid_h):

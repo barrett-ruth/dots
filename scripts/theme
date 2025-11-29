@@ -1,10 +1,8 @@
 #!/bin/sh
 
-themes="
-daylight
+themes="daylight
 gruvbox
-midnight
-"
+midnight"
 
 as_list="$(printf "%s\n" "$themes" | awk 'NF{printf "\"%s\",", $0}' | sed 's/,$//')"
 
@@ -53,35 +51,38 @@ esac
 
 case "$(uname)" in
 Linux)
-  ln -sf "$XDG_CONFIG_HOME/rofi/themes/$theme.rasi" \
-    "$XDG_CONFIG_HOME/rofi/themes/theme.rasi"
+  test -f "$XDG_CONFIG_HOME/sway/themes/theme" && ln -sf "$XDG_CONFIG_HOME/sway/themes/$theme" "$XDG_CONFIG_HOME/sway/themes/theme"
 
-  ln -sf "$XDG_CONFIG_HOME/sioyek/themes/$theme.config" \
-    "$XDG_CONFIG_HOME/sioyek/themes/theme.config"
+  test -d "$XDG_CONFIG_HOME/rofi/themes" && sed -i "s|@import \"themes/.*\.rasi\"|@import \"themes/$theme.rasi\"|" "$XDG_CONFIG_HOME/rofi/config.rasi"
 
-  ln -sf "$XDG_CONFIG_HOME/sioyek/themes/$theme" \
-    "$XDG_CONFIG_HOME/sioyek/themes/theme"
+  test -f "$XDG_CONFIG_HOME/sioyek/themes/theme.config" && ln -sf "$XDG_CONFIG_HOME/sioyek/themes/$theme.config" "$XDG_CONFIG_HOME/sioyek/themes/theme.config"
 
-  test -f "$XDG_CONFIG_HOME/ghostty/config" &&
-    sed -i "s/^theme = .*/theme = $theme/" "$XDG_CONFIG_HOME/ghostty/config"
+  test -f "$XDG_CONFIG_HOME/sioyek/themes/$theme.config" && ln -sf "$XDG_CONFIG_HOME/sioyek/themes/$theme.config" "$XDG_CONFIG_HOME/sioyek/themes/theme.config"
 
-  case "$theme" in
-  gruvbox | midnight)
-    gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark' 2>/dev/null
-    ;;
-  *)
-    gsettings set org.gnome.desktop.interface color-scheme 'prefer-light' 2>/dev/null
-    ;;
-  esac
+  test -f "$XDG_CONFIG_HOME/sioyek/prefs_user.config" && sed -i "s|^\(source ~/.config/sioyek/themes/\)[^/]*\.config$|\1$theme.config|" "$XDG_CONFIG_HOME/sioyek/prefs_user.config"
 
-  swaymsg reload 2>/dev/null
-  ;;
-Darwin)
-  test -f "$XDG_CONFIG_HOME/ghostty/config" &&
-    sed -i '' -e "s/^theme = .*/theme = $theme/" "$XDG_CONFIG_HOME/ghostty/config"
+  if command -v gsettings >/dev/null 2>&1; then
+    case "$theme" in
+    gruvbox | midnight)
+      gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+      ;;
+    *)
+      gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
+      ;;
+    esac
+  fi
 
-  osascript -e 'tell application "System Events" to tell process "Ghostty" to click menu item "Reload Configuration" of menu "Ghostty" of menu bar item "Ghostty" of menu bar 1'
+  [ "$XDG_SESSION_TYPE" = "wayland" ] && swaymsg reload
   ;;
 esac
 
-tmux set-environment -g theme "$theme" 2>/dev/null
+
+test -d "$XDG_CONFIG_HOME/fzf/themes" && ln -sf "$XDG_CONFIG_HOME/fzf/themes/$theme" "$XDG_CONFIG_HOME/fzf/themes/theme"
+
+test -f ~/.zshenv && sed -i "s|^\(export THEME=\).*|\1$theme|" ~/.zshenv
+
+if command -v tmux >/dev/null 2>&1; then
+  test -f "$XDG_CONFIG_HOME/tmux/tmux.conf" && ln -sf "$XDG_CONFIG_HOME/tmux/themes/$theme.tmux" "$XDG_CONFIG_HOME/tmux/themes/theme.tmux"
+  tmux source-file "$XDG_CONFIG_HOME/tmux/themes/$theme.tmux"
+  tmux refresh-client -S
+fi

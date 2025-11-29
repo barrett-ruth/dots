@@ -33,7 +33,12 @@ return {
                     auto_show = false,
                     scrollbar = false,
                     max_height = vim.o.pumheight,
-                    draw = { columns = { { 'label', 'label_description' } } },
+                    draw = {
+                        columns = {
+                            { 'label', 'label_description' },
+                            { 'kind' },
+                        },
+                    },
                 },
             },
             cmdline = {
@@ -66,6 +71,26 @@ return {
     },
     {
         'neovim/nvim-lspconfig',
+        config = function(_)
+            local configs = require('lspconfig.configs')
+            local nvim_lsp = require('lspconfig')
+
+            if not configs.pytest_language_server then
+                configs.pytest_language_server = {
+                    default_config = {
+                        cmd = { 'pytest-language-server' },
+                        filetypes = { 'python' },
+                        root_dir = nvim_lsp.util.root_pattern(
+                            '.git',
+                            'pyproject.toml',
+                            'setup.py'
+                        ),
+                        settings = {},
+                    },
+                }
+            end
+            nvim_lsp.pytest_language_server.setup({})
+        end,
         dependencies = {
             'b0o/SchemaStore.nvim',
             {

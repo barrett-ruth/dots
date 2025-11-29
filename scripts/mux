@@ -22,7 +22,7 @@ bar)
   total=$(echo "$sessions" | wc -w)
   for sess in $sessions; do
     if [ $i -lt 4 ]; then
-      key=$(echo $keys | cut -d' ' -f $((i + 1)))
+      key=$(echo "$keys" | cut -d' ' -f $((i + 1)))
     elif [ $i -eq $((total - 1)) ]; then
       key='$'
     else

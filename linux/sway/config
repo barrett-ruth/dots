@@ -1,5 +1,5 @@
-exec_always dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK XDG_SESSION_TYPE
-exec_always systemctl --user import-environment DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK XDG_SESSION_TYPE
+exec_always dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK XDG_SESSION_TYPE THEME
+exec_always systemctl --user import-environment DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK XDG_SESSION_TYPE THEME
 exec_always sclip
 exec_always {
     swayidle -w \
@@ -12,10 +12,10 @@ exec_always {
 exec_always sh -c '$term -e mux'
 exec_always sh -c 'chromium --ozone-platform=wayland'
 
-include ~/.config/sway/theme
+include ~/.config/sway/themes/theme
 
-set $term ghostty --theme=$THEME
-set $menu rofi -show run -theme "$XDG_CONFIG_HOME/rofi/themes/$THEME.rasi"
+set $term ghostty
+set $menu rofi -show run
 
 font pango:Berkeley Mono 15
 default_border pixel 5
@@ -118,7 +118,7 @@ client.unfocused        $bg   $bg   $fg2  $bg   $bg
 
 bar {
     position top
-    status_command /home/frozen/.config/sway/bar.sh
+    status_command ~/.config/sway/bar.sh
     separator_symbol " │ "
     colors {
         background $bg
@@ -135,7 +135,7 @@ input * {
     xkb_layout us
     xkb_options "lv3:ralt_switch"
 }
-output * bg ~/img/wp/one/bike.jpg fill
+output * bg ~/img/wp/one/progress.jpg fill
 
 include /etc/sway/config.d/*
 
