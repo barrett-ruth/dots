@@ -6,6 +6,7 @@ function M.setup(opts)
 end
 
 function M.reload_colors()
+    print('reloading')
     local lines = vim.fn.readfile(vim.fn.expand('~/.config/fzf/themes/theme'))
     if not lines or #lines == 0 then
         return
@@ -17,6 +18,7 @@ function M.reload_colors()
         end
     end
     if not M.opts then
+        print('no opts')
         return
     end
     M.opts.fzf_colors = colors
