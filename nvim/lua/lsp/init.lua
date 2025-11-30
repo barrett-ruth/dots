@@ -154,6 +154,7 @@ function M.setup()
         'mdx_analyzer',
         'jsonls',
         'vtsls',
+        'pytest_lsp',
         'lua_ls',
         'ruff',
     }) do
