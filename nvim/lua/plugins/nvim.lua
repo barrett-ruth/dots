@@ -447,8 +447,7 @@ return {
     {
         'barrett-ruth/midnight.nvim',
         init = function()
-            local socket_path =
-                string.format('/tmp/nvim-%d.sock', vim.fn.getpid())
+            local socket_path = ('/tmp/nvim-%d.sock'):format(vim.fn.getpid())
             vim.fn.serverstart(socket_path)
             vim.cmd.colorscheme(vim.env.THEME or 'midnight')
         end,

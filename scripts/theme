@@ -50,11 +50,6 @@ esac
 [ -z "$theme" ] && exit 1
 echo "$themes" | grep -Fxq "$theme" || exit 1
 
-for socket in /tmp/nvim-*.sock; do
-  test -S "$socket" && nvim --server "$socket" --remote-expr "v:lua.require('fzf_theme').reload_colors()" >/dev/null 2>&1 || true
-  test -S "$socket" && nvim --server "$socket" --remote-expr "v:lua.vim.cmd.colorscheme('$theme')" >/dev/null 2>&1 || true
-done
-
 test -d "$XDG_CONFIG_HOME/fzf/themes" && ln -sf "$XDG_CONFIG_HOME/fzf/themes/$theme" "$XDG_CONFIG_HOME/fzf/themes/theme"
 test -d "$XDG_CONFIG_HOME/rg/themes" && ln -sf "$XDG_CONFIG_HOME/rg/themes/$theme" "$XDG_CONFIG_HOME/rg/themes/theme"
 
@@ -102,3 +97,8 @@ Darwin)
   esac
   ;;
 esac
+
+for socket in /tmp/nvim-*.sock; do
+  test -S "$socket" && nvim --server "$socket" --remote-send ":lua require('fzf_theme').reload_colors()<cr>" 2>/dev/null || true
+  test -S "$socket" && nvim --server "$socket" --remote-send ":lua vim.cmd.colorscheme('$theme')<cr>" 2>/dev/null || true
+done

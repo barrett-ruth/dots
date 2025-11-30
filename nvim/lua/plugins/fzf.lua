@@ -1,7 +1,7 @@
 return {
     'ibhagwan/fzf-lua',
     config = function(_, opts)
-        local actions, fzf = require('fzf-lua.actions'), require('fzf-lua')
+        local actions = require('fzf-lua.actions')
 
         opts = vim.tbl_extend('force', opts, {
             actions = {
@@ -44,8 +44,7 @@ return {
             },
         })
 
-        fzf.setup(opts)
-
+        require('fzf_theme').setup(opts)
         require('fzf_theme').reload_colors()
     end,
     keys = {
@@ -107,7 +106,7 @@ return {
             file_icons = false,
             no_header_i = true,
         },
-        fzf_args = vim.env.FZF_DEFAULT_OPTS,
+        fzf_args = vim.env.FZF_DEFAULT_OPTS:gsub('%-%-color=[^%s]+', ''),
         grep = {
             file_icons = false,
             no_header_i = true,
