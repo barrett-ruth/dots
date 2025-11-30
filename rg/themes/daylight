@@ -1,0 +1,6 @@
+--color=auto
+--colors=line:style:nobold
+--colors=line:fg:8
+--colors=match:fg:red
+--colors=match:style:bold
+--colors=path:fg:magenta

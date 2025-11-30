@@ -452,6 +452,8 @@ return {
         init = function()
             vim.g.auto_theme_dark = 'midnight'
             vim.g.auto_theme_light = 'daylight'
+            local socket_path = string.format('/tmp/nvim-%d.sock', vim.fn.getpid())
+            vim.fn.serverstart(socket_path)
         end,
     },
     {

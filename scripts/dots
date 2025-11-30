@@ -25,6 +25,8 @@ for folder in git npm nvim python rg tmux yamllint zsh mutt dunst sioyek ghostty
   fi
 done
 
+rmb theme.tmux tmux.conf themes tmux
+
 if [ -d linux ]; then
   for folder in rofi sway spectrwm X11 zathura; do
     if [ -d "$XDG_CONFIG_HOME/$folder" ]; then

@@ -45,6 +45,8 @@ return {
         })
 
         fzf.setup(opts)
+
+        require('fzf_theme').reload_colors()
     end,
     keys = {
         {

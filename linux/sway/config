@@ -9,8 +9,9 @@ exec_always {
         timeout 900 'systemctl suspend' \
         before-sleep "sh -c '$HOME/.local/bin/scripts/genlock && swaylock -f -i \$HOME/img/wp/random.jpg --indicator-radius 0 --indicator-thickness 0'"
 }
-exec_always sh -c '$term -e mux'
-exec_always sh -c 'chromium --ozone-platform=wayland'
+exec sh -c 'theme midnight'
+exec sh -c '$term -e mux'
+exec sh -c 'chromium --ozone-platform=wayland'
 
 include ~/.config/sway/themes/theme
 

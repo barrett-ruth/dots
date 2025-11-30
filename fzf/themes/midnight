@@ -1,3 +1,1 @@
---color=fg:#e0e0e0,bg:#121212,hl:#7aa2f7
---color=fg+:#e0e0e0,bg+:#2d2d2d,hl+:#7aa2f7
---color=info:#98c379,prompt:#7aa2f7,pointer:#e0e0e0,marker:#98c379,spinner:#e0e0e0
+--color=fg:#e0e0e0,bg:#121212,hl:#7aa2f7 --color=fg+:#e0e0e0,bg+:#2d2d2d,hl+:#7aa2f7 --color=info:#98c379,prompt:#7aa2f7,pointer:#e0e0e0,marker:#98c379,spinner:#e0e0e0
