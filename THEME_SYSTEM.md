@@ -27,21 +27,18 @@ The system uses symlinks and mtime checks for efficiency:
 Create color files in `~/.config/fzf/themes/`:
 
 `~/.config/fzf/themes/gruvbox`:
-```bash
-#!/bin/sh
-export FZF_THEME_COLORS="--color=fg:#ebdbb2,bg:#282828,hl:#fabd2f --color=fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f --color=info:#83a598,prompt:#fb4934,pointer:#b8bb26,marker:#fe8019,spinner:#8ec07c,header:#928374"
+```
+--color=fg:#ebdbb2,bg:#282828,hl:#fabd2f --color=fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f --color=info:#83a598,prompt:#fb4934,pointer:#b8bb26,marker:#fe8019,spinner:#8ec07c,header:#928374
 ```
 
 `~/.config/fzf/themes/daylight`:
-```bash
-#!/bin/sh
-export FZF_THEME_COLORS="--color=fg:#000000,bg:#ffffff,hl:#0000ff --color=fg+:#000000,bg+:#e0e0e0,hl+:#0000ff --color=info:#008000,prompt:#ff0000,pointer:#800080,marker:#ff8c00,spinner:#008080,header:#808080"
+```
+--color=fg:#000000,bg:#ffffff,hl:#0000ff --color=fg+:#000000,bg+:#e0e0e0,hl+:#0000ff --color=info:#008000,prompt:#ff0000,pointer:#800080,marker:#ff8c00,spinner:#008080,header:#808080
 ```
 
 `~/.config/fzf/themes/midnight`:
-```bash
-#!/bin/sh
-export FZF_THEME_COLORS="--color=fg:#c0c0c0,bg:#000033,hl:#00ffff --color=fg+:#ffffff,bg+:#000066,hl+:#00ffff --color=info:#ffff00,prompt:#ff00ff,pointer:#00ff00,marker:#ffa500,spinner:#00bfff,header:#696969"
+```
+--color=fg:#c0c0c0,bg:#000033,hl:#00ffff --color=fg+:#ffffff,bg+:#000066,hl+:#00ffff --color=info:#ffff00,prompt:#ff00ff,pointer:#00ff00,marker:#ffa500,spinner:#00bfff,header:#696969
 ```
 
 #### Ripgrep Configuration
@@ -56,9 +53,7 @@ Create base config in `~/.config/rg/config`:
 --glob=!venv/
 --glob=!pyenv/
 --no-messages
-
 ```
-(Note: trailing newline is required)
 
 Create color files in `~/.config/rg/colors/`:
 
@@ -114,11 +109,8 @@ function M.reload_colors()
     local content = file:read('*a')
     file:close()
 
-    local colors_string = content:match('export FZF_THEME_COLORS="(.-)"')
-    if not colors_string then return end
-
     local colors = {}
-    for color_spec in colors_string:gmatch('--color=([^%s]+)') do
+    for color_spec in content:gmatch('--color=([^%s]+)') do
         for key, value in color_spec:gmatch('([^:,]+):([^,]+)') do
             colors[key] = value
         end
@@ -143,14 +135,14 @@ Add to `~/.config/zsh/.zprofile`:
 ```bash
 _fzf_theme_precmd() {
     local theme_file="$XDG_CONFIG_HOME/fzf/themes/theme"
-    local current_mtime=$(stat -f %m "$theme_file" 2>/dev/null)  # Linux: stat -c %Y
+    local theme_target=$(readlink "$theme_file" 2>/dev/null)
 
-    if [[ "$current_mtime" != "$_FZF_THEME_MTIME" ]]; then
-        _FZF_THEME_MTIME="$current_mtime"
+    if [[ "$theme_target" != "$_FZF_THEME_TARGET" ]]; then
+        _FZF_THEME_TARGET="$theme_target"
 
         if [[ -r "$theme_file" ]]; then
-            source "$theme_file"
-            export FZF_DEFAULT_OPTS="--bind=ctrl-a:select-all --bind=ctrl-f:half-page-down --bind=ctrl-b:half-page-up --bind=ctrl-u:half-page-up --bind=ctrl-d:half-page-down --no-scrollbar --no-info $FZF_THEME_COLORS"
+            local colors=$(cat "$theme_file")
+            export FZF_DEFAULT_OPTS="--bind=ctrl-a:select-all --bind=ctrl-f:half-page-down --bind=ctrl-b:half-page-up --bind=ctrl-u:half-page-up --bind=ctrl-d:half-page-down --no-scrollbar --no-info $colors"
         fi
     fi
 }
@@ -166,7 +158,7 @@ _rg_theme_precmd() {
 
     if [[ "$check" != "$_RG_CHECK" ]]; then
         _RG_CHECK="$check"
-        test -f "$config" && test -f "$colors" && cat "$config" "$colors" > "$combined"
+        test -f "$config" && test -f "$colors" && { cat "$config"; echo; cat "$colors"; } > "$combined"
     fi
 
     test -f "$combined" && export RIPGREP_CONFIG_PATH="$combined"
@@ -234,26 +226,21 @@ esac
 
 [ -z "$theme" ] && exit 1
 
-# Update symlinks
 test -d "$XDG_CONFIG_HOME/fzf/themes" && ln -sf "$XDG_CONFIG_HOME/fzf/themes/$theme" "$XDG_CONFIG_HOME/fzf/themes/theme"
 test -d "$XDG_CONFIG_HOME/rg/colors" && ln -sf "$XDG_CONFIG_HOME/rg/colors/$theme" "$XDG_CONFIG_HOME/rg/colors/theme"
 
-# Update environment
-test -f ~/.zshenv && sed -i '' "s|^\(export THEME=\).*|\1$theme|" ~/.zshenv  # Linux: sed -i (no '')
+test -f ~/.zshenv && sed -i '' "s|^\(export THEME=\).*|\1$theme|" ~/.zshenv  # Linux: sed -i
 
-# Update tmux if available
 if command -v tmux >/dev/null 2>&1; then
   test -f "$XDG_CONFIG_HOME/tmux/themes/$theme.tmux" && ln -sf "$XDG_CONFIG_HOME/tmux/themes/$theme.tmux" "$XDG_CONFIG_HOME/tmux/themes/theme.tmux"
   test -f "$XDG_CONFIG_HOME/tmux/themes/$theme.tmux" && tmux source-file "$XDG_CONFIG_HOME/tmux/themes/$theme.tmux"
   tmux refresh-client -S 2>/dev/null || true
 fi
 
-# Signal Neovim instances
 for socket in /tmp/nvim-*.sock; do
   test -S "$socket" && nvim --server "$socket" --remote-expr "v:lua.require('fzf_theme').reload_colors()" >/dev/null 2>&1 || true
 done
 
-# macOS appearance switching
 case "$(uname)" in
 Darwin)
   case "$theme" in
@@ -274,7 +261,7 @@ Run once to create initial symlinks:
 ```bash
 cd ~/.config/fzf/themes && ln -sf midnight theme
 cd ~/.config/rg/colors && ln -sf midnight theme
-cat ~/.config/rg/config ~/.config/rg/colors/theme > ~/.config/rg/current
+{ cat ~/.config/rg/config; echo; cat ~/.config/rg/colors/theme; } > ~/.config/rg/current
 ```
 
 ## Linux Porting Notes
