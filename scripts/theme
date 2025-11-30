@@ -100,5 +100,4 @@ esac
 
 for socket in /tmp/nvim-*.sock; do
   test -S "$socket" && nvim --server "$socket" --remote-send ":lua require('fzf_theme').reload_colors()<cr>" 2>/dev/null || true
-  test -S "$socket" && nvim --server "$socket" --remote-send ":lua vim.cmd.colorscheme('$theme')<cr>" 2>/dev/null || true
 done
