@@ -1,3 +1,8 @@
+local clang_format_content = [[BasedOnStyle: Google
+IndentWidth: 2
+ColumnLimit: 100
+PointerAlignment: Left]]
+
 return {
     'barrett-ruth/cp.nvim',
     command = 'CP',
@@ -137,6 +142,14 @@ return {
                         end
                         vim.cmd.stopinsert()
                     end)
+                    local clang_format_path = vim.fn.getcwd()
+                        .. '/.clang-format'
+                    if vim.fn.filereadable(clang_format_path) == 0 then
+                        vim.fn.writefile(
+                            vim.split(clang_format_content, '\n'),
+                            clang_format_path
+                        )
+                    end
                 end,
             },
         })

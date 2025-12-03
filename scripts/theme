@@ -50,29 +50,8 @@ esac
 [ -z "$theme" ] && exit 1
 echo "$themes" | grep -Fxq "$theme" || exit 1
 
-test -d "$XDG_CONFIG_HOME/fzf/themes" && ln -sf "$XDG_CONFIG_HOME/fzf/themes/$theme" "$XDG_CONFIG_HOME/fzf/themes/theme"
-test -d "$XDG_CONFIG_HOME/rg/themes" && ln -sf "$XDG_CONFIG_HOME/rg/themes/$theme" "$XDG_CONFIG_HOME/rg/themes/theme"
-
-test -f ~/.zshenv && sed -i "s|^\(export THEME=\).*|\1$theme|" ~/.zshenv
-
-if command -v tmux >/dev/null 2>&1; then
-  test -f "$XDG_CONFIG_HOME/tmux/tmux.conf" && ln -sf "$XDG_CONFIG_HOME/tmux/themes/$theme.tmux" "$XDG_CONFIG_HOME/tmux/themes/theme.tmux"
-  tmux source-file "$XDG_CONFIG_HOME/tmux/themes/$theme.tmux"
-  tmux refresh-client -S 2>/dev/null || true
-fi
-
 case "$(uname)" in
 Linux)
-  test -f "$XDG_CONFIG_HOME/sway/themes/theme" && ln -sf "$XDG_CONFIG_HOME/sway/themes/$theme" "$XDG_CONFIG_HOME/sway/themes/theme"
-
-  test -d "$XDG_CONFIG_HOME/rofi/themes" && sed -i "s|@import \"themes/.*\.rasi\"|@import \"themes/$theme.rasi\"|" "$XDG_CONFIG_HOME/rofi/config.rasi"
-
-  test -f "$XDG_CONFIG_HOME/sioyek/themes/theme.config" && ln -sf "$XDG_CONFIG_HOME/sioyek/themes/$theme.config" "$XDG_CONFIG_HOME/sioyek/themes/theme.config"
-
-  test -f "$XDG_CONFIG_HOME/sioyek/themes/$theme.config" && ln -sf "$XDG_CONFIG_HOME/sioyek/themes/$theme.config" "$XDG_CONFIG_HOME/sioyek/themes/theme.config"
-
-  test -f "$XDG_CONFIG_HOME/sioyek/prefs_user.config" && sed -i "s|^\(source ~/.config/sioyek/themes/\)[^/]*\.config$|\1$theme.config|" "$XDG_CONFIG_HOME/sioyek/prefs_user.config"
-
   if command -v gsettings >/dev/null 2>&1; then
     case "$theme" in
     gruvbox | midnight)
@@ -85,6 +64,16 @@ Linux)
   fi
 
   [ "$XDG_SESSION_TYPE" = "wayland" ] && swaymsg reload
+
+  test -f "$XDG_CONFIG_HOME/sway/themes/theme" && ln -sf "$XDG_CONFIG_HOME/sway/themes/$theme" "$XDG_CONFIG_HOME/sway/themes/theme"
+
+  test -d "$XDG_CONFIG_HOME/rofi/themes" && sed -i "s|@import \"themes/.*\.rasi\"|@import \"themes/$theme.rasi\"|" "$XDG_CONFIG_HOME/rofi/config.rasi"
+
+  test -f "$XDG_CONFIG_HOME/sioyek/themes/theme.config" && ln -sf "$XDG_CONFIG_HOME/sioyek/themes/$theme.config" "$XDG_CONFIG_HOME/sioyek/themes/theme.config"
+
+  test -f "$XDG_CONFIG_HOME/sioyek/themes/$theme.config" && ln -sf "$XDG_CONFIG_HOME/sioyek/themes/$theme.config" "$XDG_CONFIG_HOME/sioyek/themes/theme.config"
+
+  test -f "$XDG_CONFIG_HOME/sioyek/prefs_user.config" && sed -i "s|^\(source ~/.config/sioyek/themes/\)[^/]*\.config$|\1$theme.config|" "$XDG_CONFIG_HOME/sioyek/prefs_user.config"
   ;;
 Darwin)
   case "$theme" in
@@ -98,6 +87,16 @@ Darwin)
   ;;
 esac
 
+if command -v tmux >/dev/null 2>&1; then
+  test -f "$XDG_CONFIG_HOME/tmux/tmux.conf" && tmux source-file "$XDG_CONFIG_HOME/tmux/tmux.conf"
+  tmux refresh-client -S 2>/dev/null || true
+fi
+
+test -d "$XDG_CONFIG_HOME/fzf/themes" && ln -sf "$XDG_CONFIG_HOME/fzf/themes/$theme" "$XDG_CONFIG_HOME/fzf/themes/theme"
+test -d "$XDG_CONFIG_HOME/rg/themes" && ln -sf "$XDG_CONFIG_HOME/rg/themes/$theme" "$XDG_CONFIG_HOME/rg/themes/theme"
+
+test -f ~/.zshenv && sed -i "s|^\(export THEME=\).*|\1$theme|" ~/.zshenv
+
 for socket in /tmp/nvim-*.sock; do
-  test -S "$socket" && nvim --server "$socket" --remote-send "<c-c><cmd>lua require('fzf_theme').reload_colors()<cr>" 2>/dev/null || true
+  test -S "$socket" && nvim --server "$socket" --remote-expr "luaeval('require(\"fzf_reload\").reload()')" 2>/dev/null || true
 done

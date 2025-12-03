@@ -2,7 +2,7 @@ basedpyright 1.34.0-1
 clipmenu-git 6.2.0.r72.g46d45c9-1
 cmake-format 0.6.13-3
 cmake-lint 1.4.3-1
-electron39-bin 39.2.3-1
+electron39-bin 39.2.4-1
 flamegraph 1.0-2
 hadolint-bin 2.14.0-1
 nvm-git 0.40.3.r0.g977563e-1
@@ -16,7 +16,7 @@ qt5-webengine 5.15.19-3
 quarto-cli-bin 1.8.26-1
 shellcheck-bin 0.11.0-1
 sioyek 2.0.0-7
-slack-desktop 4.46.101-1
+slack-desktop 4.46.104-1
 spectrwm 3.7.0-1
 swaylock-effects 1.7.0.0-4
 teams 1.5.00.23861-1
@@ -26,4 +26,4 @@ ttf-times-new-roman 2.0-3
 ttf-vista-fonts 1-11
 ungoogled-chromium-bin 142.0.7444.175-1
 vesktop-bin 1.6.1-1
-zoom 6.6.10-1
+zoom 6.6.11-1

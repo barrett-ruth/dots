@@ -1406,7 +1406,6 @@ lf
 libdeflate-gunzip
 libdeflate-gzip
 libevdev-tweak-device
-libinput
 libpng16-config
 libpng-config
 libsixel-config
@@ -1572,7 +1571,7 @@ luac5.4
 luacsplain
 luahbtex
 luajit
-luajit-2.1.1763318511
+luajit-2.1.1764270282
 luajithbtex
 luajittex
 lua-language-server

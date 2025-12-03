@@ -445,11 +445,22 @@ return {
         },
     },
     {
-        'barrett-ruth/auto-theme.nvim',
-        dependencies = { 'barrett-ruth/midnight.nvim' },
+        'barrett-ruth/midnight.nvim',
         init = function()
             vim.g.auto_theme_light = 'daylight'
             vim.g.auto_theme_dark = 'midnight'
+            vim.api.nvim_create_autocmd({ 'OptionSet' }, {
+                pattern = 'background',
+                callback = function()
+                    vim.cmd.colorscheme(
+                        vim.o.background == 'dark' and 'midnight' or 'daylight'
+                    )
+                end,
+                group = vim.api.nvim_create_augroup(
+                    'Midnight',
+                    { clear = true }
+                ),
+            })
             local socket_path = ('/tmp/nvim-%d.sock'):format(vim.fn.getpid())
             vim.fn.serverstart(socket_path)
         end,

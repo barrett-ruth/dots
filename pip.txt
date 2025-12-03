@@ -1,7 +1,7 @@
 Package            Version
 ------------------ ----------------
 attrs              25.4.0
-awscli             1.43.2
+awscli             1.43.5
 black              25.11.0
 Brlapi             0.8.7
 certifi            2025.11.12
@@ -20,10 +20,10 @@ isort              7.0.0
 jaraco.collections 5.1.0
 jupyter_client     8.6.3
 libfdt             1.7.2
-libvirt-python     11.9.0
+libvirt-python     11.10.0
 lit                21.1.6.dev0
 louis              3.34.0
-mypy               1.18.2
+mypy               1.19.0
 nftables           0.1
 orjson             3.11.4
 perf               0.1

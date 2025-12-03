@@ -9,6 +9,7 @@ eslint 9.39.1
 eslint_d 14.3.0
 live-server 1.2.2
 neovim 5.4.0
+pre-commit 1.2.2
 typescript 5.9.3
 typescript-language-server 4.4.1
 vim-language-server 2.3.1

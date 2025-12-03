@@ -27,25 +27,23 @@ return {
                 },
                 worktrees = {
                     fzf_args = (
-                        vim.env.FZF_DEFAULT_OPTS:gsub(
-                            '--bind=ctrl-a:select-all',
-                            ''
-                        )
+                        vim.env.FZF_DEFAULT_OPTS
+                            :gsub('--bind=ctrl-a:select-all', '')
+                            :gsub('%-%-color=[^%s]+', '')
                     ),
                 },
                 branches = {
                     fzf_args = (
-                        vim.env.FZF_DEFAULT_OPTS:gsub(
-                            '--bind=ctrl-a:select-all',
-                            ''
-                        )
+                        vim.env.FZF_DEFAULT_OPTS
+                            :gsub('--bind=ctrl-a:select-all', '')
+                            :gsub('%-%-color=[^%s]+', '')
                     ),
                 },
             },
         })
 
-        require('fzf_theme').setup(opts)
-        require('fzf_theme').reload_colors()
+        require('fzf_reload').setup(opts)
+        require('fzf_reload').reload()
     end,
     keys = {
         {

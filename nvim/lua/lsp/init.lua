@@ -47,11 +47,6 @@ function M.on_attach(client, bufnr)
             '<cmd>FzfLua lsp_references<CR>',
         },
         {
-            Methods.textDocument_rename,
-            'grn',
-            '<cmd>FzfLua lsp_rename<CR>',
-        },
-        {
             Methods.textDocument_typeDefinition,
             'grt',
             '<cmd>FzfLua lsp_typedefs<CR>',
@@ -96,7 +91,7 @@ function M.lsp_format(opts)
             if c.name == 'typescript-tools' then
                 vim.cmd.TSToolsOrganizeImports()
             end
-            return c.name == 'null-ls'
+            return vim.tbl_contains({ 'null-ls', 'clangd' }, c.name)
         end,
     })
     vim.lsp.buf.format(format_opts)
