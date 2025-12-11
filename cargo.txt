@@ -142,6 +142,7 @@ bibtexu
 biosdecode
 bison
 bits
+bitwarden-desktop
 bjoentegaard
 black
 blackd
@@ -624,6 +625,7 @@ eglewinfo
 egrep
 eject
 elc3
+electron36
 electron37
 electron39
 elf2dmp
@@ -3010,6 +3012,7 @@ twolame
 typeoutfileinfo
 typog-grep
 tzselect
+tzupdate
 uchardet
 uclampset
 ucmatose

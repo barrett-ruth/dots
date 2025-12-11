@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 from PIL import Image, ImageDraw
 import random
 import subprocess
@@ -10,41 +9,51 @@ DIR = f"{HOME}/img/wp"
 FILE = f"{DIR}/random.jpg"
 os.makedirs(DIR, exist_ok=True)
 
-output = subprocess.check_output(
-    "swaymsg -t get_outputs -r | jq -r '.[] | select(.active==true) | .current_mode.width,.current_mode.height' | paste -sd x -",
-    shell=True
-).decode().strip()
-W, H = map(int, output.split('x'))
+if 'WAYLAND_DISPLAY' in os.environ:
+    output = subprocess.check_output(
+        "swaymsg -t get_outputs -r | jq -r '.[] | select(.active==true) | .current_mode.width,.current_mode.height' | paste -sd x -",
+        shell=True
+    ).decode().strip()
+else:
+    output = subprocess.check_output(
+        "xrandr | grep '*' | awk '{print $1}'",
+        shell=True
+    ).decode().strip()
 
+W, H = map(int, output.split('x'))
 UNIT = 16
 grid_w = W // UNIT
 grid_h = H // UNIT
 
-grid = [[False for _ in range(grid_w)] for _ in range(grid_h)]
-
-img = Image.new('RGB', (W, H), 'black')
+img = Image.new('RGB', (W, H), 'white')
 draw = ImageDraw.Draw(img)
 
 MU = 0.8
 SIGMA = 0.7
 SCALE_FACTOR = 1.8
 
-for y in range(grid_h):
-    for x in range(grid_w):
-        if grid[y][x]:
-            continue
-        max_w = grid_w - x
-        max_h = grid_h - y
-        w_units = max(1, min(max_w, int(round(random.lognormvariate(MU, SIGMA) * SCALE_FACTOR))))
-        h_units = max(1, min(max_h, int(round(random.lognormvariate(MU, SIGMA) * SCALE_FACTOR))))
-        for yy in range(y, y+h_units):
-            for xx in range(x, x+w_units):
-                grid[yy][xx] = True
-        color = (random.randint(0,255), random.randint(0,255), random.randint(0,255))
-        draw.rectangle(
-            [x*UNIT, y*UNIT, (x+w_units)*UNIT-1, (y+h_units)*UNIT-1],
-            fill=color
-        )
+S = {(x, y) for x in range(grid_w) for y in range(grid_h)}
+N = len(S)
+print(N)
+
+while S:
+    if random.random() < 1/N:
+        break
+    gx, gy = S.pop()
+    w_units = max(1, min(grid_w - gx, int(round(random.lognormvariate(MU, SIGMA) * SCALE_FACTOR))))
+    h_units = max(1, min(grid_h - gy, int(round(random.lognormvariate(MU, SIGMA) * SCALE_FACTOR))))
+    color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+
+    dx = random.choice([1, -1])
+    dy = random.choice([1, -1])
+
+    gx_end = gx + dx * (w_units - 1)
+    gy_end = gy + dy * (h_units - 1)
+
+    x0, x1 = sorted([gx, gx_end])
+    y0, y1 = sorted([gy, gy_end])
+
+    draw.rectangle([x0*UNIT, y0*UNIT, (x1+1)*UNIT-1, (y1+1)*UNIT-1], fill=color)
 
 img.save(FILE, quality=95)
 

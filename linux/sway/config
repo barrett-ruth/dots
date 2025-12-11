@@ -1,5 +1,5 @@
-exec_always dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE THEME
-exec_always systemctl --user import-environment DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE THEME
+exec_always dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK XDG_SESSION_TYPE THEME
+exec_always systemctl --user import-environment DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK XDG_SESSION_TYPE THEME
 exec_always sclip
 exec_always {
     swayidle -w \
@@ -90,7 +90,6 @@ bindsym Mod5+a exec set-speaker
 bindsym Mod5+c exec bash -lc 'cliphist list | rofi -dmenu -i -p Clipboard -l 15 | cliphist decode | wl-copy'
 bindsym Mod5+d exec doc
 bindsym Mod5+k exec skb
-bindsym Mod5+r exec rbt
 bindsym Mod5+s exec sss
 bindsym Mod5+t exec theme
 bindsym Mod5+o exec ocr
@@ -136,7 +135,7 @@ input * {
     xkb_layout us
     xkb_options "lv3:ralt_switch"
 }
-output * bg ~/img/wp/one/progress.jpg fill
+output * bg ~/img/wp/one/dadtonio.jpg fill
 
 include /etc/sway/config.d/*
 

@@ -5,8 +5,9 @@ PointerAlignment: Left]]
 
 return {
     'barrett-ruth/cp.nvim',
-    command = 'CP',
+    cmd = 'CP',
     keys = {
+        { '<leader>ce', '<cmd>CP edit<cr>' },
         { '<leader>cp', '<cmd>CP panel<cr>' },
         { '<leader>cP', '<cmd>CP pick<cr>' },
         { '<leader>cr', '<cmd>CP run<cr>' },
@@ -152,6 +153,9 @@ return {
                     end
                 end,
             },
+            filename = function(_, _, problem_id)
+                return problem_id
+            end,
         })
     end,
 }

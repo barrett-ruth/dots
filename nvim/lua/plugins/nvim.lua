@@ -9,7 +9,12 @@ return {
     {
         'nvim-mini/mini.misc',
         config = true,
-        keys = { { '<c-w>m', "<cmd>lua require('mini.misc').zoom()<cr>" } },
+        keys = {
+            {
+                '<c-w>m',
+                "<cmd>lua require('mini.misc').zoom(0, { title = '', border = 'none' })<cr>",
+            },
+        },
     },
     {
         'echasnovski/mini.pairs',
@@ -489,5 +494,18 @@ return {
                 jump = true,
             },
         },
+    },
+    {
+        '3rd/image.nvim',
+        build = false,
+        opts = {
+            processor = 'magick_cli',
+        },
+        init = function()
+            if vim.env.TMUX ~= nil then
+                vim.system({ 'tmux', 'set', '-gq', 'allow-passthrough', 'on' })
+                vim.system({ 'tmux', 'set', '-g', 'visual-activity', 'off' })
+            end
+        end,
     },
 }
