@@ -6,7 +6,7 @@ case "$1" in
     tmux new-session -d
     tmux run-shell "$XDG_CONFIG_HOME/tmux/tmux-resurrect/scripts/restore.sh"
   fi
-  tmux attach || tmux
+  tmux attach\; source-file "$XDG_CONFIG_HOME/tmux/tmux.conf" || tmux
   ;;
 bar)
   [ "$2" ] || exit

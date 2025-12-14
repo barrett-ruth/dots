@@ -88,6 +88,7 @@ Darwin)
   ;;
 esac
 
+# TODO: start the server if not existing ALWAYS.
 if tmux list-sessions >/dev/null 2>&1; then
   test -f "$XDG_CONFIG_HOME/tmux/tmux.conf" && tmux source-file "$XDG_CONFIG_HOME/tmux/tmux.conf"
   tmux refresh-client -S

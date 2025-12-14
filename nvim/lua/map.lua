@@ -49,3 +49,32 @@ map({ 'x', 'P', '"_dP' })
 
 map({ 'n', '<leader>iw', '<cmd>se wrap!<cr>' })
 map({ 'n', '<leader>is', '<cmd>se spell!<cr>' })
+local state = nil
+
+map({
+    'n',
+    '<leader>iz',
+    function()
+        if state then
+            for k, v in pairs(state) do
+                vim.opt[k] = v
+            end
+            state = nil
+        else
+            state = {
+                number = vim.opt.number:get(),
+                relativenumber = vim.opt.relativenumber:get(),
+                signcolumn = vim.opt.signcolumn:get(),
+                statuscolumn = vim.opt.statuscolumn:get(),
+                laststatus = vim.opt.laststatus:get(),
+                cmdheight = vim.opt.cmdheight:get(),
+            }
+            vim.opt.number = false
+            vim.opt.relativenumber = false
+            vim.opt.signcolumn = 'no'
+            vim.opt.statuscolumn = ''
+            vim.opt.laststatus = 0
+            vim.opt.cmdheight = 0
+        end
+    end,
+})

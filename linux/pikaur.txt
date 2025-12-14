@@ -4,6 +4,7 @@ cmake-format 0.6.13-3
 cmake-lint 1.4.3-1
 electron39-bin 39.2.4-1
 flamegraph 1.0-2
+google-chrome 143.0.7499.109-1
 hadolint-bin 2.14.0-1
 nvm-git 0.40.3.r0.g977563e-1
 otf-san-francisco 1:2-2

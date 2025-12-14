@@ -34,7 +34,6 @@ SCALE_FACTOR = 1.8
 
 S = {(x, y) for x in range(grid_w) for y in range(grid_h)}
 N = len(S)
-print(N)
 
 while S:
     if random.random() < 1/N:

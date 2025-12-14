@@ -9,9 +9,8 @@ exec_always {
         timeout 900 'systemctl suspend' \
         before-sleep "sh -c '$HOME/.local/bin/scripts/genlock && swaylock -f -i \$HOME/img/wp/random.jpg --indicator-radius 0 --indicator-thickness 0'"
 }
-exec sh -c 'theme midnight'
 exec sh -c '$term -e mux'
-exec sh -c 'chromium --ozone-platform=wayland'
+exec sh -c '$BROWSER --ozone-platform=wayland'
 
 include ~/.config/sway/themes/theme
 
@@ -26,10 +25,11 @@ smart_borders on
 
 bindsym Mod1+Shift+Return exec $term
 bindsym Mod1+space        exec $menu
-bindsym Mod1+Shift+c      exec chromium --ozone-platform=wayland
+bindsym Mod1+Shift+c      exec $BROWSER --ozone-platform=wayland
 bindsym Mod1+Shift+d      exec discord
 bindsym Mod1+Shift+v      exec vesktop
 bindsym Mod1+Shift+s      exec slack
+bindsym Mod1+Shift+b      exec bitwarden-desktop
 bindsym Mod1+q            kill
 bindsym Mod1+Shift+q      exit
 bindsym Mod1+Shift+r      reload
@@ -95,22 +95,20 @@ bindsym Mod5+t exec theme
 bindsym Mod5+o exec ocr
 
 assign [app_id="ghostty"] workspace number 1
-for_window [class="Ghostty"] move to workspace number 1
 
 assign [app_id="chromium"] workspace number 2
-for_window [class="Chromium"] move to workspace number 2
+
+assign [app_id="google-chrome"] workspace number 2
 
 assign [app_id="sioyek"] workspace number 3
-for_window [class="sioyek"] move to workspace number 3
 
 assign [app_id="Slack"] workspace number 4
-for_window [class="Slack"] move to workspace number 4
 
 assign [app_id="discord"] workspace number 5
-for_window [class="discord"] move to workspace number 5
 
 assign [app_id="vesktop"] workspace number 5
-for_window [class="vesktop"] move to workspace number 5
+
+assign [app_id="Bitwarden"] workspace number 6
 
 client.focused          $fg   $bg   $fg   $bg   $fg
 client.focused_inactive $bg1  $bg   $fg1  $bg1  $bg1

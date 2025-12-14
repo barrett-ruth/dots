@@ -3,9 +3,9 @@ return {
     {
         'folke/snacks.nvim',
         ---@type snacks.Config
-        config = true,
+        opts = { gitbrowse = {} },
         keys = {
-            { '<leader>go', '<cmd>lua Snacks.gitbrowser()<cr>' },
+            { '<leader>go', '<cmd>lua Snacks.gitbrowse()<cr>' },
             { '<leader>gi', '<cmd>lua Snacks.picker.gh_issue()<cr>' },
             { '<leader>gp', '<cmd>lua Snacks.picker.gh_pr()<cr>' },
         },

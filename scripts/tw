@@ -1,0 +1,17 @@
+#!/bin/sh
+
+BUCKET_NAME="barrett-taskwarrior"
+AWS_PROFILE="barrett"
+
+case "$1" in
+    push)
+        aws s3 sync ~/.task "s3://$BUCKET_NAME" --exact-timestamps --profile "$AWS_PROFILE"
+        ;;
+    pull)
+        aws s3 sync "s3://$BUCKET_NAME" ~/.task --exact-timestamps --profile "$AWS_PROFILE"
+        ;;
+    *)
+        echo "Usage: $(basename "$0") {push,pull}" >&2
+        exit
+        ;;
+esac

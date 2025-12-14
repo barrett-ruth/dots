@@ -31,7 +31,7 @@ function append_path() {
     export PATH="$PATH:$1";
 }
 
-export BROWSER='chromium'
+export BROWSER='google-chrome-stable'
 export NVM_DIR="$XDG_DATA_HOME"
 [[ -o interactive ]] && . /usr/share/nvm/init-nvm.sh
 

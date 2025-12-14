@@ -1,7 +1,20 @@
-local clang_format_content = [[BasedOnStyle: Google
-IndentWidth: 2
+local clang_format_content = [[BasedOnStyle: LLVM
+IndentWidth: 4
+UseTab: Never
+
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: None
+AllowShortLambdasOnASingleLine: None
+AllowShortBlocksOnASingleLine: Never
+AllowShortEnumsOnASingleLine: false
+AllowShortCaseExpressionOnASingleLine: false
+
+BreakBeforeBraces: Attach
 ColumnLimit: 100
-PointerAlignment: Left]]
+AlignAfterOpenBracket: Align
+BinPackArguments: false
+BinPackParameters: false]]
 
 return {
     'barrett-ruth/cp.nvim',

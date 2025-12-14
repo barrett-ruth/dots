@@ -35,6 +35,7 @@ j() {
         lz) cd ~/.local/share/nvim/lazy;;
         dev) cd ~/dev;;
         site) cd ~/dev/barrettruth.com;;
+        tmux) cd ~/.config/tmux;;
         cp) cd ~/dev/competitive-programming;;
         cf) cd ~/.config;;
         notes) cd ~/dev/notes;;

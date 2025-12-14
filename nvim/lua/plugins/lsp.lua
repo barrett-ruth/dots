@@ -15,7 +15,6 @@ return {
         ---@module 'blink.cmp'
         ---@type blink.cmp.Config
         event = { 'InsertEnter', 'CmdlineEnter' },
-
         opts = {
             keymap = {
                 ['<c-p>'] = { 'select_prev' },
