@@ -199,7 +199,6 @@ function M.setup_none_ls()
             diagnostics.zsh,
 
             formatting.black,
-            formatting.clang_format,
             formatting.isort.with({
                 extra_args = { '--profile', 'black' },
             }),

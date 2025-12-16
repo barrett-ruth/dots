@@ -9,18 +9,23 @@ return {
         return '%#LineNr#' .. vim.v.relnum
     end,
     fold = function()
+        if not vim.wo.foldenable or math.abs(vim.v.virtnum) > 0 then
+            return ''
+        end
+
+        local edges = require('fold').edges
+        edges = edges[vim.api.nvim_get_current_buf()] or {}
+
         local text = ' '
-        if
-            vim.wo.foldenable
-            and vim.fn.foldlevel(vim.v.lnum)
-                > vim.fn.foldlevel(vim.v.lnum - 1)
-        then
-            if vim.fn.foldclosed(vim.v.lnum) == -1 then
+        local lnum = vim.v.lnum
+        if edges[lnum] then
+            if vim.fn.foldclosed(lnum) == -1 then
                 text = 'v'
             else
                 text = '>'
             end
         end
+
         return '%#FoldColumn#' .. text
     end,
     statuscolumn = function()

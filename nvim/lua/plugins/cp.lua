@@ -1,5 +1,51 @@
+local default_cpp_lang = {
+    extension = 'cc',
+    commands = {
+        build = {
+            'g++',
+            '-std=c++23',
+            '-O2',
+            '-Wall',
+            '-Wextra',
+            '-Wpedantic',
+            '-Wshadow',
+            '-Wconversion',
+            '-Wformat=2',
+            '-Wfloat-equal',
+            '-Wundef',
+            '-fdiagnostics-color=always',
+            '-DLOCAL',
+            '{source}',
+            '-o',
+            '{binary}',
+        },
+        run = { '{binary}' },
+        debug = {
+            'g++',
+            '-std=c++23',
+            '-g3',
+            '-fsanitize=address,undefined',
+            '-fno-omit-frame-pointer',
+            '-fstack-protector-all',
+            '-D_GLIBCXX_DEBUG',
+            '-DLOCAL',
+            '{source}',
+            '-o',
+            '{binary}',
+        },
+    },
+}
+
+local default_python_lang = {
+    extension = 'py',
+    commands = {
+        run = { 'python', '{source}' },
+        debug = { 'python', '{source}' },
+    },
+}
+
 local clang_format_content = [[BasedOnStyle: LLVM
-IndentWidth: 4
+IndentWidth: 2
 UseTab: Never
 
 AllowShortIfStatementsOnASingleLine: Never
@@ -34,52 +80,6 @@ return {
         'nvim-telescope/telescope.nvim',
     },
     config = function()
-        local default_cpp_lang = {
-            extension = 'cc',
-            commands = {
-                build = {
-                    'g++',
-                    '-std=c++23',
-                    '-O2',
-                    '-Wall',
-                    '-Wextra',
-                    '-Wpedantic',
-                    '-Wshadow',
-                    '-Wconversion',
-                    '-Wformat=2',
-                    '-Wfloat-equal',
-                    '-Wundef',
-                    '-fdiagnostics-color=always',
-                    '-DLOCAL',
-                    '{source}',
-                    '-o',
-                    '{binary}',
-                },
-                run = { '{binary}' },
-                debug = {
-                    'g++',
-                    '-std=c++23',
-                    '-g3',
-                    '-fsanitize=address,undefined',
-                    '-fno-omit-frame-pointer',
-                    '-fstack-protector-all',
-                    '-D_GLIBCXX_DEBUG',
-                    '-DLOCAL',
-                    '{source}',
-                    '-o',
-                    '{binary}',
-                },
-            },
-        }
-
-        local default_python_lang = {
-            extension = 'py',
-            commands = {
-                run = { 'python', '{source}' },
-                debug = { 'python', '{source}' },
-            },
-        }
-
         require('cp').setup({
             languages = {
                 cpp = default_cpp_lang,

@@ -452,8 +452,6 @@ return {
     {
         'barrett-ruth/midnight.nvim',
         init = function()
-            vim.g.auto_theme_light = 'daylight'
-            vim.g.auto_theme_dark = 'midnight'
             vim.api.nvim_create_autocmd({ 'OptionSet' }, {
                 pattern = 'background',
                 callback = function()
