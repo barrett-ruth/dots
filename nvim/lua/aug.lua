@@ -7,15 +7,41 @@ au('BufEnter', {
     group = aug,
 })
 
-au('TermOpen', {
-    command = 'startinsert | setl nonumber norelativenumber statuscolumn=',
-    group = aug,
+au('VimEnter', {
+    once = true,
+    callback = function()
+        _G.main_tab = vim.api.nvim_get_current_tabpage()
+        map({
+            desc = 'Go to main tab',
+            'n',
+            '<leader>m',
+            function()
+                if
+                    _G.main_tab
+                    and vim.api.nvim_tabpage_is_valid(_G.main_tab)
+                then
+                    vim.api.nvim_set_current_tabpage(_G.main_tab)
+                end
+            end,
+        })
+    end,
 })
+
+-- au({ 'TermOpen', 'BufWinEnter' }, {
+--     callback = function(args)
+--         if vim.bo[args.buf].buftype == 'terminal' then
+--             vim.opt_local.number = false
+--             vim.opt_local.relativenumber = false
+--             vim.opt_local.statuscolumn = ''
+--         end
+--     end,
+--     group = aug,
+-- })
 
 au('BufWritePost', {
     pattern = os.getenv('XDG_CONFIG_HOME') .. '/dunst/dunstrc',
     callback = function()
-        vim.fn.system('killall dunst && nohup dunst &')
+        vim.fn.system('killall dunst && nohup dunst &; disown')
     end,
     group = aug,
 })

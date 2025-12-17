@@ -7,16 +7,6 @@ return {
         keys = { { '<leader>L', '<cmd>LiveServerToggle<cr>' } },
     },
     {
-        'nvim-mini/mini.misc',
-        config = true,
-        keys = {
-            {
-                '<c-w>m',
-                "<cmd>lua require('mini.misc').zoom(0, { title = '', border = 'none' })<cr>",
-            },
-        },
-    },
-    {
         'echasnovski/mini.pairs',
         config = true,
         event = 'InsertEnter',
@@ -248,10 +238,10 @@ return {
             { '<leader>hd', '<cmd>Grapple untag<cr>' },
             { '<leader>hq', '<cmd>Grapple toggle_tags<cr>' },
 
-            { '<c-h>', '<cmd>Grapple select index=1<cr>' },
-            { '<c-j>', '<cmd>Grapple select index=2<cr>' },
-            { '<c-k>', '<cmd>Grapple select index=3<cr>' },
-            { '<c-l>', '<cmd>Grapple select index=4<cr>' },
+            { '<c-1>', '<cmd>Grapple select index=1<cr>' },
+            { '<c-2>', '<cmd>Grapple select index=2<cr>' },
+            { '<c-3>', '<cmd>Grapple select index=3<cr>' },
+            { '<c-4>', '<cmd>Grapple select index=4<cr>' },
 
             { ']h', '<cmd>Grapple cycle_tags next<cr>' },
             { '[h', '<cmd>Grapple cycle_tags prev<cr>' },
@@ -357,23 +347,34 @@ return {
             keymaps = {
                 ['<C-h>'] = false,
                 ['<C-t>'] = false,
+                ['<C-l>'] = false,
+                ['<C-r>'] = 'actions.refresh',
                 ['<c-s>'] = { 'actions.select', opts = { vertical = true } },
                 ['<c-x>'] = { 'actions.select', opts = { horizontal = true } },
             },
         },
     },
     {
+        'echasnovski/mini.misc',
+        config = true,
+        keys = {
+            {
+                '<c-w>m',
+                "<cmd>lua MiniMisc.zoom(0, { title = '', border = 'none' })<cr>",
+            },
+        },
+    },
+    {
         'nvim-mini/mini.bufremove',
         config = true,
-        event = 'VeryLazy',
         keys = {
             {
                 '<leader>bd',
-                '<cmd>lua require("mini.bufremove").delete()<cr>',
+                '<cmd>lua MiniBufremove.delete()<cr>',
             },
             {
                 '<leader>bw',
-                '<cmd>lua require("mini.bufremove").wipeout()<cr>',
+                '<cmd>lua MiniBufremove.wipeout()<cr>',
             },
         },
     },

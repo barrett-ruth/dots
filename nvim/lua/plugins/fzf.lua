@@ -60,7 +60,7 @@ return {
                 end
             end,
         },
-        { '<c-g>', '<cmd>FzfLua live_grep<cr>' },
+        { '<c-l>', '<cmd>FzfLua live_grep<cr>' },
         { '<leader>f/', '<cmd>FzfLua search_history<cr>' },
         { '<leader>f:', '<cmd>FzfLua command_history<cr>' },
         { '<leader>fa', '<cmd>FzfLua autocmds<cr>' },

@@ -1,4 +1,4 @@
-@import "themes/midnight.rasi"
+@import "themes/daylight.rasi"
 
 configuration {
   font: "Berkeley Mono 15";

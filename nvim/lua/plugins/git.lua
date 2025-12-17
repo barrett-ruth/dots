@@ -1,5 +1,39 @@
+---@type number|nil
+local git_tab = nil
+
 return {
-    { 'tpope/vim-fugitive' },
+    {
+        'tpope/vim-fugitive',
+        keys = {
+            {
+                desc = 'Toggle Fugitive Tab',
+                '<c-g>',
+                function()
+                    if vim.b.gitsigns_head == nil then
+                        vim.notify(
+                            'Error: working directory does not belong to a Git repository',
+                            vim.log.levels.ERROR
+                        )
+                        return
+                    end
+                    if git_tab and vim.api.nvim_tabpage_is_valid(git_tab) then
+                        if vim.api.nvim_get_current_tabpage() ~= git_tab then
+                            vim.api.nvim_set_current_tabpage(git_tab)
+                            return
+                        end
+                        vim.cmd.tabclose()
+                        git_tab = nil
+                        return
+                    end
+                    vim.cmd.tablast()
+                    vim.cmd.tabnew()
+                    vim.cmd.Git()
+                    vim.cmd('silent only')
+                    git_tab = vim.api.nvim_get_current_tabpage()
+                end,
+            },
+        },
+    },
     {
         'folke/snacks.nvim',
         ---@type snacks.Config

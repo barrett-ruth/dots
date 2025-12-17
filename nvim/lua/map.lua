@@ -46,6 +46,7 @@ map({ 'n', 'J', 'mzJ`z' })
 
 map({ 'x', 'p', '"_dp' })
 map({ 'x', 'P', '"_dP' })
+map({ 't', '<esc>', '<c-\\><c-n>' })
 
 map({ 'n', '<leader>iw', '<cmd>se wrap!<cr>' })
 map({ 'n', '<leader>is', '<cmd>se spell!<cr>' })
