@@ -53,6 +53,8 @@ append_path "$SCRIPTS"
 
 append_path "$HOME"/.cargo/bin
 
+export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials
+export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
 export BOTO_CONFIG="$XDG_CONFIG_HOME"/boto/config
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export GRADLE_USER_HOME="$XDG_CONFIG_HOME"/gradle
@@ -69,6 +71,11 @@ export PSQL_HISTORY="$XDG_STATE_HOME"/psql_history
 export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/pythonrc
 test -f "$XDG_CONFIG_HOME"/rg/base && export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/rg/base"
 export SQLITE_HISTORY="$XDG_STATE_HOME"/sqlite_history
+export TEXMFHOME=$XDG_DATA_HOME/texmf
+export TEXMFVAR=$XDG_CACHE_HOME/texlive/texmf-var
+export TEXMFCONFIG=$XDG_CONFIG_HOME/texlive/texmf-config
+export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME/jupyter"
+export JUPYTER_PLATFORM_DIRS=1
 
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
     if [[ "$USE_WAYLAND" ]]; then
