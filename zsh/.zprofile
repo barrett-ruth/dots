@@ -32,7 +32,7 @@ function append_path() {
 }
 
 export BROWSER='google-chrome-stable'
-export NVM_DIR="$XDG_DATA_HOME"
+export NVM_DIR="$XDG_DATA_HOME"/nvm
 [[ -o interactive ]] && . /usr/share/nvm/init-nvm.sh
 
 append_path "$HOME"/.local/bin
@@ -56,6 +56,8 @@ append_path "$HOME"/.cargo/bin
 export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials
 export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
 export BOTO_CONFIG="$XDG_CONFIG_HOME"/boto/config
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
+export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export GRADLE_USER_HOME="$XDG_CONFIG_HOME"/gradle
 export LESSHISTFILE=-
