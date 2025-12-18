@@ -1,0 +1,24 @@
+rule.precedence.color=deleted,completed,active,tag.*,project.*,overdue,due.today,due,scheduled,blocked,blocking,recurring,tagged
+
+color.alternate=on color255
+color.header=color234
+color.footnote=color94
+color.warning=color167
+color.error=color255 on color161
+
+color.pri.H=color167
+color.pri.M=color214
+color.pri.L=color63
+color.pri.none=
+
+color.overdue=color167
+color.due.today=color214
+color.due=color94
+color.active=color63
+color.completed=color246
+color.blocked=color177
+color.blocking=color63
+color.recurring=color71
+color.scheduled=color29
+color.tagged=color63
+color.tag.next=color177

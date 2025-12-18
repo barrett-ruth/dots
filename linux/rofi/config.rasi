@@ -1,4 +1,4 @@
-@import "themes/daylight.rasi"
+@import "themes/gruvbox.rasi"
 
 configuration {
   font: "Berkeley Mono 15";
