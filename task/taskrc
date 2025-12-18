@@ -1,0 +1,3 @@
+news.version=3.4.2
+data.location=$XDG_DATA_HOME/task
+hooks.location=$XDG_DATA_HOME/task/hooks

@@ -2,16 +2,19 @@
 
 BUCKET_NAME="barrett-taskwarrior"
 AWS_PROFILE="barrett"
+TASKDIR="${XDG_DATA_HOME:-$HOME/.local/share}/task"
 
 case "$1" in
-    push)
-        aws s3 sync ~/.task "s3://$BUCKET_NAME" --exact-timestamps --profile "$AWS_PROFILE"
-        ;;
-    pull)
-        aws s3 sync "s3://$BUCKET_NAME" ~/.task --exact-timestamps --profile "$AWS_PROFILE"
-        ;;
-    *)
-        echo "Usage: $(basename "$0") {push,pull}" >&2
-        exit
-        ;;
+push)
+  aws s3 sync "$TASKDIR" "s3://$BUCKET_NAME" \
+    --exact-timestamps --delete --profile "$AWS_PROFILE"
+  ;;
+pull)
+  aws s3 sync "s3://$BUCKET_NAME" "$TASKDIR" \
+    --exact-timestamps --delete --profile "$AWS_PROFILE"
+  ;;
+*)
+  echo "Usage: $(basename "$0") {push,pull}" >&2
+  exit 1
+  ;;
 esac

@@ -18,7 +18,7 @@ exists pip && pip list --not-required >pip.txt
 
 cp -r "$SCRIPTS" .
 
-for folder in git npm nvim python rg tmux yamllint zsh mutt dunst sioyek ghostty fzf; do
+for folder in git npm nvim python rg tmux yamllint zsh mutt dunst sioyek ghostty fzf task; do
   if [ -d "$XDG_CONFIG_HOME/$folder" ]; then
     rm -rf "$folder"
     cp -rf "$XDG_CONFIG_HOME/$folder" .
