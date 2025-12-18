@@ -36,8 +36,7 @@ export NVM_DIR="$XDG_DATA_HOME"
 [[ -o interactive ]] && . /usr/share/nvm/init-nvm.sh
 
 append_path "$HOME"/.local/bin
-prepend_path "$HOME"/.luarocks/bin
-prepend_path "$HOME"/.local/bin/sst
+test -d "$XDG_CONFIG_HOME"/luarocks && prepend_path "$XDG_CONFIG_HOME"/luarocks/bin
 
 export GOMODCACHE="$XDG_CACHE_HOME"/go/mod
 export GOPATH="$XDG_DATA_HOME"/go

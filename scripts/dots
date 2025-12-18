@@ -27,6 +27,11 @@ done
 
 rmb tmux.conf tmux
 
+if [ -d "$XDG_CONFIG_HOME"/luarocks ]; then
+  mkdir luarocks 2>/dev/null
+  cp "$XDG_CONFIG_HOME"/luarocks/* luarocks 2>/dev/null
+fi
+
 if [ -d linux ]; then
   for folder in rofi sway spectrwm X11 zathura; do
     if [ -d "$XDG_CONFIG_HOME/$folder" ]; then
