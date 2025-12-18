@@ -13,6 +13,8 @@ o.expandtab = true
 o.exrc = true
 o.secure = true
 
+opt.foldcolumn = 'auto:1'
+
 opt.fillchars = {
     eob = ' ',
     vert = '│',

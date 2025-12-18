@@ -27,16 +27,15 @@ au('VimEnter', {
     end,
 })
 
--- au({ 'TermOpen', 'BufWinEnter' }, {
---     callback = function(args)
---         if vim.bo[args.buf].buftype == 'terminal' then
---             vim.opt_local.number = false
---             vim.opt_local.relativenumber = false
---             vim.opt_local.statuscolumn = ''
---         end
---     end,
---     group = aug,
--- })
+au({ 'TermOpen', 'BufWinEnter' }, {
+    callback = function(args)
+        if vim.bo[args.buf].buftype == 'terminal' then
+            vim.opt_local.number = true
+            vim.opt_local.relativenumber = true
+        end
+    end,
+    group = aug,
+})
 
 au('BufWritePost', {
     pattern = os.getenv('XDG_CONFIG_HOME') .. '/dunst/dunstrc',

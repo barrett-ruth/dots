@@ -1,5 +1,18 @@
 return {
     'ibhagwan/fzf-lua',
+    init = function()
+        vim.api.nvim_create_autocmd('FileType', {
+            pattern = 'fzf',
+            callback = function()
+                vim.opt_local.number = false
+                vim.opt_local.relativenumber = false
+            end,
+            group = vim.api.nvim_create_augroup(
+                'ClearFzfColumn',
+                { clear = true }
+            ),
+        })
+    end,
     config = function(_, opts)
         local actions = require('fzf-lua.actions')
 
