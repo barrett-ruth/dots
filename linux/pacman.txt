@@ -49,7 +49,7 @@ lf 40-1
 libcurl-compat 8.17.0-2
 libcurl-gnutls 8.17.0-2
 libfido2 1.16.0-2
-libmupdf 1.27.0-1
+libmupdf 1.26.1-1
 libreoffice-fresh 25.8.4-1
 libxinerama 1.1.5-2
 linux 6.18.1.arch1-2

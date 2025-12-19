@@ -292,7 +292,14 @@ return {
         'chomosuke/typst-preview.nvim',
         ft = 'typst',
         version = '1.*',
-        config = true,
+        opts = {
+            open_cmd = ('%s %%s'):format(vim.env.BROWSER),
+            invert_colors = 'auto',
+            dependencies_bin = {
+                tinymist = vim.fn.exepath('tinymist'),
+                websocat = vim.fn.exepath('websocat'),
+            },
+        },
         keys = { { '<leader>t', '<cmd>TypstPreviewToggle<cr>' } },
     },
 }

@@ -112,6 +112,12 @@ assign [app_id="Bitwarden"] workspace number 6
 bindsym Mod1+s exec signal-desktop
 assign [app_id="signal"] workspace number 7
 
+bindsym Mod1+t exec telegram
+assign [app_id="org.telegram.desktop"] workspace number 7
+
+bindsym Mod1+s exec signal-desktop
+assign [app_id="signal"] workspace number 7
+
 client.focused          $fg   $bg   $fg   $bg   $fg
 client.focused_inactive $bg1  $bg   $fg1  $bg1  $bg1
 client.unfocused        $bg   $bg   $fg2  $bg   $bg
