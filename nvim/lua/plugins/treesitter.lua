@@ -118,7 +118,7 @@ return {
     {
         'nvim-treesitter/playground',
         dependencies = 'nvim-treesitter/nvim-treesitter',
-        keys = { { '<leader>t', '<cmd>TSPlaygroundToggle<cr>' } },
+        keys = { { '<leader>T', '<cmd>TSPlaygroundToggle<cr>' } },
     },
     {
         'Wansmer/treesj',

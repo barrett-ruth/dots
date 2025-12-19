@@ -85,13 +85,15 @@ local function prepare_capabilities()
     return ok and blink.get_lsp_capabilities(capabilities) or capabilities
 end
 
+local FORMAT_LSPS = { 'null-ls', 'clangd', 'tinymist', 'ruff' }
+
 function M.lsp_format(opts)
     local format_opts = vim.tbl_extend('force', opts or {}, {
         filter = function(c)
             if c.name == 'typescript-tools' then
                 vim.cmd.TSToolsOrganizeImports()
             end
-            return vim.tbl_contains({ 'null-ls', 'clangd' }, c.name)
+            return vim.tbl_contains(FORMAT_LSPS, c.name)
         end,
     })
     vim.lsp.buf.format(format_opts)
@@ -121,10 +123,10 @@ function M.setup()
         callback = function(opts)
             local client = vim.lsp.get_client_by_id(opts.data.client_id)
 
-            if client and client:supports_method('textDocument/formatting') then
+            if client and client:supports_method('formatting') then
                 local modes = { 'n' }
 
-                if client:supports_method('textDocument/rangeFormatting') then
+                if client:supports_method('rangeFormatting') then
                     table.insert(modes, 'x')
                 end
 
@@ -152,6 +154,7 @@ function M.setup()
         'pytest_lsp',
         'lua_ls',
         'ruff',
+        'tinymist',
     }) do
         local ok, config = pcall(require, 'lsp.' .. server)
         if ok and config then

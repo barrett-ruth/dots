@@ -51,7 +51,7 @@ export OPAMROOT="$XDG_DATA_HOME"/opam
 export SCRIPTS="$HOME"/.local/bin/scripts
 append_path "$SCRIPTS"
 
-append_path "$HOME"/.cargo/bin
+append_path "$XDG_DATA_HOME"/cargo/bin
 
 export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials
 export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config

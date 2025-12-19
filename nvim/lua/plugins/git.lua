@@ -11,7 +11,7 @@ return {
                 function()
                     if vim.b.gitsigns_head == nil then
                         vim.notify(
-                            'Error: working directory does not belong to a Git repository',
+                            'Working directory does not belong to a Git repository',
                             vim.log.levels.ERROR
                         )
                         return

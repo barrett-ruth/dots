@@ -1,4 +1,4 @@
-@import "themes/gruvbox.rasi"
+@import "themes/midnight.rasi"
 
 configuration {
   font: "Berkeley Mono 15";

@@ -14,22 +14,12 @@ exec sh -c '$BROWSER --ozone-platform=wayland'
 
 include ~/.config/sway/themes/theme
 
-set $term ghostty
-set $menu rofi -show run
-
 font pango:Berkeley Mono 15
 default_border pixel 5
 default_floating_border pixel 5
 
 smart_borders on
 
-bindsym Mod1+Shift+Return exec $term
-bindsym Mod1+space        exec $menu
-bindsym Mod1+Shift+c      exec $BROWSER --ozone-platform=wayland
-bindsym Mod1+Shift+d      exec discord
-bindsym Mod1+Shift+v      exec vesktop
-bindsym Mod1+Shift+s      exec slack
-bindsym Mod1+Shift+b      exec bitwarden-desktop
 bindsym Mod1+q            kill
 bindsym Mod1+Shift+q      exit
 bindsym Mod1+Shift+r      reload
@@ -94,21 +84,33 @@ bindsym Mod5+s exec sss
 bindsym Mod5+t exec theme
 bindsym Mod5+o exec ocr
 
+bindsym Mod1+space        exec $menu
+set $menu rofi -show run
+
+set $term ghostty
+bindsym Mod1+Shift+Return exec $term
 assign [app_id="ghostty"] workspace number 1
 
+bindsym Mod1+Shift+c      exec $BROWSER --ozone-platform=wayland
 assign [app_id="chromium"] workspace number 2
-
 assign [app_id="google-chrome"] workspace number 2
 
 assign [app_id="sioyek"] workspace number 3
 
+bindsym Mod1+Shift+s      exec slack
 assign [app_id="Slack"] workspace number 4
 
+bindsym Mod1+Shift+d      exec discord
 assign [app_id="discord"] workspace number 5
 
+bindsym Mod1+Shift+v      exec vesktop
 assign [app_id="vesktop"] workspace number 5
 
+bindsym Mod1+Shift+b      exec bitwarden-desktop
 assign [app_id="Bitwarden"] workspace number 6
+
+bindsym Mod1+s exec signal-desktop
+assign [app_id="signal"] workspace number 7
 
 client.focused          $fg   $bg   $fg   $bg   $fg
 client.focused_inactive $bg1  $bg   $fg1  $bg1  $bg1

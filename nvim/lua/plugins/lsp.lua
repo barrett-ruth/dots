@@ -288,4 +288,11 @@ return {
         dependencies = { 'neovim/nvim-lspconfig' },
         event = 'LspAttach',
     },
+    {
+        'chomosuke/typst-preview.nvim',
+        ft = 'typst',
+        version = '1.*',
+        config = true,
+        keys = { { '<leader>t', '<cmd>TypstPreviewToggle<cr>' } },
+    },
 }

@@ -100,6 +100,7 @@ rofi 2.0.0-1
 rsync 3.4.1-2
 rustup 1.28.2-4
 shfmt 3.12.0-1
+signal-desktop 7.83.0-1
 slop 7.7-2
 slurp 1.5.0-1
 socat 1.8.1.0-1
@@ -116,9 +117,11 @@ texlive-fontsrecommended 2025.2-2
 texlive-latex 2025.2-2
 texlive-latexextra 2025.2-2
 time 1.9-6
+tinymist 1:0.14.4-1
 tmux 3.6_a-1
 tree-sitter-cli 0.25.10-1
 ttf-jetbrains-mono 2.304-2
+typst 1:0.14.2-1
 ueberzugpp 2.9.8-1
 uv 0.9.18-2
 valgrind 3.25.1-3
@@ -127,6 +130,7 @@ vi 1:070224-6
 virt-manager 5.1.0-1
 virt-viewer 11.0-4
 webkit2gtk 2.50.4-1
+websocat 1.14.0-1
 wev 1.1.0-1
 wf-recorder 0.6.0-1
 wl-clipboard 1:2.2.1-3
