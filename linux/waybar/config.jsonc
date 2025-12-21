@@ -10,10 +10,10 @@
   "modules-center": [],
 
   "modules-right": [
+    "backlight",
     "pulseaudio",
     "network",
     "battery",
-    "backlight",
     "clock"
   ],
 

@@ -7,7 +7,8 @@ count="$(printf "%s\n" "$sinks" | wc -l)"
 if [ "$XDG_SESSION_TYPE" = x11 ]; then
     choice="$(printf "%s\n" "$sinks" | dmenu -i -l "$count" -p "Select Sink:" | cut -d: -f1)"
 else
-    choice="$(printf "%s\n" "$sinks" | rofi -dmenu -i -lines "$count" -p "Select Sink:" | cut -d: -f1)"
+    max_width=$(printf "%s\n" "$sinks" | awk '{ if(length > max) max=length } END{ print max }')
+    choice="$(printf "%s\n" "$sinks" | fuzzel --dmenu --width "$max_width" --lines "$count" -p "select sink: " | cut -d: -f1)"
 fi
 
 [ "$choice" ] && pactl set-default-sink "$choice"

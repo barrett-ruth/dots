@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 
 if [ "$USE_WAYLAND" ]; then
-  if swaymsg -t get_inputs | grep -qi "Colemak"; then
-    swaymsg input type:keyboard xkb_variant "''"
-  else
-    swaymsg input type:keyboard xkb_variant colemak
+  if [ "$XDG_CURRENT_DESKTOP" = 'Hyprland' ]; then
+    hyprctl switchxkblayout current next
+  elif [ "$XDG_CURRENT_DESKTOP" = 'sway' ]; then
+    if swaymsg -t get_inputs | grep -qi "Colemak"; then
+      swaymsg input type:keyboard xkb_variant "''"
+    else
+      swaymsg input type:keyboard xkb_variant colemak
+    fi
   fi
 else
   current="$(setxkbmap -query | awk '/variant/{print $2}')"

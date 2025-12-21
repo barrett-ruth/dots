@@ -18,7 +18,7 @@ exists pip && pip list --not-required >pip.txt
 
 cp -r "$SCRIPTS" .
 
-for folder in git npm nvim python rg tmux yamllint zsh mutt dunst sioyek ghostty fzf task waybar hypr; do
+for folder in git npm nvim python rg tmux yamllint zsh mutt dunst sioyek ghostty fzf task; do
   if [ -d "$XDG_CONFIG_HOME/$folder" ]; then
     rm -rf "$folder"
     cp -rf "$XDG_CONFIG_HOME/$folder" .
@@ -33,7 +33,7 @@ if [ -d "$XDG_CONFIG_HOME"/luarocks ]; then
 fi
 
 if [ -d linux ]; then
-  for folder in rofi sway spectrwm X11 zathura; do
+  for folder in rofi sway spectrwm X11 zathura waybar hypr fuzzel; do
     if [ -d "$XDG_CONFIG_HOME/$folder" ]; then
       rm -rf "linux/$folder"
       cp -rf "$XDG_CONFIG_HOME/$folder" linux
@@ -46,7 +46,7 @@ test -f ~/.zshenv && cp -f ~/.zshenv zsh
 
 if [ -d /etc/keyd ]; then
   test -d keyd || mkdir keyd
-  test -f /etc/keyd/default.conf && cp /etc/keyd/default.conf keyd
+  test -f /etc/keyd/default.conf && cp /etc/keyd/default.conf linux/keyd
 fi
 
 exists go && test -d "$GOPATH"/bin && ls "$GOPATH"/bin >go.txt

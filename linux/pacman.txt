@@ -23,6 +23,7 @@ eza 0.23.4-1
 fd 10.3.0-1
 feh 3.11.2-2
 fontforge 20251009-2
+fuzzel 1.13.1-1
 fzf 0.67.0-1
 gdb 16.3-1
 geoclue 2.8.0-1
@@ -36,6 +37,7 @@ grim 1.5.0-2
 grub 2:2.14rc1.r54.g29f3131a-2
 gst-libav 1.26.9-1
 gst-plugins-bad 1.26.9-1
+hypridle 0.1.7-6
 hyprland 0.52.2-2
 hyprpaper 0.7.6-4
 imagemagick 7.1.2.11-1
@@ -47,7 +49,6 @@ jupyter-server 2.17.0-2
 kdialog 25.12.0-1
 keyd 2.5.0-1
 kitty 0.44.0-1
-lf 40-1
 libcurl-compat 8.17.0-2
 libcurl-gnutls 8.17.0-2
 libfido2 1.16.0-2
@@ -98,7 +99,6 @@ qt5-wayland 5.15.18+kde+r55-1
 qt6-wayland 6.10.1-1
 reflector 2023-3
 ripgrep 15.1.0-1
-rofi 2.0.0-1
 rsync 3.4.1-2
 rustup 1.28.2-4
 shfmt 3.12.0-1

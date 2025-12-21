@@ -11,15 +11,27 @@ DIR = f"{HOME}/img/wp"
 FILE = f"{DIR}/random.jpg"
 os.makedirs(DIR, exist_ok=True)
 
+output = "1920x1080"
+
 if "WAYLAND_DISPLAY" in os.environ:
-    output = (
-        subprocess.check_output(
-            "swaymsg -t get_outputs -r | jq -r '.[] | select(.active==true) | .current_mode.width,.current_mode.height' | paste -sd x -",
-            shell=True,
+    if os.environ.get('XDG_CURRENT_DESKTOP', '') == 'Hyprland':
+        output = (
+            subprocess.check_output(
+                "hyprctl monitors -j | jq -r '.[] | select(.focused==true) | .width, .height' | paste -sd x -",
+                shell=True,
+            )
+            .decode()
+            .strip()
         )
-        .decode()
-        .strip()
-    )
+    elif os.environ.get('XDG_CURRENT_DESKTOP', '') == 'sway':
+        output = (
+            subprocess.check_output(
+                "swaymsg -t get_outputs -r | jq -r '.[] | select(.active==true) | .current_mode.width,.current_mode.height' | paste -sd x -",
+                shell=True,
+            )
+            .decode()
+            .strip()
+        )
 else:
     output = (
         subprocess.check_output("xrandr | grep '*' | awk '{print $1}'", shell=True)
