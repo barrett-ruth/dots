@@ -19,7 +19,6 @@ shellcheck-bin 0.11.0-1
 sioyek 2.0.0-7
 slack-desktop 4.46.104-1
 spectrwm 3.7.0-1
-swaylock-effects 1.7.0.0-4
 teams 1.5.00.23861-1
 tex-fmt 0.5.6-1
 ttf-joypixels 9.0.0-1

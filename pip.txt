@@ -10,6 +10,7 @@ cmake-parse        0.6.13
 cmakelint          1.4.3
 cpplint            2.0.0
 filelock           3.20.0
+gps                3.27.1
 html5lib           1.1
 importlib_metadata 8.7.0
 isort              7.0.0

@@ -36,6 +36,8 @@ grim 1.5.0-2
 grub 2:2.14rc1.r54.g29f3131a-2
 gst-libav 1.26.9-1
 gst-plugins-bad 1.26.9-1
+hyprland 0.52.2-2
+hyprpaper 0.7.6-4
 imagemagick 7.1.2.11-1
 iptables-nft 1:1.8.11-2
 iwd 3.10-1
@@ -107,6 +109,7 @@ socat 1.8.1.0-1
 sway 1:1.11-1
 swaybg 1.2.1-1
 swayidle 1.9.0-1
+swaylock 1.8.4-1
 task 3.4.2-1
 telegram-desktop 6.3.9-1
 tesseract 5.5.1-2
@@ -129,6 +132,7 @@ vde2 2.3.3-8
 vi 1:070224-6
 virt-manager 5.1.0-1
 virt-viewer 11.0-4
+waybar 0.14.0-5
 webkit2gtk 2.50.4-1
 websocat 1.14.0-1
 wev 1.1.0-1

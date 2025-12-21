@@ -64,10 +64,19 @@ Linux)
   fi
 
   [ "$XDG_SESSION_TYPE" = "wayland" ] && {
-    current_theme=$(readlink "$XDG_CONFIG_HOME/sway/themes/theme" 2>/dev/null | sed 's|.*/||')
-    if [ "$current_theme" != "$theme" ]; then
-      test -f "$XDG_CONFIG_HOME/sway/themes/theme" && ln -sf "$XDG_CONFIG_HOME/sway/themes/$theme" "$XDG_CONFIG_HOME/sway/themes/theme"
-      swaymsg reload
+    if [ "$XDG_CURRENT_DESKTOP" = 'Hyprland' ]; then
+      current_theme=$(readlink "$XDG_CONFIG_HOME/hypr/style.css" 2>/dev/null | sed 's|.*/||' | sed 's|.css$||')
+      if [ "$current_theme" != "$theme" ]; then
+        ln -sf "$XDG_CONFIG_HOME/hypr/themes/$theme.css" "$XDG_CONFIG_HOME/hypr/style.css"
+        hyprctl reload
+        killall -SIGUSR1 waybar
+      fi
+    elif [ "$XDG_CURRENT_DESKTOP" = 'sway' ]; then
+      current_theme=$(readlink "$XDG_CONFIG_HOME/sway/themes/theme" 2>/dev/null | sed 's|.*/||')
+      if [ "$current_theme" != "$theme" ]; then
+        test -f "$XDG_CONFIG_HOME/sway/themes/theme" && ln -sf "$XDG_CONFIG_HOME/sway/themes/$theme" "$XDG_CONFIG_HOME/sway/themes/theme"
+        swaymsg reload
+      fi
     fi
   }
 

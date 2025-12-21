@@ -1,0 +1,25 @@
+* {
+  font-family: "Berkeley Mono", monospace;
+  font-size: 15px;
+  color: #e0e0e0;
+}
+
+button {
+  border: none;
+  border-radius: 0;
+}
+
+#waybar {
+  background: #121212;
+}
+
+#workspaces button {
+  padding: 0 10px;
+  color: #e0e0e0;
+}
+
+#workspaces button.focused,
+#workspaces button.active {
+  background: #2d2d2d;
+  color: #e0e0e0;
+}

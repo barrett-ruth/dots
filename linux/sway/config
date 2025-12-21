@@ -1,3 +1,4 @@
+exec systemctl --user set-environment XDG_CURRENT_DESKTOP=sway
 exec_always dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK XDG_SESSION_TYPE THEME
 exec_always systemctl --user import-environment DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK XDG_SESSION_TYPE THEME
 exec_always sclip
@@ -87,7 +88,7 @@ bindsym Mod5+o exec ocr
 bindsym Mod1+space        exec $menu
 set $menu rofi -show run
 
-set $term ghostty
+set $term $TERMINAL
 bindsym Mod1+Shift+Return exec $term
 assign [app_id="ghostty"] workspace number 1
 
@@ -108,9 +109,6 @@ assign [app_id="vesktop"] workspace number 5
 
 bindsym Mod1+Shift+b      exec bitwarden-desktop
 assign [app_id="Bitwarden"] workspace number 6
-
-bindsym Mod1+s exec signal-desktop
-assign [app_id="signal"] workspace number 7
 
 bindsym Mod1+t exec telegram
 assign [app_id="org.telegram.desktop"] workspace number 7

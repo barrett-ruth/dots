@@ -1,0 +1,59 @@
+{
+  "reload_style_on_change": true,
+  "layer": "top",
+  "position": "top",
+  "exclusive": true,
+  "height": 34,
+
+  "modules-left": ["hyprland/workspaces"],
+
+  "modules-center": [],
+
+  "modules-right": [
+    "pulseaudio",
+    "network",
+    "battery",
+    "backlight",
+    "clock"
+  ],
+
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "format": "{id}"
+  },
+
+  "pulseaudio": {
+    "format": "volume:{volume}% │ ",
+    "format-muted": "volume:muted │ ",
+    "interval": 2,
+    "signal": 1
+  },
+
+  "network": {
+    "format-wifi": "wifi:{essid} │ ",
+    "format-ethernet": "eth:{interface} │ ",
+    "format-disconnected": "wifi:off │ ",
+    "interval": 10,
+    "signal": 1
+  },
+
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "brightness:{percent}% │ ",
+    "signal": 1
+  },
+
+  "battery": {
+    "format": "battery:{capacity}% │ ",
+    "format-charging": "battery:{capacity}% │ ",
+    "format-full": "battery:{capacity}% │ ",
+    "interval": 30,
+    "signal": 1
+  },
+
+  "clock": {
+    "format": "{:%R %d/%m/%Y} ",
+    "interval": 60
+  }
+}

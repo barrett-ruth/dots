@@ -6,6 +6,7 @@ STATE_FILE="${XDG_STATE_HOME:-$HOME/.local/state}/.battery_notify_state"
 PIDFILE="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/swaybar.pid"
 
 j() {
+  # escape backslashes and quotes, strip newlines/carriage returns
   printf '%s' "$1" | tr -d '\n\r' | sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
 }
 
@@ -67,7 +68,7 @@ printf '{"version":1}\n[\n'
 echo $$ >"$PIDFILE" 2>/dev/null || true
 
 trap ':' USR1
-trap 'exit 0' PIPE
+trap 'exit 0' PIPE 
 
 comma=""
 while :; do
