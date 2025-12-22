@@ -1,6 +1,9 @@
 ---@type number|nil
 local git_tab = nil
 
+---@type string|nil
+local prev = nil
+
 return {
     {
         'tpope/vim-fugitive',
@@ -49,17 +52,25 @@ return {
         keys = {
             { '[g', '<cmd>Gitsigns next_hunk<cr>' },
             { ']g', '<cmd>Gitsigns prev_hunk<cr>' },
+            { '<leader>Gb', '<cmd>Gitsigns toggle_current_line_blame<cr>' },
+            {
+                '<leader>Gs',
+                function()
+                    if vim.opt.signcolumn:get() == 'no' then
+                        prev = vim.opt.signcolumn:get()
+                        vim.opt.signcolumn = 'yes'
+                    else
+                        vim.opt.signcolumn = prev
+                    end
+                    vim.cmd.Gitsigns('toggle_signs')
+                end,
+            },
         },
         event = 'VeryLazy',
         opts = {
-            on_attach = function()
-                vim.wo.signcolumn = 'yes'
-            end,
             current_line_blame_formatter_nc = function()
                 return {}
             end,
-            attach_to_untracked = false,
-            signcolumn = false,
             signs = {
                 -- use boxdraw chars
                 add = { text = '│' },
@@ -68,7 +79,7 @@ return {
                 topdelete = { text = '‾' },
                 changedelete = { text = '│' },
             },
-            current_line_blame = true,
+            signcolumn = false,
         },
     },
 }

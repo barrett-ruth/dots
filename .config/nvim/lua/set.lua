@@ -14,6 +14,7 @@ o.exrc = true
 o.secure = true
 
 opt.foldcolumn = 'auto:1'
+opt.signcolumn = 'no'
 
 opt.fillchars = {
     eob = ' ',

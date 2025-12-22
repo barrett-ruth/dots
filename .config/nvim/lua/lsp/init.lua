@@ -123,10 +123,19 @@ function M.setup()
         callback = function(opts)
             local client = vim.lsp.get_client_by_id(opts.data.client_id)
 
-            if client and client:supports_method('formatting') then
+            if
+                client
+                and (
+                    client:supports_method('textDocument/formatting')
+                    or client:supports_method('formatting')
+                )
+            then
                 local modes = { 'n' }
 
-                if client:supports_method('rangeFormatting') then
+                if
+                    client:supports_method('textDocument/fomatting')
+                    or client:supports_method('rangeFormatting')
+                then
                     table.insert(modes, 'x')
                 end
 
