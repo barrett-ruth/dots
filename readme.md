@@ -2,8 +2,6 @@
 
 My personal dotfiles.
 
-![dotfiles]()
-
 ## directory structure
 
 - `etc`: `/etc` related linux files
