@@ -8,12 +8,10 @@ function M.setup()
         foldclose = '>',
         foldsep = ' ',
     })
-
     vim.o.foldlevel = 1
     vim.o.foldtext = ''
     vim.o.foldnestmax = 2
     vim.o.foldminlines = 5
-
     vim.api.nvim_create_autocmd('FileType', {
         pattern = '*',
         callback = function()
@@ -30,27 +28,22 @@ function M.debug(start_line, end_line)
     local total_lines = vim.api.nvim_buf_line_count(bufnr)
     start_line = start_line or 1
     end_line = end_line or total_lines
-
     local ok, parser = pcall(vim.treesitter.get_parser, bufnr)
     if not ok or not parser then
         print('No treesitter parser available')
         return
     end
-
     local trees = parser:parse()
     if not trees or #trees == 0 then
         print('No parse trees available')
         return
     end
-
     local root = trees[1]:root()
-
     for i = start_line, end_line do
         vim.v.lnum = i
         local fold_result = M.foldexpr()
         local line_text = vim.fn.getline(i)
         local content = line_text:sub(1, 50)
-
         local last_col = line_text:find('%S%s*$')
         local node_name = 'none'
         local display_node = nil
@@ -82,9 +75,7 @@ function M.debug(start_line, end_line)
                 display_node = enclosing
             end
         end
-
         node_name = display_node and display_node:type() or 'none'
-
         print(
             string.format(
                 '%-4d [%-3s] %-32s %s',
@@ -97,33 +88,21 @@ function M.debug(start_line, end_line)
     end
 end
 
---- @type table<integer, table<integer, true>>
-M.edges = {}
-
 --- @return string Fold level (as string for foldexpr)
 function M.foldexpr()
     local line = vim.v.lnum
     local bufnr = vim.api.nvim_get_current_buf()
-
-    M.edges[bufnr] = M.edges[bufnr] or {}
-
-    if line == 1 then
-        M.edges[bufnr] = {}
-    end
-
+    local foldnestmax = vim.wo.foldnestmax
     local ok, parser = pcall(vim.treesitter.get_parser, bufnr)
     if not ok or not parser then
         return '0'
     end
-
     local trees = parser:parse()
     if not trees or #trees == 0 then
         return '0'
     end
-
     local root = trees[1]:root()
     local line_text = vim.fn.getline(line)
-
     local positions = {}
     local first_col = line_text:match('^%s*()')
     if first_col and first_col <= #line_text then
@@ -133,11 +112,9 @@ function M.foldexpr()
     if last_col then
         table.insert(positions, last_col - 1)
     end
-
     if #positions == 0 then
         table.insert(positions, 0)
     end
-
     local function is_foldable(node_type)
         return
             -- functions/methods
@@ -174,7 +151,6 @@ function M.foldexpr()
                 or node_type == 'internal_module'
                 or node_type == 'mod_item'
     end
-
     local function should_fold(n)
         if not n then
             return false
@@ -182,7 +158,6 @@ function M.foldexpr()
         local srow, _, erow, _ = n:range()
         return (erow - srow + 1) >= vim.wo.foldminlines
     end
-
     local function nested_fold_level(node)
         if not node then
             return 0
@@ -197,26 +172,26 @@ function M.foldexpr()
         end
         return level
     end
-
     local function starts_on_line(n)
         local srow, _, _, _ = n:range()
         return srow + 1 == line
     end
-
     local max_level = 0
     local is_start = false
-
     for _, col in ipairs(positions) do
         local node =
             root:named_descendant_for_range(line - 1, col, line - 1, col)
         if node then
-            max_level = math.max(max_level, nested_fold_level(node))
+            local raw_level = nested_fold_level(node)
+            max_level = math.max(max_level, math.min(raw_level, foldnestmax))
             local temp = node
             while temp do
+                local this_level = nested_fold_level(temp)
                 if
                     is_foldable(temp:type())
                     and should_fold(temp)
                     and starts_on_line(temp)
+                    and this_level <= foldnestmax
                 then
                     is_start = true
                 end
@@ -224,16 +199,12 @@ function M.foldexpr()
             end
         end
     end
-
     if max_level == 0 then
         return '0'
     end
-
     if is_start then
-        M.edges[bufnr][line] = true
         return '>' .. max_level
     end
-
     return tostring(max_level)
 end
 

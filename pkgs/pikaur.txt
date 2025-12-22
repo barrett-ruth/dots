@@ -2,6 +2,7 @@ basedpyright 1.36.1-1
 clipmenu-git 6.2.0.r72.g46d45c9-1
 cmake-format 0.6.13-3
 cmake-lint 1.4.3-1
+downgrade 11.5.5-1
 electron39-bin 39.2.7-1
 flamegraph 1.0-2
 google-chrome 143.0.7499.146-1

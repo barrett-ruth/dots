@@ -11,7 +11,7 @@
 
 --color=auto
 --colors=line:style:nobold
---colors=line:fg:242
---colors=match:fg:green
+--colors=line:fg:8
+--colors=match:fg:red
 --colors=match:style:bold
---colors=path:fg:blue
+--colors=path:fg:magenta
