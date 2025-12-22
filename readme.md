@@ -9,5 +9,4 @@ My personal dotfiles.
 - `etc`: `/etc` related linux files
 - `.config`: osx + linux related files
 
-- [`./pkgs` (package metadata)](./pkgs)</u>: misc package versioning (cargo, go,
-  pacman, etc.)
+- `./pkgs`: misc package versioning metadata (cargo, go, pacman, etc.)
