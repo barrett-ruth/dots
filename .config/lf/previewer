@@ -4,37 +4,43 @@ w="$2"
 h="$3"
 x="$4"
 y="$5"
+
 CACHE_DIR="$HOME/.cache/lf/thumbnail"
 mkdir -p "$CACHE_DIR"
+
 CACHE_BASE="$CACHE_DIR/$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f "$FILE_PATH")" | sha256sum | awk '{print $1}')"
+
 get_cell_size() {
   size_info=$(kitten @ get-window-size --self)
   cell_w=$(echo "$size_info" | awk 'BEGIN{RS="[{} ,]"} /"xpixels"/{gsub(/"/,"",$0); split($0,a,":"); x=a[2]} /"cols"/{gsub(/"/,"",$0); split($0,a,":"); c=a[2]} END{if(c) print int(x/c); else print 8}')
   cell_h=$(echo "$size_info" | awk 'BEGIN{RS="[{} ,]"} /"ypixels"/{gsub(/"/,"",$0); split($0,a,":"); y=a[2]} /"rows"/{gsub(/"/,"",$0); split($0,a,":"); r=a[2]} END{if(r) print int(y/r); else print 16}')
 }
+
 draw() {
   kitten icat --stdin no --transfer-mode memory --place "${w}x${h}@${x}x${y}" "$1" </dev/null >/dev/tty
   exit 1
 }
-draw_animated() {
-  kitten icat --stdin no --transfer-mode memory --place "${w}x${h}@${x}x${y}" --loop=-1 "$1" </dev/null >/dev/tty
-  exit 1
-}
+
 get_cell_size
-preview_px_w=$((w * ${cell_w:-8}))
-preview_px_h=$((h * ${cell_h:-16}))
+preview_px_w=$((w * ${cell_w:-8} - 16))
+preview_px_h=$((h * ${cell_h:-16} - 16))
+
 mime_type=$(file -Lb --mime-type "$FILE_PATH")
+
 case "$mime_type" in
-image/gif)
-  draw_animated "$FILE_PATH"
+image/gif|video/*)
+  if [ "$(stat -c %Y "$FILE_PATH" 2>/dev/null || echo 0)" -gt "$(stat -c %Y "${CACHE_BASE}.jpg" 2>/dev/null || echo 0)" ]; then
+    ffmpeg -y -i "$FILE_PATH" -vf "select=eq(n\,0),scale=${preview_px_w}:-1" -vframes 1 "${CACHE_BASE}.jpg"
+  fi
+  draw "${CACHE_BASE}.jpg"
   ;;
-image/svg+xml | image/svg)
+  image/svg+xml|image/svg)
   if [ "$(stat -c %Y "$FILE_PATH")" -gt "$(stat -c %Y "${CACHE_BASE}.png" 2>/dev/null || echo 0)" ]; then
-    rsvg-convert --keep-aspect-ratio --width "$preview_px_w" "$FILE_PATH" -o "${CACHE_BASE}.png"
+    rsvg-convert --keep-aspect-ratio --width "$preview_px_w" --format=png "$FILE_PATH" -o "${CACHE_BASE}.png"
   fi
   draw "${CACHE_BASE}.png"
   ;;
-image/)
+image/*)
   draw "$FILE_PATH"
   ;;
 application/pdf)
@@ -45,21 +51,18 @@ application/pdf)
   ;;
 application/epub+zip|application/x-mobipocket-ebook)
   if [ "$(stat -c %Y "$FILE_PATH")" -gt "$(stat -c %Y "${CACHE_BASE}.png" 2>/dev/null || echo 0)" ]; then
-    gnome-epub-thumbnailer -s "$preview_px_w" "$FILE_PATH" "${CACHE_BASE}.png" 2>/dev/null || true
+    gnome-epub-thumbnailer -s "$preview_px_w" "$FILE_PATH" "${CACHE_BASE}.png" 2>/dev/null || convert -size "${preview_px_w}x${preview_px_w}" xc:gray "${CACHE_BASE}.png"
   fi
   [ -f "${CACHE_BASE}.png" ] && draw "${CACHE_BASE}.png"
-  ;;
-video/)
-  if [ "$(stat -c %Y "$FILE_PATH")" -gt "$(stat -c %Y "${CACHE_BASE}.jpg" 2>/dev/null || echo 0)" ]; then
-    ffmpeg -y -i "$FILE_PATH" -vframes 1 -vf "scale=${preview_px_w}:-1" "${CACHE_BASE}.jpg"
-  fi
-  draw "${CACHE_BASE}.jpg"
   ;;
 audio/*)
   if [ "$(stat -c %Y "$FILE_PATH")" -gt "$(stat -c %Y "${CACHE_BASE}.jpg" 2>/dev/null || echo 0)" ]; then
     ffmpeg -y -i "$FILE_PATH" -an -vcodec copy "${CACHE_BASE}.jpg" 2>/dev/null || convert -size "${preview_px_w}x${preview_px_w}" xc:gray "${CACHE_BASE}.jpg"
   fi
   draw "${CACHE_BASE}.jpg"
+  ;;
+text/*|application/json|inode/x-empty)
+  bat --color=always --paging=never --style=plain "$FILE_PATH"
   ;;
 *)
   cat "$FILE_PATH"
