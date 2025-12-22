@@ -1,1 +1,11 @@
-/home/frozen/.config/waybar/themes/midnight.css
+* {
+  font-family: "Berkeley Mono", monospace;
+  font-size: 15px;
+}
+
+button {
+  border: none;
+  border-radius: 0;
+}
+
+@import "themes/theme.css";

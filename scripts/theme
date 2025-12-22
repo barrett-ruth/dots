@@ -12,7 +12,7 @@ Linux)
     theme="$1"
   else
     if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
-      theme="$(printf "%s\n" "$themes" | fuzzel --dmenu --lines "$(echo "$themes" | wc -l)" -p 'select theme: ')"
+      theme="$(printf "%s\n" "$themes" | rofi -dmenu -p 'theme')"
     else
       theme="$(printf "%s\n" "$themes" | dmenu -p 'select theme: ')"
     fi
@@ -68,7 +68,7 @@ Linux)
       current_theme=$(readlink "$XDG_CONFIG_HOME/hypr/theme.conf" 2>/dev/null | awk -F/ '{print $NF}' | sed 's/\.conf$//')
       if [ "$current_theme" != "$theme" ]; then
         ln -sf "$XDG_CONFIG_HOME/hypr/themes/$theme.conf" "$XDG_CONFIG_HOME/hypr/theme.conf"
-        ln -sf "$XDG_CONFIG_HOME/waybar/themes/$theme.css" "$XDG_CONFIG_HOME/waybar/style.css"
+        ln -sf "$XDG_CONFIG_HOME/waybar/themes/$theme.css" "$XDG_CONFIG_HOME/waybar/themes/theme.css"
         hyprctl reload
         pkill -USR1 waybar
         pkill -USR1 waybar
@@ -82,7 +82,7 @@ Linux)
     fi
   }
 
-  test -d "$XDG_CONFIG_HOME/rofi/themes" && sed -i "s|@import \"themes/.*\.rasi\"|@import \"themes/$theme.rasi\"|" "$XDG_CONFIG_HOME/rofi/config.rasi"
+  test -d "$XDG_CONFIG_HOME/rofi/themes" && ln -sf "$XDG_CONFIG_HOME/rofi/themes/$theme.rasi" "$XDG_CONFIG_HOME/rofi/themes/theme.rasi"
 
   test -f "$XDG_CONFIG_HOME/sioyek/themes/$theme.config" && ln -sf "$XDG_CONFIG_HOME/sioyek/themes/$theme.config" "$XDG_CONFIG_HOME/sioyek/themes/theme.config"
 
@@ -101,7 +101,7 @@ esac
 
 if tmux list-sessions >/dev/null 2>&1; then
   test -f "$XDG_CONFIG_HOME/tmux/tmux.conf" && tmux source-file "$XDG_CONFIG_HOME/tmux/tmux.conf"
-  [ "$TMUX"] && tmux refresh-client -S
+  [ "$TMUX" ] && tmux refresh-client -S
 fi
 
 test -d "$XDG_CONFIG_HOME/fzf/themes" && ln -sf "$XDG_CONFIG_HOME/fzf/themes/$theme" "$XDG_CONFIG_HOME/fzf/themes/theme"

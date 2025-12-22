@@ -8,6 +8,7 @@ Subcommands:
   spawnfocus       Focus an existing window of the app or spawn it if not running
   pull             Move the window of the app to the current workspace and focus it
   borders          Initialize dynamic borders, per github.com/devadathanmb/hyprland-smart-borders
+  exit             Safely exit hyprland and all related programs
 
 Options:
   -h, --help       Show this help message
@@ -22,11 +23,6 @@ esac
 SUBCMD="$1"
 shift
 
-[ -z "$1" ] && [ "$SUBCMD" != "borders" ] && { 
-    echo "Error: invalid app specified"; 
-    usage; 
-    exit 1; 
-}
 APP="$1"
 shift
 ARGS="$*"
@@ -168,6 +164,11 @@ case "$SUBCMD" in
     }
 
     socat -U - UNIX-CONNECT:$(echo $XDG_RUNTIME_DIR)/hypr/$(echo $HYPRLAND_INSTANCE_SIGNATURE)/.socket2.sock | while read line; do handle $line; done
+    ;;
+  exit)
+    pkill hypridle
+    pkill hyprpaper
+    hyprctl dispatch exit
     ;;
   *)
     echo "Unknown subcommand: $SUBCMD"

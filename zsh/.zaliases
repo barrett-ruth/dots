@@ -12,11 +12,6 @@ alias pm='pacman'
 
 alias g='git'
 alias nv='nvim'
-sy() {
-    [ "$1" ] || return
-    sioyek "$1" 2>/dev/null &
-    disown
-}
 
 mkcd() {
     [ "$1" ] || return

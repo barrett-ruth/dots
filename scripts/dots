@@ -33,7 +33,7 @@ if [ -d "$XDG_CONFIG_HOME"/luarocks ]; then
 fi
 
 if [ -d linux ]; then
-  for folder in rofi sway spectrwm X11 zathura waybar hypr fuzzel; do
+  for folder in rofi sway spectrwm X11 zathura waybar hypr; do
     if [ -d "$XDG_CONFIG_HOME/$folder" ]; then
       rm -rf "linux/$folder"
       cp -rf "$XDG_CONFIG_HOME/$folder" linux

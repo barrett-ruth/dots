@@ -1,12 +1,5 @@
 * {
-  font-family: "Berkeley Mono", monospace;
-  font-size: 15px;
   color: #1a1a1a;
-}
-
-button {
-  border: none;
-  border-radius: 0;
 }
 
 #waybar {
