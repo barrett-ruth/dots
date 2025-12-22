@@ -2,7 +2,6 @@ basedpyright 1.36.1-1
 clipmenu-git 6.2.0.r72.g46d45c9-1
 cmake-format 0.6.13-3
 cmake-lint 1.4.3-1
-downgrade 11.5.5-1
 electron39-bin 39.2.7-1
 flamegraph 1.0-2
 google-chrome 143.0.7499.146-1
@@ -16,6 +15,7 @@ qt5-remoteobjects 5.15.18-1
 qt5-webchannel 5.15.18+kde+r3-1
 qt5-webengine 5.15.19-3
 quarto-cli-bin 1.8.26-1
+rgb.txt 1.0-1
 shellcheck-bin 0.11.0-1
 slack-desktop 4.46.104-1
 spectrwm 3.7.0-1

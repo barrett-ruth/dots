@@ -5,7 +5,15 @@
   "exclusive": true,
   "height": 34,
 
-  "modules-left": ["hyprland/workspaces"],
+  "modules-left": ["hyprland/workspaces", "hyprland/window"],
+
+  "hyprland/window": {
+    "format": " {} [{}]",
+    "separate-outputs": true,
+    "max-length": 80,
+    "rewrite": {
+    }
+  },
 
   "modules-center": [],
 
@@ -25,7 +33,7 @@
 
   "pulseaudio": {
     "format": "volume:{volume}% │ ",
-    "format-muted": "volume:muted │ ",
+    "format-muted": "volume:{volume}% (muted) │ ",
     "interval": 2,
     "signal": 1
   },
@@ -48,6 +56,12 @@
     "format": "battery:{capacity}% │ ",
     "format-charging": "battery:{capacity}% │ ",
     "format-full": "battery:{capacity}% │ ",
+        "states": {
+        "warning": 25,
+        "critical": 10
+    },
+    "on-discharging-warning": "notify-send -u normal 'battery low' 'battery < 25%'",
+    "on-discharging-critical": "notify-send -u critical 'battery critical' 'battery < 10%'",
     "interval": 30,
     "signal": 1
   },

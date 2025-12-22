@@ -494,17 +494,4 @@ return {
             },
         },
     },
-    {
-        '3rd/image.nvim',
-        build = false,
-        opts = {
-            processor = 'magick_cli',
-        },
-        init = function()
-            if vim.env.TMUX ~= nil then
-                vim.system({ 'tmux', 'set', '-gq', 'allow-passthrough', 'on' })
-                vim.system({ 'tmux', 'set', '-g', 'visual-activity', 'off' })
-            end
-        end,
-    },
 }

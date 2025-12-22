@@ -1,0 +1,82 @@
+set previewer ~/.config/lf/previewer
+set cleaner ~/.config/lf/cleaner
+
+set boxdraw true
+set number
+set relativenumber
+set hidden true
+set shell zsh
+set shellopts '-eu'
+set ifs "\n"
+set noicons
+set incsearch
+set scrolloff 4
+set tabstop 2
+set smartcase
+set dircounts
+set dirfirst
+set sortby natural
+set info size
+set ratios 1:2:3
+set timefmt '2006-01-02 15:04:05 -0700'
+
+cmd open ${{
+    case $(file --mime-type "$(readlink -f $f)" -b) in
+	application/vnd.openxmlformats-officedocument.spreadsheetml.sheet) localc $fx ;;
+        text/*|application/json|inode/x-empty|application/x-subrip) $EDITOR $fx;;
+	audio/*|video/x-ms-asf) mpv --audio-display=no $f ;;
+	video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
+	application/pdf) setsid -f sioyek $fx >/dev/null 2>&1 ;;
+	application/pgp-encrypted) $EDITOR $fx ;;
+	application/vnd.openxmlformats-officedocument.wordprocessingml.document|application/vnd.oasis.opendocument.text|application/vnd.openxmlformats-officedocument.spreadsheetml.sheet|application/octet-stream|application/vnd.oasis.opendocument.spreadsheet|application/vnd.oasis.opendocument.spreadsheet-template|application/vnd.openxmlformats-officedocument.presentationml.presentation|application/vnd.oasis.opendocument.presentation-template|application/vnd.oasis.opendocument.presentation|application/vnd.ms-powerpoint|application/vnd.oasis.opendocument.graphics|application/vnd.oasis.opendocument.graphics-template|application/vnd.oasis.opendocument.formula|application/vnd.oasis.opendocument.database) setsid -f libreoffice $fx >/dev/null 2>&1 ;;
+        *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
+    esac
+}}
+
+cmd sopen ${{
+    hyprctl dispatch togglefloating
+    for f in $fx; do
+         setsid -f xdg-open "$f" >/dev/null 2>&1 &
+    done
+}}
+map <c-o> :sopen; quit
+map . set hidden!
+
+map ad push $mkdir<space>
+map af push $touch<space>
+cmd rmd ${{
+    set -f
+    while IFS= read -r dir; do
+        rmdir -v -- "$dir"
+    done <<< "$fx"
+}}
+map xd rmd
+cmd rmf ${{
+    set -f
+    while IFS= read -r file; do
+        rm -v -- "$file"
+    done <<< "$fx"
+}}
+map xf rmf
+map H jump-prev
+map L jump-next
+
+map <c-t> $lf -remote "send $id select $(fzf)"
+map zz push :z<space>
+
+cmd resize %{{
+    w=$(tmux display-message -p '#{pane_width}' || tput cols)
+    if [ $w -le 62 ]; then
+        lf -remote "send $id set ratios 1:4"
+        lf -remote "send $id set nopreview"
+    elif [ $w -le 80 ]; then
+        lf -remote "send $id set ratios 1:2:2"
+    elif [ $w -le 100 ]; then
+        lf -remote "send $id set ratios 1:2:3"
+    else
+        lf -remote "send $id set ratios 2:4:5"
+    fi
+}}
+resize
+
+# vim: ft=lf sw=4 commentstring=#\ %s
