@@ -49,6 +49,7 @@ jupyter-server 2.17.0-2
 kdialog 25.12.0-1
 keyd 2.5.0-1
 kitty 0.44.0-1
+lf 40-1
 libcurl-compat 8.17.0-2
 libcurl-gnutls 8.17.0-2
 libfido2 1.16.0-2

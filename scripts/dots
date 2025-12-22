@@ -32,7 +32,9 @@ if [ -d "$XDG_CONFIG_HOME"/luarocks ]; then
   cp "$XDG_CONFIG_HOME"/luarocks/* luarocks 2>/dev/null
 fi
 
-if [ -d linux ]; then
+
+if [ "$(uname -s)" = 'Linux' ]; then
+  mkdir -p linux
   for folder in rofi sway spectrwm X11 zathura waybar hypr; do
     if [ -d "$XDG_CONFIG_HOME/$folder" ]; then
       rm -rf "linux/$folder"
@@ -40,6 +42,10 @@ if [ -d linux ]; then
     fi
   done
   cp -f /etc/default/grub linux/grub
+
+  mkdir -p linux/.local/share/applications
+  cp ~/.local/share/applications/*.desktop linux/.local/share/applications/ 2>/dev/null
+  cp ~/.local/share/applications/*.list linux/.local/share/applications/ 2>/dev/null
 fi
 
 test -f ~/.zshenv && cp -f ~/.zshenv zsh
