@@ -28,13 +28,13 @@ preview_px_h=$((h * ${cell_h:-16} - 16))
 mime_type=$(file -Lb --mime-type "$FILE_PATH")
 
 case "$mime_type" in
-image/gif|video/*)
+image/gif | video/*)
   if [ "$(stat -c %Y "$FILE_PATH" 2>/dev/null || echo 0)" -gt "$(stat -c %Y "${CACHE_BASE}.jpg" 2>/dev/null || echo 0)" ]; then
     ffmpeg -y -i "$FILE_PATH" -vf "select=eq(n\,0),scale=${preview_px_w}:-1" -vframes 1 "${CACHE_BASE}.jpg"
   fi
   draw "${CACHE_BASE}.jpg"
   ;;
-  image/svg+xml|image/svg)
+image/svg+xml | image/svg)
   if [ "$(stat -c %Y "$FILE_PATH")" -gt "$(stat -c %Y "${CACHE_BASE}.png" 2>/dev/null || echo 0)" ]; then
     rsvg-convert --keep-aspect-ratio --width "$preview_px_w" --format=png "$FILE_PATH" -o "${CACHE_BASE}.png"
   fi
@@ -49,7 +49,7 @@ application/pdf)
   fi
   draw "${CACHE_BASE}.jpg"
   ;;
-application/epub+zip|application/x-mobipocket-ebook)
+application/epub+zip | application/x-mobipocket-ebook)
   if [ "$(stat -c %Y "$FILE_PATH")" -gt "$(stat -c %Y "${CACHE_BASE}.png" 2>/dev/null || echo 0)" ]; then
     gnome-epub-thumbnailer -s "$preview_px_w" "$FILE_PATH" "${CACHE_BASE}.png" 2>/dev/null || convert -size "${preview_px_w}x${preview_px_w}" xc:gray "${CACHE_BASE}.png"
   fi
@@ -61,8 +61,11 @@ audio/*)
   fi
   draw "${CACHE_BASE}.jpg"
   ;;
-text/*|application/json|inode/x-empty)
-  bat --color=always --paging=never --style=plain "$FILE_PATH"
+text/* | application/json | inode/x-empty)
+  nvim --headless --clean \
+    -c "luafile ~/.config/lf/lf.lua" \
+    -c "lua preview([[${FILE_PATH}]], ${w})" \
+    -c "quitall!"
   ;;
 *)
   cat "$FILE_PATH"
