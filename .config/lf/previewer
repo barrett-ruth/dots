@@ -24,6 +24,7 @@ draw() {
 get_cell_size
 preview_px_w=$((w * ${cell_w:-8} - 16))
 preview_px_h=$((h * ${cell_h:-16} - 16))
+PREVIEW_LINE_COUNT=200
 
 mime_type=$(file -Lb --mime-type "$FILE_PATH")
 
@@ -62,10 +63,9 @@ audio/*)
   draw "${CACHE_BASE}.jpg"
   ;;
 text/* | application/json | inode/x-empty)
-  nvim --headless --clean \
-    -c "luafile ~/.config/lf/lf.lua" \
-    -c "lua preview([[${FILE_PATH}]], ${w})" \
-    -c "quitall!"
+  nvim --headless \
+    -c "lua require('lf').preview([[${FILE_PATH}]], $PREVIEW_LINE_COUNT)" \
+    -c "quit"
   ;;
 *)
   cat "$FILE_PATH"
