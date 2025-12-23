@@ -72,7 +72,6 @@ man-db 2.13.1-1
 man-pages 6.16-1
 mpv 1:0.40.0-7
 mypy 1.19.0-1
-neovim 0.11.5-1
 ninja 1.13.2-1
 ntfs-3g 2022.10.3-2
 nvidia 580.119.02-2

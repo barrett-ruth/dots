@@ -51,7 +51,7 @@ return {
 
                     if lines >= line_cap then
                         vim.notify_once(
-                            ('Disable TreeSitter for bufnr %s; file too large (%s >= %s lines)'):format(
+                            ('Disabling tree-sitter for bufnr %s; file too large (%s >= %s lines)'):format(
                                 bufnr,
                                 lines,
                                 line_cap

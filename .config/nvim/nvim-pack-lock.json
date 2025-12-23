@@ -1,0 +1,12 @@
+{
+  "plugins": {
+    "midnight.nvim": {
+      "rev": "45c447a1902e7bd5b8e0de99bb5068de9ac1efba",
+      "src": "https://github.com/barrett-ruth/midnight.nvim.git"
+    },
+    "nvim-treesitter": {
+      "rev": "6e42d823ce0a5a76180c473c119c7677738a09d1",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter.git"
+    }
+  }
+}
