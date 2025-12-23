@@ -53,8 +53,8 @@
   },
 
   "battery": {
-    "format": "battery:{capacity}% │ ",
-    "format-charging": "battery:{capacity}% │ ",
+    "format": "battery:-{capacity}% │ ",
+    "format-charging": "battery:+{capacity}% │ ",
     "format-full": "battery:{capacity}% │ ",
     "states": {
       "hi": 30,
