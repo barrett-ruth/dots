@@ -223,6 +223,12 @@ function M.setup_none_ls()
                     XDG_RUNTIME_DIR = vim.env.XDG_RUNTIME_DIR
                         or (vim.env.XDG_DATA_HOME .. '/prettierd'),
                 },
+                extra_args = function(params)
+                    if params.ft == 'jsonc' then
+                        return { '--trailing-comma', 'none' }
+                    end
+                    return {}
+                end,
                 filetypes = {
                     'css',
                     'graphql',

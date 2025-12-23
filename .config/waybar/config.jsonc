@@ -59,12 +59,14 @@
     "states": {
       "hi": 30,
       "mid": 20,
-      "lo": 10
+      "lo": 10,
+      "ultralow": 5
     },
     "events": {
       "on-discharging-hi": "notify-send -u low 'battery 30%'",
       "on-discharging-mid": "notify-send -u normal 'battery 20%'",
       "on-discharging-lo": "notify-send -u critical 'battery 10%'",
+      "on-discharging-ultralo": "notify-send -u critical 'battery 5%'",
       "on-charging-100": "notify-send -u low 'battery 100%'"
     },
     "interval": 30,
