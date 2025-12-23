@@ -56,12 +56,17 @@
     "format": "battery:{capacity}% │ ",
     "format-charging": "battery:{capacity}% │ ",
     "format-full": "battery:{capacity}% │ ",
-        "states": {
-        "warning": 25,
-        "critical": 10
+    "states": {
+      "hi": 30,
+      "mid": 20,
+      "lo": 10
     },
-    "on-discharging-warning": "notify-send -u normal 'battery low' 'battery < 25%'",
-    "on-discharging-critical": "notify-send -u critical 'battery critical' 'battery < 10%'",
+    "events": {
+      "on-discharging-hi": "notify-send -u low 'battery 30%'",
+      "on-discharging-mid": "notify-send -u normal 'battery 20%'",
+      "on-discharging-lo": "notify-send -u critical 'battery 10%'",
+      "on-charging-100": "notify-send -u low 'battery 100%'"
+    },
     "interval": 30,
     "signal": 1
   },

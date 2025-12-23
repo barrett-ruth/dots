@@ -2,7 +2,6 @@ act 0.2.83-1
 aws-cli 1.43.15-1
 base 3-2
 base-devel 1-2
-bat 0.26.1-1
 biber 1:2.21-3
 bind 9.20.17-1
 bitwarden 2025.10.0-1
