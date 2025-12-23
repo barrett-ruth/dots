@@ -4,16 +4,16 @@ set -eu
 
 file="$SCRIPTS/$(basename "$1")"
 
-[ -d "$file" ] && exit
+test -d "$file" && exit
 test -s "$file" || echo '#!/bin/sh' >"$file"
 
 nvim "$file"
 
-[ -f "$file" ] || exit
+test -f "$file" || exit
 
 if [ "$(cat "$file")" = '#!/bin/sh' ]; then
   rm "$file"
-  exit
+  exit 0
 fi
 
 test -x "$file" || chmod +x "$SCRIPTS/$(basename "$file")"

@@ -1,19 +1,41 @@
 #!/bin/sh
 
-[ -z "$1" ] && exit
+de="$1"
 
-case "$1" in
-*sway* | *wayland*)
+shift
+
+setup_wayland() {
   export XDG_SESSION_TYPE=wayland
   export ELECTRON_OZONE_PLATFORM_HINT=wayland
+  export GTK_USE_PORTAL=1
   export OZONE_PLATFORM=wayland
   export QT_QPA_PLATFORM=wayland
   export GDK_BACKEND=wayland,x11
   export SDL_VIDEODRIVER=wayland
-  sway
-  ;;
-*x* | *x11*)
+  export USE_WAYLAND=1
+}
+
+setup_xorg() {
   export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
-  startx
+  export XDG_SESSION_TYPE=x11
+}
+
+case "$de" in
+*way*)
+  setup_wayland
+  export XDG_CURRENT_DESKTOP=sway
+  sway "$@"
   ;;
+*hypr*)
+  setup_wayland
+  export XDG_CURRENT_DESKTOP=Hyprland
+  hyprland "$@"
+  ;;
+*dwm* | *spectr*)
+  setup_xorg
+  export XDG_CURRENT_DESKTOP=X11
+  startx "$@"
+  ;;
+*)
+  echo "Window manager $de unknown. Please specify one of {hyprland,sway,dwm,spectrwm}"
 esac

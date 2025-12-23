@@ -4,17 +4,45 @@ BUCKET_NAME="barrett-taskwarrior"
 AWS_PROFILE="barrett"
 TASKDIR="${XDG_DATA_HOME:-$HOME/.local/share}/task"
 
-case "$1" in
-push)
-  aws s3 sync "$TASKDIR" "s3://$BUCKET_NAME" \
-    --exact-timestamps --delete --profile "$AWS_PROFILE"
-  ;;
-pull)
+push_to_s3() {
+  if aws s3 sync "$TASKDIR" "s3://$BUCKET_NAME" \
+    --exact-timestamps --delete --profile "$AWS_PROFILE" >/dev/null; then
+    echo "Synced tasks to s3://$BUCKET_NAME."
+  fi
+}
+
+pull_from_s3() {
   aws s3 sync "s3://$BUCKET_NAME" "$TASKDIR" \
     --exact-timestamps --delete --profile "$AWS_PROFILE"
+}
+
+case "$1" in
+push)
+  push_to_s3
+  ;;
+pull)
+  pull_from_s3
   ;;
 *)
-  echo "Usage: $(basename "$0") {push,pull}" >&2
-  exit 1
+  task "$@"
+  task_status=$?
+  [ $task_status -ne 0 ] && exit $task_status
+
+  is_write=false
+  for arg in "$@"; do
+    case "$arg" in
+    add | annotate | append | delete | denotate | done | duplicate | edit | modify | purge | start | stop | undo | import)
+      is_write=true
+      break
+      ;;
+    *:*) ;;
+    +* | -*) ;;
+    *) ;;
+    esac
+  done
+
+  [ "$is_write" = true ] && push_to_s3
+
+  exit $task_status
   ;;
 esac

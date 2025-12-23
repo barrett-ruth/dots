@@ -1,182 +1,241 @@
-#!/bin/bash
+#!/bin/sh
 
 usage() {
-    cat <<EOF
-Usage: hypr.sh <subcommand> <app> [args...]
+  cat <<EOF
+Usage: hypr <subcommand> [app] [args...]
 
-Subcommands:
-  spawnfocus       Focus an existing window of the app or spawn it if not running
-  pull             Move the window of the app to the current workspace and focus it
-  borders          Initialize dynamic borders, per github.com/devadathanmb/hyprland-smart-borders
-  exit             Safely exit hyprland and all related programs
-  file             Spawn a floating terminal and open the file.
+Commands:
+  spawnfocus <app> [args...]    Focus existing window or spawn app with args
+  pull [app]                    Pull window to current workspace (picker if no app)
+  borders                       Initialize dynamic borders
+  exit                          Safely exit hyprland
 
 Options:
-  -h, --help       Show this help message
+  -h, --help                    Show this help message
 EOF
 }
 
-[ -z "$1" ] && { usage; exit 1; }
-case "$1" in
-  -h|--help) usage; exit 0 ;;
-esac
+[ -z "$1" ] && {
+  usage
+  exit 1
+}
 
-SUBCMD="$1"
+cmd="$1"
 shift
 
-APP="$1"
-shift
-ARGS="$*"
+case "$cmd" in
+-h | --help)
+  usage
+  exit 0
+  ;;
+exit)
+  pkill hypridle
+  pkill hyprpaper
+  hyprctl dispatch exit
+  exit 0
+  ;;
+borders)
+  handle() {
+    event_type=$(echo "$1" | cut -c1-10)
 
-case "$APP" in
-  google-chrome|google-chrome-stable) CLASS="google-chrome" ;;
-  chromium|ungoogled-chromium) CLASS="Chromium" ;;
+    if [ "$event_type" = "openwindow" ]; then
+      window_id=$(echo "$1" | cut --delimiter ">" --fields=3 | cut --delimiter "," --fields=1)
+      workspace_id=$(echo "$1" | cut --delimiter ">" --fields=3 | cut --delimiter "," --fields=2)
+      if [ "$workspace_id" = "special" ]; then
+        workspace_id=-99
+      fi
+      windows=$(hyprctl workspaces -j | jq ".[] | select(.id == $workspace_id) | .windows")
+
+      if [ "$windows" -eq 1 ]; then
+        floating_status=$(hyprctl clients -j | jq ".[] | select(.address == \"0x$window_id\" ) | .floating")
+        if [ "$floating_status" = "false" ]; then
+          hyprctl dispatch setprop "address:0x$window_id" noborder 1
+        else
+          hyprctl dispatch setprop "address:0x$window_id" noborder 0
+          return
+        fi
+
+      elif [ "$windows" -eq 2 ]; then
+        addresses=$(hyprctl clients -j | jq -r --arg foo "$foo" ".[] | select(.workspace.id == $workspace_id) | .address")
+        for address in $addresses; do
+          if [ "$address" != "$window_id" ]; then
+            hyprctl dispatch setprop address:"$(echo "$address" | xargs)" noborder 0
+          fi
+        done
+      fi
+
+    elif [ "$(echo "$1" | cut -c1-10)" = "movewindow" ]; then
+      window_id=$(echo "$1" | cut --delimiter ">" --fields=3 | cut --delimiter "," --fields=1)
+      workspace_id=$(echo "$1" | cut --delimiter ">" --fields=3 | cut --delimiter "," --fields=2)
+
+      if [ "$workspace_id" = "special" ]; then
+        workspace_id=-99
+      fi
+
+      windows=$(hyprctl workspaces -j | jq ".[] | select(.id == $workspace_id) | .windows")
+
+      if [ "$windows" -eq 1 ]; then
+        floating_status=$(hyprctl clients -j | jq ".[] | select(.address == \"0x$window_id\" ) | .floating")
+        if [ "$floating_status" = "false" ]; then
+          hyprctl dispatch setprop "address:0x$window_id" noborder 1
+        else
+          hyprctl dispatch setprop "address:0x$window_id" noborder 0
+          return
+        fi
+      elif [ "$windows" -eq 2 ]; then
+        addresses=$(hyprctl clients -j | jq -r --arg foo "$foo" ".[] | select(.workspace.id == $workspace_id) | .address")
+        for address in $addresses; do
+          if [ "$address" != "$window_id" ]; then
+            hyprctl dispatch setprop address:"$(echo "$address" | xargs)" noborder 0
+          fi
+        done
+      fi
+
+      single_window_workspaces=$(hyprctl workspaces -j | jq '.[] | select(.windows == 1)' | jq ".id")
+      for workspace in $single_window_workspaces; do
+        window=$(hyprctl clients -j | jq ".[] | select(.workspace.id == $workspace) | .address")
+        hyprctl dispatch setprop address:"$(echo "$window" | xargs)" noborder 1
+      done
+
+    elif [ "$(echo "$1" | cut -c1-11)" = "closewindow" ]; then
+      workspace_id=$(hyprctl activewindow -j | jq ".workspace.id")
+      windows=$(hyprctl workspaces -j | jq ".[] | select(.id == $workspace_id) | .windows")
+
+      if [ "$windows" -eq 1 ]; then
+        window_id=$(hyprctl activewindow -j | jq -r ".address")
+        floating_status=$(hyprctl activewindow -j | jq ".floating")
+        if [ "$floating_status" = "false" ]; then
+          hyprctl dispatch setprop "address:$window_id" noborder 1
+        else
+          hyprctl dispatch setprop "address:$window_id" noborder 0
+          return
+        fi
+
+      fi
+
+    elif [ "$(echo "$1" | cut -c1-18)" = "changefloatingmode" ]; then
+      floating_status=$(echo "$1" | cut --delimiter ">" --fields 3 | cut --delimiter "," --fields 2)
+      address="0x$(echo "$1" | cut --delimiter ">" --fields 3 | cut --delimiter "," --fields 1)"
+      workspace_id=$(hyprctl clients -j | jq --arg address "$address" '.[] | select(.address == $address) | .workspace.id')
+      if [ "$floating_status" -eq 1 ]; then
+        hyprctl dispatch setprop "address:$address" noborder
+      else
+        no_windows=$(hyprctl workspaces -j | jq ".[] | select(.id == $workspace_id) | .windows")
+        if [ "$no_windows" -eq 1 ]; then
+          hyprctl dispatch setprop "address:$address" noborder 1
+        else
+          hyprctl dispatch setprop "address:$address" noborder
+        fi
+      fi
+    fi
+  }
+
+  socat -U - UNIX-CONNECT:"$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock | while read -r line; do handle "$line"; done
+  exit 0
+  ;;
+spawnfocus)
+  APP="$1"
+  [ -z "$APP" ] && {
+    echo 'Specify an app'
+    exit 1
+  }
+  shift
+
+  case "$APP" in
+  google-chrome | google-chrome-stable) CLASS="google-chrome" ;;
+  chromium | ungoogled-chromium) CLASS="Chromium" ;;
   firefox) CLASS="firefox" ;;
   alacritty) CLASS="Alacritty" ;;
-  code|vscodium) CLASS="Code" ;;
-  signal-desktop|signal) CLASS="signal" ;;
-  telegram-desktop|telegram) CLASS="TelegramDesktop" ;;
+  code | vscodium) CLASS="Code" ;;
+  signal-desktop | signal) CLASS="signal" ;;
+  telegram-desktop | telegram) CLASS="TelegramDesktop" ;;
   ghostty) CLASS="com.mitchellh.ghostty" ;;
-  bitwarden-desktop|bitwarden) CLASS="Bitwarden" ;;
+  bitwarden-desktop | bitwarden) CLASS="Bitwarden" ;;
   slack) CLASS="Slack" ;;
   discord) CLASS="discord" ;;
   vesktop) CLASS="vesktop" ;;
   *) CLASS="$APP" ;;
-esac
+  esac
 
-WIN_ADDR=$(hyprctl -j clients 2>/dev/null | jq -r --arg class "$CLASS" '
-  .[]? | select(
-    ((.xdgTag // "") | ascii_downcase | contains($class | ascii_downcase)) or
-    ((.initialClass // "") | ascii_downcase | contains($class | ascii_downcase)) or
-    ((.class // "") | ascii_downcase | contains($class | ascii_downcase))
-  ) | .address
-' | head -n 1)
+  WIN_ADDR=$(hyprctl -j clients 2>/dev/null | jq -r --arg class "$CLASS" '
+    .[]? | select(
+      ((.xdgTag // "") | ascii_downcase | contains($class | ascii_downcase)) or
+      ((.initialClass // "") | ascii_downcase | contains($class | ascii_downcase)) or
+      ((.class // "") | ascii_downcase | contains($class | ascii_downcase))
+    ) | .address
+  ' | head -n 1)
 
-case "$SUBCMD" in
-  spawnfocus)
-    if [ -n "$WIN_ADDR" ]; then
-      hyprctl dispatch focuswindow "address:$WIN_ADDR"
+  if [ -n "$WIN_ADDR" ]; then
+    hyprctl dispatch focuswindow "address:$WIN_ADDR"
+  else
+    if [ $# -eq 0 ]; then
+      "$APP" &
     else
-      "$APP" "$ARGS" &
+      "$APP" "$@" &
     fi
-    ;;
-  pull)
-    if [ -n "$WIN_ADDR" ]; then
-      CURRENT_WS="$(hyprctl activeworkspace | head -n1 | awk -F'[()]' '{print $2}')"
-      hyprctl dispatch movetoworkspace "$CURRENT_WS,address:$WIN_ADDR"
-      hyprctl dispatch focuswindow "address:$WIN_ADDR"
-    else
-      echo "No running window of class '$CLASS' found to move"
-      exit 1
+  fi
+  ;;
+pull)
+  APP="$1"
+
+  if [ -n "$APP" ]; then
+    case "$APP" in
+    google-chrome | google-chrome-stable) CLASS="google-chrome" ;;
+    chromium | ungoogled-chromium) CLASS="Chromium" ;;
+    firefox) CLASS="firefox" ;;
+    alacritty) CLASS="Alacritty" ;;
+    code | vscodium) CLASS="Code" ;;
+    signal-desktop | signal) CLASS="signal" ;;
+    telegram-desktop | telegram) CLASS="TelegramDesktop" ;;
+    ghostty) CLASS="com.mitchellh.ghostty" ;;
+    bitwarden-desktop | bitwarden) CLASS="Bitwarden" ;;
+    slack) CLASS="Slack" ;;
+    discord) CLASS="discord" ;;
+    vesktop) CLASS="vesktop" ;;
+    *) CLASS="$APP" ;;
+    esac
+
+    CUR_ADDR=$(hyprctl -j activewindow | jq -r '.address')
+    CUR_WS=$(hyprctl -j activewindow | jq -r '.workspace.id')
+
+    WIN_ADDRS=$(hyprctl -j clients 2>/dev/null | jq -r --arg class "$CLASS" --arg cur "$CUR_ADDR" --argjson ws "$CUR_WS" '
+      .[]? | select(
+        ((.xdgTag // "") | ascii_downcase | contains($class | ascii_downcase)) or
+        ((.initialClass // "") | ascii_downcase | contains($class | ascii_downcase)) or
+        ((.class // "") | ascii_downcase | contains($class | ascii_downcase))
+      ) | select(.address != $cur and .workspace.id != $ws) | "\(.class)|\(.title)|\(.address)"
+    ')
+
+    WIN_COUNT=$(echo "$WIN_ADDRS" | grep -c .)
+
+    if [ "$WIN_COUNT" -eq 1 ]; then
+      WIN_ADDR=$(echo "$WIN_ADDRS" | awk -F'|' '{print $3}')
+    elif [ "$WIN_COUNT" -gt 1 ]; then
+      WIN_ADDR=$(echo "$WIN_ADDRS" |
+        awk -F'|' '{print $1 ": " $2}' |
+        rofi -dmenu -i -p "Select window" |
+        awk -F'|' '{print $2}')
     fi
-    ;;
-  borders)
-    function handle {
-      if [[ ${1:0:10} == "openwindow" ]]; then
-        window_id=$(echo "$1" | cut --delimiter ">" --fields=3 | cut --delimiter "," --fields=1)
-        workspace_id=$(echo "$1" | cut --delimiter ">" --fields=3 | cut --delimiter "," --fields=2)
-        if [[ $workspace_id == "special" ]]; then
-          workspace_id=-99
-        fi
-        windows=$(hyprctl workspaces -j | jq ".[] | select(.id == $workspace_id) | .windows")
+  fi
 
-        if [[ $windows -eq 1 ]]; then
-          floating_status=$(hyprctl clients -j | jq ".[] | select(.address == \"0x$window_id\" ) | .floating")
-          if [[ $floating_status == "false" ]]; then
-            hyprctl dispatch setprop "address:0x$window_id" noborder 1
-          else
-            hyprctl dispatch setprop "address:0x$window_id" noborder 0
-            return
-          fi
+  if [ -z "$WIN_ADDR" ]; then
+    CUR_ADDR=$(hyprctl -j activewindow | jq -r '.address')
+    CUR_WS=$(hyprctl -j activewindow | jq -r '.workspace.id')
+    WIN_ADDR=$(hyprctl -j clients 2>/dev/null | jq -r --argjson ws "$CUR_WS" '.[]? | select(.workspace.id != $ws) | "\(.class)|\(.title)|\(.address)"' |
+      awk -F'|' '{print $1 ": " $2}' |
+      rofi -dmenu -i -p "Select window" |
+      awk -F'|' '{print $2}')
+  fi
 
-        elif [[ $windows -eq 2 ]]; then
-          addresses=$(hyprctl clients -j | jq -r --arg foo "$foo" ".[] | select(.workspace.id == $workspace_id) | .address")
-          for address in $addresses; do
-            if [[ "$address" != "$window_id" ]]; then
-              hyprctl dispatch setprop address:"$(echo "$address" | xargs)" noborder 0
-            fi
-          done
-        fi
-
-      elif [[ ${1:0:10} == "movewindow" ]]; then
-        window_id=$(echo "$1" | cut --delimiter ">" --fields=3 | cut --delimiter "," --fields=1)
-        workspace_id=$(echo "$1" | cut --delimiter ">" --fields=3 | cut --delimiter "," --fields=2)
-
-        if [[ $workspace_id == "special" ]]; then
-          workspace_id=-99
-        fi
-
-        windows=$(hyprctl workspaces -j | jq ".[] | select(.id == $workspace_id) | .windows")
-
-        if [[ $windows -eq 1 ]]; then
-          floating_status=$(hyprctl clients -j | jq ".[] | select(.address == \"0x$window_id\" ) | .floating")
-          if [[ $floating_status == "false" ]]; then
-            hyprctl dispatch setprop "address:0x$window_id" noborder 1
-          else
-            hyprctl dispatch setprop "address:0x$window_id" noborder 0
-            return
-          fi
-        elif [[ $windows -eq 2 ]]; then
-          addresses=$(hyprctl clients -j | jq -r --arg foo "$foo" ".[] | select(.workspace.id == $workspace_id) | .address")
-          for address in $addresses; do
-            if [[ "$address" != "$window_id" ]]; then
-              hyprctl dispatch setprop address:"$(echo "$address" | xargs)" noborder 0
-            fi
-          done
-        fi
-
-        single_window_workspaces=$(hyprctl workspaces -j | jq '.[] | select(.windows == 1)' | jq ".id")
-        for workspace in $single_window_workspaces; do
-          window=$(hyprctl clients -j | jq ".[] | select(.workspace.id == $workspace) | .address")
-          hyprctl dispatch setprop address:"$(echo "$window" | xargs)" noborder 1
-        done
-
-      elif [[ ${1:0:11} == "closewindow" ]]; then
-        workspace_id=$(hyprctl activewindow -j | jq ".workspace.id")
-        windows=$(hyprctl workspaces -j | jq ".[] | select(.id == $workspace_id) | .windows")
-
-        if [[ $windows -eq 1 ]]; then
-          window_id=$(hyprctl activewindow -j | jq -r ".address")
-          floating_status=$(hyprctl activewindow -j | jq ".floating")
-          if [[ $floating_status == "false" ]]; then
-            hyprctl dispatch setprop "address:$window_id" noborder 1
-          else
-            hyprctl dispatch setprop "address:$window_id" noborder 0
-            return
-          fi
-
-        fi
-
-      elif [[ ${1:0:18} == "changefloatingmode" ]]; then
-        floating_status=$(echo "$1" | cut --delimiter ">" --fields 3 | cut --delimiter "," --fields 2)
-        address="0x$(echo "$1" | cut --delimiter ">" --fields 3 | cut --delimiter "," --fields 1)"
-        workspace_id=$(hyprctl clients -j | jq --arg address "$address" '.[] | select(.address == $address) | .workspace.id')
-        if [[ $floating_status -eq 1 ]]; then
-          hyprctl dispatch setprop "address:$address" noborder 
-        else
-          no_windows=$(hyprctl workspaces -j | jq ".[] | select(.id == $workspace_id) | .windows")
-          if [[ $no_windows -eq 1 ]]; then
-            hyprctl dispatch setprop "address:$address" noborder 1
-          else
-            hyprctl dispatch setprop "address:$address" noborder 
-          fi
-        fi
-      fi
-    }
-
-    socat -U - UNIX-CONNECT:"$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock | while read -r line; do handle "$line"; done
-    ;;
-  exit)
-    pkill hypridle
-    pkill hyprpaper
-    hyprctl dispatch exit
-    ;;
-  file)
-    ghostty --title "lf-picker" -e sh -c 'file=$(lf -command "quit" | head -n1); [ -n "$file" ] && xdg-open "$file"'
-    ;;
-  *)
-    echo "Unknown subcommand: $SUBCMD"
-    usage
-    exit 1
-    ;;
+  if [ -n "$WIN_ADDR" ]; then
+    CURRENT_WS="$(hyprctl activeworkspace | head -n1 | awk -F'[()]' '{print $2}')"
+    hyprctl dispatch movetoworkspace "$CURRENT_WS,address:$WIN_ADDR"
+    hyprctl dispatch focuswindow "address:$WIN_ADDR"
+  fi
+  ;;
+*)
+  echo "Unknown subcommand: $cmd"
+  usage
+  exit 1
+  ;;
 esac
