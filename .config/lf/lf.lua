@@ -241,19 +241,14 @@ function _G.lf.preview(filepath, preview_line_count)
 	local lines = vim.api.nvim_buf_get_lines(buf, 0, preview_line_count, false)
 
 	local ft = vim.filetype.match({ buf = buf, filename = filepath })
-	if ft then
-		vim.bo[buf].filetype = ft
-	end
 
-	local tsok, result = pcall(collect_treesitter_highlights, buf, lines, vim.bo[buf].filetype, preview_line_count)
+	local tsok, result = pcall(collect_treesitter_highlights, buf, lines, ft, preview_line_count)
 
 	if tsok and next(result) ~= nil then
-		render_with_treesitter(lines, result, vim.bo[buf].filetype)
+		render_with_treesitter(lines, result, ft)
 	elseif render_with_vim_syntax(lines) then
 		return
 	else
 		render_plain(lines)
 	end
 end
-
-return M

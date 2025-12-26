@@ -62,14 +62,11 @@ audio/*)
   fi
   draw "${CACHE_BASE}.jpg"
   ;;
-text/* | application/json | inode/x-empty)
+*)
   nvim --headless -u NONE \
     -c "luafile $XDG_CONFIG_HOME/lf/lf.lua" \
     -c "lua lf.setup()" \
     -c "lua lf.preview([[${FILE_PATH}]], ${PREVIEW_LINE_COUNT})" \
     -c "quitall!"
-  ;;
-*)
-  cat "$FILE_PATH"
   ;;
 esac
