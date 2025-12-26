@@ -71,5 +71,6 @@ o.undofile = true
 o.updatetime = 50
 
 o.winborder = 'single'
+o.winbar = ''
 
 o.wrap = false

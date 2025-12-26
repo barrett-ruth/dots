@@ -3,6 +3,7 @@ local empty = require('utils').empty
 local M = {}
 
 local file = {
+    prefix = 'fp',
     highlight = 'blue',
     value = function()
         return vim.fn.expand('%:~')
@@ -15,6 +16,7 @@ local file = {
 }
 
 local git = {
+    prefix = 'git',
     highlight = 'magenta',
     value = function()
         return vim.b.gitsigns_head
@@ -31,7 +33,19 @@ local modified = {
     end,
 }
 
+local navic = {
+    prefix = 'loc',
+    value = function()
+        return require('nvim-navic').get_location()
+    end,
+    condition = function()
+        local ok, _ = pcall(require, 'nvim-navic')
+        return ok
+    end,
+}
+
 local search = {
+    prefix = '/',
     value = function()
         local count = vim.fn.searchcount({ maxcount = 999 })
 
@@ -54,6 +68,7 @@ local search = {
 }
 
 local filetype = {
+    prefix = 'ft',
     highlight = 'green',
     value = function()
         local ft = vim.api.nvim_get_option_value(
@@ -78,6 +93,7 @@ local filetype = {
 }
 
 local lineinfo = {
+    prefix = 'lnnr',
     highlight = 'yellow',
     value = '%c:%l/%L',
 }
@@ -87,11 +103,12 @@ M.components = {
         [1] = git,
         [2] = file,
         [3] = modified,
+        [4] = navic,
     },
     right = {
-        -- [1] = search,
-        [1] = lineinfo,
-        [2] = filetype,
+        [1] = search,
+        [2] = lineinfo,
+        [3] = filetype,
     },
 }
 

@@ -12,7 +12,6 @@ function M.on_attach(client, bufnr)
         if ok then
             navic.attach(client, bufnr)
         end
-        vim.opt_local.winbar = [[%{%v:lua.require('lines.winbar').winbar()%}]]
     end
 
     local ok, _ = pcall(require, 'fzf-lua')
