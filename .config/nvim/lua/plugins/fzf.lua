@@ -41,14 +41,14 @@ return {
                 worktrees = {
                     fzf_args = (
                         vim.env.FZF_DEFAULT_OPTS
-                            :gsub('--bind=ctrl-a:select-all', '')
+                            :gsub('%-%-bind=ctrl%-a:select%-all', '')
                             :gsub('%-%-color=[^%s]+', '')
                     ),
                 },
                 branches = {
                     fzf_args = (
                         vim.env.FZF_DEFAULT_OPTS
-                            :gsub('--bind=ctrl-a:select-all', '')
+                            :gsub('%-%-bind=ctrl%-a:select%-all', '')
                             :gsub('%-%-color=[^%s]+', '')
                     ),
                 },
