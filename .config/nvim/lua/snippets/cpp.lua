@@ -17,8 +17,6 @@ namespace rs = std::ranges;
 
 using namespace std;
 
-using i16 = int16_t;
-using u16 = uint16_t;
 using i32 = int32_t;
 using u32 = uint32_t;
 using i64 = int64_t;
@@ -129,6 +127,8 @@ int main() {{  // {{{{{{
   }}
   return 0;
 }}
+
+// vim: set foldmethod=marker foldmarker={{{{{{,}}}}}}
 // }}}}}}]],
     },
     {
@@ -152,6 +152,8 @@ int main() {{  // {{{{{{
   solve();
   return 0;
 }}
+
+// vim: set foldmethod=marker foldmarker={{{{{{,}}}}}}
 // }}}}}}]],
     },
     {
@@ -175,6 +177,8 @@ int main() {{  // {{{{{{
   solve();
   return 0;
 }}
+
+// vim: set foldmethod=marker foldmarker={{{{{{,}}}}}}
 // }}}}}}]],
     },
 }) do

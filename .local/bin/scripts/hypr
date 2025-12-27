@@ -5,6 +5,8 @@ usage() {
 Usage: hypr <subcommand> [app] [args...]
 
 Commands:
+  volume {up,down,toggle}       Adjust volume accordingly and notify
+  brightness {up,down}          Adjust brightness accordingly and notify
   spawnfocus <app> [args...]    Focus existing window or spawn app with args
   pull [app]                    Pull window to current workspace (picker if no app)
   borders                       Initialize dynamic borders
@@ -33,6 +35,60 @@ exit)
   pkill hyprpaper
   hyprctl dispatch exit
   exit 0
+  ;;
+brightness)
+  max_brightness="$(brightnessctl max)"
+  case "$1" in
+  up)
+    brightnessctl set 5%+
+    notify-send -u low -r 5555 "brightness $(brightnessctl get | awk -v max="$max_brightness" '{printf "%d%%", $1*100/max}')"
+    ;;
+  down)
+    brightnessctl set 5%-
+    notify-send -u low -r 5555 "brightness $(brightnessctl get | awk -v max="$max_brightness" '{printf "%d%%", $1*100/max}')"
+    ;;
+  *)
+    echo "Invalid subcommand: $1" >&2
+    exit 1
+    ;;
+  esac
+  ;;
+volume)
+  SINK="@DEFAULT_SINK@"
+  STEP=5
+  get_vol() { pactl get-sink-volume "$SINK" | awk 'NR==1{print $5+0}'; }
+
+  case "$1" in
+  up)
+    vol=$(get_vol)
+    [ "$vol" -lt 100 ] && vol=$((vol + STEP))
+    [ "$vol" -gt 100 ] && vol=100
+    pactl set-sink-volume "$SINK" "${vol}%"
+    ;;
+  down)
+    vol=$(get_vol)
+    vol=$((vol - STEP))
+    [ "$vol" -lt 0 ] && vol=0
+    pactl set-sink-volume "$SINK" "${vol}%"
+    ;;
+  toggle)
+    pactl set-sink-mute "$SINK" toggle
+    ;;
+  *)
+    echo "Invalid subcommand: $1" >&2
+    exit 1
+    ;;
+  esac
+
+  muted=$(pactl get-sink-mute "$SINK" | awk '{print $2}')
+  vol=$(get_vol)
+  [ "$vol" -gt 100 ] && vol=100
+
+  if [ "$muted" = "yes" ]; then
+    notify-send -u low -r 5556 "volume: ${vol}% (muted)"
+  else
+    notify-send -u low -r 5556 "volume: ${vol}%"
+  fi
   ;;
 borders)
   handle() {
