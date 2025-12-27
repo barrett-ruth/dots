@@ -47,6 +47,10 @@ return {
                         auto_show = true,
                     },
                 },
+                keymap = {
+                    ['<left>'] = false,
+                    ['<right>'] = false,
+                },
             },
             sources = {
                 default = { 'lsp', 'path', 'snippets', 'buffer' },
@@ -224,8 +228,8 @@ return {
                     expose_as_code_action = 'all',
                     -- tsserver_path = vim.env.XDG_DATA_HOME .. '/pnpm/tsserver',
                     tsserver_file_preferences = {
-                        includeInlayParameterNameHints = 'all',
-                        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                        includeInlayarameterNameHints = 'all',
+                        includeInlayarameterNameHintsWhenArgumentMatchesName = false,
                         includeInlayFunctionParameterTypeHints = true,
                         includeInlayVariableTypeHints = true,
                         includeInlayVariableTypeHintsWhenTypeMatchesName = false,

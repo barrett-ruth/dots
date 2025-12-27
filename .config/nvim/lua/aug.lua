@@ -14,7 +14,7 @@ au('VimEnter', {
         map({
             desc = 'Go to main tab',
             'n',
-            '<leader>m',
+            '<leader>c',
             function()
                 if
                     _G.main_tab

@@ -78,11 +78,11 @@ return {
         },
     },
     keys = {
-        { '<leader>oa', '<cmd>OverseerTaskAction<cr>' },
-        { '<leader>ob', '<cmd>OverseerBuild<cr>' },
+        { '<leader>Oa', '<cmd>OverseerTaskAction<cr>' },
+        { '<leader>Ob', '<cmd>OverseerBuild<cr>' },
         {
             desc = 'Toggle Overseer Task View',
-            '<leader>ot',
+            '<leader>Ot',
             function()
                 if list_tab and vim.api.nvim_tabpage_is_valid(list_tab) then
                     if vim.api.nvim_get_current_tabpage() ~= list_tab then
@@ -101,7 +101,7 @@ return {
         },
         {
             desc = 'Toggle Overseer Project View',
-            '<c-o>',
+            '<leader>o',
             function()
                 local overseer = require('overseer')
                 local cwd = vim.fn.getcwd()

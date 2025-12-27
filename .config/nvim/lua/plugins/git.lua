@@ -10,9 +10,10 @@ return {
         keys = {
             {
                 desc = 'Toggle Fugitive Tab',
-                '<c-g>',
+                '<leader>g',
                 function()
-                    if vim.b.gitsigns_head == nil then
+                    local is_git_dir, _ = pcall(vim.fn['fugitive#repo'])
+                    if not is_git_dir then
                         vim.notify(
                             'Working directory does not belong to a Git repository',
                             vim.log.levels.ERROR
@@ -42,9 +43,9 @@ return {
         ---@type snacks.Config
         opts = { gitbrowse = {} },
         keys = {
-            { '<leader>go', '<cmd>lua Snacks.gitbrowse()<cr>' },
-            { '<leader>gi', '<cmd>lua Snacks.picker.gh_issue()<cr>' },
-            { '<leader>gp', '<cmd>lua Snacks.picker.gh_pr()<cr>' },
+            { '<leader>Go', '<cmd>lua Snacks.gitbrowse()<cr>' },
+            { '<leader>Gi', '<cmd>lua Snacks.picker.gh_issue()<cr>' },
+            { '<leader>Gp', '<cmd>lua Snacks.picker.gh_pr()<cr>' },
         },
     },
     {

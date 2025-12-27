@@ -123,7 +123,7 @@ return {
     {
         'laytan/cloak.nvim',
         config = true,
-        keys = { { '<leader>C', '<cmd>CloakToggle<cr>' } },
+        keys = { { '<leader>Ct', '<cmd>CloakToggle<cr>' } },
         event = 'BufReadPre .env*',
     },
     {
@@ -349,8 +349,8 @@ return {
                 ['<C-t>'] = false,
                 ['<C-l>'] = false,
                 ['<C-r>'] = 'actions.refresh',
-                ['<c-s>'] = { 'actions.select', opts = { vertical = true } },
-                ['<c-x>'] = { 'actions.select', opts = { horizontal = true } },
+                ['<C-s>'] = { 'actions.select', opts = { vertical = true } },
+                ['<C-x>'] = { 'actions.select', opts = { horizontal = true } },
             },
         },
     },
@@ -473,7 +473,7 @@ return {
         'krady21/compiler-explorer.nvim',
         keys = {
             {
-                '<leader>C',
+                '<leader>Ce',
                 function()
                     local cmd = { 'CECompileLive', 'compiler=g143' }
                     if vim.fn.filereadable('compile_flags.txt') == 1 then
