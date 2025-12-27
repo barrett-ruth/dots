@@ -48,8 +48,8 @@ map({ 'x', 'p', '"_dp' })
 map({ 'x', 'P', '"_dP' })
 map({ 't', '<esc>', '<c-\\><c-n>' })
 
-map({ 'n', '<leader>iw', '<cmd>se wrap!<cr>' })
-map({ 'n', '<leader>is', '<cmd>se spell!<cr>' })
+map({ 'n', '<leader>iw', '<cmd>setlocal wrap!<cr>' })
+map({ 'n', '<leader>is', '<cmd>setlocal spell!<cr>' })
 local state = nil
 
 map({
@@ -58,24 +58,24 @@ map({
     function()
         if state then
             for k, v in pairs(state) do
-                vim.opt[k] = v
+                vim.opt_local[k] = v
             end
             state = nil
         else
             state = {
-                number = vim.opt.number:get(),
-                relativenumber = vim.opt.relativenumber:get(),
-                signcolumn = vim.opt.signcolumn:get(),
-                statuscolumn = vim.opt.statuscolumn:get(),
-                laststatus = vim.opt.laststatus:get(),
-                cmdheight = vim.opt.cmdheight:get(),
+                number = vim.opt_local.number:get(),
+                relativenumber = vim.opt_local.relativenumber:get(),
+                signcolumn = vim.opt_local.signcolumn:get(),
+                statuscolumn = vim.opt_local.statuscolumn:get(),
+                laststatus = vim.opt_local.laststatus:get(),
+                cmdheight = vim.opt_local.cmdheight:get(),
             }
-            vim.opt.number = false
-            vim.opt.relativenumber = false
-            vim.opt.signcolumn = 'no'
-            vim.opt.statuscolumn = ''
-            vim.opt.laststatus = 0
-            vim.opt.cmdheight = 0
+            vim.opt_local.number = false
+            vim.opt_local.relativenumber = false
+            vim.opt_local.signcolumn = 'no'
+            vim.opt_local.statuscolumn = ''
+            vim.opt_local.laststatus = 0
+            vim.opt_local.cmdheight = 0
         end
     end,
 })

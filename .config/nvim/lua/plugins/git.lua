@@ -31,8 +31,15 @@ return {
                     end
                     vim.cmd.tablast()
                     vim.cmd.tabnew()
+                    local empty_buf = vim.api.nvim_get_current_buf()
                     vim.cmd.Git()
                     vim.cmd('silent only')
+                    if
+                        vim.api.nvim_buf_is_valid(empty_buf)
+                        and vim.api.nvim_buf_get_name(empty_buf) == ''
+                    then
+                        vim.api.nvim_buf_delete(empty_buf, { force = true })
+                    end
                     git_tab = vim.api.nvim_get_current_tabpage()
                 end,
             },

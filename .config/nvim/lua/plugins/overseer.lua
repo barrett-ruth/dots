@@ -159,9 +159,18 @@ return {
                     })
                     current_task:start()
                 end
-                current_task:open_output('tab')
-                overseer_tab = vim.api.nvim_get_current_tabpage()
+                vim.cmd.tablast()
+                vim.cmd.tabnew()
+                local empty_buf = vim.api.nvim_get_current_buf()
+                current_task:open_output()
                 vim.cmd('silent only')
+                if
+                    vim.api.nvim_buf_is_valid(empty_buf)
+                    and vim.api.nvim_buf_get_name(empty_buf) == ''
+                then
+                    vim.api.nvim_buf_delete(empty_buf, { force = true })
+                end
+                overseer_tab = vim.api.nvim_get_current_tabpage()
             end,
         },
     },

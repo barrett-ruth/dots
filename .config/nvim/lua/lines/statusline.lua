@@ -103,7 +103,7 @@ M.components = {
         [1] = git,
         [2] = file,
         [3] = modified,
-        [4] = navic,
+        -- [4] = navic,
     },
     right = {
         [1] = search,

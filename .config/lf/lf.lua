@@ -1,10 +1,6 @@
 _G.lf = _G.lf or {}
 
 function _G.lf.setup()
-	local tmp_pack = vim.fn.stdpath("data") .. "/lf-pack"
-	vim.opt.runtimepath:prepend(tmp_pack)
-	vim.opt.packpath:prepend(tmp_pack)
-
 	vim.opt.swapfile = false
 	vim.opt.backup = false
 	vim.opt.writebackup = false
